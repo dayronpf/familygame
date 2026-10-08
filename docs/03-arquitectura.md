@@ -5,10 +5,10 @@
 | Tema | Decisión propuesta | Alternativas | ADR |
 |---|---|---|---|
 | Multiplataforma | **Flutter (Dart)**, un solo código para Android e iOS | React Native, Unity | 001 |
-| Backend | **Ninguno en el MVP** (offline-first); CDN estático para packs | Firebase, backend propio | 002 |
+| Backend | **Backend propio + panel web** (catálogo, packs, compras); la app lee offline | Firebase, Supabase, propio | 011 → ver [09](09-backend-y-panel-admin.md) |
 | Formato de contenido | **JSON versionado por pack** (ver [06](06-modelo-de-contenido.md)) | SQLite precargada | 003 |
 | Voz | Empezar con **TTS del sistema**; decidir tras spike | TTS neuronal offline, TTS en la nube, grabación humana | 004 |
-| Animación | **Capas 2D con animaciones nativas de Flutter + Lottie/Rive** | Flame, Unity | 005 |
+| Animación | **Vectorial modular (rigs + piezas)**; Rive/Lottie/propio por decidir | Flame, Unity | 005 → ver [10](10-arte-y-estilo-visual.md) |
 | Compras | `in_app_purchase` o RevenueCat | — | 006 |
 
 > Son propuestas razonadas, no dogmas: cada una tiene un spike o criterio para revisarla.
@@ -97,7 +97,7 @@ pack/
   assets/{img,audio,anim}/
 ```
 
-- Pack gratuito **embebido** en la app; los demás se descargan, se verifican (hash/firma) y se cachean.
+- Pack **starter embebido** en la app (plan B sin red); el catálogo vigente se trae del backend, se verifica (hash y firma) y se cachea. Detalle en [09](09-backend-y-panel-admin.md).
 - Compatibilidad: versión de esquema en cada pack; la app ignora packs con un esquema que no entiende.
 - Actualizaciones de contenido sin nueva versión de app.
 
@@ -110,5 +110,5 @@ pack/
 
 ## 7. Seguridad y privacidad (resumen)
 
-Sin cuentas ni datos personales de menores en el MVP; ajustes parentales detrás de una puerta para adultos;
+Sin cuentas ni datos personales de menores (el backend solo ve un identificador anónimo y tokens de compra, ver [09 §7](09-backend-y-panel-admin.md)); ajustes parentales detrás de una puerta para adultos;
 analítica mínima y agregada (ver [04](04-contenido-y-derechos.md)).

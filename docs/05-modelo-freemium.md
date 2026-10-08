@@ -37,5 +37,5 @@ Conversión de gratis a premium, packs por familia, retención por pack, reembol
 
 ## Entrega técnica
 
-Manifiesto de packs con `product_id`; verificación de recibo en cliente (MVP) y, más adelante, en servidor;
-descarga bajo demanda, caché y borrado manual para liberar espacio.
+Manifiesto de packs con `product_id`; **verificación de compras en el servidor** con entitlements firmados y webhooks de las tiendas,
+registrados y visibles en el panel (ver [09 §5](09-backend-y-panel-admin.md)); descarga bajo demanda, caché y borrado manual para liberar espacio.

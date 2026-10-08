@@ -10,13 +10,16 @@ Los sprints 0–3 están detallados; el resto se refina cuando se acerca («Ahor
 | E1 | Fundamentos del proyecto (repo, CI, nombre, cuentas) | S0 |
 | E2 | Motor de cuentos y modelo de contenido | 0.1 |
 | E3 | Flujo editorial y producción de contenido | 0.1 → continuo |
-| E4 | Lector y experiencia nocturna | 0.1–0.2 |
-| E5 | Narración (voz) | 0.2 |
-| E6 | Escenas y animación | 0.3 |
-| E7 | Modo holograma | 0.4 |
-| E8 | Packs, compras y freemium | 1.0 |
+| E4 | Lector y experiencia nocturna | 0.1–0.3 |
+| E11 | **Backend, API y sincronización de packs** ([09](09-backend-y-panel-admin.md)) | 0.2 → 1.0 |
+| E12 | **Panel de administración web** (contenido, publicación, ventas) | 0.2 → 1.0 |
+| E5 | Narración (voz) | 0.3 |
+| E13 | **Arte y pipeline visual** ([10](10-arte-y-estilo-visual.md)) | 0.2 → 0.4 |
+| E6 | Escenas y animación | 0.4 |
+| E7 | Modo holograma | 0.5 |
+| E8 | Compras, suscripciones y freemium (cliente + servidor) | 1.0 |
 | E9 | Cumplimiento legal, privacidad y publicación | 1.0 |
-| E10 | Crecimiento: idiomas, personalización, packs nuevos | Post-1.0 |
+| E10 | Crecimiento: idiomas, personalización, packs nuevos, compositor | Post-1.0 |
 
 ## Sprint 0 · Fundamentos (objetivo: «tenemos plan, reglas y un caldero que funciona»)
 
@@ -63,23 +66,28 @@ Android/iOS reales (el entorno de desarrollo actual no tiene SDK de Android ni X
 | E2-06 | Casos de gramática: plurales y `article_override` | Pruebas con *los tres hermanos*, *el agua* | S |
 | E4-05 | Build interno para testers (TestFlight / pista interna) | 5 testers instalan sin ayuda | S |
 | UX-01 | **Prueba con 10 familias** (guion de observación y encuesta corta) | Resultados documentados; decisión de continuar/ajustar | M |
+| E11-01 | **Contrato OpenAPI v1** (catálogo, descarga, instalaciones, entitlements) + servidor simulado | La app puede sincronizar contra el simulado; contrato revisado | M |
+| E11-02 | **Spike S-07:** elegir tecnología de backend y de panel (coste, privacidad, operación) | Decisión escrita (ADR) con comparativa | S |
 
 ## Spikes planificados (resultados = decisión escrita)
 
 | ID | Spike | Cuándo | Pregunta a responder |
 |---|---|---|---|
-| S-02 | Voz | S3–S4 | ¿Qué voz (sistema / neuronal offline / nube) gusta a las familias y cumple licencias y peso? |
-| S-03 | Holograma | S5–S6 | ¿Funciona en 3 teléfonos con una pirámide de 6–10 cm? ¿Qué diseño visual lo hace brillar? |
-| S-04 | Animación | S5 | ¿Capas + Lottie/Rive alcanzan 60 FPS y el estilo deseado? |
-| S-05 | Entrega de packs | S10 | ¿Descarga bajo demanda con hash/firma en ambas tiendas? |
+| S-07 | Tecnología de backend y panel | S3 | ¿Supabase, Firebase o propio? ¿Panel en React o Flutter Web con el motor compilado a JS? |
+| S-04 | Arte y animación | S5 | ¿Rive, Lottie o dibujo propio alcanzan 60 FPS y el estilo deseado con el presupuesto de [10 §4](10-arte-y-estilo-visual.md)? |
+| S-02 | Voz | S6–S7 | ¿Qué voz (sistema / neuronal offline / nube) gusta a las familias y cumple licencias y peso? |
+| S-06 | Compras y suscripciones | S8 | ¿Capa propia o servicio externo? ¿Cumple las reglas de la categoría infantil? |
+| S-03 | Holograma | S9 | ¿Funciona en 3 teléfonos con una pirámide de 6–10 cm? ¿Cuánto cuesta dibujar 4 vistas? |
 
-## Release 0.2 – 1.0 (nivel épica; se detalla al acercarse)
+> La entrega de packs (antes S-05) deja de ser un spike: es el núcleo del release 0.2.
 
-- **E5:** modo Escucha, modo Lectura compartida con voz, temporizador de sueño, sincronización texto-voz.
-- **E6:** motor de escenas, kit visual (10 personajes, 6 fondos), ambientes y efectos de sonido, sincronización por frase.
-- **E7:** vista de 4 espejos, calibración, wakelock, bloqueo táctil, plantilla PDF y guía de montaje.
-- **E8:** manifiesto de packs, descarga y caché, compras integradas, restaurar, puerta parental, pack «Bosque Encantado».
-- **E9:** política de privacidad, formularios de tiendas, revisión legal, prueba cerrada, ficha de tienda.
+## Releases 0.2 – 1.0 (nivel épica; se detalla al acercarse)
+
+- **0.2 Catálogo (E11, E12, E13):** backend v0 con versiones inmutables y manifiesto firmado; sincronización en la app (hash, firma, instalación atómica, starter embebido); panel v0 (CRUD, validación, vista previa, publicar); guía de estilo y spike de arte.
+- **0.3 Voz (E5):** modo Escucha, Lectura compartida con voz, temporizador de sueño, sincronización texto-voz.
+- **0.4 Vida (E6, E13):** motor de escenas, rigs modulares, kit del pack gratuito (~10 personajes, ~6 fondos), ambientes y efectos, sincronización por frase.
+- **0.5 Holograma (E7):** vista de 4 orientaciones, calibración, wakelock, bloqueo táctil, plantilla PDF y guía de montaje.
+- **1.0 (E8, E9, E11, E12):** entitlements y verificación de compras, webhooks, panel de ventas, roles y auditoría, puerta parental, pack «Bosque Encantado», privacidad, formularios de tiendas, revisión legal, prueba cerrada.
 
 ## Ideas para después (Could)
 
