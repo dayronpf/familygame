@@ -29,7 +29,7 @@ mientras avanza y puede proyectarse como **holograma** con una pirámide transpa
 | [docs/08-decisiones-y-riesgos.md](docs/08-decisiones-y-riesgos.md) | Decisiones tomadas (ADR), supuestos abiertos y riesgos |
 | [docs/09-backend-y-panel-admin.md](docs/09-backend-y-panel-admin.md) | Backend, sincronización de packs, compras y panel de administración |
 | [docs/10-arte-y-estilo-visual.md](docs/10-arte-y-estilo-visual.md) | Estilo visual, derechos de autor del arte, sistema modular y presupuesto de rendimiento |
-| [docs/12-valoraciones-y-mejora-continua.md](docs/12-valoraciones-y-mejora-continua.md) | Valoración 1–5 al final de cada cuento: qué se envía, evidencia, análisis y cómo mejora los cuentos |
+| [docs/12-valoraciones-y-mejora-continua.md](docs/12-valoraciones-y-mejora-continua.md) | Valoración 1–5 al final de cada cuento (con motivo opcional si es baja): qué se envía, evidencia, análisis y cómo mejora los cuentos |
 | [docs/11-pipeline-de-arte-por-codigo.md](docs/11-pipeline-de-arte-por-codigo.md) | Arte generado por código (sin presupuesto ni herramientas de pago), pack medieval, 3D y límites |
 
 ## Estructura del repositorio
@@ -68,7 +68,7 @@ tools/sync_assets.sh             # CI falla si lo olvidas (--check)
 
 # Valoraciones: simulación, análisis y contrato (ver docs/12)
 pip install numpy jsonschema pyyaml
-cd tools/feedback && python3 simulate.py --quick && python3 -m unittest test_analyze test_contract
+cd tools/feedback && python3 simulate.py --quick && python3 simulate.py --reasons --quick && python3 -m unittest test_analyze test_contract
 python3 analyze.py ratings.jsonl      # informe de fragmentos a revisar
 
 # Arte generado por código (ver docs/11)

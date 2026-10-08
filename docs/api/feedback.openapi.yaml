@@ -15,6 +15,7 @@ info:
     * `packId` + `packVersion` deben existir y estar publicados; `fragments`, `cast` y `value` deben pertenecer a esa versión.
     * `day` no puede ser futuro ni tener más de 60 días.
     * `id` repetido: se ignora sin error (la app reintenta y no debe duplicar).
+    * `reasons` solo con `rating` ≤ 3.
 servers:
   - url: https://api.caldero.example
 paths:
@@ -88,6 +89,22 @@ components:
           type: string
           description: Versión de la app.
           pattern: '^\d+\.\d+\.\d+$'
+        reasons:
+          type: array
+          description: |
+            Opcional. Motivo de una nota baja, elegido entre cinco botones. **Solo se acepta si `rating` es 3 o menos**
+            (regla del servidor; el esquema no puede expresarla). Sin texto libre.
+              * `no_sense`: No tuvo sentido
+              * `repeated`: Se repitió
+              * `length`: Muy largo o muy corto
+              * `scary`: Dio miedo
+              * `moral`: No me gustó la enseñanza
+          minItems: 1
+          maxItems: 5
+          uniqueItems: true
+          items:
+            type: string
+            enum: [no_sense, repeated, length, scary, moral]
         recipe:
           $ref: '#/components/schemas/Recipe'
     Recipe:
@@ -147,4 +164,4 @@ components:
                 type: string
               reason:
                 type: string
-                enum: [unknown_pack, unknown_fragment, unknown_value, bad_day, invalid]
+                enum: [unknown_pack, unknown_fragment, unknown_value, bad_day, reasons_need_low_rating, invalid]

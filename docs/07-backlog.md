@@ -94,7 +94,7 @@ Cada cuento termina pidiendo una nota de 1 a 5; es el único dato que se recoge.
 |---|---|---|
 | E14-01 | Receta del cuento (pack, versión, semilla, enseñanza, reparto, fragmentos) y versión del motor | ✅ motor, 33 pruebas |
 | E14-02 | Ficha de 5 caritas al final del cuento, con «Ahora no» y tono nocturno | ✅ verificada en pantalla |
-| E14-03 | Cola local sin conexión (tope 200), envío por lotes de 50, reintentos con retroceso 1 min → 6 h, idempotencia | ✅ 23 pruebas |
+| E14-03 | Cola local sin conexión (tope 200), envío por lotes de 50, reintentos con retroceso 1 min → 6 h, idempotencia y sin pérdidas con envíos concurrentes | ✅ 32 pruebas |
 | E14-04 | Recordatorio de la mañana siguiente para cuentos leídos hasta el final y sin valorar (máx. 3, caduca a 3 días) | ✅ |
 | E14-05 | Ajustes para adultos (pregunta de multiplicar): interruptor, qué se envía/no, ejemplo exacto, borrado al desactivar | ✅ |
 | E14-06 | Contrato OpenAPI de `POST /v1/feedback` + pruebas de contrato en app y esquema (rechaza cualquier campo extra) | ✅ |
@@ -103,7 +103,8 @@ Cada cuento termina pidiendo una nota de 1 a 5; es el único dato que se recoge.
 | E14-09 | **Servidor** `/v1/feedback`: validar contra el catálogo publicado, idempotencia, límite de ritmo, tabla `story_ratings` | ☐ S4–S5 (con E11) |
 | E14-10 | Panel «Calidad»: fragmentos y transiciones marcados, cuentos peor valorados reconstruidos por receta | ☐ S6 (con E12) |
 | E14-11 | Propuesta de pesos con aprobación humana (mín. 0,2, ±50 % por versión) | ☐ con ≥ 1 000 valoraciones |
-| E14-12 | Motivo opcional para notas ≤ 3 (*No tuvo sentido, Se repitió, Largo/corto, Dio miedo, No me gustó la enseñanza*) | ☐ **espera tu decisión D2** |
+| E14-12 | Motivo opcional para notas ≤ 3 (*No tuvo sentido, Se repitió, Muy largo o muy corto, Dio miedo, No me gustó la enseñanza*), combinable y omitible | ✅ app, contrato, análisis y simulación |
+| E14-13 | Análisis por motivo: qué fragmentos provocan cada queja (la causa se identifica en 81–98 % de los casos según la tasa de respuesta) | ✅ |
 | E3-04 | Guía editorial: ≥ 3 variantes por etapa y enseñanza (sin variantes no se puede aprender) | ☐ |
 
 ## Spikes planificados (resultados = decisión escrita)

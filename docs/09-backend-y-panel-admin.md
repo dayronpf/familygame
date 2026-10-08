@@ -80,7 +80,7 @@ App ──compra──▶ Tienda ──recibo/token──▶ App ──POST /v1/
 | `assets`, `asset_licenses` | Archivos de arte/audio y su licencia, autor, fuente y prueba |
 | `products`, `purchases`, `entitlements` | Productos de tienda, transacciones verificadas y derechos vigentes |
 | `installs` | Identificador **anónimo** de instalación, versión de app, idioma (sin datos personales). **No se enlaza con las valoraciones** |
-| `story_ratings` | Valoración 1–5 + receta del cuento (códigos) + día. Sin usuario, instalación, IP ni hora (ver [12 §8](12-valoraciones-y-mejora-continua.md)) |
+| `story_ratings` | Valoración 1–5 + motivo opcional (códigos, solo con nota ≤ 3) + receta del cuento (códigos) + día. Sin usuario, instalación, IP ni hora (ver [12 §8](12-valoraciones-y-mejora-continua.md)) |
 | `admin_users`, `roles`, `audit_log` | Quién puede qué y quién hizo qué, con fecha |
 
 ## 7. Privacidad y seguridad

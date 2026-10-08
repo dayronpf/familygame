@@ -27,6 +27,14 @@ Z_THRESHOLD = -2.0
 MIN_PAIR_APPEARANCES = 30
 LAMBDA = 9.0  # ≈ σ²/τ² con σ≈0.9 (ruido) y τ≈0.3 (efectos esperables)
 
+# Motivos que la app permite con una nota de 3 o menos (códigos estables del contrato).
+REASONS = {"no_sense": "No tuvo sentido", "repeated": "Se repitió", "length": "Muy largo o muy corto",
+           "scary": "Dio miedo", "moral": "No me gustó la enseñanza"}
+MAX_RATING_WITH_REASONS = 3
+LAMBDA_REASON = 30.0  # para indicadores 0/1: σ≈0.3 y τ≈0.05 (puntos de probabilidad) ⇒ σ²/τ² ≈ 36
+REASON_EFFECT_THRESHOLD = 0.04  # +4 puntos porcentuales de probabilidad de queja
+REASON_Z_THRESHOLD = 2.0
+
 
 def ridge(X, y, lam=LAMBDA):
     """Ridge con intercepto sin penalizar. Devuelve (coeficientes, errores estándar, media base)."""
@@ -65,6 +73,13 @@ def clean(events, pack=None, pack_version=None):
             dropped["duplicado o nota inválida"] += 1
             continue
         seen.add(e["id"])
+        reasons = e.get("reasons")
+        if reasons is not None:
+            valid = (isinstance(reasons, list) and 0 < len(set(reasons)) == len(reasons)
+                     and all(x in REASONS for x in reasons) and int(e["rating"]) <= MAX_RATING_WITH_REASONS)
+            if not valid:  # la nota vale; los motivos inválidos se ignoran
+                dropped["motivos inválidos (ignorados)"] += 1
+                e = {k: v for k, v in e.items() if k != "reasons"}
         out.append(e)
     if pack:
         out = [e for e in out if e["recipe"]["packId"] == pack]
@@ -125,6 +140,32 @@ def analyze(events, pack=None, pack_version=None):
                          if r["n"] >= MIN_APPEARANCES and r["effect"] < EFFECT_THRESHOLD and r["z"] < Z_THRESHOLD]
     result["flagged_transitions"] = [r["id"] for r in result["transitions"]
                                      if r["effect"] < EFFECT_THRESHOLD and r["z"] < Z_THRESHOLD]
+
+    # --- Motivos: ¿qué fragmentos aumentan la probabilidad de cada queja? (indicador 0/1 sobre TODOS los cuentos)
+    low = [e for e in events if int(e["rating"]) <= MAX_RATING_WITH_REASONS]
+    with_reason = [e for e in low if e.get("reasons")]
+    result["reason_summary"] = {
+        "low_rated": len(low), "answered": len(with_reason),
+        "answer_rate": round(len(with_reason) / len(low), 3) if low else None,
+        "by_reason": {c: sum(1 for e in events if c in (e.get("reasons") or [])) for c in REASONS},
+    }
+    result["reasons"] = {}
+    result["flagged_by_reason"] = {}
+    for code in REASONS:
+        yr = np.array([1.0 if code in (e.get("reasons") or []) else 0.0 for e in events], dtype=np.float32)
+        if yr.sum() < 5:  # muy pocas quejas de este tipo: no hay de dónde aprender
+            result["reasons"][code], result["flagged_by_reason"][code] = [], []
+            continue
+        br, sr, _ = ridge(X, yr, LAMBDA_REASON)
+        rows = []
+        for f in frag_ids:
+            i = fi[f]
+            rows.append({"id": f, "n": int(counts[i]), "effect": round(float(br[i]), 3),
+                         "z": round(float(br[i] / max(sr[i], 1e-9)), 2)})
+        rows.sort(key=lambda r: -r["effect"])
+        result["reasons"][code] = rows
+        result["flagged_by_reason"][code] = [r["id"] for r in rows if r["n"] >= MIN_APPEARANCES
+                                             and r["effect"] > REASON_EFFECT_THRESHOLD and r["z"] > REASON_Z_THRESHOLD]
     return result
 
 
@@ -142,6 +183,7 @@ def report(res, top=10):
                 lines.append(f"| `{r['id']}` | {r['n']} | {r['effect']:+.2f} | {r['z']} | {r['mean']} |")
     else:
         lines.append("Ninguno supera el umbral todavía (efecto < −0,3 y z < −2 con ≥ 20 apariciones).")
+    lines += _reasons_section(res, top)
     lines += ["", f"## Los {top} fragmentos con peor efecto (aunque no pasen el umbral)", "",
               "| Fragmento | Apariciones | Efecto | z |", "|---|---|---|---|"]
     lines += [f"| `{r['id']}` | {r['n']} | {r['effect']:+.2f} | {r['z']} |" for r in res["fragments"][:top]]
@@ -151,6 +193,29 @@ def report(res, top=10):
     lines += [f"| {r['id']} | {r['n']} | {r['effect']:+.2f} |" for r in res["values"]]
     lines += ["", "> Marcar no es condenar: una persona debe leer el fragmento antes de cambiarlo o bajarle el peso."]
     return "\n".join(lines) + "\n"
+
+
+def _reasons_section(res, top):
+    rs = res.get("reason_summary")
+    if not rs or not rs["low_rated"]:
+        return []
+    out = ["", "## Por qué se quejan (motivos opcionales con nota ≤ 3)", "",
+           f"- Cuentos con nota baja: **{rs['low_rated']}**; indicaron motivo: **{rs['answered']}** "
+           f"({rs['answer_rate']:.0%})."]
+    out += [f"- {REASONS[c]}: {n}" for c, n in rs["by_reason"].items() if n]
+    for code, label in REASONS.items():
+        flagged = res["flagged_by_reason"].get(code) or []
+        if not flagged:
+            continue
+        hint = " ← **prioridad de coherencia**" if code in ("no_sense", "repeated") else ""
+        out += ["", f"### «{label}»: fragmentos que más la provocan{hint}", "",
+                "| Fragmento | Apariciones | Más quejas (puntos %) | z |", "|---|---|---|---|"]
+        for r in res["reasons"][code]:
+            if r["id"] in flagged:
+                out.append(f"| `{r['id']}` | {r['n']} | {r['effect'] * 100:+.1f} | {r['z']} |")
+    out.append("")
+    out.append("> Las quejas son opcionales: un fragmento puede provocar más de las que se ven (solo responde una parte).")
+    return out
 
 
 def main():

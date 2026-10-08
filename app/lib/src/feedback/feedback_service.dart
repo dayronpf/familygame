@@ -62,6 +62,15 @@ class FeedbackService {
 
   bool _flushing = false;
 
+  /// Serializa las modificaciones de la cola: dos operaciones a la vez no se pisan.
+  Future<void>? _tail; // se crea en el primer uso, en la zona de quien lo llama
+
+  Future<T> _locked<T>(Future<T> Function() op) {
+    final run = (_tail ?? Future<void>.value()).then((_) => op());
+    _tail = run.then((_) {}, onError: (_) {});
+    return run;
+  }
+
   /// Sube cada vez que cambia la lista de cuentos pendientes de valorar (la pantalla de inicio escucha).
   final ValueNotifier<int> pendingChanges = ValueNotifier(0);
 
@@ -71,7 +80,7 @@ class FeedbackService {
     await store.writeEnabled(value);
     if (!value) {
       // Al desactivar se borra todo lo que estaba esperando para enviarse.
-      await store.writeQueue(const []);
+      await _locked(() => store.writeQueue(const []));
       await store.writePending(const []);
       pendingChanges.value++;
     }
@@ -79,19 +88,36 @@ class FeedbackService {
 
   Future<int> queuedCount() async => (await store.readQueue()).length;
 
-  /// Registra la valoración de un cuento. Devuelve `false` si el envío está desactivado.
-  Future<bool> rate(StoryRecipe recipe, int rating) async {
-    if (!await enabled) return false;
+  /// Registra la valoración de un cuento. Devuelve el id del evento (para añadirle motivos después)
+  /// o `null` si el envío está desactivado.
+  Future<String?> rate(StoryRecipe recipe, int rating) async {
+    if (!await enabled) return null;
     final event = RatingEvent(
         id: _newId(), recipe: recipe, rating: rating, day: dayOf(_now()));
-    final queue = await store.readQueue()
-      ..add(event.toJson());
-    while (queue.length > maxQueue) {
-      queue.removeAt(0);
-    }
-    await store.writeQueue(queue);
+    await _locked(() async {
+      final queue = await store.readQueue()
+        ..add(event.toJson());
+      while (queue.length > maxQueue) {
+        queue.removeAt(0);
+      }
+      await store.writeQueue(queue);
+    });
     await _forget(recipe);
-    return true;
+    return event.id;
+  }
+
+  /// Añade los motivos a una valoración que todavía espera en la cola. Devuelve `false` si ya salió
+  /// (o no existe), porque entonces ya no se puede modificar.
+  Future<bool> setReasons(String eventId, List<String> reasons) {
+    return _locked(() async {
+      if (!await enabled) return false;
+      final queue = await store.readQueue();
+      final i = queue.indexWhere((e) => e['id'] == eventId);
+      if (i < 0) return false;
+      queue[i] = RatingEvent.fromJson(queue[i]).withReasons(reasons).toJson();
+      await store.writeQueue(queue);
+      return true;
+    });
   }
 
   // ---------------------------------------------------------------- pendientes
@@ -150,13 +176,15 @@ class FeedbackService {
       if (!await enabled) return FlushResult.disabled;
       final t = transport;
       if (t == null) return FlushResult.noServer;
-      var queue = await store.readQueue();
-      if (queue.isEmpty) return FlushResult.empty;
+      if ((await store.readQueue()).isEmpty) return FlushResult.empty;
       if (!force && _now().millisecondsSinceEpoch < await store.readRetryAt()) {
         return FlushResult.waiting;
       }
-      while (queue.isNotEmpty) {
-        final batch = queue.take(batchSize).toList();
+      while (true) {
+        // Se toma una copia del siguiente lote; mientras se envía, la cola puede recibir valoraciones nuevas.
+        final batch =
+            (await _locked(() => store.readQueue())).take(batchSize).toList();
+        if (batch.isEmpty) break;
         final outcome = await t.send(batch);
         if (outcome == SendOutcome.retryLater) {
           final failures = await store.readFailures() + 1;
@@ -165,8 +193,15 @@ class FeedbackService {
               _now().add(wait).millisecondsSinceEpoch, failures);
           return FlushResult.failed;
         }
-        queue = queue.skip(batch.length).toList();
-        await store.writeQueue(queue);
+        // Se borran SOLO los eventos enviados (por id), sin tocar los que llegaron mientras tanto.
+        final sent = {for (final e in batch) e['id']};
+        await _locked(() async {
+          final current = await store.readQueue();
+          await store.writeQueue([
+            for (final e in current)
+              if (!sent.contains(e['id'])) e
+          ]);
+        });
       }
       await store.writeRetryAt(0, 0);
       return FlushResult.sent;

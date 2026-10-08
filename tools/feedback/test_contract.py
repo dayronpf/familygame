@@ -14,6 +14,8 @@ from jsonschema import Draft7Validator, RefResolver
 DOCS = Path(__file__).resolve().parent.parent.parent / "docs" / "api"
 SPEC = yaml.safe_load((DOCS / "feedback.openapi.yaml").read_text(encoding="utf-8"))
 EXAMPLE = json.loads((DOCS / "examples" / "rating-event.json").read_text(encoding="utf-8"))
+WITH_REASONS = json.loads((DOCS / "examples" / "rating-event-with-reasons.json").read_text(encoding="utf-8"))
+REASONS = ["no_sense", "repeated", "length", "scary", "moral"]
 
 
 def validator(name):
@@ -32,6 +34,29 @@ class ContractTests(unittest.TestCase):
 
     def test_el_ejemplo_cumple_el_contrato(self):
         self.assertEqual(errors("RatingEvent", EXAMPLE), [])
+
+    def test_el_ejemplo_con_motivos_cumple_el_contrato(self):
+        self.assertEqual(errors("RatingEvent", WITH_REASONS), [])
+        self.assertLessEqual(WITH_REASONS["rating"], 3, "los motivos solo existen con nota baja")
+
+    def test_motivos_invalidos(self):
+        cases = {
+            "motivo inventado": ["aburrido"],
+            "texto libre": ["no entendí nada de nada"],
+            "repetidos": ["scary", "scary"],
+            "vacío": [],
+            "más de cinco": REASONS + ["no_sense"],
+            "no es lista": "scary",
+        }
+        for name, value in cases.items():
+            doc = copy.deepcopy(WITH_REASONS)
+            doc["reasons"] = value
+            self.assertTrue(errors("RatingEvent", doc), f"debería rechazar: {name}")
+
+    def test_los_cinco_motivos_a_la_vez_son_validos(self):
+        doc = copy.deepcopy(WITH_REASONS)
+        doc["reasons"] = REASONS
+        self.assertEqual(errors("RatingEvent", doc), [])
 
     def test_un_lote_de_ejemplos_cumple_el_contrato(self):
         self.assertEqual(errors("FeedbackBatch", {"events": [EXAMPLE] * 50}), [])

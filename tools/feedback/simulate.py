@@ -133,14 +133,70 @@ def trial(world, n, seed, lam=9.0):
     return out
 
 
+REASON_CODES = ["no_sense", "repeated", "length", "scary", "moral"]
+
+
+def trial_reasons(world, n, seed, answer_rate=0.5):
+    """3 fragmentos malos por INCOHERENCIA y 3 por SUSTO (igual de malos por nota).
+    Con nota ≤ 3 contesta el motivo `answer_rate` de las veces, acertando la causa el 80 %."""
+    rng = np.random.default_rng(seed)
+    eff = rng.normal(0, 0.12, world.n_frag)
+    mor = rng.normal(0, 0.2, MORALS)
+    picks = []
+    for st in ["trouble", "helper", "climax", "resolution", "opening", "test"]:
+        k, per = VARIANTS[st]
+        m = int(rng.integers(0, MORALS)) if per else None
+        picks.append(world.frag[(st, m, int(rng.integers(0, k)))])
+    cause = {f: ("no_sense" if i < 3 else "scary") for i, f in enumerate(picks)}
+    eff[picks] -= 1.0
+    st = world.stories(n, rng)
+    m, frags, pairs = st
+    y = ratings(world, st, eff, mor, np.zeros(world.n_pair), rng)
+    reasons = np.zeros((n, len(REASON_CODES)), dtype=np.float32)
+    for i in range(n):
+        if y[i] <= 3 and rng.random() < answer_rate:
+            causes = sorted({cause[f] for f in frags[i] if f in cause})
+            pool = causes if causes and rng.random() < 0.8 else REASON_CODES
+            reasons[i, REASON_CODES.index(str(rng.choice(pool)))] = 1
+    X = design(world, st, with_pairs=False)
+    beta, se, _ = _ridge(X, y, 9.0)
+    bf, sf = beta[:world.n_frag], se[:world.n_frag]
+    detected = [f for f in np.where((bf < -0.3) & (bf / np.maximum(sf, 1e-9) < -2))[0] if f in cause]
+    zs = {}
+    for j, code in enumerate(REASON_CODES):
+        if reasons[:, j].sum() < 5:
+            zs[code] = np.zeros(world.n_frag)
+            continue
+        br, sr, _ = _ridge(X, reasons[:, j], 30.0)
+        zs[code] = br[:world.n_frag] / np.maximum(sr[:world.n_frag], 1e-9)
+    right = sum(1 for f in detected if REASON_CODES[int(np.argmax([zs[c][f] for c in REASON_CODES]))] == cause[f])
+    return {"detected": len(detected), "typed_ok": right, "answered": float(reasons.sum() / max((y <= 3).sum(), 1))}
+
+
+def run_reasons(world, quick):
+    print("\nMotivos opcionales: 3 fragmentos malos por INCOHERENCIA y 3 por SUSTO (igual de malos por nota).")
+    print("Con nota ≤ 3 contesta el motivo la mitad de las veces y acierta la causa el 80 %.\n")
+    print(f"{'valoraciones':>12} {'detectados':>11} {'causa bien identificada':>24} {'sin motivos (azar)':>19}")
+    grid = [(500, 16), (1000, 16), (2000, 12), (5000, 8)] if quick else [(500, 30), (1000, 30), (2000, 24), (5000, 16), (10000, 8)]
+    for n, trials in grid:
+        r = [trial_reasons(world, n, 777 * n + t) for t in range(trials)]
+        det = float(np.mean([x["detected"] for x in r]))
+        ok = sum(x["typed_ok"] for x in r) / max(sum(x["detected"] for x in r), 1)
+        print(f"{n:>12} {det:>8.1f}/6 {ok:>24.0%} {'50 %':>19}")
+
+
 def main():
     global NOISE_SD
     ap = argparse.ArgumentParser()
     ap.add_argument("--quick", action="store_true")
+    ap.add_argument("--reasons", action="store_true", help="evalúa el valor de los motivos opcionales")
     ap.add_argument("--noise", type=float, default=0.9, help="desviación típica del ruido (σ)")
     args = ap.parse_args()
     NOISE_SD = args.noise
     world = World()
+    if args.reasons:
+        run_reasons(world, args.quick)
+        return
     print(f"Pack sintético: {world.n_frag} fragmentos, {world.n_pair} transiciones posibles, {MORALS} enseñanzas")
     print(f"Verdad plantada: 6 fragmentos malos (−1.0), 3 transiciones incoherentes (−1.2), ruido σ={NOISE_SD}\n")
     grid = [(250, 20), (500, 20), (1000, 20), (2000, 16), (5000, 8)] if args.quick else \

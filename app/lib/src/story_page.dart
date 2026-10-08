@@ -35,6 +35,7 @@ class _StoryPageState extends State<StoryPage> {
   bool? _askRating; // null = aún no sabemos si el envío está permitido
   bool _reachedEnd = false; // la ficha de valoración llegó a mostrarse
   bool _answered = false; // ya valoraron o dijeron «Ahora no»
+  Future<String?>? _ratingId; // id del evento guardado al valorar
 
   @override
   void initState() {
@@ -51,18 +52,37 @@ class _StoryPageState extends State<StoryPage> {
     }
   }
 
+  /// Termina la valoración: añade los motivos (si hay) y recién entonces intenta enviar.
+  Future<void> _finishRating(
+      Future<String?>? idFuture, List<String> reasons) async {
+    final id = await idFuture;
+    if (id != null && reasons.isNotEmpty) {
+      await widget.feedback.setReasons(id, reasons);
+    }
+    await widget.feedback.flush();
+  }
+
   @override
   void dispose() {
     _rememberIfUnanswered();
+    // Si se fueron a mitad del segundo paso, la nota ya está guardada: se envía sin motivo.
+    if (_answered && _ratingId != null) {
+      _finishRating(_ratingId, const []);
+    }
     super.dispose();
   }
 
   void _another() {
     _rememberIfUnanswered();
+    if (_answered && _ratingId != null) {
+      _finishRating(
+          _ratingId, const []); // por si se quedaron a mitad del segundo paso
+    }
     setState(() {
       _story = widget.onAnother();
       _reachedEnd = false;
       _answered = false;
+      _ratingId = null;
     });
   }
 
@@ -107,11 +127,10 @@ class _StoryPageState extends State<StoryPage> {
                 onShown: () => _reachedEnd = true,
                 onRate: (v) {
                   _answered = true;
-                  // Primero se guarda; solo después se intenta enviar (si no, el envío no vería el evento).
-                  widget.feedback
-                      .rate(_story.recipe, v)
-                      .then((_) => widget.feedback.flush());
+                  // La nota se guarda al tocar; el envío espera a que terminen (por si añaden un motivo).
+                  _ratingId = widget.feedback.rate(_story.recipe, v);
                 },
+                onDone: (reasons) => _finishRating(_ratingId, reasons),
                 onSkip: () => _answered = true,
               ),
             const SizedBox(height: 24),

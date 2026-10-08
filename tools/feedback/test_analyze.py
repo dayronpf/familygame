@@ -80,6 +80,48 @@ class AnalyzeTests(unittest.TestCase):
         self.assertEqual(res["flagged"], [])
         self.assertEqual(res["values"][0]["id"], "valentia")
 
+    def test_los_motivos_separan_incoherencia_de_susto(self):
+        """Dos fragmentos igual de malos por nota; los motivos dicen CUÁL es el problema de cada uno."""
+        incoherent, scary = "trouble_hon_2", "climax_gen_1"
+        rng = np.random.default_rng(21)
+        ev = []
+        for i in range(5000):
+            m = MORALS[int(rng.integers(0, 3))]
+            frags = [f"{st}_{m[:3]}_{int(rng.integers(0, 4))}" for st in STAGES]
+            causes = [c for f, c in ((incoherent, "no_sense"), (scary, "scary")) if f in frags]
+            rating = int(np.clip(np.rint(4.2 - len(causes) + rng.normal(0, 0.9)), 1, 5))
+            e = {"id": f"r{i}", "rating": rating,
+                 "recipe": {"packId": "demo", "packVersion": "1", "value": m, "fragments": frags}}
+            if rating <= 3 and rng.random() < 0.5:  # solo contesta la mitad
+                pool = causes if causes and rng.random() < 0.8 else list(analyze.REASONS)
+                e["reasons"] = [str(rng.choice(pool))]
+            ev.append(e)
+        res = analyze.analyze(ev)
+        self.assertEqual(set(res["flagged"]), {incoherent, scary}, "por nota se ven los dos")
+        self.assertIn(incoherent, res["flagged_by_reason"]["no_sense"])
+        self.assertNotIn(scary, res["flagged_by_reason"]["no_sense"])
+        self.assertIn(scary, res["flagged_by_reason"]["scary"])
+        self.assertNotIn(incoherent, res["flagged_by_reason"]["scary"])
+        text = analyze.report(res)
+        self.assertIn("No tuvo sentido", text)
+        self.assertIn("prioridad de coherencia", text)
+
+    def test_motivos_invalidos_se_ignoran_pero_la_nota_cuenta(self):
+        ev = make_events(300, BAD)
+        for e, reasons in zip(ev[:5], (["scary"], ["aburrido"], ["scary", "scary"], [], "scary")):
+            e["rating"] = 5 if reasons == ["scary"] else 2
+            e["reasons"] = reasons
+        res = analyze.analyze(ev)
+        self.assertEqual(res["n"], 300, "ninguna nota se descarta")
+        self.assertEqual(res["dropped"]["motivos inválidos (ignorados)"], 5)
+        self.assertEqual(res["reason_summary"]["by_reason"]["scary"], 0)
+
+    def test_sin_motivos_el_informe_sigue_funcionando(self):
+        res = analyze.analyze(make_events(1500, BAD))
+        self.assertEqual(res["reason_summary"]["answered"], 0)
+        self.assertTrue(all(v == [] for v in res["flagged_by_reason"].values()))
+        self.assertIn("Fragmentos para REVISAR", analyze.report(res))
+
     def test_lee_jsonl_y_json_con_events(self):
         ev = make_events(60, BAD)
         with tempfile.TemporaryDirectory() as d:

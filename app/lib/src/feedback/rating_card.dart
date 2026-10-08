@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'rating_event.dart';
+
 /// Las cinco caritas: icono, color suave (es de noche) y palabra para lectores de pantalla.
 const List<({IconData icon, Color color, String label})> _faces = [
   (
@@ -17,18 +19,27 @@ const List<({IconData icon, Color color, String label})> _faces = [
   ),
 ];
 
+enum _Step { ask, reasons, thanks }
+
 /// Pregunta de 1 a 5, pensada para el final de un cuento de noche: un solo toque, tranquila,
 /// con caritas grandes (las entiende un niño y las pulsa un adulto) y una salida clara («Ahora no»).
+///
+/// Con una nota de 3 o menos aparece un segundo paso opcional: ¿qué pasó? (cinco motivos, sin texto libre).
 class RatingCard extends StatefulWidget {
   const RatingCard({
     super.key,
     required this.onRate,
+    required this.onDone,
     required this.onSkip,
     this.title = '¿Cuánto les gustó este cuento?',
     this.onShown,
   });
 
+  /// Se llama en cuanto tocan una carita (la nota queda guardada aunque no sigan).
   final ValueChanged<int> onRate;
+
+  /// Se llama UNA vez al terminar (con los motivos elegidos, o vacío): es el momento de enviar.
+  final ValueChanged<List<String>> onDone;
   final VoidCallback onSkip;
   final String title;
 
@@ -41,7 +52,9 @@ class RatingCard extends StatefulWidget {
 
 class _RatingCardState extends State<RatingCard> {
   int? _chosen;
+  _Step _step = _Step.ask;
   bool _skipped = false;
+  final Set<String> _selected = {};
 
   @override
   void initState() {
@@ -51,8 +64,21 @@ class _RatingCardState extends State<RatingCard> {
 
   void _rate(int value) {
     if (_chosen != null) return;
-    setState(() => _chosen = value);
+    setState(() {
+      _chosen = value;
+      _step = value <= maxRatingWithReasons ? _Step.reasons : _Step.thanks;
+    });
     widget.onRate(value);
+    if (value > maxRatingWithReasons) widget.onDone(const []);
+  }
+
+  void _finishReasons() {
+    final ordered = [
+      for (final c in ratingReasons.keys)
+        if (_selected.contains(c)) c
+    ];
+    setState(() => _step = _Step.thanks);
+    widget.onDone(ordered);
   }
 
   @override
@@ -92,36 +118,101 @@ class _RatingCardState extends State<RatingCard> {
               ],
             ),
             const SizedBox(height: 8),
-            if (_chosen != null)
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8),
-                child: Row(
-                  children: [
-                    Icon(Icons.bedtime_outlined,
-                        size: 20, color: scheme.primary),
-                    const SizedBox(width: 8),
-                    Expanded(
-                      child: Text('¡Gracias! Buenas noches.',
+            switch (_step) {
+              _Step.ask => Align(
+                  alignment: Alignment.centerRight,
+                  child: TextButton(
+                    onPressed: () {
+                      setState(() => _skipped = true);
+                      widget.onSkip();
+                    },
+                    child: const Text('Ahora no'),
+                  ),
+                ),
+              _Step.reasons => _ReasonsStep(
+                  selected: _selected,
+                  onToggle: (code) => setState(() {
+                    if (!_selected.remove(code)) _selected.add(code);
+                  }),
+                  onFinish: _finishReasons,
+                ),
+              _Step.thanks => Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8),
+                  child: Row(
+                    children: [
+                      Icon(Icons.bedtime_outlined,
+                          size: 20, color: scheme.primary),
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: Text(
+                          '¡Gracias! Buenas noches.',
                           style: text.bodyMedium,
-                          key: const Key('rating-thanks')),
-                    ),
-                  ],
+                          key: const Key('rating-thanks'),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              )
-            else
-              Align(
-                alignment: Alignment.centerRight,
-                child: TextButton(
-                  onPressed: () {
-                    setState(() => _skipped = true);
-                    widget.onSkip();
-                  },
-                  child: const Text('Ahora no'),
-                ),
-              ),
+            },
           ],
         ),
       ),
+    );
+  }
+}
+
+class _ReasonsStep extends StatelessWidget {
+  const _ReasonsStep(
+      {required this.selected, required this.onToggle, required this.onFinish});
+
+  final Set<String> selected;
+  final ValueChanged<String> onToggle;
+  final VoidCallback onFinish;
+
+  @override
+  Widget build(BuildContext context) {
+    final text = Theme.of(context).textTheme;
+    final scheme = Theme.of(context).colorScheme;
+    return Column(
+      key: const Key('reasons-step'),
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Divider(height: 24),
+        Text('¿Qué pasó? Si quieren, cuéntennos:', style: text.titleSmall),
+        const SizedBox(height: 4),
+        Text(
+          'Pueden elegir más de uno. Es opcional.',
+          style: text.bodySmall
+              ?.copyWith(color: scheme.onSurface.withValues(alpha: 0.7)),
+        ),
+        const SizedBox(height: 12),
+        Wrap(
+          spacing: 8,
+          runSpacing: 8,
+          children: [
+            for (final e in ratingReasons.entries)
+              FilterChip(
+                key: Key('reason-${e.key}'),
+                label: Text(e.value),
+                selected: selected.contains(e.key),
+                onSelected: (_) => onToggle(e.key),
+              ),
+          ],
+        ),
+        const SizedBox(height: 8),
+        Align(
+          alignment: Alignment.centerRight,
+          child: selected.isEmpty
+              ? TextButton(
+                  key: const Key('reasons-submit'),
+                  onPressed: onFinish,
+                  child: const Text('Omitir'))
+              : FilledButton(
+                  key: const Key('reasons-submit'),
+                  onPressed: onFinish,
+                  child: const Text('Listo')),
+        ),
+      ],
     );
   }
 }
@@ -161,12 +252,10 @@ class _Face extends StatelessWidget {
               children: [
                 Icon(face.icon, size: selected ? 46 : 40, color: face.color),
                 const SizedBox(height: 2),
-                Text(
-                  face.label,
-                  textAlign: TextAlign.center,
-                  maxLines: 2,
-                  style: text.labelSmall,
-                ),
+                Text(face.label,
+                    textAlign: TextAlign.center,
+                    maxLines: 2,
+                    style: text.labelSmall),
               ],
             ),
           ),

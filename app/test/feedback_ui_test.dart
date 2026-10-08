@@ -94,6 +94,156 @@ void main() {
     expect(await service.queuedCount(), 0, reason: 'ya salió');
   });
 
+  group('motivo opcional con nota baja', () {
+    Future<void> reachEnd(WidgetTester tester) async {
+      await openApp(tester);
+      await createStory(tester);
+      await scrollToRating(tester);
+    }
+
+    Future<void> ensureReasons(WidgetTester tester) async {
+      await tester.ensureVisible(find.byKey(const Key('reasons-step')));
+      await tester.pumpAndSettle();
+    }
+
+    testWidgets('con 1, 2 o 3 aparecen los cinco motivos; con 4 o 5, no',
+        (tester) async {
+      for (final high in [4, 5]) {
+        await reachEnd(tester);
+        await tester.tap(find.byKey(Key('rating-$high')));
+        await tester.pumpAndSettle();
+        expect(find.byKey(const Key('reasons-step')), findsNothing,
+            reason: 'nota $high');
+        expect(find.byKey(const Key('rating-thanks')), findsOneWidget);
+        await tester.pageBack();
+        await tester.pumpAndSettle();
+        await tester.pumpWidget(const SizedBox());
+        store.pending.clear();
+      }
+      for (final low in [1, 2, 3]) {
+        await reachEnd(tester);
+        await tester.tap(find.byKey(Key('rating-$low')));
+        await tester.pumpAndSettle();
+        await ensureReasons(tester);
+        expect(find.byKey(const Key('reasons-step')), findsOneWidget,
+            reason: 'nota $low');
+        for (final label in [
+          'No tuvo sentido',
+          'Se repitió',
+          'Muy largo o muy corto',
+          'Dio miedo',
+          'No me gustó la enseñanza',
+        ]) {
+          expect(find.text(label), findsOneWidget);
+        }
+        expect(find.text('Omitir'), findsOneWidget);
+        await tester.pageBack();
+        await tester.pumpAndSettle();
+        await tester.pumpWidget(const SizedBox());
+      }
+    });
+
+    testWidgets(
+        'elegir motivos y pulsar «Listo» los envía con la nota, en el orden de los botones',
+        (tester) async {
+      await reachEnd(tester);
+      await tester.tap(find.byKey(const Key('rating-2')));
+      await tester.pumpAndSettle();
+      expect(transport.sent, isEmpty,
+          reason: 'todavía no se envía: pueden añadir un motivo');
+      expect(await service.queuedCount(), 1,
+          reason: 'pero la nota ya está guardada');
+
+      await ensureReasons(tester);
+      await tester.tap(find.byKey(const Key('reason-repeated')));
+      await tester.tap(find.byKey(const Key('reason-no_sense')));
+      await tester.pump();
+      expect(find.text('Listo'), findsOneWidget);
+      expect(find.text('Omitir'), findsNothing);
+      await tester.tap(find.byKey(const Key('reasons-submit')));
+      await tester.pumpAndSettle();
+
+      expect(find.byKey(const Key('rating-thanks')), findsOneWidget);
+      expect(find.byKey(const Key('reasons-step')), findsNothing);
+      expect(transport.sent, hasLength(1));
+      expect(transport.sent.single['rating'], 2);
+      expect(transport.sent.single['reasons'], ['no_sense', 'repeated']);
+    });
+
+    testWidgets('se puede quitar un motivo elegido por error', (tester) async {
+      await reachEnd(tester);
+      await tester.tap(find.byKey(const Key('rating-1')));
+      await tester.pumpAndSettle();
+      await ensureReasons(tester);
+      await tester.tap(find.byKey(const Key('reason-scary')));
+      await tester.tap(find.byKey(const Key('reason-moral')));
+      await tester.tap(find.byKey(const Key('reason-scary'))); // lo quita
+      await tester.pump();
+      await tester.tap(find.byKey(const Key('reasons-submit')));
+      await tester.pumpAndSettle();
+      expect(transport.sent.single['reasons'], ['moral']);
+    });
+
+    testWidgets('«Omitir» envía la nota sin motivos', (tester) async {
+      await reachEnd(tester);
+      await tester.tap(find.byKey(const Key('rating-3')));
+      await tester.pumpAndSettle();
+      await ensureReasons(tester);
+      await tester.tap(find.byKey(const Key('reasons-submit')));
+      await tester.pumpAndSettle();
+      expect(transport.sent, hasLength(1));
+      expect(transport.sent.single['rating'], 3);
+      expect(transport.sent.single.containsKey('reasons'), isFalse);
+    });
+
+    testWidgets(
+        'si se van a mitad del segundo paso, la nota igual se envía (sin motivo)',
+        (tester) async {
+      await reachEnd(tester);
+      await tester.tap(find.byKey(const Key('rating-1')));
+      await tester.pumpAndSettle();
+      expect(transport.sent, isEmpty);
+      await tester.pageBack(); // se van sin pulsar nada
+      await tester.pumpAndSettle();
+      expect(transport.sent, hasLength(1));
+      expect(transport.sent.single['rating'], 1);
+      expect(transport.sent.single.containsKey('reasons'), isFalse);
+    });
+
+    testWidgets('la tarjeta de la mañana también pregunta el motivo',
+        (tester) async {
+      await openApp(tester);
+      await createStory(tester);
+      await scrollToRating(tester);
+      await tester.pageBack(); // leyeron hasta el final y se fueron
+      await tester.pumpAndSettle();
+      expect(
+          find.textContaining('¿Cuánto les gustó «Honestidad'), findsOneWidget);
+
+      await tester.tap(find.byKey(const Key('rating-2')));
+      await tester.pumpAndSettle();
+      await ensureReasons(tester);
+      await tester.tap(find.byKey(const Key('reason-length')));
+      await tester.pump();
+      await tester.tap(find.byKey(const Key('reasons-submit')));
+      await tester.pumpAndSettle();
+      expect(transport.sent, hasLength(1));
+      expect(transport.sent.single['reasons'], ['length']);
+      expect(store.pending, isEmpty);
+    });
+
+    testWidgets('con el envío desactivado no se pregunta ni el motivo',
+        (tester) async {
+      store.enabled = false;
+      await openApp(tester);
+      await createStory(tester);
+      await tester.drag(find.byType(ListView), const Offset(0, -3000));
+      await tester.pumpAndSettle();
+      expect(find.byKey(const Key('reasons-step')), findsNothing);
+      expect(find.byKey(const Key('rating-1')), findsNothing);
+    });
+  });
+
   testWidgets('no se puede valorar dos veces el mismo cuento', (tester) async {
     await openApp(tester);
     await createStory(tester);
@@ -136,6 +286,10 @@ void main() {
     expect(find.byKey(const Key('rating-thanks')), findsNothing,
         reason: 'ficha nueva, sin responder');
     await tester.tap(find.byKey(const Key('rating-2')));
+    await tester.pumpAndSettle();
+    await tester.ensureVisible(find.byKey(const Key('reasons-submit')));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const Key('reasons-submit'))); // Omitir
     await tester.pumpAndSettle();
 
     expect(transport.sent.map((e) => e['rating']), [5, 2]);
@@ -222,8 +376,13 @@ void main() {
       expect(find.text('Ajustes para adultos'), findsOneWidget);
       expect(find.text('Qué enviamos'), findsOneWidget);
       expect(find.text('Qué NO enviamos'), findsOneWidget);
+      await tester.scrollUntilVisible(
+          find.byKey(const Key('example-tile')), 300);
       await tester.tap(find.byKey(const Key('example-tile')));
       await tester.pumpAndSettle();
+      await tester.scrollUntilVisible(
+          find.byKey(const Key('example-json-reasons')), 300,
+          scrollable: find.byType(Scrollable).first);
       final json = tester
           .widget<SelectableText>(find.byKey(const Key('example-json')))
           .data!;
@@ -233,6 +392,19 @@ void main() {
               File('../docs/api/examples/rating-event.json').readAsStringSync())
           as Map<String, Object?>;
       expect(shown..remove('app'), fixture..remove('app'));
+      final shownReasons = jsonDecode(
+        tester
+            .widget<SelectableText>(
+                find.byKey(const Key('example-json-reasons')))
+            .data!,
+      ) as Map<String, Object?>;
+      final fixtureReasons = jsonDecode(
+        File('../docs/api/examples/rating-event-with-reasons.json')
+            .readAsStringSync(),
+      ) as Map<String, Object?>;
+      expect(shownReasons..remove('app'), fixtureReasons..remove('app'));
+      expect(
+          find.textContaining('Nunca se envía texto escrito'), findsOneWidget);
       expect(json, contains('"rating": 5'));
       expect(json, contains('"fragments"'));
       expect(json, isNot(contains('Había')));

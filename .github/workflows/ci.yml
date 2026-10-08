@@ -59,6 +59,8 @@ jobs:
         run: cd tools/feedback && python3 -m unittest test_analyze test_contract
       - name: La simulación se ejecuta
         run: python3 tools/feedback/simulate.py --quick
+      - name: La simulación de motivos se ejecuta
+        run: python3 tools/feedback/simulate.py --reasons --quick
 
   rig:
     name: Rigs y animación (Dart)

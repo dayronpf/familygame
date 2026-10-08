@@ -8,6 +8,19 @@ const String appVersion = '0.1.0';
 /// Versión del formato del evento (`schema` en el JSON).
 const int ratingSchema = 1;
 
+/// Motivos que se pueden indicar con una nota baja (3 o menos). Los códigos son estables: viajan al servidor.
+/// El orden es el de los botones en pantalla.
+const Map<String, String> ratingReasons = {
+  'no_sense': 'No tuvo sentido',
+  'repeated': 'Se repitió',
+  'length': 'Muy largo o muy corto',
+  'scary': 'Dio miedo',
+  'moral': 'No me gustó la enseñanza',
+};
+
+/// Las notas hasta esta (incluida) permiten indicar un motivo.
+const int maxRatingWithReasons = 3;
+
 /// Generador de identificadores únicos (UUID v4) para que el servidor no duplique envíos reintentados.
 String newEventId([Random? random]) {
   final r = random ?? Random.secure();
@@ -37,9 +50,22 @@ class RatingEvent {
     required this.rating,
     required this.day,
     this.app = appVersion,
+    this.reasons = const [],
   }) {
     if (rating < 1 || rating > 5) {
       throw RangeError.range(rating, 1, 5, 'rating');
+    }
+    if (reasons.isNotEmpty && rating > maxRatingWithReasons) {
+      throw ArgumentError(
+          'solo se admiten motivos con nota de $maxRatingWithReasons o menos');
+    }
+    for (final r in reasons) {
+      if (!ratingReasons.containsKey(r)) {
+        throw ArgumentError('motivo desconocido: $r');
+      }
+    }
+    if (reasons.toSet().length != reasons.length) {
+      throw ArgumentError('motivos repetidos');
     }
   }
 
@@ -49,6 +75,8 @@ class RatingEvent {
         rating: (j['rating']! as num).toInt(),
         day: j['day']! as String,
         app: j['app']! as String,
+        reasons:
+            List<String>.from((j['reasons'] as List<Object?>?) ?? const []),
       );
 
   final String id;
@@ -57,12 +85,29 @@ class RatingEvent {
   final String day;
   final String app;
 
+  /// Códigos de `ratingReasons`; vacío si no indicaron ninguno.
+  final List<String> reasons;
+
+  /// Copia con motivos (en el orden de los botones, sin repetidos).
+  RatingEvent withReasons(Iterable<String> codes) => RatingEvent(
+        id: id,
+        recipe: recipe,
+        rating: rating,
+        day: day,
+        app: app,
+        reasons: [
+          for (final c in ratingReasons.keys)
+            if (codes.contains(c)) c
+        ],
+      );
+
   Map<String, Object?> toJson() => {
         'id': id,
         'schema': ratingSchema,
         'rating': rating,
         'day': day,
         'app': app,
+        if (reasons.isNotEmpty) 'reasons': reasons,
         'recipe': recipe.toJson(),
       };
 }

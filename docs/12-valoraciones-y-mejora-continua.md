@@ -1,8 +1,11 @@
 # 12 · Valoraciones y mejora continua de los cuentos
 
 > **Meta:** que desde el primer día cada cuento leído nos diga, con una sola pulsación, cuánto gustó; y que con esas
-> notas los cuentos se vuelvan más coherentes con el tiempo. **Restricción:** es el único dato que se recoge, y no
-> identifica a nadie.
+> notas los cuentos se vuelvan más coherentes con el tiempo. **Restricción:** la valoración es el único dato que se recoge
+> (con un motivo opcional cuando es baja), y no identifica a nadie.
+>
+> **Decisiones tomadas (D1–D4):** activada por defecto con total transparencia y borrado al desactivar · motivo opcional con 5 botones
+> si la nota es ≤ 3 · **no** se registra el abandono de cuentos · se mantiene el recordatorio de la mañana. Ver [§9](#9-decisiones).
 
 ## 1. La idea en una frase
 
@@ -31,6 +34,9 @@ que sigue sirviendo aunque el algoritmo cambie.
 
 - **Al final del cuento**, después de la enseñanza: «¿Cuánto les gustó este cuento?» con **cinco caritas grandes** (Nada, Poco,
   Regular, Bien, ¡Me encantó!). Las entiende un niño y las pulsa un adulto. Un toque y listo.
+- **Si la nota es 1, 2 o 3** aparece un segundo paso, opcional y sin texto libre: «¿Qué pasó? Si quieren, cuéntennos» con cinco botones que
+  se pueden combinar: *No tuvo sentido · Se repitió · Muy largo o muy corto · Dio miedo · No me gustó la enseñanza*. «Omitir» (o «Listo» si
+  eligieron alguno). **La nota ya está guardada al tocar la carita**: si se van a mitad, se envía igual, sin motivo. Con 4 o 5 no se pregunta nada más.
 - **Tranquila, es de noche:** colores suaves, sin sonidos ni animaciones, «¡Gracias! Buenas noches» con una luna. Una salida
   clara: **«Ahora no»**. Nunca se pregunta antes de llegar al final y nunca se insiste.
 - **La mañana siguiente:** si leyeron hasta el final y no respondieron, al abrir la app aparece una tarjeta «¿Cuánto les gustó
@@ -45,7 +51,7 @@ que sigue sirviendo aunque el algoritmo cambie.
 
 ## 4. Qué viaja (y qué no)
 
-Contrato completo: [`docs/api/feedback.openapi.yaml`](api/feedback.openapi.yaml). Ejemplo real: [`docs/api/examples/rating-event.json`](api/examples/rating-event.json).
+Contrato completo: [`docs/api/feedback.openapi.yaml`](api/feedback.openapi.yaml). Ejemplos reales: [`rating-event.json`](api/examples/rating-event.json) y [`rating-event-with-reasons.json`](api/examples/rating-event-with-reasons.json).
 
 | Campo | Para qué | Riesgo |
 |---|---|---|
@@ -54,6 +60,7 @@ Contrato completo: [`docs/api/feedback.openapi.yaml`](api/feedback.openapi.yaml)
 | `day` (solo el día, UTC) | Ver tendencias; nunca la hora | Mínimo |
 | `app` (versión) | Detectar errores de una versión | Mínimo |
 | `recipe.packId`, `packVersion`, `engine` | Saber qué contenido y qué algoritmo | Ninguno |
+| `reasons` (opcional, solo con nota ≤ 3) | Separar «no tuvo sentido» de «dio miedo» o «largo» | Uno o más de 5 códigos fijos; **nunca texto escrito** |
 | `recipe.seed`, `value`, `cast`, `fragments` | Qué cuento fue, para atribuir la nota | Códigos, sin texto ni nombres |
 
 **No se envía, ni se guarda:** identificador de instalación, de dispositivo ni de usuario; IP (solo se usa en memoria para limitar
@@ -96,13 +103,28 @@ malos y el 62 % de las transiciones.
    semanas para 2 000 valoraciones; 1 000 familias → ~2 semanas; si solo valora el 15 %, ~4 semanas. Con pocas familias el aprendizaje
    será lento: **cuanto antes salga la app a un grupo de prueba, antes empieza a servir esto.**
 
+**¿Cuánto ayudan los motivos?** Se simularon 3 fragmentos malos por *incoherencia* y 3 por *susto*, igual de malos por nota (la
+nota sola no distingue unos de otros). Con nota ≤ 3 contesta el motivo la mitad de las veces y acierta la causa el 80 %
+(`python3 tools/feedback/simulate.py --reasons`):
+
+| Valoraciones | Malos detectados (de 6) | Causa bien identificada **con motivos** | Sin motivos |
+|---:|---:|---:|---:|
+| 500 | 5,4 | **91 %** | 50 % (azar) |
+| 1 000 | 5,8 | 98 % | 50 % |
+| 2 000 | 6,0 | 100 % | 50 % |
+
+Si responde mucho menos gente al motivo (solo el **10 %**), a 1 000 / 2 000 / 5 000 valoraciones la causa sigue bien identificada el
+**81 % / 90 % / 94 %** de las veces. **Los motivos son lo que convierte «este fragmento baja la nota» en «este fragmento no tiene sentido»**,
+que es justo la mejora de coherencia que se busca.
+
 *Límites de la simulación:* los efectos y el ruido son supuestos; los defectos reales pueden ser más sutiles (−0,3) y necesitar
 mucho más volumen. La app real tendrá además sesgo de respuesta (quien valora quizá no es representativo). Se recalibra con datos reales.
 
 ## 6. Cómo se usa lo aprendido (de menos a más automático)
 
 1. **Informe de calidad** (`tools/feedback/analyze.py`, luego en el panel): lista de fragmentos y transiciones **a revisar**, no a
-   borrar. Se marca solo con efecto < −0,3 puntos, z < −2 y ≥ 20 apariciones. *Los efectos aparecen encogidos* (por el techo de la
+   borrar, y **por qué se quejan** (los fragmentos que más provocan «No tuvo sentido» o «Se repitió» son la prioridad de coherencia; los de «Dio miedo»,
+   de edad/susto). Se marca solo con efecto < −0,3 puntos, z < −2 y ≥ 20 apariciones. *Los efectos aparecen encogidos* (por el techo de la
    escala y la prudencia de la regresión: un defecto de −1,0 sale como ≈ −0,45): **el ranking es fiable; la magnitud, subestimada.**
 2. **Revisión humana:** un editor lee el fragmento en contexto y lo reescribe, lo desactiva o lo deja. Se publica una **versión nueva
    del pack**.
@@ -118,9 +140,10 @@ se combina entre versiones para fragmentos cuyo texto no cambió.
 ## 7. Sesgos y límites (hay que saberlos)
 
 - **Gustar ≠ coherencia.** Una nota baja puede ser por miedo, voz, largo o cansancio. El método asume que, **en promedio**, un
-  fragmento incoherente baja la nota; no demuestra *por qué* bajó. De ahí la propuesta del motivo opcional (§9).
+  fragmento incoherente baja la nota; no demuestra *por qué* bajó. Por eso existe el motivo opcional (§3).
 - **Correlación, no causa.** La aleatorización del motor ayuda (los fragmentos se eligen al azar entre alternativas), pero no es un
   experimento controlado.
+- **El motivo es opcional:** solo contesta una parte; el análisis cuenta las no respuestas como «sin queja», así que **subestima** el número de quejas pero conserva el ranking.
 - **Quién responde.** Posible sesgo (más respuestas de familias contentas). El «recordatorio de la mañana» ayuda a responder más.
 - **Techo de la escala.** La mayoría dará 4–5; la señal está en las diferencias pequeñas.
 - **Muchas comparaciones.** Con cientos de fragmentos, algunos salen «malos» por azar: por eso el umbral doble (efecto y z) y la
@@ -145,6 +168,8 @@ create table story_ratings (
   seed         bigint not null, value_id text not null,
   cast_ids     jsonb not null, fragment_ids text[] not null,
   rating       smallint not null check (rating between 1 and 5),
+  reasons      text[] check (reasons <@ array['no_sense','repeated','length','scary','moral']
+                         and (reasons is null or rating <= 3)),   -- opcional, solo con nota baja
   rated_on     date not null,                          -- solo el día
   app_version  text not null,
   received_on  date not null default current_date      -- sin hora de recepción
@@ -153,14 +178,14 @@ create index on story_ratings (pack_id, pack_version);
 -- Sin columnas de usuario, instalación, IP ni hora. RLS: insertar solo vía función de validación.
 ```
 
-## 9. Decisiones que necesito de ti
+## 9. Decisiones
 
-| # | Decisión | Recomendación | Por qué |
-|---|---|---|---|
-| D1 | ¿La valoración va **activada por defecto** (con interruptor claro) o hay que **pedir permiso** antes? | Activada, con total transparencia y borrado al desactivar | Es anónima y sin datos personales; pedir permiso reduciría muchísimo el volumen. **Revisar con un abogado antes de 1.0** (COPPA, RGPD y las reglas de tiendas) |
-| D2 | ¿Añadir un **motivo opcional** cuando la nota sea ≤ 3? Cinco botones: *No tuvo sentido · Se repitió · Muy largo o muy corto · Dio miedo · No me gustó la enseñanza* | **Sí, en una versión 1.1**; el contrato ya lo admitiría como campo opcional | Es la única forma de separar «coherencia» de «susto» o «largo». Pediste que la nota fuera lo único; esto es un dato más (sigue siendo anónimo y categórico), por eso lo dejo a tu decisión |
-| D3 | ¿Registrar si **abandonaron** un cuento a medias? | **No por ahora** | Respeta tu «solo la valoración». Sería una señal fuerte de coherencia, pero es un dato de comportamiento |
-| D4 | ¿Mantener el **recordatorio de la mañana**? | Sí (ya está) | Más respuestas y de mejor calidad |
+| # | Decisión | Resultado |
+|---|---|---|
+| D1 | Valoración **activada por defecto**, con transparencia total y borrado al desactivar | ✅ **Decidido: sí.** Ajustes para adultos: interruptor, qué se envía y qué no, ejemplos exactos; al desactivar se borra lo pendiente. *Pendiente de buena práctica:* revisión legal antes de 1.0 (COPPA, RGPD, reglas de tiendas) |
+| D2 | **Motivo opcional** con nota ≤ 3, cinco botones | ✅ **Decidido: sí.** No tuvo sentido · Se repitió · Muy largo o muy corto · Dio miedo · No me gustó la enseñanza. Implementado y probado |
+| D3 | Registrar si **abandonan** un cuento a medias | ✅ **Decidido: no por ahora** (se respeta «solo la valoración»). *Nota:* la respuesta original mezclaba un «sí» con la recomendación de no hacerlo; se aplicó la opción conservadora. Si se quiere lo contrario, se añade más adelante |
+| D4 | **Recordatorio de la mañana** | ✅ **Decidido: sí.** Implementado |
 
 ## 10. Estado
 
@@ -168,10 +193,11 @@ create index on story_ratings (pack_id, pack_version);
 |---|---|
 | Receta del cuento, versión del motor y pesos por fragmento en el motor | ✅ hecho y probado (33 pruebas del motor) |
 | Ficha de 5 caritas, «Ahora no», recordatorio de la mañana | ✅ verificado en pantalla y con pruebas de widget |
-| Cola local con tope, reintentos con retroceso, envío por lotes, idempotencia | ✅ 23 pruebas de lógica |
+| Segundo paso de **motivos** (nota ≤ 3): 5 botones combinables, omitible, la nota ya está guardada | ✅ 63 pruebas de la app (flujos, límites 3/4, salir a mitad, tarjeta de la mañana, desactivado) |
+| Cola local con tope, reintentos con retroceso, envío por lotes, idempotencia; **sin pérdidas ni pisadas** si se valora o se añade un motivo durante un envío | ✅ 32 pruebas de lógica |
 | Ajustes para adultos con transparencia, interruptor y borrado | ✅ |
 | Contrato OpenAPI + pruebas en ambos lados (app y esquema) | ✅ |
-| Análisis estadístico + simulación | ✅ 8 pruebas con eventos en el formato real |
+| Análisis estadístico (nota y motivos) + simulación | ✅ 11 pruebas con eventos en el formato real |
 | **Servidor que recibe `/v1/feedback`** | ☐ no existe aún (backend, versión 0.2): hasta entonces las valoraciones **esperan en el teléfono** y se enviarán solas |
 | Panel «Calidad» y propuesta de pesos | ☐ versión 0.2–0.3 del panel |
 | Probado en Android/iOS reales | ☐ pendiente (tu medición) |
@@ -184,9 +210,8 @@ adultos) verás «Esperando para enviarse: 1». Para apuntar a un servidor de pr
 
 | Cuándo | Qué |
 |---|---|
-| ✅ Ahora (S2 adelantado) | Todo lo de arriba menos el servidor |
-| S4–S5 | `POST /v1/feedback` real con las validaciones de §8 y la tabla de §8 |
+| ✅ Ahora (S2 adelantado) | Todo lo de arriba menos el servidor, **incluido el motivo opcional** |
+| S4–S5 | `POST /v1/feedback` real con las validaciones de §8 (incluida «`reasons` solo con nota ≤ 3») y la tabla de §8 |
 | S6 | Panel «Calidad»: tabla de fragmentos/transiciones marcados, ejemplos de cuentos peor valorados (reconstruidos por receta) |
 | Con ≥ 1 000 valoraciones | Primera ronda de revisión editorial y propuesta de pesos |
-| Tras tu decisión D2 | Motivo opcional (1.1) |
 | Packs nuevos | Diseñarlos con ≥ 3 variantes por etapa y enseñanza para que se pueda aprender |

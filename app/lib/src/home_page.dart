@@ -39,6 +39,7 @@ class _HomePageState extends State<HomePage> {
 
   /// Ya respondieron la tarjeta pendiente: se deja a la vista con su «gracias» hasta el próximo cuento.
   bool _pendingAnswered = false;
+  Future<String?>? _pendingRating;
 
   @override
   void initState() {
@@ -141,10 +142,16 @@ class _HomePageState extends State<HomePage> {
                   RatingCard(
                     key: ValueKey('pending-${pending.recipe.seed}'),
                     title: '¿Cuánto les gustó «${pending.label}»?',
-                    onRate: (v) async {
+                    onRate: (v) {
                       _pendingAnswered = true;
-                      await widget.feedback.rate(pending.recipe, v);
-                      widget.feedback.flush();
+                      _pendingRating = widget.feedback.rate(pending.recipe, v);
+                    },
+                    onDone: (reasons) async {
+                      final id = await _pendingRating;
+                      if (id != null && reasons.isNotEmpty) {
+                        await widget.feedback.setReasons(id, reasons);
+                      }
+                      await widget.feedback.flush();
                     },
                     onSkip: () async {
                       await widget.feedback.dismissPending(pending.recipe);

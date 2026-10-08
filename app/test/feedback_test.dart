@@ -147,6 +147,52 @@ void main() {
       }
     });
 
+    test('con motivos es idéntico al ejemplo del contrato', () {
+      final fixture = jsonDecode(
+        File('../docs/api/examples/rating-event-with-reasons.json')
+            .readAsStringSync(),
+      ) as Map<String, Object?>;
+      final built = RatingEvent(
+        id: fixture['id']! as String,
+        recipe:
+            StoryRecipe.fromJson(fixture['recipe']! as Map<String, Object?>),
+        rating: fixture['rating']! as int,
+        day: fixture['day']! as String,
+        app: fixture['app']! as String,
+        reasons: List<String>.from(fixture['reasons']! as List<Object?>),
+      );
+      expect(jsonEncode(built.toJson()), jsonEncode(fixture));
+    });
+
+    test(
+        'los motivos solo existen con nota de 3 o menos, son los cinco conocidos y no se repiten',
+        () {
+      RatingEvent make(int rating, List<String> reasons) => RatingEvent(
+          id: 'x',
+          recipe: recipe(1),
+          rating: rating,
+          day: 'd',
+          reasons: reasons);
+      expect(ratingReasons.keys,
+          ['no_sense', 'repeated', 'length', 'scary', 'moral']);
+      for (final r in [1, 2, 3]) {
+        expect(make(r, const ['scary']).reasons, ['scary']);
+      }
+      for (final r in [4, 5]) {
+        expect(() => make(r, const ['scary']), throwsArgumentError);
+      }
+      expect(() => make(2, const ['aburrido']), throwsArgumentError);
+      expect(() => make(2, const ['scary', 'scary']), throwsArgumentError);
+      expect(make(5, const []).toJson().containsKey('reasons'), isFalse,
+          reason: 'sin motivos no hay campo');
+    });
+
+    test('withReasons ordena como los botones y descarta lo repetido', () {
+      final e = RatingEvent(id: 'x', recipe: recipe(1), rating: 1, day: 'd')
+          .withReasons(['moral', 'no_sense', 'moral']);
+      expect(e.reasons, ['no_sense', 'moral']);
+    });
+
     test('ida y vuelta por JSON', () {
       final e =
           RatingEvent(id: 'x', recipe: recipe(9), rating: 3, day: '2026-10-08');
@@ -156,7 +202,8 @@ void main() {
 
   group('servicio', () {
     test('rate guarda un evento completo en la cola', () async {
-      expect(await service.rate(recipe(7), 5), isTrue);
+      expect(await service.rate(recipe(7), 5), 'id-1',
+          reason: 'devuelve el id del evento');
       final q = await store.readQueue();
       expect(q, hasLength(1));
       expect(q.single['id'], 'id-1');
@@ -262,13 +309,86 @@ void main() {
       expect(transport.batches, hasLength(1));
     });
 
+    test('setReasons añade los motivos a la valoración que espera en la cola',
+        () async {
+      final id = await service.rate(recipe(1), 2);
+      expect(await service.setReasons(id!, ['repeated', 'no_sense']), isTrue);
+      final q = await store.readQueue();
+      expect(q.single['reasons'], ['no_sense', 'repeated'],
+          reason: 'en el orden de los botones');
+      expect(q.single['id'], id);
+      expect(q.single['rating'], 2);
+    });
+
+    test('setReasons no puede cambiar lo que ya salió ni lo que no existe',
+        () async {
+      final id = await service.rate(recipe(1), 2);
+      await service.flush();
+      expect(await service.setReasons(id!, ['scary']), isFalse,
+          reason: 'ya se envió');
+      expect(await service.setReasons('no-existe', ['scary']), isFalse);
+      expect(transport.batches.single.single.containsKey('reasons'), isFalse);
+    });
+
+    test(
+        'setReasons con una nota alta se rechaza (no se pueden inventar motivos)',
+        () async {
+      final id = await service.rate(recipe(1), 5);
+      await expectLater(
+          service.setReasons(id!, ['scary']), throwsArgumentError);
+    });
+
+    test('con el envío desactivado setReasons no hace nada', () async {
+      final id = await service.rate(recipe(1), 2);
+      await service.setEnabled(false);
+      expect(await service.setReasons(id!, ['scary']), isFalse);
+      expect(await service.queuedCount(), 0);
+    });
+
+    test('una valoración que llega mientras hay un envío en curso NO se pierde',
+        () async {
+      await service.rate(recipe(1), 5);
+      transport.gate = Completer<void>();
+      final flushing = service.flush();
+      await Future<void>.delayed(Duration.zero);
+      await service.rate(recipe(2), 3); // llega con el envío a medias
+      transport.gate!.complete();
+      expect(await flushing, FlushResult.sent);
+      // Cada valoración llega exactamente una vez: la que estaba, y la que llegó con el envío a medias.
+      final seeds = [
+        for (final batch in transport.batches)
+          for (final e in batch) (e['recipe']! as Map<String, Object?>)['seed'],
+      ];
+      expect(seeds, [1, 2]);
+      expect(await service.queuedCount(), 0);
+      transport.gate = null;
+      expect(await service.flush(), FlushResult.empty,
+          reason: 'nada se reenvía');
+    });
+
+    test('setReasons y envío a la vez no se pisan', () async {
+      final id = await service.rate(recipe(1), 1);
+      transport.gate = Completer<void>();
+      final flushing = service.flush();
+      await Future<void>.delayed(Duration.zero);
+      // El lote ya salió sin motivos: añadirlos ahora no debe corromper la cola.
+      final r = service.setReasons(id!, ['scary']);
+      transport.gate!.complete();
+      await flushing;
+      await r;
+      expect(await service.queuedCount(), anyOf(0, 1));
+      for (final e in await store.readQueue()) {
+        expect(e['id'], id);
+      }
+    });
+
     test('desactivar el envío borra lo pendiente y deja de recoger', () async {
       await service.rate(recipe(1), 5);
       await service.rememberPending(recipe(2), 'Cuento');
       await service.setEnabled(false);
       expect(await service.queuedCount(), 0);
       expect(await service.nextPending(), isNull);
-      expect(await service.rate(recipe(3), 5), isFalse);
+      expect(await service.rate(recipe(3), 5), isNull);
       expect(await service.flush(), FlushResult.disabled);
       expect(transport.batches, isEmpty);
       await service.rememberPending(recipe(4), 'Otro');

@@ -49,6 +49,36 @@ class _SettingsPageState extends State<SettingsPage> {
     day: '2026-10-08',
   );
 
+  static final RatingEvent _exampleWithReasons = RatingEvent(
+    id: '9c4d7e20-61b3-4f08-a2d5-1e8b3a6f7c42',
+    recipe: const StoryRecipe(
+      packId: 'medieval',
+      packVersion: '1.0.0',
+      engineVersion: engineVersion,
+      seed: 77120,
+      valueId: 'valentia',
+      cast: {
+        'hero': 'luna',
+        'helper': 'zafiro',
+        'villain': 'cornelio',
+        'place': 'cueva',
+        'place2': 'colina'
+      },
+      fragmentIds: [
+        'op_2',
+        'tr_val',
+        'he_any',
+        'te_2',
+        'cl_val',
+        're_val',
+        'cl_end'
+      ],
+    ),
+    rating: 2,
+    day: '2026-10-08',
+    reasons: const ['no_sense', 'repeated'],
+  );
+
   @override
   void initState() {
     super.initState();
@@ -107,6 +137,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   const SizedBox(height: 8),
                   const _Bullets(items: [
                     'La nota que dieron, de 1 a 5.',
+                    'Si la nota es baja (3 o menos) y quieren contarlo, el motivo: se eligen entre cinco opciones («No tuvo sentido», «Se repitió», «Muy largo o muy corto», «Dio miedo», «No me gustó la enseñanza»). Nunca se envía texto escrito.',
                     'Qué cuento fue, solo con códigos: la enseñanza, los personajes y las partes que lo formaron. Con eso podemos mejorar las partes que no gustan.',
                     'El día (sin la hora) y la versión de la app.',
                   ]),
@@ -139,6 +170,30 @@ class _SettingsPageState extends State<SettingsPage> {
                           const JsonEncoder.withIndent('  ')
                               .convert(_example.toJson()),
                           key: const Key('example-json'),
+                          style:
+                              text.bodySmall?.copyWith(fontFamily: 'monospace'),
+                        ),
+                      ),
+                      const SizedBox(height: 12),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text('Con una nota baja y motivos elegidos:',
+                            style: text.bodySmall),
+                      ),
+                      const SizedBox(height: 8),
+                      Container(
+                        width: double.infinity,
+                        padding: const EdgeInsets.all(12),
+                        decoration: BoxDecoration(
+                          color: Theme.of(context)
+                              .colorScheme
+                              .surfaceContainerHighest,
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: SelectableText(
+                          const JsonEncoder.withIndent('  ')
+                              .convert(_exampleWithReasons.toJson()),
+                          key: const Key('example-json-reasons'),
                           style:
                               text.bodySmall?.copyWith(fontFamily: 'monospace'),
                         ),
