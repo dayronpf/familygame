@@ -28,20 +28,45 @@ mientras avanza y puede proyectarse como **holograma** con una pirámide transpa
 | [docs/07-backlog.md](docs/07-backlog.md) | Épicas e historias priorizadas; sprints 0–3 detallados |
 | [docs/08-decisiones-y-riesgos.md](docs/08-decisiones-y-riesgos.md) | Decisiones tomadas (ADR), supuestos abiertos y riesgos |
 
-## Prototipo del caldero mágico (spike S-01)
+## Estructura del repositorio
 
-```bash
-# Genera un cuento (semilla y enseñanza opcionales)
-python3 tools/prototype/caldero.py --pack content/packs/demo --seed 3 --value honestidad
-
-# Valida el pack: renderiza cada fragmento con todos los repartos posibles
-python3 tools/prototype/caldero.py --pack content/packs/demo --lint
+```
+app/                      App Flutter (Android + iOS)
+packages/caldero_engine/  Motor de cuentos en Dart puro (con pruebas y validador de packs)
+content/packs/            Packs de contenido (fuente de verdad) y su esquema JSON
+tools/                    Prototipo en Python, validador de esquema, sincronía de assets
+docs/                     Visión, metodología, roadmap, arquitectura, backlog…
+ASSETS_LICENSES.md        Libro de licencias de todo asset de terceros
 ```
 
-Es un prototipo en Python (sin dependencias) para validar el *modelo de contenido*. El motor definitivo
-se implementará en Dart dentro de la app; el formato de los packs (`content/packs/*/pack.json`) es el contrato.
+## Cómo trabajar
+
+Requisitos: Flutter 3.47.x (incluye Dart) y Python 3.
+
+```bash
+# Motor: análisis, pruebas y validación de packs
+cd packages/caldero_engine
+dart pub get && dart analyze && dart test
+dart run caldero_engine:validate_pack ../../content/packs/*/pack.json
+
+# App
+cd app && flutter pub get && flutter analyze && flutter test
+flutter run                      # en un dispositivo o emulador
+
+# Si cambias un pack en content/, sincroniza la copia que lleva la app
+tools/sync_assets.sh             # CI falla si lo olvidas (--check)
+
+# Esquema JSON de los packs (opcional, requiere: pip install jsonschema)
+python3 tools/validate_schema.py content/packs/*/pack.json
+```
+
+El prototipo original en Python sigue disponible como referencia
+(`python3 tools/prototype/caldero.py --pack content/packs/demo --seed 3 --value honestidad`).
+**Ojo:** el motor Dart usa su propio generador aleatorio determinista (mulberry32), así que la misma
+semilla da un cuento distinto en Python y en Dart; lo que ambos comparten es el *formato del pack*.
 
 ## Estado
 
-**Sprint 0 — Fundamentos.** Visión, plan y prototipo del motor listos. Siguiente paso: ver
-[docs/07-backlog.md](docs/07-backlog.md).
+**Sprint 1 — «El caldero en Dart».** Motor en Dart, validador, esquema, CI y primera pantalla
+(elegir enseñanza → crear cuento → leer en modo noche) listos y probados.
+Falta verificarlos en dispositivos Android/iOS y en el CI de GitHub. Ver [docs/07-backlog.md](docs/07-backlog.md).

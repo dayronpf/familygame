@@ -1,0 +1,65 @@
+name: CI
+
+on:
+  push:
+    branches: [main, 'claude/**']
+  pull_request:
+
+permissions:
+  contents: read
+
+env:
+  FLUTTER_VERSION: '3.47.6'
+
+jobs:
+  content:
+    name: Contenido (esquema, lint, sincronía de assets)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install jsonschema
+      - name: Esquema JSON de los packs
+        run: python3 tools/validate_schema.py content/packs/*/pack.json
+      - name: Lint del prototipo (referencia)
+        run: python3 tools/prototype/caldero.py --pack content/packs/demo --lint
+      - name: Assets de la app sincronizados con content/
+        run: tools/sync_assets.sh --check
+
+  engine:
+    name: Motor (Dart)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: packages/caldero_engine
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          cache: true
+      - run: dart pub get
+      - run: dart format --output=none --set-exit-if-changed .
+      - run: dart analyze --fatal-infos
+      - run: dart test
+      - name: Validar packs
+        run: dart run caldero_engine:validate_pack ../../content/packs/*/pack.json
+
+  app:
+    name: App (Flutter)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: app
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          cache: true
+      - run: flutter pub get
+      - run: dart format --output=none --set-exit-if-changed lib test
+      - run: flutter analyze --fatal-infos
+      - run: flutter test

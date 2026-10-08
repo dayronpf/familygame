@@ -4,7 +4,7 @@
 
 | # | Decisión | Estado | Motivo | Revisar cuando |
 |---|---|---|---|---|
-| 001 | Flutter/Dart para Android + iOS | Propuesta | Un código, buen 2D, buena integración con TTS/compras; render múltiple fácil para el holograma | Si el spike de animación (S-04) no llega a 60 FPS |
+| 001 | Flutter/Dart para Android + iOS | **En uso** (Flutter 3.47.6; falta probar en dispositivos) | Un código, buen 2D, buena integración con TTS/compras; render múltiple fácil para el holograma | Si el spike de animación (S-04) no llega a 60 FPS |
 | 002 | Offline-first, sin backend en MVP | Propuesta | Menos coste, menos riesgo de privacidad infantil | Al necesitar cuentas, sincronización o verificación de recibos en servidor |
 | 003 | Packs en JSON versionado + `manifest.json` | **Aceptada** (validada en spike S-01) | Legible por autores, validable en CI, independiente del lenguaje | Si el volumen exige base de datos |
 | 004 | Voz: TTS del sistema al inicio; decidir tras S-02 | Abierta | Gratis y offline, pero calidad variable | Resultado de S-02 |
@@ -12,6 +12,8 @@
 | 006 | Compra única por pack; suscripción más adelante | Propuesta | Más simple de explicar a los padres | Datos de conversión |
 | 007 | Modo por defecto: Lectura compartida | **Aceptada** | Alineado con la misión de rescatar el hábito de leer | Pruebas con familias |
 | 008 | Todo el texto es de autor humano; la IA solo ayuda a borradores | **Aceptada** | Derechos de autor y calidad | Cambios legales/tecnológicos |
+| 009 | Generador aleatorio propio (mulberry32) en el motor, no `dart:math` | **Aceptada** | La secuencia de `Random` no está garantizada entre versiones del SDK; las semillas guardadas o compartidas deben dar siempre el mismo cuento | Nunca a la ligera: cambiarlo invalida los cuentos guardados (hay una prueba que lo fija) |
+| 010 | Monorepo: `app/` + `packages/caldero_engine/` + `content/` | **Aceptada** | El motor se prueba sin Flutter (rápido) y el contenido tiene su propio flujo | Si el contenido pasa a un repositorio aparte |
 
 ## Supuestos que conviene confirmar contigo
 

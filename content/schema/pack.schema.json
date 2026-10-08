@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://caldero-de-cuentos.example/schema/pack-1.json",
+  "title": "Pack de contenido de Caldero de Cuentos (esquema 1)",
+  "type": "object",
+  "required": ["pack", "characters", "places", "morals", "fragments"],
+  "additionalProperties": false,
+  "properties": {
+    "pack": {
+      "type": "object",
+      "required": ["schema", "id", "name", "version", "language"],
+      "additionalProperties": true,
+      "properties": {
+        "schema": {"const": 1},
+        "id": {"$ref": "#/$defs/id"},
+        "name": {"type": "string", "minLength": 1},
+        "version": {"type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$"},
+        "language": {"type": "string", "pattern": "^[a-z]{2}$"},
+        "license": {"type": "string"},
+        "age_band": {"type": "string"}
+      }
+    },
+    "characters": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "given", "noun", "gender", "roles", "alignment", "trait"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {"$ref": "#/$defs/id"},
+          "given": {"type": "string", "minLength": 1},
+          "noun": {"type": "string", "minLength": 1},
+          "gender": {"$ref": "#/$defs/gender"},
+          "roles": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {"enum": ["hero", "helper", "villain"]}
+          },
+          "alignment": {"enum": ["positive", "negative", "ambiguous"]},
+          "trait": {
+            "type": "object",
+            "required": ["m", "f"],
+            "additionalProperties": false,
+            "properties": {"m": {"type": "string"}, "f": {"type": "string"}}
+          }
+        }
+      }
+    },
+    "places": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "required": ["id", "noun", "gender", "mood"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {"$ref": "#/$defs/id"},
+          "noun": {"type": "string", "minLength": 1},
+          "gender": {"$ref": "#/$defs/gender"},
+          "mood": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "morals": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "text"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {"$ref": "#/$defs/id"},
+          "name": {"type": "string", "minLength": 1},
+          "text": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "fragments": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "stage", "values", "text"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {"$ref": "#/$defs/id"},
+          "stage": {"enum": ["opening", "trouble", "helper", "test", "climax", "resolution", "closing"]},
+          "values": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+          "requires": {"type": "array", "items": {"$ref": "#/$defs/id"}},
+          "adds": {"type": "array", "items": {"$ref": "#/$defs/id"}},
+          "text": {"type": "string", "minLength": 1},
+          "scene": {
+            "type": "object",
+            "properties": {
+              "bg": {"enum": ["place", "place2"]},
+              "actors": {"type": "array", "items": {"enum": ["hero", "helper", "villain"]}},
+              "mood": {"type": "string"}
+            }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "id": {"type": "string", "pattern": "^[a-z][a-z0-9_]*$"},
+    "gender": {"enum": ["m", "f"]}
+  }
+}

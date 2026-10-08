@@ -1,7 +1,9 @@
 # 06 · Modelo de contenido
 
-Es el **contrato** entre autores de contenido y motor. Está implementado y validado en
-`tools/prototype/caldero.py` con el pack `content/packs/demo/pack.json`.
+Es el **contrato** entre autores de contenido y motor. Se describe formalmente en
+[`content/schema/pack.schema.json`](../content/schema/pack.schema.json) (esquema 1), se implementa en
+`packages/caldero_engine` (Dart) y se valida con el pack `content/packs/demo/pack.json`.
+El bloque `pack` lleva `schema: 1`; el motor rechaza esquemas que no entiende.
 
 ## Entidades
 
@@ -9,7 +11,7 @@ Es el **contrato** entre autores de contenido y motor. Está implementado y vali
 |---|---|---|
 | **Personaje** | `id`, `given` (nombre propio), `noun` (especie/oficio), `gender` (m/f), `roles` (`hero`, `helper`, `villain`…), `alignment` (positive/negative/ambiguous), `trait` (adjetivo con género) | Un personaje puede tener varios roles. Positivo/negativo y principal/secundario salen de `alignment` + `roles`. |
 | **Lugar** | `id`, `noun`, `gender`, `mood` | Se usa como escenario principal y secundario. |
-| **Enseñanza** | `id`, `text` | Un valor humano por cuento. |
+| **Enseñanza** | `id`, `name` (para mostrar), `text` (frase de cierre) | Un valor humano por cuento. |
 | **Fragmento** | `id`, `stage`, `values`, `requires`, `adds`, `text`, `scene` | La unidad narrativa. Etapas: `opening`, `trouble`, `helper`, `test`, `climax`, `resolution`, `closing`. |
 
 Campos a añadir en S1–S3: `age_band`, `scare` (0–3), `duration_s`, `tags`, `article_override`, `plural`, `lang`, `author`, `review_status`.
@@ -39,7 +41,7 @@ re_hon  (resolution)requires: honest_choice
 
 Un desenlace solo puede aparecer si antes ocurrió lo que lo justifica. Es la base para que los cuentos tengan sentido.
 
-## Ejemplo real generado (`--seed 3 --value honestidad`)
+## Ejemplo real generado con el prototipo Python (`--seed 3 --value honestidad`)
 
 > Había una vez, en la colina de la aurora, un erizo llamado Nilo. El erizo era muy curioso y le encantaba explorar cuando caía la tarde.
 >

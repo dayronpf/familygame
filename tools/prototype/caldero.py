@@ -20,6 +20,7 @@ from pathlib import Path
 STAGES = ["opening", "trouble", "helper", "test", "climax", "resolution", "closing"]
 TOKEN = re.compile(r"\{(\w+)(?:\.(\w+))?\}")
 # «Y La urraca…»: artículo capitalizado que no abre frase (error típico de plantilla).
+MISSING_CONTRACTION = re.compile(r"(?:^|\s)(?:[Aa]|[Dd]e) el(?:\s|$)")  # «a el» → «al»
 MID_SENTENCE_CAPS = re.compile(r"[^.!?»¿¡\s]\s+(?:El|La|Un|Una|En)\s\w+")
 
 
@@ -127,6 +128,9 @@ def lint(pack):
                     continue
                 if "  " in out or "{" in out or not out.rstrip().endswith((".", "!", "?", "»")):
                     errors.append(f"{f['id']}: texto sospechoso: {out[-40:]!r}")
+                contraction = MISSING_CONTRACTION.search(out)
+                if contraction:
+                    errors.append(f"{f['id']}: falta contracción: «{contraction.group(0).strip()}»")
                 mid = MID_SENTENCE_CAPS.search(out)
                 if mid:
                     errors.append(f"{f['id']}: artículo en mayúscula a mitad de frase: «{mid.group(0)}»")

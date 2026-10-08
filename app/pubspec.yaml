@@ -1,0 +1,24 @@
+name: caldero_app
+description: "Cuentos originales con enseñanza, narrados y animados."
+publish_to: 'none'
+version: 0.1.0+1
+
+environment:
+  sdk: ^3.5.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  caldero_engine:
+    path: ../packages/caldero_engine
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    # Copia de content/packs/demo; la sincroniza tools/sync_assets.sh y la verifica CI.
+    - assets/packs/demo/

@@ -26,19 +26,23 @@ Los sprints 0–3 están detallados; el resto se refina cuando se acerca («Ahor
 | E1-02 | Reglas de contenido y derechos de autor | M | Must | ✅ |
 | E2-S01 | **Spike:** prototipo del caldero y modelo de contenido | M | Must | ✅ |
 | E1-03 | Elegir nombre definitivo y comprobar marca/dominio | S | Must | ☐ |
-| E1-04 | Crear proyecto Flutter + estructura de carpetas | S | Must | ☐ |
-| E1-05 | CI en GitHub Actions (lint + test + validar packs) | M | Must | ☐ |
+| E1-04 | Crear proyecto Flutter + estructura de carpetas | S | Must | ✅ |
+| E1-05 | CI en GitHub Actions (lint + test + validar packs) | M | Must | ✅ escrito; pendiente de primera ejecución en GitHub |
 | E1-06 | Crear cuentas de desarrollador (Google Play, Apple) | S | Should | ☐ |
 
 ## Sprint 1 · «El caldero en Dart» (objetivo: generar un cuento desde la app)
 
-| ID | Historia | Criterios de aceptación | Talla |
-|---|---|---|---|
-| E2-01 | Como autor, quiero un **esquema JSON de pack** versionado para validar el contenido | Esquema publicado; el pack demo lo cumple; versión de esquema en el pack | S |
-| E2-02 | Como app, quiero un **motor de cuentos en Dart** equivalente al prototipo | Misma semilla + pack ⇒ mismo cuento que el prototipo (pruebas de paridad) | L→M+M |
-| E2-03 | Como equipo, quiero el **validador de packs** en CI | Falla en token inexistente, frase mal cerrada, artículo mal capitalizado y falta de cobertura | M |
-| E1-07 | Como equipo, quiero el **libro de licencias de assets** (`ASSETS_LICENSES.md`) | Plantilla creada y regla en la Definición de Terminado | S |
-| E4-01 | Como adulto, quiero **elegir una enseñanza y generar un cuento** | Pantalla con selector y botón «Crear cuento» que muestra el texto | M |
+| ID | Historia | Criterios de aceptación | Talla | Estado |
+|---|---|---|---|---|
+| E2-01 | Como autor, quiero un **esquema JSON de pack** versionado para validar el contenido | Esquema publicado; el pack demo lo cumple; versión de esquema en el pack | S | ✅ `content/schema/pack.schema.json` + `tools/validate_schema.py`; rechaza packs rotos |
+| E2-02 | Como app, quiero un **motor de cuentos en Dart** equivalente al prototipo | Misma semilla + pack ⇒ mismo cuento (determinista); pruebas | M | ✅ 24 pruebas (RNG contrastado con la implementación de referencia, 1000 semillas × 3 enseñanzas, cuento «golden»). *Cambio:* ya no se exige paridad con Python (otro generador aleatorio); se exige determinismo propio. |
+| E2-03 | Como equipo, quiero el **validador de packs** en CI | Falla en token inexistente, frase mal cerrada, artículo mal capitalizado, contracción faltante y falta de cobertura | M | ✅ `dart run caldero_engine:validate_pack` |
+| E1-07 | Como equipo, quiero el **libro de licencias de assets** | Plantilla creada y regla en la Definición de Terminado | S | ✅ `ASSETS_LICENSES.md` |
+| E4-01 | Como adulto, quiero **elegir una enseñanza y generar un cuento** | Selector + «Crear cuento» + texto | M | ✅ 5 pruebas de widgets; recorrido verificado en un navegador (build web temporal) |
+
+**Lo que aprendimos:** el validador encontró 2 errores reales de contracción en el pack («a el erizo», «consejos de el»)
+que ya están corregidos y cubiertos por una prueba de regresión. **Pendiente de verificar:** compilación y ejecución en
+Android/iOS reales (el entorno de desarrollo actual no tiene SDK de Android ni Xcode).
 
 ## Sprint 2 · «Un cuento que da gusto leer» (objetivo: lectura nocturna agradable)
 
