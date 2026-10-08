@@ -1,0 +1,84 @@
+{
+  "pack": {
+    "id": "demo",
+    "name": "Pack de demostración (prototipo)",
+    "version": "0.1.0",
+    "license": "Contenido original, todos los derechos reservados al autor del proyecto",
+    "language": "es",
+    "age_band": "4-7"
+  },
+  "characters": [
+    {"id": "nilo",    "given": "Nilo",    "noun": "erizo",   "gender": "m", "roles": ["hero", "helper"], "alignment": "positive", "trait": {"m": "curioso",  "f": "curiosa"}},
+    {"id": "luna",    "given": "Luna",    "noun": "tortuga", "gender": "f", "roles": ["hero", "helper"], "alignment": "positive", "trait": {"m": "valiente", "f": "valiente"}},
+    {"id": "bruna",   "given": "Bruna",   "noun": "lechuza", "gender": "f", "roles": ["helper"],         "alignment": "positive", "trait": {"m": "sabio",    "f": "sabia"}},
+    {"id": "cornelio","given": "Cornelio","noun": "cuervo",  "gender": "m", "roles": ["villain"],        "alignment": "negative", "trait": {"m": "tramposo", "f": "tramposa"}},
+    {"id": "brisca",  "given": "Brisca",  "noun": "urraca",  "gender": "f", "roles": ["villain"],        "alignment": "negative", "trait": {"m": "avaro",    "f": "avara"}}
+  ],
+  "places": [
+    {"id": "bosque", "noun": "bosque de las luciérnagas", "gender": "m", "mood": "calm"},
+    {"id": "cueva",  "noun": "cueva de los ecos",         "gender": "f", "mood": "mystery"},
+    {"id": "rio",    "noun": "río Murmullo",              "gender": "m", "mood": "calm"},
+    {"id": "colina", "noun": "colina de la aurora",       "gender": "f", "mood": "hope"}
+  ],
+  "morals": [
+    {"id": "honestidad",   "text": "Ser honesto nos hace sentir ligeros, aunque nadie nos esté mirando."},
+    {"id": "generosidad",  "text": "Cuando compartimos lo poco que tenemos, la alegría crece para todos."},
+    {"id": "valentia",     "text": "Ser valiente no es no tener miedo, sino dar el primer paso a pesar de él."}
+  ],
+  "fragments": [
+    {"id": "op_1", "stage": "opening", "values": ["*"],
+     "text": "Había una vez, en {place.el}, {hero.un} llamad{hero.o} {hero}. {hero.El} era muy {hero.trait} y le encantaba explorar cuando caía la tarde.",
+     "scene": {"bg": "place", "actors": ["hero"], "mood": "calm"}},
+    {"id": "op_2", "stage": "opening", "values": ["*"],
+     "text": "{place.En} la noche llegaba despacito. Allí vivía {hero.el} {hero}, de quien todos decían que era muy {hero.trait}.",
+     "scene": {"bg": "place", "actors": ["hero"], "mood": "calm"}},
+
+    {"id": "tr_hon", "stage": "trouble", "values": ["honestidad"], "adds": ["tempted"],
+     "text": "Una tarde, {hero} encontró un farolito dorado que no era suyo. Nadie lo había visto. {villain.El} {villain}, que miraba desde lejos, susurró: «Quédatelo, nadie se enterará».",
+     "scene": {"bg": "place", "actors": ["hero", "villain"], "mood": "tension"}},
+    {"id": "tr_gen", "stage": "trouble", "values": ["generosidad"], "adds": ["scarcity"],
+     "text": "Aquel invierno la comida escaseaba. {villain.El} {villain} guardaba todas las bayas en su guarida y no quería compartirlas con nadie.",
+     "scene": {"bg": "place", "actors": ["villain"], "mood": "tension"}},
+    {"id": "tr_val", "stage": "trouble", "values": ["valentia"], "adds": ["dark_threat"],
+     "text": "Una noche, {villain.el} {villain} cubrió con su sombra el camino hacia {place2.el}, donde nacía la primera luz de la mañana. Sin esa luz, el valle no despertaría.",
+     "scene": {"bg": "place2", "actors": ["villain"], "mood": "tension"}},
+
+    {"id": "he_hon", "stage": "helper", "values": ["honestidad"], "requires": ["tempted"],
+     "text": "{hero} sintió un cosquilleo en la barriga. Se sentó a pensar y se lo contó todo a {helper.el} {helper}. «Un secreto pesa mucho más que la verdad», le dijo {helper.el}.",
+     "scene": {"bg": "place", "actors": ["hero", "helper"], "mood": "calm"}},
+    {"id": "he_any", "stage": "helper", "values": ["*"],
+     "text": "Entonces {hero} recordó los consejos de {helper.el} {helper}, que vivía cerca y siempre sabía qué hacer. Juntos decidieron ponerse en marcha.",
+     "scene": {"bg": "place", "actors": ["hero", "helper"], "mood": "hope"}},
+
+    {"id": "te_1", "stage": "test", "values": ["*"],
+     "text": "Para llegar hasta allí, {hero} tuvo que atravesar {place2.el}. El camino era largo y oscuro, pero {hero.el} no se detuvo.",
+     "scene": {"bg": "place2", "actors": ["hero"], "mood": "mystery"}},
+    {"id": "te_2", "stage": "test", "values": ["*"],
+     "text": "Al caer la noche, {hero} y {helper} cruzaron {place2.el}. Cada ruido parecía enorme, pero caminaron juntos, uno al lado del otro.",
+     "scene": {"bg": "place2", "actors": ["hero", "helper"], "mood": "mystery"}},
+
+    {"id": "cl_hon", "stage": "climax", "values": ["honestidad"], "requires": ["tempted"], "adds": ["honest_choice"],
+     "text": "{villain.El} {villain} insistió una vez más. Pero {hero} apretó el farolito contra su pecho y respondió con voz firme: «No es mío, y lo voy a devolver».",
+     "scene": {"bg": "place2", "actors": ["hero", "villain"], "mood": "tension"}},
+    {"id": "cl_gen", "stage": "climax", "values": ["generosidad"], "requires": ["scarcity"], "adds": ["shared"],
+     "text": "{hero} abrió su morral y, aunque tenía muy poco, repartió sus bayas entre todos los animales. {villain.El} {villain} nunca había visto algo así.",
+     "scene": {"bg": "place2", "actors": ["hero", "villain"], "mood": "hope"}},
+    {"id": "cl_val", "stage": "climax", "values": ["valentia"], "requires": ["dark_threat"], "adds": ["light_back"],
+     "text": "{hero} sintió miedo, muchísimo miedo. Pero respiró hondo, dio un paso hacia adelante y encendió la primera chispa de luz. {villain.El} {villain} retrocedió.",
+     "scene": {"bg": "place2", "actors": ["hero", "villain"], "mood": "triumph"}},
+
+    {"id": "re_hon", "stage": "resolution", "values": ["honestidad"], "requires": ["honest_choice"],
+     "text": "El farolito volvió con su dueña, la pequeña luciérnaga Lumi, que lloró de alegría. Y {villain.el} {villain}, avergonzad{villain.o}, descubrió que la verdad brilla más que cualquier tesoro.",
+     "scene": {"bg": "place", "actors": ["hero", "villain"], "mood": "hope"}},
+    {"id": "re_gen", "stage": "resolution", "values": ["generosidad"], "requires": ["shared"],
+     "text": "Pronto hubo bayas para todos y una gran fiesta en {place.el}. Al verlo, {villain.el} {villain} abrió su guarida y se sentó a la mesa.",
+     "scene": {"bg": "place", "actors": ["hero", "villain", "helper"], "mood": "joy"}},
+    {"id": "re_val", "stage": "resolution", "values": ["valentia"], "requires": ["light_back"],
+     "text": "Al amanecer, la luz volvió a llenar el valle. {villain.El} {villain} se alejó para siempre, y {place.el} volvió a ser un lugar seguro para dormir.",
+     "scene": {"bg": "place", "actors": ["hero"], "mood": "joy"}},
+
+    {"id": "cl_end", "stage": "closing", "values": ["*"],
+     "text": "Y colorín colorado, este cuento se ha acabado. Ahora, a descansar, que mañana habrá nuevas aventuras.",
+     "scene": {"bg": "place", "actors": ["hero"], "mood": "sleep"}}
+  ]
+}
