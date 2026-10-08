@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'pack_loader.dart';
 import 'seed.dart';
 import 'story_page.dart';
+import 'workshop_page.dart';
 
 /// Pantalla de inicio: el adulto elige una enseñanza y crea el cuento.
 class HomePage extends StatefulWidget {
@@ -99,6 +100,17 @@ class _HomePageState extends State<HomePage> {
                     padding: EdgeInsets.symmetric(vertical: 12),
                     child: Text('Crear cuento'),
                   ),
+                ),
+                const SizedBox(height: 32),
+                // Herramienta de desarrollo: previsualiza el arte y mide el rendimiento.
+                TextButton.icon(
+                  onPressed: () => Navigator.of(context).push(
+                    MaterialPageRoute<void>(
+                      builder: (_) => WorkshopPage(bundle: widget.bundle),
+                    ),
+                  ),
+                  icon: const Icon(Icons.brush_outlined),
+                  label: const Text('Taller de personajes (prueba)'),
                 ),
               ],
             );

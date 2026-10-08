@@ -1,0 +1,18 @@
+{
+ "format": "caldero-art-index",
+ "version": 1,
+ "pack": "medieval",
+ "rig": "humanoid",
+ "rigs": [
+  "medieval/rigs/aldo.json",
+  "medieval/rigs/mara.json",
+  "medieval/rigs/zafiro.json",
+  "medieval/rigs/bonifacio.json",
+  "medieval/rigs/codicio.json",
+  "medieval/rigs/sombra.json"
+ ],
+ "scenes": [
+  "medieval/scenes/castle_night.json"
+ ],
+ "clips": "clips/humanoid.json"
+}

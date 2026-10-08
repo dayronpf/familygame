@@ -29,6 +29,14 @@ Archivos en [`art/medieval/`](../art/medieval/) y generadores en [`tools/art/`](
 | Fondo por capas: cielo, colinas, castillo, molino, árboles, luciérnagas | **55 KB** el SVG de la escena completa, con 4 capas independientes (parallax) |
 | Animación | Respiración/balanceo de los personajes, aspas del molino y destellos; **≈ 29 000 píxeles cambian** entre fotogramas y el bucle de 3 s cierra sin salto |
 | Vistas previas | `preview/sheet.png` (personajes y poses), `preview/scene_castle.gif` (escena animada) |
+| **Biblioteca de animaciones** (`art/clips/humanoid.json`, **5 KB**) | 10 clips: `idle`, `walk`, `run`, `wave`, `cheer`, `jump`, `surprised`, `scared`, `talk`, `bow`. Son datos y **sirven a cualquier personaje humanoide**: el mismo `walk` mueve a Aldo, a Mara y al mago. Incluye parpadeo (los ojos son un hueso propio). |
+| **Escena como datos** (`art/medieval/scenes/castle_night.json`, 31 KB) | Capas, degradados, animaciones ambientales y lista de personajes. La vista previa SVG sale de estos mismos datos. |
+| **Renderizador en Flutter** (`app/lib/src/art/`, paquete `packages/caldero_rig`) | Dibuja rigs y escenas sin dependencias externas. Probado en un **navegador real**: coincide con la referencia de Python (diferencia media 0,42/255; 0,17 % de píxeles distintos, solo bordes suavizados), en 3 ejecuciones. |
+| **Paridad Python ↔ Dart** | 280 poses (4 personajes × 10 clips × 7 instantes) y 60 valores ambientales comparados número a número: coinciden (tolerancia 1e-5). |
+| Pruebas | 15 en `caldero_rig` y 14 en la app (dibujo a píxeles: cielo oscuro, luna clara, degradado, cada clip distinto, aspas que giran) |
+| **Taller de personajes** (pantalla de la app, botón en el inicio) | Elige cualquier clip, aplica una prueba de carga de 1 a 24 personajes y muestra un **medidor de fps** para que midas en tu teléfono |
+
+**Coste por fotograma (independiente del dispositivo):** un personaje tiene ≈ 50 formas; el fondo tiene 120 formas estáticas que se graban **una sola vez** como imagen reproducible y 65 animadas. Un fotograma típico (escena + 3 personajes) dibuja **≈ 214 formas**; con 24 personajes, ≈ 1 260.
 
 Para comparar con tu presupuesto de rendimiento ([10 §4](10-arte-y-estilo-visual.md)): 150 KB por personaje era la meta;
 estamos en ~8 KB, unas 20 veces por debajo.
@@ -47,7 +55,7 @@ Especificación (datos)  →  Generador  →  Rig JSON  →  Pack  →  App (dib
    **cero bytes de assets**: es matemática sobre los huesos.
 4. **Fondos** igual: cada capa es un grupo con su `id` (`sky`, `far`, `mid`, `near`, `actors`).
 5. **Renderizado:** el rig se dibuja con rutas vectoriales. En la app será un `CustomPainter` de Flutter (sin dependencias);
-   en el panel web, el mismo JSON en un `<svg>` para vista previa. *(Ver §5: esto último aún no está probado.)*
+   en el panel web, el mismo JSON en un `<svg>` para vista previa. *(Lo de la app ya está hecho; el panel web aún no.)*
 
 Herramientas, **todas gratuitas**: Python 3, Node + Chromium/Playwright (solo para generar las vistas previas), Pillow (GIF),
 Flutter/Dart (la app). Nada de licencias de pago.
@@ -55,11 +63,15 @@ Flutter/Dart (la app). Nada de licencias de pago.
 Cómo regenerarlo:
 
 ```bash
-python3 tools/art/medieval_kit.py        # rigs + hoja de personajes
-python3 tools/art/scene_castle.py        # escena del castillo
+cd tools/art
+python3 medieval_kit.py        # rigs, índice y hoja de personajes (lee art/medieval/specs/)
+python3 make_clips.py          # biblioteca de animaciones (art/clips/)
+python3 scene_castle.py        # escena del castillo (art/medieval/scenes/)
+python3 make_fixtures.py       # datos de referencia para las pruebas de Dart
 # vistas previas (requieren Node con playwright y Pillow):
-node tools/art/render_png.js art/medieval/preview/sheet.svg art/medieval/preview/sheet.png
-node tools/art/render_gif.js art/medieval/preview/scene_castle.svg /tmp/frames 10 3
+node render_png.js ../../art/medieval/preview/sheet.svg ../../art/medieval/preview/sheet.png
+python3 scene_castle.py --frames /tmp/svgs --fps 10 --secs 3 && node render_dir.js /tmp/svgs /tmp/pngs
+python3 make_gif.py /tmp/pngs ../../art/medieval/preview/scene_castle.gif 10 400
 ```
 
 ## 4. ¿Y un generador de objetos en 3D?
@@ -88,11 +100,14 @@ El «aspecto 3D» de tus referencias isométricas se puede **aproximar en 2D** c
 3. **Vista frontal.** No hay giro 3/4 ni isométrico (las referencias isométricas serían mucho más costosas de animar).
 4. **Animación por huesos:** rotación de piezas, sin deformar formas (sin respiración «blanda», cola ondulante, etc.). Para criaturas
    se añadirán cadenas de huesos.
-5. **El renderizador de Flutter no está hecho ni medido.** Lo probado fue el generador y el navegador (SVG). Falta: dibujarlo con
-   `CustomPainter`, medir FPS y memoria en un Android de gama media (tú me darás el feedback) y comprobar el límite de 2 personajes + 3 capas.
-6. **Las especificaciones de personajes viven hoy dentro del código Python.** Para que el panel de administración pueda editarlas
-   deben pasar a **archivos de datos** (JSON). Es un cambio previsto antes de la versión 0.2.
-7. **Cada personaje nuevo pide una ronda de revisión visual** (hacer, mirar, corregir). Es barato, pero no es automático del todo.
+5. **El rendimiento en un teléfono NO está medido.** El renderizador de Flutter existe y es correcto (ver §2), pero los fps solo
+   se pueden medir en un dispositivo real. Las cifras que da un navegador sin GPU (≈ 10 fps) **no son representativas**. Hay que
+   ejecutar `flutter run --release` en tu Android de gama media y mirar el medidor del taller (§9).
+6. **Las especificaciones de personajes ya son datos** (`art/medieval/specs/characters.json`), pero falta una interfaz para
+   editarlas: eso es el compositor del panel de administración (después de la versión 0.2).
+7. **Expresión limitada:** los ojos parpadean, pero la boca es fija (no hay movimiento de labios al hablar). Se resuelve con piezas
+   de boca intercambiables (visemas) en un paso posterior.
+8. **Cada personaje nuevo pide una ronda de revisión visual** (hacer, mirar, corregir). Es barato, pero no es automático del todo.
 
 ## 6. Derechos de autor (qué cambia con este enfoque)
 
@@ -136,13 +151,28 @@ contenido y se hace con el validador del motor.
 
 ## 8. Próximos pasos de arte (propuesta, en orden)
 
-| # | Paso | Para qué |
+| # | Paso | Estado |
 |---|---|---|
-| A1 | Mover las especificaciones a JSON (`art/medieval/specs/`) y que el generador las lea | Que el panel pueda editarlas |
-| A2 | **Renderizador Flutter** (`CustomPainter`) + pantalla de prueba con poses y la escena | Probar de verdad en tu Android y medir FPS/memoria |
-| A3 | Rig de criatura (dragón/cuadrúpedo con alas y cola articulada) | Cubrir el segundo gran tipo de personaje |
-| A4 | Biblioteca de clips (caminar, correr, sorpresa, miedo, alegría, hablar con boca) y parpadeo | Animaciones expresivas con cero bytes extra |
-| A5 | Kit de fondos (aldea, bosque, cueva, río, interior del castillo) con capas | Los ~15 lugares del pack |
-| A6 | Variante de iluminación para el holograma (negro puro, siluetas luminosas) | Modo pirámide |
+| A1 | Especificaciones de personajes en JSON | ✅ `art/medieval/specs/characters.json` |
+| A2 | Renderizador Flutter + pantalla de prueba con medidor de fps | ✅ hecho y verificado en navegador · **falta medir en tu Android** |
+| A3 | Rig de criatura (dragón/cuadrúpedo con alas y cola articulada) | ☐ |
+| A4 | Biblioteca de clips (caminar, correr, sorpresa, miedo, alegría, hablar, reverencia, parpadeo) | ✅ 10 clips · falta boca/visemas |
+| A5 | Kit de fondos (aldea, bosque, cueva, río, interior del castillo) con capas | ☐ (1 de ~15 hecho: castillo) |
+| A6 | Variante de iluminación para el holograma (negro puro, siluetas luminosas) | ☐ |
+| A7 | Integrar el arte con los cuentos: que cada fragmento muestre su escena (`scene.bg/actors/mood` → escena y clip) | ☐ |
 
-Se integran al plan en [`07-backlog.md`](07-backlog.md) y [`10-arte-y-estilo-visual.md`](10-arte-y-estilo-visual.md).
+## 9. Cómo medir en tu teléfono (te toca a ti)
+
+```bash
+cd app
+flutter run --release            # con el teléfono Android conectado por USB (depuración USB activada)
+```
+1. En el inicio, toca **«Taller de personajes (prueba)»**.
+2. Mira el recuadro de arriba a la izquierda: `fps · ms por fotograma (máx) · % de fotogramas lentos`.
+   Si dice «⚠ debug» o «perfil», no es válido: hay que usar `--release`.
+3. Prueba con el clip `idle` y luego `run`; activa **«Prueba de carga»** y sube el deslizador (6, 12, 24 personajes); apaga **«Fondo»**.
+4. Déjalo 2 minutos y toca la parte trasera del teléfono: ¿se calienta? Anota el modelo del teléfono y los números.
+5. **Meta:** ≈ 60 fps y menos del 5 % de fotogramas lentos con la escena y 3–6 personajes.
+Con tus números decido si hace falta optimizar (por ejemplo, grabar los personajes quietos como imagen o bajar a 30 fps en reposo).
+
+Se integra al plan en [`07-backlog.md`](07-backlog.md) y [`10-arte-y-estilo-visual.md`](10-arte-y-estilo-visual.md).

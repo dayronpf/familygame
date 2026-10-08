@@ -14,6 +14,8 @@ import json
 import math
 from pathlib import Path
 
+import anim
+
 OUT = Path(__file__).resolve().parent.parent.parent / "art" / "medieval"
 DARK = "#1b1230"  # tinta de contornos (no negro puro: más amable)
 
@@ -110,16 +112,7 @@ def head_shapes(s):
     # --- antifaz del bandido
     if hat == "hood":
         sh.append(S(rrect(-43, -202, 86, 26, 11), "$mask"))
-    # --- ojos y cejas
-    if hat == "hood":
-        for sx in (-16, 16):
-            sh.append(S(ell(sx, -189, 7.5, 6.5), "#fff6e0", None))
-            sh.append(S(ell(sx + (1.5 if sx > 0 else -1.5) * 0, -189, 3.6, 4.6), DARK, None))
-            sh.append(S(ell(sx - 1, -191, 1.3, 1.3), "#ffffff", None))
-    else:
-        for sx in (-16, 16):
-            sh.append(S(ell(sx, -188, 5.5, 7.5), DARK, None))
-            sh.append(S(ell(sx - 2, -191, 2.1, 2.1), "#ffffff", None))
+    # --- cejas (los ojos son un hueso aparte: `eyes_shapes`, para poder parpadear)
     brow = s.get("brows", "kind")
     bs = {"kind": ("M-24,-203 Q-16,-209 -8,-204", "M8,-204 Q16,-209 24,-203"),
           "grumpy": ("M-25,-209 L-8,-200", "M25,-209 L8,-200"),
@@ -177,6 +170,20 @@ def head_shapes(s):
     elif hat == "beret":
         sh.append(S("M-52,-214 C-46,-254 40,-262 60,-234 C58,-214 -30,-204 -52,-214 Z", "$hat"))
         sh.append(S("M54,-238 C86,-266 104,-252 114,-228 C98,-246 82,-242 56,-228 Z", "$gold"))
+    return sh
+
+
+def eyes_shapes(s):
+    sh = []
+    if s.get("hat") == "hood":
+        for sx in (-16, 16):
+            sh.append(S(ell(sx, -189, 7.5, 6.5), "#fff6e0", None))
+            sh.append(S(ell(sx, -189, 3.6, 4.6), DARK, None))
+            sh.append(S(ell(sx - 1, -191, 1.3, 1.3), "#ffffff", None))
+    else:
+        for sx in (-16, 16):
+            sh.append(S(ell(sx, -188, 5.5, 7.5), DARK, None))
+            sh.append(S(ell(sx - 2, -191, 2.1, 2.1), "#ffffff", None))
     return sh
 
 
@@ -290,7 +297,8 @@ def build(spec):
                  pre=back_shapes(s) and [node("back", (0, -75), shapes=back_shapes(s))] or [],
                  shapes=torso_shapes(s),
                  post=[node("armL", (-36, -140), shapes=armL, post=[node("itemL", (-36, -92), shapes=itemL)]),
-                       node("head", (0, -150), shapes=head_shapes(s)),
+                       node("head", (0, -150), shapes=head_shapes(s),
+                            post=[node("eyes", (0, -188), shapes=eyes_shapes(s))]),
                        node("armR", (36, -140), shapes=armR, post=[node("itemR", (36, -92), shapes=itemR)])])
     root = node("root", (0, -75),
                 pre=[node("legL", (-14, -78), shapes=leg_shapes(-14, s)),
@@ -302,27 +310,7 @@ def build(spec):
             "itemTilt": s.get("item_tilt", 0), "palette": s["palette"], "root": root}
 
 
-# -------------------------------------------------------------------- poses
 REST = {"armL": 9, "armR": -9}
-
-
-def pose(name, rig=None):
-    rig = rig or {}
-    p = dict(rig.get("rest") or REST)
-    p["dy"] = 0
-    if name == "walkA":
-        p.update(legL=-24, legR=24, armL=-26, armR=26, torso=2, head=-2, dy=-3)
-    elif name == "walkB":
-        p.update(legL=24, legR=-24, armL=26, armR=-26, torso=-2, head=2, dy=-3)
-    elif name == "wave":
-        p.update(armR=-158, head=-5, torso=-2)
-    elif name == "cheer":
-        p.update(armL=160, armR=-160, dy=-8)
-    elif name == "jump":
-        p.update(armL=118, armR=-118, legL=-18, legR=18, dy=-22)
-    if rig.get("itemUpright"):  # el arma sigue erguida aunque el brazo se mueva
-        p["itemR"] = -p["armR"] + rig.get("itemTilt", 0)
-    return p
 
 
 # ------------------------------------------------------------- render SVG
@@ -331,13 +319,15 @@ def color(rig, v):
         return None
     if v.startswith("$"):
         return rig["palette"][v[1:]]
+    if v.startswith("@"):  # degradado de escena
+        return f"url(#{v[1:]})"
     return v
 
 
 def svg_shape(rig, sh):
     fill = color(rig, sh["fill"])
     if sh["stroke"] == "auto":
-        stroke = mix(fill, DARK, 0.62) if fill else None
+        stroke = mix(fill, DARK, 0.62) if fill and fill.startswith("#") else None
     else:
         stroke = color(rig, sh["stroke"])
     a = [f'd="{sh["d"]}"', f'fill="{fill or "none"}"']
@@ -348,86 +338,53 @@ def svg_shape(rig, sh):
     return "<path " + " ".join(a) + "/>"
 
 
-IDLE = {  # hueso: (amplitud en grados, desfase en s). Ciclo de 3 s, sin costuras.
-    "torso": (1.2, 0.0), "head": (2.5, 0.4), "armL": (3.0, 0.2), "armR": (3.0, 1.7),
-}
+def node_transform(nd, p):
+    """Transformación SVG de un hueso: traslación, rotación sobre su pivote y escala sobre su pivote."""
+    i, (px, py) = nd["id"], nd["pivot"]
+    dx, dy = p.get(i + ".dx", 0), p.get(i + ".dy", 0)
+    ang, sx, sy = p.get(i, 0), p.get(i + ".sx", 1), p.get(i + ".sy", 1)
+    parts = []
+    if dx or dy:
+        parts.append(f"translate({n(dx)} {n(dy)})")
+    if ang:
+        parts.append(f"rotate({n(ang)} {n(px)} {n(py)})")
+    if sx != 1 or sy != 1:
+        parts.append(f"translate({n(px)} {n(py)}) scale({n(sx)} {n(sy)}) translate({n(-px)} {n(-py)})")
+    return f' transform="{" ".join(parts)}"' if parts else ""
 
 
-def _idle_anim(nd):
-    if nd["id"] in IDLE:
-        amp, ph = IDLE[nd["id"]]
-        px, py = nd["pivot"]
-        vals = ";".join(f"{n(a)} {n(px)} {n(py)}" for a in (-amp, amp, -amp))
-        return (f'<animateTransform attributeName="transform" type="rotate" additive="sum" values="{vals}" '
-                f'dur="3s" begin="{-ph}s" repeatCount="indefinite" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1"/>')
-    if nd["id"] == "root":
-        return ('<animateTransform attributeName="transform" type="translate" additive="sum" values="0 0;0 -2;0 0" '
-                'dur="1.5s" repeatCount="indefinite" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1"/>')
-    return ""
-
-
-def svg_node(rig, nd, p, dy=0, idle=False):
-    ang = p.get(nd["id"], 0)
-    px, py = nd["pivot"]
-    tf = f' transform="rotate({n(ang)} {n(px)} {n(py)})"' if ang else ""
-    if nd["id"] == "root" and dy:
-        tf = f' transform="translate(0 {n(dy)})"'
-    out = [f'<g id="{nd["id"]}"{tf}>']
-    if idle:
-        out.append(_idle_anim(nd))
-    out += [svg_node(rig, c, p, 0, idle) for c in nd["pre"]]
+def svg_node(rig, nd, p):
+    out = [f'<g id="{nd["id"]}"{node_transform(nd, p)}>']
+    out += [svg_node(rig, c, p) for c in nd["pre"]]
     out += [svg_shape(rig, sh) for sh in nd["shapes"]]
-    out += [svg_node(rig, c, p, 0, idle) for c in nd["post"]]
+    out += [svg_node(rig, c, p) for c in nd["post"]]
     out.append("</g>")
     return "".join(out)
 
 
-def svg_character(rig, p, idle=False):
+def svg_character(rig, p):
     sc = rig["bodyScale"]
-    body = svg_node(rig, rig["root"], p, p.get("dy", 0), idle)
+    body = svg_node(rig, rig["root"], p)
     return f'<g transform="scale({sc} 1)">{body}</g>' if sc != 1 else body
 
 
 # ------------------------------------------------------------- personajes
-CAST = [
-    dict(id="aldo", name="Aldo · aprendiz de caballero", outfit="armor", hat="helmet", hair="short",
-         brows="determined", mouth="smile", hold_r="sword", hold_l="shield", rest={"armL": 10, "armR": -24}, item_tilt=16,
-         palette=dict(skin="#f4c7a1", hair="#6b3f24", primary="#2f6fd0", secondary="#f4d35e", metal="#aeb9cc",
-                      belt="#7a4a28", gold="#f4c542", pants="#3a4a7a", boots="#5a3822", plume="#e84a5f",
-                      shield="#2f6fd0", cape="#e84a5f")),
-    dict(id="mara", name="Mara · arquera del bosque", outfit="archer", hat="archer", hair="braid", quiver=True,
-         brows="determined", mouth="smirk", hold_l="bow",
-         palette=dict(skin="#e7b48a", hair="#a24b1e", primary="#3f9e5a", secondary="#f4e3b0", belt="#7a4a28",
-                      gold="#f4c542", pants="#8a5a35", boots="#5a3822", hat="#2f7d46", plume="#e84a5f",
-                      wood="#8a5a2b", accent="#e84a5f")),
-    dict(id="zafiro", name="Zafiro · mago de la barba larga", outfit="robe", hat="wizard", beard=True, hair="none",
-         brows="kind", mouth="smile", hold_r="staff", rest={"armL": 9, "armR": -18}, item_tilt=7,
-         palette=dict(skin="#f0c4a0", hair="#e8e8f0", beard="#f1f1f6", primary="#6a4fc9", secondary="#3fc1c9",
-                      gold="#f4c542", hat="#5640b0", accent="#3fc1c9", boots="#5a3822", pants="#6a4fc9",
-                      wood="#8a5a2b", glow="#6ee7ff", belt="#7a4a28")),
-    dict(id="bonifacio", name="Rey Bonifacio · rey bondadoso", outfit="royal", hat="crown", beard=True, hair="short",
-         cape=True, scale=1.18, brows="kind", mouth="smile",
-         palette=dict(skin="#f2c29c", hair="#d9d9df", beard="#e6e6ee", primary="#c63d4f", gold="#f4c542",
-                      cape="#7a2fb0", pants="#3a2a6a", boots="#5a3822", belt="#7a4a28")),
-    dict(id="codicio", name="Duque Codicio · noble avaro", outfit="noble", hat="beret", goatee=True, hair="short",
-         brows="grumpy", mouth="smirk", hold_r="sack",
-         palette=dict(skin="#efc3a0", hair="#2a1b3a", beard="#2a1b3a", primary="#4b2a7a", gold="#f4c542",
-                      hat="#3b1f63", pants="#2f2147", boots="#2a1b3a", belt="#2a1b3a", sack="#caa65a",
-                      secondary="#f4c542")),
-    dict(id="sombra", name="Sombra · bandido del bosque", outfit="bandit", hat="hood", hair="none", cloak_back=True,
-         brows="grumpy", mouth="smirk", hold_r="sack",
-         palette=dict(skin="#e4b08a", cloak="#3b4a5a", mask="#1b1230", primary="#57677a", secondary="#caa65a",
-                      belt="#2a1b3a", pants="#2f3a4a", boots="#2a1b3a", sack="#c9a15a")),
-]
+def load_cast():
+    doc = json.loads((OUT / "specs" / "characters.json").read_text(encoding="utf-8"))
+    return doc["characters"]
 
 
 # ------------------------------------------------------------------ hoja
 def sheet(rigs):
+    """Hoja de previsualización. Las poses salen de la biblioteca de clips (la misma que usará la app)."""
+    clips = anim.load_clips("humanoid")
+    by = {r["id"]: r for r in rigs}
     cw, ch, cols = 236, 330, 6
     rows = [
-        [("idle", r) for r in rigs],
-        [(p, rigs[0]) for p in ("idle", "walkA", "walkB", "wave", "cheer", "jump")],
-        [(p, rigs[1]) for p in ("idle", "walkA", "walkB", "wave", "cheer", "jump")],
+        [(r, "idle", 0.0) for r in rigs],
+        [(by["aldo"], c, tt) for c, tt in (("idle", 0), ("walk", 0.1), ("run", 0.12), ("wave", 0.9), ("cheer", 0.6), ("jump", 0.5))],
+        [(by["mara"], "walk", 0.1), (by["zafiro"], "wave", 0.9), (by["bonifacio"], "bow", 1.2),
+         (by["codicio"], "surprised", 0.6), (by["sombra"], "scared", 0.06), (by["mara"], "cheer", 0.6)],
     ]
     W, H = cw * cols, ch * len(rows) + 10
     parts = [f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}" '
@@ -438,7 +395,7 @@ def sheet(rigs):
              '<stop offset="1" stop-color="#ffd98a" stop-opacity="0"/></radialGradient></defs>',
              f'<rect width="{W}" height="{H}" fill="url(#bg)"/>']
     for ri, row in enumerate(rows):
-        for ci, (pn, rig) in enumerate(row):
+        for ci, (rig, pn, tt) in enumerate(row):
             ox, oy = ci * cw, ri * ch
             vb = rig["viewBox"]
             k = (ch - 60) / vb[3]
@@ -446,7 +403,7 @@ def sheet(rigs):
             ty = oy + 14 + (-vb[1]) * k
             parts.append(f'<ellipse cx="{tx}" cy="{ty - 6}" rx="{110}" ry="{120}" fill="url(#halo)"/>')
             parts.append(f'<ellipse cx="{tx}" cy="{ty + 3}" rx="{62 * k * rig["bodyScale"] + 10}" ry="7" fill="#000" opacity="0.4"/>')
-            parts.append(f'<g transform="translate({tx} {ty}) scale({k})">{svg_character(rig, pose(pn, rig))}</g>')
+            parts.append(f'<g transform="translate({tx} {ty}) scale({k})">{svg_character(rig, anim.sample_pose(rig, clips[pn], tt))}</g>')
             label = rig["name"] if ri == 0 else f'{rig["name"].split(" · ")[0]} — {pn}'
             parts.append(f'<text x="{tx}" y="{oy + ch - 12}" fill="#f2e3c6" font-size="13" text-anchor="middle">{label}</text>')
     parts.append("</svg>")
@@ -456,10 +413,14 @@ def sheet(rigs):
 def main():
     (OUT / "rigs").mkdir(parents=True, exist_ok=True)
     (OUT / "preview").mkdir(parents=True, exist_ok=True)
-    rigs = [build(c) for c in CAST]
+    rigs = [build(c) for c in load_cast()]
     for r in rigs:
         (OUT / "rigs" / f'{r["id"]}.json').write_text(json.dumps(r, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
     (OUT / "preview" / "sheet.svg").write_text(sheet(rigs), encoding="utf-8")
+    index = {"format": "caldero-art-index", "version": 1, "pack": "medieval", "rig": "humanoid",
+             "rigs": [f"medieval/rigs/{r['id']}.json" for r in rigs],
+             "scenes": ["medieval/scenes/castle_night.json"], "clips": "clips/humanoid.json"}
+    (OUT / "index.json").write_text(json.dumps(index, indent=1) + "\n", encoding="utf-8")
     for r in rigs:
         size = (OUT / "rigs" / f'{r["id"]}.json').stat().st_size
         print(f'{r["id"]:10s} {size / 1024:5.1f} KB')

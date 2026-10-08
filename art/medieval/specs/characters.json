@@ -1,0 +1,162 @@
+{
+ "format": "caldero-character-specs",
+ "version": 1,
+ "rig": "humanoid",
+ "characters": [
+  {
+   "id": "aldo",
+   "name": "Aldo · aprendiz de caballero",
+   "outfit": "armor",
+   "hat": "helmet",
+   "hair": "short",
+   "brows": "determined",
+   "mouth": "smile",
+   "hold_r": "sword",
+   "hold_l": "shield",
+   "rest": {
+    "armL": 10,
+    "armR": -24
+   },
+   "item_tilt": 16,
+   "palette": {
+    "skin": "#f4c7a1",
+    "hair": "#6b3f24",
+    "primary": "#2f6fd0",
+    "secondary": "#f4d35e",
+    "metal": "#aeb9cc",
+    "belt": "#7a4a28",
+    "gold": "#f4c542",
+    "pants": "#3a4a7a",
+    "boots": "#5a3822",
+    "plume": "#e84a5f",
+    "shield": "#2f6fd0",
+    "cape": "#e84a5f"
+   }
+  },
+  {
+   "id": "mara",
+   "name": "Mara · arquera del bosque",
+   "outfit": "archer",
+   "hat": "archer",
+   "hair": "braid",
+   "quiver": true,
+   "brows": "determined",
+   "mouth": "smirk",
+   "hold_l": "bow",
+   "palette": {
+    "skin": "#e7b48a",
+    "hair": "#a24b1e",
+    "primary": "#3f9e5a",
+    "secondary": "#f4e3b0",
+    "belt": "#7a4a28",
+    "gold": "#f4c542",
+    "pants": "#8a5a35",
+    "boots": "#5a3822",
+    "hat": "#2f7d46",
+    "plume": "#e84a5f",
+    "wood": "#8a5a2b",
+    "accent": "#e84a5f"
+   }
+  },
+  {
+   "id": "zafiro",
+   "name": "Zafiro · mago de la barba larga",
+   "outfit": "robe",
+   "hat": "wizard",
+   "beard": true,
+   "hair": "none",
+   "brows": "kind",
+   "mouth": "smile",
+   "hold_r": "staff",
+   "rest": {
+    "armL": 9,
+    "armR": -18
+   },
+   "item_tilt": 7,
+   "palette": {
+    "skin": "#f0c4a0",
+    "hair": "#e8e8f0",
+    "beard": "#f1f1f6",
+    "primary": "#6a4fc9",
+    "secondary": "#3fc1c9",
+    "gold": "#f4c542",
+    "hat": "#5640b0",
+    "accent": "#3fc1c9",
+    "boots": "#5a3822",
+    "pants": "#6a4fc9",
+    "wood": "#8a5a2b",
+    "glow": "#6ee7ff",
+    "belt": "#7a4a28"
+   }
+  },
+  {
+   "id": "bonifacio",
+   "name": "Rey Bonifacio · rey bondadoso",
+   "outfit": "royal",
+   "hat": "crown",
+   "beard": true,
+   "hair": "short",
+   "cape": true,
+   "scale": 1.18,
+   "brows": "kind",
+   "mouth": "smile",
+   "palette": {
+    "skin": "#f2c29c",
+    "hair": "#d9d9df",
+    "beard": "#e6e6ee",
+    "primary": "#c63d4f",
+    "gold": "#f4c542",
+    "cape": "#7a2fb0",
+    "pants": "#3a2a6a",
+    "boots": "#5a3822",
+    "belt": "#7a4a28"
+   }
+  },
+  {
+   "id": "codicio",
+   "name": "Duque Codicio · noble avaro",
+   "outfit": "noble",
+   "hat": "beret",
+   "goatee": true,
+   "hair": "short",
+   "brows": "grumpy",
+   "mouth": "smirk",
+   "hold_r": "sack",
+   "palette": {
+    "skin": "#efc3a0",
+    "hair": "#2a1b3a",
+    "beard": "#2a1b3a",
+    "primary": "#4b2a7a",
+    "gold": "#f4c542",
+    "hat": "#3b1f63",
+    "pants": "#2f2147",
+    "boots": "#2a1b3a",
+    "belt": "#2a1b3a",
+    "sack": "#caa65a",
+    "secondary": "#f4c542"
+   }
+  },
+  {
+   "id": "sombra",
+   "name": "Sombra · bandido del bosque",
+   "outfit": "bandit",
+   "hat": "hood",
+   "hair": "none",
+   "cloak_back": true,
+   "brows": "grumpy",
+   "mouth": "smirk",
+   "hold_r": "sack",
+   "palette": {
+    "skin": "#e4b08a",
+    "cloak": "#3b4a5a",
+    "mask": "#1b1230",
+    "primary": "#57677a",
+    "secondary": "#caa65a",
+    "belt": "#2a1b3a",
+    "pants": "#2f3a4a",
+    "boots": "#2a1b3a",
+    "sack": "#c9a15a"
+   }
+  }
+ ]
+}

@@ -36,10 +36,11 @@ mientras avanza y puede proyectarse como **holograma** con una pirámide transpa
 ```
 app/                      App Flutter (Android + iOS)
 packages/caldero_engine/  Motor de cuentos en Dart puro (con pruebas y validador de packs)
+packages/caldero_rig/     Rigs 2D, clips de animación y escenas (Dart puro, con pruebas)
 content/packs/            Packs de contenido (fuente de verdad) y su esquema JSON
 tools/                    Prototipo en Python, validador de esquema, sincronía de assets
 tools/art/                Generadores de personajes y escenas (arte por código)
-art/medieval/             Rigs JSON de personajes y vistas previas (PNG/GIF/SVG)
+art/                      Arte como datos: personajes, clips, escenas y vistas previas (PNG/GIF/SVG)
 docs/                     Visión, metodología, roadmap, arquitectura, backlog…
 ASSETS_LICENSES.md        Libro de licencias de todo asset de terceros
 ```
@@ -54,12 +55,18 @@ cd packages/caldero_engine
 dart pub get && dart analyze && dart test
 dart run caldero_engine:validate_pack ../../content/packs/*/pack.json
 
+# Rigs y animación
+cd packages/caldero_rig && dart pub get && dart analyze && dart test
+
 # App
 cd app && flutter pub get && flutter analyze && flutter test
 flutter run                      # en un dispositivo o emulador
 
-# Si cambias un pack en content/, sincroniza la copia que lleva la app
+# Si cambias un pack en content/ o el arte en art/, sincroniza la copia que lleva la app
 tools/sync_assets.sh             # CI falla si lo olvidas (--check)
+
+# Arte generado por código (ver docs/11)
+cd tools/art && python3 medieval_kit.py && python3 make_clips.py && python3 scene_castle.py && python3 make_fixtures.py
 
 # Esquema JSON de los packs (opcional, requiere: pip install jsonschema)
 python3 tools/validate_schema.py content/packs/*/pack.json
@@ -72,6 +79,6 @@ semilla da un cuento distinto en Python y en Dart; lo que ambos comparten es el 
 
 ## Estado
 
-**Sprint 1 — «El caldero en Dart».** Motor en Dart, validador, esquema, CI y primera pantalla
-(elegir enseñanza → crear cuento → leer en modo noche) listos y probados.
-Falta verificarlos en dispositivos Android/iOS y en el CI de GitHub. Ver [docs/07-backlog.md](docs/07-backlog.md).
+**Sprint 1 — «El caldero en Dart»** ✅ y **arte por código** (pack medieval) en marcha: motor, validador, esquema, CI,
+pantalla de cuentos, 6 personajes animados con 10 clips reutilizables, escena de castillo y **Taller de personajes** con medidor de fps.
+Pendiente: probar en Android/iOS reales y medir rendimiento ([docs/11 §9](docs/11-pipeline-de-arte-por-codigo.md)). Ver [docs/07-backlog.md](docs/07-backlog.md).

@@ -77,10 +77,11 @@ El primer pack, gratuito, es medieval («Reino de la Luna», nombre provisional)
 |---|---|---|---|---|
 | E13-01 | Generador de personajes humanoides por rig + paleta | 6 personajes originales, poses y animación de reposo, vista previa | M | ✅ `tools/art/medieval_kit.py` |
 | E13-02 | Escena de fondo por capas con animación | Castillo, molino, luna y luciérnagas; capas separadas | M | ✅ `tools/art/scene_castle.py` |
-| E13-03 | Especificaciones de personajes en JSON (no en código) | El generador las lee; el panel podrá editarlas | S | ☐ A1 |
-| E13-04 | **Renderizador Flutter** de rigs y escenas + pantalla de prueba | Mismas poses que la vista previa; FPS y memoria medidos en Android de gama media | L | ☐ A2 |
+| E13-03 | Especificaciones de personajes en JSON (no en código) | El generador las lee; el panel podrá editarlas | S | ✅ `art/medieval/specs/` |
+| E13-04 | **Renderizador Flutter** de rigs y escenas + pantalla de prueba | Mismas poses que la vista previa; FPS y memoria medidos en Android de gama media | L | 🟡 renderizador y taller hechos y verificados en navegador (0,17 % de píxeles distintos de la referencia); **falta medir en Android** ([11 §9](11-pipeline-de-arte-por-codigo.md)) |
 | E13-05 | Rig de criatura (dragón) | Cuerpo, alas y cola articulados; se ve bien junto a los humanoides | M | ☐ A3 |
-| E13-06 | Biblioteca de animaciones (caminar, correr, sorpresa, miedo, alegría, parpadeo) | Clips como datos, reutilizables por rig | M | ☐ A4 |
+| E13-06 | Biblioteca de animaciones (caminar, correr, sorpresa, miedo, alegría, parpadeo) | Clips como datos, reutilizables por rig | M | ✅ 10 clips en 5 KB, paridad Python↔Dart comprobada |
+| E13-08 | **Mostrar el arte en los cuentos:** cada fragmento elige escena, personajes y clip (`scene.bg/actors/mood`) | El lector anima la escena del fragmento que se narra | M | ☐ A7 |
 | E13-07 | Kit de fondos del pack (aldea, bosque, cueva, río, interior) | 15 lugares con capas y paletas | L | ☐ A5 |
 | E3-03 | **Contenido del pack medieval:** ~25 personajes, ~15 lugares, 6 enseñanzas y ~120 fragmentos | Pasa el validador; revisión editorial | L (contenido) | ☐ |
 

@@ -24,6 +24,13 @@ packages:
       relative: true
     source: path
     version: "0.1.0"
+  caldero_rig:
+    dependency: "direct main"
+    description:
+      path: "../packages/caldero_rig"
+      relative: true
+    source: path
+    version: "0.1.0"
   characters:
     dependency: transitive
     description:

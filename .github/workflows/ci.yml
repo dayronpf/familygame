@@ -36,12 +36,33 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Regenerar rigs y escenas
+      - name: Regenerar personajes, clips, escena y datos de referencia
         run: |
-          python3 tools/art/medieval_kit.py
-          (cd tools/art && python3 scene_castle.py)
+          cd tools/art
+          python3 medieval_kit.py
+          python3 make_clips.py
+          python3 scene_castle.py
+          python3 make_fixtures.py
       - name: Lo generado coincide con lo versionado
-        run: git diff --exit-code art/medieval/rigs art/medieval/preview/sheet.svg art/medieval/preview/scene_castle.svg
+        run: git diff --exit-code art/medieval/rigs art/medieval/scenes art/medieval/index.json art/clips art/fixtures art/medieval/preview/sheet.svg art/medieval/preview/scene_castle.svg
+
+  rig:
+    name: Rigs y animación (Dart)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: packages/caldero_rig
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          cache: true
+      - run: dart pub get
+      - run: dart format --output=none --set-exit-if-changed .
+      - run: dart analyze --fatal-infos
+      - name: Pruebas (incluye la paridad numérica con Python)
+        run: dart test
 
   engine:
     name: Motor (Dart)

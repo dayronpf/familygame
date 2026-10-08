@@ -1,29 +1,12 @@
-import 'dart:io';
-
 import 'package:caldero_app/src/app.dart';
 import 'package:caldero_app/src/pack_loader.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-/// Bundle en memoria: lee los assets del disco de forma síncrona, así los tests
-/// no dependen de E/S real dentro del reloj simulado.
-class _FileBundle extends AssetBundle {
-  @override
-  Future<ByteData> load(String key) {
-    final bytes = File(key).readAsBytesSync();
-    return Future.value(ByteData.sublistView(Uint8List.fromList(bytes)));
-  }
+import 'file_bundle.dart';
 
-  @override
-  Future<T> loadStructuredData<T>(
-    String key,
-    Future<T> Function(String value) parser,
-  ) async =>
-      parser(await loadString(key));
-}
-
-final _bundle = _FileBundle();
+final _bundle = FileBundle();
 
 void main() {
   /// El cuento está en un ListView perezoso: hay que desplazarse para construir el final.
@@ -111,5 +94,20 @@ void main() {
     final pack = await tester.runAsync(() => loadPack(rootBundle));
     expect(pack!.id, 'demo');
     expect(pack.morals, isNotEmpty);
+  });
+
+  testWidgets('el botón del taller abre la pantalla de personajes',
+      (tester) async {
+    await openApp(tester);
+    final button = find.text('Taller de personajes (prueba)');
+    await tester.scrollUntilVisible(button, 200);
+    await tester.tap(button);
+    await tester.pump(); // arranca la carga
+    await tester.pump(const Duration(milliseconds: 100));
+    expect(find.text('Taller de personajes'), findsOneWidget);
+    // El taller anima sin parar: se sale antes de terminar para liberar el ticker.
+    final NavigatorState nav = tester.state(find.byType(Navigator));
+    nav.pop();
+    await tester.pumpAndSettle();
   });
 }
