@@ -21,12 +21,13 @@ La forma más segura es que **la propiedad esté clara desde el origen** y que e
 | **Ilustrador/animador contratado** con contrato de *cesión de derechos* (obra por encargo) | Muy bajo | Medio | **Vía principal** para el estilo base, el primer set de personajes y los fondos |
 | **Hecho por el equipo** con herramientas vectoriales | Bajo | Tiempo | Para piezas modulares y variaciones |
 | **Material CC0 / dominio público** verificado | Bajo | Bajo | Solo para prototipos y efectos de sonido; nunca como identidad visual |
-| **IA generativa** | Medio-alto e incierto | Bajo | **Solo para explorar ideas** (moodboards, bocetos). **No** como arte final: la protección legal del material generado por IA es incierta y varía por país, y puede parecerse a obras existentes. Todo lo final lo redibuja una persona. |
+| **Arte generado por código** (Claude escribe los generadores; el dueño dirige y aprueba) | Bajo-medio (autoría asistida por IA: ver [11 §6](11-pipeline-de-arte-por-codigo.md)) | **Cero** | **Vía principal con presupuesto cero.** Probada: personajes de ~8 KB, escena animada de 55 KB. |
+| **Modelos de imagen generativa** (prompt → imagen) | Medio-alto e incierto | Bajo | **Solo para explorar ideas.** No como arte final: puede parecerse a obras existentes y su protección legal es incierta. |
 | Copiar/«inspirarse de cerca» en personajes famosos | Alto | — | **Prohibido** |
 
 Reglas de la política de arte (se suman a docs/04):
 
-1. **Contrato de cesión** por escrito con cada artista, guardado en el panel, con derecho de uso comercial en apps.
+1. **Si se contrata a alguien:** contrato de *cesión* por escrito, guardado en el panel, con derecho de uso comercial en apps. **Si el arte nace del código:** especificaciones y generadores versionados en el repositorio (es el registro de autoría y dirección).
 2. **Nada de nombres de artistas, estudios ni marcas** en encargos ni en *prompts* de exploración.
 3. **Prueba de parecido antes de aprobar un diseño:** búsqueda inversa de imágenes (Google Lens/TinEye) y comparación de silueta con una lista de personajes famosos de la categoría. Si se parece, se rediseña.
 4. **Cada asset tiene su fila de licencia** (autor, fuente, licencia, prueba) en `assets`/`asset_licenses`; el panel **bloquea la publicación** si falta.
@@ -82,11 +83,11 @@ Técnicas:
 
 **Spike S-04 (Sprint 5):** se hace *un* personaje (por ejemplo Nilo, el erizo) y *un* fondo en las dos o tres opciones, se mide FPS/memoria/tamaño en un teléfono de gama media y se elige. Resultado: ADR-005 final.
 
-## 6. Qué se necesita de ti / del equipo
+## 6. Estado y qué se necesita de ti
 
-1. **Referencias de gusto** (3–5 imágenes que te gusten *como sensación*, sin copiarlas) para fijar la guía de estilo.
-2. **Presupuesto y vía de producción** (ilustrador contratado vs. hacerlo en casa), porque define el calendario de las versiones 0.4 y 1.0.
-3. **Un teléfono de gama media** (Android) para medir rendimiento real.
+- **Decidido:** presupuesto cero ⇒ arte generado por código ([11](11-pipeline-de-arte-por-codigo.md)); el primer pack es medieval.
+- **Referencias de gusto:** ya aportaste dos (quedan **fuera** del repositorio). Falta que me digas qué te gusta y qué no de la primera hoja de personajes (`art/medieval/preview/`).
+- **Un teléfono de gama media (Android)** para medir el renderizador de Flutter en cuanto exista (paso A2).
 
 ## 7. Entregables de arte por etapa
 

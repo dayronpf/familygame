@@ -9,7 +9,7 @@ Lo premium añade **variedad y riqueza**, nunca elimina seguridad ni pone presi�
 
 | Nivel | Contenido | Precio (a validar) |
 |---|---|---|
-| **Gratis** — «Bosque Encantado» | ~25 personajes, ~15 lugares, 6 enseñanzas, narración básica, animaciones básicas, modo holograma básico | $0 |
+| **Gratis** — «Reino de la Luna (medieval)» | ~25 personajes, ~15 lugares, 6 enseñanzas, narración básica, animaciones básicas, modo holograma básico | $0 |
 | **Packs temáticos** | Mar, Espacio, Ciudad, Fantasía, Granja… (≈ 20–30 personajes, 10–15 lugares, 3–4 enseñanzas nuevas, fondos y sonidos propios) | Compra única por pack |
 | **Suscripción «Familia»** (opcional, más adelante) | Todos los packs actuales y futuros + voces premium + cuentos con el nombre del niño | Mensual/anual |
 | **Packs de temporada** | Navidad, Día de la Madre, Halloween suave… | Compra única, edición limitada de arte |

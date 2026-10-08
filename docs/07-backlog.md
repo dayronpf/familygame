@@ -69,12 +69,27 @@ Android/iOS reales (el entorno de desarrollo actual no tiene SDK de Android ni X
 | E11-01 | **Contrato OpenAPI v1** (catálogo, descarga, instalaciones, entitlements) + servidor simulado | La app puede sincronizar contra el simulado; contrato revisado | M |
 | E11-02 | **Spike S-07:** elegir tecnología de backend y de panel (coste, privacidad, operación) | Decisión escrita (ADR) con comparativa | S |
 
+## Pack inicial medieval y arte por código (añadido tras decidir presupuesto cero)
+
+El primer pack, gratuito, es medieval («Reino de la Luna», nombre provisional). El arte nace del código ([11](11-pipeline-de-arte-por-codigo.md)).
+
+| ID | Historia | Criterios de aceptación | Talla | Estado |
+|---|---|---|---|---|
+| E13-01 | Generador de personajes humanoides por rig + paleta | 6 personajes originales, poses y animación de reposo, vista previa | M | ✅ `tools/art/medieval_kit.py` |
+| E13-02 | Escena de fondo por capas con animación | Castillo, molino, luna y luciérnagas; capas separadas | M | ✅ `tools/art/scene_castle.py` |
+| E13-03 | Especificaciones de personajes en JSON (no en código) | El generador las lee; el panel podrá editarlas | S | ☐ A1 |
+| E13-04 | **Renderizador Flutter** de rigs y escenas + pantalla de prueba | Mismas poses que la vista previa; FPS y memoria medidos en Android de gama media | L | ☐ A2 |
+| E13-05 | Rig de criatura (dragón) | Cuerpo, alas y cola articulados; se ve bien junto a los humanoides | M | ☐ A3 |
+| E13-06 | Biblioteca de animaciones (caminar, correr, sorpresa, miedo, alegría, parpadeo) | Clips como datos, reutilizables por rig | M | ☐ A4 |
+| E13-07 | Kit de fondos del pack (aldea, bosque, cueva, río, interior) | 15 lugares con capas y paletas | L | ☐ A5 |
+| E3-03 | **Contenido del pack medieval:** ~25 personajes, ~15 lugares, 6 enseñanzas y ~120 fragmentos | Pasa el validador; revisión editorial | L (contenido) | ☐ |
+
 ## Spikes planificados (resultados = decisión escrita)
 
 | ID | Spike | Cuándo | Pregunta a responder |
 |---|---|---|---|
 | S-07 | Tecnología de backend y panel | S3 | ¿Supabase, Firebase o propio? ¿Panel en React o Flutter Web con el motor compilado a JS? |
-| S-04 | Arte y animación | S5 | ¿Rive, Lottie o dibujo propio alcanzan 60 FPS y el estilo deseado con el presupuesto de [10 §4](10-arte-y-estilo-visual.md)? |
+| S-04 | Arte y animación | S5 (**adelantado**: generador y vista previa hechos; falta medir en Android, paso A2) | Con presupuesto cero se elige **dibujo propio en Flutter** (rigs por código); ¿alcanza 60 FPS y el estilo deseado con el presupuesto de [10 §4](10-arte-y-estilo-visual.md)? Rive/Lottie quedan como plan B. |
 | S-02 | Voz | S6–S7 | ¿Qué voz (sistema / neuronal offline / nube) gusta a las familias y cumple licencias y peso? |
 | S-06 | Compras y suscripciones | S8 | ¿Capa propia o servicio externo? ¿Cumple las reglas de la categoría infantil? |
 | S-03 | Holograma | S9 | ¿Funciona en 3 teléfonos con una pirámide de 6–10 cm? ¿Cuánto cuesta dibujar 4 vistas? |
@@ -87,7 +102,7 @@ Android/iOS reales (el entorno de desarrollo actual no tiene SDK de Android ni X
 - **0.3 Voz (E5):** modo Escucha, Lectura compartida con voz, temporizador de sueño, sincronización texto-voz.
 - **0.4 Vida (E6, E13):** motor de escenas, rigs modulares, kit del pack gratuito (~10 personajes, ~6 fondos), ambientes y efectos, sincronización por frase.
 - **0.5 Holograma (E7):** vista de 4 orientaciones, calibración, wakelock, bloqueo táctil, plantilla PDF y guía de montaje.
-- **1.0 (E8, E9, E11, E12):** entitlements y verificación de compras, webhooks, panel de ventas, roles y auditoría, puerta parental, pack «Bosque Encantado», privacidad, formularios de tiendas, revisión legal, prueba cerrada.
+- **1.0 (E8, E9, E11, E12):** entitlements y verificación de compras, webhooks, panel de ventas, roles y auditoría, puerta parental, pack «Reino de la Luna (medieval)», privacidad, formularios de tiendas, revisión legal, prueba cerrada.
 
 ## Ideas para después (Could)
 

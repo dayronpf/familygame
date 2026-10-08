@@ -16,7 +16,7 @@
 | 010 | Monorepo: `app/` + `packages/caldero_engine/` + `content/` | **Aceptada** | El motor se prueba sin Flutter (rápido) y el contenido tiene su propio flujo | Si el contenido pasa a un repositorio aparte |
 | 011 | Backend propio con panel web como fuente de verdad del contenido; la app sigue siendo offline-first para leer (starter embebido + caché) | **Aceptada** (tecnología por decidir en S-07) | Permite crecer el universo de historias sin publicar la app; centraliza compras y licencias | Resultado de S-07 |
 | 012 | Un solo validador (el del motor) en CI, panel y app; versiones de pack inmutables y manifiesto firmado | **Aceptada** | Un pack roto no debe llegar nunca a un teléfono | — |
-| 013 | Arte modular y vectorial propio (rigs + piezas + paletas), con contrato de cesión; IA solo para explorar | **Aceptada** (formato por decidir en S-04) | Derechos claros, bajo peso, escala a cientos de personajes | Resultado de S-04 |
+| 013 | Arte modular y vectorial propio (rigs + piezas + paletas). **Con presupuesto cero la vía principal es arte generado por código** (escrito con ayuda de IA, dirigido y aprobado por el dueño del producto); los modelos de imagen generativa no se usan para arte final; el contrato de cesión pasa a ser opcional (si se contrata a alguien) | **Aceptada**, ver [11](11-pipeline-de-arte-por-codigo.md) (probada en el generador y el navegador; falta el renderizador de Flutter) | Derechos claros, ~8 KB por personaje, escala a cientos de personajes, sin herramientas de pago | Tras A2 (medición en Android de gama media) y la revisión legal previa a 1.0 |
 
 ## Supuestos que conviene confirmar contigo
 
@@ -44,5 +44,7 @@
 | El backend añade coste operativo y una superficie de seguridad nueva | Alta | Alto | Tecnología gestionada, ambientes separados, 2FA y roles en el panel, copias de seguridad probadas, límites de tasa |
 | El backend recibe datos de menores sin querer | Baja si hay diseño | Muy alto | Solo identificador anónimo y tokens de compra; nombre del niño solo en el teléfono; revisión de privacidad antes de 1.0 |
 | Un SDK de compras de terceros no es admisible en la categoría infantil | Media | Medio | Spike S-06; plan B de verificación propia con las APIs de las tiendas |
-| Estilo visual que se parezca a obras existentes | Media | Alto | Guía de estilo propia, prueba de parecido, contrato de cesión, licencias obligatorias en el panel |
+| Estilo visual que se parezca a obras existentes | Media | Alto | Guía de estilo propia, prueba de parecido, licencias obligatorias en el panel, referencias de terceros fuera del repositorio |
+| El arte generado por código no alcanza la calidad esperada | Media | Alto | Ciclos de revisión visual, ajuste de estilo con tu criterio, medir con familias; plan B: contratar a un ilustrador solo para el estilo base y seguir con el sistema modular |
+| Protección legal incierta del material creado con ayuda de IA | Media | Medio | Dirección y aprobación humana documentadas, registro de marca del nombre y personajes principales, revisión legal antes de 1.0 |
 | El holograma multiplica el coste de dibujo (4 vistas) | Media | Medio | Registrar la escena una vez y repetirla (S-03), límite de FPS, modo bajo consumo |

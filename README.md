@@ -29,6 +29,7 @@ mientras avanza y puede proyectarse como **holograma** con una pirámide transpa
 | [docs/08-decisiones-y-riesgos.md](docs/08-decisiones-y-riesgos.md) | Decisiones tomadas (ADR), supuestos abiertos y riesgos |
 | [docs/09-backend-y-panel-admin.md](docs/09-backend-y-panel-admin.md) | Backend, sincronización de packs, compras y panel de administración |
 | [docs/10-arte-y-estilo-visual.md](docs/10-arte-y-estilo-visual.md) | Estilo visual, derechos de autor del arte, sistema modular y presupuesto de rendimiento |
+| [docs/11-pipeline-de-arte-por-codigo.md](docs/11-pipeline-de-arte-por-codigo.md) | Arte generado por código (sin presupuesto ni herramientas de pago), pack medieval, 3D y límites |
 
 ## Estructura del repositorio
 
@@ -37,6 +38,8 @@ app/                      App Flutter (Android + iOS)
 packages/caldero_engine/  Motor de cuentos en Dart puro (con pruebas y validador de packs)
 content/packs/            Packs de contenido (fuente de verdad) y su esquema JSON
 tools/                    Prototipo en Python, validador de esquema, sincronía de assets
+tools/art/                Generadores de personajes y escenas (arte por código)
+art/medieval/             Rigs JSON de personajes y vistas previas (PNG/GIF/SVG)
 docs/                     Visión, metodología, roadmap, arquitectura, backlog…
 ASSETS_LICENSES.md        Libro de licencias de todo asset de terceros
 ```

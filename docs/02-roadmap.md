@@ -53,14 +53,14 @@ Visión, plan, arquitectura, reglas de contenido y derechos; prototipo del calde
 ### 1.0 «Lanzamiento» — freemium (S14–S16)
 - **Compras y suscripciones:** verificación en servidor, entitlements, webhooks de tiendas, panel de ventas, restaurar compras, **control parental**.
 - Roles y auditoría del panel, copias de seguridad, pruebas de carga.
-- Pack gratuito «Bosque Encantado», política de privacidad, formularios de tiendas, prueba cerrada (verificar requisitos vigentes de Google Play para cuentas nuevas), ficha de tienda.
+- Pack gratuito «Reino de la Luna (medieval)», política de privacidad, formularios de tiendas, prueba cerrada (verificar requisitos vigentes de Google Play para cuentas nuevas), ficha de tienda.
 - **Salida:** revisión de tiendas aprobada; 0 fallos bloqueantes en 2 semanas de beta; compra y suscripción verificadas de punta a punta con cuentas de prueba; checklist legal completo.
 
 ### Post-1.0 (cadencia «tren de contenido»)
 - Un pack premium cada 4–6 semanas, **publicado desde el panel sin nueva versión de app**.
 - Compositor de personajes por piezas en el panel; cuentos con el nombre del niño; segundo idioma; modo cuna (solo audio).
 - Cuenta opcional de adulto para compartir compras entre dispositivos.
-- IA solo como ayuda de borradores para autores, nunca generación libre sin revisión.
+- IA solo como ayuda de borradores para autores y para escribir generadores de arte; nunca generación libre sin revisión humana.
 
 ## Dependencias críticas
 

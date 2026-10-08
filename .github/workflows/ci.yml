@@ -28,6 +28,21 @@ jobs:
       - name: Assets de la app sincronizados con content/
         run: tools/sync_assets.sh --check
 
+  art:
+    name: Arte generado (reproducible)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Regenerar rigs y escenas
+        run: |
+          python3 tools/art/medieval_kit.py
+          (cd tools/art && python3 scene_castle.py)
+      - name: Lo generado coincide con lo versionado
+        run: git diff --exit-code art/medieval/rigs art/medieval/preview/sheet.svg art/medieval/preview/scene_castle.svg
+
   engine:
     name: Motor (Dart)
     runs-on: ubuntu-latest
