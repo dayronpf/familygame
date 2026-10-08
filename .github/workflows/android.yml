@@ -1,11 +1,14 @@
 name: Android (APK de prueba)
 
-# Se ejecuta a mano (Actions → «Android (APK de prueba)» → Run workflow) o al publicar una etiqueta v*.
+# Se ejecuta: a mano (Actions → «Android (APK de prueba)» → Run workflow), al publicar una etiqueta v*,
+# y al subir cambios de la app a la rama de trabajo (así siempre hay un APK reciente para probar).
 # El APK sale firmado con la llave de DEPURACIÓN: sirve para instalar y probar, NO para publicar en Play Store.
 on:
   workflow_dispatch:
   push:
     tags: ['v*']
+    branches: ['claude/**']
+    paths: ['app/**', 'packages/**', 'art/**', 'content/**', '.github/workflows/android.yml']
 
 permissions:
   contents: read
