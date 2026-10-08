@@ -54,9 +54,13 @@ void main() {
 
   Future<void> createStory(WidgetTester tester,
       {String moral = 'Honestidad'}) async {
-    await tester.tap(find.text(moral));
-    await tester.pump();
-    await tester.tap(find.text('Crear cuento'));
+    // En pantallas estrechas el inicio es más alto que la pantalla: se desplaza hasta cada control.
+    for (final label in [moral, 'Crear cuento']) {
+      await tester.scrollUntilVisible(find.text(label), 200,
+          scrollable: find.byType(Scrollable).first);
+      await tester.tap(find.text(label));
+      await tester.pump();
+    }
     await tester.pumpAndSettle();
   }
 
@@ -92,6 +96,52 @@ void main() {
     expect(recipe['packId'], 'demo');
     expect((recipe['fragments']! as List<Object?>), hasLength(7));
     expect(await service.queuedCount(), 0, reason: 'ya salió');
+  });
+
+  group('pantallas estrechas y letra grande', () {
+    Future<void> narrowPhone(WidgetTester tester,
+        {double width = 320, double textScale = 1.3}) async {
+      tester.view.devicePixelRatio = 3;
+      tester.view.physicalSize = Size(width * 3, 760 * 3);
+      tester.platformDispatcher.textScaleFactorTestValue = textScale;
+      addTearDown(tester.view.reset);
+      addTearDown(tester.platformDispatcher.clearAllTestValues);
+    }
+
+    for (final width in [320.0, 351.0]) {
+      testWidgets(
+          'las 5 caritas caben dentro de la tarjeta a $width dp con letra 1.3×',
+          (tester) async {
+        await narrowPhone(tester, width: width);
+        await openApp(tester);
+        await createStory(tester);
+        await scrollToRating(tester);
+        final card = tester.getRect(
+          find.ancestor(
+              of: find.byKey(const Key('rating-1')),
+              matching: find.byType(Card)),
+        );
+        var previousRight = card.left;
+        for (var i = 1; i <= 5; i++) {
+          final r = tester.getRect(find.byKey(Key('rating-$i')));
+          expect(r.left, greaterThanOrEqualTo(card.left),
+              reason: 'carita $i se sale por la izquierda');
+          expect(r.right, lessThanOrEqualTo(card.right),
+              reason: 'carita $i se sale por la derecha');
+          expect(r.left, greaterThanOrEqualTo(previousRight - 0.01),
+              reason: 'carita $i se solapa con la anterior');
+          expect(r.width, greaterThanOrEqualTo(44),
+              reason: 'objetivo táctil demasiado pequeño');
+          previousRight = r.right;
+        }
+        // Se puede tocar la última (la que se salía) y el segundo paso tampoco se desborda.
+        await tester.tap(find.byKey(const Key('rating-2')));
+        await tester.pumpAndSettle();
+        await tester.ensureVisible(find.byKey(const Key('reasons-step')));
+        await tester.pumpAndSettle();
+        expect(find.byKey(const Key('reasons-step')), findsOneWidget);
+      });
+    }
   });
 
   group('motivo opcional con nota baja', () {

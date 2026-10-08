@@ -102,20 +102,25 @@ class _RatingCardState extends State<RatingCard> {
                   ?.copyWith(color: scheme.onSurface.withValues(alpha: 0.7)),
             ),
             const SizedBox(height: 12),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                for (var i = 0; i < _faces.length; i++)
-                  _Face(
-                    key: Key('rating-${i + 1}'),
-                    face: _faces[i],
-                    value: i + 1,
-                    selected: _chosen == i + 1,
-                    dimmed: _chosen != null && _chosen != i + 1,
-                    onTap: () => _rate(i + 1),
-                  ),
-              ],
+            // Cada carita ocupa un quinto del ancho: en pantallas estrechas (≈ 320–360 dp) 5 × 60 dp no cabían.
+            MediaQuery.withClampedTextScaling(
+              maxScaleFactor: 1.2,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  for (var i = 0; i < _faces.length; i++)
+                    Expanded(
+                      child: _Face(
+                        key: Key('rating-${i + 1}'),
+                        face: _faces[i],
+                        value: i + 1,
+                        selected: _chosen == i + 1,
+                        dimmed: _chosen != null && _chosen != i + 1,
+                        onTap: () => _rate(i + 1),
+                      ),
+                    ),
+                ],
+              ),
             ),
             const SizedBox(height: 8),
             switch (_step) {
@@ -243,10 +248,10 @@ class _Face extends StatelessWidget {
       child: InkResponse(
         onTap: onTap,
         radius: 36,
-        child: SizedBox(
-          width: 60,
-          child: Opacity(
-            opacity: dimmed ? 0.35 : 1,
+        child: Opacity(
+          opacity: dimmed ? 0.35 : 1,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 2),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [

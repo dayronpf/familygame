@@ -175,4 +175,19 @@ flutter run --release            # con el teléfono Android conectado por USB (d
 5. **Meta:** ≈ 60 fps y menos del 5 % de fotogramas lentos con la escena y 3–6 personajes.
 Con tus números decido si hace falta optimizar (por ejemplo, grabar los personajes quietos como imagen o bajar a 30 fps en reposo).
 
+### Resultados medidos (primer teléfono real)
+
+Teléfono de **120 Hz** (modelo por confirmar), APK `release` del flujo `android.yml`, Taller de personajes:
+
+| Escena | fps | Tiempo por fotograma (medio) | Fotogramas lentos |
+|---|---|---|---|
+| 3 personajes | 119–121 | 6,0–8,4 ms | ≈ 0 % |
+| 24 personajes (prueba de carga) | 116–121 | 8,8–12,0 ms | ≤ 2 % |
+
+Lectura: **la meta de 60 fps se cumple con holgura** y la escena aguanta 24 personajes a ritmo de 120 Hz. Cautelas:
+
+- Es un teléfono de gama alta o media-alta (120 Hz); **falta un Android de gama media/baja** (60 Hz) para dar el criterio de E13-04 por cerrado.
+- El primer medidor comparaba contra un umbral fijo de 16,7 ms. Desde esta versión el recuadro muestra **UI y dibujo por separado** y el presupuesto real de la pantalla (8,3 ms a 120 Hz; 16,7 ms a 60 Hz). Con 24 personajes el tiempo medio (8,8–12 ms) supera los 8,3 ms de un refresco a 120 Hz, aunque los fps medidos (116–121) indican que casi no se perdieron cuadros; el medidor viejo no separaba el hilo de UI del de dibujo, así que no se puede concluir más. **Hay que repetir la medición con el medidor nuevo.**
+- No se midió temperatura ni batería (paso 4).
+
 Se integra al plan en [`07-backlog.md`](07-backlog.md) y [`10-arte-y-estilo-visual.md`](10-arte-y-estilo-visual.md).
