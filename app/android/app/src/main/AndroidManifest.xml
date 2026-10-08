@@ -1,6 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Solo para enviar las valoraciones anónimas (docs/12). Las versiones de depuración ya lo incluyen; las release no. -->
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
-        android:label="caldero_app"
+        android:label="Caldero de Cuentos"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
