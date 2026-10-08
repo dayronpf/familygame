@@ -1,5 +1,6 @@
 import 'grammar.dart';
 import 'models.dart';
+import 'recipe.dart';
 import 'rng.dart';
 
 /// No se pudo armar un cuento con el pack y las opciones dadas.
@@ -58,7 +59,21 @@ class StoryEngine {
         ),
       );
     }
-    return Story(seed: options.seed, moral: moral, cast: cast, scenes: scenes);
+    return Story(
+      seed: options.seed,
+      moral: moral,
+      cast: cast,
+      scenes: scenes,
+      recipe: StoryRecipe(
+        packId: pack.id,
+        packVersion: pack.version,
+        engineVersion: engineVersion,
+        seed: options.seed,
+        valueId: moral.id,
+        cast: {for (final e in cast.entries) e.key: e.value.id},
+        fragmentIds: [for (final s in scenes) s.fragmentId],
+      ),
+    );
   }
 }
 
@@ -112,6 +127,7 @@ Fragment pickFragment(
         (f) =>
             f.stage == stage &&
             f.fitsValue(valueId) &&
+            f.weight > 0 &&
             state.containsAll(f.requires) &&
             !used.contains(f.id),
       )
@@ -123,5 +139,19 @@ Fragment pickFragment(
       'sin fragmento para etapa=$stage valor=$valueId estado=${(state.toList()..sort())}',
     );
   }
-  return rng.choice(pool);
+  return _weightedChoice(pool, rng);
+}
+
+/// Elige un fragmento según su peso. Con pesos iguales equivale a `rng.choice` (misma secuencia
+/// aleatoria), así que los packs sin pesos generan exactamente los mismos cuentos que antes.
+Fragment _weightedChoice(List<Fragment> pool, Mulberry32 rng) {
+  final first = pool.first.weight;
+  if (pool.every((f) => f.weight == first)) return rng.choice(pool);
+  final total = pool.fold<double>(0, (sum, f) => sum + f.weight);
+  var r = rng.nextUint32() / 0x100000000 * total;
+  for (final f in pool) {
+    r -= f.weight;
+    if (r < 0) return f;
+  }
+  return pool.last;
 }

@@ -26,14 +26,14 @@ Visión, plan, arquitectura, reglas de contenido y derechos; prototipo del calde
 ### 0.1 «Chispa» — el caldero cuenta (S1–S3) · *alfa interna*
 **Objetivo:** que un cuento generado *se sienta bien* leído por un adulto.
 - S1 ✅ Motor en Dart, validador, esquema de pack, CI, primera pantalla.
-- S2: lectura compartida (escenas, historial, favoritos, edad/duración/susto).
+- S2: lectura compartida (escenas, historial, favoritos, edad/duración/susto). **Valoración 1–5 al final del cuento ✅ (adelantada; ver [12](12-valoraciones-y-mejora-continua.md)).**
 - S3: pack semilla (~25 personajes, ~15 lugares, ~120 fragmentos, 6 enseñanzas), prueba con 10 familias, **contrato OpenAPI + servidor simulado + elección de tecnología de backend (S-07)**.
 - **Salida:** ≥ 70 % de las familias dice «me contaría otro»; sin errores gramaticales graves; contrato de API acordado.
 
 ### 0.2 «Catálogo» — backend y sincronización (S4–S6) · *nuevo*
 **Objetivo:** el contenido vive en el backend y la app lo trae sola.
-- S4–S5: backend v0 (catálogo, almacenamiento/CDN, versiones inmutables, **manifiesto firmado**); la app sincroniza en el primer arranque y luego periódicamente, verifica hash/firma, instala de forma atómica y conserva el **starter embebido** como plan B. **Spike S-04 de arte** (personaje modular) para fijar el formato de los assets del pack.
-- S6: **panel de administración v0:** crear/editar personajes, lugares, fragmentos y enseñanzas, validar con el mismo validador, vista previa de cuentos, publicar versión.
+- S4–S5: backend v0 (catálogo, **`POST /v1/feedback` con validación y tabla de valoraciones**, almacenamiento/CDN, versiones inmutables, **manifiesto firmado**); la app sincroniza en el primer arranque y luego periódicamente, verifica hash/firma, instala de forma atómica y conserva el **starter embebido** como plan B. **Spike S-04 de arte** (personaje modular) para fijar el formato de los assets del pack.
+- S6: **panel de administración v0 (con la pantalla «Calidad» de valoraciones):** crear/editar personajes, lugares, fragmentos y enseñanzas, validar con el mismo validador, vista previa de cuentos, publicar versión.
 - **Salida:** un autor publica un pack desde el panel y aparece en un teléfono recién instalado sin tocar código; la app funciona en modo avión con lo ya descargado; un pack con errores no se puede publicar.
 
 ### 0.3 «Voz» — narración (S7–S8)

@@ -4,9 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+import 'package:caldero_app/src/feedback/feedback_service.dart';
+import 'package:caldero_app/src/feedback/feedback_store.dart';
+
 import 'file_bundle.dart';
 
 final _bundle = FileBundle();
+
+FeedbackService _feedback() => FeedbackService(store: MemoryFeedbackStore());
 
 void main() {
   /// El cuento está en un ListView perezoso: hay que desplazarse para construir el final.
@@ -14,8 +19,8 @@ void main() {
       tester.scrollUntilVisible(finder, 300);
 
   Future<void> openApp(WidgetTester tester, {int seed = 3}) async {
-    await tester
-        .pumpWidget(CalderoApp(bundle: _bundle, seedProvider: () => seed));
+    await tester.pumpWidget(CalderoApp(
+        bundle: _bundle, seedProvider: () => seed, feedback: _feedback()));
     await tester.pumpAndSettle();
   }
 
@@ -52,8 +57,8 @@ void main() {
   testWidgets('«Contar otro cuento» cambia el cuento y conserva la enseñanza',
       (tester) async {
     var seed = 3;
-    await tester
-        .pumpWidget(CalderoApp(bundle: _bundle, seedProvider: () => seed++));
+    await tester.pumpWidget(CalderoApp(
+        bundle: _bundle, seedProvider: () => seed++, feedback: _feedback()));
     await tester.pumpAndSettle();
     await tester.tap(find.text('Valentía'));
     await tester.pump();

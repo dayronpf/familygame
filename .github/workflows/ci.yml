@@ -46,6 +46,20 @@ jobs:
       - name: Lo generado coincide con lo versionado
         run: git diff --exit-code art/medieval/rigs art/medieval/scenes art/medieval/index.json art/clips art/fixtures art/medieval/preview/sheet.svg art/medieval/preview/scene_castle.svg
 
+  feedback:
+    name: Valoraciones (análisis y contrato)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install numpy jsonschema pyyaml
+      - name: Pruebas del análisis y del contrato de la API
+        run: cd tools/feedback && python3 -m unittest test_analyze test_contract
+      - name: La simulación se ejecuta
+        run: python3 tools/feedback/simulate.py --quick
+
   rig:
     name: Rigs y animación (Dart)
     runs-on: ubuntu-latest

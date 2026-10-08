@@ -1,3 +1,5 @@
+import 'recipe.dart';
+
 /// Error de formato en un pack de contenido.
 class PackFormatException implements Exception {
   PackFormatException(this.message);
@@ -174,6 +176,7 @@ class Fragment {
     required this.adds,
     required this.text,
     required this.scene,
+    this.weight = 1,
   });
 
   factory Fragment.fromJson(Map<String, Object?> j) {
@@ -184,6 +187,10 @@ class Fragment {
       throw PackFormatException('$where: etapa desconocida "$stage"');
     }
     final scene = j['scene'];
+    final weight = j['weight'];
+    if (weight != null && (weight is! num || weight < 0 || !weight.isFinite)) {
+      throw PackFormatException('$where: "weight" debe ser un número ≥ 0');
+    }
     return Fragment(
       id: id,
       stage: stage,
@@ -192,6 +199,7 @@ class Fragment {
       adds: _strList(j, 'adds', where),
       text: _str(j, 'text', where),
       scene: scene is Map<String, Object?> ? scene : const {},
+      weight: weight == null ? 1 : (weight as num).toDouble(),
     );
   }
 
@@ -212,6 +220,12 @@ class Fragment {
 
   /// Directivas de animación (fondo, actores, ánimo…).
   final Map<String, Object?> scene;
+
+  /// Probabilidad relativa de salir elegido (1 = normal, 0 = desactivado).
+  ///
+  /// Es contenido del pack: la mejora continua ajusta estos pesos con las valoraciones y se
+  /// publican como una versión nueva del pack, así que cada cuento sigue siendo reproducible.
+  final double weight;
 
   bool fitsValue(String valueId) =>
       values.contains(anyValue) || values.contains(valueId);
@@ -308,6 +322,7 @@ class Story {
     required this.moral,
     required this.cast,
     required this.scenes,
+    required this.recipe,
   });
 
   final int seed;
@@ -316,6 +331,9 @@ class Story {
   /// Roles `hero`, `helper`, `villain`, `place`, `place2`.
   final Map<String, Entity> cast;
   final List<StoryScene> scenes;
+
+  /// Identifica este cuento (sin texto ni datos personales); viaja con la valoración.
+  final StoryRecipe recipe;
 
   /// Texto completo del cuento, con la enseñanza al final.
   String get fullText =>

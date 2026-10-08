@@ -29,6 +29,7 @@ mientras avanza y puede proyectarse como **holograma** con una pirámide transpa
 | [docs/08-decisiones-y-riesgos.md](docs/08-decisiones-y-riesgos.md) | Decisiones tomadas (ADR), supuestos abiertos y riesgos |
 | [docs/09-backend-y-panel-admin.md](docs/09-backend-y-panel-admin.md) | Backend, sincronización de packs, compras y panel de administración |
 | [docs/10-arte-y-estilo-visual.md](docs/10-arte-y-estilo-visual.md) | Estilo visual, derechos de autor del arte, sistema modular y presupuesto de rendimiento |
+| [docs/12-valoraciones-y-mejora-continua.md](docs/12-valoraciones-y-mejora-continua.md) | Valoración 1–5 al final de cada cuento: qué se envía, evidencia, análisis y cómo mejora los cuentos |
 | [docs/11-pipeline-de-arte-por-codigo.md](docs/11-pipeline-de-arte-por-codigo.md) | Arte generado por código (sin presupuesto ni herramientas de pago), pack medieval, 3D y límites |
 
 ## Estructura del repositorio
@@ -65,6 +66,11 @@ flutter run                      # en un dispositivo o emulador
 # Si cambias un pack en content/ o el arte en art/, sincroniza la copia que lleva la app
 tools/sync_assets.sh             # CI falla si lo olvidas (--check)
 
+# Valoraciones: simulación, análisis y contrato (ver docs/12)
+pip install numpy jsonschema pyyaml
+cd tools/feedback && python3 simulate.py --quick && python3 -m unittest test_analyze test_contract
+python3 analyze.py ratings.jsonl      # informe de fragmentos a revisar
+
 # Arte generado por código (ver docs/11)
 cd tools/art && python3 medieval_kit.py && python3 make_clips.py && python3 scene_castle.py && python3 make_fixtures.py
 
@@ -81,4 +87,5 @@ semilla da un cuento distinto en Python y en Dart; lo que ambos comparten es el 
 
 **Sprint 1 — «El caldero en Dart»** ✅ y **arte por código** (pack medieval) en marcha: motor, validador, esquema, CI,
 pantalla de cuentos, 6 personajes animados con 10 clips reutilizables, escena de castillo y **Taller de personajes** con medidor de fps.
+**Valoración 1–5 al final de cada cuento** (lo único que se recoge, anónimo; [docs/12](docs/12-valoraciones-y-mejora-continua.md)) lista en la app; falta el servidor que la reciba.
 Pendiente: probar en Android/iOS reales y medir rendimiento ([docs/11 §9](docs/11-pipeline-de-arte-por-codigo.md)). Ver [docs/07-backlog.md](docs/07-backlog.md).

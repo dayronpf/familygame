@@ -1,17 +1,28 @@
 import 'package:caldero_engine/caldero_engine.dart';
 import 'package:flutter/material.dart';
 
+import 'feedback/adult_gate.dart';
+import 'feedback/feedback_service.dart';
+import 'feedback/feedback_store.dart';
+import 'feedback/rating_card.dart';
 import 'pack_loader.dart';
 import 'seed.dart';
+import 'settings_page.dart';
 import 'story_page.dart';
 import 'workshop_page.dart';
 
 /// Pantalla de inicio: el adulto elige una enseñanza y crea el cuento.
 class HomePage extends StatefulWidget {
-  const HomePage({super.key, required this.bundle, required this.seedProvider});
+  const HomePage({
+    super.key,
+    required this.bundle,
+    required this.seedProvider,
+    required this.feedback,
+  });
 
   final AssetBundle bundle;
   final SeedProvider seedProvider;
+  final FeedbackService feedback;
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -23,15 +34,49 @@ class _HomePageState extends State<HomePage> {
   /// `null` = «Sorpréndeme» (el caldero elige).
   String? _selectedMoral;
 
+  /// Cuento leído hasta el final que aún no valoraron (se pregunta con calma, no en plena noche).
+  PendingStory? _pending;
+
+  /// Ya respondieron la tarjeta pendiente: se deja a la vista con su «gracias» hasta el próximo cuento.
+  bool _pendingAnswered = false;
+
+  @override
+  void initState() {
+    super.initState();
+    widget.feedback.flush(); // envía lo que haya esperando; nunca bloquea
+    widget.feedback.pendingChanges.addListener(_refreshPending);
+    _refreshPending();
+  }
+
+  @override
+  void dispose() {
+    widget.feedback.pendingChanges.removeListener(_refreshPending);
+    super.dispose();
+  }
+
+  Future<void> _refreshPending() async {
+    if (_pendingAnswered) return;
+    final p = await widget.feedback.nextPending();
+    if (mounted) setState(() => _pending = p);
+  }
+
   void _createStory(Pack pack) {
-    final story = StoryEngine(pack).generate(
+    if (_pendingAnswered) {
+      setState(() {
+        _pendingAnswered = false;
+        _pending = null;
+      });
+    }
+    final engine = StoryEngine(pack);
+    final story = engine.generate(
       StoryOptions(seed: widget.seedProvider(), valueId: _selectedMoral),
     );
     Navigator.of(context).push(
       MaterialPageRoute<void>(
         builder: (_) => StoryPage(
           story: story,
-          onAnother: () => StoryEngine(pack).generate(
+          feedback: widget.feedback,
+          onAnother: () => engine.generate(
             StoryOptions(seed: widget.seedProvider(), valueId: _selectedMoral),
           ),
         ),
@@ -39,9 +84,19 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  Future<void> _openSettings() async {
+    if (!await askAdult(context) || !mounted) return;
+    await Navigator.of(context).push(
+      MaterialPageRoute<void>(
+          builder: (_) => SettingsPage(feedback: widget.feedback)),
+    );
+    _refreshPending();
+  }
+
   @override
   Widget build(BuildContext context) {
     final text = Theme.of(context).textTheme;
+    final pending = _pending;
     return Scaffold(
       body: SafeArea(
         child: FutureBuilder<Pack>(
@@ -66,13 +121,37 @@ class _HomePageState extends State<HomePage> {
             return ListView(
               padding: const EdgeInsets.all(24),
               children: [
-                const SizedBox(height: 16),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: IconButton(
+                    key: const Key('open-settings'),
+                    tooltip: 'Ajustes para adultos',
+                    onPressed: _openSettings,
+                    icon: const Icon(Icons.settings_outlined),
+                  ),
+                ),
                 Text('Caldero de Cuentos', style: text.headlineLarge),
                 const SizedBox(height: 8),
                 Text(
                   '¿Qué quieres que aprenda hoy el protagonista?',
                   style: text.titleMedium,
                 ),
+                if (pending != null) ...[
+                  const SizedBox(height: 24),
+                  RatingCard(
+                    key: ValueKey('pending-${pending.recipe.seed}'),
+                    title: '¿Cuánto les gustó «${pending.label}»?',
+                    onRate: (v) async {
+                      _pendingAnswered = true;
+                      await widget.feedback.rate(pending.recipe, v);
+                      widget.feedback.flush();
+                    },
+                    onSkip: () async {
+                      await widget.feedback.dismissPending(pending.recipe);
+                      _refreshPending();
+                    },
+                  ),
+                ],
                 const SizedBox(height: 24),
                 Wrap(
                   spacing: 12,

@@ -1,0 +1,150 @@
+openapi: 3.0.3
+info:
+  title: Caldero de Cuentos — API de valoraciones
+  version: 1.0.0
+  description: |
+    Recibe la valoración (1 a 5) de un cuento, de forma anónima. **Es lo único que la app envía.**
+
+    Reglas de privacidad del contrato:
+    * No hay identificador de usuario, de instalación ni de dispositivo.
+    * El instante se reduce a un día (`day`); el servidor tampoco guarda la hora de recepción.
+    * El servidor no guarda la IP (solo se usa en memoria para limitar el ritmo de envíos).
+    * El cuento se describe con códigos (`recipe`), nunca con su texto ni con nombres.
+
+    Validaciones del servidor además del esquema (ver docs/12):
+    * `packId` + `packVersion` deben existir y estar publicados; `fragments`, `cast` y `value` deben pertenecer a esa versión.
+    * `day` no puede ser futuro ni tener más de 60 días.
+    * `id` repetido: se ignora sin error (la app reintenta y no debe duplicar).
+servers:
+  - url: https://api.caldero.example
+paths:
+  /v1/feedback:
+    post:
+      summary: Enviar un lote de valoraciones
+      operationId: postFeedback
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FeedbackBatch'
+            examples:
+              valoracion:
+                summary: Una valoración de 5 («¡Me encantó!»)
+                description: Ejemplo de un evento; la app y el servidor se prueban contra este mismo archivo.
+                externalValue: './examples/rating-event.json'
+      responses:
+        '202':
+          description: >
+            Recibido. Los eventos individualmente inválidos se informan en `rejected`; la app los descarta
+            (reenviarlos no los arreglaría). Cualquier 2xx significa «no reenviar».
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeedbackResult'
+        '400':
+          description: Cuerpo mal formado. La app descarta el lote.
+        '413':
+          description: Lote demasiado grande (máx. 50 eventos / 64 KB). La app descarta el lote.
+        '429':
+          description: Demasiadas peticiones. La app conserva el lote y reintenta con espera creciente.
+        '503':
+          description: Servicio no disponible. La app conserva el lote y reintenta con espera creciente.
+components:
+  schemas:
+    FeedbackBatch:
+      type: object
+      additionalProperties: false
+      required: [events]
+      properties:
+        events:
+          type: array
+          minItems: 1
+          maxItems: 50
+          items:
+            $ref: '#/components/schemas/RatingEvent'
+    RatingEvent:
+      type: object
+      additionalProperties: false
+      required: [id, schema, rating, day, app, recipe]
+      properties:
+        id:
+          type: string
+          description: UUID v4 generado en el teléfono; permite reintentar sin duplicar.
+          pattern: '^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$'
+        schema:
+          type: integer
+          enum: [1]
+        rating:
+          type: integer
+          minimum: 1
+          maximum: 5
+          description: '1 = Nada, 2 = Poco, 3 = Regular, 4 = Bien, 5 = ¡Me encantó!'
+        day:
+          type: string
+          description: Día en UTC (sin hora).
+          pattern: '^\d{4}-\d{2}-\d{2}$'
+        app:
+          type: string
+          description: Versión de la app.
+          pattern: '^\d+\.\d+\.\d+$'
+        recipe:
+          $ref: '#/components/schemas/Recipe'
+    Recipe:
+      type: object
+      description: Identifica el cuento sin su texto. Con el pack y su versión se puede reconstruir exactamente.
+      additionalProperties: false
+      required: [packId, packVersion, engine, seed, value, cast, fragments]
+      properties:
+        packId:
+          type: string
+          pattern: '^[a-z0-9_-]{1,40}$'
+        packVersion:
+          type: string
+          pattern: '^\d+\.\d+\.\d+$'
+        engine:
+          type: string
+          description: Versión del algoritmo del motor.
+          pattern: '^\d+\.\d+\.\d+$'
+        seed:
+          type: integer
+          minimum: 0
+          maximum: 4294967295
+        value:
+          type: string
+          description: Id de la enseñanza.
+          pattern: '^[a-z][a-z0-9_]{0,39}$'
+        cast:
+          type: object
+          description: Rol → id (hero, helper, villain, place, place2).
+          maxProperties: 8
+          additionalProperties:
+            type: string
+            pattern: '^[a-z][a-z0-9_]{0,39}$'
+        fragments:
+          type: array
+          description: Ids de los fragmentos, en orden de etapa.
+          minItems: 1
+          maxItems: 20
+          items:
+            type: string
+            pattern: '^[a-z][a-z0-9_]{0,39}$'
+    FeedbackResult:
+      type: object
+      required: [accepted]
+      properties:
+        accepted:
+          type: integer
+        duplicates:
+          type: integer
+        rejected:
+          type: array
+          items:
+            type: object
+            required: [id, reason]
+            properties:
+              id:
+                type: string
+              reason:
+                type: string
+                enum: [unknown_pack, unknown_fragment, unknown_value, bad_day, invalid]

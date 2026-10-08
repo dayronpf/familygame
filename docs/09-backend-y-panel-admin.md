@@ -79,12 +79,13 @@ App ──compra──▶ Tienda ──recibo/token──▶ App ──POST /v1/
 | `characters`, `places`, `morals`, `fragments` | El universo, ligado a un pack; cada fila con autor, estado de revisión y edad/susto |
 | `assets`, `asset_licenses` | Archivos de arte/audio y su licencia, autor, fuente y prueba |
 | `products`, `purchases`, `entitlements` | Productos de tienda, transacciones verificadas y derechos vigentes |
-| `installs` | Identificador **anónimo** de instalación, versión de app, idioma (sin datos personales) |
+| `installs` | Identificador **anónimo** de instalación, versión de app, idioma (sin datos personales). **No se enlaza con las valoraciones** |
+| `story_ratings` | Valoración 1–5 + receta del cuento (códigos) + día. Sin usuario, instalación, IP ni hora (ver [12 §8](12-valoraciones-y-mejora-continua.md)) |
 | `admin_users`, `roles`, `audit_log` | Quién puede qué y quién hizo qué, con fecha |
 
 ## 7. Privacidad y seguridad
 
-**El backend recibe:** identificador aleatorio de instalación, versión de app/SO, idioma, tokens de compra. **No recibe:** nombre ni edad del niño, voz, ubicación precisa, identificadores publicitarios. El nombre del niño para cuentos personalizados se queda **solo en el teléfono**.
+**El backend recibe:** identificador aleatorio de instalación, versión de app/SO, idioma, tokens de compra y las **valoraciones anónimas** de los cuentos (que no llevan ningún identificador). **No recibe:** nombre ni edad del niño, voz, ubicación precisa, identificadores publicitarios. El nombre del niño para cuentos personalizados se queda **solo en el teléfono**.
 
 - Las IP pasan por el CDN/servidor: conservarlas lo mínimo y documentarlo en la política de privacidad.
 - Panel: acceso con 2FA, **roles** (autor, editor, publicador, finanzas, administrador), registro de auditoría, y separación de ambientes (desarrollo / pruebas / producción).
@@ -110,6 +111,7 @@ App ──compra──▶ Tienda ──recibo/token──▶ App ──POST /v1/
 | `POST /v1/installs` | App | Registrar instalación anónima |
 | `POST /v1/purchases/verify` | App | Verificar compra y obtener entitlement |
 | `GET /v1/entitlements` | App | Derechos vigentes |
+| `POST /v1/feedback` | App | Valoraciones anónimas (1–5) de cuentos, por lotes e idempotentes. Contrato: [api/feedback.openapi.yaml](api/feedback.openapi.yaml); diseño en [12](12-valoraciones-y-mejora-continua.md) |
 | `POST /v1/webhooks/apple`, `/google` | Tiendas | Eventos de compra y suscripción |
 | `…/admin/*` | Panel | CRUD de contenido, validar, publicar, retirar, reportes |
 

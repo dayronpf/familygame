@@ -13,6 +13,8 @@ dependencies:
     path: ../packages/caldero_engine
   caldero_rig:
     path: ../packages/caldero_rig
+  http: ^1.2.0
+  shared_preferences: ^2.3.0
 
 dev_dependencies:
   flutter_test:

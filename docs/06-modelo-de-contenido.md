@@ -12,7 +12,7 @@ El bloque `pack` lleva `schema: 1`; el motor rechaza esquemas que no entiende.
 | **Personaje** | `id`, `given` (nombre propio), `noun` (especie/oficio), `gender` (m/f), `roles` (`hero`, `helper`, `villain`…), `alignment` (positive/negative/ambiguous), `trait` (adjetivo con género) | Un personaje puede tener varios roles. Positivo/negativo y principal/secundario salen de `alignment` + `roles`. |
 | **Lugar** | `id`, `noun`, `gender`, `mood` | Se usa como escenario principal y secundario. |
 | **Enseñanza** | `id`, `name` (para mostrar), `text` (frase de cierre) | Un valor humano por cuento. |
-| **Fragmento** | `id`, `stage`, `values`, `requires`, `adds`, `text`, `scene` | La unidad narrativa. Etapas: `opening`, `trouble`, `helper`, `test`, `climax`, `resolution`, `closing`. |
+| **Fragmento** | `id`, `stage`, `values`, `requires`, `adds`, `text`, `scene`, `weight` (opcional, 1 = normal, 0 = desactivado) | La unidad narrativa. Etapas: `opening`, `trouble`, `helper`, `test`, `climax`, `resolution`, `closing`. |
 
 Campos a añadir en S1–S3: `age_band`, `scare` (0–3), `duration_s`, `tags`, `article_override`, `plural`, `lang`, `author`, `review_status`.
 
@@ -29,6 +29,13 @@ Campos a añadir en S1–S3: `age_band`, `scare` (0–3), `duration_s`, `tags`, 
 | `{hero.trait}` | curioso / valiente |
 
 Roles disponibles: `hero`, `helper`, `villain`, `place`, `place2`.
+
+## Receta del cuento y pesos
+
+Cada cuento generado expone su **receta** (`story.recipe`): pack y versión, versión del motor, semilla, enseñanza, ids del reparto y ids de
+los fragmentos. No lleva texto ni nombres; es lo que viaja con una valoración ([12](12-valoraciones-y-mejora-continua.md)).
+El **peso** (`weight`) de un fragmento cambia su probabilidad de salir; con pesos iguales el motor genera exactamente los mismos cuentos
+que sin pesos. Los pesos se ajustan con las valoraciones y se publican dentro de una versión nueva del pack.
 
 ## Coherencia por estado
 

@@ -1,0 +1,30 @@
+{
+  "id": "3f2b8c1e-5a47-4d2e-9b0a-7c1d6e8f2a90",
+  "schema": 1,
+  "rating": 5,
+  "day": "2026-10-08",
+  "app": "0.1.0",
+  "recipe": {
+    "packId": "medieval",
+    "packVersion": "1.0.0",
+    "engine": "0.1.0",
+    "seed": 482913,
+    "value": "honestidad",
+    "cast": {
+      "hero": "nilo",
+      "helper": "bruna",
+      "villain": "brisca",
+      "place": "bosque",
+      "place2": "rio"
+    },
+    "fragments": [
+      "op_1",
+      "tr_hon",
+      "he_hon",
+      "te_1",
+      "cl_hon",
+      "re_hon",
+      "cl_end"
+    ]
+  }
+}
