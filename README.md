@@ -92,6 +92,8 @@ También queda como artefacto en Actions (en zip).
 Está firmado con una **llave de prueba fija y pública** (`app/android/app/caldero-debug.p12`), así que cada APK nuevo se instala
 **encima** del anterior sin perder datos. Si Android dice «conflicto con un paquete», es que la versión instalada viene de una
 compilación anterior con otra llave: **desinstálala una sola vez** y se acabó. Esta llave NO sirve para las tiendas.
+(El identificador de la app es `com.calderodecuentos.cuentos`; el anterior `…caldero_app` se abandonó porque en un teléfono quedó
+un registro escondido que bloqueaba toda instalación con «conflicto con un paquete».)
 
 ## Estado
 
