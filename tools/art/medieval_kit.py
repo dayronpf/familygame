@@ -122,7 +122,8 @@ def head_shapes(s):
     bs = {"kind": ("M-24,-203 Q-16,-209 -8,-204", "M8,-204 Q16,-209 24,-203"),
           "grumpy": ("M-25,-209 L-8,-200", "M25,-209 L8,-200"),
           "determined": ("M-24,-204 L-8,-203", "M8,-203 L24,-204"),
-          "sleepy": ("M-24,-202 Q-16,-199 -8,-202", "M8,-202 Q16,-199 24,-202")}[brow]
+          "sleepy": ("M-24,-202 Q-16,-199 -8,-202", "M8,-202 Q16,-199 24,-202"),
+          "worried": ("M-25,-198 Q-16,-206 -8,-206", "M8,-206 Q16,-206 25,-198")}[brow]
     if hat != "helmet":
         for d in bs:
             sh.append(S(d, None, mix(s["palette"].get("hair", "#4a3426"), DARK, 0.2) if not hat == "hood" else "#f3e6c8", 3.4))
@@ -401,9 +402,32 @@ def svg_character(rig, p):
 
 
 # ------------------------------------------------------------- personajes
+PIJAMA = {"aldo": {"primary": "#9ab8f0", "secondary": "#ffffff", "pants": "#9ab8f0", "boots": "#c9a06a"},
+          "mara": {"primary": "#f0a8c8", "secondary": "#ffffff", "pants": "#f0a8c8", "boots": "#c9a06a"}}
+
+
 def load_cast():
+    """Los personajes del pack y sus variantes de actuación: `<id>_miedo` (ceño preocupado y boca hacia abajo, para
+    miedo, frío, tristeza o culpa) y, para los protagonistas, `<id>_pijama` (sin armadura ni armas, para dormir)."""
     doc = json.loads((OUT / "specs" / "characters.json").read_text(encoding="utf-8"))
-    return doc["characters"]
+    base = doc["characters"]
+    out = list(base)
+    for c in base:
+        if c.get("variant_of"):
+            continue
+        v = {**c, "id": f'{c["id"]}_miedo', "name": f'{c["name"]} (con miedo)', "mouth": "frown", "brows": "worried", "variant_of": c["id"]}
+        if c["id"] == "aldo":  # con miedo no esgrime la espada ni el escudo (le taparían la cara al cruzar los brazos)
+            for k in ("hold_r", "hold_l", "item_tilt"):
+                v.pop(k, None)
+            v["rest"] = {"armL": 9, "armR": -9}
+        out.append(v)
+    for c in base:
+        if c["id"] in PIJAMA:
+            v = {k: val for k, val in c.items() if k not in ("hat", "hold_r", "hold_l", "item_tilt", "rest", "quiver", "outfit")}
+            v.update(id=f'{c["id"]}_pijama', name=f'{c["name"]} (en pijama)', outfit="tunic", brows="sleepy", mouth="smile",
+                     variant_of=c["id"], palette={**c["palette"], **PIJAMA[c["id"]]})
+            out.append(v)
+    return out
 
 
 # ------------------------------------------------------------------ hoja
@@ -412,7 +436,7 @@ def sheet(rigs):
     clips = anim.load_clips("humanoid")
     by = {r["id"]: r for r in rigs}
     cw, ch, cols = 236, 330, 6
-    humans = [r for r in rigs if r.get("rig") == "humanoid"]
+    humans = [r for r in rigs if r.get("rig") == "humanoid" and "_" not in r["id"]]
     rows = [[(r, "idle", 0.0) for r in humans[i:i + cols]] for i in range(0, len(humans), cols)]
     rows += [
         [(by["aldo"], c, tt) for c, tt in (("idle", 0), ("walk", 0.1), ("run", 0.12), ("wave", 0.9), ("cheer", 0.6), ("jump", 0.5))],

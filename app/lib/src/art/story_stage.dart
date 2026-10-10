@@ -1,4 +1,6 @@
 import 'package:caldero_engine/caldero_engine.dart';
+import 'dart:collection';
+
 import 'package:flutter/foundation.dart';
 import 'package:caldero_rig/caldero_rig.dart';
 import 'package:flutter/material.dart' hide Clip;
@@ -61,12 +63,53 @@ const Map<String, Color> lightTints = {
 /// Orden de aparición de izquierda a derecha en las escenas antiguas (`actors`).
 const List<String> roleOrder = ['hero', 'helper', 'villain'];
 
+/// Los dibujos de personajes y objetos, compilados SOLO cuando se piden (hay variantes de cada personaje
+/// —con miedo, en pijama— y la mayoría de los cuentos no las usa).
+class LazyRigs extends MapBase<String, CompiledRig> {
+  LazyRigs(this._source);
+
+  final Map<String, Rig> _source;
+  final Map<String, CompiledRig> _compiled = {};
+
+  @override
+  CompiledRig? operator [](Object? key) {
+    final rig = _source[key];
+    return rig == null
+        ? null
+        : _compiled.putIfAbsent(key! as String, () => CompiledRig(rig));
+  }
+
+  @override
+  void operator []=(String key, CompiledRig value) =>
+      throw UnsupportedError('solo lectura');
+
+  @override
+  void clear() => throw UnsupportedError('solo lectura');
+
+  @override
+  Iterable<String> get keys => _source.keys;
+
+  @override
+  CompiledRig? remove(Object? key) => throw UnsupportedError('solo lectura');
+
+  @override
+  bool containsKey(Object? key) => _source.containsKey(key);
+}
+
+/// Gestos que se dibujan con la cara de miedo (ceño preocupado, boca hacia abajo) si el personaje tiene esa
+/// variante (`<id>_miedo`), y con pijama (`<id>_pijama`, sin armadura ni armas) si duerme.
+const Set<String> fearClips = {
+  'shiver',
+  'scared',
+  'hide',
+  'sad',
+  'sit_sad',
+  'sneak',
+};
+
 /// Arte listo para dibujar: personajes compilados y escenas compiladas bajo demanda.
 class StageArt {
-  StageArt(this.library)
-      : rigs = {
-          for (final e in library.rigs.entries) e.key: CompiledRig(e.value)
-        };
+  StageArt(this.library) : rigs = LazyRigs(library.rigs);
 
   final ArtLibrary library;
   final Map<String, CompiledRig> rigs;
@@ -177,16 +220,22 @@ StageSetup? stageFor(
   final byKey = <String, ActorInstance>{};
   for (var i = 0; i < n; i++) {
     final (rigId, e, role) = resolved[i];
-    final clip = art.clip(e.clip) ??
-        art.clip(clips[role == 'extra' ? 'extra' : role]) ??
-        art.clip('idle');
+    final clipName = e.clip ?? clips[role == 'extra' ? 'extra' : role];
+    final clip = art.clip(e.clip) ?? art.clip(clipName) ?? art.clip('idle');
     if (clip == null) continue;
+    // Cara de miedo o pijama según lo que hace (si el personaje tiene esa variante)
+    final variant = clipName == 'sleep'
+        ? 'pijama'
+        : (fearClips.contains(clipName) ? 'miedo' : null);
+    final dressed = variant != null && art.rigs.containsKey('${rigId}_$variant')
+        ? '${rigId}_$variant'
+        : rigId;
     // Con 4 o más personajes, los impares se adelantan y empequeñecen un poco para dar profundidad;
     // con pocos, crecen un poco para llenar la imagen.
     final back = n >= 4 && i.isOdd;
     final framing = n <= 2 ? 1.2 : (n == 3 ? 1.1 : 1.0);
     final actor = ActorInstance(
-      rig: art.rigs[rigId]!,
+      rig: art.rigs[dressed]!,
       clip: clip,
       x: view.left + view.width * (e.x ?? (0.08 + 0.84 * (i + 0.5) / n)),
       y: place.floor - (back ? 8 : 0) - (e.lift ?? 0),

@@ -233,10 +233,13 @@ void main() {
       })!;
       final lia = s.actors[0];
       final hero = s.actors[1];
-      expect(lia.rig.rig.id, 'lia');
+      expect(lia.rig.rig.id, 'lia_miedo',
+          reason: 'triste: lleva su cara de pena');
       expect(lia.clip, same(art.library.clips.clips['sad']));
       expect(lia.scale, lessThan(hero.scale),
           reason: 'los niños son más pequeños');
+      expect(s.actors[2].rig.rig.id, 'teo',
+          reason: 'en reposo, su cara normal');
       expect(s.actors[2].clip, same(art.library.clips.clips['idle']),
           reason: 'sin clip, el de su ánimo (calma → reposo)');
     });
@@ -613,6 +616,39 @@ void main() {
       ]) {
         expect(art.clip(clip), isNotNull, reason: clip);
       }
+    });
+  });
+
+  group('caras y pijama', () {
+    test(
+        'el miedo, la tristeza y el sigilo usan la variante con miedo; dormir, el pijama',
+        () {
+      String rigOf(String clip, {String who = 'hero'}) =>
+          stageFor(art, cast(), {
+            'bg': 'place',
+            'mood': 'calm',
+            'stage': [
+              {'who': who, 'clip': clip},
+            ],
+          })!
+              .actors
+              .single
+              .rig
+              .rig
+              .id;
+      expect(rigOf('shiver'), 'aldo_miedo');
+      expect(rigOf('sneak'), 'aldo_miedo');
+      expect(rigOf('sleep'), 'aldo_pijama');
+      expect(rigOf('idle'), 'aldo');
+      // quien no tiene variante (los objetos, o personajes sin ella) conserva su dibujo
+      expect(art.rigs.containsKey('aldo_pijama'), isTrue);
+    });
+
+    test('con miedo, Aldo ya no esgrime la espada (le taparía la cara)', () {
+      final base = art.library.rigs['aldo']!;
+      final fear = art.library.rigs['aldo_miedo']!;
+      expect(fear.itemUpright, isFalse);
+      expect(base.itemUpright, isTrue);
     });
   });
 }

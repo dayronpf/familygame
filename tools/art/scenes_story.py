@@ -399,11 +399,16 @@ def cuarto(time="noche", season=None):
                    + deco +
                    [S(rrect(317, 56, 6, 168, 0), "#2a1a10", None, 0), S(rrect(254, 136, 132, 6, 0), "#2a1a10", None, 0),
                     S(rrect(236, 232, 168, 12, 4), sill_fill, "#2a180c", 2)], sky_things)
-    layers = [wall_l, window]
+    curtains = layer("curtains", [S("M236,40 L262,40 Q270,120 256,236 L236,236 Z", "#a8453f", "#5a1a14", 2.5),
+                                  S("M404,40 L378,40 Q370,120 384,236 L404,236 Z", "#a8453f", "#5a1a14", 2.5),
+                                  S("M246,44 Q250,130 244,230", None, "#d96a5a", 2, 0.7), S("M394,44 Q390,130 396,230", None, "#d96a5a", 2, 0.7),
+                                  S(rrect(228, 34, 184, 8, 3), "#5a3a22", "#2a180c", 2)])
+    layers = [wall_l, window, curtains]
     if not night:
         layers.append(layer("beam", [S(poly([(262, 60), (378, 60), (470, FLOOR), (170, FLOOR)]), "@beam", None, 0)]))
     bed = layer("bed", [S(rrect(24, 270, 196, 70, 6), "#6a4a38", "#2a180c", 3), S(rrect(24, 250, 20, 120, 4), "#5a3a28", "#2a180c", 3),
                         S(rrect(36, 236, 176, 48, 10), "#e8dcc4", "#8a7a5a", 2.5),
+                        S(rrect(40, 238, 60, 34, 12), "#fffaf0", "#8a7a5a", 2.5),
                         S(rrect(36, 262, 176, 32, 6), "#a8453f", "#5a1a14", 2.5)]
                  + [S(rrect(36 + i * 44, 262, 4, 32, 0), "#d96a5a", None, 0, 0.6) for i in range(1, 4)])
     stand_shapes = [S(rrect(500, 310, 80, 100, 4), "#5a3a28", "#2a180c", 3), S(rrect(506, 330, 68, 4, 0), "#2a180c", None, 0, 0.5),
@@ -437,7 +442,7 @@ def campanario(time="noche"):
     r = lcg(5)
     post = []
     if time == "noche":
-        sky_shapes += [S(ell(470, 150, 80, 80), "@moon", None, 0), S(ell(470, 150, 32, 32), "#fff3c4", None, 0)]
+        sky_shapes += [S(ell(470, 150, 80, 80), "@moon", None, 0), S(looks._crescent(470, 150, 34, 29, 13), "#fff3c4", None, 0)]
         for i in range(14):
             x, y = 400 + next(r) * 150, 110 + next(r) * 120
             nd = node(f"st{i}", (x, y), shapes=[S(ell(x, y, 1.7, 1.7), "#fff6d8", None, 0)])

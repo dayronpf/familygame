@@ -385,6 +385,27 @@ def puerta_cabana():
     return rig("puerta_cabana", "Puerta de cabaña", [-124, -292, 248, 294], {}, node("root", (0, 0), shapes=wall + door_l + door_r + roof))
 
 
+# --------------------------------------------- campana colgada y cuerda
+def campana_colgada():
+    """Solo el cuerpo de la campana, colgando de su argolla: el origen (0, 0) es el gancho. Gira desde ahí (`swing`)."""
+    body = [S("M-14,6 L14,6 L17,28 C42,36 58,70 64,128 L-64,128 C-58,70 -42,36 -17,28 Z", "$bronze"),
+            shade("M14,6 L17,28 C42,36 58,70 64,128 L36,128 C38,74 30,38 14,6 Z"),
+            shine("M-38,56 C-34,42 -24,34 -14,32 C-24,42 -32,52 -34,74 Z"),
+            S(rrect(-68, 124, 136, 14, 6), "$bronze2")]
+    clapper = node("clapper", (0, 44), shapes=[S(rrect(-2.5, 44, 5, 84, 2), "$iron", None), S(ell(0, 132, 11, 11), "$iron")])
+    ring = [S(ell(0, 0, 9, 9), "$iron", None), S(ell(0, 0, 4, 4), "#000000", None, 0, 0.3)]
+    swing = node("swing", (0, 0), shapes=body + ring, post=[clapper])
+    return rig("campana_colgada", "Campana colgada", [-70, -12, 140, 156], BRONZE, node("root", (0, 0), post=[swing]))
+
+
+def cuerda_rollo():
+    """Un rollo de cuerda (para llevar al hombro). Origen: base."""
+    sh = [S(ell(0, -16, 28, 16), "#c9a06a", "#3a2412", 2.5), S(ell(0, -16, 17, 9), "#7a5a30", None, 0),
+          S("M-26,-14 C-14,-4 14,-4 26,-14", None, "#8a6a3a", 2), S("M-22,-22 C-10,-30 10,-30 22,-22", None, "#e8c88a", 2),
+          S("M18,-8 C34,2 36,16 24,20", None, "#c9a06a", 4)]
+    return rig("cuerda_rollo", "Rollo de cuerda", [-32, -34, 70, 58], {}, node("root", (0, 0), shapes=sh))
+
+
 # -------------------------------------------------------------------- mesa
 def mesa():
     """Mesa larga de madera con cuencos de sopa, cucharas y pan: para la fiesta de la plaza. Origen: base."""
@@ -462,4 +483,4 @@ def cofre():
 
 
 def build_all():
-    return [campana(), campana_rota(), linterna(), linterna_apagada(), olla(), pan(), trozos_de_pan(), buho(), cabrita(), bolsa(), cometa(), girasol(), semillas(), semillas_dos(), mesa(), manta(), taza(), cuenco(), regadera(), cinta(), girasol_seco(), roble(), puerta_cabana(), maceta(), maceta_brote(), piedras(), hierba(), pedernal(), vela(), saco(), cofre()]
+    return [campana(), campana_rota(), linterna(), linterna_apagada(), olla(), pan(), trozos_de_pan(), buho(), cabrita(), bolsa(), cometa(), girasol(), semillas(), semillas_dos(), mesa(), manta(), taza(), cuenco(), regadera(), cinta(), girasol_seco(), campana_colgada(), cuerda_rollo(), roble(), puerta_cabana(), maceta(), maceta_brote(), piedras(), hierba(), pedernal(), vela(), saco(), cofre()]

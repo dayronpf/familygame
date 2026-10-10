@@ -3,7 +3,7 @@
     "schema": 2,
     "id": "medieval",
     "name": "Reino de la Luna (prueba)",
-    "version": "0.12.0",
+    "version": "0.12.1",
     "license": "Contenido original, todos los derechos reservados al autor del proyecto",
     "language": "es",
     "age_band": "4-7"
@@ -208,8 +208,8 @@
         "entrega": "su bolsita de monedas",
         "mia": "mi bolsita de monedas",
         "guarida": "su casona de piedra",
-        "botin": "el cofre de monedas que había robado en la feria",
-        "botin2": "el cofre"
+        "botin": "el saco de monedas que había robado en la feria",
+        "botin2": "el saco"
       }
     },
     {
@@ -606,20 +606,21 @@
                   {
                     "rig": "tomas",
                     "clip": "talk",
-                    "x": 0.3
+                    "x": 0.22
                   },
                   {
                     "who": "hero",
                     "clip": "offer",
-                    "x": 0.7
+                    "x": 0.62
                   }
                 ],
                 "props": [
                   {
-                    "prop": "campana",
-                    "x": 0.5,
-                    "scale": 1.15,
-                    "clip": "swing"
+                    "prop": "campana_colgada",
+                    "clip": "swing",
+                    "x": 0.41,
+                    "lift": 336,
+                    "scale": 1.0
                   }
                 ]
               }
@@ -635,20 +636,21 @@
                   {
                     "rig": "tomas",
                     "clip": "talk",
-                    "x": 0.3
+                    "x": 0.22
                   },
                   {
                     "who": "hero",
                     "clip": "offer",
-                    "x": 0.7
+                    "x": 0.62
                   }
                 ],
                 "props": [
                   {
-                    "prop": "campana",
-                    "x": 0.5,
-                    "scale": 1.15,
-                    "clip": "swing"
+                    "prop": "campana_colgada",
+                    "clip": "swing",
+                    "x": 0.41,
+                    "lift": 336,
+                    "scale": 1.0
                   }
                 ]
               }
@@ -1416,10 +1418,17 @@
                   {
                     "who": "villain",
                     "clip": "offer",
-                    "x": 0.85
+                    "x": 0.9
                   }
                 ],
-                "props": []
+                "props": [
+                  {
+                    "prop": "campana",
+                    "x": 0.68,
+                    "scale": 0.9,
+                    "clip": "still"
+                  }
+                ]
               }
             },
             {
@@ -1453,10 +1462,17 @@
                   {
                     "who": "villain",
                     "clip": "offer",
-                    "x": 0.85
+                    "x": 0.9
                   }
                 ],
-                "props": []
+                "props": [
+                  {
+                    "prop": "campana",
+                    "x": 0.68,
+                    "scale": 0.9,
+                    "clip": "still"
+                  }
+                ]
               }
             }
           ]
@@ -1475,20 +1491,21 @@
                   {
                     "rig": "tomas",
                     "clip": "offer",
-                    "x": 0.33
+                    "x": 0.55
                   },
                   {
                     "who": "hero",
                     "clip": "idle",
-                    "x": 0.7
+                    "x": 0.76
                   }
                 ],
                 "props": [
                   {
-                    "prop": "campana",
-                    "x": 0.52,
-                    "scale": 1.15,
-                    "clip": "ring"
+                    "prop": "campana_colgada",
+                    "clip": "ring",
+                    "x": 0.41,
+                    "lift": 336,
+                    "scale": 1.0
                   }
                 ]
               }
@@ -1504,20 +1521,21 @@
                   {
                     "rig": "tomas",
                     "clip": "offer",
-                    "x": 0.33
+                    "x": 0.55
                   },
                   {
                     "who": "hero",
                     "clip": "idle",
-                    "x": 0.7
+                    "x": 0.76
                   }
                 ],
                 "props": [
                   {
-                    "prop": "campana",
-                    "x": 0.52,
-                    "scale": 1.15,
-                    "clip": "ring"
+                    "prop": "campana_colgada",
+                    "clip": "ring",
+                    "x": 0.41,
+                    "lift": 336,
+                    "scale": 1.0
                   }
                 ]
               }
@@ -2193,8 +2211,8 @@
                     "prop": "trozos_de_pan",
                     "near": "hero",
                     "dx": -0.06,
-                    "lift": 58,
-                    "scale": 0.5
+                    "lift": 62,
+                    "scale": 0.95
                   },
                   {
                     "prop": "cuenco",
@@ -2254,8 +2272,8 @@
                     "prop": "trozos_de_pan",
                     "near": "hero",
                     "dx": -0.06,
-                    "lift": 58,
-                    "scale": 0.5
+                    "lift": 62,
+                    "scale": 0.95
                   },
                   {
                     "prop": "cuenco",
@@ -2315,8 +2333,8 @@
                     "prop": "trozos_de_pan",
                     "near": "hero",
                     "dx": -0.06,
-                    "lift": 58,
-                    "scale": 0.5
+                    "lift": 62,
+                    "scale": 0.95
                   },
                   {
                     "prop": "cuenco",
@@ -2382,8 +2400,8 @@
                     "prop": "cuenco",
                     "near": "hero",
                     "dx": -0.06,
-                    "lift": 62,
-                    "scale": 0.6
+                    "lift": 66,
+                    "scale": 0.95
                   }
                 ]
               }
@@ -2430,8 +2448,8 @@
                     "prop": "cuenco",
                     "near": "hero",
                     "dx": -0.06,
-                    "lift": 62,
-                    "scale": 0.6
+                    "lift": 66,
+                    "scale": 0.95
                   }
                 ]
               }
@@ -2585,15 +2603,15 @@
                     "prop": "manta",
                     "near": "lia",
                     "dx": 0,
-                    "lift": 62,
-                    "scale": 0.55
+                    "lift": 38,
+                    "scale": 0.5
                   },
                   {
                     "prop": "manta",
                     "near": "teo",
                     "dx": 0,
-                    "lift": 62,
-                    "scale": 0.55
+                    "lift": 38,
+                    "scale": 0.5
                   },
                   {
                     "prop": "manta",
@@ -2645,15 +2663,15 @@
                     "prop": "manta",
                     "near": "lia",
                     "dx": 0,
-                    "lift": 62,
-                    "scale": 0.55
+                    "lift": 38,
+                    "scale": 0.5
                   },
                   {
                     "prop": "manta",
                     "near": "teo",
                     "dx": 0,
-                    "lift": 62,
-                    "scale": 0.55
+                    "lift": 38,
+                    "scale": 0.5
                   },
                   {
                     "prop": "manta",
@@ -2705,15 +2723,15 @@
                     "prop": "manta",
                     "near": "lia",
                     "dx": 0,
-                    "lift": 62,
-                    "scale": 0.55
+                    "lift": 38,
+                    "scale": 0.5
                   },
                   {
                     "prop": "manta",
                     "near": "teo",
                     "dx": 0,
-                    "lift": 62,
-                    "scale": 0.55
+                    "lift": 38,
+                    "scale": 0.5
                   },
                   {
                     "prop": "manta",
@@ -2773,23 +2791,23 @@
                   {
                     "prop": "manta",
                     "near": "lia",
-                    "dx": -0.07,
-                    "lift": 14,
-                    "scale": 1.0
+                    "dx": -0.06,
+                    "lift": 16,
+                    "scale": 1.15
                   },
                   {
                     "prop": "manta",
                     "near": "teo",
-                    "dx": -0.07,
-                    "lift": 14,
-                    "scale": 1.0
+                    "dx": -0.06,
+                    "lift": 16,
+                    "scale": 1.15
                   },
                   {
                     "prop": "manta",
                     "near": "hero",
-                    "dx": -0.08,
-                    "lift": 14,
-                    "scale": 1.05
+                    "dx": -0.06,
+                    "lift": 16,
+                    "scale": 1.15
                   }
                 ]
               }
@@ -2837,23 +2855,23 @@
                   {
                     "prop": "manta",
                     "near": "lia",
-                    "dx": -0.07,
-                    "lift": 14,
-                    "scale": 1.0
+                    "dx": -0.06,
+                    "lift": 16,
+                    "scale": 1.15
                   },
                   {
                     "prop": "manta",
                     "near": "teo",
-                    "dx": -0.07,
-                    "lift": 14,
-                    "scale": 1.0
+                    "dx": -0.06,
+                    "lift": 16,
+                    "scale": 1.15
                   },
                   {
                     "prop": "manta",
                     "near": "hero",
-                    "dx": -0.08,
-                    "lift": 14,
-                    "scale": 1.05
+                    "dx": -0.06,
+                    "lift": 16,
+                    "scale": 1.15
                   }
                 ]
               }
@@ -3736,7 +3754,7 @@
                     "clip": "still"
                   },
                   {
-                    "prop": "cofre",
+                    "prop": "saco",
                     "near": "villain",
                     "dx": 0.07,
                     "lift": 0,
@@ -3842,7 +3860,7 @@
                     "clip": "still"
                   },
                   {
-                    "prop": "cofre",
+                    "prop": "saco",
                     "near": "villain",
                     "dx": 0.07,
                     "lift": 0,
@@ -3931,8 +3949,8 @@
                   {
                     "who": "hero",
                     "clip": "climb",
-                    "x": 0.795,
-                    "lift": 70,
+                    "x": 0.835,
+                    "lift": 80,
                     "scale": 0.85
                   },
                   {
@@ -3979,8 +3997,8 @@
                   {
                     "who": "hero",
                     "clip": "climb",
-                    "x": 0.795,
-                    "lift": 70,
+                    "x": 0.835,
+                    "lift": 80,
                     "scale": 0.85
                   },
                   {
@@ -4068,6 +4086,11 @@
                     "scale": 0.9,
                     "clip": "glow",
                     "emit": true
+                  },
+                  {
+                    "prop": "saco",
+                    "x": 0.86,
+                    "scale": 1.2
                   }
                 ],
                 "rope": {
@@ -4127,6 +4150,11 @@
                     "scale": 0.9,
                     "clip": "glow",
                     "emit": true
+                  },
+                  {
+                    "prop": "saco",
+                    "x": 0.86,
+                    "scale": 1.2
                   }
                 ],
                 "rope": {
@@ -5993,6 +6021,12 @@
                     "lift": 118,
                     "scale": 1.05,
                     "front": true
+                  },
+                  {
+                    "prop": "girasol",
+                    "x": 0.62,
+                    "scale": 0.6,
+                    "clip": "sun"
                   }
                 ]
               }
@@ -6021,6 +6055,12 @@
                     "lift": 118,
                     "scale": 1.05,
                     "front": true
+                  },
+                  {
+                    "prop": "girasol",
+                    "x": 0.62,
+                    "scale": 0.6,
+                    "clip": "sun"
                   }
                 ]
               }
@@ -6088,7 +6128,7 @@
               "id": "a",
               "text": "[[Aquella semana|Un día]], Tomás, el viejo campanero, cayó enfermo. [[Tosía tanto que la campana, cada noche, sonaba un poco triste.|Tosía tanto que la campana ya no sonaba igual.]] Los vecinos decían que solo curaba {item.el}, que crece al otro lado del río. Pero el puente era viejo y crujía, así que nadie se atrevía a cruzarlo. {hero} oyó la campana, que sonaba apagada. «Iré yo», dijo, aunque le temblaba la voz.",
               "scene": {
-                "bg": "plaza",
+                "bg": "rio",
                 "mood": "tension",
                 "time": "dia",
                 "focus": {
@@ -6105,7 +6145,7 @@
               "id": "b",
               "text": "Tomás, el viejo campanero, llevaba [[tres|cuatro]] días tosiendo. «Solo lo curaría {item.el}», decían los vecinos, «la que crece al otro lado del río». Pero para llegar había que cruzar el puente de madera, el que hacía ¡cric, cric! con cada soplo de viento. Nadie quería ir, porque el puente parecía a punto de romperse. {hero} oyó la campana, que sonaba apagada. «Iré yo», dijo, aunque le temblaba la voz.",
               "scene": {
-                "bg": "plaza",
+                "bg": "rio",
                 "mood": "tension",
                 "time": "dia",
                 "focus": {
@@ -6185,7 +6225,15 @@
                     "x": 0.5
                   }
                 ],
-                "props": []
+                "props": [
+                  {
+                    "prop": "cuerda_rollo",
+                    "near": "helper",
+                    "dx": -0.03,
+                    "lift": 104,
+                    "scale": 0.7
+                  }
+                ]
               }
             },
             {
@@ -6207,7 +6255,15 @@
                     "x": 0.5
                   }
                 ],
-                "props": []
+                "props": [
+                  {
+                    "prop": "cuerda_rollo",
+                    "near": "helper",
+                    "dx": -0.03,
+                    "lift": 104,
+                    "scale": 0.7
+                  }
+                ]
               }
             }
           ],
@@ -6551,6 +6607,13 @@
                     "prop": "hierba",
                     "x": 0.8,
                     "scale": 1.4
+                  },
+                  {
+                    "prop": "hierba",
+                    "near": "hero",
+                    "dx": 0.07,
+                    "lift": 46,
+                    "scale": 0.8
                   }
                 ],
                 "rope": {
@@ -6579,6 +6642,13 @@
                     "prop": "hierba",
                     "x": 0.8,
                     "scale": 1.4
+                  },
+                  {
+                    "prop": "hierba",
+                    "near": "hero",
+                    "dx": 0.07,
+                    "lift": 46,
+                    "scale": 0.8
                   }
                 ],
                 "rope": {
@@ -6759,9 +6829,9 @@
                   {
                     "prop": "hierba",
                     "near": "hero",
-                    "dx": -0.06,
-                    "lift": 60,
-                    "scale": 0.8
+                    "dx": -0.09,
+                    "lift": 76,
+                    "scale": 1.15
                   }
                 ],
                 "offstage": [
@@ -6802,9 +6872,9 @@
                   {
                     "prop": "hierba",
                     "near": "hero",
-                    "dx": -0.06,
-                    "lift": 60,
-                    "scale": 0.8
+                    "dx": -0.09,
+                    "lift": 76,
+                    "scale": 1.15
                   }
                 ]
               }
