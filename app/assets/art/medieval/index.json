@@ -26,15 +26,12 @@
   "medieval/rigs/pan.json",
   "medieval/rigs/trozos_de_pan.json",
   "medieval/rigs/buho.json",
-  "medieval/rigs/cabrita.json"
+  "medieval/rigs/cabrita.json",
+  "medieval/rigs/bolsa.json",
+  "medieval/rigs/cometa.json"
  ],
  "scenes": [
-  "medieval/scenes/castle_night.json",
-  "medieval/scenes/bosque.json",
-  "medieval/scenes/cueva.json",
-  "medieval/scenes/rio.json",
-  "medieval/scenes/aldea.json",
-  "medieval/scenes/casa.json"
+  "medieval/scenes/castle_night.json"
  ],
  "clips": "clips/humanoid.json",
  "extraClips": [
@@ -50,73 +47,5 @@
   "aldeano": 0.98,
   "aldeana": 0.98,
   "cabrita": 1.5
- },
- "places": {
-  "castillo": {
-   "scene": "castle_night",
-   "view": [
-    0,
-    250,
-    600,
-    450
-   ],
-   "floor": 662,
-   "scale": 0.56
-  },
-  "bosque": {
-   "scene": "bosque",
-   "view": [
-    0,
-    0,
-    640,
-    480
-   ],
-   "floor": 410,
-   "scale": 0.6
-  },
-  "cueva": {
-   "scene": "cueva",
-   "view": [
-    0,
-    0,
-    640,
-    480
-   ],
-   "floor": 410,
-   "scale": 0.6
-  },
-  "rio": {
-   "scene": "rio",
-   "view": [
-    0,
-    0,
-    640,
-    480
-   ],
-   "floor": 410,
-   "scale": 0.6
-  },
-  "aldea": {
-   "scene": "aldea",
-   "view": [
-    0,
-    0,
-    640,
-    480
-   ],
-   "floor": 410,
-   "scale": 0.6
-  },
-  "casa": {
-   "scene": "casa",
-   "view": [
-    0,
-    0,
-    640,
-    480
-   ],
-   "floor": 410,
-   "scale": 0.6
-  }
  }
 }

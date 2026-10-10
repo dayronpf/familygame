@@ -189,6 +189,8 @@ PROP_CLIPS = {
         "glow.sx": keys((0, 1), (0.8, 1.06), (1.6, 0.97), (2.4, 1)),
         "glow.sy": keys((0, 1), (0.8, 1.06), (1.6, 0.97), (2.4, 1))}),
     "boil": dict(dur=3.0, loop=True, tracks=_steam_tracks()),
+    "jingle": dict(dur=0.5, loop=True, tracks={"bag": sine(0.5, 6), "root.dy": keys((0, 0), (0.12, -2), (0.25, 0), (0.37, -2), (0.5, 0))}),
+    "sway": dict(dur=2.6, loop=True, tracks={"kite": sine(2.6, 7), "tail": sine(1.3, 16, 0.2)}),
     "goat_idle": dict(dur=2.8, loop=True, tracks={
         "head": sine(2.8, 5), "tail": sine(0.9, 16), "eyes.sy": blink(2.8, 0.5),
         "root.dy": keys((0, 0), (1.4, -1.5), (2.8, 0))}),

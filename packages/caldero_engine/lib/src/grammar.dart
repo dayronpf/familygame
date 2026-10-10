@@ -12,6 +12,16 @@ class TemplateException implements Exception {
 
 final RegExp _token = RegExp(r'\{(\w+)(?:\.(\w+))?\}');
 
+/// Alternativas dentro de una frase: `[[una forma|otra forma|otra más]]` (una puede ir vacía:
+/// `[[ Y se rio.|]]`). Cada cuento toma una; así una escena con pocas variantes no suena igual siempre.
+final RegExp _alts = RegExp(r'\[\[(.+?)\]\]');
+
+/// Cuántas opciones tiene el grupo de alternativas más largo de [template] (0 si no hay).
+int maxAlternatives(String template) => _alts
+    .allMatches(template)
+    .map((m) => m.group(1)!.split('|').length)
+    .fold(0, (a, b) => a > b ? a : b);
+
 /// Pone en mayúscula la primera letra.
 String capitalize(String s) =>
     s.isEmpty ? s : s[0].toUpperCase() + s.substring(1);
@@ -45,6 +55,9 @@ Map<String?, String> grammaticalForms(Entity e) {
   return forms;
 }
 
+/// Elige cuál de las [n] alternativas de un grupo `[[a|b]]` usar (devuelve 0..n-1).
+typedef AltPicker = int Function(int n);
+
 /// Elige una de las formas de un atributo con varias (`clave` = `rol.atributo`).
 typedef AttrChooser = String Function(String key, List<String> options);
 
@@ -54,8 +67,14 @@ String renderTemplate(
   String template,
   Map<String, Entity> cast, {
   AttrChooser? choose,
+  AltPicker? alt,
 }) {
-  return template.replaceAllMapped(_token, (m) {
+  final chosen = template.replaceAllMapped(_alts, (m) {
+    final options = m.group(1)!.split('|');
+    final i = alt == null ? 0 : alt(options.length) % options.length;
+    return options[i];
+  });
+  return chosen.replaceAllMapped(_token, (m) {
     final role = m.group(1)!;
     final attr = m.group(2);
     final entity = cast[role];

@@ -85,10 +85,11 @@ void _checkRender(
   Map<String, Entity> cast,
   Set<String> problems, {
   AttrChooser? choose,
+  AltPicker? alt,
 }) {
   final String out;
   try {
-    out = renderTemplate(f.text, cast, choose: choose);
+    out = renderTemplate(f.text, cast, choose: choose, alt: alt);
   } on TemplateException catch (e) {
     problems.add('${f.id}: ${e.message}');
     return;
@@ -280,7 +281,10 @@ int _checkPremise(
             .whereType<Character>()
             .expand((c) => c.attrs.values.map((o) => o.length))
             .fold<int>(1, (a, b) => a > b ? a : b);
-        for (var k = 0; k < forms; k++) {
+        // Y cada alternativa `[[a|b|c]]` del texto se prueba al menos una vez.
+        final iterations =
+            forms > maxAlternatives(v.text) ? forms : maxAlternatives(v.text);
+        for (var k = 0; k < iterations; k++) {
           renders++;
           _checkRender(
             Fragment(
@@ -295,6 +299,7 @@ int _checkPremise(
             cast,
             problems,
             choose: (key, options) => options[k % options.length],
+            alt: (n) => k % n,
           );
         }
       }

@@ -305,6 +305,41 @@ def casa():
     return scene("casa", "Cocina de la aldea", grads, [wall, window, shelf, oven, floor_])
 
 
+# ------------------------------------------------------------------ cuarto
+def cuarto():
+    """Cuarto de dormir de noche: ventana con luna y estrellas, cama con colcha, vela y alfombra."""
+    grads = {"wall": lin([[0, "#2a2552", 1], [1, "#4a3a72", 1]]),
+             "floor": lin([[0, "#6a4a38", 1], [1, "#3e2a20", 1]]),
+             "sky": lin([[0, "#101a4a", 1], [1, "#2a3a7a", 1]]),
+             "moon": {"type": "radial", "stops": [[0, "#fff6c8", 0.9], [1, "#fff6c8", 0]]},
+             "candle": {"type": "radial", "stops": [[0, "#ffd27a", 0.6], [1, "#ffd27a", 0]]}}
+    wall = layer("wall", [full("@wall")] + [S(rrect(x, 0, 3, FLOOR - 20, 0), "#000000", None, 0, 0.1) for x in range(80, W, 80)])
+    stars = []
+    r = lcg(21)
+    for i in range(10):
+        x, y = 262 + next(r) * 116, 66 + next(r) * 150
+        nd = node(f"wst{i}", (x, y), shapes=[S(ell(x, y, 1.8, 1.8), "#fff6d8", None, 0)])
+        nd["anim"] = [ambient("opacity", [0.2, 1.0, 0.2], 2.8, next(r) * 2.8)]
+        stars.append(nd)
+    window = layer("window", [S(rrect(244, 46, 152, 188, 8), "#2a1a10", "#120a06", 3), S(rrect(254, 56, 132, 168, 4), "@sky", None, 0),
+                              S(ell(330, 118, 52, 52), "@moon", None, 0), S(ell(330, 118, 22, 22), "#fff6c8", None, 0),
+                              S(ell(340, 112, 18, 18), "#2a3a7a", None, 0),
+                              S(rrect(317, 56, 6, 168, 0), "#2a1a10", None, 0), S(rrect(254, 136, 132, 6, 0), "#2a1a10", None, 0),
+                              S(rrect(236, 232, 168, 12, 4), "#4a2c1a", "#2a180c", 2)], stars)
+    bed = layer("bed", [S(rrect(24, 270, 196, 70, 6), "#6a4a38", "#2a180c", 3), S(rrect(24, 250, 20, 120, 4), "#5a3a28", "#2a180c", 3),
+                        S(rrect(36, 236, 176, 48, 10), "#e8dcc4", "#8a7a5a", 2.5),
+                        S(rrect(36, 262, 176, 32, 6), "#a8453f", "#5a1a14", 2.5)]
+                 + [S(rrect(36 + i * 44, 262, 4, 32, 0), "#d96a5a", None, 0, 0.6) for i in range(1, 4)])
+    candle_glow = node("candleglow", (540, 300), shapes=[S(ell(540, 300, 120, 100), "@candle", None, 0)])
+    candle_glow["anim"] = [ambient("opacity", [0.7, 1.0, 0.8, 1.0], 1.8, 0.3)]
+    stand = layer("stand", [S(rrect(500, 310, 80, 100, 4), "#5a3a28", "#2a180c", 3), S(rrect(506, 330, 68, 4, 0), "#2a180c", None, 0, 0.5),
+                            S(rrect(530, 282, 16, 28, 3), "#f2e7c8", "#8a7a5a", 2), S(ell(538, 272, 5, 9), "#ffb43a", None, 0)], [candle_glow])
+    floor_ = layer("floor", [S(rrect(0, FLOOR - 24, W, H - FLOOR + 24, 0), "@floor", "#2a180c", 3)]
+                   + [S(rrect(0, y, W, 2, 0), "#000000", None, 0, 0.18) for y in range(FLOOR + 6, H, 22)]
+                   + [S(ell(330, FLOOR + 34, 140, 24), "#4a6aa8", "#1a2a5a", 3), S(ell(330, FLOOR + 34, 108, 15), "#7a9ad0", None, 0, 0.5)])
+    return scene("cuarto", "Cuarto de noche", grads, [wall, window, bed, stand, floor_])
+
+
 # ---------------------------------------------------------------- castillo (recorte del existente)
 CASTILLO_VIEW = [0, 250, 600, 450]
 
@@ -316,8 +351,9 @@ PLACES = {
     "rio": {"scene": "rio", "view": [0, 0, W, H], "floor": FLOOR, "scale": SCALE},
     "aldea": {"scene": "aldea", "view": [0, 0, W, H], "floor": FLOOR, "scale": SCALE},
     "casa": {"scene": "casa", "view": [0, 0, W, H], "floor": FLOOR, "scale": SCALE},
+    "cuarto": {"scene": "cuarto", "view": [0, 0, W, H], "floor": FLOOR, "scale": SCALE},
 }
-BUILDERS = {"bosque": bosque, "cueva": cueva, "rio": rio, "aldea": aldea, "casa": casa}
+BUILDERS = {"bosque": bosque, "cueva": cueva, "rio": rio, "aldea": aldea, "casa": casa, "cuarto": cuarto}
 
 
 # ------------------------------------------------- posiciones de los personajes

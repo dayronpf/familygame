@@ -172,6 +172,43 @@ def cabrita():
     root = node("root", (0, 0), pre=[legs_b], shapes=body, post=[legs_a, tail, head])
     return rig("cabrita", "Cabrita", [-80, -135, 170, 140], GOAT, root)
 
+# ------------------------------------------------------------------ bolsa
+BAG = {"leather": "#9a6a3c", "leather2": "#b98a52", "rope": "#e8d3a8", "coin": "#f4e9c0"}
+
+
+def bolsa():
+    """Bolsa de cuero atada con una cuerda; asoma una moneda. Hueso `bag` (tintineo)."""
+    bag = node("bag", (0, -4), shapes=[
+        S("M-34,-4 C-48,-30 -34,-62 -12,-70 L12,-70 C34,-62 48,-30 34,-4 Z", "$leather"),
+        shade("M12,-70 C34,-62 48,-30 34,-4 L16,-4 C26,-26 24,-52 12,-70 Z"),
+        shine("M-30,-28 C-28,-44 -20,-58 -10,-64 C-18,-50 -24,-40 -26,-24 Z"),
+        S("M-14,-70 L-18,-84 L-6,-78 L0,-88 L6,-78 L18,-84 L14,-70 Z", "$leather2"),
+        S(rrect(-16, -72, 32, 6, 3), "$rope", "#5a4a30", 2),
+        S(ell(0, -92, 7, 7), "$coin", "#8a7a3a", 2)])
+    root = node("root", (0, 0), post=[bag])
+    return rig("bolsa", "Bolsa de monedas", [-70, -110, 140, 120], BAG, root)
+
+
+# ------------------------------------------------------------------ cometa
+KITE = {"red": "#d9453d", "red2": "#f0675a", "bow": "#f4c542", "string": "#e8e0c8", "wood": "#8a5a2b"}
+
+
+def cometa():
+    """Cometa roja con cola de lazos amarillos. Origen: el punto donde se ata la cuerda (abajo).
+    Huesos: `kite` (cabeceo), `tail` (ondeo de la cola)."""
+    tail_shapes = [S("M0,0 C14,18 -14,34 0,52 C14,70 -14,86 0,104", None, "$string", 2.5)]
+    for i, y in enumerate((22, 48, 74, 100)):
+        x = 6 if i % 2 == 0 else -6
+        tail_shapes += [S(poly([(x - 9, y - 5), (x, y), (x - 9, y + 5)]), "$bow", "#8a6a14", 1.5),
+                        S(poly([(x + 9, y - 5), (x, y), (x + 9, y + 5)]), "$bow", "#8a6a14", 1.5)]
+    tail = node("tail", (0, 0), shapes=tail_shapes)
+    kite = node("kite", (0, 0), shapes=[
+        S("M0,0 L40,-52 L0,-132 L-40,-52 Z", "$red", "#6a1a14", 3),
+        S("M0,0 L0,-132 L40,-52 Z", "$red2", None, 0, 0.55),
+        S("M0,-132 L0,0", None, "$wood", 2.5), S("M-40,-52 L40,-52", None, "$wood", 2.5)], post=[tail])
+    root = node("root", (0, 0), post=[kite])
+    return rig("cometa", "Cometa", [-60, -150, 120, 270], KITE, root)
+
 
 def build_all():
-    return [campana(), campana_rota(), linterna(), linterna_apagada(), olla(), pan(), trozos_de_pan(), buho(), cabrita()]
+    return [campana(), campana_rota(), linterna(), linterna_apagada(), olla(), pan(), trozos_de_pan(), buho(), cabrita(), bolsa(), cometa()]

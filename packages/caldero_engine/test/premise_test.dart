@@ -712,6 +712,52 @@ void main() {
     });
   });
 
+  group('alternativas dentro de la frase', () {
+    Entity hero() => load(basePack()).characters.first;
+
+    test('se elige una opción por grupo y se pueden dejar vacías', () {
+      const tpl = '{hero} [[corrió|saltó|bailó]] [[muy rápido|]].';
+      final h = hero();
+      expect(renderTemplate(tpl, {'hero': h}),
+          startsWith('${h.noun == '' ? '' : (h as Character).given} corrió'));
+      expect(
+        renderTemplate(tpl, {'hero': h}, alt: (n) => n - 1),
+        endsWith('bailó .'),
+      );
+      expect(maxAlternatives(tpl), 3);
+      expect(maxAlternatives('sin grupos'), 0);
+    });
+
+    test('las opciones pueden llevar tokens', () {
+      final h = hero();
+      expect(
+        renderTemplate('[[Hola, {hero}|Adiós, {hero.el}]]', {'hero': h},
+            alt: (n) => 1),
+        startsWith('Adiós, '),
+      );
+    });
+
+    test('el validador prueba todas las opciones (una rota se detecta)', () {
+      Map<String, Object?> v(String id, String text) => {
+            'id': id,
+            'text': text,
+            'scene': <String, Object?>{},
+          };
+      final p = problemsOf(basePack(beats: [
+        {
+          'id': 'b1',
+          'introduces': ['item'],
+          'variants': [
+            v('bien', '{hero} miró {item.el} [[con calma|de reojo]].'),
+            v('mal', '{hero} miró {item.el} [[con calma|y {fantasma} huyó]].'),
+          ],
+        },
+      ])).join('\n');
+      expect(p, contains('mal: rol desconocido «fantasma»'));
+      expect(p, isNot(contains('bien:')));
+    });
+  });
+
   test(
       'el validador detecta el género fijo («quieto», «yo solo», «ir solo», «él»)',
       () {

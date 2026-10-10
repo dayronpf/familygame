@@ -126,7 +126,12 @@ Story _generateFromPremise(
     scenes.add(
       StoryScene(
         fragmentId: variant.id,
-        text: renderTemplate(variant.text, cast, choose: choose),
+        text: renderTemplate(
+          variant.text,
+          cast,
+          choose: choose,
+          alt: rng.nextInt,
+        ),
         directives: variant.scene,
       ),
     );
