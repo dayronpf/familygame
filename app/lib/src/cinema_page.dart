@@ -9,6 +9,7 @@ import 'hologram_page.dart';
 import 'narration/narrator.dart';
 import 'narration/playback.dart';
 import 'player_support.dart';
+import 'ui/sleep_timer.dart';
 
 /// Modo cine: el cuento a pantalla completa, con cielo de estrellas, una escena por vez que
 /// cambia sola al ritmo de la voz y subtítulos grandes con la frase que suena resaltada.
@@ -75,6 +76,12 @@ class _CinemaPageState extends State<CinemaPage>
     _clock.dispose();
     leaveShowMode();
     super.dispose();
+  }
+
+  /// El temporizador se cumplió: se calla la voz y el fondo.
+  Future<void> _sleep() async {
+    await _playback.pause();
+    await _ambience.stop();
   }
 
   Future<void> _toHologram() async {
@@ -165,6 +172,7 @@ class _CinemaPageState extends State<CinemaPage>
                               .copyWith(color: scheme.primary),
                         ),
                       ),
+                      SleepTimerButton(onExpire: _sleep),
                       IconButton(
                         icon: const Icon(Icons.view_in_ar),
                         color: Colors.white,

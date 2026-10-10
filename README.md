@@ -34,6 +34,7 @@ mientras avanza y puede proyectarse como **holograma** con una pirámide transpa
 | [docs/14-rubrica-editorial.md](docs/14-rubrica-editorial.md) | Rúbrica y ciclo de mejora de los cuentos (corpus → revisión independiente → corrección → medición) con el registro de vueltas |
 | [docs/15-modo-cine-y-holograma.md](docs/15-modo-cine-y-holograma.md) | Modo cine y modo holograma (voz en off, fondo, geometría del prisma) |
 | [docs/16-coherencia-texto-imagen.md](docs/16-coherencia-texto-imagen.md) | Lo que se lee es lo que se ve: hora, estación, primeros planos, reglas del validador y revisión con imágenes |
+| [docs/17-interfaz-para-ninos.md](docs/17-interfaz-para-ninos.md) | Interfaz para niños: splash, inicio, paquetes (los que llegarán, en gris), Mis cuentos, compartir y temporizador para dormir |
 | [docs/11-pipeline-de-arte-por-codigo.md](docs/11-pipeline-de-arte-por-codigo.md) | Arte generado por código (sin presupuesto ni herramientas de pago), pack medieval, 3D y límites |
 
 ## Estructura del repositorio

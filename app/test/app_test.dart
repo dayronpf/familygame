@@ -36,7 +36,16 @@ void main() {
   Future<void> scrollTo(WidgetTester tester, Finder finder) =>
       tester.scrollUntilVisible(finder, 300);
 
+  /// Tamaño de un teléfono: el inicio está pensado para verse sin desplazarse.
+  void phone(WidgetTester tester) {
+    tester.view
+      ..physicalSize = const Size(412, 915)
+      ..devicePixelRatio = 1;
+    addTearDown(tester.view.reset);
+  }
+
   Future<void> openApp(WidgetTester tester, {int seed = 3}) async {
+    phone(tester);
     await tester.pumpWidget(CalderoApp(
         bundle: _bundle,
         seedProvider: () => seed,
@@ -92,6 +101,7 @@ void main() {
 
   testWidgets('si el arte no carga, el cuento se lee igual (solo texto)',
       (tester) async {
+    phone(tester);
     await tester.pumpWidget(CalderoApp(
         bundle: _NoArtBundle(),
         seedProvider: () => 3,
@@ -109,6 +119,7 @@ void main() {
   testWidgets('«Contar otro cuento» cambia el cuento y conserva la enseñanza',
       (tester) async {
     var seed = 3;
+    phone(tester);
     await tester.pumpWidget(CalderoApp(
         bundle: _bundle,
         seedProvider: () => seed++,
@@ -156,11 +167,21 @@ void main() {
     expect(pack.morals, isNotEmpty);
   });
 
-  testWidgets('el botón del taller abre la pantalla de personajes',
+  testWidgets('el taller de personajes se abre desde los ajustes de adultos',
       (tester) async {
     await openApp(tester);
-    final button = find.text('Taller de personajes (prueba)');
+    await tester.tap(find.byKey(const Key('open-settings')));
+    await tester.pumpAndSettle();
+    final q = tester.widget<Text>(find.byKey(const Key('gate-question'))).data!;
+    final m = RegExp(r'(\d) × (\d)').firstMatch(q)!;
+    await tester.enterText(find.byKey(const Key('gate-answer')),
+        '${int.parse(m.group(1)!) * int.parse(m.group(2)!)}');
+    await tester.tap(find.byKey(const Key('gate-ok')));
+    await tester.pumpAndSettle();
+    final button = find.byKey(const Key('open-workshop'));
     await tester.scrollUntilVisible(button, 200);
+    await tester.ensureVisible(button);
+    await tester.pumpAndSettle();
     await tester.tap(button);
     await tester.pump(); // arranca la carga
     await tester.pump(const Duration(milliseconds: 100));

@@ -1,36 +1,33 @@
 import 'package:flutter/material.dart';
 
-/// Tema nocturno: fondo casi negro cálido y texto crema (nunca blanco puro),
-/// para leer en la cama sin deslumbrar.
-ThemeData nightTheme() {
-  const background = Color(0xFF14110F);
-  const surface = Color(0xFF1F1A17);
-  const cream = Color(0xFFF2E3C6);
-  const amber = Color(0xFFE8B86D);
+import 'ui/palette.dart';
 
+/// Tema nocturno: índigo profundo con ámbar y texto crema (nunca blanco puro), para leer en la cama sin
+/// deslumbrar, con color suficiente para que lo entienda un niño.
+ThemeData nightTheme() {
   final scheme = ColorScheme.fromSeed(
-    seedColor: amber,
+    seedColor: Palette.amber,
     brightness: Brightness.dark,
   ).copyWith(
-    surface: background,
-    surfaceContainerHighest: surface,
-    onSurface: cream,
-    primary: amber,
-    onPrimary: const Color(0xFF2A1D08),
+    surface: Palette.skyTop,
+    surfaceContainerHighest: Palette.card,
+    onSurface: Palette.cream,
+    primary: Palette.amber,
+    onPrimary: Palette.amberDark,
   );
 
   return ThemeData(
     useMaterial3: true,
     colorScheme: scheme,
-    scaffoldBackgroundColor: background,
+    scaffoldBackgroundColor: Palette.skyTop,
     appBarTheme: const AppBarTheme(
-      backgroundColor: background,
-      foregroundColor: cream,
+      backgroundColor: Palette.skyTop,
+      foregroundColor: Palette.cream,
       elevation: 0,
     ),
     textTheme: Typography.material2021().white.apply(
-          bodyColor: cream,
-          displayColor: cream,
+          bodyColor: Palette.cream,
+          displayColor: Palette.cream,
         ),
   );
 }

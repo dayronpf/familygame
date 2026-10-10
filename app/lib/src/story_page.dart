@@ -9,6 +9,8 @@ import 'hologram_page.dart';
 import 'narration/narrator.dart';
 import 'feedback/feedback_service.dart';
 import 'feedback/rating_card.dart';
+import 'shelf/story_shelf.dart';
+import 'ui/palette.dart';
 
 /// Nombre corto de un cuento para recordarlo («Honestidad · Nilo»). Solo se guarda en el teléfono.
 String storyLabel(Story story) {
@@ -24,6 +26,8 @@ class StoryPage extends StatefulWidget {
     required this.story,
     required this.onAnother,
     required this.feedback,
+    required this.shelf,
+    this.option,
     this.art,
     this.animate = true,
     this.narrator,
@@ -45,6 +49,12 @@ class StoryPage extends StatefulWidget {
   /// Genera otro cuento con la misma enseñanza.
   final Story Function() onAnother;
   final FeedbackService feedback;
+
+  /// «Mis cuentos»: aquí se anota que se contó y se guarda el corazón.
+  final StoryShelf shelf;
+
+  /// Enseñanza elegida al crear el cuento (`null` = «Sorpréndeme»), para poder contarlo igual otra vez.
+  final String? option;
 
   @override
   State<StoryPage> createState() => _StoryPageState();
@@ -79,7 +89,19 @@ class _StoryPageState extends State<StoryPage>
     widget.feedback.enabled.then((v) {
       if (mounted) setState(() => _askRating = v);
     });
+    widget.shelf.addListener(_onShelf);
+    // Fuera del armado de pantalla: el inicio escucha al estante y no puede reconstruirse a mitad de otro armado.
+    WidgetsBinding.instance.addPostFrameCallback((_) => _remember());
   }
+
+  void _onShelf() {
+    if (mounted) setState(() {});
+  }
+
+  ShelfEntry get _entry => ShelfEntry.fromStory(_story, option: widget.option);
+
+  /// Anota el cuento en «Mis cuentos» (los últimos que se contaron).
+  void _remember() => widget.shelf.addRecent(_entry);
 
   @override
   void didChangeDependencies() {
@@ -142,6 +164,7 @@ class _StoryPageState extends State<StoryPage>
 
   @override
   void dispose() {
+    widget.shelf.removeListener(_onShelf);
     _ticker?.dispose();
     _clock.dispose();
     _rememberIfUnanswered();
@@ -165,6 +188,7 @@ class _StoryPageState extends State<StoryPage>
       _answered = false;
       _ratingId = null;
     });
+    _remember();
   }
 
   @override
@@ -176,6 +200,21 @@ class _StoryPageState extends State<StoryPage>
       appBar: AppBar(
         title: Text(_story.moral.name),
         actions: [
+          IconButton(
+            key: const Key('favorite'),
+            icon: Icon(
+              widget.shelf.isFavorite(_entry)
+                  ? Icons.favorite
+                  : Icons.favorite_border,
+              color: widget.shelf.isFavorite(_entry)
+                  ? Palette.moral['generosidad']
+                  : null,
+            ),
+            tooltip: widget.shelf.isFavorite(_entry)
+                ? 'Quitar de Mis cuentos'
+                : 'Guardar en Mis cuentos',
+            onPressed: () => widget.shelf.toggleFavorite(_entry),
+          ),
           if (_stageArt != null && _setups.any((s) => s != null)) ...[
             IconButton(
               icon: const Icon(Icons.movie_filter),

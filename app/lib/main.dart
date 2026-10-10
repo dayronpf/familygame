@@ -5,6 +5,7 @@ import 'src/app.dart';
 import 'src/feedback/feedback_service.dart';
 import 'src/feedback/feedback_store.dart';
 import 'src/feedback/feedback_transport.dart';
+import 'src/shelf/story_shelf.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,5 +17,9 @@ Future<void> main() async {
         ? null
         : HttpFeedbackTransport(Uri.parse('$configuredApi/v1/feedback')),
   );
-  runApp(CalderoApp(feedback: feedback));
+  runApp(CalderoApp(
+    feedback: feedback,
+    shelf: StoryShelf(PrefsShelfStore(prefs)),
+    showSplash: true,
+  ));
 }

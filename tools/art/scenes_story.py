@@ -406,7 +406,9 @@ def cuarto(time="noche", season=None):
     layers = [wall_l, window, curtains]
     if not night:
         layers.append(layer("beam", [S(poly([(262, 60), (378, 60), (470, FLOOR), (170, FLOOR)]), "@beam", None, 0)]))
-    bed = layer("bed", [S(rrect(24, 270, 196, 70, 6), "#6a4a38", "#2a180c", 3), S(rrect(24, 250, 20, 120, 4), "#5a3a28", "#2a180c", 3),
+    bed = layer("bed", [S(ell(122, 392, 112, 9), "#000000", None, 0, 0.35),
+                        S(rrect(24, 270, 196, 120, 6), "#6a4a38", "#2a180c", 3), S(rrect(34, 330, 176, 8, 2), "#000000", None, 0, 0.18),
+                        S(rrect(24, 250, 20, 142, 4), "#5a3a28", "#2a180c", 3), S(rrect(204, 296, 16, 96, 4), "#5a3a28", "#2a180c", 3),
                         S(rrect(36, 236, 176, 48, 10), "#e8dcc4", "#8a7a5a", 2.5),
                         S(rrect(40, 238, 60, 34, 12), "#fffaf0", "#8a7a5a", 2.5),
                         S(rrect(36, 262, 176, 32, 6), "#a8453f", "#5a1a14", 2.5)]

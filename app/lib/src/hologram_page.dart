@@ -11,6 +11,7 @@ import 'audio/ambience.dart';
 import 'narration/narrator.dart';
 import 'narration/playback.dart';
 import 'player_support.dart';
+import 'ui/sleep_timer.dart';
 
 /// Modo holograma: cuatro copias de la escena sobre negro, una por cada cara de un prisma
 /// transparente (pirámide invertida) apoyado en el centro de la pantalla. Sin texto: una voz
@@ -209,6 +210,15 @@ class _HologramPageState extends State<HologramPage>
                         children: [
                           _icon(Icons.close, 'Salir',
                               () => Navigator.pop(context)),
+                          SleepTimerButton(
+                            color: const Color(0xFF9EEBFF),
+                            iconSize: 30,
+                            onPicked: _scheduleHide,
+                            onExpire: () {
+                              _playback.pause();
+                              _ambience.stop();
+                            },
+                          ),
                           _icon(Icons.skip_previous, 'Escena anterior',
                               pb.previous),
                           _icon(pb.playing ? Icons.pause : Icons.play_arrow,

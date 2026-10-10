@@ -5,12 +5,17 @@ import 'package:flutter/material.dart';
 
 import 'feedback/feedback_service.dart';
 import 'feedback/rating_event.dart';
+import 'share.dart';
+import 'workshop_page.dart';
 
 /// Ajustes para adultos: permiso de valoraciones y transparencia total sobre qué se envía.
 class SettingsPage extends StatefulWidget {
-  const SettingsPage({super.key, required this.feedback});
+  const SettingsPage({super.key, required this.feedback, this.bundle});
 
   final FeedbackService feedback;
+
+  /// Para abrir el Taller de personajes (herramienta de prueba).
+  final AssetBundle? bundle;
 
   @override
   State<SettingsPage> createState() => _SettingsPageState();
@@ -209,7 +214,33 @@ class _SettingsPageState extends State<SettingsPage> {
                     ],
                   ),
                   const SizedBox(height: 16),
-                  Text('Versión de la app: $appVersion', style: text.bodySmall),
+                  const Divider(height: 32),
+                  ListTile(
+                    key: const Key('settings-share'),
+                    contentPadding: EdgeInsets.zero,
+                    leading: const Icon(Icons.ios_share),
+                    title: const Text('Recomendar a un amigo'),
+                    subtitle: const Text(
+                        'Envía el enlace por WhatsApp, mensajes o correo.'),
+                    onTap: () => shareApp(context),
+                  ),
+                  if (widget.bundle != null)
+                    ListTile(
+                      key: const Key('open-workshop'),
+                      contentPadding: EdgeInsets.zero,
+                      leading: const Icon(Icons.brush_outlined),
+                      title: const Text('Taller de personajes (prueba)'),
+                      subtitle: const Text(
+                          'Herramienta para ver los dibujos y medir el rendimiento.'),
+                      onTap: () => Navigator.of(context).push(
+                        MaterialPageRoute<void>(
+                          builder: (_) => WorkshopPage(bundle: widget.bundle!),
+                        ),
+                      ),
+                    ),
+                  const SizedBox(height: 8),
+                  Text('Caldero de Cuentos · versión $appVersion',
+                      style: text.bodySmall),
                 ],
               ),
       ),
