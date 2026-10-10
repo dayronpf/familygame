@@ -12,7 +12,7 @@ on:
     paths: ['app/**', 'packages/**', 'art/**', 'content/**', '.github/workflows/android.yml']
 
 permissions:
-  contents: read
+  contents: write # para publicar el APK en la release fija «apk-latest»
 
 env:
   FLUTTER_VERSION: '3.47.6'
@@ -45,6 +45,20 @@ jobs:
           ls -lh build/app/outputs/flutter-apk/
           echo "### APK compilado" >> "$GITHUB_STEP_SUMMARY"
           echo "Tamaño: $(du -h build/app/outputs/flutter-apk/app-release.apk | cut -f1)" >> "$GITHUB_STEP_SUMMARY"
+      - name: Publicar el APK suelto (enlace directo, sin zip)
+        if: github.event_name == 'push'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cp build/app/outputs/flutter-apk/app-release.apk caldero-de-cuentos.apk
+          # Release fija: siempre tiene el APK más reciente, con la misma URL.
+          gh release delete apk-latest --cleanup-tag --yes --repo "$GITHUB_REPOSITORY" || true
+          gh release create apk-latest caldero-de-cuentos.apk \
+            --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" --prerelease \
+            --title "APK de prueba (el más reciente)" \
+            --notes "Compilado desde ${GITHUB_SHA::7} (${GITHUB_REF_NAME}). Firmado con la llave de prueba fija: se instala encima del anterior. NO es para las tiendas."
+          echo "### Descarga directa" >> "$GITHUB_STEP_SUMMARY"
+          echo "https://github.com/$GITHUB_REPOSITORY/releases/download/apk-latest/caldero-de-cuentos.apk" >> "$GITHUB_STEP_SUMMARY"
       - uses: actions/upload-artifact@v4
         with:
           name: caldero-de-cuentos-apk

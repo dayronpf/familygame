@@ -86,7 +86,9 @@ semilla da un cuento distinto en Python y en Dart; lo que ambos comparten es el 
 
 ## Instalar la app de prueba en Android
 
-Cada subida a la rama de trabajo compila un APK (Actions → «Android (APK de prueba)» → Artifacts → `caldero-de-cuentos-apk`).
+Cada subida a la rama de trabajo compila un APK y lo publica **suelto** (sin zip) en la release fija `apk-latest`:
+**https://github.com/dayronpf/familygame/releases/download/apk-latest/caldero-de-cuentos.apk** (siempre el más reciente).
+También queda como artefacto en Actions (en zip).
 Está firmado con una **llave de prueba fija y pública** (`app/android/app/caldero-debug.p12`), así que cada APK nuevo se instala
 **encima** del anterior sin perder datos. Si Android dice «conflicto con un paquete», es que la versión instalada viene de una
 compilación anterior con otra llave: **desinstálala una sola vez** y se acabó. Esta llave NO sirve para las tiendas.
