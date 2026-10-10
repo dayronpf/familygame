@@ -32,6 +32,8 @@ mientras avanza y puede proyectarse como **holograma** con una pirámide transpa
 | [docs/12-valoraciones-y-mejora-continua.md](docs/12-valoraciones-y-mejora-continua.md) | Valoración 1–5 al final de cada cuento (con motivo opcional si es baja): qué se envía, evidencia, análisis y cómo mejora los cuentos |
 | [docs/13-auditoria-de-historias.md](docs/13-auditoria-de-historias.md) | Auditoría de coherencia de los cuentos generados (medida con `audit_stories`), causas y plan de arreglo |
 | [docs/14-rubrica-editorial.md](docs/14-rubrica-editorial.md) | Rúbrica y ciclo de mejora de los cuentos (corpus → revisión independiente → corrección → medición) con el registro de vueltas |
+| [docs/15-modo-cine-y-holograma.md](docs/15-modo-cine-y-holograma.md) | Modo cine y modo holograma (voz en off, fondo, geometría del prisma) |
+| [docs/16-coherencia-texto-imagen.md](docs/16-coherencia-texto-imagen.md) | Lo que se lee es lo que se ve: hora, estación, primeros planos, reglas del validador y revisión con imágenes |
 | [docs/11-pipeline-de-arte-por-codigo.md](docs/11-pipeline-de-arte-por-codigo.md) | Arte generado por código (sin presupuesto ni herramientas de pago), pack medieval, 3D y límites |
 
 ## Estructura del repositorio
