@@ -120,7 +120,7 @@ double holoCrop(int actors) => actors <= 2 ? 0.55 : (actors == 3 ? 0.68 : 0.82);
 /// Junta hacia el centro de la escena a los personajes y objetos de [setup] según [crop].
 List<ActorInstance> holoSqueeze(
     List<ActorInstance> list, StageSetup setup, double crop) {
-  final cx = setup.place.view.center.dx;
+  final cx = setup.view.center.dx;
   return [for (final a in list) a.withX(cx + (a.x - cx) * crop)];
 }
 
@@ -151,7 +151,12 @@ class HologramPainter extends CustomPainter {
 
   /// Parte cuadrada de la escena que se ve: todo el ancho, con los pies cerca del borde inferior.
   static Rect viewFor(StageSetup setup, double crop) {
-    final v = setup.place.view;
+    final v = setup.view;
+    if (setup.focus) {
+      // Primer plano: un cuadrado centrado en el objeto.
+      return Rect.fromCenter(
+          center: v.center, width: v.height, height: v.height);
+    }
     final side = v.width * crop;
     final floor = setup.place.floor;
     return Rect.fromLTWH(
@@ -172,7 +177,8 @@ class HologramPainter extends CustomPainter {
     final t = clock.value;
     // Luz tenue en el suelo, bajo los personajes.
     final k = q / view.width;
-    final floorY = (setup.place.floor - view.top) * k;
+    final floor = setup.focus ? setup.props.first.y : setup.place.floor;
+    final floorY = (floor - view.top) * k;
     inner.drawOval(
       Rect.fromCenter(
           center: Offset(q / 2, floorY), width: q * 0.9, height: q * 0.12),

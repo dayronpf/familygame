@@ -11,6 +11,7 @@ class PlaceArt {
     required this.view,
     required this.floor,
     required this.scale,
+    this.looks = const {},
   });
 
   factory PlaceArt.fromJson(Map<String, Object?> j) {
@@ -21,6 +22,11 @@ class PlaceArt {
           v[0].toDouble(), v[1].toDouble(), v[2].toDouble(), v[3].toDouble()),
       floor: (j['floor']! as num).toDouble(),
       scale: (j['scale']! as num).toDouble(),
+      looks: {
+        for (final e
+            in ((j['looks'] as Map<String, Object?>?) ?? const {}).entries)
+          e.key: e.value! as String,
+      },
     );
   }
 
@@ -32,6 +38,19 @@ class PlaceArt {
   /// Coordenada y de los pies de los personajes.
   final double floor;
   final double scale;
+
+  /// Escenas de este lugar a cada hora (`dia`, `amanecer`, `atardecer`, `noche`) y, si la hay, estación:
+  /// `<hora>` o `<hora>__<estación>` (`invierno`, `primavera`, `otono`) → id de escena.
+  final Map<String, String> looks;
+
+  /// Id de la escena para [time] y [season]. Si no existe esa combinación se prueba solo la hora y,
+  /// por último, la escena base del lugar.
+  String sceneId({String? time, String? season}) {
+    if (time == null) return scene;
+    return looks[season == null ? time : '${time}__$season'] ??
+        looks[time] ??
+        scene;
+  }
 }
 
 /// Arte cargado: personajes, biblioteca de clips y escenas.

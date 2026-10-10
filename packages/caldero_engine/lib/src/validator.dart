@@ -417,6 +417,7 @@ void _checkStory(Premise premise, Story story, Set<String> problems) {
   // Texto ↔ ilustración: quien sale dibujado está en el texto y quien el texto cuenta sale dibujado
   for (var i = 0; i < story.scenes.length; i++) {
     _checkStage(premise, story, i, add);
+    _checkSetting(premise, story, i, add);
   }
 
   // Los lugares no cambian sin contar el viaje
@@ -448,7 +449,14 @@ const int maxOnStage = 6;
 
 /// Un personaje de una ilustración: una ranura del reparto (`who`) o un secundario (`rig`).
 class StageEntry {
-  const StageEntry({this.who, this.rig, this.clip, this.x});
+  const StageEntry({
+    this.who,
+    this.rig,
+    this.clip,
+    this.x,
+    this.lift,
+    this.scale,
+  });
 
   final String? who;
   final String? rig;
@@ -456,6 +464,10 @@ class StageEntry {
 
   /// Posición horizontal opcional (0–1 del ancho visible); por defecto se reparten a partes iguales.
   final double? x;
+
+  /// Cuánto se sube sobre el suelo (para pisar un puente o una tarima) y factor de tamaño (más lejos = menor).
+  final double? lift;
+  final double? scale;
 }
 
 /// Personajes de una escena, de izquierda a derecha: la lista `stage` o, en packs antiguos, `actors`.
@@ -470,6 +482,8 @@ List<StageEntry> stageEntries(Map<String, Object?> scene) {
             rig: e['rig'] as String?,
             clip: e['clip'] as String?,
             x: (e['x'] as num?)?.toDouble(),
+            lift: (e['lift'] as num?)?.toDouble(),
+            scale: (e['scale'] as num?)?.toDouble(),
           )
         else if (e is String)
           StageEntry(who: e),
@@ -496,7 +510,10 @@ void _checkStage(
 ) {
   final scene = story.scenes[i];
   final text = scene.text;
-  final entries = stageEntries(scene.directives);
+  // En un primer plano (`focus`) solo se ve el objeto: nadie sale dibujado ni hace falta decir `offstage`.
+  final isFocus = scene.directives['focus'] is Map;
+  final entries =
+      isFocus ? const <StageEntry>[] : stageEntries(scene.directives);
   final offstage = _offstage(scene.directives);
   final where = 'escena ${i + 1} (${scene.fragmentId})';
 
@@ -511,7 +528,7 @@ void _checkStage(
     if (onStage && !named && role != 'hero') {
       add('$where: «$role» (${e.given}) sale dibujado pero el texto no lo nombra');
     }
-    if (named && !onStage && !offstage.contains(role)) {
+    if (named && !onStage && !isFocus && !offstage.contains(role)) {
       add('$where: el texto nombra a «$role» (${e.given}) pero no sale dibujado (¿offstage?)');
     }
   }
@@ -522,8 +539,182 @@ void _checkStage(
     if (onStage && !named) {
       add('$where: «${npc.key}» sale dibujado pero el texto no lo nombra (${npc.value.join('/')})');
     }
-    if (named && !onStage && !offstage.contains(npc.key)) {
+    if (named && !onStage && !isFocus && !offstage.contains(npc.key)) {
       add('$where: el texto nombra a «${npc.key}» pero no sale dibujado (¿offstage?)');
     }
+  }
+}
+
+// ---------------------------------------------------------------- hora, estación y lugar
+
+/// Qué horas del día admite cada pista del texto. Si el texto trae varias pistas basta con que la hora de
+/// la ilustración sea admitida por alguna (una descripción habitual como «por la mañana… por la noche…»).
+final List<(RegExp, Set<String>)> _timeCues = [
+  (
+    RegExp(
+      r'\b(?:aquella|esa|esta|la misma|toda la|de|por la) noche\b|medianoche|anocheci|a oscuras',
+      caseSensitive: false,
+    ),
+    {'noche'},
+  ),
+  // «la Luna» con mayúscula es el nombre del castillo, no la luna del cielo; «Una noche» abre una escena
+  // (y «una noche entera» dentro de una frase es una duración)
+  (RegExp(r'\bUna noche\b|\bla luna\b|bajo la luna'), {'noche'}),
+  (
+    RegExp(
+      r'amanec|\bal alba\b|antes de que (?:saliera|saliese|salga) el sol|no había salido el sol|madrugada',
+      caseSensitive: false,
+    ),
+    {'amanecer', 'noche'},
+  ),
+  (
+    RegExp(
+      r'por la mañana|cada mañana|una mañana|esa mañana|aquella mañana|esta mañana|mediodía',
+      caseSensitive: false,
+    ),
+    {'dia', 'amanecer'},
+  ),
+  (
+    RegExp(
+      r'(?:esa|aquella|esta|cada) tarde|todas las tardes|por la tarde',
+      caseSensitive: false,
+    ),
+    {'dia', 'atardecer'},
+  ),
+  (
+    RegExp(
+      r'atardec|cielo naranja|al ponerse el sol|puesta de sol|al caer la tarde',
+      caseSensitive: false,
+    ),
+    {'atardecer'},
+  ),
+];
+
+/// Estación que cuenta cada pista del texto; `verano` = la normal (sin estación) o la primavera.
+final List<(RegExp, Set<String>)> _seasonCues = [
+  (
+    RegExp(
+      r'invierno|nevada|nevaba|nevó|nieve|hielo',
+      caseSensitive: false,
+    ),
+    {'invierno'},
+  ),
+  (RegExp(r'primavera|charcos', caseSensitive: false), {'primavera'}),
+  (RegExp(r'verano', caseSensitive: false), {'', 'primavera'}),
+  (
+    RegExp(
+      r'otoño|hojas (?:se pusieron )?doradas|hojas secas',
+      caseSensitive: false,
+    ),
+    {'otono'},
+  ),
+];
+
+/// Rasgos del lugar que el texto puede nombrar y que el arte debe tener dibujados.
+final List<(RegExp, String)> _featureWords = [
+  (RegExp(r'\bpozo\b', caseSensitive: false), 'pozo'),
+  (RegExp(r'\bventana\b', caseSensitive: false), 'ventana'),
+  (RegExp(r'\b(?:cama|almohada)\b', caseSensitive: false), 'cama'),
+  (RegExp(r'\b(?:mesa|mesita)\b', caseSensitive: false), 'mesa'),
+  (RegExp(r'\bmostrador\b', caseSensitive: false), 'mostrador'),
+  (RegExp(r'\bhorno\b', caseSensitive: false), 'horno'),
+  (RegExp(r'\bpuente\b', caseSensitive: false), 'puente'),
+];
+
+/// Horas y estaciones (`time`, `season`), rasgos del lugar y primer plano de los objetos nuevos:
+/// lo que el texto cuenta es lo que se ve.
+void _checkSetting(
+  Premise premise,
+  Story story,
+  int i,
+  void Function(String) add,
+) {
+  final scene = story.scenes[i];
+  final d = scene.directives;
+  final bg = d['bg'];
+  final place = bg is String ? story.cast[bg] : null;
+  if (place is! Place) return;
+  final text = scene.text;
+  final where = 'escena ${i + 1} (${scene.fragmentId})';
+
+  // Las pistas de hora y estación se buscan en la narración: lo que se dice entre «» puede referirse a otro momento
+  final narration = text.replaceAll(RegExp('«[^»]*»'), ' ');
+  final time = d['time'] as String?;
+  final season = d['season'] as String?;
+  final times = place.times;
+  if (times != null) {
+    if (time == null) {
+      add('$where: falta «time» (${times.join('/')}) para dibujar ${place.noun} a la hora del texto');
+    } else if (!times.contains(time)) {
+      add('$where: «time: $time» no existe en «${place.id}» (hay ${times.join('/')})');
+    } else {
+      final allowed = <String>{};
+      final cues = <String>[];
+      for (final (re, set) in _timeCues) {
+        final m = re.firstMatch(narration);
+        if (m != null) {
+          allowed.addAll(set);
+          cues.add('«${m.group(0)}»');
+        }
+      }
+      if (allowed.isNotEmpty && !allowed.contains(time)) {
+        add('$where: el texto dice ${cues.join(', ')} pero se dibuja «time: $time» '
+            '(debería ser ${allowed.join(' o ')})');
+      }
+    }
+  }
+  if (season != null && !place.seasons.contains(season)) {
+    add('$where: «season: $season» no existe en «${place.id}» '
+        '(hay ${place.seasons.isEmpty ? 'ninguna' : place.seasons.join('/')})');
+  }
+  if (times != null) {
+    final allowed = <String>{};
+    final cues = <String>[];
+    for (final (re, set) in _seasonCues) {
+      final m = re.firstMatch(narration);
+      if (m != null) {
+        allowed.addAll(set);
+        cues.add('«${m.group(0)}»');
+      }
+    }
+    if (allowed.isNotEmpty && !allowed.contains(season ?? '')) {
+      add('$where: el texto dice ${cues.join(', ')} pero se dibuja '
+          '«season: ${season ?? 'ninguna'}» (debería ser ${allowed.map((s) => s.isEmpty ? 'ninguna' : s).join(' o ')})');
+    }
+  }
+
+  final features = place.features;
+  if (features != null) {
+    // Lo que se ve: los rasgos del lugar y los objetos que la escena dibuja (una mesa larga, una maceta).
+    final seen = <String>{
+      ...features,
+      for (final p in (d['props'] is List ? d['props']! as List : const []))
+        if (p is Map) '${p['prop']}',
+      if (d['focus'] is Map) '${(d['focus']! as Map)['prop']}',
+    };
+    // `unseen`: lo que el texto nombra a propósito sin que se vea (algo que se atisba por una rendija).
+    final unseen = [
+      for (final x in (d['unseen'] is List ? d['unseen']! as List : const []))
+        '$x',
+    ];
+    for (final (re, feature) in _featureWords) {
+      final m = re.firstMatch(text);
+      if (m != null && !seen.contains(feature) && !unseen.contains(feature)) {
+        add('$where: el texto nombra «${m.group(0)}» pero en ${place.noun} no se ve «$feature» '
+            '(dibújalo con un objeto, cambia el texto o márcalo «unseen»)');
+      }
+    }
+  }
+
+  // Un objeto que se presenta se ve de cerca: primer plano (`focus`) de ese objeto
+  final beat = premise.beats[i];
+  for (final slot in beat.introduces) {
+    final e = story.cast[slot];
+    if (e is! Prop) continue;
+    final focus = d['focus'];
+    if (focus is! Map || focus['prop'] != e.id) {
+      add('$where: «$slot» (${e.id}) se presenta aquí y debe verse de cerca (falta «focus» con prop: ${e.id})');
+    }
+    break; // si se presentan varios objetos a la vez, basta con el primero
   }
 }

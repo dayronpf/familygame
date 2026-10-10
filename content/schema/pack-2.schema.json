@@ -189,6 +189,36 @@
             "items": {
               "$ref": "#/$defs/id"
             }
+          },
+          "times": {
+            "type": "array",
+            "items": {
+              "enum": [
+                "dia",
+                "amanecer",
+                "atardecer",
+                "noche"
+              ]
+            },
+            "uniqueItems": true
+          },
+          "seasons": {
+            "type": "array",
+            "items": {
+              "enum": [
+                "invierno",
+                "primavera",
+                "otono"
+              ]
+            },
+            "uniqueItems": true
+          },
+          "features": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/id"
+            },
+            "uniqueItems": true
           }
         }
       }

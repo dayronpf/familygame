@@ -72,10 +72,13 @@ class StageArt {
   final Map<String, CompiledRig> rigs;
   final Map<String, CompiledScene> _scenes = {};
 
-  /// Escena compilada del lugar [placeId], o `null` si ese lugar no tiene arte.
-  CompiledScene? sceneFor(String placeId) {
+  /// Escena compilada del lugar [placeId] a la hora [time] y en la estación [season] (ver
+  /// [PlaceArt.looks]), o `null` si ese lugar no tiene arte.
+  CompiledScene? sceneFor(String placeId, {String? time, String? season}) {
     final place = library.places[placeId];
-    final scene = place == null ? null : library.scenes[place.scene];
+    final scene = place == null
+        ? null
+        : library.scenes[place.sceneId(time: time, season: season)];
     if (scene == null) return null;
     return _scenes.putIfAbsent(scene.id, () => CompiledScene(scene));
   }
@@ -92,14 +95,22 @@ class StageSetup {
     required this.place,
     required this.scene,
     required this.actors,
+    required this.view,
     this.props = const [],
     this.tint,
+    this.focus = false,
   });
 
   final String placeId;
   final PlaceArt place;
   final CompiledScene scene;
   final List<ActorInstance> actors;
+
+  /// Parte de la escena que se ve: la ventana del lugar o, en un primer plano, el recuadro sobre el objeto.
+  final Rect view;
+
+  /// Primer plano de un objeto (sin personajes, con viñeta): para que se vea lo que el texto cuenta.
+  final bool focus;
 
   /// Objetos de la trama (campana, olla, linterna…).
   final List<ActorInstance> props;
@@ -111,9 +122,11 @@ class StageSetup {
 /// Decide fondo, personajes, objetos, animación y luz de una escena del cuento a partir de sus
 /// directivas y del reparto. Devuelve `null` si no hay arte para ese lugar.
 ///
-/// Directivas: `bg` (ranura de lugar), `stage` (lista de personajes de izquierda a derecha: `who` = ranura del
-/// reparto o `rig` = secundario, con `clip` y `x` opcionales; en packs antiguos, `actors`), `mood`,
-/// `props` (`prop`, `x`, `clip`, `scale`, `lift`, `front`, `emit`) y `light`.
+/// Directivas: `bg` (ranura de lugar), `time` (`dia`, `amanecer`, `atardecer`, `noche`) y `season`
+/// (`invierno`, `primavera`, `otono`) que eligen la luz del fondo, `stage` (lista de personajes de izquierda a
+/// derecha: `who` = ranura del reparto o `rig` = secundario, con `clip` y `x` opcionales; en packs antiguos,
+/// `actors`), `mood`, `props` (`prop`, `x`, `clip`, `scale`, `lift`, `front`, `emit`), `focus` (primer plano de
+/// un objeto: `prop`, `x`, `lift`, `clip`, `scale`, `fill`) y `light`.
 StageSetup? stageFor(
   StageArt art,
   Map<String, Entity> cast,
@@ -125,8 +138,19 @@ StageSetup? stageFor(
   final placeEntity = slot is Place ? slot : cast['place'];
   if (placeEntity == null) return null;
   final place = art.library.places[placeEntity.id];
-  final scene = art.sceneFor(placeEntity.id);
+  final time = directives['time'];
+  final season = directives['season'];
+  final scene = art.sceneFor(
+    placeEntity.id,
+    time: time is String ? time : null,
+    season: season is String ? season : null,
+  );
   if (place == null || scene == null) return null;
+  final focus = directives['focus'];
+  if (focus is Map) {
+    final f = _focusSetup(art, placeEntity.id, place, scene, focus, directives);
+    if (f != null) return f;
+  }
 
   var entries = stageEntries(directives);
   if (directives['stage'] == null && directives['actors'] == null) {
@@ -160,11 +184,12 @@ StageSetup? stageFor(
       rig: art.rigs[rigId]!,
       clip: clip,
       x: view.left + view.width * (e.x ?? (0.08 + 0.84 * (i + 0.5) / n)),
-      y: place.floor - (back ? 8 : 0),
+      y: place.floor - (back ? 8 : 0) - (e.lift ?? 0),
       scale: place.scale *
           framing *
           (art.library.sizes[rigId] ?? 1) *
-          (back ? 0.95 : 1),
+          (back ? 0.95 : 1) *
+          (e.scale ?? 1),
       phase: i * 0.7,
     ));
   }
@@ -195,16 +220,92 @@ StageSetup? stageFor(
     place: place,
     scene: scene,
     actors: actors,
+    view: view,
     props: props,
     tint: lightTints[directives['light']],
+  );
+}
+
+/// Primer plano: un objeto grande en el centro, sin personajes. El recuadro se calcula con el tamaño del
+/// dibujo del objeto para que ocupe `fill` (por defecto la mitad) del encuadre, sin salirse de la escena.
+StageSetup? _focusSetup(
+  StageArt art,
+  String placeId,
+  PlaceArt place,
+  CompiledScene scene,
+  Map<Object?, Object?> focus,
+  Map<String, Object?> directives,
+) {
+  final rig = art.rigs[focus['prop']];
+  final clip = art.clip(focus['clip'] as String?) ?? art.clip('still');
+  if (rig == null || clip == null) return null;
+  final base = place.view;
+  final sc = place.scale * ((focus['scale'] as num?)?.toDouble() ?? 1);
+  final lift = (focus['lift'] as num?)?.toDouble() ?? 0;
+  final px = base.left + base.width * ((focus['x'] as num?)?.toDouble() ?? 0.5);
+  final py = place.floor - lift;
+  final vb = rig.rig.viewBox;
+  final fill = (focus['fill'] as num?)?.toDouble() ?? 0.5;
+  final ratio = base.width / base.height;
+  var vh = vb[3] * sc / fill;
+  var vw = vh * ratio;
+  if (vb[2] * sc > vw * fill * 1.5) {
+    vw = vb[2] * sc / (fill * 1.5);
+    vh = vw / ratio;
+  }
+  final sw = scene.scene.width.toDouble();
+  final sh = scene.scene.height.toDouble();
+  vw = vw.clamp(40.0, base.width);
+  vh = vw / ratio;
+  final cx = px + (vb[0] + vb[2] / 2) * sc;
+  final cy = py + (vb[1] + vb[3] / 2) * sc;
+  final left = (cx - vw / 2).clamp(base.left, base.right - vw);
+  final top = (cy - vh / 2).clamp(base.top, base.bottom - vh);
+  assert(left + vw <= sw + 0.01 && top + vh <= sh + 0.01);
+  final item = ActorInstance(
+    rig: rig,
+    clip: clip,
+    x: px,
+    y: py,
+    scale: sc,
+    shadow: lift == 0,
+  );
+  final extra = <ActorInstance>[];
+  final rawProps = directives['props'];
+  if (rawProps is List) {
+    for (final p in rawProps) {
+      if (p is! Map || p['prop'] == focus['prop']) continue;
+      final r = art.rigs[p['prop']];
+      final c = art.clip(p['clip'] as String?) ?? art.clip('still');
+      if (r == null || c == null) continue;
+      extra.add(ActorInstance(
+        rig: r,
+        clip: c,
+        x: base.left + base.width * ((p['x'] as num?)?.toDouble() ?? 0.5),
+        y: place.floor - ((p['lift'] as num?)?.toDouble() ?? 0),
+        scale: place.scale * ((p['scale'] as num?)?.toDouble() ?? 1),
+        shadow: (p['lift'] as num?) == null,
+        emissive: p['emit'] == true,
+      ));
+    }
+  }
+  return StageSetup(
+    placeId: placeId,
+    place: place,
+    scene: scene,
+    actors: const [],
+    view: Rect.fromLTWH(left, top, vw, vh),
+    props: [item, ...extra],
+    tint: lightTints[directives['light']],
+    focus: true,
   );
 }
 
 /// Los personajes de [setup] llegan caminando al aparecer la escena (desde el lado en que están).
 List<ActorInstance> withEntrance(StageSetup setup, StageArt? art, double t0) {
   final walk = art?.clip('walk');
-  final center = setup.place.view.center.dx;
-  final dist = setup.place.view.width * 0.3;
+  final center = setup.view.center.dx;
+  final dist = setup.view.width * 0.3;
   return [
     for (final a in setup.actors)
       a.entering(t0: t0, walk: walk, from: a.x < center ? -dist : dist),
@@ -263,7 +364,7 @@ class _StoryStageState extends State<StoryStage> {
   @override
   Widget build(BuildContext context) {
     final setup = widget.setup;
-    final Rect view = setup.place.view;
+    final Rect view = setup.view;
     return Semantics(
       label: 'Ilustración animada del cuento',
       image: true,
@@ -282,7 +383,9 @@ class _StoryStageState extends State<StoryStage> {
                     actors: _actors,
                     props: setup.props,
                     tint: setup.tint,
-                    camera: widget.animate,
+                    camera: widget.animate && !setup.focus,
+                    vignette: setup.focus,
+                    blurBackground: setup.focus,
                     clock: widget.clock,
                     view: view,
                   ),

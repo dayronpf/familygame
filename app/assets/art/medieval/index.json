@@ -32,6 +32,10 @@
   "medieval/rigs/cometa.json",
   "medieval/rigs/girasol.json",
   "medieval/rigs/semillas.json",
+  "medieval/rigs/semillas_dos.json",
+  "medieval/rigs/mesa.json",
+  "medieval/rigs/maceta.json",
+  "medieval/rigs/maceta_brote.json",
   "medieval/rigs/piedras.json",
   "medieval/rigs/hierba.json",
   "medieval/rigs/pedernal.json",
@@ -46,7 +50,36 @@
   "medieval/scenes/rio.json",
   "medieval/scenes/aldea.json",
   "medieval/scenes/casa.json",
-  "medieval/scenes/cuarto.json"
+  "medieval/scenes/cuarto.json",
+  "medieval/scenes/aldea__amanecer.json",
+  "medieval/scenes/aldea__amanecer__invierno.json",
+  "medieval/scenes/aldea__amanecer__otono.json",
+  "medieval/scenes/aldea__amanecer__primavera.json",
+  "medieval/scenes/aldea__atardecer.json",
+  "medieval/scenes/aldea__atardecer__invierno.json",
+  "medieval/scenes/aldea__atardecer__otono.json",
+  "medieval/scenes/aldea__atardecer__primavera.json",
+  "medieval/scenes/aldea__dia.json",
+  "medieval/scenes/aldea__dia__invierno.json",
+  "medieval/scenes/aldea__dia__otono.json",
+  "medieval/scenes/aldea__dia__primavera.json",
+  "medieval/scenes/aldea__noche.json",
+  "medieval/scenes/aldea__noche__invierno.json",
+  "medieval/scenes/aldea__noche__otono.json",
+  "medieval/scenes/aldea__noche__primavera.json",
+  "medieval/scenes/bosque__atardecer.json",
+  "medieval/scenes/bosque__dia.json",
+  "medieval/scenes/bosque__noche.json",
+  "medieval/scenes/castle_night__atardecer.json",
+  "medieval/scenes/castle_night__dia.json",
+  "medieval/scenes/cuarto__dia.json",
+  "medieval/scenes/cuarto__dia__invierno.json",
+  "medieval/scenes/cuarto__dia__primavera.json",
+  "medieval/scenes/cuarto__noche__invierno.json",
+  "medieval/scenes/cuarto__noche__primavera.json",
+  "medieval/scenes/rio__atardecer.json",
+  "medieval/scenes/rio__dia.json",
+  "medieval/scenes/rio__noche.json"
  ],
  "clips": "clips/humanoid.json",
  "extraClips": [
@@ -74,7 +107,12 @@
     450
    ],
    "floor": 662,
-   "scale": 0.56
+   "scale": 0.56,
+   "looks": {
+    "noche": "castle_night",
+    "dia": "castle_night__dia",
+    "atardecer": "castle_night__atardecer"
+   }
   },
   "bosque": {
    "scene": "bosque",
@@ -85,7 +123,12 @@
     480
    ],
    "floor": 410,
-   "scale": 0.6
+   "scale": 0.6,
+   "looks": {
+    "dia": "bosque__dia",
+    "atardecer": "bosque__atardecer",
+    "noche": "bosque__noche"
+   }
   },
   "cueva": {
    "scene": "cueva",
@@ -107,7 +150,12 @@
     480
    ],
    "floor": 410,
-   "scale": 0.6
+   "scale": 0.6,
+   "looks": {
+    "dia": "rio__dia",
+    "atardecer": "rio__atardecer",
+    "noche": "rio__noche"
+   }
   },
   "aldea": {
    "scene": "aldea",
@@ -118,7 +166,25 @@
     480
    ],
    "floor": 410,
-   "scale": 0.6
+   "scale": 0.6,
+   "looks": {
+    "atardecer": "aldea__atardecer",
+    "dia": "aldea__dia",
+    "dia__invierno": "aldea__dia__invierno",
+    "dia__primavera": "aldea__dia__primavera",
+    "dia__otono": "aldea__dia__otono",
+    "amanecer": "aldea__amanecer",
+    "amanecer__invierno": "aldea__amanecer__invierno",
+    "amanecer__primavera": "aldea__amanecer__primavera",
+    "amanecer__otono": "aldea__amanecer__otono",
+    "atardecer__invierno": "aldea__atardecer__invierno",
+    "atardecer__primavera": "aldea__atardecer__primavera",
+    "atardecer__otono": "aldea__atardecer__otono",
+    "noche": "aldea__noche",
+    "noche__invierno": "aldea__noche__invierno",
+    "noche__primavera": "aldea__noche__primavera",
+    "noche__otono": "aldea__noche__otono"
+   }
   },
   "casa": {
    "scene": "casa",
@@ -129,7 +195,11 @@
     480
    ],
    "floor": 410,
-   "scale": 0.6
+   "scale": 0.6,
+   "looks": {
+    "noche": "casa",
+    "noche__invierno": "casa"
+   }
   },
   "cuarto": {
    "scene": "cuarto",
@@ -140,7 +210,15 @@
     480
    ],
    "floor": 410,
-   "scale": 0.6
+   "scale": 0.6,
+   "looks": {
+    "noche": "cuarto",
+    "dia": "cuarto__dia",
+    "dia__invierno": "cuarto__dia__invierno",
+    "dia__primavera": "cuarto__dia__primavera",
+    "noche__invierno": "cuarto__noche__invierno",
+    "noche__primavera": "cuarto__noche__primavera"
+   }
   }
  }
 }

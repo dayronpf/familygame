@@ -114,6 +114,8 @@ class ScenePainter extends CustomPainter {
     this.props = const [],
     this.tint,
     this.camera = false,
+    this.vignette = false,
+    this.blurBackground = false,
     this.showBackground = true,
     this.view,
   }) : super(repaint: clock);
@@ -126,6 +128,12 @@ class ScenePainter extends CustomPainter {
 
   /// Luz de la escena (noche, atardecer…): se multiplica sobre lo dibujado.
   final Color? tint;
+
+  /// Desenfoca el fondo (los lugares y su luz se intuyen, pero el objeto manda): primer plano.
+  final bool blurBackground;
+
+  /// Oscurece los bordes para centrar la mirada en el objeto (primer plano).
+  final bool vignette;
 
   /// Deriva suave de cámara (un empujón lento y un balanceo mínimo) para que la imagen no sea fija.
   final bool camera;
@@ -188,12 +196,19 @@ class ScenePainter extends CustomPainter {
     }
 
     if (showBackground) {
+      if (blurBackground) {
+        canvas.saveLayer(
+          v.inflate(60),
+          Paint()..imageFilter = ui.ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+        );
+      }
       for (final layer in scene.layers) {
         canvas.drawPicture(layer.picture);
         for (final c in layer.node.post) {
           c.draw(canvas, const {}, t, 1);
         }
       }
+      if (blurBackground) canvas.restore();
     }
     for (final p in props) {
       if (!p.front && !p.emissive) _drawActor(canvas, p, t);
@@ -218,6 +233,19 @@ class ScenePainter extends CustomPainter {
     for (final p in props) {
       if (p.emissive) _drawActor(canvas, p, t);
     }
+    if (vignette) {
+      final r = v.longestSide * 0.62;
+      canvas.drawRect(
+        v.inflate(40),
+        Paint()
+          ..shader = ui.Gradient.radial(
+            v.center,
+            r,
+            const [Color(0x00000000), Color(0x8C000000)],
+            const [0.55, 1.0],
+          ),
+      );
+    }
     canvas.restore();
   }
 
@@ -228,6 +256,8 @@ class ScenePainter extends CustomPainter {
       old.view != view ||
       old.tint != tint ||
       old.camera != camera ||
+      old.vignette != vignette ||
+      old.blurBackground != blurBackground ||
       !listEquals(old.actors, actors) ||
       !listEquals(old.props, props);
 }

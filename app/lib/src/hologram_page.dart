@@ -80,7 +80,7 @@ class _HologramPageState extends State<HologramPage>
       setState(() {
         _shownScene = _playback.scene;
         _setup = s;
-        _crop = s == null ? 1 : holoCrop(s.actors.length);
+        _crop = s == null || s.focus ? 1 : holoCrop(s.actors.length);
         _actors = s == null
             ? const []
             : holoSqueeze(

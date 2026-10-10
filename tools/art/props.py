@@ -234,13 +234,76 @@ def girasol():
 
 
 # --------------------------------------------------------------- semillas
-def semillas():
-    """Sobrecito de papel con semillas de girasol. Origen: base, centrado."""
-    seeds = [S(ell(-14 + i * 14, -8, 5, 9), "#f2ead4", "#3a2412", 1.5) for i in range(3)]
-    packet = [S(rrect(-34, -70, 68, 68, 5), "#c9a06a", "#6a4a22", 3),
-              S(poly([(-34, -70), (34, -70), (0, -42)]), "#b88a52", "#6a4a22", 2.5),
-              S(ell(0, -30, 13, 13), "#f4c542", "#8a6a14", 2), S(ell(0, -30, 5, 5), "#6a4226", None, 0)] + seeds
-    return rig("semillas", "Semillas de girasol", [-50, -90, 100, 100], {}, node("root", (0, 0), shapes=packet))
+def _seed(cx, cy, ang, k=1.0):
+    """Semilla de girasol: gota blanquecina con dos rayas oscuras, girada `ang` grados."""
+    c, s_ = math.cos(math.radians(ang)), math.sin(math.radians(ang))
+
+    def pt(x, y):
+        return f"{(cx + (x * c - y * s_) * k):.1f},{(cy + (x * s_ + y * c) * k):.1f}"
+
+    body = f"M{pt(0, -13)} C{pt(9, -9)} {pt(9, 9)} {pt(0, 13)} C{pt(-9, 9)} {pt(-9, -9)} {pt(0, -13)} Z"
+    stripes = [S(f"M{pt(-3, -8)} L{pt(-3, 8)}", None, "#3a2412", 1.4 * k), S(f"M{pt(3, -8)} L{pt(3, 8)}", None, "#3a2412", 1.4 * k)]
+    return [S(body, "#f4f0e0", "#3a2412", 1.8 * k)] + stripes
+
+
+def _pouch(cx):
+    return [S(f"M{cx - 30},-4 C{cx - 42},-28 {cx - 32},-58 {cx - 12},-66 L{cx + 12},-66 C{cx + 32},-58 {cx + 42},-28 {cx + 30},-4 Z",
+              "#b8844a", "#5a3a1a", 3),
+            shade(f"M{cx + 12},-66 C{cx + 32},-58 {cx + 42},-28 {cx + 30},-4 L{cx + 12},-4 C{cx + 22},-30 {cx + 18},-54 {cx + 12},-66 Z"),
+            S(f"M{cx - 16},-62 C{cx - 10},-76 {cx - 4},-70 {cx},-76 C{cx + 4},-70 {cx + 10},-76 {cx + 16},-62 Z", "#a07038", "#5a3a1a", 2.5),
+            S(rrect(cx - 15, -68, 30, 7, 3), "#7a5430", "#4a2c10", 2),
+            S(f"M{cx - 3},-62 C{cx - 8},-46 {cx - 2},-40 {cx - 6},-30", None, "#7a5430", 2.5)]
+
+
+def semillas(count=5):
+    """Bolsita de tela abierta con las semillas de girasol (`count`) en fila delante. Origen: base, centrado."""
+    pos = [(8, -22, -20), (28, -17, 12), (46, -22, -12), (64, -17, 18), (82, -22, -8)]
+    seeds = []
+    for cx, cy, ang in pos[:count]:
+        seeds += _seed(cx - 38, cy + 8, ang, 1.15)
+    return rig("semillas" if count == 5 else "semillas_dos", "Semillas de girasol" if count == 5 else "Dos semillas de girasol",
+               [-70, -92, 150, 100], {}, node("root", (0, 0), shapes=_pouch(-30) + seeds))
+
+
+def semillas_dos():
+    return semillas(2)
+
+
+# ----------------------------------------------------------------- macetas
+def maceta():
+    """Maceta de barro con tierra. Origen: base, centrado."""
+    return rig("maceta", "Maceta", [-34, -52, 68, 54], {}, node("root", (0, 0), shapes=_pot()))
+
+
+def _pot():
+    return [S("M-24,-34 L24,-34 L18,0 L-18,0 Z", "#c8663a", "#5a2a14", 2.5),
+            shade("M10,-34 L24,-34 L18,0 L8,0 Z"),
+            S(rrect(-28, -44, 56, 12, 4), "#d9784a", "#5a2a14", 2.5),
+            S(ell(0, -42, 22, 4), "#4a2c1a", None, 0)]
+
+
+def maceta_brote():
+    """Maceta con dos brotes verdes que asoman (el girasol recién nacido)."""
+    sprouts = []
+    for sx, lean in ((-8, -1), (9, 1)):
+        sprouts += [S(f"M{sx},-42 C{sx + lean * 2},-54 {sx + lean * 3},-62 {sx + lean * 5},-68", None, "#3a8a2c", 3),
+                    S(f"M{sx + lean * 5},-68 C{sx + lean * 5 - 12},-74 {sx + lean * 5 - 16},-62 {sx + lean * 5 - 10},-60 Z", "#5fb04a", "#2a5a1c", 1.5),
+                    S(f"M{sx + lean * 5},-68 C{sx + lean * 5 + 12},-74 {sx + lean * 5 + 16},-62 {sx + lean * 5 + 10},-60 Z", "#5fb04a", "#2a5a1c", 1.5)]
+    return rig("maceta_brote", "Maceta con brotes", [-34, -80, 68, 82], {}, node("root", (0, 0), shapes=_pot() + sprouts))
+
+
+# -------------------------------------------------------------------- mesa
+def mesa():
+    """Mesa larga de madera con cuencos de sopa, cucharas y pan: para la fiesta de la plaza. Origen: base."""
+    top = [S(rrect(-130, -64, 260, 14, 4), "#a8703c", "#4a2c14", 2.5), S(rrect(-130, -54, 260, 6, 2), "#000000", None, 0, 0.16)]
+    legs = [S(rrect(x, -50, 10, 50, 2), "#8a5a2b", "#3a2412", 2) for x in (-118, 108)]
+    legs += [S(rrect(-40, -46, 6, 44, 2), "#7a4a1b", None, 0, 0.5), S(rrect(34, -46, 6, 44, 2), "#7a4a1b", None, 0, 0.5)]
+    things = []
+    for i, x in enumerate((-96, -54, -12, 30, 72, 110)):
+        things += [S("M%d,-66 L%d,-66 L%d,-80 L%d,-80 Z" % (x - 14, x + 14, x + 10, x - 10), "#e8dcc4", "#6a5a3a", 2),
+                   S(ell(x, -80, 10, 3), "#e8a43a" if i % 2 else "#d9784a", None, 0)]
+    things += [S(ell(-72, -72, 12, 6), "#d9a050", "#7a5a22", 1.5)]
+    return rig("mesa", "Mesa de la fiesta", [-135, -90, 270, 92], {}, node("root", (0, 0), shapes=legs + top + things))
 
 
 # ---------------------------------------------------------------- piedras
@@ -306,4 +369,4 @@ def cofre():
 
 
 def build_all():
-    return [campana(), campana_rota(), linterna(), linterna_apagada(), olla(), pan(), trozos_de_pan(), buho(), cabrita(), bolsa(), cometa(), girasol(), semillas(), piedras(), hierba(), pedernal(), vela(), saco(), cofre()]
+    return [campana(), campana_rota(), linterna(), linterna_apagada(), olla(), pan(), trozos_de_pan(), buho(), cabrita(), bolsa(), cometa(), girasol(), semillas(), semillas_dos(), mesa(), maceta(), maceta_brote(), piedras(), hierba(), pedernal(), vela(), saco(), cofre()]

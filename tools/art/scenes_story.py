@@ -13,6 +13,7 @@ import json
 from pathlib import Path
 
 import anim
+import looks
 import medieval_kit as kit
 import scene_castle as castle
 from medieval_kit import S, ell, n, node, poly, rrect
@@ -209,17 +210,59 @@ def rio():
 
 
 # ------------------------------------------------------------------- aldea
-def house(x, base, w, h, wall, roof):
+POZO_X, POZO_Y = 262, 396
+FLOWERS = [(540, 40, "#ff8fa3"), (590, 60, "#f4c542"), (20, 62, "#ffffff"), (500, 66, "#ffffff")]
+# Primavera: charcos y muchas flores más
+_r = lcg(9)
+SPRING = [S(ell(150, FLOOR + 46, 34, 7), "#9fd0f0", "#5a90c0", 1.5, 0.85), S(ell(455, FLOOR + 52, 40, 8), "#9fd0f0", "#5a90c0", 1.5, 0.85)] \
+    + [S(ell(30 + next(_r) * 580, FLOOR + 22 + next(_r) * 52, 5.5, 3.8), c, None, 0)
+       for c in ("#ff8fa3", "#f4c542", "#ffffff", "#c58ae8") * 4]
+
+
+def snow_cap(apex, left, right, k=0.5):
+    """Capa de nieve sobre un tejado triangular: del vértice hacia las dos esquinas, con borde ondulado."""
+    lx, ly = apex[0] + (left[0] - apex[0]) * k, apex[1] + (left[1] - apex[1]) * k
+    rx, ry = apex[0] + (right[0] - apex[0]) * k, apex[1] + (right[1] - apex[1]) * k
+    d = (f"M{n(apex[0])},{n(apex[1] - 1)} L{n(rx + 3)},{n(ry)} Q{n((rx + apex[0]) / 2 + 3)},{n(ry + 7)} {n(apex[0] + 4)},{n(ry + 2)} "
+         f"Q{n(apex[0] - 6)},{n(ly + 8)} {n(lx - 3)},{n(ly)} Z")
+    return [S(d, "#f6f9fd", "#9fb0c8", 2)]
+
+
+def house(x, base, w, h, wall, roof, snow=False):
     o = [S(rrect(x, base - h, w, h, 3), wall, "#4a2c1a", 2.5),
          S(rrect(x + w * 0.62, base - h + 2, w * 0.36, h - 4, 3), "#000000", None, 0, 0.12),
          S(poly([(x - 8, base - h + 2), (x + w + 8, base - h + 2), (x + w / 2, base - h - h * 0.55)]), roof, "#4a1a2a", 2.5),
          S(poly([(x + w / 2, base - h - h * 0.55), (x + w + 8, base - h + 2), (x + w / 2 + 3, base - h + 2)]), "#000000", None, 0, 0.18),
          S(rrect(x + w * 0.4, base - h * 0.55, w * 0.2, h * 0.55, 3), "#5a3a2a", "#2a1a14", 2),
          S(rrect(x + w * 0.12, base - h * 0.7, w * 0.2, h * 0.24, 2), "#ffd27a", "#5a3a14", 2)]
+    if snow:
+        o += snow_cap((x + w / 2, base - h - h * 0.55), (x - 8, base - h + 2), (x + w + 8, base - h + 2), 0.55)
+        o.append(S(rrect(x - 6, base - 5, w + 12, 7, 3), "#f6f9fd", "#9fb0c8", 1.5))
     return o
 
 
-def aldea():
+def pozo(cx, base, snow=False):
+    """Pozo de piedra con tejadillo, cuerda y cubo."""
+    o = [S(rrect(cx - 31, base - 74, 6, 50, 2), "#8a5a2b", "#3a2412", 2), S(rrect(cx + 25, base - 74, 6, 50, 2), "#8a5a2b", "#3a2412", 2),
+         S(rrect(cx - 31, base - 38, 62, 38, 7), "#b9b2a2", "#5a5040", 2.5),
+         S(rrect(cx + 8, base - 36, 21, 34, 5), "#000000", None, 0, 0.12)]
+    for yy, off in ((base - 24, 0), (base - 12, 14)):
+        o.append(S(f"M{n(cx - 31)},{n(yy)} L{n(cx + 31)},{n(yy)}", None, "#6a6050", 1.5))
+        for xx in (cx - 14 + off, cx + 6 - off * 0.5):
+            o.append(S(f"M{n(xx)},{n(yy)} L{n(xx)},{n(yy + 12 if yy < base - 20 else yy + 12)}", None, "#6a6050", 1.5))
+    o += [S(ell(cx, base - 38, 31, 9), "#8a8272", "#5a5040", 2.5), S(ell(cx, base - 38, 24, 6), "#141a2a", None, 0),
+          S(rrect(cx - 1.2, base - 66, 2.4, 26, 1), "#6a4a22", None, 0),
+          S(rrect(cx - 7, base - 46, 14, 11, 3), "#8a5a2b", "#3a2412", 2),
+          S(poly([(cx - 40, base - 70), (cx + 40, base - 70), (cx, base - 100)]), "#a8453f", "#4a1a2a", 2.5),
+          S(poly([(cx, base - 100), (cx + 40, base - 70), (cx + 3, base - 70)]), "#000000", None, 0, 0.18)]
+    if snow:
+        o += snow_cap((cx, base - 100), (cx - 40, base - 70), (cx + 40, base - 70), 0.6)
+        o.append(S(ell(cx, base - 39, 27, 6), "#f6f9fd", None, 0, 0.95))
+    return o
+
+
+def aldea(season=None):
+    snow = season == "invierno"
     grads = {"sky": lin([[0, "#3b2a7a", 1], [0.45, "#d96a8a", 1], [1, "#ffcf7a", 1]]),
              "sun": {"type": "radial", "stops": [[0, "#fff0b0", 0.95], [1, "#fff0b0", 0]]},
              "grass": lin([[0, "#7bb85a", 1], [1, "#3f8a48", 1]]),
@@ -240,8 +283,9 @@ def aldea():
     mill = [S(poly([(494, 340), (546, 340), (538, 258), (502, 258)]), "#d8c8a8", "#5a4a30", 2.5),
             S(poly([(502, 258), (538, 258), (520, 228)]), "#a8453f", "#4a1a1a", 2.5),
             S(rrect(512, 300, 16, 40, 6), "#5a3a2a", "#2a1a14", 2)]
-    mid = layer("mid", house(60, 350, 90, 70, "#e8d2a8", "#b04a52") + house(190, 346, 76, 60, "#dcc294", "#8a4a96")
-                + house(330, 350, 96, 76, "#e8d2a8", "#c05a3a") + mill
+    mill_snow = snow_cap((520, 228), (502, 258), (538, 258), 0.6) if snow else []
+    mid = layer("mid", house(60, 350, 90, 70, "#e8d2a8", "#b04a52", snow) + house(190, 346, 76, 60, "#dcc294", "#8a4a96", snow)
+                + house(330, 350, 96, 76, "#e8d2a8", "#c05a3a", snow) + mill + mill_snow
                 + [S(rrect(158, 300, 5, 46, 2), "#5a3a22", None, 0), S(poly([(163, 304), (190, 312), (163, 320)]), "#f4c542", "#5a4410", 1.5)],
                 [wheel, node("hub", hub, shapes=[S(ell(520, 250, 6, 6), "#8a5a2b", "#3a2412", 2)])])
     smoke = []
@@ -253,10 +297,12 @@ def aldea():
                            "@grass", "#2c6a38", 3),
                           S(f"M120,{H} C200,{FLOOR + 30} 300,{FLOOR - 10} 380,{FLOOR - 40} L430,{FLOOR - 38} "
                             f"C380,{FLOOR - 4} 360,{FLOOR + 30} 470,{H} Z", "@path", "#7a5a30", 2.5)]
+                + pozo(POZO_X, POZO_Y, snow)
                 + [S(rrect(x, FLOOR - 10, 4, 36, 1), "#8a5a2b", "#3a2412", 2) for x in (30, 52, 74)]
                 + [S(rrect(26, FLOOR - 4, 56, 5, 1), "#8a5a2b", "#3a2412", 2)]
-                + [S(ell(x, FLOOR + y, 6, 4), c, None, 0) for x, y, c in
-                   [(540, 40, "#ff8fa3"), (590, 60, "#f4c542"), (20, 62, "#ffffff"), (500, 66, "#ffffff")]], smoke)
+                + ([S(rrect(26, FLOOR - 8, 56, 5, 2), "#f6f9fd", None, 0)] if snow else [])
+                + ([] if snow else [S(ell(x, FLOOR + y, 6, 4), c, None, 0) for x, y, c in FLOWERS])
+                + (SPRING if season == "primavera" else []), smoke)
     return scene("aldea", "Aldea de los molinos", grads, [sky, far, mid, near])
 
 
@@ -306,38 +352,74 @@ def casa():
 
 
 # ------------------------------------------------------------------ cuarto
-def cuarto():
-    """Cuarto de dormir de noche: ventana con luna y estrellas, cama con colcha, vela y alfombra."""
-    grads = {"wall": lin([[0, "#2a2552", 1], [1, "#4a3a72", 1]]),
-             "floor": lin([[0, "#6a4a38", 1], [1, "#3e2a20", 1]]),
-             "sky": lin([[0, "#101a4a", 1], [1, "#2a3a7a", 1]]),
+def cuarto(time="noche", season=None):
+    """Cuarto de dormir: ventana (con luna y estrellas de noche, con sol o nieve de día), cama con colcha,
+    mesita con vela, alfombra. De día la vela está apagada y la luz entra por la ventana."""
+    night = time == "noche"
+    wall = ("#2a2552", "#4a3a72") if night else ("#caa57a", "#e2c595")
+    floor = ("#6a4a38", "#3e2a20") if night else ("#a8764e", "#7a5030")
+    grads = {"wall": lin([[0, wall[0], 1], [1, wall[1], 1]]),
+             "floor": lin([[0, floor[0], 1], [1, floor[1], 1]]),
+             "sky": {"type": "linear", "from": [0, 0], "to": [0, 1], "stops": looks.sky_stops(time, season)},
              "moon": {"type": "radial", "stops": [[0, "#fff6c8", 0.9], [1, "#fff6c8", 0]]},
-             "candle": {"type": "radial", "stops": [[0, "#ffd27a", 0.6], [1, "#ffd27a", 0]]}}
-    wall = layer("wall", [full("@wall")] + [S(rrect(x, 0, 3, FLOOR - 20, 0), "#000000", None, 0, 0.1) for x in range(80, W, 80)])
-    stars = []
+             "sun": {"type": "radial", "stops": [[0, "#fff0b0", 0.9], [1, "#fff0b0", 0]]},
+             "candle": {"type": "radial", "stops": [[0, "#ffd27a", 0.6], [1, "#ffd27a", 0]]},
+             "beam": {"type": "linear", "from": [0, 0], "to": [0, 1], "stops": [[0, "#fff6c8", 0.35], [1, "#fff6c8", 0]]}}
+    wall_l = layer("wall", [full("@wall")] + [S(rrect(x, 0, 3, FLOOR - 20, 0), "#000000", None, 0, 0.1) for x in range(80, W, 80)])
+    sky_things, deco = [], []
     r = lcg(21)
-    for i in range(10):
-        x, y = 262 + next(r) * 116, 66 + next(r) * 150
-        nd = node(f"wst{i}", (x, y), shapes=[S(ell(x, y, 1.8, 1.8), "#fff6d8", None, 0)])
-        nd["anim"] = [ambient("opacity", [0.2, 1.0, 0.2], 2.8, next(r) * 2.8)]
-        stars.append(nd)
-    window = layer("window", [S(rrect(244, 46, 152, 188, 8), "#2a1a10", "#120a06", 3), S(rrect(254, 56, 132, 168, 4), "@sky", None, 0),
-                              S(ell(330, 118, 52, 52), "@moon", None, 0), S(ell(330, 118, 22, 22), "#fff6c8", None, 0),
-                              S(ell(340, 112, 18, 18), "#2a3a7a", None, 0),
-                              S(rrect(317, 56, 6, 168, 0), "#2a1a10", None, 0), S(rrect(254, 136, 132, 6, 0), "#2a1a10", None, 0),
-                              S(rrect(236, 232, 168, 12, 4), "#4a2c1a", "#2a180c", 2)], stars)
+    if night and season == "invierno":
+        # nevando de noche: copos y ninguna estrella
+        for i in range(18):
+            x, y = 262 + next(r) * 116, 66 + next(r) * 150
+            nd = node(f"wfl{i}", (x, y), shapes=[S(ell(x, y, 2.4, 2.4), "#ffffff", None, 0)])
+            nd["anim"] = [ambient("opacity", [0.1, 1.0, 0.1], 2.4, next(r) * 2.4)]
+            sky_things.append(nd)
+        deco = [S(ell(300, 100, 30, 12), "#6a7aa0", None, 0, 0.8), S(ell(360, 130, 26, 10), "#6a7aa0", None, 0, 0.8)]
+    elif night:
+        for i in range(10):
+            x, y = 262 + next(r) * 116, 66 + next(r) * 150
+            nd = node(f"wst{i}", (x, y), shapes=[S(ell(x, y, 1.8, 1.8), "#fff6d8", None, 0)])
+            nd["anim"] = [ambient("opacity", [0.2, 1.0, 0.2], 2.8, next(r) * 2.8)]
+            sky_things.append(nd)
+        deco = [S(ell(330, 118, 52, 52), "@moon", None, 0), S(ell(330, 118, 22, 22), "#fff6c8", None, 0),
+                S(ell(340, 112, 18, 18), "#2a3a7a", None, 0)]
+    elif season == "invierno":
+        for i in range(16):
+            x, y = 262 + next(r) * 116, 66 + next(r) * 150
+            nd = node(f"wfl{i}", (x, y), shapes=[S(ell(x, y, 2.4, 2.4), "#ffffff", None, 0)])
+            nd["anim"] = [ambient("opacity", [0.1, 1.0, 0.1], 2.4, next(r) * 2.4)]
+            sky_things.append(nd)
+        deco = [S(ell(300, 100, 30, 12), "#e4ebf3", None, 0, 0.9), S(ell(360, 128, 26, 10), "#e4ebf3", None, 0, 0.9)]
+    else:
+        deco = [S(ell(330, 110, 70, 70), "@sun", None, 0), S(ell(330, 110, 24, 24), "#fff3b0", None, 0),
+                S(ell(292, 168, 28, 10), "#ffffff", None, 0, 0.9), S(ell(366, 186, 24, 9), "#ffffff", None, 0, 0.9)]
+    sill_fill = "#f6f9fd" if season == "invierno" and not night else "#4a2c1a"
+    window = layer("window", [S(rrect(244, 46, 152, 188, 8), "#2a1a10", "#120a06", 3), S(rrect(254, 56, 132, 168, 4), "@sky", None, 0)]
+                   + deco +
+                   [S(rrect(317, 56, 6, 168, 0), "#2a1a10", None, 0), S(rrect(254, 136, 132, 6, 0), "#2a1a10", None, 0),
+                    S(rrect(236, 232, 168, 12, 4), sill_fill, "#2a180c", 2)], sky_things)
+    layers = [wall_l, window]
+    if not night:
+        layers.append(layer("beam", [S(poly([(262, 60), (378, 60), (470, FLOOR), (170, FLOOR)]), "@beam", None, 0)]))
     bed = layer("bed", [S(rrect(24, 270, 196, 70, 6), "#6a4a38", "#2a180c", 3), S(rrect(24, 250, 20, 120, 4), "#5a3a28", "#2a180c", 3),
                         S(rrect(36, 236, 176, 48, 10), "#e8dcc4", "#8a7a5a", 2.5),
                         S(rrect(36, 262, 176, 32, 6), "#a8453f", "#5a1a14", 2.5)]
                  + [S(rrect(36 + i * 44, 262, 4, 32, 0), "#d96a5a", None, 0, 0.6) for i in range(1, 4)])
-    candle_glow = node("candleglow", (540, 300), shapes=[S(ell(540, 300, 120, 100), "@candle", None, 0)])
-    candle_glow["anim"] = [ambient("opacity", [0.7, 1.0, 0.8, 1.0], 1.8, 0.3)]
-    stand = layer("stand", [S(rrect(500, 310, 80, 100, 4), "#5a3a28", "#2a180c", 3), S(rrect(506, 330, 68, 4, 0), "#2a180c", None, 0, 0.5),
-                            S(rrect(530, 282, 16, 28, 3), "#f2e7c8", "#8a7a5a", 2), S(ell(538, 272, 5, 9), "#ffb43a", None, 0)], [candle_glow])
+    stand_shapes = [S(rrect(500, 310, 80, 100, 4), "#5a3a28", "#2a180c", 3), S(rrect(506, 330, 68, 4, 0), "#2a180c", None, 0, 0.5),
+                    S(rrect(530, 282, 16, 28, 3), "#f2e7c8", "#8a7a5a", 2)]
+    post = []
+    if night:
+        stand_shapes.append(S(ell(538, 272, 5, 9), "#ffb43a", None, 0))
+        glow = node("candleglow", (540, 300), shapes=[S(ell(540, 300, 120, 100), "@candle", None, 0)])
+        glow["anim"] = [ambient("opacity", [0.7, 1.0, 0.8, 1.0], 1.8, 0.3)]
+        post = [glow]
+    stand = layer("stand", stand_shapes, post)
     floor_ = layer("floor", [S(rrect(0, FLOOR - 24, W, H - FLOOR + 24, 0), "@floor", "#2a180c", 3)]
                    + [S(rrect(0, y, W, 2, 0), "#000000", None, 0, 0.18) for y in range(FLOOR + 6, H, 22)]
                    + [S(ell(330, FLOOR + 34, 140, 24), "#4a6aa8", "#1a2a5a", 3), S(ell(330, FLOOR + 34, 108, 15), "#7a9ad0", None, 0, 0.5)])
-    return scene("cuarto", "Cuarto de noche", grads, [wall, window, bed, stand, floor_])
+    name = "Cuarto de noche" if night else "Cuarto de día"
+    return scene("cuarto", name, grads, layers + [bed, stand, floor_])
 
 
 # ---------------------------------------------------------------- castillo (recorte del existente)
@@ -381,6 +463,61 @@ def preview(place, rigs, clips, cast, t=0.4):
               .replace(f'width="{sc["size"][0]}" height="{sc["size"][1]}"', f'width="{vw}" height="{vh}"', 1)
 
 
+# ----------------------------------------------- luces y estaciones por lugar
+# Parámetros del cielo de cada fondo: x del sol, su y a mediodía, y de la línea de colinas.
+SKY_AT = {
+    "aldea": dict(w=W, h=H, sun_x=150, sun_y_day=100, horizon=300),
+    "bosque": dict(w=W, h=H, sun_x=470, sun_y_day=110, horizon=268),
+    "rio": dict(w=W, h=H, sun_x=100, sun_y_day=120, horizon=255),
+    "castillo": dict(w=600, h=800, sun_x=470, sun_y_day=150, horizon=560),
+}
+# El castillo base es nocturno: de día sus colinas violetas pasan a verdes
+CASTLE_DAY_SWAP = {"#2a2260": "#4f8a48", "#332a78": "#5f9a50", "#3d3288": "#6aa85a", "#251c5a": "#2f5f2f", "#2c6b5e": "#4a9a5a", "#245a50": "#3f8a50",
+                   "#1b3f3a": "#2a5a30"}
+LOOKS = {
+    # lugar → (hora, estación) que se generan además del fondo base
+    "aldea": [(t, s) for t in looks.TIMES for s in (None, *looks.SEASONS)],
+    "bosque": [(t, None) for t in ("dia", "atardecer", "noche")],
+    "rio": [(t, None) for t in ("dia", "atardecer", "noche")],
+    "castillo": [("dia", None), ("atardecer", None)],
+    "cuarto": [("dia", None), ("dia", "invierno"), ("dia", "primavera"), ("noche", "invierno"), ("noche", "primavera")],
+}
+# Hora del fondo base de cada lugar (la que se usa si el cuento no dice nada)
+BASE_TIME = {"aldea": "atardecer", "bosque": "dia", "rio": "dia", "castillo": "noche", "cuarto": "noche", "casa": "noche"}
+
+
+def write_scene(out, data):
+    path = out / "scenes" / f"{data['id']}.json"
+    path.write_text(json.dumps(data, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+    return path
+
+
+def variants(out):
+    """Genera las escenas de cada lugar a cada hora/estación. Devuelve {lugar: {clave: id de escena}}."""
+    table = {}
+    castle = json.loads((out / "scenes" / "castle_night.json").read_text(encoding="utf-8"))
+    for place, wanted in LOOKS.items():
+        table[place] = {BASE_TIME[place]: PLACES[place]["scene"]}
+        for time, season in wanted:
+            if place == "cuarto":
+                sc = cuarto(time, None if (time == "noche" and season == "primavera") else season)
+                sc["id"] = f"cuarto__{looks.key_of(time, season)}"
+            else:
+                if place == "castillo":
+                    base = castle
+                elif place == "aldea":
+                    base = aldea(season)
+                else:
+                    base = BUILDERS[place]()
+                sc = looks.relook(base, time, season, **SKY_AT[place], moon_xy=(SKY_AT[place]["sun_x"], SKY_AT[place]["sun_y_day"]),
+                                  swap=CASTLE_DAY_SWAP if place == "castillo" else None)
+            write_scene(out, sc)
+            table[place][looks.key_of(time, season)] = sc["id"]
+    # La cocina es de noche y, con la ventana nevada, de invierno
+    table["casa"] = {"noche": PLACES["casa"]["scene"], "noche__invierno": PLACES["casa"]["scene"]}
+    return table
+
+
 def main():
     out = kit.OUT
     (out / "scenes").mkdir(parents=True, exist_ok=True)
@@ -391,9 +528,14 @@ def main():
         path.write_text(json.dumps(data, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
         print(f"{path.name}: {path.stat().st_size / 1024:.0f} KB")
 
+    table = variants(out)
+    extra = sorted({sid for m in table.values() for sid in m.values()} - {PLACES[p]["scene"] for p in PLACES})
+    for p, m in table.items():
+        PLACES[p]["looks"] = m
     index_path = out / "index.json"
     index = json.loads(index_path.read_text(encoding="utf-8"))
-    index["scenes"] = ["medieval/scenes/castle_night.json"] + [f"medieval/scenes/{PLACES[p]['scene']}.json" for p in BUILDERS]
+    index["scenes"] = ["medieval/scenes/castle_night.json"] + [f"medieval/scenes/{PLACES[p]['scene']}.json" for p in BUILDERS] \
+        + [f"medieval/scenes/{sid}.json" for sid in extra]
     index["places"] = PLACES
     index_path.write_text(json.dumps(index, ensure_ascii=False, indent=1), encoding="utf-8")
 

@@ -104,10 +104,48 @@ void main() {
       }
     });
 
-    test('cada escena declara fondo y al menos un personaje', () {
+    test(
+        'cada escena declara fondo y al menos un personaje (o un primer plano)',
+        () {
       for (final scene in allScenes()) {
         expect(scene['bg'], isNotNull, reason: '$scene');
-        expect(stageEntries(scene), isNotEmpty, reason: '$scene');
+        if (scene['focus'] is Map) {
+          expect(art.rigs, contains((scene['focus']! as Map)['prop']));
+        } else {
+          expect(stageEntries(scene), isNotEmpty, reason: '$scene');
+        }
+      }
+    });
+
+    test('toda hora y estación que usa el pack tiene su escena dibujada', () {
+      for (final p in pack.places) {
+        final times = p.times;
+        if (times == null) continue;
+        final art0 = art.library.places[p.id]!;
+        for (final t in times) {
+          expect(art0.looks, contains(t), reason: '${p.id}: sin escena «$t»');
+          for (final se in p.seasons) {
+            expect(art0.looks, contains('${t}__$se'),
+                reason: '${p.id}: sin escena «$t» en «$se»');
+          }
+        }
+      }
+      // Y todo cuento posible pide solo luces que existen
+      final engine = StoryEngine(pack);
+      for (var seed = 1; seed <= 150; seed++) {
+        final story = engine.generate(StoryOptions(seed: seed));
+        for (final sc in story.scenes) {
+          final bg = sc.directives['bg'];
+          final place = bg is String ? story.cast[bg] : null;
+          if (place is! Place || place.times == null) continue;
+          final time = sc.directives['time'] as String?;
+          final season = sc.directives['season'] as String?;
+          expect(time, isNotNull, reason: 'seed $seed ${sc.fragmentId}');
+          final key = season == null ? time! : '${time}__$season';
+          expect(art.library.places[place.id]!.looks, contains(key),
+              reason:
+                  'seed $seed ${sc.fragmentId}: «${place.id}» no tiene «$key»');
+        }
       }
     });
 
@@ -118,6 +156,20 @@ void main() {
         for (final s in story.scenes) {
           final setup = stageFor(art, story.cast, s.directives);
           expect(setup, isNotNull, reason: 'seed $seed ${s.fragmentId}');
+          if (s.directives['focus'] is Map) {
+            // Primer plano: solo el objeto, y el recuadro cabe en la escena.
+            expect(setup!.focus, isTrue);
+            expect(setup.actors, isEmpty);
+            expect(setup.props, isNotEmpty);
+            expect(
+                setup.view.left, greaterThanOrEqualTo(setup.place.view.left));
+            expect(setup.view.right,
+                lessThanOrEqualTo(setup.place.view.right + 0.01));
+            expect(setup.view.top, greaterThanOrEqualTo(setup.place.view.top));
+            expect(setup.view.bottom,
+                lessThanOrEqualTo(setup.place.view.bottom + 0.01));
+            continue;
+          }
           expect(setup!.actors, isNotEmpty);
           // Todo lo que dibuja la escena es lo que declara (nadie se pierde en el camino).
           expect(setup.actors.length, stageEntries(s.directives).length,
@@ -353,6 +405,123 @@ void main() {
           .painter! as ScenePainter;
       expect(painter.actors.single.enterFrom, 0);
       expect(painter.camera, isFalse);
+    });
+  });
+
+  group('hora, estación y primer plano', () {
+    test('«time» y «season» eligen la escena del lugar', () {
+      Map<String, Object?> d(String? time, [String? season]) => {
+            'bg': 'plaza',
+            'stage': [
+              {'who': 'hero'},
+            ],
+            'mood': 'calm',
+            if (time != null) 'time': time,
+            if (season != null) 'season': season,
+          };
+      final ids = {
+        for (final k in [
+          ['noche', null],
+          ['dia', null],
+          ['dia', 'invierno'],
+          ['dia', 'otono'],
+          [null, null],
+        ])
+          '${k[0]}/${k[1]}':
+              stageFor(art, cast(), d(k[0], k[1]))!.scene.scene.id,
+      };
+      expect(ids['noche/null'], 'aldea__noche');
+      expect(ids['dia/null'], 'aldea__dia');
+      expect(ids['dia/invierno'], 'aldea__dia__invierno');
+      expect(ids['dia/otono'], 'aldea__dia__otono');
+      // Sin hora, el fondo base del lugar
+      expect(ids['null/null'], art.library.places['aldea']!.scene);
+      expect(ids.values.toSet(), hasLength(5));
+    });
+
+    test(
+        'una combinación que no existe cae en la hora sola, y luego en la base',
+        () {
+      final place = art.library.places['aldea']!;
+      expect(place.sceneId(time: 'dia', season: 'verano'), 'aldea__dia');
+      expect(place.sceneId(time: 'madrugada'), place.scene);
+    });
+
+    test('en invierno el suelo es nieve y de día el cielo no tiene estrellas',
+        () {
+      final inv = art.library.scenes['aldea__dia__invierno']!;
+      final dia = art.library.scenes['aldea__dia']!;
+      expect(inv.layers.any((l) => l.id == 'snow'), isTrue,
+          reason: 'copos de nieve');
+      expect(dia.layers.any((l) => l.id == 'snow'), isFalse);
+      final stars =
+          dia.layers.first.post.where((n) => n.id.startsWith('st')).length;
+      expect(stars, 0);
+    });
+
+    test(
+        '«focus» da un primer plano: solo el objeto, centrado y dentro de la escena',
+        () {
+      final setup = stageFor(art, cast(), {
+        'bg': 'plaza',
+        'time': 'dia',
+        'mood': 'hope',
+        'stage': [
+          {'who': 'hero'},
+        ],
+        'focus': {'prop': 'semillas', 'x': 0.5, 'fill': 0.5},
+      })!;
+      expect(setup.focus, isTrue);
+      expect(setup.actors, isEmpty, reason: 'sin personajes');
+      expect(setup.props.single.rig.rig.id, 'semillas');
+      final place = setup.place;
+      expect(setup.view.width, lessThan(place.view.width / 2),
+          reason: 'está acercado');
+      expect(setup.view.width / setup.view.height,
+          closeTo(place.view.width / place.view.height, 0.01));
+      expect(place.view.contains(setup.view.topLeft), isTrue);
+      expect(setup.view.right, lessThanOrEqualTo(place.view.right + 0.01));
+      expect(setup.view.bottom, lessThanOrEqualTo(place.view.bottom + 0.01));
+      final c = setup.props.single;
+      expect(setup.view.contains(Offset(c.x, c.y - 10)), isTrue,
+          reason: 'el objeto cae dentro del encuadre');
+    });
+
+    test('un «focus» con un objeto que no existe se ignora (se ve la escena)',
+        () {
+      final setup = stageFor(art, cast(), {
+        'bg': 'plaza',
+        'time': 'dia',
+        'mood': 'calm',
+        'stage': [
+          {'who': 'hero'},
+        ],
+        'focus': {'prop': 'no_existe'},
+      })!;
+      expect(setup.focus, isFalse);
+      expect(setup.actors, hasLength(1));
+    });
+
+    test(
+        '«lift» y «scale» suben a un personaje (a pisar un puente) y lo alejan',
+        () {
+      final normal = stageFor(art, cast(), {
+        'bg': 'place2',
+        'stage': [
+          {'who': 'hero'},
+        ],
+        'mood': 'calm',
+      })!;
+      final enPuente = stageFor(art, cast(), {
+        'bg': 'place2',
+        'stage': [
+          {'who': 'hero', 'lift': 80, 'scale': 0.85},
+        ],
+        'mood': 'calm',
+      })!;
+      expect(enPuente.actors.single.y, normal.actors.single.y - 80);
+      expect(enPuente.actors.single.scale,
+          closeTo(normal.actors.single.scale * 0.85, 1e-9));
     });
   });
 }

@@ -585,6 +585,186 @@ void main() {
     });
   });
 
+  group('hora, estación y lugar (lo que se cuenta es lo que se ve)', () {
+    /// Un cuento de una sola escena en «casa», con los metadatos de lugar pedidos.
+    Map<String, Object?> scene(
+      String text,
+      Map<String, Object?> directives, {
+      Map<String, Object?> place = const {
+        'times': ['dia', 'noche'],
+        'seasons': ['invierno'],
+        'features': ['ventana'],
+      },
+      List<String> introduces = const ['item', 'helper', 'villain'],
+    }) {
+      final json = basePack();
+      json['places'] = <Object?>[
+        <String, Object?>{
+          'id': 'casa',
+          'noun': 'casa',
+          'gender': 'f',
+          'mood': 'calm',
+          ...place,
+        },
+        {'id': 'bosque', 'noun': 'bosque', 'gender': 'm', 'mood': 'calm'},
+      ];
+      final premise =
+          (json['premises']! as List<Object?>).first! as Map<String, Object?>;
+      premise['beats'] = [
+        {
+          'id': 'b1',
+          'introduces': introduces,
+          'variants': [
+            {
+              'id': 'a',
+              'text': '{hero} {item.el} {helper} {villain}. $text',
+              'scene': {
+                'bg': 'casa',
+                'stage': [
+                  {'who': 'hero'},
+                  {'who': 'helper'},
+                  {'who': 'villain'},
+                ],
+                'mood': 'calm',
+                ...directives,
+              },
+            },
+          ],
+        },
+      ];
+      return json;
+    }
+
+    String problems(Map<String, Object?> json) => problemsOf(json).join('\n');
+
+    test('el lugar con horas exige «time»', () {
+      expect(problems(scene('Hola.', {})), contains('falta «time»'));
+      expect(
+        problems(scene('Hola.', {'time': 'dia'})),
+        isNot(contains('falta «time»')),
+      );
+    });
+
+    test('«por la mañana» no se dibuja de noche, ni «aquella noche» de día',
+        () {
+      final noche = problems(scene('Por la mañana salió.', {'time': 'noche'}));
+      expect(noche, contains('«Por la mañana» pero se dibuja «time: noche»'));
+      final dia = problems(scene('Aquella noche llovió.', {'time': 'dia'}));
+      expect(dia, contains('«Aquella noche» pero se dibuja «time: dia»'));
+      expect(
+        problems(scene('Por la mañana salió.', {'time': 'dia'})),
+        isNot(contains('se dibuja «time')),
+      );
+    });
+
+    test('una hora que el lugar no sabe dibujar se rechaza', () {
+      expect(
+        problems(scene('Hola.', {'time': 'atardecer'})),
+        contains('«time: atardecer» no existe'),
+      );
+    });
+
+    test('las pistas dentro de un diálogo no cuentan', () {
+      final p = problems(scene('«Esa noche dormí muy bien», dijo.', {
+        'time': 'dia',
+      }));
+      expect(p, isNot(contains('se dibuja «time')));
+    });
+
+    test('«la Luna» (un nombre) no es la luna del cielo', () {
+      final p = problems(scene('Vivía en el castillo de la Luna.', {
+        'time': 'dia',
+      }));
+      expect(p, isNot(contains('se dibuja «time')));
+    });
+
+    test('la nevada se dibuja con nieve, y la estación debe existir', () {
+      final sin = problems(scene('Había nevado: la nevada cubrió todo.', {
+        'time': 'dia',
+      }));
+      expect(sin, contains('«season: ninguna» (debería ser invierno)'));
+      final ok = problems(scene('La nevada cubrió todo.', {
+        'time': 'dia',
+        'season': 'invierno',
+      }));
+      expect(ok, isNot(contains('season')));
+      final otra = problems(scene('Hola.', {
+        'time': 'dia',
+        'season': 'otono',
+      }));
+      expect(otra, contains('«season: otono» no existe'));
+    });
+
+    test('el verano es la estación normal (o la primavera)', () {
+      final p = problems(scene('En verano hacía calor.', {'time': 'dia'}));
+      expect(p, isNot(contains('season')));
+      final inv = problems(scene('En verano hacía calor.', {
+        'time': 'dia',
+        'season': 'invierno',
+      }));
+      expect(inv,
+          contains('«season: invierno» (debería ser ninguna o primavera)'));
+    });
+
+    test('lo que el texto nombra del lugar debe estar dibujado', () {
+      final p = problems(scene('Se sentó junto al pozo.', {'time': 'dia'}));
+      expect(p, contains('nombra «pozo» pero en casa no se ve «pozo»'));
+      expect(
+        problems(scene('Miró por la ventana.', {'time': 'dia'})),
+        isNot(contains('no se ve')),
+      );
+    });
+
+    test('un objeto dibujado en la escena cuenta como visible', () {
+      final p = problems(scene('Puso la sopa en la mesa larga.', {
+        'time': 'dia',
+        'props': [
+          {'prop': 'mesa', 'x': 0.5},
+        ],
+      }));
+      expect(p, isNot(contains('no se ve «mesa»')));
+    });
+
+    test('«unseen» permite nombrar a propósito algo que no se ve', () {
+      final base = scene('Por la rendija vio una mesa vacía.', {'time': 'dia'});
+      expect(problems(base), contains('no se ve «mesa»'));
+      final ok = scene('Por la rendija vio una mesa vacía.', {
+        'time': 'dia',
+        'unseen': ['mesa'],
+      });
+      expect(problems(ok), isNot(contains('no se ve «mesa»')));
+    });
+
+    test('un lugar sin metadatos no se comprueba (packs antiguos)', () {
+      final p = problems(scene(
+        'Por la mañana, junto al pozo, nevó.',
+        {'time': 'noche'},
+        place: const {},
+      ));
+      expect(p, isNot(contains('se dibuja')));
+      expect(p, isNot(contains('no se ve')));
+    });
+
+    test('el objeto que se presenta se ve de cerca (focus)', () {
+      final sin = problems(scene('Hola.', {'time': 'dia'}));
+      expect(sin, contains('se presenta aquí y debe verse de cerca'));
+      final ok = problems(scene('Hola.', {
+        'time': 'dia',
+        'focus': {'prop': 'farol'},
+      }));
+      expect(ok, isNot(contains('de cerca')));
+    });
+
+    test('en un primer plano nadie sale dibujado y no hace falta «offstage»',
+        () {
+      final p = problems(scene('Hola.', {
+        'time': 'dia',
+        'focus': {'prop': 'farol'},
+      }));
+      expect(p, isNot(contains('no sale dibujado')));
+    });
+  });
+
   group('texto ↔ ilustración', () {
     Map<String, Object?> withStage(List<Object?> stage, String text,
         {List<String>? offstage, Map<String, Object?>? npcs}) {

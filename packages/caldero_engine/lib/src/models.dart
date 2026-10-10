@@ -177,6 +177,9 @@ class Place extends Entity {
     required super.gender,
     required this.mood,
     this.tags = const [],
+    this.times,
+    this.seasons = const [],
+    this.features,
   });
 
   factory Place.fromJson(Map<String, Object?> j) {
@@ -188,10 +191,24 @@ class Place extends Entity {
       gender: Gender.parse(j['gender'], where),
       mood: _str(j, 'mood', where),
       tags: _strList(j, 'tags', where),
+      times: j.containsKey('times') ? _strList(j, 'times', where) : null,
+      seasons: _strList(j, 'seasons', where),
+      features:
+          j.containsKey('features') ? _strList(j, 'features', where) : null,
     );
   }
 
   final String mood;
+
+  /// Horas del día que el arte sabe dibujar en este lugar (`dia`, `amanecer`, `atardecer`, `noche`).
+  /// `null` = el lugar no distingue horas (no se comprueba).
+  final List<String>? times;
+
+  /// Estaciones que el arte sabe dibujar (`invierno`, `primavera`, `otono`); vacío = solo la normal.
+  final List<String> seasons;
+
+  /// Rasgos que el arte dibuja en el lugar (`pozo`, `ventana`, `cama`…). `null` = no se comprueba.
+  final List<String>? features;
 
   /// Para qué sirve el lugar en una trama (`village`, `castle`, `forest`, `cave`, `water`…).
   final List<String> tags;
