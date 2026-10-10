@@ -8,6 +8,8 @@ balancearse, una llama parpadear y una olla echar vapor sin código nuevo en la 
 Convención: el origen (0, 0) es el punto de apoyo (la base) y el eje y crece hacia abajo, igual que en
 los personajes. `build_all()` devuelve los rigs; los escribe medieval_kit.py junto a los personajes.
 """
+import math
+
 import medieval_kit as kit
 from medieval_kit import S, ell, mix, node, poly, rrect, shade, shine
 
@@ -209,6 +211,99 @@ def cometa():
     root = node("root", (0, 0), post=[kite])
     return rig("cometa", "Cometa", [-60, -150, 120, 270], KITE, root)
 
+# --------------------------------------------------------------- girasol
+SUN = {"stem": "#4f9a3c", "stem2": "#3a7a2c", "petal": "#f4c542", "petal2": "#ffd966", "core": "#6a4226", "seed": "#3a2412"}
+
+
+def girasol():
+    """Girasol alto. Huesos: `stem` (balanceo y crecimiento) y `head` (cabeceo)."""
+    petals = []
+    for k in range(14):
+        a = 2 * math.pi * k / 14
+        cx, cy = 0 + 30 * math.cos(a), -168 + 30 * math.sin(a)
+        petals.append(S(ell(cx, cy, 15, 9), "$petal" if k % 2 == 0 else "$petal2", "#b8841a", 1.5))
+    core = [S(ell(0, -168, 22, 22), "$core", "#2a180c", 2)] + \
+           [S(ell(7 * math.cos(a) * r, -168 + 7 * math.sin(a) * r, 1.6, 1.6), "$seed", None, 0)
+            for a, r in [(0.6, 1), (1.9, 1.4), (3.1, 1), (4.3, 1.5), (5.4, 1), (0, 0.2)]]
+    head = node("head", (0, -150), shapes=petals + core)
+    leaves = [S("M0,-70 C-34,-92 -46,-70 -40,-54 C-26,-58 -10,-62 0,-70 Z", "$stem2", "#2a5a1c", 2),
+              S("M0,-100 C34,-122 46,-100 40,-84 C26,-88 10,-92 0,-100 Z", "$stem2", "#2a5a1c", 2)]
+    stem = node("stem", (0, 0), shapes=[S(rrect(-5, -158, 10, 158, 4), "$stem")] + leaves, post=[head])
+    root = node("root", (0, 0), post=[stem], shapes=[S(ell(0, 2, 22, 6), "#5a3a22", None, 0, 0.7)])
+    return rig("girasol", "Girasol", [-70, -210, 140, 220], SUN, root)
+
+
+# --------------------------------------------------------------- semillas
+def semillas():
+    """Sobrecito de papel con semillas de girasol. Origen: base, centrado."""
+    seeds = [S(ell(-14 + i * 14, -8, 5, 9), "#f2ead4", "#3a2412", 1.5) for i in range(3)]
+    packet = [S(rrect(-34, -70, 68, 68, 5), "#c9a06a", "#6a4a22", 3),
+              S(poly([(-34, -70), (34, -70), (0, -42)]), "#b88a52", "#6a4a22", 2.5),
+              S(ell(0, -30, 13, 13), "#f4c542", "#8a6a14", 2), S(ell(0, -30, 5, 5), "#6a4226", None, 0)] + seeds
+    return rig("semillas", "Semillas de girasol", [-50, -90, 100, 100], {}, node("root", (0, 0), shapes=packet))
+
+
+# ---------------------------------------------------------------- piedras
+def piedras():
+    """Fila de cinco piedras planas para cruzar un río. Origen: centro de la fila, a ras de agua."""
+    shapes = []
+    for i, (x, y, rx) in enumerate([(-110, 0, 30), (-55, -8, 26), (0, 2, 30), (55, -6, 26), (110, 0, 30)]):
+        shapes += [S(ell(x, y, rx, 13), "#8a8f9a", "#3a3f4a", 2.5), S(ell(x - 6, y - 4, rx * 0.6, 5), "#b9bfca", None, 0, 0.7),
+                   S(ell(x, y + 14, rx * 0.9, 5), "#a8d8f0", None, 0, 0.5)]
+    return rig("piedras", "Piedras del río", [-150, -40, 300, 80], {}, node("root", (0, 0), shapes=shapes))
+
+
+# ---------------------------------------------------------------- hierba
+GRASS = {"leaf": "#9fd8e8", "leaf2": "#cfeff5", "halo": "#bfe8ff"}
+
+
+def hierba():
+    """Hierba de luna: tres tallos plateados que brillan. Huesos: `glow` (pulso) y `leaves` (brisa)."""
+    glow = node("glow", (0, -50), shapes=[S(ell(0, -50, 70, 60), "$halo", None, 0, 0.18), S(ell(0, -50, 38, 34), "$halo", None, 0, 0.28)])
+    blades = []
+    for x, h, bend in [(-18, 84, -14), (0, 104, 4), (18, 80, 16)]:
+        blades += [S(f"M{x-4},0 C{x-4},{-h*0.5} {x+bend-4},{-h*0.8} {x+bend},{-h} C{x+bend+4},{-h*0.8} {x+4},{-h*0.5} {x+4},0 Z", "$leaf", "#5a9ab0", 2),
+                   S(f"M{x},0 C{x},{-h*0.5} {x+bend*0.8},{-h*0.8} {x+bend},{-h}", None, "$leaf2", 1.5)]
+    leaves = node("leaves", (0, 0), shapes=blades)
+    root = node("root", (0, 0), pre=[glow], post=[leaves])
+    return rig("hierba", "Hierba de luna", [-80, -120, 160, 130], GRASS, root)
+
+# ------------------------------------------------- pedernal, vela, saco, cofre
+def pedernal():
+    """Pedernal (piedra de las chispas) con dos chispitas. Origen: base."""
+    shapes = [S("M-34,-2 L-40,-22 L-22,-44 L8,-48 L36,-30 L40,-6 L12,2 Z", "#5c606c", "#2a2c34", 2.5),
+              S("M-22,-44 L8,-48 L36,-30 L10,-30 Z", "#8a8f9c", None, 0, 0.8),
+              S(poly([(-4, -52), (2, -64), (8, -52), (2, -56)]), "#ffd34a", None, 0), S(poly([(24, -40), (30, -52), (34, -40), (30, -43)]), "#fff3b0", None, 0)]
+    return rig("pedernal", "Pedernal", [-60, -80, 120, 90], {}, node("root", (0, 0), shapes=shapes))
+
+
+LIT = {"wax": "#f2e7c8", "flame": "#ffb43a", "flame2": "#fff3b0", "halo": "#ffd98a", "dish": "#8a6a3a"}
+
+
+def vela():
+    """Cabo de vela en un platillo. Huesos `flame` y `glow` (los clips `glow` de la linterna sirven)."""
+    glow = node("glow", (0, -60), shapes=[S(ell(0, -60, 64, 64), "$halo", None, 0, 0.18), S(ell(0, -60, 34, 34), "$halo", None, 0, 0.3)])
+    flame = node("flame", (0, -46), shapes=[S("M0,-84 C10,-70 10,-54 0,-46 C-10,-54 -10,-70 0,-84 Z", "$flame"), S("M0,-74 C5,-66 5,-58 0,-52 C-5,-58 -5,-66 0,-74 Z", "$flame2", None)])
+    root = node("root", (0, 0), pre=[glow], shapes=[S(ell(0, -4, 26, 7), "$dish", "#4a3414", 2), S(rrect(-9, -46, 18, 42, 3), "$wax", "#8a7a5a", 2)], post=[flame])
+    return rig("vela", "Cabo de vela", [-80, -130, 160, 140], LIT, root)
+
+
+def saco():
+    """Saco de tela atado con una cuerda. Origen: base."""
+    shapes = [S("M-36,-2 C-52,-34 -34,-70 -12,-78 L12,-78 C34,-70 52,-34 36,-2 Z", "#c0a070", "#5a4220", 3),
+              S("M12,-78 C34,-70 52,-34 36,-2 L18,-2 C28,-30 26,-60 12,-78 Z", "#000000", None, 0, 0.14),
+              S(poly([(-14, -78), (-20, -92), (-6, -84), (0, -96), (6, -84), (20, -92), (14, -78)]), "#b09060", "#5a4220", 2),
+              S(rrect(-16, -80, 32, 6, 3), "#e8d3a8", "#5a4a30", 2)]
+    return rig("saco", "Saco", [-70, -110, 140, 120], {}, node("root", (0, 0), shapes=shapes))
+
+
+def cofre():
+    """Cofrecito de madera con monedas asomando. Origen: base."""
+    shapes = [S(rrect(-44, -46, 88, 46, 4), "#8a5a2b", "#3a2412", 3), S("M-44,-46 C-44,-76 44,-76 44,-46 Z", "#a06a34", "#3a2412", 3),
+              S(rrect(-46, -50, 92, 8, 3), "#4a4a56", "#2a2a32", 2), S(rrect(-6, -52, 12, 16, 3), "#f4c542", "#8a6a14", 2),
+              S(ell(-14, -78, 8, 4), "#f4c542", "#8a6a14", 1.5), S(ell(10, -80, 8, 4), "#ffd966", "#8a6a14", 1.5)]
+    return rig("cofre", "Cofre", [-70, -110, 140, 120], {}, node("root", (0, 0), shapes=shapes))
+
 
 def build_all():
-    return [campana(), campana_rota(), linterna(), linterna_apagada(), olla(), pan(), trozos_de_pan(), buho(), cabrita(), bolsa(), cometa()]
+    return [campana(), campana_rota(), linterna(), linterna_apagada(), olla(), pan(), trozos_de_pan(), buho(), cabrita(), bolsa(), cometa(), girasol(), semillas(), piedras(), hierba(), pedernal(), vela(), saco(), cofre()]

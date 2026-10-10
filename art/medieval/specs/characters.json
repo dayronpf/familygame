@@ -346,6 +346,32 @@
     "hat": "#d9784a",
     "apron": "#f2e8d0"
    }
+  },
+  {
+   "id": "farolero",
+   "name": "Farolero",
+   "outfit": "tunic",
+   "hat": "cap",
+   "hair": "none",
+   "beard": true,
+   "apron": false,
+   "brows": "kind",
+   "mouth": "smile",
+   "size": 1.0,
+   "palette": {
+    "skin": "#e8b890",
+    "hair": "#d0d0d8",
+    "primary": "#4a5f86",
+    "secondary": "#c9c0a0",
+    "belt": "#7a4a28",
+    "gold": "#f4c542",
+    "pants": "#4a4036",
+    "boots": "#3a2a1c",
+    "accent": "#d9a441",
+    "beard": "#e6e6ee",
+    "hat": "#3a4a6a",
+    "apron": "#d8c9a4"
+   }
   }
  ]
 }

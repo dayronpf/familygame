@@ -3,7 +3,7 @@
   "schema": 2,
   "id": "medieval",
   "name": "Reino de la Luna (prueba)",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "license": "Contenido original, todos los derechos reservados al autor del proyecto",
   "language": "es",
   "age_band": "4-7"
@@ -358,6 +358,30 @@
    "gender": "f",
    "tags": [
     "toy"
+   ]
+  },
+  {
+   "id": "semillas",
+   "noun": "bolsita de semillas",
+   "gender": "f",
+   "tags": [
+    "seed"
+   ]
+  },
+  {
+   "id": "girasol",
+   "noun": "girasol",
+   "gender": "m",
+   "tags": [
+    "flower"
+   ]
+  },
+  {
+   "id": "hierba",
+   "noun": "hierba de luna",
+   "gender": "f",
+   "tags": [
+    "herb"
    ]
   }
  ],
@@ -2204,7 +2228,7 @@
     "cabrita": [
      "cabrita"
     ],
-    "aldeano": [
+    "farolero": [
      "farolero"
     ],
     "aldeana": [
@@ -2267,7 +2291,7 @@
           "clip": "idle"
          },
          {
-          "rig": "aldeano",
+          "rig": "farolero",
           "clip": "wave"
          }
         ],
@@ -2296,7 +2320,7 @@
           "clip": "idle"
          },
          {
-          "rig": "aldeano",
+          "rig": "farolero",
           "clip": "wave"
          }
         ],
@@ -2337,7 +2361,7 @@
           "clip": "surprised"
          },
          {
-          "rig": "aldeano",
+          "rig": "farolero",
           "clip": "offer"
          },
          {
@@ -2353,6 +2377,12 @@
           "clip": "still",
           "scale": 0.5,
           "lift": 90
+         },
+         {
+          "prop": "pedernal",
+          "x": 0.62,
+          "clip": "still",
+          "scale": 1.7
          }
         ],
         "light": "dark",
@@ -2377,7 +2407,7 @@
           "clip": "surprised"
          },
          {
-          "rig": "aldeano",
+          "rig": "farolero",
           "clip": "offer"
          },
          {
@@ -2393,6 +2423,12 @@
           "clip": "still",
           "scale": 0.5,
           "lift": 90
+         },
+         {
+          "prop": "pedernal",
+          "x": 0.62,
+          "clip": "still",
+          "scale": 1.7
          }
         ],
         "light": "dark",
@@ -2491,6 +2527,14 @@
          }
         ],
         "mood": "hope",
+        "props": [
+         {
+          "prop": "vela",
+          "x": 0.72,
+          "clip": "glow",
+          "scale": 1.6
+         }
+        ],
         "light": "dark",
         "offstage": [
          "lia"
@@ -2516,6 +2560,14 @@
          }
         ],
         "mood": "hope",
+        "props": [
+         {
+          "prop": "vela",
+          "x": 0.72,
+          "clip": "glow",
+          "scale": 1.6
+         }
+        ],
         "light": "dark",
         "offstage": [
          "lia"
@@ -2541,6 +2593,14 @@
          }
         ],
         "mood": "hope",
+        "props": [
+         {
+          "prop": "vela",
+          "x": 0.72,
+          "clip": "glow",
+          "scale": 1.6
+         }
+        ],
         "light": "dark",
         "offstage": [
          "lia"
@@ -2566,6 +2626,14 @@
          }
         ],
         "mood": "hope",
+        "props": [
+         {
+          "prop": "vela",
+          "x": 0.72,
+          "clip": "glow",
+          "scale": 1.6
+         }
+        ],
         "light": "dark",
         "offstage": [
          "lia"
@@ -2601,6 +2669,14 @@
          }
         ],
         "mood": "mystery",
+        "props": [
+         {
+          "prop": "vela",
+          "x": 0.7,
+          "clip": "glow",
+          "scale": 1.5
+         }
+        ],
         "light": "night"
        }
       },
@@ -2622,6 +2698,14 @@
          }
         ],
         "mood": "mystery",
+        "props": [
+         {
+          "prop": "vela",
+          "x": 0.7,
+          "clip": "glow",
+          "scale": 1.5
+         }
+        ],
         "light": "night"
        }
       }
@@ -2729,6 +2813,14 @@
          }
         ],
         "mood": "mystery",
+        "props": [
+         {
+          "prop": "pedernal",
+          "x": 0.7,
+          "clip": "still",
+          "scale": 1.7
+         }
+        ],
         "light": "dark",
         "offstage": [
          "lia"
@@ -2747,6 +2839,14 @@
          }
         ],
         "mood": "mystery",
+        "props": [
+         {
+          "prop": "pedernal",
+          "x": 0.7,
+          "clip": "still",
+          "scale": 1.7
+         }
+        ],
         "light": "dark",
         "offstage": [
          "lia"
@@ -2801,6 +2901,12 @@
           "clip": "still",
           "scale": 0.85,
           "lift": 170
+         },
+         {
+          "prop": "cofre",
+          "x": 0.9,
+          "clip": "still",
+          "scale": 1.5
          }
         ],
         "light": "dark",
@@ -2837,6 +2943,12 @@
           "clip": "still",
           "scale": 0.85,
           "lift": 170
+         },
+         {
+          "prop": "saco",
+          "x": 0.9,
+          "clip": "still",
+          "scale": 1.5
          }
         ],
         "light": "dark",
@@ -2873,6 +2985,12 @@
           "clip": "still",
           "scale": 0.85,
           "lift": 170
+         },
+         {
+          "prop": "cofre",
+          "x": 0.9,
+          "clip": "still",
+          "scale": 1.5
          }
         ],
         "light": "dark",
@@ -2909,6 +3027,12 @@
           "clip": "still",
           "scale": 0.85,
           "lift": 170
+         },
+         {
+          "prop": "saco",
+          "x": 0.9,
+          "clip": "still",
+          "scale": 1.5
          }
         ],
         "light": "dark",
@@ -2955,7 +3079,7 @@
         ],
         "light": "night",
         "offstage": [
-         "aldeano"
+         "farolero"
         ]
        }
       },
@@ -2989,7 +3113,7 @@
         ],
         "light": "night",
         "offstage": [
-         "aldeano"
+         "farolero"
         ]
        }
       }
@@ -3021,7 +3145,7 @@
           "clip": "cheer"
          },
          {
-          "rig": "aldeano",
+          "rig": "farolero",
           "clip": "talk"
          }
         ],
@@ -3065,7 +3189,7 @@
           "clip": "cheer"
          },
          {
-          "rig": "aldeano",
+          "rig": "farolero",
           "clip": "talk"
          }
         ],
@@ -3117,7 +3241,7 @@
         "offstage": [
          "cabrita",
          "aldeana",
-         "aldeano",
+         "farolero",
          "rosa"
         ]
        }
@@ -3133,7 +3257,7 @@
           "clip": "clap"
          },
          {
-          "rig": "aldeano",
+          "rig": "farolero",
           "clip": "wave"
          },
          {
@@ -3945,6 +4069,1243 @@
       {
        "id": "b",
        "text": "En el cuarto de {hero} reinaba un silencio blando. Ninguna bolsa hacía tilín y ningún eco susurraba «será». Solo la luna miraba por la ventana, y a {hero} le pareció que la luna le guiñaba un ojo. Buenas noches, luna; buenas noches, cometa. {hero} se quedó dormid{hero.o} enseguida.",
+       "scene": {
+        "bg": "cuarto",
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "sleep"
+         }
+        ],
+        "mood": "sleep",
+        "light": "night"
+       }
+      }
+     ],
+     "moves": true
+    }
+   ]
+  },
+  {
+   "id": "girasol",
+   "value": "generosidad",
+   "title": "Las semillas de sol",
+   "npcs": {
+    "rosa": [
+     "Rosa"
+    ],
+    "beto": [
+     "Beto"
+    ],
+    "lia": [
+     "Lía"
+    ]
+   },
+   "cast": {
+    "hero": {
+     "kind": "character",
+     "roles": [
+      "hero"
+     ]
+    },
+    "helper": {
+     "kind": "character",
+     "roles": [
+      "helper"
+     ]
+    },
+    "plaza": {
+     "kind": "place",
+     "ids": [
+      "aldea"
+     ]
+    },
+    "cuarto": {
+     "kind": "place",
+     "ids": [
+      "cuarto"
+     ]
+    },
+    "item": {
+     "kind": "prop",
+     "ids": [
+      "semillas"
+     ]
+    },
+    "flor": {
+     "kind": "prop",
+     "ids": [
+      "girasol"
+     ]
+    }
+   },
+   "beats": [
+    {
+     "id": "deseo",
+     "variants": [
+      {
+       "id": "a",
+       "text": "La abuela de {hero} le había dejado {item.un}: cinco semillas de {flor.noun}, de las que dan flores grandes como soles. Cada primavera, el pueblo premiaba al {flor.noun} más alto con una cinta azul y una tarta de miel. «Este año gano yo», pensó {hero}, {hero.rasgo}. Pensaba plantar las cinco juntas, para que ninguna se quedara atrás.",
+       "scene": {
+        "bg": "plaza",
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "talk"
+         }
+        ],
+        "mood": "hope",
+        "props": [
+         {
+          "prop": "semillas",
+          "x": 0.5,
+          "clip": "still",
+          "scale": 1.6
+         }
+        ]
+       }
+      },
+      {
+       "id": "b",
+       "text": "Antes de irse, la abuela de {hero} le dejó {item.un}. Dentro había cinco semillas de {flor.noun}. «Dan flores grandes como soles», le dijo. En la fiesta de primavera, el pueblo daba una cinta azul y una tarta de miel al {flor.noun} más alto. {hero} se imaginó con la cinta puesta, y sonrió. Pensaba plantar las cinco juntas, para que ninguna se quedara atrás.",
+       "scene": {
+        "bg": "plaza",
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "talk"
+         }
+        ],
+        "mood": "hope",
+        "props": [
+         {
+          "prop": "semillas",
+          "x": 0.5,
+          "clip": "still",
+          "scale": 1.6
+         }
+        ]
+       }
+      }
+     ],
+     "introduces": [
+      "item",
+      "flor"
+     ]
+    },
+    {
+     "id": "vecinos",
+     "variants": [
+      {
+       "id": "a",
+       "text": "Pero {plaza.en} no todos tenían semillas, porque la nevada había cubierto los huertos. Rosa, la panadera, miraba su tierra vacía. «Este año no tendré ni una flor», suspiró. Beto, el molinero, tampoco. «Ni una», dijo. {hero} apretó {item.el} en el bolsillo.",
+       "scene": {
+        "bg": "plaza",
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "think"
+         },
+         {
+          "rig": "rosa",
+          "clip": "sad"
+         },
+         {
+          "rig": "beto",
+          "clip": "sad"
+         }
+        ],
+        "mood": "tension"
+       }
+      },
+      {
+       "id": "b",
+       "text": "{plaza.El} se veía gris y sin flores, porque la nevada se había llevado todas las semillas. Rosa, la panadera, regaba una maceta vacía por si acaso. Beto, el molinero, la miraba desde su puerta con cara larga. {hero} pasó entre los dos con las manos metidas en el bolsillo, tocando {item.el}.",
+       "scene": {
+        "bg": "plaza",
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "think"
+         },
+         {
+          "rig": "rosa",
+          "clip": "sad"
+         },
+         {
+          "rig": "beto",
+          "clip": "sad"
+         }
+        ],
+        "mood": "tension"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dilema",
+     "variants": [
+      {
+       "id": "a",
+       "text": "Aquella noche, {hero} puso las cinco semillas sobre la mesa y las contó. Una, dos, tres, cuatro, cinco. Con cinco, la cinta azul era casi suya. Con dos, solo quizá. Se las guardó otra vez y apagó la vela, pero tardó mucho en dormirse, porque no dejaba de pensar en la tierra vacía de Rosa.",
+       "scene": {
+        "bg": "cuarto",
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "think"
+         }
+        ],
+        "mood": "tension",
+        "props": [
+         {
+          "prop": "semillas",
+          "x": 0.3,
+          "clip": "still",
+          "scale": 1.4
+         }
+        ],
+        "light": "night",
+        "offstage": [
+         "rosa"
+        ]
+       }
+      },
+      {
+       "id": "b",
+       "text": "{hero} no podía dormir. Sacó {item.el} de debajo de la almohada y la dejó sobre la manta. Cinco semillas, tan pequeñas, tan redondas. Si las plantaba todas, ganaría. Si las repartía, no. «Es mi regalo», se dijo. Pero no cerraba los ojos, porque cada vez que lo hacía veía la maceta vacía de Rosa.",
+       "scene": {
+        "bg": "cuarto",
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "think"
+         }
+        ],
+        "mood": "tension",
+        "props": [
+         {
+          "prop": "semillas",
+          "x": 0.3,
+          "clip": "still",
+          "scale": 1.4
+         }
+        ],
+        "light": "night",
+        "offstage": [
+         "rosa"
+        ]
+       }
+      }
+     ],
+     "moves": true
+    },
+    {
+     "id": "ayuda",
+     "variants": [
+      {
+       "id": "a",
+       "text": "Por la mañana, {hero} fue a ver {helper.al} {helper} y le enseñó las semillas. «¿Y qué piensas hacer con ellas?», preguntó {helper}, y {helper.gesto}.",
+       "scene": {
+        "bg": "plaza",
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "talk"
+         },
+         {
+          "who": "helper",
+          "clip": "think"
+         }
+        ],
+        "mood": "hope"
+       }
+      }
+     ],
+     "introduces": [
+      "helper"
+     ],
+     "moves": true
+    },
+    {
+     "id": "consejo",
+     "variants": [
+      {
+       "id": "zaf",
+       "text": "«Una vez planté un huerto sin ayuda de nadie», contó {helper} {helper.voz}. «Era el más bonito del reino y el más callado. Sin abejas, sin vecinos que se asomaran. Estuve feliz un día entero. Al segundo día, me aburría.»",
+       "scene": {
+        "bg": "plaza",
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "think"
+         },
+         {
+          "who": "helper",
+          "clip": "talk"
+         }
+        ],
+        "mood": "hope"
+       },
+       "requires": [
+        "helper:zafiro"
+       ]
+      },
+      {
+       "id": "bon",
+       "text": "«En mi castillo había un jardín enorme con una sola flor», dijo {helper} {helper.voz}. «Una rosa perfecta. Todos la admiraban, pero nadie la olía, porque estaba prohibido tocarla. Ahora tengo mil margaritas desordenadas, y huelen a gloria.»",
+       "scene": {
+        "bg": "plaza",
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "think"
+         },
+         {
+          "who": "helper",
+          "clip": "laugh"
+         }
+        ],
+        "mood": "hope"
+       },
+       "requires": [
+        "helper:bonifacio"
+       ]
+      },
+      {
+       "id": "mar",
+       "text": "«De pequeña planté una flor para mí sola», contó {helper} {helper.voz}. «La vio una abeja. Luego tres. Luego una mariposa. Las flores no son de nadie, así que son de todo el que se asoma a mirarlas.»",
+       "scene": {
+        "bg": "plaza",
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "think"
+         },
+         {
+          "who": "helper",
+          "clip": "talk"
+         }
+        ],
+        "mood": "hope"
+       },
+       "requires": [
+        "helper:mara"
+       ]
+      },
+      {
+       "id": "ald",
+       "text": "«Mi abuelo me dio una vez una manzana», recordó {helper} {helper.voz}. «Me la comí a escondidas, detrás de un muro. Estaba rica, sí. Pero la que se parte en dos sabe mejor, porque la comes con alguien.»",
+       "scene": {
+        "bg": "plaza",
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "think"
+         },
+         {
+          "who": "helper",
+          "clip": "talk"
+         }
+        ],
+        "mood": "hope"
+       },
+       "requires": [
+        "helper:aldo"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "reparto",
+     "variants": [
+      {
+       "id": "a",
+       "text": "Esa tarde, {hero} separó las semillas. Dos se quedaron en su bolsillo. Una fue para Rosa, otra para Beto y la última para Lía, la más pequeña del pueblo. «¿Para mí?», dijo Rosa, con los ojos muy abiertos. «Es poquito», dijo {hero}. «Pero es una.» Con solo dos, la cinta azul se alejó un poco. Rosa lo abrazó y le dejó la nariz llena de harina.",
+       "scene": {
+        "bg": "plaza",
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "offer"
+         },
+         {
+          "rig": "rosa",
+          "clip": "surprised"
+         },
+         {
+          "rig": "beto",
+          "clip": "surprised"
+         },
+         {
+          "rig": "lia",
+          "clip": "cheer"
+         }
+        ],
+        "mood": "joy",
+        "props": [
+         {
+          "prop": "semillas",
+          "x": 0.5,
+          "clip": "still",
+          "scale": 1.2
+         }
+        ]
+       }
+      },
+      {
+       "id": "b",
+       "text": "{hero} se sentó en el borde del pozo y abrió {item.el}. Se quedó con dos semillas. Las otras tres las repartió: una para Rosa, otra para Beto y otra para Lía, que apenas llegaba al mostrador. «Es poquito», dijo, «pero es una». Con solo dos, la cinta azul se alejó un poco. Beto se rio, Lía dio un saltito y Rosa se secó los ojos con el delantal.",
+       "scene": {
+        "bg": "plaza",
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "offer"
+         },
+         {
+          "rig": "rosa",
+          "clip": "surprised"
+         },
+         {
+          "rig": "beto",
+          "clip": "surprised"
+         },
+         {
+          "rig": "lia",
+          "clip": "cheer"
+         }
+        ],
+        "mood": "joy",
+        "props": [
+         {
+          "prop": "semillas",
+          "x": 0.5,
+          "clip": "still",
+          "scale": 1.2
+         }
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "id": "espera",
+     "variants": [
+      {
+       "id": "a",
+       "text": "Pasaron las nieves, y luego las lluvias. {hero} regaba sus dos macetas cada mañana y cada mañana miraba la tierra: nada. Una mañana, dos hojitas verdes asomaron. ¡Habían brotado! Y ese mismo día, en casa de Rosa, de Beto y de Lía, también.",
+       "scene": {
+        "bg": "plaza",
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "cheer"
+         }
+        ],
+        "mood": "hope",
+        "props": [
+         {
+          "prop": "girasol",
+          "x": 0.3,
+          "clip": "grow",
+          "scale": 0.45
+         },
+         {
+          "prop": "girasol",
+          "x": 0.7,
+          "clip": "grow",
+          "scale": 0.45
+         }
+        ],
+        "offstage": [
+         "rosa",
+         "beto",
+         "lia"
+        ]
+       }
+      },
+      {
+       "id": "b",
+       "text": "Pasó el invierno, y llegó la primavera con sus charcos. {hero} regaba las dos macetas cada mañana y esperaba. Esperar era lo más difícil. Hasta que un día, dos puntitas verdes empujaron la tierra. Corrió a contarlo, y descubrió que en casa de Rosa, de Beto y de Lía también habían brotado.",
+       "scene": {
+        "bg": "plaza",
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "cheer"
+         }
+        ],
+        "mood": "hope",
+        "props": [
+         {
+          "prop": "girasol",
+          "x": 0.3,
+          "clip": "grow",
+          "scale": 0.45
+         },
+         {
+          "prop": "girasol",
+          "x": 0.7,
+          "clip": "grow",
+          "scale": 0.45
+         }
+        ],
+        "offstage": [
+         "rosa",
+         "beto",
+         "lia"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "id": "concurso",
+     "variants": [
+      {
+       "id": "a",
+       "text": "El día de la fiesta, {plaza.el} se llenó de amarillo. Había girasoles en el balcón de Rosa, en la puerta de Beto y en la maceta rota de Lía. El más alto era el de Rosa, y ganó la cinta azul. Los de {hero} eran más bajos, pero tenían tantas abejas que zumbaban como una canción. {hero} sintió una puntita de pena. Entonces Rosa le puso la cinta azul en la oreja, de broma. «Esta cinta es de los dos», dijo. «Yo solo regué lo que tú sembraste.»",
+       "scene": {
+        "bg": "plaza",
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "cheer"
+         },
+         {
+          "rig": "rosa",
+          "clip": "cheer"
+         },
+         {
+          "rig": "beto",
+          "clip": "clap"
+         },
+         {
+          "rig": "lia",
+          "clip": "cheer"
+         }
+        ],
+        "mood": "joy",
+        "props": [
+         {
+          "prop": "girasol",
+          "x": 0.1,
+          "clip": "sun",
+          "scale": 0.9
+         },
+         {
+          "prop": "girasol",
+          "x": 0.9,
+          "clip": "sun"
+         }
+        ]
+       }
+      },
+      {
+       "id": "b",
+       "text": "Llegó la fiesta de primavera, y {plaza.el} parecía un campo de soles. El girasol de Rosa era el más alto, y se llevó la cinta azul. Beto aplaudía y Lía daba saltitos. Los de {hero} eran más bajos, pero las abejas los adoraban, porque olían a miel. {hero} sintió una puntita de pena, solo una. Rosa lo vio y le puso la cinta en la oreja, de broma. «Es de los dos», dijo. «Yo solo regué lo que tú sembraste.»",
+       "scene": {
+        "bg": "plaza",
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "cheer"
+         },
+         {
+          "rig": "rosa",
+          "clip": "cheer"
+         },
+         {
+          "rig": "beto",
+          "clip": "clap"
+         },
+         {
+          "rig": "lia",
+          "clip": "cheer"
+         }
+        ],
+        "mood": "joy",
+        "props": [
+         {
+          "prop": "girasol",
+          "x": 0.1,
+          "clip": "sun",
+          "scale": 0.9
+         },
+         {
+          "prop": "girasol",
+          "x": 0.9,
+          "clip": "sun"
+         }
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "id": "cosecha",
+     "variants": [
+      {
+       "id": "a",
+       "text": "En otoño, los girasoles se doblaron, pesados de semillas. Cada cabeza tenía cientos, ¡cientos!, como estrellitas negras y blancas. {hero} llenó una bolsa grande. «¿Cuántas casas tiene la aldea?», preguntó {helper}. «Treinta», dijo {hero}. «Pues a repartir», dijo {helper}. Y fueron de puerta en puerta, dejando un puñado en cada una.",
+       "scene": {
+        "bg": "plaza",
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "cheer"
+         },
+         {
+          "who": "helper",
+          "clip": "cheer"
+         }
+        ],
+        "mood": "joy",
+        "props": [
+         {
+          "prop": "girasol",
+          "x": 0.25,
+          "clip": "sun"
+         },
+         {
+          "prop": "semillas",
+          "x": 0.7,
+          "clip": "still",
+          "scale": 1.6
+         }
+        ],
+        "light": "dusk"
+       }
+      },
+      {
+       "id": "b",
+       "text": "Cuando las hojas se pusieron doradas, los girasoles bajaron la cabeza, cargados de semillas. ¡Cientos en cada flor! {hero} las recogió en una bolsa enorme. {helper} la miró y sonrió. «Treinta casas tiene la aldea», dijo. «Treinta puñados», contestó {hero}. Y salieron a repartirlos, uno por uno, hasta que no quedó ni una puerta sin su regalo.",
+       "scene": {
+        "bg": "plaza",
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "cheer"
+         },
+         {
+          "who": "helper",
+          "clip": "cheer"
+         }
+        ],
+        "mood": "joy",
+        "props": [
+         {
+          "prop": "girasol",
+          "x": 0.25,
+          "clip": "sun"
+         },
+         {
+          "prop": "semillas",
+          "x": 0.7,
+          "clip": "still",
+          "scale": 1.6
+         }
+        ],
+        "light": "dusk"
+       }
+      }
+     ]
+    },
+    {
+     "id": "cierre",
+     "variants": [
+      {
+       "id": "a",
+       "text": "Esa noche, {hero} guardó una sola semilla en el bolsillo del pijama, por si acaso. Por la ventana se veían los tejados de la aldea y, abajo, las flores dormidas con la cabeza gacha. «El año que viene…», pensó, y se quedó dormid{hero.o} soñando con un pueblo entero color sol.",
+       "scene": {
+        "bg": "cuarto",
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "sleep"
+         }
+        ],
+        "mood": "sleep",
+        "props": [
+         {
+          "prop": "semillas",
+          "x": 0.3,
+          "clip": "still",
+          "scale": 1.2
+         }
+        ],
+        "light": "night"
+       }
+      },
+      {
+       "id": "b",
+       "text": "En el cuarto de {hero} se oía el viento y, de vez en cuando, el crujido de un girasol que se mecía en la oscuridad. {hero} sonrió contra la almohada. Mañana habría que repartir otro puñado. Y pasado, otro. Se durmió contando soles: uno, dos, tres, cuatro, cinco… y muchísimos más.",
+       "scene": {
+        "bg": "cuarto",
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "sleep"
+         }
+        ],
+        "mood": "sleep",
+        "props": [
+         {
+          "prop": "semillas",
+          "x": 0.3,
+          "clip": "still",
+          "scale": 1.2
+         }
+        ],
+        "light": "night"
+       }
+      }
+     ],
+     "moves": true
+    }
+   ]
+  },
+  {
+   "id": "puente",
+   "value": "valentia",
+   "title": "El puente que crujía",
+   "npcs": {
+    "tomas": [
+     "Tomás"
+    ],
+    "aldeana": [
+     "vecinos"
+    ]
+   },
+   "cast": {
+    "hero": {
+     "kind": "character",
+     "roles": [
+      "hero"
+     ]
+    },
+    "helper": {
+     "kind": "character",
+     "roles": [
+      "helper"
+     ]
+    },
+    "rio": {
+     "kind": "place",
+     "ids": [
+      "rio"
+     ]
+    },
+    "plaza": {
+     "kind": "place",
+     "ids": [
+      "aldea"
+     ]
+    },
+    "cuarto": {
+     "kind": "place",
+     "ids": [
+      "cuarto"
+     ]
+    },
+    "item": {
+     "kind": "prop",
+     "ids": [
+      "hierba"
+     ]
+    }
+   },
+   "beats": [
+    {
+     "id": "encargo",
+     "variants": [
+      {
+       "id": "a",
+       "text": "Aquel otoño, Tomás, el viejo campanero, cayó enfermo. Tosía tanto que la campana, cada noche, sonaba un poco triste. Los vecinos decían que solo curaba {item.el}, que crece al otro lado del río. Pero el puente era viejo y crujía, así que nadie se atrevía a cruzarlo. {hero} los escuchó a todos sin decir nada.",
+       "scene": {
+        "bg": "plaza",
+        "stage": [
+         {
+          "rig": "tomas",
+          "clip": "sad"
+         },
+         {
+          "who": "hero",
+          "clip": "think"
+         },
+         {
+          "rig": "aldeana",
+          "clip": "surprised"
+         }
+        ],
+        "mood": "tension"
+       }
+      },
+      {
+       "id": "b",
+       "text": "Tomás, el viejo campanero, llevaba tres días tosiendo en su cama. «Solo lo curaría {item.el}», decían los vecinos, «la que crece al otro lado del río». Pero para llegar había que cruzar el puente de madera, el que hacía ¡cric, cric! con cada soplo de viento. Nadie quería ir, ya que el puente parecía a punto de romperse. {hero} sintió que le picaba la nuca.",
+       "scene": {
+        "bg": "plaza",
+        "stage": [
+         {
+          "rig": "tomas",
+          "clip": "sad"
+         },
+         {
+          "who": "hero",
+          "clip": "think"
+         },
+         {
+          "rig": "aldeana",
+          "clip": "surprised"
+         }
+        ],
+        "mood": "tension"
+       }
+      }
+     ],
+     "introduces": [
+      "item"
+     ]
+    },
+    {
+     "id": "puente",
+     "variants": [
+      {
+       "id": "a",
+       "text": "Al caer la tarde, {hero} llegó al río. El agua hacía ¡shhh!, y el puente de madera hacía ¡cric, cric! Eran cuarenta tablones, y {hero} los contó dos veces con el dedo. Debajo, el agua corría oscura y rápida. {hero} puso un pie en el primero. ¡Cric! Lo retiró de golpe. «No puedo», dijo en voz baja, porque el corazón le hacía ¡pum, pum, pum!",
+       "scene": {
+        "bg": "rio",
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "scared"
+         }
+        ],
+        "mood": "tension",
+        "light": "dusk"
+       }
+      },
+      {
+       "id": "b",
+       "text": "{hero} se plantó delante del puente. Cuarenta tablones, viejos y torcidos. El viento los hacía crujir: ¡cric, cric, cric! Debajo corría el río, negro y veloz. {hero} adelantó un pie, y el tablón gimió. Lo retiró. «No puedo», susurró. Los rodillas le hacían cosquillas, y el corazón, ¡pum, pum, pum!",
+       "scene": {
+        "bg": "rio",
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "scared"
+         }
+        ],
+        "mood": "tension",
+        "light": "dusk"
+       }
+      }
+     ],
+     "moves": true
+    },
+    {
+     "id": "ayuda",
+     "variants": [
+      {
+       "id": "a",
+       "text": "{helper} apareció junto al puente, con una cuerda al hombro. Se sentó al lado de {hero} y no dijo nada durante un rato. Escucharon el río. «A mí tampoco me gustan los puentes», dijo al fin.",
+       "scene": {
+        "bg": "rio",
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "sad"
+         },
+         {
+          "who": "helper",
+          "clip": "talk"
+         }
+        ],
+        "mood": "hope",
+        "light": "dusk"
+       }
+      },
+      {
+       "id": "b",
+       "text": "Una sombra se acercó por el sendero: era {helper}, con una cuerda enrollada al hombro. Se acomodó junto a {hero}, miró el puente, miró el río y soltó un suspiro largo. «A mí tampoco me gustan los puentes», confesó.",
+       "scene": {
+        "bg": "rio",
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "sad"
+         },
+         {
+          "who": "helper",
+          "clip": "talk"
+         }
+        ],
+        "mood": "hope",
+        "light": "dusk"
+       }
+      }
+     ],
+     "introduces": [
+      "helper"
+     ]
+    },
+    {
+     "id": "consejo",
+     "variants": [
+      {
+       "id": "zaf",
+       "text": "«¿Sabes lo que no sabe hacer el miedo?», preguntó {helper} {helper.voz}. «Contar. Cuenta los tablones en voz alta y verás cómo se queda sin palabras, porque nunca aprendió los números.» Luego le ató la cuerda a la cintura, y el otro extremo, a un árbol.",
+       "scene": {
+        "bg": "rio",
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "think"
+         },
+         {
+          "who": "helper",
+          "clip": "talk"
+         }
+        ],
+        "mood": "hope",
+        "light": "dusk"
+       },
+       "requires": [
+        "helper:zafiro"
+       ]
+      },
+      {
+       "id": "bon",
+       "text": "«En mi castillo cruzaba el foso cantando», confesó {helper} {helper.voz}. «Tres notas, siempre las mismas. Mi voz iba delante, y yo, detrás.» Luego le ató la cuerda a la cintura, y el otro extremo, a un árbol.",
+       "scene": {
+        "bg": "rio",
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "think"
+         },
+         {
+          "who": "helper",
+          "clip": "laugh"
+         }
+        ],
+        "mood": "hope",
+        "light": "dusk"
+       },
+       "requires": [
+        "helper:bonifacio"
+       ]
+      },
+      {
+       "id": "mar",
+       "text": "«Mira siempre el tablón que viene, nunca el agua», dijo {helper} {helper.voz}. «Así se apunta una flecha: a lo que viene, no a lo que cae.» Luego le ató la cuerda a la cintura, y el otro extremo, a un árbol.",
+       "scene": {
+        "bg": "rio",
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "think"
+         },
+         {
+          "who": "helper",
+          "clip": "talk"
+         }
+        ],
+        "mood": "hope",
+        "light": "dusk"
+       },
+       "requires": [
+        "helper:mara"
+       ]
+      },
+      {
+       "id": "ald",
+       "text": "«Yo me agarro a la cuerda y le hablo a mis botas», contó {helper} {helper.voz}. «Botas, un paso. Botas, otro paso. Me hacen más caso que mis rodillas.» Luego le ató la cuerda a la cintura, y el otro extremo, a un árbol.",
+       "scene": {
+        "bg": "rio",
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "think"
+         },
+         {
+          "who": "helper",
+          "clip": "talk"
+         }
+        ],
+        "mood": "hope",
+        "light": "dusk"
+       },
+       "requires": [
+        "helper:aldo"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "primer_paso",
+     "variants": [
+      {
+       "id": "a",
+       "text": "{hero} respiró hondo. «Tengo miedo», susurró, «pero {hero.paso}». Puso el pie en el primer tablón. ¡Cric! Esta vez no lo retiró. «Uno», dijo. Desde la orilla, {helper} le hizo un gesto con el pulgar. El río hizo ¡shhh!, pero {hero} ya iba por el segundo.",
+       "scene": {
+        "bg": "rio",
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "sneak",
+          "x": 0.45
+         },
+         {
+          "who": "helper",
+          "clip": "wave",
+          "x": 0.15
+         }
+        ],
+        "mood": "mystery",
+        "light": "dusk"
+       }
+      },
+      {
+       "id": "b",
+       "text": "{hero} agarró la cuerda con las dos manos. «Tengo miedo», susurró, «pero {hero.paso}». El primer tablón crujió, ¡cric!, y {hero} no se movió. Respiró. Y entonces dio el segundo paso, y el tercero. Desde la orilla, {helper} le hizo un gesto con el pulgar.",
+       "scene": {
+        "bg": "rio",
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "sneak",
+          "x": 0.45
+         },
+         {
+          "who": "helper",
+          "clip": "wave",
+          "x": 0.15
+         }
+        ],
+        "mood": "mystery",
+        "light": "dusk"
+       }
+      }
+     ]
+    },
+    {
+     "id": "mitad",
+     "variants": [
+      {
+       "id": "a",
+       "text": "En mitad del puente, el viento sopló fuerte, ¡fuuu!, y los tablones se balancearon. {hero} se agarró a la cuerda. Abajo, la luna se rompía en pedacitos de agua. De pronto, un pie resbaló, ¡plaf!, y una bota se mojó hasta el tobillo. «¡Ay!», gritó {hero}. El corazón le galopaba. Pero la cuerda aguantó, porque {helper} la sujetaba con todas sus fuerzas.",
+       "scene": {
+        "bg": "rio",
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "scared"
+         }
+        ],
+        "mood": "tension",
+        "light": "night",
+        "offstage": [
+         "helper"
+        ]
+       }
+      },
+      {
+       "id": "b",
+       "text": "A mitad de camino, el puente se meció como una cuna. {hero} se quedó quiet{hero.o}, abrazad{hero.o} a la cuerda. Un tablón mojado se le escapó bajo el pie, ¡plaf!, y la bota se llenó de agua fría. «¡Uf!», dijo {hero}. Tenía las manos blancas de tanto apretar. Pero no soltó la cuerda, porque era lo único firme que tenía.",
+       "scene": {
+        "bg": "rio",
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "scared"
+         }
+        ],
+        "mood": "tension",
+        "light": "night"
+       }
+      }
+     ]
+    },
+    {
+     "id": "otra_orilla",
+     "variants": [
+      {
+       "id": "a",
+       "text": "Al otro lado, entre las piedras, algo brillaba con una luz plateada: {item.el}. {hero} arrancó un puñado con cuidado, y las hojas le cosquillearon en los dedos. Con la hierba en el bolsillo y la bota chorreando, se quedó un momento mirando el puente, porque parecía más largo que antes.",
+       "scene": {
+        "bg": "rio",
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "cheer"
+         }
+        ],
+        "mood": "triumph",
+        "props": [
+         {
+          "prop": "hierba",
+          "x": 0.78,
+          "clip": "shimmer",
+          "scale": 1.4
+         }
+        ],
+        "light": "night"
+       }
+      },
+      {
+       "id": "b",
+       "text": "Había llegado. Entre dos piedras, la hierba de luna brillaba como si alguien la hubiera encendido. {hero} arrancó un puñado, y las hojas le hicieron cosquillas en los dedos. Se la guardó en el bolsillo con mucho cuidado y se secó las manos en la ropa. Todavía le temblaban un poco. Pero sonreía.",
+       "scene": {
+        "bg": "rio",
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "cheer"
+         }
+        ],
+        "mood": "triumph",
+        "props": [
+         {
+          "prop": "hierba",
+          "x": 0.78,
+          "clip": "shimmer",
+          "scale": 1.4
+         }
+        ],
+        "light": "night"
+       }
+      }
+     ]
+    },
+    {
+     "id": "regreso",
+     "variants": [
+      {
+       "id": "a",
+       "text": "Volver fue peor, porque ya era de noche. Pero la luna se había puesto justo encima del río, y los tablones brillaban como un camino de plata. {hero} contó en voz alta: uno, dos, tres. El puente hacía ¡cric, cric! a cada paso, como si dijera: «Sigue, sigue». En el tablón cuarenta, {hero} saltó a la orilla, y {helper} le dio un abrazo.",
+       "scene": {
+        "bg": "rio",
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "sneak",
+          "x": 0.45
+         },
+         {
+          "who": "helper",
+          "clip": "cheer",
+          "x": 0.15
+         }
+        ],
+        "mood": "hope",
+        "light": "night"
+       }
+      },
+      {
+       "id": "b",
+       "text": "Para volver, {hero} no cerró los ojos ni una vez. Miraba el tablón siguiente, y luego el siguiente. El puente crujía igual que antes, pero ya no daba tanto miedo, porque {hero} ya conocía su voz. Cuando pisó la orilla, las rodillas le temblaron un poquito. Y {helper} le dio un abrazo muy largo.",
+       "scene": {
+        "bg": "rio",
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "sneak",
+          "x": 0.45
+         },
+         {
+          "who": "helper",
+          "clip": "cheer",
+          "x": 0.15
+         }
+        ],
+        "mood": "hope",
+        "light": "night"
+       }
+      }
+     ]
+    },
+    {
+     "id": "entrega",
+     "variants": [
+      {
+       "id": "a",
+       "text": "Tomás bebió el té de hierba de luna, sopló sobre la taza y tosió una vez más, la última. «Tienes la bota mojada y las orejas rojas», le dijo a {hero} con una sonrisa. «¿Tenías miedo?» «Muchísimo», dijo {hero}. «Pero el puente aguantó, y yo también.»",
+       "scene": {
+        "bg": "plaza",
+        "stage": [
+         {
+          "rig": "tomas",
+          "clip": "talk"
+         },
+         {
+          "who": "hero",
+          "clip": "talk"
+         }
+        ],
+        "mood": "joy",
+        "props": [
+         {
+          "prop": "hierba",
+          "x": 0.84,
+          "clip": "shimmer"
+         }
+        ],
+        "light": "night"
+       }
+      },
+      {
+       "id": "b",
+       "text": "Esa noche, Tomás bebió el té de hierba de luna, y su tos se fue apagando como una vela. «¿Quién ha cruzado el puente?», preguntó. «Yo», dijo {hero}. «¿Y tenías miedo?» «Muchísimo», contestó {hero}. «Pero el puente aguantó, y yo también.» Tomás le guiñó un ojo.",
+       "scene": {
+        "bg": "plaza",
+        "stage": [
+         {
+          "rig": "tomas",
+          "clip": "talk"
+         },
+         {
+          "who": "hero",
+          "clip": "talk"
+         }
+        ],
+        "mood": "joy",
+        "props": [
+         {
+          "prop": "hierba",
+          "x": 0.84,
+          "clip": "shimmer"
+         }
+        ],
+        "light": "night"
+       }
+      }
+     ],
+     "moves": true
+    },
+    {
+     "id": "cierre",
+     "variants": [
+      {
+       "id": "a",
+       "text": "Aquella noche, la campana sonó otra vez fuerte y alegre. {hero} la oyó desde la cama, con los pies calentitos dentro de calcetines secos. El río seguía haciendo shhh, pero ya no decía «no puedes». Decía «buenas noches». {hero} cerró los ojos y cruzó el puente otra vez, solo que en sueños, muy despacio, y sin miedo.",
+       "scene": {
+        "bg": "cuarto",
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "sleep"
+         }
+        ],
+        "mood": "sleep",
+        "light": "night"
+       }
+      },
+      {
+       "id": "b",
+       "text": "Esa noche se oyó la campana desde la cama de {hero}. Sonaba fuerte y redonda, sin una gota de tos. {hero} se arropó. Pensó en los cuarenta tablones, uno por uno, y en que los había contado todos. Afuera, el río hacía shhh. Y {hero} se durmió con el sonido del agua, que ahora sonaba a nana.",
        "scene": {
         "bg": "cuarto",
         "stage": [
