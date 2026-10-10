@@ -30,6 +30,7 @@ mientras avanza y puede proyectarse como **holograma** con una pirámide transpa
 | [docs/09-backend-y-panel-admin.md](docs/09-backend-y-panel-admin.md) | Backend, sincronización de packs, compras y panel de administración |
 | [docs/10-arte-y-estilo-visual.md](docs/10-arte-y-estilo-visual.md) | Estilo visual, derechos de autor del arte, sistema modular y presupuesto de rendimiento |
 | [docs/12-valoraciones-y-mejora-continua.md](docs/12-valoraciones-y-mejora-continua.md) | Valoración 1–5 al final de cada cuento (con motivo opcional si es baja): qué se envía, evidencia, análisis y cómo mejora los cuentos |
+| [docs/13-auditoria-de-historias.md](docs/13-auditoria-de-historias.md) | Auditoría de coherencia de los cuentos generados (medida con `audit_stories`), causas y plan de arreglo |
 | [docs/11-pipeline-de-arte-por-codigo.md](docs/11-pipeline-de-arte-por-codigo.md) | Arte generado por código (sin presupuesto ni herramientas de pago), pack medieval, 3D y límites |
 
 ## Estructura del repositorio
