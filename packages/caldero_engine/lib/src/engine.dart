@@ -1,3 +1,4 @@
+import 'age.dart';
 import 'grammar.dart';
 import 'models.dart';
 import 'recipe.dart';
@@ -14,13 +15,17 @@ class StoryGenerationException implements Exception {
 }
 
 class StoryOptions {
-  const StoryOptions({required this.seed, this.valueId});
+  const StoryOptions({required this.seed, this.valueId, this.age});
 
   /// Misma semilla + mismo pack + mismas opciones ⇒ mismo cuento.
   final int seed;
 
   /// Enseñanza deseada; si es `null` se elige una al azar.
   final String? valueId;
+
+  /// Perfil de edad (`2-3`, `4-5`, `6-8`, `9-12`) o `null` para cualquiera. Si el pack no tiene cuentos de esa
+  /// edad se usan los del perfil más cercano (ver `Pack.resolveAge`).
+  final String? age;
 }
 
 /// El «caldero»: elige enseñanza, reparto y fragmentos coherentes.
@@ -42,9 +47,13 @@ class StoryEngine {
           ));
     }
 
-    final premises = pack.premises
+    var premises = pack.premises
         .where((p) => p.fitsValue(moral.id))
         .toList(growable: false);
+    final age = pack.resolveAge(options.age);
+    final byAge = premises.where((p) => p.fitsAge(age)).toList(growable: false);
+    // Si ninguno de esta enseñanza sirve a esa edad, mejor uno que ninguno
+    if (byAge.isNotEmpty) premises = byAge;
     if (premises.isNotEmpty) {
       return _generateFromPremise(
         pack,

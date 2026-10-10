@@ -4,7 +4,10 @@ import 'dart:ui' as ui;
 import 'package:caldero_app/src/app.dart';
 import 'package:caldero_app/src/feedback/feedback_service.dart';
 import 'package:caldero_app/src/feedback/feedback_store.dart';
+import 'package:caldero_app/src/narration/narrator.dart';
+import 'package:caldero_app/src/settings/app_settings.dart';
 import 'package:caldero_app/src/shelf/story_shelf.dart';
+import 'package:caldero_app/src/ui/voice_services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
@@ -99,5 +102,57 @@ void main() {
     await tester.tap(find.text('Mis cuentos'));
     await tester.pump(const Duration(milliseconds: 600));
     await shot('09_mis_cuentos');
+  }, skip: out == null);
+
+  testWidgets('capturas del wizard y de ajustes', (tester) async {
+    await tester.runAsync(loadFonts);
+    tester.view
+      ..physicalSize = const Size(412 * 2, 892 * 2)
+      ..devicePixelRatio = 2;
+    addTearDown(tester.view.reset);
+    Directory(out!).createSync(recursive: true);
+    final boundary = GlobalKey();
+    Future<void> shot(String name) async {
+      await tester.runAsync(() async {
+        final b = boundary.currentContext!.findRenderObject()!
+            as RenderRepaintBoundary;
+        final image = await b.toImage(pixelRatio: 1.0);
+        final data = await image.toByteData(format: ui.ImageByteFormat.png);
+        File('$out/$name.png').writeAsBytesSync(data!.buffer.asUint8List());
+      });
+    }
+
+    await tester.pumpWidget(RepaintBoundary(
+      key: boundary,
+      child: CalderoApp(
+        bundle: FileBundle(),
+        feedback: FeedbackService(store: MemoryFeedbackStore()),
+        settings: AppSettings(MemorySettingsStore()),
+        voices: VoiceServices(
+          listVoices: () async => const [
+            TtsVoice(name: 'es-es-x-eea-local', locale: 'es-ES'),
+            TtsVoice(name: 'es-us-x-sfb-local', locale: 'es-US'),
+            TtsVoice(name: 'es-mx-x-bkr-local', locale: 'es-MX'),
+          ],
+        ),
+        showWizard: true,
+      ),
+    ));
+    await tester.runAsync(
+        () => Future<void>.delayed(const Duration(milliseconds: 300)));
+    await tester.pump(const Duration(milliseconds: 600));
+    await shot('10_wizard_idioma');
+    for (final n in ['11_wizard_voz', '12_wizard_edad', '13_wizard_resumen']) {
+      await tester.tap(find.byKey(const Key('wizard-next')).evaluate().isEmpty
+          ? find.byKey(const Key('wizard-start'))
+          : find.byKey(const Key('wizard-next')));
+      await tester.pump(const Duration(milliseconds: 400));
+      await tester.pump(const Duration(milliseconds: 400));
+      if (n == '12_wizard_edad') {
+        await tester.tap(find.byKey(const Key('age-2-3')));
+        await tester.pump(const Duration(milliseconds: 300));
+      }
+      await shot(n);
+    }
   }, skip: out == null);
 }

@@ -41,21 +41,21 @@ class _CinemaPageState extends State<CinemaPage>
     with SingleTickerProviderStateMixin {
   late final StageClock _clock = StageClock(this);
   late final StoryPlayback _playback;
-  late final Ambience _ambience = widget.ambience ?? defaultAmbience();
+  late final Ambience _ambience = widget.ambience ?? ambienceFor(context);
   bool _hearVoice = true;
-  bool _hearMusic = true;
+  late bool _hearMusic = musicOn(context);
 
   @override
   void initState() {
     super.initState();
     _playback = StoryPlayback(
       scenes: playScenes(widget.story, widget.setups),
-      narrator: widget.narrator ?? defaultNarrator(),
+      narrator: widget.narrator ?? narratorFor(context),
       title: widget.story.title,
     )..addListener(() => mounted ? setState(() {}) : null);
     enterShowMode(immersive: false);
     if (widget.autoStart) {
-      _ambience.start();
+      if (_hearMusic) _ambience.start();
       WidgetsBinding.instance.addPostFrameCallback((_) {
         if (mounted) _playback.play();
       });

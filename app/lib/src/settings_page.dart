@@ -5,17 +5,27 @@ import 'package:flutter/material.dart';
 
 import 'feedback/feedback_service.dart';
 import 'feedback/rating_event.dart';
+import 'settings/app_settings.dart';
 import 'share.dart';
+import 'ui/voice_picker.dart';
 import 'workshop_page.dart';
 
 /// Ajustes para adultos: permiso de valoraciones y transparencia total sobre qué se envía.
 class SettingsPage extends StatefulWidget {
-  const SettingsPage({super.key, required this.feedback, this.bundle});
+  const SettingsPage({
+    super.key,
+    required this.feedback,
+    this.bundle,
+    this.agesWithStories = const {'6-8'},
+  });
 
   final FeedbackService feedback;
 
   /// Para abrir el Taller de personajes (herramienta de prueba).
   final AssetBundle? bundle;
+
+  /// Edades para las que el pack tiene cuentos (si se elige otra, se avisa).
+  final Set<String> agesWithStories;
 
   @override
   State<SettingsPage> createState() => _SettingsPageState();
@@ -118,6 +128,122 @@ class _SettingsPageState extends State<SettingsPage> {
     );
   }
 
+  /// Idioma, voz, edad, velocidad y música: lo mismo que pregunta el wizard. Se aplica al siguiente cuento.
+  List<Widget> _storySettings(BuildContext context) {
+    final text = Theme.of(context).textTheme;
+    final settings = SettingsScope.watch(context);
+    if (settings == null) return const [];
+    final child = settings.child;
+    final profile = AgeProfile.byId(child.age)!;
+    final hasStories = widget.agesWithStories.contains(child.age);
+    return [
+      Text('Cuentos y voz', style: text.titleMedium),
+      const SizedBox(height: 4),
+      Text('Los cambios valen desde el siguiente cuento.',
+          style: text.bodySmall),
+      const SizedBox(height: 12),
+      Row(
+        children: [
+          const Icon(Icons.language),
+          const SizedBox(width: 12),
+          Expanded(child: Text('Idioma', style: text.bodyLarge)),
+          DropdownButton<String>(
+            key: const Key('setting-language'),
+            value: child.language,
+            items: [
+              for (final l in supportedLanguages)
+                DropdownMenuItem(value: l.code, child: Text(l.name)),
+            ],
+            onChanged: (v) {
+              if (v != null) settings.updateChild(language: v);
+            },
+          ),
+        ],
+      ),
+      const SizedBox(height: 16),
+      Text('Voz del narrador', style: text.bodyLarge),
+      const SizedBox(height: 8),
+      VoicePicker(
+        key: const Key('setting-voice'),
+        services: SettingsScope.voicesOf(context),
+        selected: child.voice,
+        speed: child.voiceConfig.speed,
+        onSelected: (o) => settings.updateChild(voice: o.voice),
+      ),
+      const SizedBox(height: 8),
+      Text('Edad del niño', style: text.bodyLarge),
+      const SizedBox(height: 8),
+      SegmentedButton<String>(
+        key: const Key('setting-age'),
+        showSelectedIcon: false,
+        segments: [
+          for (final p in AgeProfile.all)
+            ButtonSegment(
+                value: p.id, label: Text(p.label.replaceAll(' años', ''))),
+        ],
+        selected: {child.age},
+        onSelectionChanged: (v) => settings.updateChild(age: v.first),
+      ),
+      const SizedBox(height: 6),
+      Text(profile.blurb, style: text.bodySmall),
+      if (!hasStories)
+        Padding(
+          padding: const EdgeInsets.only(top: 4),
+          child: Text(
+            'Por ahora todavía no hay cuentos de esta edad: te contamos los más cercanos.',
+            key: const Key('setting-age-note'),
+            style: text.bodySmall!
+                .copyWith(color: Theme.of(context).colorScheme.primary),
+          ),
+        ),
+      const SizedBox(height: 16),
+      Text('Velocidad de lectura', style: text.bodyLarge),
+      const SizedBox(height: 8),
+      SegmentedButton<ReadingSpeed>(
+        key: const Key('setting-speed'),
+        showSelectedIcon: false,
+        segments: [
+          for (final s in ReadingSpeed.values)
+            ButtonSegment(value: s, label: Text(s.label)),
+        ],
+        selected: {child.speed},
+        onSelectionChanged: (v) => settings.updateChild(speed: v.first),
+      ),
+      const SizedBox(height: 8),
+      SwitchListTile(
+        key: const Key('setting-music'),
+        contentPadding: EdgeInsets.zero,
+        title: const Text('Música de fondo'),
+        subtitle: const Text('Suena bajito mientras se cuenta el cuento.'),
+        value: settings.music,
+        onChanged: (v) => settings.setMusic(on: v),
+      ),
+      if (settings.music)
+        Row(
+          children: [
+            const Icon(Icons.volume_down),
+            Expanded(
+              child: Slider(
+                key: const Key('setting-music-volume'),
+                value: settings.musicVolume.clamp(0.0, 0.6),
+                max: 0.6,
+                onChanged: (v) => settings.setMusic(volume: v),
+              ),
+            ),
+            const Icon(Icons.volume_up),
+          ],
+        ),
+      ListTile(
+        key: const Key('setting-downloads'),
+        contentPadding: EdgeInsets.zero,
+        leading: const Icon(Icons.offline_pin_outlined),
+        title: const Text('Descargas'),
+        subtitle: const Text(
+            'Los cuentos ya están dentro de la app: funcionan sin internet.'),
+      ),
+    ];
+  }
+
   @override
   Widget build(BuildContext context) {
     final text = Theme.of(context).textTheme;
@@ -130,6 +256,8 @@ class _SettingsPageState extends State<SettingsPage> {
             : ListView(
                 padding: const EdgeInsets.all(16),
                 children: [
+                  ..._storySettings(context),
+                  const Divider(height: 32),
                   SwitchListTile(
                     key: const Key('feedback-switch'),
                     contentPadding: EdgeInsets.zero,

@@ -43,7 +43,7 @@ class _HologramPageState extends State<HologramPage>
     with SingleTickerProviderStateMixin {
   late final StageClock _clock = StageClock(this);
   late final StoryPlayback _playback;
-  late final Ambience _ambience = widget.ambience ?? defaultAmbience();
+  late final Ambience _ambience = widget.ambience ?? ambienceFor(context);
   List<ActorInstance> _actors = const [];
   List<ActorInstance> _props = const [];
   double _crop = 1;
@@ -59,7 +59,7 @@ class _HologramPageState extends State<HologramPage>
     super.initState();
     _playback = StoryPlayback(
       scenes: playScenes(widget.story, widget.setups),
-      narrator: widget.narrator ?? defaultNarrator(),
+      narrator: widget.narrator ?? narratorFor(context),
       title: widget.story.title,
     )..addListener(_onPlayback);
     _onPlayback();

@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:caldero_engine/caldero_engine.dart' show normalizeForVoice;
 import 'package:flutter/foundation.dart';
 
 import '../art/story_stage.dart';
@@ -72,6 +73,8 @@ class StoryPlayback extends ChangeNotifier {
   }
 
   Future<void> pause() async {
+    _resume = false;
+    _jump++; // si había un salto esperando, ya no reanuda
     if (!_playing) return;
     _playing = false;
     _run++;
@@ -82,25 +85,40 @@ class StoryPlayback extends ChangeNotifier {
 
   Future<void> toggle() => _playing ? pause() : Future.sync(play);
 
+  int _jump = 0; // el último salto es el que manda
+  bool _resume = false; // había voz cuando se pidió saltar
+
   /// Va a la escena [i] y, si estaba sonando, sigue desde ahí.
+  ///
+  /// El estado cambia **antes** de esperar a que la voz pare: así varios saltos seguidos y rápidos («adelantar»
+  /// cinco veces) se suman en vez de partir todos de la misma escena, y solo el último vuelve a hablar.
   Future<void> goTo(int i) async {
-    final wasPlaying = _playing;
+    _resume = _resume || _playing;
+    final token = ++_jump;
     _run++;
     _cancelBreath();
-    await narrator.stop();
     _scene = i.clamp(0, scenes.length - 1);
     _sentence = 0;
     _finished = false;
     _playing = false;
     notifyListeners();
-    if (wasPlaying) play();
+    await narrator.stop();
+    if (token != _jump || _disposed) return;
+    final resume = _resume;
+    _resume = false;
+    if (resume) play();
   }
 
   Future<void> next() => goTo(_scene + 1);
   Future<void> previous() => goTo(_scene - 1);
 
-  Future<void> _say(String s) =>
-      narrate ? narrator.speak(s) : TimedNarrator().speak(s);
+  /// Lo que se lee en pantalla (`texto_pantalla`) y lo que se dice (`texto_voz`) son distintos: a la voz le llega
+  /// la frase ya normalizada (sin comillas «», sin «Fiuuu», con las cifras en palabras…).
+  Future<void> _say(String s) {
+    final voice = normalizeForVoice(s);
+    if (voice.isEmpty) return Future.value();
+    return narrate ? narrator.speak(voice) : TimedNarrator().speak(voice);
+  }
 
   bool _alive(int run) => !_disposed && run == _run;
 

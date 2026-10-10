@@ -9,6 +9,7 @@ import 'feedback/rating_card.dart';
 import 'pack_loader.dart';
 import 'packs/packs_tab.dart';
 import 'seed.dart';
+import 'settings/app_settings.dart';
 import 'settings_page.dart';
 import 'share.dart';
 import 'shelf/my_stories_tab.dart';
@@ -95,7 +96,11 @@ class _HomePageState extends State<HomePage> {
     Story next() {
       final s = first && seed != null ? seed : widget.seedProvider();
       first = false;
-      return engine.generate(StoryOptions(seed: s, valueId: option));
+      return engine.generate(StoryOptions(
+        seed: s,
+        valueId: option,
+        age: SettingsScope.maybeOf(context)?.child.age,
+      ));
     }
 
     final story = next();
@@ -114,12 +119,15 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Future<void> _openSettings() async {
+  Future<void> _openSettings(Set<String> agesWithStories) async {
     if (!await askAdult(context) || !mounted) return;
     await Navigator.of(context).push(
       MaterialPageRoute<void>(
-        builder: (_) =>
-            SettingsPage(feedback: widget.feedback, bundle: widget.bundle),
+        builder: (_) => SettingsPage(
+          feedback: widget.feedback,
+          bundle: widget.bundle,
+          agesWithStories: agesWithStories,
+        ),
       ),
     );
     _refreshPending();
@@ -153,7 +161,9 @@ class _HomePageState extends State<HomePage> {
               }
               return Column(
                 children: [
-                  _TopBar(onSettings: _openSettings),
+                  _TopBar(
+                    onSettings: () => _openSettings(pack.agesWithStories),
+                  ),
                   Expanded(
                     child: switch (_tab) {
                       0 => _homeTab(pack),

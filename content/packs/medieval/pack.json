@@ -3,7 +3,7 @@
     "schema": 2,
     "id": "medieval",
     "name": "Reino de la Luna (prueba)",
-    "version": "0.12.1",
+    "version": "0.13.0",
     "license": "Contenido original, todos los derechos reservados al autor del proyecto",
     "language": "es",
     "age_band": "4-7"
@@ -487,6 +487,9 @@
       "id": "campana",
       "value": "honestidad",
       "title": "La campana rota",
+      "ages": [
+        "6-8"
+      ],
       "npcs": {
         "tomas": [
           "Tomás"
@@ -1549,6 +1552,9 @@
       "id": "olla",
       "value": "generosidad",
       "title": "La olla de los poquitos",
+      "ages": [
+        "6-8"
+      ],
       "npcs": {
         "lia": [
           "Lía"
@@ -2885,6 +2891,9 @@
       "id": "linterna",
       "value": "valentia",
       "title": "La linterna apagada",
+      "ages": [
+        "6-8"
+      ],
       "npcs": {
         "lia": [
           "Lía"
@@ -4265,6 +4274,9 @@
       "id": "pozo",
       "value": "honestidad",
       "title": "La bolsa del pozo",
+      "ages": [
+        "6-8"
+      ],
       "npcs": {
         "beto": [
           "Beto"
@@ -5187,6 +5199,9 @@
       "id": "girasol",
       "value": "generosidad",
       "title": "Las semillas de sol",
+      "ages": [
+        "6-8"
+      ],
       "npcs": {
         "rosa": [
           "Rosa"
@@ -6074,6 +6089,9 @@
       "id": "puente",
       "value": "valentia",
       "title": "El puente que crujía",
+      "ages": [
+        "6-8"
+      ],
       "npcs": {
         "tomas": [
           "Tomás"

@@ -1,13 +1,18 @@
+import 'package:caldero_engine/caldero_engine.dart' show AgePremises;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'art/story_stage.dart';
 import 'feedback/feedback_service.dart';
 import 'home_page.dart';
+import 'pack_loader.dart';
 import 'seed.dart';
+import 'settings/app_settings.dart';
 import 'shelf/story_shelf.dart';
 import 'theme.dart';
 import 'ui/splash_page.dart';
+import 'ui/voice_services.dart';
+import 'ui/wizard_page.dart';
 
 class CalderoApp extends StatefulWidget {
   const CalderoApp({
@@ -17,6 +22,9 @@ class CalderoApp extends StatefulWidget {
     this.seedProvider = timeSeed,
     this.animateArt = true,
     this.shelf,
+    this.settings,
+    this.voices = const VoiceServices(),
+    this.showWizard = false,
     this.showSplash = false,
     this.splashMinimum = const Duration(milliseconds: 3000),
   });
@@ -32,6 +40,15 @@ class CalderoApp extends StatefulWidget {
   /// «Mis cuentos»; por defecto uno en memoria (la app real pasa el que se guarda en el teléfono).
   final StoryShelf? shelf;
 
+  /// Ajustes de la familia; por defecto unos en memoria (la app real pasa los que se guardan en el teléfono).
+  final AppSettings? settings;
+
+  /// Cómo se crean las voces (las pruebas ponen versiones mudas).
+  final VoiceServices voices;
+
+  /// Muestra el wizard la primera vez que se abre la app (si los ajustes no lo dan por hecho). Las pruebas no.
+  final bool showWizard;
+
   /// Muestra la pantalla de bienvenida animada antes del inicio (la app real sí; las pruebas no).
   final bool showSplash;
   final Duration splashMinimum;
@@ -43,6 +60,9 @@ class CalderoApp extends StatefulWidget {
 class _CalderoAppState extends State<CalderoApp> {
   late final AssetBundle _bundle = widget.bundle ?? rootBundle;
   late final StoryShelf _shelf = widget.shelf ?? StoryShelf(MemoryShelfStore());
+  late final AppSettings _settings =
+      widget.settings ?? AppSettings(MemorySettingsStore());
+  late bool _wizard = widget.showWizard && !_settings.wizardDone;
   late bool _splash = widget.showSplash;
 
   /// Se precarga el arte mientras suena el splash, para que el inicio ya esté listo al caer.
@@ -53,6 +73,20 @@ class _CalderoAppState extends State<CalderoApp> {
         ])
       : Future<void>.value();
 
+  Widget _wizardPage() => FutureBuilder<Set<String>>(
+        future: loadPack(_bundle)
+            .then((p) => p.agesWithStories)
+            .catchError((Object _) => const {'6-8'}),
+        builder: (context, snap) => snap.data == null
+            ? const SizedBox.expand()
+            : WizardPage(
+                settings: _settings,
+                voices: widget.voices,
+                agesWithStories: snap.data!,
+                onDone: () => setState(() => _wizard = false),
+              ),
+      );
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -60,24 +94,30 @@ class _CalderoAppState extends State<CalderoApp> {
       debugShowCheckedModeBanner: false,
       theme: nightTheme(),
       // Sin animación (pruebas): las estrellitas y demás adornos se quedan quietos, como con «reducir movimiento».
-      builder: (context, child) => widget.animateArt
-          ? child!
-          : MediaQuery(
-              data: MediaQuery.of(context).copyWith(disableAnimations: true),
-              child: child!,
-            ),
+      builder: (context, child) => SettingsScope(
+        settings: _settings,
+        voices: widget.voices,
+        child: widget.animateArt
+            ? child!
+            : MediaQuery(
+                data: MediaQuery.of(context).copyWith(disableAnimations: true),
+                child: child!,
+              ),
+      ),
       home: Stack(
         children: [
           // Mientras suena el splash, el inicio se prepara debajo y no se lee con el lector de pantalla.
           ExcludeSemantics(
             excluding: _splash,
-            child: HomePage(
-              bundle: _bundle,
-              seedProvider: widget.seedProvider,
-              feedback: widget.feedback,
-              shelf: _shelf,
-              animateArt: widget.animateArt,
-            ),
+            child: _wizard
+                ? _wizardPage()
+                : HomePage(
+                    bundle: _bundle,
+                    seedProvider: widget.seedProvider,
+                    feedback: widget.feedback,
+                    shelf: _shelf,
+                    animateArt: widget.animateArt,
+                  ),
           ),
           if (_splash)
             Positioned.fill(

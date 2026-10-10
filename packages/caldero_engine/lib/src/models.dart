@@ -420,6 +420,7 @@ class Premise {
     required this.beats,
     this.npcs = const {},
     this.weight = 1,
+    this.ages = const [],
   });
 
   factory Premise.fromJson(Map<String, Object?> j) {
@@ -497,6 +498,14 @@ class Premise {
         npcs[e.key as String] = List<String>.from(v);
       }
     }
+    final ages = _strList(j, 'ages', where);
+    for (final a in ages) {
+      if (!const ['2-3', '4-5', '6-8', '9-12'].contains(a)) {
+        throw PackFormatException(
+          '$where: edad "$a" desconocida (usa 2-3, 4-5, 6-8 o 9-12)',
+        );
+      }
+    }
     return Premise(
       id: id,
       value: _str(j, 'value', where),
@@ -505,10 +514,17 @@ class Premise {
       beats: beats,
       npcs: npcs,
       weight: weight is num ? weight.toDouble() : 1,
+      ages: ages,
     );
   }
 
   final String id;
+
+  /// Perfiles de edad (`2-3`, `4-5`, `6-8`, `9-12`) a los que sirve el cuento; vacío = todos.
+  final List<String> ages;
+
+  bool fitsAge(String? age) =>
+      age == null || ages.isEmpty || ages.contains(age);
 
   /// Enseñanza que ilustra (id de `morals`), o `*`.
   final String value;

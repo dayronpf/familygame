@@ -427,6 +427,7 @@ void main() {
       await tester.pumpAndSettle();
       await answerGate(tester, correct: true);
       expect(find.text('Ajustes para adultos'), findsOneWidget);
+      await tester.scrollUntilVisible(find.text('Qué enviamos'), 300);
       expect(find.text('Qué enviamos'), findsOneWidget);
       expect(find.text('Qué NO enviamos'), findsOneWidget);
       await tester.scrollUntilVisible(
@@ -478,6 +479,8 @@ void main() {
       await tester.tap(find.byKey(const Key('open-settings')));
       await tester.pumpAndSettle();
       await answerGate(tester, correct: true);
+      await tester.scrollUntilVisible(
+          find.byKey(const Key('feedback-switch')), 300);
       expect(find.textContaining('Esperando para enviarse: 1'), findsOneWidget);
 
       await tester.tap(find.byKey(const Key('feedback-switch')));
