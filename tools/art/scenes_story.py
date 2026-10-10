@@ -260,6 +260,51 @@ def aldea():
     return scene("aldea", "Aldea de los molinos", grads, [sky, far, mid, near])
 
 
+# -------------------------------------------------------------------- casa
+def casa():
+    """Cocina de una casa de la aldea, de noche: pared de madera, ventana con nieve, horno encendido."""
+    grads = {"wall": lin([[0, "#5a3524", 1], [1, "#8a5a3a", 1]]),
+             "floor": lin([[0, "#7a4c2e", 1], [1, "#4a2c1a", 1]]),
+             "night": lin([[0, "#1d2350", 1], [1, "#3a4a8a", 1]]),
+             "glow": {"type": "radial", "stops": [[0, "#ffb45a", 0.55], [1, "#ffb45a", 0]]}}
+    wall = layer("wall", [full("@wall")] + [S(rrect(x, 0, 3, FLOOR - 20, 0), "#000000", None, 0, 0.12) for x in range(64, W, 64)])
+    # ventana con nieve
+    snow = []
+    r = lcg(11)
+    for i in range(18):
+        x, y = 78 + next(r) * 104, 96 + next(r) * 118
+        nd = node(f"flake{i}", (x, y), shapes=[S(ell(x, y, 2.2, 2.2), "#ffffff", None, 0)])
+        nd["anim"] = [ambient("opacity", [0.15, 1.0, 0.15], 2.4, next(r) * 2.4)]
+        snow.append(nd)
+    window = layer("window", [S(rrect(60, 80, 140, 150, 6), "#3a2412", "#1a0f08", 3),
+                              S(rrect(70, 90, 120, 130, 3), "@night", None, 0),
+                              S(rrect(127, 90, 6, 130, 0), "#3a2412", None, 0), S(rrect(70, 151, 120, 6, 0), "#3a2412", None, 0),
+                              S(rrect(54, 228, 152, 12, 4), "#5a3a22", "#2a180c", 2)], snow)
+    # estantería con tarros
+    jars = []
+    for i, c in enumerate(["#e8b45a", "#c8553d", "#7ab55a", "#e8b45a", "#9a6ab0"]):
+        x = 250 + i * 30
+        jars += [S(rrect(x, 128, 22, 28, 4), c, "#3a2412", 2), S(rrect(x + 3, 122, 16, 8, 2), "#d9c8a0", "#3a2412", 1.5)]
+    shelf = layer("shelf", [S(rrect(236, 156, 180, 8, 2), "#5a3a22", "#2a180c", 2)] + jars
+                  + [S("M300,40 L300,70", None, "#2a180c", 2), S(ell(300, 84, 18, 14), "#8a8a96", "#3a3a46", 2)])
+    # horno de ladrillo con fuego
+    fire = node("fire", (520, 360), shapes=[S("M490,396 C484,372 504,366 508,338 C516,360 528,360 534,336 C540,362 556,366 550,396 Z", "#ff8a2a", None, 0),
+                                              S("M504,396 C500,380 512,376 516,360 C522,376 534,378 538,396 Z", "#ffd34a", None, 0)])
+    fire["anim"] = [ambient("opacity", [0.7, 1.0, 0.8, 1.0], 1.6, 0.0)]
+    glow = node("ovenglow", (520, 340), shapes=[S(ell(520, 340, 230, 190), "@glow", None, 0)])
+    glow["anim"] = [ambient("opacity", [0.7, 1.0, 0.75], 2.4, 0.4)]
+    brick = [S(rrect(430, 220, 180, 190, 8), "#a8553f", "#4a1a14", 3),
+             S(rrect(450, 240, 140, 160, 6), "#8a4030", None, 0, 0.5)]
+    for yy in range(250, 400, 24):
+        brick.append(S(f"M450,{yy} L590,{yy}", None, "#4a1a14", 1.5))
+    brick += [S("M474,396 L474,350 C474,318 566,318 566,350 L566,396 Z", "#1a0f10", "#2a1a14", 2.5)]
+    oven = layer("oven", [S(ell(520, 340, 260, 200), "@glow", None, 0, 0.0)] + brick, [glow, fire])
+    floor_ = layer("floor", [S(rrect(0, FLOOR - 24, W, H - FLOOR + 24, 0), "@floor", "#2a180c", 3)]
+                   + [S(rrect(0, y, W, 2, 0), "#000000", None, 0, 0.18) for y in range(FLOOR + 6, H, 22)]
+                   + [S(ell(300, FLOOR + 30, 150, 26), "#a8453f", "#5a2418", 3), S(ell(300, FLOOR + 30, 118, 17), "#d9b27a", None, 0, 0.5)])
+    return scene("casa", "Cocina de la aldea", grads, [wall, window, shelf, oven, floor_])
+
+
 # ---------------------------------------------------------------- castillo (recorte del existente)
 CASTILLO_VIEW = [0, 250, 600, 450]
 
@@ -270,8 +315,9 @@ PLACES = {
     "cueva": {"scene": "cueva", "view": [0, 0, W, H], "floor": FLOOR, "scale": SCALE},
     "rio": {"scene": "rio", "view": [0, 0, W, H], "floor": FLOOR, "scale": SCALE},
     "aldea": {"scene": "aldea", "view": [0, 0, W, H], "floor": FLOOR, "scale": SCALE},
+    "casa": {"scene": "casa", "view": [0, 0, W, H], "floor": FLOOR, "scale": SCALE},
 }
-BUILDERS = {"bosque": bosque, "cueva": cueva, "rio": rio, "aldea": aldea}
+BUILDERS = {"bosque": bosque, "cueva": cueva, "rio": rio, "aldea": aldea, "casa": casa}
 
 
 # ------------------------------------------------- posiciones de los personajes

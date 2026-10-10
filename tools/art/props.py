@@ -142,6 +142,36 @@ def buho():
     root = node("root", (0, 0), shapes=body, post=[eyes])
     return rig("buho", "Búho", [-70, -140, 140, 150], OWL, root)
 
+# ------------------------------------------------------------------ cabrita
+GOAT = {"fur": "#f3ecda", "fur2": "#d9cfb4", "hoof": "#4a3a30", "horn": "#cdb67a", "ear": "#b98a62",
+        "eye": "#2a1c14", "nose": "#e9a6a0", "beard": "#e8dfc6"}
+
+
+def cabrita():
+    """Cabrita de perfil mirando a la derecha. Origen: bajo las pezuñas, centrada. Huesos: legsA/legsB
+    (patas), tail, head (cabeza y cuello), eyes (parpadeo)."""
+    def leg(x):
+        return [S(rrect(x - 5, -34, 10, 34, 4), "$fur2"), S(rrect(x - 6, -8, 12, 8, 3), "$hoof")]
+
+    legs_b = node("legsB", (-26, -34), shapes=leg(-26) + leg(30))           # patas lejanas (hacia atrás)
+    legs_a = node("legsA", (-12, -34), shapes=leg(-12) + leg(42))           # patas cercanas
+    tail = node("tail", (-48, -62), shapes=[S("M-48,-62 C-62,-72 -66,-58 -58,-52 C-56,-56 -52,-58 -48,-56 Z", "$fur")])
+    eyes = node("eyes", (26, -96), shapes=[S(ell(26, -96, 3.4, 4.4), "$eye", None), S(ell(25, -97.5, 1.1, 1.1), "#ffffff", None)])
+    head = node("head", (34, -70), shapes=[
+        S("M28,-72 C34,-96 46,-110 62,-100 C74,-96 82,-84 80,-74 C74,-66 52,-68 44,-60 C38,-60 30,-64 28,-72 Z", "$fur"),
+        S("M62,-100 C74,-96 82,-84 80,-74 C74,-66 64,-70 60,-76 Z", "$fur2", None, 0, 0.55),
+        S(ell(78, -80, 4.2, 3.2), "$nose", None),
+        S("M44,-60 C46,-48 52,-44 54,-52 C52,-56 48,-58 44,-60 Z", "$beard"),
+        S("M34,-99 C28,-120 40,-126 44,-114 C42,-110 38,-104 34,-99 Z", "$horn"),
+        S("M46,-102 C46,-114 58,-114 54,-104 Z", "$ear"),
+        S("M38,-100 C26,-100 20,-92 24,-86 C30,-90 36,-92 40,-94 Z", "$ear"),
+    ], post=[eyes])
+    body = [S("M-52,-70 C-56,-92 -30,-100 0,-98 C34,-98 48,-92 46,-72 C46,-52 36,-42 0,-40 C-34,-40 -50,-48 -52,-70 Z", "$fur"),
+            shade("M10,-96 C34,-98 48,-92 46,-72 C46,-52 36,-42 4,-40 C24,-56 22,-78 10,-96 Z"),
+            shine("M-40,-86 C-30,-94 -14,-96 0,-96 C-18,-90 -32,-80 -38,-70 Z")]
+    root = node("root", (0, 0), pre=[legs_b], shapes=body, post=[legs_a, tail, head])
+    return rig("cabrita", "Cabrita", [-80, -135, 170, 140], GOAT, root)
+
 
 def build_all():
-    return [campana(), campana_rota(), linterna(), linterna_apagada(), olla(), pan(), trozos_de_pan(), buho()]
+    return [campana(), campana_rota(), linterna(), linterna_apagada(), olla(), pan(), trozos_de_pan(), buho(), cabrita()]

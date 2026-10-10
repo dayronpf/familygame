@@ -712,7 +712,9 @@ void main() {
     });
   });
 
-  test('el validador detecta el género fijo («quieto», «yo solo»)', () {
+  test(
+      'el validador detecta el género fijo («quieto», «yo solo», «ir solo», «él»)',
+      () {
     Map<String, Object?> v(String id, String text) => {
           'id': id,
           'text': text,
@@ -726,6 +728,8 @@ void main() {
           v('mal1', '{hero} se quedó quieto con {item.un}.'),
           v('mal2', '{hero} dijo: «Lo haré yo solo» con {item.un}.'),
           v('mal3', '{hero} estaba dormida con {item.un}.'),
+          v('mal4', '{hero} sí iba a ir, pero no iba a ir solo con {item.un}.'),
+          v('mal5', 'Entre él y {hero} dejaron {item.un}.'),
           v('bien',
               '{hero} se quedó quiet{hero.o} y sol{hero.o} con {item.un}. Solo quería dormir.'),
         ],
@@ -734,6 +738,8 @@ void main() {
     expect(p, contains('mal1: género fijo «quieto»'));
     expect(p, contains('mal2: género fijo «yo solo»'));
     expect(p, contains('mal3: género fijo «dormida»'));
+    expect(p, contains('mal4: género fijo «ir solo»'));
+    expect(p, contains('mal5: género fijo «él»'));
     expect(p, isNot(contains('bien: género fijo')));
   });
 

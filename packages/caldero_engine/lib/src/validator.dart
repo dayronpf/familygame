@@ -165,11 +165,13 @@ final RegExp causalConnectors = RegExp(
   caseSensitive: false,
 );
 
-/// Adjetivos y participios con género que suelen referirse al héroe. En una plantilla se escriben con
+/// Adjetivos y participios con género que suelen referirse al héroe (y «él»/«ella», que con un reparto
+/// al azar salen mal: usa el nombre o «los dos»). En una plantilla se escriben con
 /// `{hero.o}` («quiet{hero.o}»); si aparecen literales, con una heroína (o un héroe) salen mal.
 final RegExp _fixedGender = RegExp(
   r'\b(?:quiet|dormid|tranquil|liger|helad|cansad|asustad|sorprendid|content|preocupad|confundid)(?:o|a)\b'
-  r'|\b(?:yo|entró|siguió|quedó|iba|estaba|fue|llegó|subió)\s+sol(?:o|a)\b',
+  r'|\b(?:yo|entró|siguió|quedó|iba|estaba|fue|llegó|subió|ir|irse|iría|quedarse)\s+sol(?:o|a)\b'
+  r'|(?<![\wáéíóúüñ])(?:él|ella)(?![\wáéíóúüñ])',
 );
 
 int _words(String s) => RegExp(r'[\wáéíóúüñÁÉÍÓÚÜÑ]+').allMatches(s).length;

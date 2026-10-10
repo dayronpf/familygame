@@ -189,6 +189,15 @@ PROP_CLIPS = {
         "glow.sx": keys((0, 1), (0.8, 1.06), (1.6, 0.97), (2.4, 1)),
         "glow.sy": keys((0, 1), (0.8, 1.06), (1.6, 0.97), (2.4, 1))}),
     "boil": dict(dur=3.0, loop=True, tracks=_steam_tracks()),
+    "goat_idle": dict(dur=2.8, loop=True, tracks={
+        "head": sine(2.8, 5), "tail": sine(0.9, 16), "eyes.sy": blink(2.8, 0.5),
+        "root.dy": keys((0, 0), (1.4, -1.5), (2.8, 0))}),
+    "goat_baa": dict(dur=1.4, loop=True, tracks={
+        "head": keys((0, 0), (0.25, -16), (0.7, -12), (1.1, 2), (1.4, 0)), "tail": sine(0.6, 20),
+        "eyes.sy": blink(1.4, 0.4), "root.dy": keys((0, 0), (0.25, -3), (0.7, -2), (1.4, 0))}),
+    "goat_walk": dict(dur=0.8, loop=True, tracks={
+        "legsA": sine(0.8, 22), "legsB": sine(0.8, -22), "head": sine(0.8, 4), "tail": sine(0.4, 12),
+        "root.dy": keys((0, 0), (0.2, -3), (0.4, 0), (0.6, -3), (0.8, 0))}),
     "hoot": dict(dur=3.4, loop=True, tracks={
         "eyes.sy": blink(3.4, 0.55),
         "root.sy": keys((0, 1), (0.5, 1.04), (1.0, 1), (3.4, 1)),

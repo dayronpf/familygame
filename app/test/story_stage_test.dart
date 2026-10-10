@@ -80,8 +80,9 @@ void main() {
         }
         for (final e in stageEntries(scene)) {
           if (e.clip != null) {
-            expect(art.library.clips.clips, contains(e.clip),
-                reason: 'clip de personaje «${e.clip}»');
+            // Los animales y objetos como secundarios usan clips de objetos (goat_baa…).
+            expect(art.clip(e.clip), isNotNull,
+                reason: 'clip «${e.clip}» (personaje u objeto)');
           }
           if (e.x != null) {
             expect(e.x, inInclusiveRange(0.05, 0.95));

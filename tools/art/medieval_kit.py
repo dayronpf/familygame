@@ -456,7 +456,7 @@ def main():
              "rigs": [f"medieval/rigs/{r['id']}.json" for r in rigs],
              "scenes": ["medieval/scenes/castle_night.json"], "clips": "clips/humanoid.json",
              "extraClips": ["clips/props.json"],
-             "sizes": {c["id"]: c["size"] for c in load_cast() if "size" in c}}
+             "sizes": {**{c["id"]: c["size"] for c in load_cast() if "size" in c}, "cabrita": 1.5}}
     (OUT / "index.json").write_text(json.dumps(index, indent=1) + "\n", encoding="utf-8")
     for r in rigs:
         size = (OUT / "rigs" / f'{r["id"]}.json').stat().st_size
