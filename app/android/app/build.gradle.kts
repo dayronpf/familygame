@@ -29,11 +29,25 @@ android {
         versionName = flutter.versionName
     }
 
+    // Llave de PRUEBA fija y pública (no es un secreto). Sin ella, cada compilación de CI genera una
+    // llave de depuración nueva y Android no deja instalar un APK encima del anterior
+    // («conflicto con un paquete»). Para publicar en las tiendas se usará otra llave, privada.
+    signingConfigs {
+        create("calderoTest") {
+            storeFile = file("caldero-debug.p12")
+            storeType = "pkcs12"
+            storePassword = "caldero-debug"
+            keyAlias = "caldero-debug"
+            keyPassword = "caldero-debug"
+        }
+    }
+
     buildTypes {
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig = signingConfigs.getByName("debug")
+            signingConfig = signingConfigs.getByName("calderoTest")
+        }
+        debug {
+            signingConfig = signingConfigs.getByName("calderoTest")
         }
     }
 }

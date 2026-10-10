@@ -84,6 +84,13 @@ El prototipo original en Python sigue disponible como referencia
 **Ojo:** el motor Dart usa su propio generador aleatorio determinista (mulberry32), así que la misma
 semilla da un cuento distinto en Python y en Dart; lo que ambos comparten es el *formato del pack*.
 
+## Instalar la app de prueba en Android
+
+Cada subida a la rama de trabajo compila un APK (Actions → «Android (APK de prueba)» → Artifacts → `caldero-de-cuentos-apk`).
+Está firmado con una **llave de prueba fija y pública** (`app/android/app/caldero-debug.p12`), así que cada APK nuevo se instala
+**encima** del anterior sin perder datos. Si Android dice «conflicto con un paquete», es que la versión instalada viene de una
+compilación anterior con otra llave: **desinstálala una sola vez** y se acabó. Esta llave NO sirve para las tiendas.
+
 ## Estado
 
 **Sprint 1 — «El caldero en Dart»** ✅ y **arte por código** (pack medieval) en marcha: motor, validador, esquema, CI,

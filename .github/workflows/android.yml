@@ -2,7 +2,8 @@ name: Android (APK de prueba)
 
 # Se ejecuta: a mano (Actions → «Android (APK de prueba)» → Run workflow), al publicar una etiqueta v*,
 # y al subir cambios de la app a la rama de trabajo (así siempre hay un APK reciente para probar).
-# El APK sale firmado con la llave de DEPURACIÓN: sirve para instalar y probar, NO para publicar en Play Store.
+# El APK sale firmado con una llave de PRUEBA fija (app/android/app/caldero-debug.p12, pública): sirve para instalar y
+# actualizar encima de la versión anterior, NO para publicar en Play Store.
 on:
   workflow_dispatch:
   push:
