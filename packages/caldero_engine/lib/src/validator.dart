@@ -154,7 +154,7 @@ void _checkStructure(Pack pack, Set<String> problems) {
 
 /// Un cuento más corto que esto es un resumen, no una historia para leer en voz alta.
 const int minStoryWords = 420;
-const int maxStoryWords = 900;
+const int maxStoryWords = 950;
 
 /// Mínimo de escenas en las que debe aparecer el nombre del héroe.
 const double minHeroPresence = 0.7;

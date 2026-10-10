@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:caldero_app/src/app.dart';
 import 'package:caldero_app/src/art/story_stage.dart';
 import 'package:caldero_app/src/pack_loader.dart';
@@ -66,11 +69,14 @@ void main() {
     expect(find.textContaining(RegExp('Aldo|Mara')), findsWidgets);
     await scrollTo(tester, find.text('Enseñanza'));
     expect(find.text('Enseñanza'), findsOneWidget);
-    expect(
-      find.text(
-          'Ser honesto nos hace sentir ligeros, aunque nadie nos esté mirando.'),
-      findsOneWidget,
-    );
+    // La enseñanza que se muestra es la del pack (no un texto escrito aquí, que se quedaría viejo).
+    final pack =
+        jsonDecode(File('assets/packs/medieval/pack.json').readAsStringSync())
+            as Map<String, Object?>;
+    final moral = (pack['morals']! as List)
+        .cast<Map<String, Object?>>()
+        .firstWhere((m) => m['id'] == 'honestidad')['text']! as String;
+    expect(find.text(moral), findsOneWidget);
   });
 
   testWidgets('cada escena del cuento lleva su dibujo animado', (tester) async {

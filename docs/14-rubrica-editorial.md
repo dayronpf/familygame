@@ -58,3 +58,41 @@ C4 lenguaje 3,7·3,7·4 · C5 enseñanza 3,3·3,3·3,3 · **C7 texto↔imagen 2�
 
 **Pack v0.3.0:** 3 premisas, 70 variantes, 10–11 escenas, **668 palabras de media (≈ 6 min)**, hasta 6 personajes en pantalla,
 objetos animados y luz por escena.
+
+### Vuelta 2 — pack v0.3.0 → v0.4.0 (3 lectores, 24 cuentos el lector A)
+
+Notas del lector A (C1…C8; campana / olla / linterna): campana 3·3·4·4·4·4·3·4, olla 4·3·3·4·3·4·3·4,
+linterna 3·4·4·4·4·4·3·4. Lo más grave: el pedernal nunca llegaba a las manos del héroe; el villano no era expuesto
+en la consecuencia; la acusación a Tomás no tenía causa; los tres ayudantes de la olla decían lo mismo; el sacrificio
+del pan no costaba nada; el cierre dejaba a dos niños durmiendo en la plaza.
+**Corregido en v0.4.0:** el farolero entrega el pedernal; el villano calla a cambio de un pago y luego devuelve y repara;
+escena nueva `torre_vacia` (Tomás con la cuerda) y `mantas` (los niños duermen bajo techo); voz propia por ayudante
+(`idea`); concordancias («lo miraba»); tics de gesto («se encogió de hombros», «chasqueó los dedos»); regalos de luz
+coherentes. Tope de palabras 800 → 900.
+
+### Vuelta 3 — pack v0.4.0 → v0.5.0 (3 lectores, 12 cuentos cada uno)
+
+| Lector (lente) | Campana | Olla | Linterna |
+|---|---|---|---|
+| A · C1 hilo / C2 voz / C7 imagen | 3,5 · 3 · 3,5 | 3,5 · 3 · 3,5 | 4 · 3,5 · 3 |
+| B · C3 ritmo / C4 lenguaje / C6 imagen | 4 · 3,5 · 4 | 3,5 · 3,5 · 4 | 4,5 · 4 · 4,5 |
+| C · C3 emoción / C5 enseñanza / C8 cierre | 4 · 4 · 4,5 | 4 · 3,5 · 4 | 4,5 · 4 · 4 |
+
+Veredicto de los tres: **sin defectos críticos de contenido**; la escena de la torre vacía es lo mejor del lote.
+Defectos que coincidieron y su corrección en v0.5.0:
+
+| Defecto | Corrección |
+|---|---|
+| Olla: el acertijo/idea del ayudante no lleva a «es una olla» (A, B, C) | `idea` por ayudante con pista clara (Zafiro: «¿qué se llena con un poquito de cada uno…? Pista: burbujea»; Mara: «treinta puñados»; Aldo: «se llena hasta mi casco»); el héroe responde «¡Una olla!» |
+| Olla: la sopa no alcanza, la salva la despensa del villano (C) | Tras `ultima_miga`: «en el fondo de la olla todavía quedaba sopa»; el villano trae comida «para los días de nieve» |
+| Olla: niños sin techo ni familia, Lía casi no actúa (A, C) | Porche de Rosa, mantas, «mañana buscaremos a vuestra tía»; Lía y Teo echan sus pedacitos; `Rosa` dibujada en el cierre |
+| Campana: la confesión «se me rompió» es la excusa de siempre; enseñanza no demostrada (C) | «Tiré de la cuerda sin permiso y la rompí»; entrega de los dos pedazos en la plaza (objeto dibujado); también reconoce el pago al villano; **enseñanza nueva: «Un secreto pesa más que la verdad, aunque la verdad dé miedo.»** |
+| Campana: el villano acusa sin ganar nada; pedazos incoherentes entre escenas; la luz de «amanecer» no cuadraba (A) | «Me han visto subir… alguien tendrá que ser el culpable»; pedazos bajo la cama (sin «bajo la capa»); acusación a la luz del día; «Cuando la plaza se llenó de vecinos…» |
+| Campana: consecuencia sermoneada («Gracias por decir la verdad») y villano repara con el mismo castigo que el héroe (B, C) | Variante b sin sermón; el villano friega los escalones y devuelve lo suyo («una merienda entera, aunque ya se había comido la otra») |
+| Linterna: seguridad (un niño solo de noche), villano suelto, cierre que salta al amanecer (C, A, B) | «Los mayores no se atrevían… no iba a ir solo»; el ayudante vigila en el borde; el botín aparece al pie del roble y vuelve a su dueño con una nota; el cuento acaba con el héroe dormido mirando la luz |
+| Linterna: «gruñó otra vez» sin gruñido, «que total daba igual», «manta mojada», Lía incoherente en la variante b | Reescritos; el ayudante remata con su propia frase (`orgullo`) en lugar de «Y aun así fuiste» idéntico |
+| Frases de más de 30 palabras (B) | Partidas en las seis escenas señaladas |
+
+**Pack v0.5.0:** 805 palabras de media (≈ 7,3 min), 11,3 escenas, tope 950 palabras. Pendiente (no corregido todavía):
+solo 3 premisas (una por enseñanza), voces de los héroes casi idénticas, cabrita sin dibujar, tics de superficie
+(«bajito», «tragó saliva», «aquella noche»).
