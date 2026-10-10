@@ -34,9 +34,20 @@ refleja una de las cuatro copias. Para que la figura «flote» derecha dentro de
 
 Se dibuja la escena **una sola vez** por fotograma y se repite cuatro veces (coste ≈ el del modo normal).
 
+### Medidas de referencia del prisma
+
+Plantilla clásica (artículo de referencia sobre cómo hacer un holograma con el móvil): **cuatro trapecios de plástico**
+(carcasa transparente de CD/DVD) de **1 cm (base pequeña) × 6 cm (base grande) × 3,5 cm (altura)**, o el doble
+(2 × 12 × 7 cm) para una pantalla mayor; el prisma se apoya sobre la pantalla, con la punta (la base pequeña) hacia abajo,
+en una habitación lo más oscura posible y con el plástico bien limpio. Con la cara inclinada a 45°, cada trapecio se
+proyecta como una cuña de 45° que arranca en la base de 1 cm: justo la cuña de 90° en la que se recorta cada copia.
+Por eso el valor por defecto de la base es **0,16 del lado corto** (1 cm sobre un móvil de ≈ 6,5 cm).
+
 ### Ajustes (iconos del holograma, se recuerdan)
 
-- **− / +**: tamaño de la base del prisma (por defecto el 30 % del lado corto de la pantalla). Medid vuestro prisma.
+- **Guía** (visible mientras se ven los controles): contorno de la base del prisma y de las cuatro cuñas, para colocar
+  el prisma centrado y alineado.
+- **− / +**: tamaño de la base del prisma (por defecto el 16 % del lado corto de la pantalla). Medid vuestro prisma.
 - **Pies dentro/fuera** y **Reflejar**: si la figura se viese al revés o con izquierda/derecha cambiadas con
   vuestro prisma, se corrige con un toque. (No he podido probarlo con un prisma físico; estos dos botones existen
   precisamente por eso.)

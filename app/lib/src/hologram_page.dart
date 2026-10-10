@@ -184,6 +184,7 @@ class _HologramPageState extends State<HologramPage>
                         actors: _actors,
                         props: _props,
                         crop: _crop,
+                        guides: _controls,
                         clock: _clock.value,
                         layout: _layout,
                       ),

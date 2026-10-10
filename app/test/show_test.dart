@@ -196,7 +196,8 @@ void main() {
         // Esquinas de la escena de la cara i (la escena va pegada al borde de los pies).
         for (final u in [-q / 2, q / 2]) {
           for (final v in [0.0, q]) {
-            final o = apply(l, i, Offset(u, l.cell(size) / 2 - v));
+            final o = apply(l, i,
+                Offset(u, l.cell(size) / 2 - v - HologramLayout.lift * q));
             expect(o.dx, inInclusiveRange(-0.5, size.width + 0.5),
                 reason: 'cara $i');
             expect(o.dy, inInclusiveRange(-0.5, size.height + 0.5),

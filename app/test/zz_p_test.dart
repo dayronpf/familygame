@@ -19,18 +19,30 @@ void main() {
     final clock = ValueNotifier<double>(3.5);
     final place = art.library.places['rio']!;
     final v = place.view;
-    ActorInstance mk(String rig, String clip, double fx, double sc, {double lift = 0}) => ActorInstance(
-        rig: art.rigs[rig]!, clip: art.clip(clip)!, x: v.left + v.width * fx,
-        y: place.floor - lift, scale: place.scale * sc);
+    ActorInstance mk(String rig, String clip, double fx, double sc,
+            {double lift = 0}) =>
+        ActorInstance(
+            rig: art.rigs[rig]!,
+            clip: art.clip(clip)!,
+            x: v.left + v.width * fx,
+            y: place.floor - lift,
+            scale: place.scale * sc);
     final key = GlobalKey();
     await tester.pumpWidget(RepaintBoundary(
       key: key,
       child: CustomPaint(
         size: const Size(640, 480),
         painter: ScenePainter(
-          scene: art.sceneFor('rio')!, clock: clock, view: v,
+          scene: art.sceneFor('rio')!,
+          clock: clock,
+          view: v,
           actors: [mk('mara', 'idle', 0.12, 1.1)],
-          props: [mk('semillas', 'still', 0.3, 1.0), mk('girasol', 'sun', 0.45, 1.0), mk('piedras', 'still', 0.7, 1.0, lift: -10), mk('hierba', 'shimmer', 0.9, 1.0)],
+          props: [
+            mk('semillas', 'still', 0.3, 1.0),
+            mk('girasol', 'sun', 0.45, 1.0),
+            mk('piedras', 'still', 0.7, 1.0, lift: -10),
+            mk('hierba', 'shimmer', 0.9, 1.0)
+          ],
         ),
       ),
     ));
@@ -38,7 +50,8 @@ void main() {
       final b = key.currentContext!.findRenderObject() as RenderRepaintBoundary;
       final img = await b.toImage();
       final data = await img.toByteData(format: ui.ImageByteFormat.png);
-      File('/tmp/claude-0/props2.png').writeAsBytesSync(data!.buffer.asUint8List());
+      File('/tmp/claude-0/props2.png')
+          .writeAsBytesSync(data!.buffer.asUint8List());
     });
   });
 }

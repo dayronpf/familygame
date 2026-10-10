@@ -15,12 +15,13 @@ import 'story_stage.dart';
 /// espectador la ve desde un lado, también hay que reflejarla para que izquierda y derecha no se inviertan.
 class HologramLayout {
   const HologramLayout({
-    this.gap = 0.3,
+    this.gap = 0.16,
     this.feetInward = true,
     this.mirror = true,
   });
 
-  /// Lado de la base del prisma, como fracción del lado corto de la pantalla.
+  /// Lado de la base del prisma, como fracción del lado corto de la pantalla. Por defecto 0,16: un prisma
+  /// de plantilla clásica (trapecios de 1 × 6 × 3,5 cm) sobre un móvil de ~6,5 cm de ancho.
   final double gap;
 
   /// Pies hacia el centro (lo correcto para un prisma con la punta hacia abajo).
@@ -45,12 +46,25 @@ class HologramLayout {
     return (m - m * gap) / 2;
   }
 
-  /// Lado de la parte de escena que se ve en cada copia. Un prisma de caras a 45° solo refleja
-  /// lo que cae dentro de una cuña que arranca en su base; con los pies pegados a la base, la
-  /// escena ha de caber en esa cuña (≈ 1,3 veces el lado de la base).
+  /// Cuánto se aleja la escena de la base del prisma, como fracción de su lado: así los pies quedan en
+  /// una zona más ancha de la cuña y caben varios personajes, y la figura «flota» en el prisma.
+  static const double lift = 0.25;
+
+  /// Lado de la parte de escena que se ve en cada copia. Una cara a 45° solo refleja lo que cae en una cuña
+  /// que arranca en la base del prisma (de ancho `base + 2·distancia`); con los pies a [lift] de la base la
+  /// escena cabe hasta ≈ 2,4 veces el lado de la base, y nunca más que lo que queda de pantalla.
   double scene(Size size) {
     final m = math.min(size.width, size.height);
-    return math.min(cell(size), 1.3 * m * gap);
+    return math.min(cell(size) / (1 + lift), 2.4 * m * gap);
+  }
+
+  /// Base cuadrada del prisma (el hueco central), para dibujar la guía de colocación.
+  Rect base(Size size) {
+    final m = math.min(size.width, size.height);
+    return Rect.fromCenter(
+        center: Offset(size.width / 2, size.height / 2),
+        width: m * gap,
+        height: m * gap);
   }
 
   /// Cuña (90°) de la cara [i]: lo que su cara del prisma puede reflejar. Las cuatro no se pisan.
@@ -120,6 +134,7 @@ class HologramPainter extends CustomPainter {
     required this.clock,
     required this.layout,
     this.crop = 1,
+    this.guides = false,
   }) : super(repaint: clock);
 
   final StageSetup setup;
@@ -128,6 +143,9 @@ class HologramPainter extends CustomPainter {
 
   /// Fracción del ancho de la escena que se ve (ver [holoCrop]).
   final double crop;
+
+  /// Dibuja la guía del prisma (su base y las cuatro cuñas) para colocarlo; no se refleja si es tenue.
+  final bool guides;
   final ValueListenable<double> clock;
   final HologramLayout layout;
 
@@ -176,14 +194,31 @@ class HologramPainter extends CustomPainter {
     _sparkles(inner, q, t);
     final pic = rec.endRecording();
 
+    if (guides) _drawGuides(canvas, size);
     for (var i = 0; i < 4; i++) {
       canvas.save();
       canvas.clipPath(layout.wedge(i, size));
       canvas.transform(layout.matrixFor(i, size));
       // La escena va pegada al borde de la copia que mira a la base del prisma (los pies).
-      canvas.translate(-q / 2, s / 2 - q);
+      canvas.translate(-q / 2, s / 2 - q - HologramLayout.lift * q);
       canvas.drawPicture(pic);
       canvas.restore();
+    }
+  }
+
+  /// Contorno de la base del prisma y de las cuatro cuñas: sirve para alinear el prisma con la pantalla.
+  void _drawGuides(Canvas canvas, Size size) {
+    final line = Paint()
+      ..color = const Color(0x6640D0FF)
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 1.5;
+    final b = layout.base(size);
+    canvas.drawRect(b, line);
+    final r = (size.width + size.height);
+    for (final c in [b.topLeft, b.topRight, b.bottomLeft, b.bottomRight]) {
+      final d = Offset(
+          c.dx < size.width / 2 ? -1 : 1, c.dy < size.height / 2 ? -1 : 1);
+      canvas.drawLine(c, c + d * r, line);
     }
   }
 
@@ -207,6 +242,7 @@ class HologramPainter extends CustomPainter {
       old.setup != setup ||
       old.layout != layout ||
       old.crop != crop ||
+      old.guides != guides ||
       !listEquals(old.actors, actors) ||
       !listEquals(old.props, props);
 }
