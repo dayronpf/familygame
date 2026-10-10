@@ -1,1 +1,1 @@
-Cambiar este archivo (y subirlo) compila un APK de prueba. Ultima peticion: pack medieval v0.10.0, 6 historias, modo cine y holograma (reintento sin la prueba temporal).
+Cambiar este archivo (y subirlo) compila un APK de prueba. Ultima peticion: v0.2.0 con interfaz nueva (splash, paquetes, Mis cuentos), cuentos coherentes con la imagen y cama arreglada.
