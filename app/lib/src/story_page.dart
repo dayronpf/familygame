@@ -1,6 +1,8 @@
 import 'package:caldero_engine/caldero_engine.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 
+import 'art/story_stage.dart';
 import 'feedback/feedback_service.dart';
 import 'feedback/rating_card.dart';
 
@@ -18,9 +20,17 @@ class StoryPage extends StatefulWidget {
     required this.story,
     required this.onAnother,
     required this.feedback,
+    this.art,
+    this.animate = true,
   });
 
   final Story story;
+
+  /// Arte de los cuentos (puede tardar o faltar: entonces se lee solo el texto).
+  final Future<StageArt?>? art;
+
+  /// Si `false`, los dibujos se quedan quietos (pruebas).
+  final bool animate;
 
   /// Genera otro cuento con la misma enseñanza.
   final Story Function() onAnother;
@@ -30,8 +40,13 @@ class StoryPage extends StatefulWidget {
   State<StoryPage> createState() => _StoryPageState();
 }
 
-class _StoryPageState extends State<StoryPage> {
+class _StoryPageState extends State<StoryPage>
+    with SingleTickerProviderStateMixin {
   late Story _story = widget.story;
+  final ValueNotifier<double> _clock = ValueNotifier(0);
+  Ticker? _ticker;
+  StageArt? _stageArt;
+  List<StageSetup?> _setups = const [];
   bool? _askRating; // null = aún no sabemos si el envío está permitido
   bool _reachedEnd = false; // la ficha de valoración llegó a mostrarse
   bool _answered = false; // ya valoraron o dijeron «Ahora no»
@@ -40,9 +55,38 @@ class _StoryPageState extends State<StoryPage> {
   @override
   void initState() {
     super.initState();
+    if (widget.animate) {
+      _ticker = createTicker((e) => _clock.value = e.inMicroseconds / 1e6)
+        ..start();
+    }
+    widget.art?.then((a) {
+      if (!mounted) return;
+      setState(() {
+        _stageArt = a;
+        _computeSetups();
+      });
+    });
     widget.feedback.enabled.then((v) {
       if (mounted) setState(() => _askRating = v);
     });
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // «Reducir movimiento» del sistema: los dibujos se quedan quietos.
+    _ticker?.muted = MediaQuery.disableAnimationsOf(context);
+  }
+
+  /// Fondo, personajes y animación de cada escena del cuento actual.
+  void _computeSetups() {
+    final art = _stageArt;
+    _setups = art == null
+        ? const []
+        : [
+            for (final s in _story.scenes)
+              stageFor(art, _story.cast, s.directives)
+          ];
   }
 
   /// Si leyeron el cuento hasta el final y no respondieron, se les preguntará con calma más tarde.
@@ -64,6 +108,8 @@ class _StoryPageState extends State<StoryPage> {
 
   @override
   void dispose() {
+    _ticker?.dispose();
+    _clock.dispose();
     _rememberIfUnanswered();
     // Si se fueron a mitad del segundo paso, la nota ya está guardada: se envía sin motivo.
     if (_answered && _ratingId != null) {
@@ -80,6 +126,7 @@ class _StoryPageState extends State<StoryPage> {
     }
     setState(() {
       _story = widget.onAnother();
+      _computeSetups();
       _reachedEnd = false;
       _answered = false;
       _ratingId = null;
@@ -97,8 +144,12 @@ class _StoryPageState extends State<StoryPage> {
         child: ListView(
           padding: const EdgeInsets.fromLTRB(24, 8, 24, 32),
           children: [
-            for (final scene in _story.scenes) ...[
-              Text(scene.text, style: body),
+            for (var i = 0; i < _story.scenes.length; i++) ...[
+              if (i < _setups.length && _setups[i] != null) ...[
+                StoryStage(setup: _setups[i]!, clock: _clock),
+                const SizedBox(height: 14),
+              ],
+              Text(_story.scenes[i].text, style: body),
               const SizedBox(height: 20),
             ],
             const SizedBox(height: 8),

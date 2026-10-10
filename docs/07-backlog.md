@@ -82,9 +82,9 @@ El primer pack, gratuito, es medieval («Reino de la Luna», nombre provisional)
 | E13-04 | **Renderizador Flutter** de rigs y escenas + pantalla de prueba | Mismas poses que la vista previa; FPS y memoria medidos en Android de gama media | L | 🟡 renderizador y taller hechos y verificados en navegador (0,17 % de píxeles distintos de la referencia); medido en un teléfono de 120 Hz: 116–121 fps con hasta 24 personajes ([11 §9](11-pipeline-de-arte-por-codigo.md)); **falta un Android de gama media/baja** |
 | E13-05 | Rig de criatura (dragón) | Cuerpo, alas y cola articulados; se ve bien junto a los humanoides | M | ☐ A3 |
 | E13-06 | Biblioteca de animaciones (caminar, correr, sorpresa, miedo, alegría, parpadeo) | Clips como datos, reutilizables por rig | M | ✅ 10 clips en 5 KB, paridad Python↔Dart comprobada |
-| E13-08 | **Mostrar el arte en los cuentos:** cada fragmento elige escena, personajes y clip (`scene.bg/actors/mood`) | El lector anima la escena del fragmento que se narra | M | ☐ A7 |
-| E13-07 | Kit de fondos del pack (aldea, bosque, cueva, río, interior) | 15 lugares con capas y paletas | L | ☐ A5 |
-| E3-03 | **Contenido del pack medieval:** ~25 personajes, ~15 lugares, 6 enseñanzas y ~120 fragmentos | Pasa el validador; revisión editorial | L (contenido) | ☐ |
+| E13-08 | **Mostrar el arte en los cuentos:** cada fragmento elige escena, personajes y clip (`scene.bg/actors/mood`) | El lector anima la escena del fragmento que se narra | M | 🟡 **MVP hecho:** cada escena del cuento muestra el fondo de su lugar, sus personajes y un clip según el ánimo (`story_stage.dart`); falta transiciones, objetos de la trama y voz |
+| E13-07 | Kit de fondos del pack (aldea, bosque, cueva, río, interior) | 15 lugares con capas y paletas | L | 🟡 5 de ~15 lugares (castillo, bosque, cueva, río, aldea) |
+| E3-03 | **Contenido del pack medieval:** ~25 personajes, ~15 lugares, 6 enseñanzas y ~120 fragmentos | Pasa el validador; revisión editorial | L (contenido) | 🟡 pack de prueba: 6 personajes, 5 lugares, 3 enseñanzas, 29 fragmentos (validador sin problemas); faltan ~19 personajes, ~10 lugares y ~90 fragmentos |
 
 ## Valoraciones y mejora continua (E14) — prioridad desde el primer día
 

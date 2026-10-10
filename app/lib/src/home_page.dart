@@ -1,6 +1,7 @@
 import 'package:caldero_engine/caldero_engine.dart';
 import 'package:flutter/material.dart';
 
+import 'art/story_stage.dart';
 import 'feedback/adult_gate.dart';
 import 'feedback/feedback_service.dart';
 import 'feedback/feedback_store.dart';
@@ -18,8 +19,10 @@ class HomePage extends StatefulWidget {
     required this.bundle,
     required this.seedProvider,
     required this.feedback,
+    this.animateArt = true,
   });
 
+  final bool animateArt;
   final AssetBundle bundle;
   final SeedProvider seedProvider;
   final FeedbackService feedback;
@@ -30,6 +33,9 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   late final Future<Pack> _pack = loadPack(widget.bundle);
+
+  /// Dibujos de los cuentos; se carga una vez y se comparte con todos los cuentos.
+  late final Future<StageArt?> _art = loadStageArt(widget.bundle);
 
   /// `null` = «Sorpréndeme» (el caldero elige).
   String? _selectedMoral;
@@ -77,6 +83,8 @@ class _HomePageState extends State<HomePage> {
         builder: (_) => StoryPage(
           story: story,
           feedback: widget.feedback,
+          art: _art,
+          animate: widget.animateArt,
           onAnother: () => engine.generate(
             StoryOptions(seed: widget.seedProvider(), valueId: _selectedMoral),
           ),

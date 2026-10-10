@@ -72,7 +72,7 @@ cd tools/feedback && python3 simulate.py --quick && python3 simulate.py --reason
 python3 analyze.py ratings.jsonl      # informe de fragmentos a revisar
 
 # Arte generado por código (ver docs/11)
-cd tools/art && python3 medieval_kit.py && python3 make_clips.py && python3 scene_castle.py && python3 make_fixtures.py
+cd tools/art && python3 medieval_kit.py && python3 make_clips.py && python3 scene_castle.py && python3 scenes_story.py && python3 make_fixtures.py
 
 # Esquema JSON de los packs (opcional, requiere: pip install jsonschema)
 python3 tools/validate_schema.py content/packs/*/pack.json
@@ -86,6 +86,7 @@ semilla da un cuento distinto en Python y en Dart; lo que ambos comparten es el 
 ## Estado
 
 **Sprint 1 — «El caldero en Dart»** ✅ y **arte por código** (pack medieval) en marcha: motor, validador, esquema, CI,
-pantalla de cuentos, 6 personajes animados con 10 clips reutilizables, escena de castillo y **Taller de personajes** con medidor de fps.
+pantalla de cuentos, 6 personajes animados con 10 clips reutilizables, 5 lugares y **Taller de personajes** con medidor de fps.
+**MVP de prueba:** el pack «Reino de la Luna» (`content/packs/medieval`: 6 personajes, 5 lugares, 3 enseñanzas, 29 fragmentos) se lee con **dibujos animados en cada escena del cuento** (sin música ni voz todavía).
 **Valoración 1–5 al final de cada cuento** (lo único que se recoge, anónimo; [docs/12](docs/12-valoraciones-y-mejora-continua.md)) lista en la app; falta el servidor que la reciba.
 Pendiente: probar en Android/iOS reales y medir rendimiento ([docs/11 §9](docs/11-pipeline-de-arte-por-codigo.md)). Ver [docs/07-backlog.md](docs/07-backlog.md).

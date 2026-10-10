@@ -46,6 +46,7 @@ void main() {
       CalderoApp(
         bundle: FileBundle(),
         seedProvider: () => seed++,
+        animateArt: false,
         feedback: override ?? service,
       ),
     );
@@ -93,7 +94,7 @@ void main() {
     final recipe = e['recipe']! as Map<String, Object?>;
     expect(recipe['seed'], 3);
     expect(recipe['value'], 'honestidad');
-    expect(recipe['packId'], 'demo');
+    expect(recipe['packId'], 'medieval');
     expect((recipe['fragments']! as List<Object?>), hasLength(7));
     expect(await service.queuedCount(), 0, reason: 'ya salió');
   });

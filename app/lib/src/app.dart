@@ -12,7 +12,11 @@ class CalderoApp extends StatelessWidget {
     required this.feedback,
     this.bundle,
     this.seedProvider = timeSeed,
+    this.animateArt = true,
   });
+
+  /// Si `false`, los dibujos de los cuentos no se animan (pruebas).
+  final bool animateArt;
 
   /// Origen de los assets; por defecto el de la app.
   final AssetBundle? bundle;
@@ -29,6 +33,7 @@ class CalderoApp extends StatelessWidget {
         bundle: bundle ?? rootBundle,
         seedProvider: seedProvider,
         feedback: feedback,
+        animateArt: animateArt,
       ),
     );
   }

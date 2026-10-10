@@ -42,6 +42,17 @@ void main() {
 
     test('rutas inválidas lanzan FormatException', () {
       expect(() => parseSvgPath('M1,2 L3'), throwsFormatException);
+      // Los comandos relativos (minúsculas) no se soportan: antes se ignoraban en silencio y
+      // dibujaban mal (una ola `q16,-8 …` se leía como un `Q` absoluto cerca del origen).
+      for (final d in [
+        'M1,2 q3,4 5,6',
+        'M1,2 l3,4',
+        'M1,2 h5',
+        'M1,2 Z m3,4',
+      ]) {
+        expect(() => parseSvgPath(d), throwsFormatException, reason: d);
+      }
+      expect(parseSvgPath('M1,2 L1e1,2.5e-1'), hasLength(2));
       expect(() => parseSvgPath('1,2'), throwsFormatException);
     });
   });

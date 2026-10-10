@@ -1,4 +1,5 @@
 import 'package:caldero_app/src/app.dart';
+import 'package:caldero_app/src/art/story_stage.dart';
 import 'package:caldero_app/src/pack_loader.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -11,6 +12,14 @@ import 'file_bundle.dart';
 
 final _bundle = FileBundle();
 
+/// Un bundle al que le falta todo el arte (para comprobar que el cuento se lee igual).
+class _NoArtBundle extends FileBundle {
+  @override
+  Future<ByteData> load(String key) => key.startsWith('assets/art/')
+      ? Future.error(FlutterError('sin arte'))
+      : super.load(key);
+}
+
 FeedbackService _feedback() => FeedbackService(store: MemoryFeedbackStore());
 
 void main() {
@@ -20,7 +29,10 @@ void main() {
 
   Future<void> openApp(WidgetTester tester, {int seed = 3}) async {
     await tester.pumpWidget(CalderoApp(
-        bundle: _bundle, seedProvider: () => seed, feedback: _feedback()));
+        bundle: _bundle,
+        seedProvider: () => seed,
+        feedback: _feedback(),
+        animateArt: false));
     await tester.pumpAndSettle();
   }
 
@@ -44,7 +56,8 @@ void main() {
     await tester.tap(find.text('Crear cuento'));
     await tester.pumpAndSettle();
 
-    expect(find.textContaining('Había una vez'), findsOneWidget);
+    // El héroe del pack medieval es siempre Aldo o Mara.
+    expect(find.textContaining(RegExp('Aldo|Mara')), findsWidgets);
     await scrollTo(tester, find.text('Enseñanza'));
     expect(find.text('Enseñanza'), findsOneWidget);
     expect(
@@ -54,11 +67,41 @@ void main() {
     );
   });
 
+  testWidgets('cada escena del cuento lleva su dibujo animado', (tester) async {
+    await openApp(tester);
+    await tester.tap(find.text('Valentía'));
+    await tester.pump();
+    await tester.tap(find.text('Crear cuento'));
+    await tester.pumpAndSettle();
+    expect(find.byType(StoryStage), findsWidgets);
+    expect(
+        find.bySemanticsLabel('Ilustración animada del cuento'), findsWidgets);
+  });
+
+  testWidgets('si el arte no carga, el cuento se lee igual (solo texto)',
+      (tester) async {
+    await tester.pumpWidget(CalderoApp(
+        bundle: _NoArtBundle(),
+        seedProvider: () => 3,
+        feedback: _feedback(),
+        animateArt: false));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Honestidad'));
+    await tester.pump();
+    await tester.tap(find.text('Crear cuento'));
+    await tester.pumpAndSettle();
+    expect(find.byType(StoryStage), findsNothing);
+    expect(find.textContaining(RegExp('Aldo|Mara')), findsWidgets);
+  });
+
   testWidgets('«Contar otro cuento» cambia el cuento y conserva la enseñanza',
       (tester) async {
     var seed = 3;
     await tester.pumpWidget(CalderoApp(
-        bundle: _bundle, seedProvider: () => seed++, feedback: _feedback()));
+        bundle: _bundle,
+        seedProvider: () => seed++,
+        feedback: _feedback(),
+        animateArt: false));
     await tester.pumpAndSettle();
     await tester.tap(find.text('Valentía'));
     await tester.pump();
@@ -97,7 +140,7 @@ void main() {
       (tester) async {
     // rootBundle hace E/S real: se ejecuta fuera del reloj simulado.
     final pack = await tester.runAsync(() => loadPack(rootBundle));
-    expect(pack!.id, 'demo');
+    expect(pack!.id, 'medieval');
     expect(pack.morals, isNotEmpty);
   });
 

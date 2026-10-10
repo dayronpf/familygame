@@ -42,9 +42,10 @@ jobs:
           python3 medieval_kit.py
           python3 make_clips.py
           python3 scene_castle.py
+          python3 scenes_story.py
           python3 make_fixtures.py
       - name: Lo generado coincide con lo versionado
-        run: git diff --exit-code art/medieval/rigs art/medieval/scenes art/medieval/index.json art/clips art/fixtures art/medieval/preview/sheet.svg art/medieval/preview/scene_castle.svg
+        run: git diff --exit-code art/medieval/rigs art/medieval/scenes art/medieval/index.json art/clips art/fixtures art/medieval/preview/sheet.svg art/medieval/preview/scene_castle.svg art/medieval/preview/stage_*.svg
 
   feedback:
     name: Valoraciones (análisis y contrato)

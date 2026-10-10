@@ -54,6 +54,7 @@ class ScenePainter extends CustomPainter {
     required this.actors,
     required this.clock,
     this.showBackground = true,
+    this.view,
   }) : super(repaint: clock);
 
   final CompiledScene scene;
@@ -61,18 +62,23 @@ class ScenePainter extends CustomPainter {
   final ValueListenable<double> clock;
   final bool showBackground;
 
+  /// Parte de la escena que se ve (coordenadas de la escena); `null` = toda.
+  final Rect? view;
+
   static final Paint _shadow = Paint()
     ..color = const Color(0x61000000); // negro al 38 %
 
   @override
   void paint(Canvas canvas, Size size) {
     final s = scene.scene;
-    final k = math.min(size.width / s.width, size.height / s.height);
+    final v = view ?? Rect.fromLTWH(0, 0, s.width, s.height);
+    final k = math.min(size.width / v.width, size.height / v.height);
     canvas.save();
     canvas.translate(
-        (size.width - s.width * k) / 2, (size.height - s.height * k) / 2);
+        (size.width - v.width * k) / 2, (size.height - v.height * k) / 2);
     canvas.scale(k);
-    canvas.clipRect(Rect.fromLTWH(0, 0, s.width, s.height));
+    canvas.translate(-v.left, -v.top);
+    canvas.clipRect(v);
     final t = clock.value;
 
     if (showBackground) {
@@ -103,5 +109,6 @@ class ScenePainter extends CustomPainter {
   bool shouldRepaint(ScenePainter old) =>
       old.scene != scene ||
       old.showBackground != showBackground ||
+      old.view != view ||
       !listEquals(old.actors, actors);
 }

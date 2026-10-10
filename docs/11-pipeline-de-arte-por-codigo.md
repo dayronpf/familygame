@@ -108,6 +108,7 @@ El «aspecto 3D» de tus referencias isométricas se puede **aproximar en 2D** c
 7. **Expresión limitada:** los ojos parpadean, pero la boca es fija (no hay movimiento de labios al hablar). Se resuelve con piezas
    de boca intercambiables (visemas) en un paso posterior.
 8. **Cada personaje nuevo pide una ronda de revisión visual** (hacer, mirar, corregir). Es barato, pero no es automático del todo.
+9. **Solo trazos SVG absolutos** (`M L Q C A Z`). El lector de Dart rechaza con error cualquier otro comando (antes lo ignoraba y dibujaba mal en silencio).
 
 ## 6. Derechos de autor (qué cambia con este enfoque)
 
@@ -146,8 +147,9 @@ torneo, cueva del dragón, granja, biblioteca del castillo, colina de las lucié
 
 **Enseñanzas (6):** honestidad, generosidad, valentía + **humildad, perseverancia, amistad** (se escriben nuevas junto a los fragmentos).
 
-**Contenido que falta escribir:** ~120 fragmentos del pack (hoy el pack `demo` tiene 17). Es el siguiente gran bloque del carril de
-contenido y se hace con el validador del motor.
+**Contenido que falta escribir:** ~120 fragmentos del pack (hoy el pack `medieval` de prueba tiene 29, en `content/packs/medieval/`: los 6
+personajes dibujados, 5 lugares y 3 enseñanzas con 2 variantes de problema, clímax y resolución cada una). Es el siguiente gran bloque del
+carril de contenido y se hace con el validador del motor.
 
 ## 8. Próximos pasos de arte (propuesta, en orden)
 
@@ -157,7 +159,7 @@ contenido y se hace con el validador del motor.
 | A2 | Renderizador Flutter + pantalla de prueba con medidor de fps | ✅ hecho y verificado en navegador · **falta medir en tu Android** |
 | A3 | Rig de criatura (dragón/cuadrúpedo con alas y cola articulada) | ☐ |
 | A4 | Biblioteca de clips (caminar, correr, sorpresa, miedo, alegría, hablar, reverencia, parpadeo) | ✅ 10 clips · falta boca/visemas |
-| A5 | Kit de fondos (aldea, bosque, cueva, río, interior del castillo) con capas | ☐ (1 de ~15 hecho: castillo) |
+| A5 | Kit de fondos (aldea, bosque, cueva, río, interior del castillo) con capas | 🟡 5 de ~15: castillo, bosque, cueva, río y aldea (`tools/art/scenes_story.py`) |
 | A6 | Variante de iluminación para el holograma (negro puro, siluetas luminosas) | ☐ |
 | A7 | Integrar el arte con los cuentos: que cada fragmento muestre su escena (`scene.bg/actors/mood` → escena y clip) | ☐ |
 

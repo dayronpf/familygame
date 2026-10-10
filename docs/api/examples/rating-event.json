@@ -11,20 +11,20 @@
     "seed": 482913,
     "value": "honestidad",
     "cast": {
-      "hero": "nilo",
-      "helper": "bruna",
-      "villain": "brisca",
+      "hero": "aldo",
+      "helper": "zafiro",
+      "villain": "codicio",
       "place": "bosque",
       "place2": "rio"
     },
     "fragments": [
       "op_1",
-      "tr_hon",
-      "he_hon",
+      "tr_hon_a",
+      "he_1",
       "te_1",
-      "cl_hon",
-      "re_hon",
-      "cl_end"
+      "cl_hon_a",
+      "re_hon_a",
+      "cl_end_1"
     ]
   }
 }

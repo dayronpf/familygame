@@ -42,7 +42,8 @@ class ClosePath extends PathCmd {
   const ClosePath();
 }
 
-final RegExp _tokens = RegExp(r'[MLQCAZ]|-?\d*\.?\d+(?:[eE][-+]?\d+)?');
+// Cualquier letra se tokeniza para poder rechazar las que no soportamos (antes se ignoraban sin avisar).
+final RegExp _tokens = RegExp(r'[A-Za-z]|-?\d*\.?\d+(?:[eE][-+]?\d+)?');
 
 const Map<String, int> _arity = {
   'M': 2,
@@ -62,6 +63,11 @@ List<PathCmd> parseSvgPath(String d) {
   String? cmd;
   while (i < toks.length) {
     final tok = toks[i];
+    if (RegExp(r'^[A-Za-z]$').hasMatch(tok) && !_arity.containsKey(tok)) {
+      throw FormatException(
+        'comando de ruta no soportado «$tok» (solo M L Q C A Z absolutos): "$d"',
+      );
+    }
     if (_arity.containsKey(tok)) {
       cmd = tok;
       i++;

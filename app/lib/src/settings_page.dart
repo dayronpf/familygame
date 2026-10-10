@@ -29,20 +29,20 @@ class _SettingsPageState extends State<SettingsPage> {
       seed: 482913,
       valueId: 'honestidad',
       cast: {
-        'hero': 'nilo',
-        'helper': 'bruna',
-        'villain': 'brisca',
+        'hero': 'aldo',
+        'helper': 'zafiro',
+        'villain': 'codicio',
         'place': 'bosque',
         'place2': 'rio'
       },
       fragmentIds: [
         'op_1',
-        'tr_hon',
-        'he_hon',
+        'tr_hon_a',
+        'he_1',
         'te_1',
-        'cl_hon',
-        're_hon',
-        'cl_end'
+        'cl_hon_a',
+        're_hon_a',
+        'cl_end_1'
       ],
     ),
     rating: 5,
@@ -58,20 +58,20 @@ class _SettingsPageState extends State<SettingsPage> {
       seed: 77120,
       valueId: 'valentia',
       cast: {
-        'hero': 'luna',
-        'helper': 'zafiro',
-        'villain': 'cornelio',
+        'hero': 'mara',
+        'helper': 'bonifacio',
+        'villain': 'sombra',
         'place': 'cueva',
-        'place2': 'colina'
+        'place2': 'aldea'
       },
       fragmentIds: [
         'op_2',
-        'tr_val',
-        'he_any',
+        'tr_val_b',
+        'he_2',
         'te_2',
-        'cl_val',
-        're_val',
-        'cl_end'
+        'cl_val_b',
+        're_val_b',
+        'cl_end_2'
       ],
     ),
     rating: 2,

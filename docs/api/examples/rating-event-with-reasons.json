@@ -15,20 +15,20 @@
     "seed": 77120,
     "value": "valentia",
     "cast": {
-      "hero": "luna",
-      "helper": "zafiro",
-      "villain": "cornelio",
+      "hero": "mara",
+      "helper": "bonifacio",
+      "villain": "sombra",
       "place": "cueva",
-      "place2": "colina"
+      "place2": "aldea"
     },
     "fragments": [
       "op_2",
-      "tr_val",
-      "he_any",
+      "tr_val_b",
+      "he_2",
       "te_2",
-      "cl_val",
-      "re_val",
-      "cl_end"
+      "cl_val_b",
+      "re_val_b",
+      "cl_end_2"
     ]
   }
 }

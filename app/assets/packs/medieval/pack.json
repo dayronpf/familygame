@@ -1,0 +1,687 @@
+{
+ "pack": {
+  "schema": 1,
+  "id": "medieval",
+  "name": "Reino de la Luna (prueba)",
+  "version": "0.1.0",
+  "license": "Contenido original, todos los derechos reservados al autor del proyecto",
+  "language": "es",
+  "age_band": "4-7"
+ },
+ "characters": [
+  {
+   "id": "aldo",
+   "given": "Aldo",
+   "noun": "aprendiz",
+   "gender": "m",
+   "roles": [
+    "hero",
+    "helper"
+   ],
+   "alignment": "positive",
+   "trait": {
+    "m": "decidido",
+    "f": "decidida"
+   }
+  },
+  {
+   "id": "mara",
+   "given": "Mara",
+   "noun": "arquera",
+   "gender": "f",
+   "roles": [
+    "hero",
+    "helper"
+   ],
+   "alignment": "positive",
+   "trait": {
+    "m": "ágil",
+    "f": "ágil"
+   }
+  },
+  {
+   "id": "zafiro",
+   "given": "Zafiro",
+   "noun": "mago",
+   "gender": "m",
+   "roles": [
+    "helper"
+   ],
+   "alignment": "positive",
+   "trait": {
+    "m": "sabio",
+    "f": "sabia"
+   }
+  },
+  {
+   "id": "bonifacio",
+   "given": "Bonifacio",
+   "noun": "rey",
+   "gender": "m",
+   "roles": [
+    "helper"
+   ],
+   "alignment": "positive",
+   "trait": {
+    "m": "bondadoso",
+    "f": "bondadosa"
+   }
+  },
+  {
+   "id": "codicio",
+   "given": "Codicio",
+   "noun": "duque",
+   "gender": "m",
+   "roles": [
+    "villain"
+   ],
+   "alignment": "negative",
+   "trait": {
+    "m": "avaro",
+    "f": "avara"
+   }
+  },
+  {
+   "id": "sombra",
+   "given": "Sombra",
+   "noun": "bandido",
+   "gender": "m",
+   "roles": [
+    "villain"
+   ],
+   "alignment": "negative",
+   "trait": {
+    "m": "astuto",
+    "f": "astuta"
+   }
+  }
+ ],
+ "places": [
+  {
+   "id": "castillo",
+   "noun": "castillo de la Luna",
+   "gender": "m",
+   "mood": "calm"
+  },
+  {
+   "id": "bosque",
+   "noun": "bosque de los robles",
+   "gender": "m",
+   "mood": "calm"
+  },
+  {
+   "id": "cueva",
+   "noun": "cueva de los cristales",
+   "gender": "f",
+   "mood": "mystery"
+  },
+  {
+   "id": "rio",
+   "noun": "río de plata",
+   "gender": "m",
+   "mood": "calm"
+  },
+  {
+   "id": "aldea",
+   "noun": "aldea de los molinos",
+   "gender": "f",
+   "mood": "calm"
+  }
+ ],
+ "morals": [
+  {
+   "id": "honestidad",
+   "name": "Honestidad",
+   "text": "Ser honesto nos hace sentir ligeros, aunque nadie nos esté mirando."
+  },
+  {
+   "id": "generosidad",
+   "name": "Generosidad",
+   "text": "Cuando compartimos lo poco que tenemos, la alegría crece para todos."
+  },
+  {
+   "id": "valentia",
+   "name": "Valentía",
+   "text": "Ser valiente no es no tener miedo, sino dar el primer paso a pesar de él."
+  }
+ ],
+ "fragments": [
+  {
+   "id": "op_1",
+   "stage": "opening",
+   "values": [
+    "*"
+   ],
+   "text": "Había una vez, {place.en}, {hero.un} llamad{hero.o} {hero}. {hero.El} era muy {hero.trait} y soñaba con vivir una gran aventura antes de que llegara la noche.",
+   "scene": {
+    "bg": "place",
+    "actors": [
+     "hero"
+    ],
+    "mood": "calm"
+   }
+  },
+  {
+   "id": "op_2",
+   "stage": "opening",
+   "values": [
+    "*"
+   ],
+   "text": "{place.En} el día se despedía despacito. Allí vivía {hero.el} {hero}, de quien todos decían que era muy {hero.trait}.",
+   "scene": {
+    "bg": "place",
+    "actors": [
+     "hero"
+    ],
+    "mood": "calm"
+   }
+  },
+  {
+   "id": "op_3",
+   "stage": "opening",
+   "values": [
+    "*"
+   ],
+   "text": "En el Reino de la Luna, donde las estrellas se asoman temprano, vivía {hero.un} llamad{hero.o} {hero}. Todos sonreían al verl{hero.o} pasar por {place.el}, porque {hero.el} era muy {hero.trait}.",
+   "scene": {
+    "bg": "place",
+    "actors": [
+     "hero"
+    ],
+    "mood": "calm"
+   }
+  },
+  {
+   "id": "tr_hon_a",
+   "stage": "trouble",
+   "values": [
+    "honestidad"
+   ],
+   "text": "Una tarde, {hero} encontró una bolsita de monedas de oro junto al camino. Nadie la había visto. {villain.El} {villain}, que miraba desde lejos, susurró: «Quédatela, nadie lo sabrá nunca».",
+   "scene": {
+    "bg": "place",
+    "actors": [
+     "hero",
+     "villain"
+    ],
+    "mood": "tension"
+   },
+   "adds": [
+    "tempted_a"
+   ]
+  },
+  {
+   "id": "tr_hon_b",
+   "stage": "trouble",
+   "values": [
+    "honestidad"
+   ],
+   "text": "Un día, {hero} tropezó y rompió sin querer la campana de bronce con la que se avisaba la hora a todo el reino. Nadie estaba mirando. {villain.El} {villain} le guiñó un ojo: «Di que fue el viento y listo».",
+   "scene": {
+    "bg": "place",
+    "actors": [
+     "hero",
+     "villain"
+    ],
+    "mood": "tension"
+   },
+   "adds": [
+    "tempted_b"
+   ]
+  },
+  {
+   "id": "tr_gen_a",
+   "stage": "trouble",
+   "values": [
+    "generosidad"
+   ],
+   "text": "Aquel invierno llegó muy temprano y {place.en} faltaba el pan. {villain.El} {villain} guardaba un granero entero y no quería compartirlo con nadie.",
+   "scene": {
+    "bg": "place",
+    "actors": [
+     "hero",
+     "villain"
+    ],
+    "mood": "tension"
+   },
+   "adds": [
+    "scarcity_a"
+   ]
+  },
+  {
+   "id": "tr_gen_b",
+   "stage": "trouble",
+   "values": [
+    "generosidad"
+   ],
+   "text": "Una noche fría, una familia de viajeros llegó sin comida y sin abrigo. {villain.El} {villain} cerró su puerta con llave y apagó la luz.",
+   "scene": {
+    "bg": "place",
+    "actors": [
+     "hero",
+     "villain"
+    ],
+    "mood": "tension"
+   },
+   "adds": [
+    "cold_b"
+   ]
+  },
+  {
+   "id": "tr_val_a",
+   "stage": "trouble",
+   "values": [
+    "valentia"
+   ],
+   "text": "Una noche, {villain.el} {villain} se plantó en el único camino hacia {place2.el}, donde cada mañana nacía la primera luz del reino. Todos tenían miedo de pasar, y sin esa luz el reino no podía despertar.",
+   "scene": {
+    "bg": "place",
+    "actors": [
+     "villain"
+    ],
+    "mood": "tension"
+   },
+   "adds": [
+    "dark_a"
+   ]
+  },
+  {
+   "id": "tr_val_b",
+   "stage": "trouble",
+   "values": [
+    "valentia"
+   ],
+   "text": "Una tormenta apagó la gran linterna que alumbraba {place.el}, y {villain.el} {villain} gritó que nadie se atrevería a volver a encenderla. Todos sintieron un miedo enorme.",
+   "scene": {
+    "bg": "place",
+    "actors": [
+     "hero",
+     "villain"
+    ],
+    "mood": "tension"
+   },
+   "adds": [
+    "dark_b"
+   ]
+  },
+  {
+   "id": "he_1",
+   "stage": "helper",
+   "values": [
+    "*"
+   ],
+   "text": "Entonces {hero} recordó los consejos {helper.del} {helper}, que vivía cerca y siempre sabía qué hacer. Juntos decidieron ponerse en marcha.",
+   "scene": {
+    "bg": "place",
+    "actors": [
+     "hero",
+     "helper"
+    ],
+    "mood": "hope"
+   }
+  },
+  {
+   "id": "he_2",
+   "stage": "helper",
+   "values": [
+    "*"
+   ],
+   "text": "{hero} corrió a buscar {helper.al} {helper}, que escuchó con mucha atención y dijo: «Lo importante es no hacerlo solo. Cuenta conmigo».",
+   "scene": {
+    "bg": "place",
+    "actors": [
+     "hero",
+     "helper"
+    ],
+    "mood": "hope"
+   }
+  },
+  {
+   "id": "he_3",
+   "stage": "helper",
+   "values": [
+    "*"
+   ],
+   "text": "{hero} se sentó a pensar y se lo contó todo {helper.al} {helper}. «Los problemas pesan menos cuando se comparten», le dijo, y juntos se pusieron en camino.",
+   "scene": {
+    "bg": "place",
+    "actors": [
+     "hero",
+     "helper"
+    ],
+    "mood": "hope"
+   }
+  },
+  {
+   "id": "te_1",
+   "stage": "test",
+   "values": [
+    "*"
+   ],
+   "text": "Para resolverlo, {hero} tuvo que atravesar {place2.el}. El camino era largo y {hero.el} sentía un poco de miedo, pero no se detuvo.",
+   "scene": {
+    "bg": "place2",
+    "actors": [
+     "hero"
+    ],
+    "mood": "mystery"
+   }
+  },
+  {
+   "id": "te_2",
+   "stage": "test",
+   "values": [
+    "*"
+   ],
+   "text": "Al caer la noche, {hero} y {helper} cruzaron {place2.el}. Cada ruido parecía enorme, pero caminaron juntos, uno al lado del otro.",
+   "scene": {
+    "bg": "place2",
+    "actors": [
+     "hero",
+     "helper"
+    ],
+    "mood": "mystery"
+   }
+  },
+  {
+   "id": "te_3",
+   "stage": "test",
+   "values": [
+    "*"
+   ],
+   "text": "{hero} y {helper} llegaron {place2.al} cuando salía la luna. Se detuvieron a respirar hondo y se dieron ánimo: «Ya falta poco».",
+   "scene": {
+    "bg": "place2",
+    "actors": [
+     "hero",
+     "helper"
+    ],
+    "mood": "mystery"
+   }
+  },
+  {
+   "id": "cl_hon_a",
+   "stage": "climax",
+   "values": [
+    "honestidad"
+   ],
+   "text": "{villain.El} {villain} insistió una vez más. Pero {hero} apretó la bolsita contra su pecho y respondió con voz firme: «No es mía, y la voy a devolver a su dueña».",
+   "scene": {
+    "bg": "place2",
+    "actors": [
+     "hero",
+     "villain"
+    ],
+    "mood": "tension"
+   },
+   "requires": [
+    "tempted_a"
+   ],
+   "adds": [
+    "honest_a"
+   ]
+  },
+  {
+   "id": "cl_hon_b",
+   "stage": "climax",
+   "values": [
+    "honestidad"
+   ],
+   "text": "{villain.El} {villain} insistió: «Nadie sabrá que fuiste tú». Pero {hero} respiró hondo y respondió con voz firme: «Yo lo sé, y eso me basta. Voy a contar la verdad».",
+   "scene": {
+    "bg": "place2",
+    "actors": [
+     "hero",
+     "villain"
+    ],
+    "mood": "tension"
+   },
+   "requires": [
+    "tempted_b"
+   ],
+   "adds": [
+    "honest_b"
+   ]
+  },
+  {
+   "id": "cl_gen_a",
+   "stage": "climax",
+   "values": [
+    "generosidad"
+   ],
+   "text": "{hero} abrió su morral y, aunque tenía muy poco, partió su pan en pedazos y lo repartió entre todos. {villain.El} {villain} nunca había visto algo así.",
+   "scene": {
+    "bg": "place2",
+    "actors": [
+     "hero",
+     "villain"
+    ],
+    "mood": "hope"
+   },
+   "requires": [
+    "scarcity_a"
+   ],
+   "adds": [
+    "shared_a"
+   ]
+  },
+  {
+   "id": "cl_gen_b",
+   "stage": "climax",
+   "values": [
+    "generosidad"
+   ],
+   "text": "{hero} le ofreció su propia manta a la familia de viajeros y los invitó a sentarse junto al fuego. {villain.El} {villain} lo vio todo desde la ventana, y algo en su corazón empezó a derretirse.",
+   "scene": {
+    "bg": "place2",
+    "actors": [
+     "hero",
+     "villain"
+    ],
+    "mood": "hope"
+   },
+   "requires": [
+    "cold_b"
+   ],
+   "adds": [
+    "shared_b"
+   ]
+  },
+  {
+   "id": "cl_val_a",
+   "stage": "climax",
+   "values": [
+    "valentia"
+   ],
+   "text": "{hero} sintió miedo, muchísimo miedo. Pero respiró hondo, dio un paso al frente y dijo con voz temblorosa: «Voy a pasar». Y entonces ocurrió algo curioso: {villain.el} {villain}, sorprendid{villain.o}, se hizo a un lado.",
+   "scene": {
+    "bg": "place2",
+    "actors": [
+     "hero",
+     "villain"
+    ],
+    "mood": "triumph"
+   },
+   "requires": [
+    "dark_a"
+   ],
+   "adds": [
+    "brave_a"
+   ]
+  },
+  {
+   "id": "cl_val_b",
+   "stage": "climax",
+   "values": [
+    "valentia"
+   ],
+   "text": "{hero} sintió miedo, muchísimo miedo. Pero respiró hondo, subió paso a paso hasta la gran linterna y encendió la primera chispa. {villain.El} {villain} retrocedió, cegad{villain.o} por tanta luz.",
+   "scene": {
+    "bg": "place2",
+    "actors": [
+     "hero",
+     "villain"
+    ],
+    "mood": "triumph"
+   },
+   "requires": [
+    "dark_b"
+   ],
+   "adds": [
+    "brave_b"
+   ]
+  },
+  {
+   "id": "re_hon_a",
+   "stage": "resolution",
+   "values": [
+    "honestidad"
+   ],
+   "text": "La bolsita volvió a manos de una anciana lavandera, que lloró de alegría y le regaló a {hero} un pan calentito. {villain.El} {villain}, avergonzad{villain.o}, descubrió que la verdad pesa menos que un secreto.",
+   "scene": {
+    "bg": "place",
+    "actors": [
+     "hero",
+     "helper",
+     "villain"
+    ],
+    "mood": "joy"
+   },
+   "requires": [
+    "honest_a"
+   ]
+  },
+  {
+   "id": "re_hon_b",
+   "stage": "resolution",
+   "values": [
+    "honestidad"
+   ],
+   "text": "Al oír la verdad, nadie se enfadó. Entre todos arreglaron la campana en una tarde, y esa noche sonó más bonita que nunca. {villain.El} {villain}, avergonzad{villain.o}, descubrió que decir la verdad pesa menos que un secreto.",
+   "scene": {
+    "bg": "place",
+    "actors": [
+     "hero",
+     "helper",
+     "villain"
+    ],
+    "mood": "joy"
+   },
+   "requires": [
+    "honest_b"
+   ]
+  },
+  {
+   "id": "re_gen_a",
+   "stage": "resolution",
+   "values": [
+    "generosidad"
+   ],
+   "text": "Pronto hubo pan para todos y una gran fiesta {place.en}. Al verlo, {villain.el} {villain} abrió su granero y se sentó a la mesa.",
+   "scene": {
+    "bg": "place",
+    "actors": [
+     "hero",
+     "helper",
+     "villain"
+    ],
+    "mood": "joy"
+   },
+   "requires": [
+    "shared_a"
+   ]
+  },
+  {
+   "id": "re_gen_b",
+   "stage": "resolution",
+   "values": [
+    "generosidad"
+   ],
+   "text": "Aquella noche hubo sopa caliente para todos. {villain.El} {villain} abrió por fin su puerta, pidió perdón y se sentó junto al fuego con los demás.",
+   "scene": {
+    "bg": "place",
+    "actors": [
+     "hero",
+     "helper",
+     "villain"
+    ],
+    "mood": "joy"
+   },
+   "requires": [
+    "shared_b"
+   ]
+  },
+  {
+   "id": "re_val_a",
+   "stage": "resolution",
+   "values": [
+    "valentia"
+   ],
+   "text": "Al amanecer, la primera luz llegó al reino y todos despertaron sonriendo. {villain.El} {villain} se alejó para siempre, y {place.el} volvió a ser un lugar seguro para dormir.",
+   "scene": {
+    "bg": "place",
+    "actors": [
+     "hero",
+     "helper",
+     "villain"
+    ],
+    "mood": "joy"
+   },
+   "requires": [
+    "brave_a"
+   ]
+  },
+  {
+   "id": "re_val_b",
+   "stage": "resolution",
+   "values": [
+    "valentia"
+   ],
+   "text": "Aquella noche la linterna volvió a brillar sobre {place.el}, y todos durmieron tranquilos. {villain.El} {villain} se marchó muy lejos y nunca volvió a asustar a nadie.",
+   "scene": {
+    "bg": "place",
+    "actors": [
+     "hero",
+     "helper",
+     "villain"
+    ],
+    "mood": "joy"
+   },
+   "requires": [
+    "brave_b"
+   ]
+  },
+  {
+   "id": "cl_end_1",
+   "stage": "closing",
+   "values": [
+    "*"
+   ],
+   "text": "Y colorín colorado, este cuento se ha acabado. Ahora, a descansar, que mañana habrá nuevas aventuras.",
+   "scene": {
+    "bg": "place",
+    "actors": [
+     "hero",
+     "helper"
+    ],
+    "mood": "sleep"
+   }
+  },
+  {
+   "id": "cl_end_2",
+   "stage": "closing",
+   "values": [
+    "*"
+   ],
+   "text": "Y la luna, que lo había visto todo, apagó su farol y cerró los ojos. Buenas noches, que mañana habrá nuevas aventuras.",
+   "scene": {
+    "bg": "place",
+    "actors": [
+     "hero",
+     "helper"
+    ],
+    "mood": "sleep"
+   }
+  }
+ ]
+}

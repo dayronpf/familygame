@@ -24,8 +24,9 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    # Copia de content/packs/demo; la sincroniza tools/sync_assets.sh y la verifica CI.
+    # Copias de content/packs/*; las sincroniza tools/sync_assets.sh y las verifica CI.
     - assets/packs/demo/
+    - assets/packs/medieval/
     # Arte generado por código (art/): lo sincroniza tools/sync_assets.sh y lo verifica CI.
     - assets/art/medieval/index.json
     - assets/art/medieval/rigs/
