@@ -98,6 +98,101 @@ CLIPS = {
         "armL": keys((0, 0), (0.7, 6), (1.5, 6), (2.4, 0)),
         "armR": keys((0, 0), (0.7, -6), (1.5, -6), (2.4, 0)),
         "eyes.sy": keys((0, 1), (0.6, 0.35), (1.6, 0.35), (2.4, 1))}),
+    # --- gestos nuevos (más actuación que solo «reposo / susto / alegría»)
+    "point": dict(dur=1.8, loop=True, tracks={
+        "armR": keys((0, 0), (0.25, -96), (0.55, -90), (0.85, -97), (1.2, -90), (1.5, -96), (1.8, 0)),
+        "head": keys((0, 0), (0.25, -7), (1.5, -7), (1.8, 0)),
+        "torso": keys((0, 0), (0.25, -3), (1.5, -3), (1.8, 0)),
+        "root.dy": keys((0, 0), (0.45, -2), (0.9, 0), (1.35, -2), (1.8, 0)),
+        "eyes.sy": blink(1.8, 0.75)}),
+    "sad": dict(dur=3.2, loop=True, tracks={
+        "head": keys((0, 8), (1.6, 10), (3.2, 8)),
+        "head.dy": keys((0, 7), (1.6, 9), (3.2, 7)),
+        "torso": keys((0, 2), (1.6, 3), (3.2, 2)),
+        "torso.sy": keys((0, 0.96), (1.6, 0.95), (3.2, 0.96)),
+        "armL": keys((0, -5), (1.6, -3), (3.2, -5)), "armR": keys((0, 5), (1.6, 3), (3.2, 5)),
+        "eyes.sy": keys((0, 0.55), (2.8, 0.55), (2.9, 0.12), (3.0, 0.55), (3.2, 0.55))}),
+    "think": dict(dur=3.0, loop=True, tracks={
+        "armR": keys((0, 0), (0.4, -142), (2.6, -142), (3.0, 0)),
+        "armL": keys((0, 0), (0.4, -22), (2.6, -22), (3.0, 0)),
+        "head": keys((0, 0), (0.4, 7), (1.5, 5), (2.6, 7), (3.0, 0)),
+        "torso": sine(3.0, 1.0),
+        "eyes.sy": blink(3.0, 0.6)}),
+    "sneak": dict(dur=1.4, loop=True, tracks={
+        "root.dy": keys((0, 12), (0.35, 9), (0.7, 12), (1.05, 9), (1.4, 12)),
+        "torso.sy": keys((0, 0.9), (1.4, 0.9)),
+        "torso": keys((0, 6), (0.7, 3), (1.4, 6)),
+        "head": keys((0, 8), (0.7, 5), (1.4, 8)),
+        "legL": sine(1.4, 14), "legR": sine(1.4, 14),
+        "legL.dy": keys((0, 0), (0.35, -5), (0.7, 0), (1.4, 0)),
+        "legR.dy": keys((0, 0), (0.7, 0), (1.05, -5), (1.4, 0)),
+        "armL": sine(1.4, -10), "armR": sine(1.4, -10),
+        "eyes.sy": keys((0, 0.6), (1.4, 0.6))}),
+    "laugh": dict(dur=0.8, loop=True, tracks={
+        "root.dy": keys((0, 0), (0.1, -7), (0.2, 0), (0.3, -7), (0.4, 0), (0.5, -7), (0.6, 0), (0.7, -5), (0.8, 0)),
+        "head": keys((0, -6), (0.4, -9), (0.8, -6)),
+        "torso": sine(0.8, 2.5),
+        "armL": keys((0, 14), (0.4, 18), (0.8, 14)), "armR": keys((0, -14), (0.4, -18), (0.8, -14)),
+        "eyes.sy": keys((0, 0.3), (0.8, 0.3))}),
+    "sleep": dict(dur=4.0, loop=True, tracks={
+        "head": keys((0, 16), (2, 19), (4, 16)),
+        "head.dy": keys((0, 5), (2, 7), (4, 5)),
+        "torso": sine(4.0, 1.2),
+        "root.dy": keys((0, 0), (2, 2), (4, 0)),
+        "eyes.sy": keys((0, 0.08), (4, 0.08))}),
+    "offer": dict(dur=2.2, loop=True, tracks={
+        "armR": keys((0, 0), (0.4, -72), (1.8, -72), (2.2, 0)),
+        "head": keys((0, 0), (0.5, 4), (1.1, -1), (1.7, 4), (2.2, 0)),
+        "torso": keys((0, 0), (0.4, -3), (1.8, -3), (2.2, 0)),
+        "eyes.sy": blink(2.2, 0.7)}),
+    "no": dict(dur=1.0, loop=True, tracks={
+        "head": keys((0, 0), (0.15, 11), (0.4, -11), (0.65, 11), (0.85, -8), (1.0, 0)),
+        "torso": keys((0, 0), (0.25, 2), (0.6, -2), (1.0, 0)),
+        "armL": keys((0, 0), (0.2, 18), (0.8, 18), (1.0, 0)), "armR": keys((0, 0), (0.2, -18), (0.8, -18), (1.0, 0)),
+        "eyes.sy": keys((0, 0.7), (1.0, 0.7))}),
+    "clap": dict(dur=0.6, loop=True, tracks={
+        "armL": keys((0, 62), (0.15, 48), (0.3, 62), (0.45, 48), (0.6, 62)),
+        "armR": keys((0, -62), (0.15, -48), (0.3, -62), (0.45, -48), (0.6, -62)),
+        "root.dy": keys((0, 0), (0.15, -4), (0.3, 0), (0.45, -4), (0.6, 0)),
+        "head": sine(0.6, 3)}),
+}
+
+
+def steam(offset, dur=3.0, rise=62):
+    """Una nube de vapor que sube, crece y se disuelve; `offset` desfasa cada nube. Bucle sin costuras."""
+    n = 12
+    dy, sc = [], []
+    for i in range(n + 1):
+        u = ((i / n) + offset) % 1.0
+        dy.append([r(dur * i / n), r(-rise * u)])
+        sc.append([r(dur * i / n), r(0.15 + 0.95 * math.sin(math.pi * u))])
+    return dy, sc
+
+
+def _steam_tracks():
+    out = {}
+    for k, off in ((1, 0.0), (2, 0.34), (3, 0.67)):
+        dy, sc = steam(off)
+        out[f"steam{k}.dy"], out[f"steam{k}.sx"], out[f"steam{k}.sy"] = dy, sc, sc
+    out["fire.sy"] = keys((0, 1), (0.3, 1.12), (0.6, 0.94), (0.9, 1.1), (1.2, 0.96), (1.5, 1.08), (1.8, 1))
+    out["fire.sx"] = keys((0, 1), (0.4, 0.96), (0.8, 1.04), (1.2, 0.97), (1.8, 1))
+    return out
+
+
+PROP_CLIPS = {
+    "still": dict(dur=1.0, loop=True, tracks={}),
+    "swing": dict(dur=2.6, loop=True, tracks={"swing": sine(2.6, 5), "clapper": sine(2.6, -9, 0.2)}),
+    "ring": dict(dur=1.1, loop=True, tracks={"swing": sine(1.1, 17), "clapper": sine(1.1, -26, 0.25)}),
+    "glow": dict(dur=2.4, loop=True, tracks={
+        "flame.sy": keys((0, 1), (0.4, 1.14), (0.8, 0.94), (1.3, 1.1), (1.8, 0.96), (2.4, 1)),
+        "flame.sx": keys((0, 1), (0.5, 0.94), (1.1, 1.05), (1.7, 0.97), (2.4, 1)),
+        "glow.sx": keys((0, 1), (0.8, 1.06), (1.6, 0.97), (2.4, 1)),
+        "glow.sy": keys((0, 1), (0.8, 1.06), (1.6, 0.97), (2.4, 1))}),
+    "boil": dict(dur=3.0, loop=True, tracks=_steam_tracks()),
+    "hoot": dict(dur=3.4, loop=True, tracks={
+        "eyes.sy": blink(3.4, 0.55),
+        "root.sy": keys((0, 1), (0.5, 1.04), (1.0, 1), (3.4, 1)),
+        "root.dy": keys((0, 0), (0.5, -2), (1.0, 0), (3.4, 0))}),
 }
 
 
@@ -106,6 +201,10 @@ def main():
     doc = {"format": "caldero-clips", "version": 1, "rig": "humanoid", "clips": CLIPS}
     OUT.write_text(json.dumps(doc, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
     print(f"{len(CLIPS)} clips, {OUT.stat().st_size / 1024:.1f} KB → {OUT.relative_to(OUT.parents[2])}")
+    pout = OUT.with_name("props.json")
+    pout.write_text(json.dumps({"format": "caldero-clips", "version": 1, "rig": "prop", "clips": PROP_CLIPS},
+                               ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+    print(f"{len(PROP_CLIPS)} clips de objetos, {pout.stat().st_size / 1024:.1f} KB → {pout.relative_to(OUT.parents[2])}")
 
 
 if __name__ == "__main__":

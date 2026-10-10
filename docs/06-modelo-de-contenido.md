@@ -60,6 +60,15 @@ El esquema 1 (un fragmento suelto por etapa) no daba hilo: ver [13](13-auditoria
 - **`introduces`**: la escena que presenta a un personaje u objeto (debe nombrarlo; nadie puede nombrarlo antes).
 - **`moves: true`**: el texto cuenta un desplazamiento (obligatorio si cambia el fondo `bg`).
 - **Las variantes de una escena cuentan los mismos hechos.** Si una debe contar otra cosa, es otra premisa.
+- **Atributos con varias formas:** `"gesto": ["se frotó las manos", "se atusó la perilla"]`. Cada uso en un cuento toma la
+  siguiente (empezando por una al azar), así un gesto no se repite. El validador revisa **todas** las formas.
+- **Ilustración de cada escena** (`scene`): `bg` (ranura de lugar) · `stage` (lista de personajes de izquierda a derecha:
+  `"hero:scared"`, `"@tomas:sad"`, `{"who":"hero","clip":"scared","x":0.3}` o `{"rig":"tomas"}` para un secundario) · `mood` ·
+  `props` (`{"prop":"olla","x":0.5,"clip":"boil","scale":1,"lift":0,"front":true,"emit":false}`) · `light`
+  (`dusk`/`night`/`dark`/`cold`) · `offstage` (nombrados en el texto pero ausentes, p. ej. `["tomas"]`).
+- **`npcs`** de la premisa: los secundarios dibujados y con qué palabras los nombra el texto (`"tomas": ["Tomás"]`).
+- **Regla texto ↔ ilustración:** quien sale dibujado (menos el héroe) debe estar nombrado en el texto de esa escena, y quien el
+  texto nombra debe salir dibujado o figurar en `offstage`. Máximo 6 personajes por ilustración.
 - La receta de valoración lleva ids `premisa.escena.variante` (`campana.error.a`).
 - Reglas de coherencia que bloquean un pack: [13 §5](13-auditoria-de-historias.md) y `validatePack`.
 

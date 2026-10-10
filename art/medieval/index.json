@@ -9,7 +9,23 @@
   "medieval/rigs/zafiro.json",
   "medieval/rigs/bonifacio.json",
   "medieval/rigs/codicio.json",
-  "medieval/rigs/sombra.json"
+  "medieval/rigs/sombra.json",
+  "medieval/rigs/tomas.json",
+  "medieval/rigs/lia.json",
+  "medieval/rigs/teo.json",
+  "medieval/rigs/rosa.json",
+  "medieval/rigs/beto.json",
+  "medieval/rigs/hugo.json",
+  "medieval/rigs/aldeano.json",
+  "medieval/rigs/aldeana.json",
+  "medieval/rigs/campana.json",
+  "medieval/rigs/campana_rota.json",
+  "medieval/rigs/linterna.json",
+  "medieval/rigs/linterna_apagada.json",
+  "medieval/rigs/olla.json",
+  "medieval/rigs/pan.json",
+  "medieval/rigs/trozos_de_pan.json",
+  "medieval/rigs/buho.json"
  ],
  "scenes": [
   "medieval/scenes/castle_night.json",
@@ -19,6 +35,19 @@
   "medieval/scenes/aldea.json"
  ],
  "clips": "clips/humanoid.json",
+ "extraClips": [
+  "clips/props.json"
+ ],
+ "sizes": {
+  "tomas": 1.0,
+  "lia": 0.72,
+  "teo": 0.66,
+  "rosa": 1.0,
+  "beto": 1.0,
+  "hugo": 1.06,
+  "aldeano": 0.98,
+  "aldeana": 0.98
+ },
  "places": {
   "castillo": {
    "scene": "castle_night",

@@ -86,7 +86,10 @@ class _WorkshopPageState extends State<WorkshopPage>
       ];
     }
     // Prueba de carga: N personajes (se repiten los rigs) repartidos en filas, de atrás hacia delante.
-    final ids = l.rigs.keys.toList();
+    final ids = [
+      for (final e in l.rigs.entries)
+        if (e.value.rig.type == 'humanoid') e.key,
+    ];
     final n = _count.round();
     final cols = math.max(1, math.sqrt(n * 0.8).ceil());
     final rows = (n / cols).ceil();

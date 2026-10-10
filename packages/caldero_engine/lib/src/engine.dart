@@ -102,6 +102,16 @@ Story _generateFromPremise(
   final cast = castPremise(pack, premise, rng);
   final state = castState(cast, premise);
   final scenes = <StoryScene>[];
+  // Atributos con varias formas: cada uso de `rol.atributo` toma la siguiente, empezando por una al
+  // azar, para que un gesto no se repita dentro del mismo cuento.
+  final starts = <String, int>{};
+  final uses = <String, int>{};
+  String choose(String key, List<String> options) {
+    final start = starts[key] ??= rng.nextInt(options.length);
+    final k = uses[key] = (uses[key] ?? -1) + 1;
+    return options[(start + k) % options.length];
+  }
+
   for (final beat in premise.beats) {
     final candidates = beat.variants
         .where((v) => v.weight > 0 && state.containsAll(v.requires))
@@ -116,7 +126,7 @@ Story _generateFromPremise(
     scenes.add(
       StoryScene(
         fragmentId: variant.id,
-        text: renderTemplate(variant.text, cast),
+        text: renderTemplate(variant.text, cast, choose: choose),
         directives: variant.scene,
       ),
     );

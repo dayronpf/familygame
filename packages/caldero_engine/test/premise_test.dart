@@ -508,6 +508,210 @@ void main() {
     });
   });
 
+  group('atributos con varias formas', () {
+    Map<String, Object?> withForms(List<String> forms, {int uses = 3}) {
+      final json = basePack();
+      final beto = (json['characters']! as List<Object?>)
+          .cast<Map<String, Object?>>()
+          .firstWhere((c) => c['id'] == 'beto');
+      beto['attrs'] = {'gesto': forms};
+      final premise =
+          (json['premises']! as List<Object?>).first! as Map<String, Object?>;
+      premise['beats'] = [
+        for (var i = 0; i < uses; i++)
+          {
+            'id': 'b$i',
+            'variants': [
+              {
+                'id': 'a',
+                'text': '{helper} {helper.gesto}.',
+                'scene': <String, Object?>{}
+              },
+            ],
+          },
+      ];
+      return json;
+    }
+
+    test('se leen como texto o como lista; la primera es la de por defecto',
+        () {
+      final pack = load(withForms(['a', 'b', 'c']));
+      final beto = pack.characters.firstWhere((c) => c.id == 'beto');
+      expect(beto.attrs['gesto'], ['a', 'b', 'c']);
+      final one = basePack();
+      expect(
+          load(one).characters.firstWhere((c) => c.id == 'beto').attrs['gesto'],
+          ['se rascó la barba']);
+      final bad = withForms(['a']);
+      ((bad['characters']! as List<Object?>)
+          .cast<Map<String, Object?>>()
+          .firstWhere((c) => c['id'] == 'beto'))['attrs'] = {
+        'gesto': <String>[]
+      };
+      expect(() => load(bad), throwsA(isA<PackFormatException>()));
+    });
+
+    test('un gesto no se repite dentro del mismo cuento mientras haya otros',
+        () {
+      final engine = StoryEngine(load(withForms(['a', 'b', 'c', 'd'])));
+      final starts = <String>{};
+      for (var seed = 0; seed < 40; seed++) {
+        final texts = engine
+            .generate(StoryOptions(seed: seed))
+            .scenes
+            .map((s) => s.text)
+            .toList();
+        expect(texts.toSet(), hasLength(3), reason: 'seed $seed: $texts');
+        starts.add(texts.first);
+      }
+      expect(starts.length, greaterThan(1),
+          reason: 'el primero varía de un cuento a otro');
+    });
+
+    test('con menos formas que usos, rota sin fallar', () {
+      final engine = StoryEngine(load(withForms(['a', 'b'], uses: 5)));
+      final texts = engine
+          .generate(const StoryOptions(seed: 3))
+          .scenes
+          .map((s) => s.text)
+          .toList();
+      expect(texts, hasLength(5));
+      expect(texts.toSet(), hasLength(2));
+    });
+
+    test('el validador revisa TODAS las formas, no solo la primera', () {
+      final json = withForms(['se rascó la barba', 'va a el bosque'], uses: 1);
+      expect(problemsOf(json).join('\n'), contains('falta contracción'));
+    });
+  });
+
+  group('texto ↔ ilustración', () {
+    Map<String, Object?> withStage(List<Object?> stage, String text,
+        {List<String>? offstage, Map<String, Object?>? npcs}) {
+      final json = basePack();
+      final premise =
+          (json['premises']! as List<Object?>).first! as Map<String, Object?>;
+      premise['npcs'] = npcs ??
+          {
+            'tomas': ['Tomás']
+          };
+      premise['beats'] = [
+        {
+          'id': 'b1',
+          'introduces': ['item', 'helper', 'villain'],
+          'variants': [
+            {
+              'id': 'a',
+              'text': text,
+              'scene': {
+                'bg': 'casa',
+                'stage': stage,
+                'mood': 'calm',
+                if (offstage != null) 'offstage': offstage,
+              },
+            },
+          ],
+        },
+      ];
+      return json;
+    }
+
+    String problems(Map<String, Object?> json) => problemsOf(json).join('\n');
+
+    test('lee los secundarios de la premisa', () {
+      final pack = load(withStage([
+        {'who': 'hero'}
+      ], '{hero} {item.el} {helper} {villain}.'));
+      expect(pack.premises.first.npcs['tomas'], ['Tomás']);
+      final bad = withStage(
+          [
+            {'who': 'hero'}
+          ],
+          'x',
+          npcs: {'tomas': <String>[]});
+      expect(() => load(bad), throwsA(isA<PackFormatException>()));
+    });
+
+    test('quien sale dibujado debe estar en el texto', () {
+      final p = problems(withStage(
+        [
+          {'who': 'hero'},
+          {'who': 'villain'},
+          {'rig': 'tomas'}
+        ],
+        '{hero} miró {item.el} con {helper}.',
+      ));
+      expect(
+          p,
+          contains(
+              '«villain» (Coco) sale dibujado pero el texto no lo nombra'));
+      expect(p,
+          contains('«tomas» sale dibujado pero el texto no lo nombra (Tomás)'));
+    });
+
+    test(
+        'quien el texto nombra debe salir dibujado, salvo que esté fuera de cámara',
+        () {
+      final text =
+          '{hero} le contó a {helper} lo de {villain}, y a Tomás, con {item.el}.';
+      final p = problems(withStage([
+        {'who': 'hero'}
+      ], text));
+      expect(p,
+          contains('el texto nombra a «helper» (Beto) pero no sale dibujado'));
+      expect(p,
+          contains('el texto nombra a «villain» (Coco) pero no sale dibujado'));
+      expect(p, contains('el texto nombra a «tomas» pero no sale dibujado'));
+      final ok = problems(withStage(
+          [
+            {'who': 'hero'}
+          ],
+          text,
+          offstage: ['helper', 'villain', 'tomas']));
+      expect(ok, isNot(contains('no sale dibujado')));
+    });
+
+    test('el héroe puede salir sin nombrarse; el resto, no', () {
+      final p = problems(withStage(
+        [
+          {'who': 'hero'},
+          {'who': 'helper'},
+          {'who': 'villain'},
+          {'rig': 'tomas'}
+        ],
+        '{helper} habló con {villain} y con Tomás sobre {item.el}.',
+      ));
+      expect(p, isNot(contains('«hero» (Ana) sale dibujado')));
+      expect(p, isNot(contains('sale dibujado pero el texto no lo nombra')));
+    });
+
+    test(
+        'rechaza más de 6 personajes, secundarios sin declarar y fuera de cámara inexistentes',
+        () {
+      final tooMany = problems(withStage(
+        [
+          {'who': 'hero'},
+          for (var i = 0; i < 6; i++) {'rig': 'tomas'}
+        ],
+        '{hero} {helper} {villain} {item.el} Tomás.',
+      ));
+      expect(tooMany, contains('más de 6 personajes en pantalla'));
+      final undeclared = problems(withStage([
+        {'who': 'hero'},
+        {'rig': 'lia'}
+      ], '{hero} {helper} {villain} {item.el}.'));
+      expect(undeclared,
+          contains('el secundario «lia» no está declarado en "npcs"'));
+      final ghost = problems(withStage(
+          [
+            {'who': 'hero'}
+          ],
+          '{hero} {helper} {villain} {item.el}.',
+          offstage: ['fantasma']));
+      expect(ghost, contains('«fantasma» en "offstage" no existe'));
+    });
+  });
+
   test('el validador detecta el género fijo («quieto», «yo solo»)', () {
     Map<String, Object?> v(String id, String text) => {
           'id': id,

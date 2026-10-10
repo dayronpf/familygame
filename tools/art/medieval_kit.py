@@ -94,6 +94,11 @@ def head_shapes(s):
     # --- detrás de la cara
     if hat == "hood":
         sh.append(S(ell(0, -194, 54, 52), "$cloak"))
+    if s.get("hair") == "pigtails":
+        for sx in (-1, 1):
+            sh.append(S(ell(sx * 53, -176, 13, 17), "$hair"))
+            sh.append(S(ell(sx * 53, -158, 8, 9), "$hair"))
+            sh.append(S(ell(sx * 51, -190, 6, 5), "$accent", None))
     if s.get("hair") == "braid":
         for cy, r in [(-168, 9), (-148, 8.5), (-129, 8), (-112, 7)]:
             sh.append(S(ell(-47, cy, r, r), "$hair"))
@@ -107,7 +112,7 @@ def head_shapes(s):
     sh.append(S(ell(27, -176, 7.5, 4.8), "#ff7a8a", None, 0, 0.45))
     sh.append(S(ell(0, -180, 3.6, 3), mix(s["palette"]["skin"], "#a0522d", 0.35), None, 0))
     # --- pelo
-    if s.get("hair") in ("short", "braid"):
+    if s.get("hair") in ("short", "braid", "pigtails"):
         sh.append(S("M-45,-188 C-50,-238 50,-238 45,-188 C38,-208 22,-215 0,-213 C-22,-215 -38,-208 -45,-188 Z", "$hair"))
     # --- antifaz del bandido
     if hat == "hood":
@@ -167,6 +172,27 @@ def head_shapes(s):
         sh.append(S("M-47,-202 C-52,-252 50,-258 47,-206 C30,-218 -30,-218 -47,-202 Z", "$hat"))
         sh.append(S("M30,-236 C58,-266 82,-258 90,-274 C76,-244 58,-232 38,-222 Z", "$plume"))
         sh.append(S("M32,-232 C56,-250 70,-250 84,-266", None, mix(s["palette"]["plume"], DARK, 0.5), 1.6))
+    elif hat == "cap":
+        sh.append(S("M-47,-204 C-52,-248 48,-250 47,-204 C30,-212 -30,-212 -47,-204 Z", "$hat"))
+        sh.append(S(rrect(-50, -209, 100, 10, 5), mix(s["palette"]["hat"], DARK, 0.25)))
+        sh.append(S(ell(0, -241, 4.5, 4.5), mix(s["palette"]["hat"], DARK, 0.25), None))
+    elif hat == "baker":
+        sh.append(S(rrect(-36, -230, 72, 28, 8), "$hat"))
+        sh.append(S(ell(-18, -244, 24, 20), "$hat"))
+        sh.append(S(ell(18, -244, 24, 20), "$hat"))
+        sh.append(S(ell(0, -252, 26, 20), "$hat"))
+        sh.append(shade("M10,-262 C40,-256 44,-232 36,-206 L16,-206 C22,-228 20,-248 10,-262 Z"))
+    elif hat == "kerchief":
+        sh.append(S("M-47,-200 C-54,-252 52,-252 47,-200 C36,-214 -36,-214 -47,-200 Z", "$hat"))
+        sh.append(S(ell(50, -208, 11, 8), "$hat"))
+        sh.append(S(ell(60, -198, 8, 11), "$hat"))
+        for dx in (-26, -8, 12, 30):
+            sh.append(S(ell(dx, -226, 3, 3), "$accent", None))
+    elif hat == "straw":
+        sh.append(S(ell(0, -214, 80, 14), "$hat"))
+        sh.append(S("M-37,-216 C-36,-256 36,-256 37,-216 Z", "$hat"))
+        sh.append(S(rrect(-37, -228, 74, 10, 3), "$accent"))
+        sh.append(shade("M12,-253 C32,-246 38,-230 37,-216 L18,-216 C24,-230 22,-244 12,-253 Z"))
     elif hat == "beret":
         sh.append(S("M-52,-214 C-46,-254 40,-262 60,-234 C58,-214 -30,-204 -52,-214 Z", "$hat"))
         sh.append(S("M54,-238 C86,-266 104,-252 114,-228 C98,-246 82,-242 56,-228 Z", "$gold"))
@@ -228,6 +254,12 @@ def torso_shapes(s):
     elif k == "bandit":
         sh += [S(rrect(-36, -150, 72, 84, 22), "$primary"), shade(rrect(12, -148, 22, 80, 14)),
                S(rrect(-36, -104, 72, 11, 3), "$belt"), S(rrect(-6, -107, 12, 17, 3), "$secondary")]
+    if s.get("apron"):
+        sh += [S("M-26,-136 L26,-136 L34,-64 Q0,-54 -34,-64 Z", "$apron"),
+               S(poly([(-26, -136), (-18, -150), (-12, -136)]), "$apron"),
+               S(poly([(26, -136), (18, -150), (12, -136)]), "$apron"),
+               shade("M8,-134 L26,-136 L34,-64 Q18,-58 12,-60 Z"),
+               S(rrect(-14, -98, 28, 20, 4), mix(s["palette"]["apron"], DARK, 0.12))]
     return sh
 
 
@@ -380,8 +412,9 @@ def sheet(rigs):
     clips = anim.load_clips("humanoid")
     by = {r["id"]: r for r in rigs}
     cw, ch, cols = 236, 330, 6
-    rows = [
-        [(r, "idle", 0.0) for r in rigs],
+    humans = [r for r in rigs if r.get("rig") == "humanoid"]
+    rows = [[(r, "idle", 0.0) for r in humans[i:i + cols]] for i in range(0, len(humans), cols)]
+    rows += [
         [(by["aldo"], c, tt) for c, tt in (("idle", 0), ("walk", 0.1), ("run", 0.12), ("wave", 0.9), ("cheer", 0.6), ("jump", 0.5))],
         [(by["mara"], "walk", 0.1), (by["zafiro"], "wave", 0.9), (by["bonifacio"], "bow", 1.2),
          (by["codicio"], "surprised", 0.6), (by["sombra"], "scared", 0.06), (by["mara"], "cheer", 0.6)],
@@ -414,12 +447,16 @@ def main():
     (OUT / "rigs").mkdir(parents=True, exist_ok=True)
     (OUT / "preview").mkdir(parents=True, exist_ok=True)
     rigs = [build(c) for c in load_cast()]
+    import props  # objetos de la trama (campana, linterna, olla…) como rigs de una sola pieza
+    rigs += props.build_all()
     for r in rigs:
         (OUT / "rigs" / f'{r["id"]}.json').write_text(json.dumps(r, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
     (OUT / "preview" / "sheet.svg").write_text(sheet(rigs), encoding="utf-8")
     index = {"format": "caldero-art-index", "version": 1, "pack": "medieval", "rig": "humanoid",
              "rigs": [f"medieval/rigs/{r['id']}.json" for r in rigs],
-             "scenes": ["medieval/scenes/castle_night.json"], "clips": "clips/humanoid.json"}
+             "scenes": ["medieval/scenes/castle_night.json"], "clips": "clips/humanoid.json",
+             "extraClips": ["clips/props.json"],
+             "sizes": {c["id"]: c["size"] for c in load_cast() if "size" in c}}
     (OUT / "index.json").write_text(json.dumps(index, indent=1) + "\n", encoding="utf-8")
     for r in rigs:
         size = (OUT / "rigs" / f'{r["id"]}.json').stat().st_size

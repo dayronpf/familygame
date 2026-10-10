@@ -153,7 +153,12 @@ class _StoryPageState extends State<StoryPage>
             ],
             for (var i = 0; i < _story.scenes.length; i++) ...[
               if (i < _setups.length && _setups[i] != null) ...[
-                StoryStage(setup: _setups[i]!, clock: _clock),
+                StoryStage(
+                  setup: _setups[i]!,
+                  clock: _clock,
+                  art: _stageArt,
+                  animate: widget.animate,
+                ),
                 const SizedBox(height: 14),
               ],
               Text(_story.scenes[i].text, style: body),

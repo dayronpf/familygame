@@ -3,7 +3,7 @@
   "schema": 2,
   "id": "medieval",
   "name": "Reino de la Luna (prueba)",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "license": "Contenido original, todos los derechos reservados al autor del proyecto",
   "language": "es",
   "age_band": "4-7"
@@ -27,9 +27,22 @@
     "young"
    ],
    "attrs": {
-    "gesto": "se rascó la cabeza por debajo del casco",
-    "miedo": "le temblaba el penacho rojo del casco",
-    "voz": "con voz clarita",
+    "rasgo": "que se subía a todos los muros del castillo",
+    "gesto": [
+     "se rascó la cabeza por debajo del casco",
+     "se apretó el casco con las dos manos",
+     "se encogió de hombros"
+    ],
+    "miedo": [
+     "le temblaba el penacho rojo del casco",
+     "se le encogieron los dedos de los pies dentro de las botas",
+     "se le puso el penacho tieso como un erizo"
+    ],
+    "voz": [
+     "con voz clarita",
+     "a media voz",
+     "sin dejar de mirarse las botas"
+    ],
     "aporte": "sacó de su morral una cebolla un poco arrugada",
     "regalo": "un cabo de vela que guardaba en su morral"
    }
@@ -52,9 +65,22 @@
     "young"
    ],
    "attrs": {
-    "gesto": "se enredó la trenza entre los dedos",
-    "miedo": "le temblaba la mano sobre el arco",
-    "voz": "con voz firme",
+    "rasgo": "que trepaba a los árboles como una ardilla",
+    "gesto": [
+     "se enredó la trenza entre los dedos",
+     "se encogió de hombros",
+     "se cruzó de brazos"
+    ],
+    "miedo": [
+     "le temblaba la mano sobre el arco",
+     "se le enredó la lengua",
+     "se le erizó la trenza"
+    ],
+    "voz": [
+     "con voz firme",
+     "sin rodeos",
+     "con una media sonrisa"
+    ],
     "aporte": "volvió del bosque con un cesto de setas que olían a tierra mojada",
     "regalo": "su lamparita de aceite, la que llevaba siempre en el carcaj"
    }
@@ -77,11 +103,19 @@
     "magic"
    ],
    "attrs": {
-    "gesto": "se acarició la larga barba blanca",
+    "gesto": [
+     "se acarició la larga barba blanca",
+     "hizo girar su bastón entre los dedos",
+     "entornó los ojos como quien lee un libro invisible"
+    ],
     "miedo": "se le agitó la barba",
-    "voz": "con su voz lenta y tranquila",
+    "voz": [
+     "con su voz lenta y tranquila",
+     "con un guiño",
+     "con voz de abuelo"
+    ],
     "aporte": "sacó de su bolsa un puñado de hierbas mágicas que olían a menta",
-    "regalo": "una luciérnaga mágica, encerrada en un frasquito de cristal"
+    "regalo": "una chispa mágica, encerrada en un frasquito de cristal"
    }
   },
   {
@@ -103,9 +137,17 @@
     "royal"
    ],
    "attrs": {
-    "gesto": "se ajustó la corona torcida",
+    "gesto": [
+     "se ajustó la corona torcida",
+     "se rascó la barba bajo la corona",
+     "suspiró hondo"
+    ],
     "miedo": "se le torció la corona",
-    "voz": "con su voz grave y cálida",
+    "voz": [
+     "con su voz grave y cálida",
+     "con una risa baja",
+     "con voz de rey que ha perdido muchas coronas"
+    ],
     "aporte": "mandó traer unas zanahorias de la huerta del castillo",
     "regalo": "su lamparita de viaje, la que usaba para leer en la cama"
    }
@@ -128,9 +170,19 @@
     "noble"
    ],
    "attrs": {
-    "gesto": "se frotó las manos",
-    "voz": "con voz de campanilla rota",
-    "favor": "me darás tu paga de este mes",
+    "gesto": [
+     "se frotó las manos",
+     "contó unas monedas en el bolsillo, clic, clic",
+     "se atusó la perilla",
+     "se ajustó la boina de la pluma"
+    ],
+    "voz": [
+     "con voz de campanilla rota",
+     "con voz de miel",
+     "con voz de moneda que rueda"
+    ],
+    "pago": "tu paga de este mes",
+    "entrega": "su paga del mes",
     "guarida": "su casona de piedra",
     "botin": "su cofre de monedas"
    }
@@ -153,9 +205,18 @@
     "shadow"
    ],
    "attrs": {
-    "gesto": "se subió la capucha hasta los ojos",
-    "voz": "en un susurro helado",
-    "favor": "esta noche me dejarás abierta la puerta de la torre",
+    "gesto": [
+     "se subió la capucha hasta los ojos",
+     "se pegó a la pared como una sombra",
+     "chasqueó los dedos sin hacer ruido"
+    ],
+    "voz": [
+     "en un susurro",
+     "con un siseo",
+     "con una voz bajita, bajita"
+    ],
+    "pago": "tu merienda de esta noche",
+    "entrega": "su merienda",
     "guarida": "su cabaña escondida junto al camino",
     "botin": "el saco que había robado"
    }
@@ -261,6 +322,26 @@
    "id": "campana",
    "value": "honestidad",
    "title": "La campana rota",
+   "npcs": {
+    "tomas": [
+     "Tomás"
+    ],
+    "hugo": [
+     "herrero"
+    ],
+    "teo": [
+     "niños"
+    ],
+    "rosa": [
+     "panaderos"
+    ],
+    "aldeano": [
+     "vecinos"
+    ],
+    "aldeana": [
+     "vecinos"
+    ]
+   },
    "cast": {
     "hero": {
      "kind": "character",
@@ -272,9 +353,6 @@
      "kind": "character",
      "roles": [
       "helper"
-     ],
-     "tags": [
-      "wise"
      ]
     },
     "villain": {
@@ -308,24 +386,50 @@
      "variants": [
       {
        "id": "a",
-       "text": "En lo alto {torre.del} colgaba {item.un} enorme, de bronce reluciente. Por la mañana sonaba para despertar al reino y, por la noche, para decirle que ya era hora de dormir. {hero.El} {hero}, que era muy {hero.trait}, subía a mirarla todas las tardes y se prometía: «Algún día la haré sonar yo sol{hero.o}».",
+       "text": "En lo alto {torre.del} colgaba {item.un} grande como un caldero, de bronce reluciente. Por la mañana sonaba para despertar al reino y, por la noche, para decirle que ya era hora de dormir. Su cuidador era el campanero Tomás, un viejo de barba blanca que olía a aceite y a pan tostado. {hero}, {hero.rasgo}, subía a verla todas las tardes.",
        "scene": {
         "bg": "torre",
-        "actors": [
-         "hero"
+        "stage": [
+         {
+          "who": "hero"
+         },
+         {
+          "rig": "tomas"
+         }
         ],
-        "mood": "calm"
+        "mood": "calm",
+        "props": [
+         {
+          "prop": "campana",
+          "x": 0.84,
+          "clip": "swing",
+          "scale": 0.9
+         }
+        ]
        }
       },
       {
        "id": "b",
-       "text": "Cada tarde, cuando el cielo se ponía color naranja, {hero} subía los ciento veinte escalones {torre.del} para visitar {item.el} más grande del reino. Era de bronce reluciente y tan pesada que solo el campanero Tomás podía hacerla sonar. {hero.El} era muy {hero.trait} y soñaba con tirar, algún día, de aquella cuerda.",
+       "text": "Cada tarde, cuando el cielo se ponía color naranja, {hero}, {hero.rasgo}, subía los ciento veinte escalones {torre.del} para visitar {item.el} más famosa del reino. Era de bronce reluciente, grande como un caldero, y solo el campanero Tomás sabía hacerla sonar. Tomás, un viejo de barba blanca, siempre le guiñaba un ojo desde abajo.",
        "scene": {
         "bg": "torre",
-        "actors": [
-         "hero"
+        "stage": [
+         {
+          "who": "hero"
+         },
+         {
+          "rig": "tomas"
+         }
         ],
-        "mood": "calm"
+        "mood": "calm",
+        "props": [
+         {
+          "prop": "campana",
+          "x": 0.84,
+          "clip": "swing",
+          "scale": 0.9
+         }
+        ]
        }
       }
      ],
@@ -334,28 +438,111 @@
      ]
     },
     {
-     "id": "error",
+     "id": "promesa",
      "variants": [
       {
        "id": "a",
-       "text": "Aquella tarde, el campanero Tomás se había ido a merendar y la torre estaba vacía. {hero} agarró la cuerda con las dos manos y tiró con todas sus fuerzas. ¡CLANG! {item.El} se soltó, rodó escalera abajo y se partió en dos pedazos: ¡CRAAAC! {hero} se quedó helad{hero.o}. El corazón le latía como un tambor, porque sabía que había hecho algo grave, y {hero.miedo}.",
+       "text": "«Cuando te crezcan las manos, te enseñaré a tocarla», le prometió Tomás. «Pero primero hay que esperar.» Esperar le picaba a {hero} en los pies como hormigas. Tomás le dejó acariciar la cuerda, solo un momento. «Con cuidado», susurró, «porque esta campana es la voz de todo el reino».",
        "scene": {
         "bg": "torre",
-        "actors": [
-         "hero"
+        "stage": [
+         {
+          "rig": "tomas",
+          "clip": "talk"
+         },
+         {
+          "who": "hero",
+          "clip": "offer"
+         }
         ],
-        "mood": "tension"
+        "mood": "hope",
+        "props": [
+         {
+          "prop": "campana",
+          "x": 0.84,
+          "clip": "swing",
+          "scale": 0.9
+         }
+        ]
        }
       },
       {
        "id": "b",
-       "text": "Tomás se había ido a merendar, y la torre estaba vacía. «Solo un tironcito», pensó {hero}. Tiró de la cuerda, ¡CLANG!, y {item.el} se soltó del techo, rodó escalera abajo y se partió en dos pedazos, ¡CRAAAC!, con un estruendo que hizo volar a todas las palomas. A {hero} se le quedó la boca abierta, y {hero.miedo}.",
+       "text": "Un día, Tomás le dejó tocar el borde de la campana con un dedo. ¡Rummm! Le cosquilleó hasta los dientes. «Cuando te crezcan las manos, te enseñaré», prometió. «Pero primero hay que esperar.» Y a {hero} esperar le picaba en los pies como hormigas.",
        "scene": {
         "bg": "torre",
-        "actors": [
-         "hero"
+        "stage": [
+         {
+          "rig": "tomas",
+          "clip": "talk"
+         },
+         {
+          "who": "hero",
+          "clip": "surprised"
+         }
         ],
-        "mood": "tension"
+        "mood": "hope",
+        "props": [
+         {
+          "prop": "campana",
+          "x": 0.84,
+          "clip": "swing",
+          "scale": 0.9
+         }
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "id": "error",
+     "variants": [
+      {
+       "id": "a",
+       "text": "Aquella tarde Tomás bajó a merendar y la torre se quedó vacía. «Solo un tironcito», pensó {hero}, «para oírla un segundito». Tiró de la cuerda. ¡CLANG! {item.El} se soltó del techo, rodó escalera abajo y se partió en dos pedazos: ¡CRAAAC! {hero} se quedó helad{hero.o}. El corazón le latía como un tambor, porque sabía que había hecho algo muy grave, y {hero.miedo}.",
+       "scene": {
+        "bg": "torre",
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "scared"
+         }
+        ],
+        "mood": "tension",
+        "props": [
+         {
+          "prop": "campana_rota",
+          "x": 0.7,
+          "clip": "still"
+         }
+        ],
+        "offstage": [
+         "tomas"
+        ]
+       }
+      },
+      {
+       "id": "b",
+       "text": "Tomás había bajado a merendar, y la torre estaba vacía. Esperar le picaba demasiado. {hero} agarró la cuerda y tiró, solo un poquito. ¡CLANG! {item.El} se descolgó, rodó escalera abajo y se partió en dos pedazos, ¡CRAAAC!, con un estruendo que hizo volar a todas las palomas. {hero} se tapó la boca con las dos manos, y {hero.miedo}.",
+       "scene": {
+        "bg": "torre",
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "scared"
+         }
+        ],
+        "mood": "tension",
+        "props": [
+         {
+          "prop": "campana_rota",
+          "x": 0.7,
+          "clip": "still"
+         }
+        ],
+        "offstage": [
+         "tomas"
+        ]
        }
       }
      ]
@@ -364,28 +551,116 @@
      "id": "tentacion",
      "variants": [
       {
-       "id": "a",
-       "text": "«¡Chisss!», susurró alguien desde la escalera. Era {villain.el} {villain}, que lo había visto todo y {villain.gesto}. «Nadie sabe que fuiste tú», dijo {villain.voz}. «Yo diré que fue el viento, pero a cambio {villain.favor}.»",
+       "id": "cod_a",
+       "text": "Unos pasos crujieron en la escalera. Era {villain.el} {villain}, que lo había visto todo, y {villain.gesto}. «Una campana, dos pedazos, un culpable…», dijo {villain.voz}. «Yo callaré, claro. Pero alguien tendrá que cargar con la culpa, y no serás tú. A cambio, me darás {villain.pago}.»",
        "scene": {
         "bg": "torre",
-        "actors": [
-         "hero",
-         "villain"
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "scared"
+         },
+         {
+          "who": "villain",
+          "clip": "talk"
+         }
         ],
-        "mood": "tension"
-       }
+        "mood": "tension",
+        "props": [
+         {
+          "prop": "campana_rota",
+          "x": 0.5,
+          "clip": "still"
+         }
+        ]
+       },
+       "requires": [
+        "villain:codicio"
+       ]
       },
       {
-       "id": "b",
-       "text": "Unos pasos crujieron en la escalera. Era {villain.el} {villain}, que lo había visto todo desde las sombras y {villain.gesto}. «Qué pena, qué pena», dijo {villain.voz}. «Pero puedo guardarte el secreto: diré que fue el viento. A cambio, {villain.favor}.»",
+       "id": "cod_b",
+       "text": "«Chisss», dijo una voz de miel. Era {villain.el} {villain}, que lo había visto todo desde lo alto de la escalera, y {villain.gesto}. «Qué desgracia, qué desgracia. Pero yo sé guardar secretos. Alguien tendrá que cargar con la culpa, y no hace falta que seas tú. Una moneda, dos monedas… me darás {villain.pago}.»",
        "scene": {
         "bg": "torre",
-        "actors": [
-         "hero",
-         "villain"
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "scared"
+         },
+         {
+          "who": "villain",
+          "clip": "talk"
+         }
         ],
-        "mood": "tension"
-       }
+        "mood": "tension",
+        "props": [
+         {
+          "prop": "campana_rota",
+          "x": 0.5,
+          "clip": "still"
+         }
+        ]
+       },
+       "requires": [
+        "villain:codicio"
+       ]
+      },
+      {
+       "id": "som_a",
+       "text": "Un crujido en la escalera. Era {villain.el} {villain}, que lo había visto todo, pegado a la pared como una sombra. «Shhh…», siseó. «Nadie lo sabe. Yo callo. Pero alguien cargará con la culpa, y no serás tú. A cambio… me darás {villain.pago}.»",
+       "scene": {
+        "bg": "torre",
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "scared"
+         },
+         {
+          "who": "villain",
+          "clip": "talk"
+         }
+        ],
+        "mood": "tension",
+        "props": [
+         {
+          "prop": "campana_rota",
+          "x": 0.5,
+          "clip": "still"
+         }
+        ]
+       },
+       "requires": [
+        "villain:sombra"
+       ]
+      },
+      {
+       "id": "som_b",
+       "text": "De entre las sombras de la escalera salió {villain.el} {villain}, y {villain.gesto}. «Yo no vi nada», susurró. «Tú no hiciste nada. Y alguien pagará por ello… pero no tú. Solo me darás {villain.pago}. Shhh…»",
+       "scene": {
+        "bg": "torre",
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "scared"
+         },
+         {
+          "who": "villain",
+          "clip": "talk"
+         }
+        ],
+        "mood": "tension",
+        "props": [
+         {
+          "prop": "campana_rota",
+          "x": 0.5,
+          "clip": "still"
+         }
+        ]
+       },
+       "requires": [
+        "villain:sombra"
+       ]
       }
      ],
      "introduces": [
@@ -397,24 +672,58 @@
      "variants": [
       {
        "id": "a",
-       "text": "Sin contestar, {hero} escondió los pedazos bajo la capa y bajó corriendo hasta {plaza.el}. Aquella noche nadie supo cuándo era hora de cenar ni de dormir: los panaderos sacaron el pan demasiado pronto, los niños siguieron jugando hasta tarde y hasta las gallinas cantaron a medianoche. {hero} no pegó ojo, porque debajo de la cama los pedazos de bronce pesaban como si pesaran el doble.",
+       "text": "{hero} no dijo que sí, pero tampoco que no. Con la boca seca, entregó {villain.entrega}, escondió los pedazos bajo la capa, grandes como bandejas, y bajó corriendo hasta {plaza.el}. Aquella noche nadie supo cuándo era hora de cenar ni de dormir: los panaderos sacaron el pan demasiado pronto, los niños siguieron jugando hasta tarde y hasta las gallinas cantaron a medianoche. {hero} no pegó ojo, porque debajo de la cama los pedazos pesaban el doble. Desde una esquina, {villain.el} {villain} lo miraba sin pestañear.",
        "scene": {
         "bg": "plaza",
-        "actors": [
-         "hero"
+        "stage": [
+         {
+          "rig": "rosa",
+          "clip": "surprised"
+         },
+         {
+          "rig": "teo",
+          "clip": "laugh"
+         },
+         {
+          "who": "hero",
+          "clip": "sneak"
+         },
+         {
+          "who": "villain",
+          "clip": "talk",
+          "x": 0.88
+         }
         ],
-        "mood": "tension"
+        "mood": "tension",
+        "light": "night"
        }
       },
       {
        "id": "b",
-       "text": "Sin contestar, {hero} guardó los pedazos bajo la capa y salió corriendo hacia {plaza.el}. Pero sin campana, el reino se volvió un lío: los panaderos hornearon el pan a medianoche, los niños no quisieron irse a dormir y las gallinas cantaron a la luna. Y {hero}, en su cama, daba vueltas y más vueltas, porque los pedazos escondidos pesaban como piedras.",
+       "text": "{hero} sintió un nudo en la garganta. Entregó {villain.entrega}, escondió los pedazos bajo la capa y corrió hacia {plaza.el}. Pero sin campana el reino se volvió un lío: los panaderos hornearon a medianoche, los niños no quisieron irse a dormir y las gallinas cantaron a la luna. Y {hero}, en la cama, daba vueltas y más vueltas, porque lo escondido pesaba como una piedra. Desde la ventana, {villain.el} {villain} lo vigilaba.",
        "scene": {
         "bg": "plaza",
-        "actors": [
-         "hero"
+        "stage": [
+         {
+          "rig": "rosa",
+          "clip": "surprised"
+         },
+         {
+          "rig": "teo",
+          "clip": "laugh"
+         },
+         {
+          "who": "hero",
+          "clip": "sneak"
+         },
+         {
+          "who": "villain",
+          "clip": "talk",
+          "x": 0.88
+         }
         ],
-        "mood": "tension"
+        "mood": "tension",
+        "light": "night"
        }
       }
      ],
@@ -428,23 +737,38 @@
        "text": "Al amanecer, {hero} corrió a contárselo todo {helper.al} {helper}. Hablaba tan deprisa que las palabras se le enredaban. Cuando terminó, {helper} {helper.gesto} y, en lugar de regañarl{hero.o}, le sirvió un vaso de leche tibia.",
        "scene": {
         "bg": "plaza",
-        "actors": [
-         "hero",
-         "helper"
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "talk"
+         },
+         {
+          "who": "helper",
+          "clip": "think"
+         }
         ],
         "mood": "hope"
        }
       },
       {
        "id": "b",
-       "text": "No había salido el sol cuando {hero} llamó a la puerta {helper.del} {helper}. Entre suspiros y hipos le contó la campana, el susto y lo que le había susurrado {villain.el} {villain}. {helper.El} {helper} lo escuchó sin interrumpir y, al terminar, {helper.gesto}.",
+       "text": "No había salido el sol cuando {hero} llamó a la puerta {helper.del} {helper}. Entre suspiros y hipos le contó la campana, el susto y el trato con {villain.el} {villain}. {helper.El} {helper} l{hero.o} escuchó sin interrumpir y, al terminar, {helper.gesto}.",
        "scene": {
         "bg": "plaza",
-        "actors": [
-         "hero",
-         "helper"
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "sad"
+         },
+         {
+          "who": "helper",
+          "clip": "think"
+         }
         ],
-        "mood": "hope"
+        "mood": "hope",
+        "offstage": [
+         "villain"
+        ]
        }
       }
      ],
@@ -456,28 +780,88 @@
      "id": "consejo",
      "variants": [
       {
-       "id": "a",
-       "text": "«Un secreto es como una piedra en el zapato», dijo {helper} {helper.voz}. «Cuanto más caminas, más duele. Yo iré contigo, pero contarlo solo puede hacerlo quien rompió la campana.» {hero} suspiró, porque sabía que era verdad.",
+       "id": "zaf",
+       "text": "«¿Cuánto pesan dos pedazos de campana?», preguntó {helper} {helper.voz}. «¿Y cuánto pesa una verdad dicha?» {hero} se quedó pensando. Los pedazos escondidos pesaban mucho más. «Yo voy contigo», añadió {helper}, porque nadie debería decir algo tan difícil a solas.",
        "scene": {
         "bg": "plaza",
-        "actors": [
-         "hero",
-         "helper"
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "think"
+         },
+         {
+          "who": "helper",
+          "clip": "talk"
+         }
         ],
         "mood": "hope"
-       }
+       },
+       "requires": [
+        "helper:zafiro"
+       ]
       },
       {
-       "id": "b",
-       "text": "«Escucha, {hero}», dijo {helper} {helper.voz}. «Esconder algo es como llevar una piedra en el zapato: cuanto más caminas, más duele. Yo te acompaño, pero decir la verdad tiene que hacerlo quien rompió la campana.»",
+       "id": "bon",
+       "text": "«Yo escondí una vez el jarrón favorito de la reina en la bodega», confesó {helper} {helper.voz}. «¡Aún huele a vinagre! Lo escondido pesa más y, además, huele peor.» {hero} casi sonrió. «Yo voy contigo», dijo el rey, porque así pesaría la mitad.",
        "scene": {
         "bg": "plaza",
-        "actors": [
-         "hero",
-         "helper"
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "sad"
+         },
+         {
+          "who": "helper",
+          "clip": "laugh"
+         }
         ],
         "mood": "hope"
-       }
+       },
+       "requires": [
+        "helper:bonifacio"
+       ]
+      },
+      {
+       "id": "mar",
+       "text": "«Yo lo diría ya», dijo {helper} {helper.voz}. «Cuanto más espero, más me tiembla el pulso. Y con una flecha pasa igual: o la sueltas, o te pesa en la mano.» Le puso la mano en el hombro. «Voy contigo, así que no hay prisa para el miedo.»",
+       "scene": {
+        "bg": "plaza",
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "sad"
+         },
+         {
+          "who": "helper",
+          "clip": "talk"
+         }
+        ],
+        "mood": "hope"
+       },
+       "requires": [
+        "helper:mara"
+       ]
+      },
+      {
+       "id": "ald",
+       "text": "«A mí se me rompió una vez la espada de madera de mi maestro», contó {helper} {helper.voz}. «Tardé una semana en decírselo. ¡Qué semana! No dormí nada, porque la espada rota dormía conmigo.» Sonrió. «Voy contigo. Es más fácil entre dos.»",
+       "scene": {
+        "bg": "plaza",
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "sad"
+         },
+         {
+          "who": "helper",
+          "clip": "talk"
+         }
+        ],
+        "mood": "hope"
+       },
+       "requires": [
+        "helper:aldo"
+       ]
       }
      ]
     },
@@ -485,30 +869,80 @@
      "id": "acusacion",
      "variants": [
       {
-       "id": "a",
-       "text": "Pronto el reino entero se juntó en la plaza, murmurando. De pronto, {villain.el} {villain} {villain.gesto}, señaló con el dedo y gritó: «¡Ha sido el campanero Tomás, por descuidado!». El pobre Tomás bajó la cabeza: tendría que dejar la torre donde había trabajado toda la vida. {hero} sintió un nudo en la garganta, porque sabía que Tomás no había hecho nada. {helper.El} {helper} le apretó la mano, sin decir palabra.",
+       "id": "cod",
+       "text": "Pronto todos los vecinos se juntaron en la plaza, murmurando. {villain.El} {villain} {villain.gesto} y gritó: «¡Yo lo vi todo! ¡Ha sido el campanero Tomás, por descuidado!». El pobre Tomás bajó la cabeza: tendría que dejar la torre donde había trabajado toda la vida. {hero} sintió un nudo en la garganta, porque sabía que Tomás no había hecho nada. {helper} le apretó la mano.",
        "scene": {
         "bg": "plaza",
-        "actors": [
-         "hero",
-         "helper",
-         "villain"
+        "stage": [
+         {
+          "rig": "aldeano",
+          "clip": "surprised"
+         },
+         {
+          "rig": "tomas",
+          "clip": "sad"
+         },
+         {
+          "who": "hero",
+          "clip": "scared"
+         },
+         {
+          "who": "helper",
+          "clip": "talk"
+         },
+         {
+          "who": "villain",
+          "clip": "point"
+         },
+         {
+          "rig": "aldeana",
+          "clip": "surprised"
+         }
         ],
-        "mood": "tension"
-       }
+        "mood": "tension",
+        "light": "dusk"
+       },
+       "requires": [
+        "villain:codicio"
+       ]
       },
       {
-       "id": "b",
-       "text": "Cuando se corrió la voz de que la campana había desaparecido, todos corrieron a la plaza. «¡Ha sido el campanero Tomás!», gritó {villain.el} {villain}, y {villain.gesto}. «¡Por descuidado, ya no podrá volver a la torre!» A Tomás se le llenaron los ojos de lágrimas. Y {hero} sintió un nudo en la garganta, porque sabía que él no había hecho nada. {helper.El} {helper} le apretó la mano, sin decir palabra.",
+       "id": "som",
+       "text": "Los vecinos se juntaron en la plaza, cuchicheando. De pronto una voz salió de entre la gente: «Yo vi algo…». Era {villain.el} {villain}, que {villain.gesto}. «Fue el campanero. Siempre anda descuidado…» El pobre Tomás bajó la cabeza: tendría que dejar la torre donde había trabajado toda la vida. {hero} sintió un nudo en la garganta, porque sabía que Tomás no había hecho nada. {helper} le apretó la mano.",
        "scene": {
         "bg": "plaza",
-        "actors": [
-         "hero",
-         "helper",
-         "villain"
+        "stage": [
+         {
+          "rig": "aldeano",
+          "clip": "surprised"
+         },
+         {
+          "rig": "tomas",
+          "clip": "sad"
+         },
+         {
+          "who": "hero",
+          "clip": "scared"
+         },
+         {
+          "who": "helper",
+          "clip": "talk"
+         },
+         {
+          "who": "villain",
+          "clip": "point"
+         },
+         {
+          "rig": "aldeana",
+          "clip": "surprised"
+         }
         ],
-        "mood": "tension"
-       }
+        "mood": "tension",
+        "light": "dusk"
+       },
+       "requires": [
+        "villain:sombra"
+       ]
       }
      ]
     },
@@ -517,26 +951,64 @@
      "variants": [
       {
        "id": "a",
-       "text": "{hero} miró {helper.al} {helper}, que asintió con una sonrisa. Le temblaban las rodillas y {hero.miedo}. Pero pensó en Tomás, tan triste, y dio un paso al frente. «¡Fui yo!», dijo con voz clara. «Tiré de la cuerda sin permiso y la campana se rompió. Tomás no tuvo la culpa. ¡Perdón!»",
+       "text": "{hero} miró {helper.al} {helper}, que asintió con una sonrisa. A {hero} le temblaban las rodillas. Pensó en Tomás, tan triste, y dio un paso al frente. «¡Fui yo!», dijo con voz clara. «Tiré de la cuerda, solo un poquito, y se rompió. Tomás no tuvo la culpa. Perdón.» Y sacó los pedazos de debajo de la capa. Los vecinos contuvieron la respiración.",
        "scene": {
         "bg": "plaza",
-        "actors": [
-         "hero",
-         "helper"
+        "stage": [
+         {
+          "rig": "aldeano",
+          "clip": "surprised"
+         },
+         {
+          "rig": "tomas",
+          "clip": "surprised"
+         },
+         {
+          "who": "hero",
+          "clip": "talk"
+         },
+         {
+          "who": "helper",
+          "clip": "offer"
+         },
+         {
+          "rig": "aldeana",
+          "clip": "surprised"
+         }
         ],
-        "mood": "triumph"
+        "mood": "triumph",
+        "light": "dusk"
        }
       },
       {
        "id": "b",
-       "text": "A {hero} le temblaban las rodillas y {hero.miedo}. Entonces sintió en el hombro la mano {helper.del} {helper} y respiró hondo. Pensó en el pobre Tomás, dio un paso al frente y dijo, tan alto que lo oyó toda la plaza: «¡Fui yo! Rompí la campana sin querer y me dio miedo decirlo. Tomás no tiene la culpa. Lo siento mucho».",
+       "text": "Entonces {hero} sintió en el hombro la mano {helper.del} {helper}, respiró hondo, pensó en el pobre Tomás y dio un paso al frente. «¡Fui yo!», dijo, tan alto que lo oyó toda la plaza. «Se me rompió y me dio miedo decirlo. Perdón, Tomás.» Los vecinos se quedaron mudos.",
        "scene": {
         "bg": "plaza",
-        "actors": [
-         "hero",
-         "helper"
+        "stage": [
+         {
+          "rig": "aldeano",
+          "clip": "surprised"
+         },
+         {
+          "rig": "tomas",
+          "clip": "surprised"
+         },
+         {
+          "who": "hero",
+          "clip": "talk"
+         },
+         {
+          "who": "helper",
+          "clip": "offer"
+         },
+         {
+          "rig": "aldeana",
+          "clip": "surprised"
+         }
         ],
-        "mood": "triumph"
+        "mood": "triumph",
+        "light": "dusk"
        }
       }
      ]
@@ -546,26 +1018,60 @@
      "variants": [
       {
        "id": "a",
-       "text": "En la plaza se hizo un silencio enorme. Pero nadie se enfadó. Tomás abrazó a {hero} y le susurró: «Gracias por decir la verdad». Después, el herrero encendió su fragua, los niños pulieron el bronce y hasta {villain.el} {villain}, que había querido callar a {hero}, tuvo que ayudar, resoplando y rojo como un tomate.",
+       "text": "Se hizo un silencio enorme. Tomás frunció el ceño un buen rato. «Me has dado un susto de bronce», dijo. «Un mes limpiando la torre.» Y entonces abrazó a {hero} tan fuerte que le crujieron los huesos. Después, el herrero encendió su fragua, los niños pulieron el bronce y hasta {villain.el} {villain}, sin culpable al que señalar, tuvo que devolverle {villain.entrega} a {hero} y cargar el martillo, resoplando.",
        "scene": {
         "bg": "plaza",
-        "actors": [
-         "hero",
-         "helper",
-         "villain"
+        "stage": [
+         {
+          "rig": "hugo",
+          "clip": "clap"
+         },
+         {
+          "rig": "tomas",
+          "clip": "cheer"
+         },
+         {
+          "who": "hero",
+          "clip": "cheer"
+         },
+         {
+          "who": "villain",
+          "clip": "sad"
+         },
+         {
+          "rig": "teo",
+          "clip": "clap"
+         }
         ],
         "mood": "joy"
        }
       },
       {
        "id": "b",
-       "text": "Durante un momento nadie dijo nada. Luego Tomás se acercó, abrazó a {hero} y le dijo: «Gracias por decir la verdad». Entre todos arreglaron la campana: el herrero la soldó, los niños la pulieron hasta sacarle brillo y {villain.el} {villain}, con su plan deshecho, tuvo que cargar el martillo, resoplando.",
+       "text": "Durante un momento nadie dijo nada. Luego Tomás se acercó, abrazó a {hero} y le dijo al oído: «Gracias por decir la verdad. Eso sí, un mes limpiando la torre». Entre todos arreglaron la campana: el herrero la soldó, los niños la pulieron hasta sacarle brillo y {villain.el} {villain}, con su plan deshecho, tuvo que devolverle {villain.entrega} a {hero} y cargar el martillo, resoplando.",
        "scene": {
         "bg": "plaza",
-        "actors": [
-         "hero",
-         "helper",
-         "villain"
+        "stage": [
+         {
+          "rig": "hugo",
+          "clip": "clap"
+         },
+         {
+          "rig": "tomas",
+          "clip": "cheer"
+         },
+         {
+          "who": "hero",
+          "clip": "cheer"
+         },
+         {
+          "who": "villain",
+          "clip": "sad"
+         },
+         {
+          "rig": "teo",
+          "clip": "clap"
+         }
         ],
         "mood": "joy"
        }
@@ -577,26 +1083,56 @@
      "variants": [
       {
        "id": "a",
-       "text": "Al caer la noche, {hero} subió con Tomás a la torre para colgar de nuevo la campana. «Ahora tira tú», dijo Tomás, «con permiso». ¡DOOON! Sonó más bonita que nunca. {hero} bajó la escalera liger{hero.o} como una pluma, se metió en la cama y se durmió enseguida, sin ninguna piedra en el zapato.",
+       "text": "Al caer la noche, {hero} subió con Tomás a la torre para colgar de nuevo {item.el}. «Ahora tira tú», dijo Tomás, «con permiso». ¡Don, don, don! Sonó bajito y redondo, más bonito que nunca. {hero} bajó la escalera liger{hero.o} como una pluma, se metió en la cama y se durmió en un suspiro, sin ninguna piedra en el zapato.",
        "scene": {
         "bg": "torre",
-        "actors": [
-         "hero",
-         "helper"
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "cheer"
+         },
+         {
+          "rig": "tomas",
+          "clip": "clap"
+         }
         ],
-        "mood": "sleep"
+        "mood": "sleep",
+        "props": [
+         {
+          "prop": "campana",
+          "x": 0.84,
+          "clip": "swing",
+          "scale": 0.9
+         }
+        ],
+        "light": "night"
        }
       },
       {
        "id": "b",
-       "text": "Esa misma noche, {hero} subió con Tomás a la torre y entre los dos colgaron otra vez la campana. «Ahora tira tú», dijo Tomás, «con permiso». ¡DOOON! Sonó más bonita que nunca, y {hero}, liger{hero.o} como una pluma, se fue a la cama y se durmió enseguida. Buenas noches.",
+       "text": "Esa misma noche, {hero} subió con Tomás a la torre y entre los dos colgaron otra vez {item.el}. «Ahora tira tú», dijo Tomás, «con permiso». ¡Don, don, don! Sonó bajito, como una nana. {hero}, liger{hero.o} como una pluma, se fue a la cama y se durmió enseguida. Buenas noches.",
        "scene": {
         "bg": "torre",
-        "actors": [
-         "hero",
-         "helper"
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "cheer"
+         },
+         {
+          "rig": "tomas",
+          "clip": "clap"
+         }
         ],
-        "mood": "sleep"
+        "mood": "sleep",
+        "props": [
+         {
+          "prop": "campana",
+          "x": 0.84,
+          "clip": "swing",
+          "scale": 0.9
+         }
+        ],
+        "light": "night"
        }
       }
      ],
@@ -608,6 +1144,20 @@
    "id": "olla",
    "value": "generosidad",
    "title": "La olla de los poquitos",
+   "npcs": {
+    "lia": [
+     "Lía"
+    ],
+    "teo": [
+     "Teo"
+    ],
+    "rosa": [
+     "Rosa"
+    ],
+    "beto": [
+     "Beto"
+    ]
+   },
    "cast": {
     "hero": {
      "kind": "character",
@@ -646,24 +1196,48 @@
      "variants": [
       {
        "id": "a",
-       "text": "Aquel año el invierno llegó de golpe, tan frío que hasta las gallinas llevaban bufanda. En {plaza.el}, las chimeneas echaban humo y las despensas se iban quedando vacías. Cada mañana, {hero}, que era muy {hero.trait}, recibía {item.un} redondo y calentito: era toda su comida del día, y por eso lo cuidaba como un tesoro.",
+       "text": "Aquel año el invierno llegó de golpe, tan frío que hasta las gallinas llevaban bufanda. En {plaza.el}, las chimeneas echaban humo y las despensas se iban quedando vacías. Cada mañana, {hero.el} {hero} guardaba en su morral {item.un} redondo y calentito: era toda su comida del día, y por eso lo cuidaba como un tesoro.",
        "scene": {
         "bg": "plaza",
-        "actors": [
-         "hero"
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "idle"
+         }
         ],
-        "mood": "calm"
+        "mood": "calm",
+        "props": [
+         {
+          "prop": "pan",
+          "x": 0.7,
+          "clip": "still",
+          "scale": 0.9
+         }
+        ],
+        "light": "cold"
        }
       },
       {
        "id": "b",
-       "text": "Aquel invierno nevó tanto que las casitas {plaza.del} parecían pasteles con azúcar. Pero la nieve había enterrado la cosecha, y en cada despensa quedaba muy poquito. {hero}, que era muy {hero.trait}, tenía solo {item.un} redondo y calentito para todo el día, y lo guardaba en su morral como un tesoro, porque no había más.",
+       "text": "Aquel invierno nevó tanto que las casitas {plaza.del} parecían pasteles con azúcar. Pero la nieve había enterrado la cosecha, y en cada despensa quedaba muy poquito. {hero.El} {hero} tenía solo {item.un} redondo y calentito para todo el día, y lo guardaba en su morral como un tesoro, porque no había más.",
        "scene": {
         "bg": "plaza",
-        "actors": [
-         "hero"
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "idle"
+         }
         ],
-        "mood": "calm"
+        "mood": "calm",
+        "props": [
+         {
+          "prop": "pan",
+          "x": 0.7,
+          "clip": "still",
+          "scale": 0.9
+         }
+        ],
+        "light": "cold"
        }
       }
      ],
@@ -676,24 +1250,64 @@
      "variants": [
       {
        "id": "a",
-       "text": "Una mañana, al abrir la puerta, {hero} encontró en la nieve a dos niños que tiritaban: la pequeña Lía y su hermano Teo, que venían de muy lejos y no habían comido nada en dos días. A {hero} le rugió la barriga, porque también tenía hambre. Pero partió {item.el} en tres pedazos: uno para Lía, otro para Teo y otro para sí.",
+       "text": "Una mañana, al abrir la puerta, {hero} encontró en la nieve a dos niños que tiritaban: la pequeña Lía y su hermano Teo, que venían de muy lejos y no habían comido nada en dos días. A {hero} le rugió la barriga, porque también tenía hambre. Pero sacó {item.el} del morral y lo partió en tres pedazos: uno para Lía, otro para Teo y otro para sí.",
        "scene": {
         "bg": "plaza",
-        "actors": [
-         "hero"
+        "stage": [
+         {
+          "rig": "lia",
+          "clip": "scared"
+         },
+         {
+          "who": "hero",
+          "clip": "offer"
+         },
+         {
+          "rig": "teo",
+          "clip": "scared"
+         }
         ],
-        "mood": "hope"
+        "mood": "hope",
+        "props": [
+         {
+          "prop": "trozos_de_pan",
+          "x": 0.5,
+          "clip": "still",
+          "scale": 0.8
+         }
+        ],
+        "light": "cold"
        }
       },
       {
        "id": "b",
-       "text": "Al abrir la puerta, {hero} se encontró con dos niños blancos de nieve: la pequeña Lía y su hermano Teo, que habían caminado dos días sin comer. A {hero} le rugió la barriga, ya que también tenía hambre. Aun así sacó {item.el} del morral, lo partió en tres pedazos y dijo: «Poquito, pero entre tres pesa menos el hambre».",
+       "text": "Al abrir la puerta, {hero} se encontró con dos niños blancos de nieve: la pequeña Lía y su hermano Teo, que habían caminado dos días sin comer. A {hero} le rugió la barriga, porque también tenía hambre. Aun así sacó {item.el} del morral, lo partió en tres pedazos y dijo: «Poquito, pero entre tres pesa menos el hambre».",
        "scene": {
         "bg": "plaza",
-        "actors": [
-         "hero"
+        "stage": [
+         {
+          "rig": "lia",
+          "clip": "scared"
+         },
+         {
+          "who": "hero",
+          "clip": "offer"
+         },
+         {
+          "rig": "teo",
+          "clip": "scared"
+         }
         ],
-        "mood": "hope"
+        "mood": "hope",
+        "props": [
+         {
+          "prop": "trozos_de_pan",
+          "x": 0.5,
+          "clip": "still",
+          "scale": 0.8
+         }
+        ],
+        "light": "cold"
        }
       }
      ]
@@ -702,28 +1316,66 @@
      "id": "puerta_cerrada",
      "variants": [
       {
-       "id": "a",
-       "text": "Los tres pedazos eran muy pequeños, así que {hero} fue a pedir ayuda {villain.al} {villain}, que vivía en {villain.guarida} con la despensa llena hasta el techo. {villain.El} {villain} {villain.gesto} y cerró la puerta. «Lo mío es mío», dijo {villain.voz}. Teo empezó a llorar bajito.",
+       "id": "cod",
+       "text": "Los tres pedazos eran muy pequeños, así que {hero} fue a pedir ayuda {villain.al} {villain}, que vivía en {villain.guarida} con la despensa llena hasta el techo. Se abrió una rendija. «Lo mío es mío, y lo mío está contado», dijo {villain.voz}, y {villain.gesto}. ¡PUM! Por la rendija, {hero} alcanzó a ver una mesa con una sola silla. Teo empezó a llorar bajito.",
        "scene": {
         "bg": "plaza",
-        "actors": [
-         "hero",
-         "villain"
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "sad"
+         },
+         {
+          "who": "villain",
+          "clip": "no",
+          "x": 0.62
+         },
+         {
+          "rig": "teo",
+          "clip": "sad",
+          "x": 0.86
+         }
         ],
-        "mood": "tension"
-       }
+        "mood": "tension",
+        "light": "cold",
+        "offstage": [
+         "lia"
+        ]
+       },
+       "requires": [
+        "villain:codicio"
+       ]
       },
       {
-       "id": "b",
-       "text": "Con tan poquito no alcanzaba, así que {hero} llamó a la casa más grande de la aldea, donde vivía {villain.el} {villain} con la despensa llena hasta el techo. Se abrió una rendija. «Aquí no hay nada para nadie», dijo {villain.voz}, y {villain.gesto}. ¡PUM! La puerta se cerró, y Teo empezó a llorar bajito.",
+       "id": "som",
+       "text": "Los tres pedazos eran muy pequeños, así que {hero} fue a pedir ayuda {villain.al} {villain}, que vivía en {villain.guarida} con la despensa llena hasta el techo. Se abrió una rendija, y apareció un ojo. «Aquí no hay nadie. Shhh», susurró, y {villain.gesto}. ¡PUM! Por la rendija, {hero} alcanzó a ver una mesa con una sola silla. Teo empezó a llorar bajito.",
        "scene": {
         "bg": "plaza",
-        "actors": [
-         "hero",
-         "villain"
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "sad"
+         },
+         {
+          "who": "villain",
+          "clip": "no",
+          "x": 0.62
+         },
+         {
+          "rig": "teo",
+          "clip": "sad",
+          "x": 0.86
+         }
         ],
-        "mood": "tension"
-       }
+        "mood": "tension",
+        "light": "cold",
+        "offstage": [
+         "lia"
+        ]
+       },
+       "requires": [
+        "villain:sombra"
+       ]
       }
      ],
      "introduces": [
@@ -735,26 +1387,44 @@
      "variants": [
       {
        "id": "a",
-       "text": "Entonces {hero} se acordó {helper.del} {helper}, que siempre tenía buenas ideas, y fue a buscarl{helper.o}. «Con tan poco no se hace un banquete», dijo. «Quizá no», contestó {helper} {helper.voz}, «pero con un poquito de cada uno, a lo mejor sí. Vamos a llamar a las puertas.»",
+       "text": "{hero} contó con los dedos: un pedazo de pan, otro, otro… «¡Es muy poco!». Entonces se acordó {helper.del} {helper}, que siempre tenía buenas ideas, y fue a buscarl{helper.o}. «¿Cuánto es poquito?», preguntó {helper} {helper.voz}. «Poquito de uno es poquito. Pero poquito de todos…» «¡…es una olla!», gritó {hero}. «¡Vamos a llamar a las puertas!»",
        "scene": {
         "bg": "plaza",
-        "actors": [
-         "hero",
-         "helper"
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "talk"
+         },
+         {
+          "who": "helper",
+          "clip": "think"
+         }
         ],
-        "mood": "hope"
+        "mood": "hope",
+        "light": "cold",
+        "offstage": [
+         "lia",
+         "teo"
+        ]
        }
       },
       {
        "id": "b",
-       "text": "{hero} corrió a contarle el problema {helper.al} {helper}. {helper.El} {helper} {helper.gesto}, y dijo {helper.voz}: «Con el poco de uno no alcanza. Pero con un poquito de cada uno, a lo mejor sí. Vamos a llamar a las puertas».",
+       "text": "{hero} corrió a contarle el problema {helper.al} {helper}. {helper.El} {helper} {helper.gesto} y dijo {helper.voz}: «Con el poco de uno no alcanza. ¿Y con el poco de todos?». {hero} abrió mucho los ojos. «¡Tienes razón! Vamos a llamar a las puertas.»",
        "scene": {
         "bg": "plaza",
-        "actors": [
-         "hero",
-         "helper"
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "talk"
+         },
+         {
+          "who": "helper",
+          "clip": "think"
+         }
         ],
-        "mood": "hope"
+        "mood": "hope",
+        "light": "cold"
        }
       }
      ],
@@ -767,14 +1437,33 @@
      "variants": [
       {
        "id": "a",
-       "text": "Fueron de puerta en puerta. «Solo me queda un puñado de harina», dijo la panadera Rosa. «Yo solo tengo un nabo», dijo el molinero Beto. Y {helper} {helper.aporte}. «¡Es muy poco!», suspiró Teo. «Poco, y poco, y poco», sonrió {hero}, «ya es una olla llena».",
+       "text": "Fueron de puerta en puerta. «Solo me queda un puñado de harina», dijo la panadera Rosa. «Yo solo tengo un nabo», dijo el molinero Beto. Y {helper} {helper.aporte}. «¡Es muy poco!», suspiró Teo. «Poco, y poco, y poco», sonrió {hero}, «es una olla llena».",
        "scene": {
         "bg": "plaza",
-        "actors": [
-         "hero",
-         "helper"
+        "stage": [
+         {
+          "rig": "rosa",
+          "clip": "offer"
+         },
+         {
+          "rig": "beto",
+          "clip": "offer"
+         },
+         {
+          "who": "helper",
+          "clip": "offer"
+         },
+         {
+          "who": "hero",
+          "clip": "laugh"
+         },
+         {
+          "rig": "teo",
+          "clip": "surprised"
+         }
         ],
-        "mood": "hope"
+        "mood": "hope",
+        "light": "cold"
        }
       },
       {
@@ -782,11 +1471,30 @@
        "text": "En cada puerta decían lo mismo: «Solo me queda un puñado de harina», dijo la panadera Rosa. «Yo solo tengo un nabo», dijo el molinero Beto. Y {helper} {helper.aporte}. «Es muy poco», suspiró Teo. «Un poco, y otro poco, y otro poco», dijo {hero}, «ya es una olla llena».",
        "scene": {
         "bg": "plaza",
-        "actors": [
-         "hero",
-         "helper"
+        "stage": [
+         {
+          "rig": "rosa",
+          "clip": "offer"
+         },
+         {
+          "rig": "beto",
+          "clip": "offer"
+         },
+         {
+          "who": "helper",
+          "clip": "offer"
+         },
+         {
+          "who": "hero",
+          "clip": "laugh"
+         },
+         {
+          "rig": "teo",
+          "clip": "surprised"
+         }
         ],
-        "mood": "hope"
+        "mood": "hope",
+        "light": "cold"
        }
       }
      ]
@@ -796,26 +1504,141 @@
      "variants": [
       {
        "id": "a",
-       "text": "Pusieron una olla enorme sobre el fuego, en medio de la plaza, y {helper} la removía con una cuchara larga. {hero} echó dentro su pedacito de {item}; la panadera, la harina; el molinero, el nabo; y así todo lo demás. Poco a poco, la sopa empezó a oler tan rico que el olor viajó por toda la aldea. Y las puertas se fueron abriendo, una a una, porque a todos les rugía la barriga.",
+       "text": "Pusieron una olla enorme sobre el fuego, en medio de la plaza, y {helper} la removía con una cuchara larga. Rosa echó la harina; Beto, el nabo; y así todo lo demás. ¡Blup, blup, blup! La sopa empezó a oler tan rico que el olor viajó por toda la aldea, y las puertas se fueron abriendo, una a una, porque a todos les rugía la barriga.",
        "scene": {
         "bg": "plaza",
-        "actors": [
-         "hero",
-         "helper"
+        "stage": [
+         {
+          "rig": "rosa",
+          "clip": "talk",
+          "x": 0.14
+         },
+         {
+          "rig": "beto",
+          "clip": "clap",
+          "x": 0.3
+         },
+         {
+          "who": "helper",
+          "clip": "talk",
+          "x": 0.7
+         },
+         {
+          "who": "hero",
+          "clip": "cheer",
+          "x": 0.86
+         }
         ],
-        "mood": "joy"
+        "mood": "joy",
+        "props": [
+         {
+          "prop": "olla",
+          "x": 0.5,
+          "clip": "boil",
+          "front": true
+         }
+        ],
+        "light": "dusk"
        }
       },
       {
        "id": "b",
-       "text": "En medio de la plaza pusieron una olla enorme, y {helper} la removía con una cuchara larga. {hero} echó su pedacito de {item}, y detrás fue la harina, el nabo y todo lo demás. ¡Blup, blup, blup! La sopa burbujeaba y su olor viajó por toda la aldea. Las puertas se fueron abriendo una a una, ya que a todos les rugía la barriga.",
+       "text": "En medio de la plaza pusieron una olla enorme, y {helper} la removía con una cuchara larga. Rosa echó la harina, Beto el nabo, y detrás fue todo lo demás. ¡Blup, blup, blup! La sopa burbujeaba y su olor viajó por toda la aldea. Las puertas se fueron abriendo una a una, porque a todos les rugía la barriga.",
        "scene": {
         "bg": "plaza",
-        "actors": [
-         "hero",
-         "helper"
+        "stage": [
+         {
+          "rig": "rosa",
+          "clip": "talk",
+          "x": 0.14
+         },
+         {
+          "rig": "beto",
+          "clip": "clap",
+          "x": 0.3
+         },
+         {
+          "who": "helper",
+          "clip": "talk",
+          "x": 0.7
+         },
+         {
+          "who": "hero",
+          "clip": "cheer",
+          "x": 0.86
+         }
         ],
-        "mood": "joy"
+        "mood": "joy",
+        "props": [
+         {
+          "prop": "olla",
+          "x": 0.5,
+          "clip": "boil",
+          "front": true
+         }
+        ],
+        "light": "dusk"
+       }
+      }
+     ]
+    },
+    {
+     "id": "ultima_miga",
+     "variants": [
+      {
+       "id": "a",
+       "text": "A {hero} solo le quedaba en la mano su pedacito de pan, el último. Le rugió la barriga, ¡GRRR!, y Teo la oyó. {hero} miró el pan, miró la olla y miró otra vez a Teo. «Es mi pedacito», dijo muy bajito, como quien presenta a un amigo. Y lo soltó. ¡Plof! Teo se rio por primera vez, y la sopa también pareció reírse.",
+       "scene": {
+        "bg": "plaza",
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "offer",
+          "x": 0.3
+         },
+         {
+          "rig": "teo",
+          "clip": "laugh",
+          "x": 0.7
+         }
+        ],
+        "mood": "hope",
+        "props": [
+         {
+          "prop": "olla",
+          "x": 0.5,
+          "clip": "boil"
+         }
+        ],
+        "light": "dusk"
+       }
+      },
+      {
+       "id": "b",
+       "text": "A {hero} solo le quedaba su pedacito de pan, el más pequeño de los tres. Teo lo miró con unos ojos enormes, pero no dijo nada. «Toma», dijo {hero}, aunque la barriga le protestó: ¡GRRR! «Es para la sopa, y la sopa es para todos.» ¡Plof! Teo se rio por primera vez.",
+       "scene": {
+        "bg": "plaza",
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "offer",
+          "x": 0.3
+         },
+         {
+          "rig": "teo",
+          "clip": "laugh",
+          "x": 0.7
+         }
+        ],
+        "mood": "hope",
+        "props": [
+         {
+          "prop": "olla",
+          "x": 0.5,
+          "clip": "boil"
+         }
+        ],
+        "light": "dusk"
        }
       }
      ]
@@ -828,23 +1651,69 @@
        "text": "Solo una puerta seguía cerrada. Mientras {helper} vigilaba la olla, {hero} llenó un cuenco, lo llevó hasta allí y llamó con los nudillos. «Está hecha con poquito de todos», dijo. «Y hay sitio para ti.» {villain.El} {villain} {villain.gesto}, miró el cuenco humeante y, por primera vez en mucho tiempo, no supo qué decir.",
        "scene": {
         "bg": "plaza",
-        "actors": [
-         "hero",
-         "villain"
+        "stage": [
+         {
+          "who": "helper",
+          "clip": "talk",
+          "x": 0.16
+         },
+         {
+          "who": "hero",
+          "clip": "offer",
+          "x": 0.55
+         },
+         {
+          "who": "villain",
+          "clip": "think",
+          "x": 0.84
+         }
         ],
-        "mood": "hope"
+        "mood": "hope",
+        "props": [
+         {
+          "prop": "olla",
+          "x": 0.3,
+          "clip": "boil",
+          "scale": 0.8,
+          "front": true
+         }
+        ],
+        "light": "dusk"
        }
       },
       {
        "id": "b",
-       "text": "Solo quedaba una puerta cerrada: la {villain.del} {villain}. Mientras {helper} vigilaba la olla, {hero} la golpeó suavemente con un cuenco de sopa caliente en las manos. «Es de todos, y también tuya», dijo. {villain.El} {villain} {villain.gesto} y, aunque quiso decir que no, su barriga contestó antes: ¡GRRRR!",
+       "text": "Solo quedaba una puerta cerrada: la {villain.del} {villain}. Mientras {helper} vigilaba la olla, {hero} llamó con los nudillos, con un cuenco de sopa humeante entre las manos. «Es de todos, y también tuya», dijo. {villain.El} {villain} {villain.gesto} y, aunque quiso decir que no, su barriga contestó antes: ¡GRRRR!",
        "scene": {
         "bg": "plaza",
-        "actors": [
-         "hero",
-         "villain"
+        "stage": [
+         {
+          "who": "helper",
+          "clip": "talk",
+          "x": 0.16
+         },
+         {
+          "who": "hero",
+          "clip": "offer",
+          "x": 0.55
+         },
+         {
+          "who": "villain",
+          "clip": "think",
+          "x": 0.84
+         }
         ],
-        "mood": "hope"
+        "mood": "hope",
+        "props": [
+         {
+          "prop": "olla",
+          "x": 0.3,
+          "clip": "boil",
+          "scale": 0.8,
+          "front": true
+         }
+        ],
+        "light": "dusk"
        }
       }
      ]
@@ -854,28 +1723,76 @@
      "variants": [
       {
        "id": "a",
-       "text": "{villain.El} {villain} tomó el cuenco, probó la sopa y cerró los ojos: estaba tan calentita que algo se le derritió por dentro. Sin decir palabra, volvió a {villain.guarida} y regresó cargando sacos de harina, quesos y manzanas. «Guardado no le sirve a nadie», murmuró. Así que aquella noche, mientras {helper} repartía cucharas, hubo mesa para toda la aldea y, aunque nadie supo explicar cómo, el pan partido en tres alcanzó para todos.",
+       "text": "{villain.El} {villain} tomó el cuenco y probó. Cerró los ojos. Estaba tan calentita que se le escapó una sonrisa, la primera en muchos inviernos. Sin decir palabra, volvió a {villain.guarida} y regresó cargando sacos de harina, quesos y manzanas. «Guardado no le sirve a nadie», murmuró. Aquella noche, mientras {helper} repartía cucharas, hubo mesa para toda la aldea, y {villain.el} {villain} se sentó entre Lía y Teo, por primera vez acompañado. Y el pedacito de pan de {hero}, el último en caer en la olla, fue el más aplaudido.",
        "scene": {
         "bg": "plaza",
-        "actors": [
-         "hero",
-         "helper",
-         "villain"
+        "stage": [
+         {
+          "rig": "lia",
+          "clip": "laugh"
+         },
+         {
+          "who": "villain",
+          "clip": "laugh"
+         },
+         {
+          "rig": "teo",
+          "clip": "cheer"
+         },
+         {
+          "who": "hero",
+          "clip": "cheer"
+         },
+         {
+          "who": "helper",
+          "clip": "clap"
+         }
         ],
-        "mood": "joy"
+        "mood": "joy",
+        "props": [
+         {
+          "prop": "olla",
+          "x": 0.5,
+          "clip": "boil",
+          "front": true
+         }
+        ],
+        "light": "dusk"
        }
       },
       {
        "id": "b",
-       "text": "Tras la primera cucharada, {villain.el} {villain} se secó los ojos con la manga. «Tengo la despensa llena y el corazón vacío», confesó. Entonces abrió su puerta de par en par y sacó sacos de harina, quesos y manzanas para todos. Hubo tanta comida que {helper} tuvo que repartir más cucharas, la fiesta duró hasta la noche y, aunque nadie supo explicar cómo, el pan partido en tres alcanzó para todos.",
+       "text": "Tras la primera cucharada, {villain.el} {villain} se secó los ojos con la manga. «Tengo la despensa llena y la mesa con una sola silla», confesó. Entonces abrió su puerta de par en par, sacó sacos de harina, quesos y manzanas y puso más sillas. Hubo tanta comida que {helper} tuvo que repartir más cucharas, y la fiesta duró hasta las estrellas. Teo guardó una cuchara en el bolsillo, por si algún día volvía el hambre. Nunca volvió.",
        "scene": {
         "bg": "plaza",
-        "actors": [
-         "hero",
-         "helper",
-         "villain"
+        "stage": [
+         {
+          "who": "villain",
+          "clip": "laugh"
+         },
+         {
+          "rig": "teo",
+          "clip": "cheer"
+         },
+         {
+          "who": "hero",
+          "clip": "cheer"
+         },
+         {
+          "who": "helper",
+          "clip": "clap"
+         }
         ],
-        "mood": "joy"
+        "mood": "joy",
+        "props": [
+         {
+          "prop": "olla",
+          "x": 0.5,
+          "clip": "boil",
+          "front": true
+         }
+        ],
+        "light": "dusk"
        }
       }
      ]
@@ -885,26 +1802,62 @@
      "variants": [
       {
        "id": "a",
-       "text": "Esa noche, {hero} volvió a casa con la barriga llena y las manos vacías, pero con el corazón más calentito que nunca. Se acostó sonriendo, ya que ahora sabía que un poquito, y otro poquito, y otro poquito, pueden llenar una olla entera. Se durmió enseguida, oyendo cómo la nieve caía despacito sobre {plaza.el}.",
+       "text": "Esa noche, {hero} volvió a casa con la barriga llena y las manos vacías, pero con el corazón calentito. Teo y Lía se durmieron junto al fuego, con las cucharas en la mano, y {hero} se acostó sonriendo. Fuera nevaba despacito sobre {plaza.el}, y {hero} se durmió enseguida, como una piedrecita en un estanque.",
        "scene": {
         "bg": "plaza",
-        "actors": [
-         "hero",
-         "helper"
+        "stage": [
+         {
+          "rig": "lia",
+          "clip": "sleep"
+         },
+         {
+          "who": "hero",
+          "clip": "sleep"
+         },
+         {
+          "rig": "teo",
+          "clip": "sleep"
+         }
         ],
-        "mood": "sleep"
+        "mood": "sleep",
+        "props": [
+         {
+          "prop": "olla",
+          "x": 0.5,
+          "clip": "still"
+         }
+        ],
+        "light": "night"
        }
       },
       {
        "id": "b",
-       "text": "Aquella noche, {hero} se fue a dormir con la barriga llena y las manos vacías, pero con el corazón calentito. Fuera seguía nevando sobre {plaza.el}, pero a {hero} ya no le importaba el frío, porque llevaba dentro una olla de poquitos que no se acababa nunca. Y se quedó dormid{hero.o} enseguida.",
+       "text": "Aquella noche, {hero} se fue a dormir con la barriga llena y las manos vacías, pero con el corazón calentito. Teo y Lía ya roncaban junto al fuego. Fuera seguía nevando sobre {plaza.el}, pero a {hero} ya no le importaba el frío, porque llevaba dentro una olla de poquitos que no se acababa nunca. Y se quedó dormid{hero.o} enseguida.",
        "scene": {
         "bg": "plaza",
-        "actors": [
-         "hero",
-         "helper"
+        "stage": [
+         {
+          "rig": "lia",
+          "clip": "sleep"
+         },
+         {
+          "who": "hero",
+          "clip": "sleep"
+         },
+         {
+          "rig": "teo",
+          "clip": "sleep"
+         }
         ],
-        "mood": "sleep"
+        "mood": "sleep",
+        "props": [
+         {
+          "prop": "olla",
+          "x": 0.5,
+          "clip": "still"
+         }
+        ],
+        "light": "night"
        }
       }
      ]
@@ -915,6 +1868,20 @@
    "id": "linterna",
    "value": "valentia",
    "title": "La linterna apagada",
+   "npcs": {
+    "lia": [
+     "Lía"
+    ],
+    "aldeano": [
+     "farolero"
+    ],
+    "aldeana": [
+     "vecinos"
+    ],
+    "rosa": [
+     "vecinos"
+    ]
+   },
    "cast": {
     "hero": {
      "kind": "character",
@@ -959,24 +1926,60 @@
      "variants": [
       {
        "id": "a",
-       "text": "Desde su ventana, en {pueblo.el}, {hero} veía cada noche brillar {item.un} enorme en lo más alto del roble más viejo del bosque, dorada como una luna pequeña. Servía para que nadie se perdiera al volver a casa. {hero} era muy {hero.trait} y no le tenía miedo a casi nada. Casi. A la oscuridad, sí.",
+       "text": "Desde su ventana, en {pueblo.el}, {hero} veía cada noche brillar {item.un} enorme en lo más alto del roble más viejo del bosque, dorada como una luna pequeña. Cada atardecer la encendía el viejo farolero con su pedernal, para que nadie se perdiera al volver a casa. {hero.El} {hero} no le tenía miedo a casi nada. Casi. A la oscuridad, sí.",
        "scene": {
         "bg": "pueblo",
-        "actors": [
-         "hero"
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "idle"
+         },
+         {
+          "rig": "aldeano",
+          "clip": "wave"
+         }
         ],
-        "mood": "calm"
+        "mood": "calm",
+        "props": [
+         {
+          "prop": "linterna",
+          "x": 0.86,
+          "clip": "glow",
+          "scale": 0.5,
+          "lift": 90,
+          "emit": true
+         }
+        ],
+        "light": "dusk"
        }
       },
       {
        "id": "b",
-       "text": "En {pueblo.el} todos sabían que, mientras brillara {item.el} del roble viejo, nadie se perdería en el bosque. Era grande, dorada y cálida como una luna pequeña. {hero}, que era muy {hero.trait}, la miraba desde su ventana cada noche. No le tenía miedo a casi nada. Casi. A la oscuridad, sí.",
+       "text": "En {pueblo.el} todos sabían que, mientras brillara {item.el} del roble viejo, nadie se perdería en el bosque. Era grande, dorada y cálida como una luna pequeña, y cada atardecer la encendía el viejo farolero con su pedernal. {hero.El} {hero} la miraba desde la ventana cada noche. No le tenía miedo a casi nada. Casi. A la oscuridad, sí.",
        "scene": {
         "bg": "pueblo",
-        "actors": [
-         "hero"
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "idle"
+         },
+         {
+          "rig": "aldeano",
+          "clip": "wave"
+         }
         ],
-        "mood": "calm"
+        "mood": "calm",
+        "props": [
+         {
+          "prop": "linterna",
+          "x": 0.86,
+          "clip": "glow",
+          "scale": 0.5,
+          "lift": 90,
+          "emit": true
+         }
+        ],
+        "light": "dusk"
        }
       }
      ],
@@ -989,24 +1992,80 @@
      "variants": [
       {
        "id": "a",
-       "text": "Pero una noche llegó una tormenta con un viento tan fuerte que apagó {item.el}. ¡FUUUUSH! De pronto el bosque se volvió negro como la tinta. {hero} se asomó a la ventana justo cuando alguien gritó: «¡Lía no ha vuelto! ¡Se fue a buscar a su cabrita y está sola en el bosque!». Sin luz, la pequeña Lía no encontraría el camino a casa. Así que alguien tenía que volver a encender {item.el}.",
+       "text": "Pero una noche llegó una tormenta con un viento tan fuerte que apagó {item.el}. ¡FUUUUSH! El bosque se volvió negro como la tinta. Los vecinos salieron a las puertas con velas, y {hero} se asomó a la ventana justo cuando alguien gritó: «¡Lía no ha vuelto! ¡Se fue a buscar a su cabrita y está sola en el bosque!». «Yo ya no puedo subir al roble con esta pierna», suspiró el viejo farolero, «pero toma mi pedernal, por si alguien se atreve». Sin luz, la pequeña Lía no encontraría el camino a casa. Así que alguien tenía que subir a encenderla.",
        "scene": {
         "bg": "pueblo",
-        "actors": [
-         "hero"
+        "stage": [
+         {
+          "rig": "aldeana",
+          "clip": "scared"
+         },
+         {
+          "who": "hero",
+          "clip": "surprised"
+         },
+         {
+          "rig": "aldeano",
+          "clip": "offer"
+         },
+         {
+          "rig": "rosa",
+          "clip": "scared"
+         }
         ],
-        "mood": "tension"
+        "mood": "tension",
+        "props": [
+         {
+          "prop": "linterna_apagada",
+          "x": 0.9,
+          "clip": "still",
+          "scale": 0.5,
+          "lift": 90
+         }
+        ],
+        "light": "dark",
+        "offstage": [
+         "lia"
+        ]
        }
       },
       {
        "id": "b",
-       "text": "Una noche, el viento sopló tan fuerte que apagó {item.el} del roble viejo. ¡FUUUUSH! El bosque quedó negro como la tinta. {hero} salió corriendo a la puerta y oyó una voz temblorosa: «¡La pequeña Lía fue a buscar a su cabrita y no ha vuelto!». Así que, sin luz, Lía no podría encontrar el camino a casa.",
+       "text": "Una noche, el viento sopló tan fuerte que apagó {item.el} del roble viejo. ¡FUUUUSH! El bosque quedó negro como la tinta. Los vecinos salieron a las puertas, y {hero} corrió a la suya y oyó una voz temblorosa: «¡La pequeña Lía fue a buscar a su cabrita y no ha vuelto!». «Mis piernas ya no suben al roble», dijo el viejo farolero. «Toma mi pedernal, por si alguien se atreve.» Sin luz, Lía no podría encontrar el camino a casa, así que alguien tenía que encenderla.",
        "scene": {
         "bg": "pueblo",
-        "actors": [
-         "hero"
+        "stage": [
+         {
+          "rig": "aldeana",
+          "clip": "scared"
+         },
+         {
+          "who": "hero",
+          "clip": "surprised"
+         },
+         {
+          "rig": "aldeano",
+          "clip": "offer"
+         },
+         {
+          "rig": "rosa",
+          "clip": "scared"
+         }
         ],
-        "mood": "tension"
+        "mood": "tension",
+        "props": [
+         {
+          "prop": "linterna_apagada",
+          "x": 0.9,
+          "clip": "still",
+          "scale": 0.5,
+          "lift": 90
+         }
+        ],
+        "light": "dark",
+        "offstage": [
+         "lia"
+        ]
        }
       }
      ]
@@ -1015,28 +2074,64 @@
      "id": "el_miedo",
      "variants": [
       {
-       "id": "a",
-       "text": "Los vecinos se juntaron en la plaza con velas temblorosas. {villain.El} {villain} {villain.gesto} y dijo {villain.voz}: «Nadie se atreverá a entrar en el bosque de noche. Más vale quedarse en casa». Todos bajaron la cabeza, porque, en el fondo, tenían miedo.",
+       "id": "cod",
+       "text": "Los vecinos se juntaron en la plaza con velas temblorosas. «Nadie se atreverá», dijo {villain.el} {villain}, {villain.voz}, y {villain.gesto}. «Más vale quedarse en casa, y que cada cual guarde lo suyo.» Mientras hablaba, no dejaba de mirar hacia el bosque. Los vecinos bajaron la cabeza, porque, en el fondo, tenían miedo.",
        "scene": {
         "bg": "pueblo",
-        "actors": [
-         "hero",
-         "villain"
+        "stage": [
+         {
+          "rig": "aldeana",
+          "clip": "scared"
+         },
+         {
+          "rig": "rosa",
+          "clip": "scared"
+         },
+         {
+          "who": "villain",
+          "clip": "talk"
+         },
+         {
+          "who": "hero",
+          "clip": "sad"
+         }
         ],
-        "mood": "tension"
-       }
+        "mood": "tension",
+        "light": "dark"
+       },
+       "requires": [
+        "villain:codicio"
+       ]
       },
       {
-       "id": "b",
-       "text": "En la plaza, los vecinos se miraban unos a otros con velas temblorosas. «Es imposible», dijo {villain.el} {villain}, y {villain.gesto}. «Con esta oscuridad, quien entre en el bosque no volverá. Todos a casa.» Y como nadie se movió, se hizo un silencio largo y frío.",
+       "id": "som",
+       "text": "Los vecinos se juntaron en la plaza con velas temblorosas. «Es imposible», susurró {villain.el} {villain}, y {villain.gesto}. «Quien entre en el bosque se perderá. Todos a casa. Shhh…» Mientras hablaba, no dejaba de mirar hacia el roble. Los vecinos bajaron la cabeza, porque, en el fondo, tenían miedo.",
        "scene": {
         "bg": "pueblo",
-        "actors": [
-         "hero",
-         "villain"
+        "stage": [
+         {
+          "rig": "aldeana",
+          "clip": "scared"
+         },
+         {
+          "rig": "rosa",
+          "clip": "scared"
+         },
+         {
+          "who": "villain",
+          "clip": "talk"
+         },
+         {
+          "who": "hero",
+          "clip": "sad"
+         }
         ],
-        "mood": "tension"
-       }
+        "mood": "tension",
+        "light": "dark"
+       },
+       "requires": [
+        "villain:sombra"
+       ]
       }
      ],
      "introduces": [
@@ -1047,28 +2142,104 @@
      "id": "el_paso",
      "variants": [
       {
-       "id": "a",
-       "text": "{hero} sentía el estómago hecho un nudo, porque quería ayudar a Lía, pero ¡le daba tanto miedo la oscuridad! {helper.El} {helper} se le acercó y {helper.gesto}. «A mí también me dan miedo muchas cosas», dijo {helper.voz}. «Cuando pasa, respiro hondo y doy un paso pequeño. Solo uno. Y luego otro.» Después le dio {helper.regalo}.",
+       "id": "zaf",
+       "text": "{hero} sentía el estómago hecho un nudo, porque quería ayudar a Lía, pero ¡le daba tanto miedo la oscuridad! {helper.El} {helper} se le acercó y {helper.gesto}. «¿Sabes qué hacen los magos con el miedo?», preguntó {helper.voz}. «Lo llevan en el bolsillo y siguen caminando.» Y le dio {helper.regalo}. {hero} tragó saliva. «Iré», dijo. «Pero iré con miedo.»",
        "scene": {
         "bg": "pueblo",
-        "actors": [
-         "hero",
-         "helper"
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "think"
+         },
+         {
+          "who": "helper",
+          "clip": "offer"
+         }
         ],
-        "mood": "hope"
-       }
+        "mood": "hope",
+        "light": "dark",
+        "offstage": [
+         "lia"
+        ]
+       },
+       "requires": [
+        "helper:zafiro"
+       ]
       },
       {
-       "id": "b",
-       "text": "{hero} apretó los puños. Quería ayudar a Lía, pero ¡le daba tanto miedo la oscuridad! Por eso seguía quiet{hero.o}, sin saber qué hacer, hasta que {helper.el} {helper} l{hero.o} notó. «A mí también me dan miedo muchas cosas», le susurró {helper.voz}. «Yo respiro hondo y doy un paso pequeño. Solo uno; después, otro.» Y le dio {helper.regalo}: «Para que no vayas a oscuras».",
+       "id": "bon",
+       "text": "{hero} sentía el estómago hecho un nudo, porque quería ayudar a Lía, pero ¡le daba tanto miedo la oscuridad! {helper.El} {helper} se le acercó y {helper.gesto}. «Mi abuelo, que fue rey antes que yo, decía que el miedo es un perro que ladra más de lo que muerde», dijo {helper.voz}. Y le dio {helper.regalo}. {hero} tragó saliva. «Iré», dijo. «Pero iré con miedo.»",
        "scene": {
         "bg": "pueblo",
-        "actors": [
-         "hero",
-         "helper"
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "think"
+         },
+         {
+          "who": "helper",
+          "clip": "offer"
+         }
         ],
-        "mood": "hope"
-       }
+        "mood": "hope",
+        "light": "dark",
+        "offstage": [
+         "lia"
+        ]
+       },
+       "requires": [
+        "helper:bonifacio"
+       ]
+      },
+      {
+       "id": "mar",
+       "text": "{hero} sentía el estómago hecho un nudo, porque quería ayudar a Lía, pero ¡le daba tanto miedo la oscuridad! {helper.El} {helper} se le acercó y {helper.gesto}. «A mí también me dan miedo muchas cosas», admitió {helper.voz}. «Cuando pasa, respiro hondo y doy un paso pequeño. Solo uno.» Y le dio {helper.regalo}. {hero} tragó saliva. «Iré», dijo. «Pero iré con miedo.»",
+       "scene": {
+        "bg": "pueblo",
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "think"
+         },
+         {
+          "who": "helper",
+          "clip": "offer"
+         }
+        ],
+        "mood": "hope",
+        "light": "dark",
+        "offstage": [
+         "lia"
+        ]
+       },
+       "requires": [
+        "helper:mara"
+       ]
+      },
+      {
+       "id": "ald",
+       "text": "{hero} sentía el estómago hecho un nudo, porque quería ayudar a Lía, pero ¡le daba tanto miedo la oscuridad! {helper.El} {helper} se le acercó y {helper.gesto}. «Yo me caí una vez de un muro altísimo», contó {helper.voz}. «Todavía me tiemblan las piernas en las alturas. Pero doy un paso. Y otro.» Y le dio {helper.regalo}. {hero} tragó saliva. «Iré», dijo. «Pero iré con miedo.»",
+       "scene": {
+        "bg": "pueblo",
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "think"
+         },
+         {
+          "who": "helper",
+          "clip": "offer"
+         }
+        ],
+        "mood": "hope",
+        "light": "dark",
+        "offstage": [
+         "lia"
+        ]
+       },
+       "requires": [
+        "helper:aldo"
+       ]
       }
      ],
      "introduces": [
@@ -1080,24 +2251,44 @@
      "variants": [
       {
        "id": "a",
-       "text": "{hero} y {helper} caminaron hasta el borde del bosque, y allí {helper} se quedó esperando. {hero} siguió sol{hero.o}, con la lucecita temblando en la mano. ¡CRAC! Se rompió una rama detrás de un árbol. A {hero} se le paró el corazón y {hero.miedo}. «Tengo miedo», susurró, «pero doy un paso más». Y dio uno, y luego otro.",
+       "text": "{hero} y {helper} caminaron hasta el borde del bosque, y allí {helper} se quedó esperando. {hero} siguió sol{hero.o}, con la lucecita temblando en la mano. ¡CRAC! Se rompió una rama detrás de un árbol. A {hero} le dio un brinco el corazón, y {hero.miedo}. «Tengo miedo», susurró, «pero doy un paso más». Y dio uno, y luego otro.",
        "scene": {
         "bg": "bosque",
-        "actors": [
-         "hero"
+        "stage": [
+         {
+          "who": "helper",
+          "clip": "wave",
+          "x": 0.16
+         },
+         {
+          "who": "hero",
+          "clip": "sneak",
+          "x": 0.62
+         }
         ],
-        "mood": "mystery"
+        "mood": "mystery",
+        "light": "night"
        }
       },
       {
        "id": "b",
-       "text": "En el borde del bosque, {helper} se quedó esperando. {hero} entró sol{hero.o}, con la lucecita temblando en la mano. ¡CRAC! Se rompió una rama justo detrás. {hero} se quedó quiet{hero.o}, y {hero.miedo}. «Tengo miedo», susurró, «pero puedo dar un paso más». Y lo dio. Y luego otro.",
+       "text": "En el borde del bosque, {helper} se quedó esperando. {hero} entró sol{hero.o}, con la lucecita temblando en la mano. ¡CRAC! Se rompió una rama justo detrás. {hero} se quedó quiet{hero.o}, y {hero.miedo}. «Tengo miedo», susurró, «pero doy un paso más». Y lo dio. Y luego otro.",
        "scene": {
         "bg": "bosque",
-        "actors": [
-         "hero"
+        "stage": [
+         {
+          "who": "helper",
+          "clip": "wave",
+          "x": 0.16
+         },
+         {
+          "who": "hero",
+          "clip": "sneak",
+          "x": 0.62
+         }
         ],
-        "mood": "mystery"
+        "mood": "mystery",
+        "light": "night"
        }
       }
      ],
@@ -1108,24 +2299,91 @@
      "variants": [
       {
        "id": "a",
-       "text": "¡UUUH, UUUH! Un búho enorme abrió los ojos amarillos en una rama. «Solo es un búho», se dijo {hero}, y pasó de puntillas. Más adelante, unas sombras largas se movían entre los troncos: ¡suish, suish! Eran las ramas, que bailaban con el viento. «Tengo miedo», repitió {hero}, «pero sigo». Y siguió.",
+       "text": "¡UUUH, UUUH! Dos ojos amarillos brillaron en una rama, y {hero} se quedó quiet{hero.o} como una estatua. Entonces el búho giró la cabeza, parpadeó despacito y volvió a dormirse. Más adelante, unas sombras largas empezaron a moverse por el suelo: ¡suish, suish! {hero} cerró los ojos y empezó a contar: «Uno, dos, tres…». Cuando los abrió, vio que eran las ramas, bailando con el viento.",
        "scene": {
         "bg": "bosque",
-        "actors": [
-         "hero"
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "scared"
+         }
         ],
-        "mood": "tension"
+        "mood": "tension",
+        "props": [
+         {
+          "prop": "buho",
+          "x": 0.8,
+          "clip": "hoot",
+          "scale": 0.6,
+          "lift": 110
+         }
+        ],
+        "light": "night"
        }
       },
       {
        "id": "b",
-       "text": "¡UUUH, UUUH! Dos ojos amarillos brillaron en una rama: era un búho. «Solo es un búho», se dijo {hero}. Poco después, unas sombras largas empezaron a moverse por el suelo: ¡suish, suish! Pero eran solo ramas bailando con el viento. «Puedo tener miedo y seguir andando», pensó {hero}, y siguió, un paso, otro paso, otro paso.",
+       "text": "¡UUUH, UUUH! Un búho enorme abrió los ojos amarillos en una rama, y a {hero} se le cortó la respiración. Pero el búho solo giró la cabeza, parpadeó y volvió a dormirse. «Solo era un búho», se rio {hero} bajito. Más adelante, unas sombras largas se movían entre los troncos: ¡suish, suish! {hero} contó hasta tres con los ojos cerrados, y al abrirlos eran solo ramas, bailando con el viento.",
        "scene": {
         "bg": "bosque",
-        "actors": [
-         "hero"
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "scared"
+         }
         ],
-        "mood": "tension"
+        "mood": "tension",
+        "props": [
+         {
+          "prop": "buho",
+          "x": 0.8,
+          "clip": "hoot",
+          "scale": 0.6,
+          "lift": 110
+         }
+        ],
+        "light": "night"
+       }
+      }
+     ]
+    },
+    {
+     "id": "se_apaga",
+     "variants": [
+      {
+       "id": "a",
+       "text": "De pronto llegó una ráfaga: ¡fuuu! Y la lucecita se apagó. Oscuridad entera, espesa como una manta mojada. {hero} cerró los ojos, que total daba igual. Tanteó el tronco de un árbol, rugoso y tibio de musgo. A lo lejos sonó un «¡beee!» chiquitito. {hero} pensó en Lía, sola, y dio un paso. Luego otro. Siguió hacia el beee.",
+       "scene": {
+        "bg": "bosque",
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "sneak"
+         }
+        ],
+        "mood": "mystery",
+        "light": "dark",
+        "offstage": [
+         "lia"
+        ]
+       }
+      },
+      {
+       "id": "b",
+       "text": "Una ráfaga: ¡fuuu! La lucecita se apagó, y la oscuridad lo cubrió todo, espesa como una manta mojada. {hero} se agarró a un tronco rugoso. Entonces, a lo lejos, sonó un «¡beee!» chiquitito. {hero} pensó en Lía, sola en el bosque, y sus pies empezaron a andar solos. Un paso, otro paso, otro paso: hacia el beee.",
+       "scene": {
+        "bg": "bosque",
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "sneak"
+         }
+        ],
+        "mood": "mystery",
+        "light": "dark",
+        "offstage": [
+         "lia"
+        ]
        }
       }
      ]
@@ -1134,28 +2392,76 @@
      "id": "el_roble",
      "variants": [
       {
-       "id": "a",
-       "text": "Al llegar al roble viejo, una voz ronca salió de entre las sombras: «¡Atrás!». Era {villain.el} {villain}, que guardaba allí {villain.botin} y no quería que ninguna luz lo descubriera. «¡Vuelve a casa!», amenazó {villain.voz}. Pero {hero}, con las rodillas temblando, dijo: «Lía necesita la luz, porque está perdida. No me voy».",
+       "id": "cod",
+       "text": "Al llegar al roble viejo, algo se movió en el hueco del tronco. «¡Atrás!», gruñó una voz. Era {villain.el} {villain}, que había aprovechado la tormenta para esconder allí {villain.botin} y no quería que ninguna luz lo descubriera. «¡Vuelve a casa!», amenazó {villain.voz}. {hero} no veía nada, pero tenía clarísimo lo que quería. «Lía necesita la luz, porque está perdida», dijo. «No me voy.»",
        "scene": {
         "bg": "bosque",
-        "actors": [
-         "hero",
-         "villain"
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "talk",
+          "x": 0.3
+         },
+         {
+          "who": "villain",
+          "clip": "talk",
+          "x": 0.72
+         }
         ],
-        "mood": "tension"
-       }
+        "mood": "tension",
+        "props": [
+         {
+          "prop": "linterna_apagada",
+          "x": 0.5,
+          "clip": "still",
+          "scale": 0.85,
+          "lift": 170
+         }
+        ],
+        "light": "dark",
+        "offstage": [
+         "lia"
+        ]
+       },
+       "requires": [
+        "villain:codicio"
+       ]
       },
       {
-       "id": "b",
-       "text": "En el roble viejo, algo se movió. «¡Atrás!», rugió una voz desde el hueco del tronco. Era {villain.el} {villain}, que guardaba allí {villain.botin} y no quería que ninguna luz lo descubriera. «¡La oscuridad es mía!», dijo {villain.voz}. «¡Vuelve a casa!» A {hero} le temblaban las rodillas. Aun así contestó: «Lía necesita la luz, porque está perdida. No me voy».",
+       "id": "som",
+       "text": "En el roble viejo, algo se movió. «¡Atrás!», siseó una voz desde el hueco del tronco. Era {villain.el} {villain}, que había aprovechado la tormenta para esconder allí {villain.botin} y no quería que ninguna luz lo descubriera. «Shhh… Vuelve a casa», amenazó. A {hero} le temblaban las rodillas, pero contestó: «Lía necesita la luz, porque está perdida. No me voy».",
        "scene": {
         "bg": "bosque",
-        "actors": [
-         "hero",
-         "villain"
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "talk",
+          "x": 0.3
+         },
+         {
+          "who": "villain",
+          "clip": "talk",
+          "x": 0.72
+         }
         ],
-        "mood": "tension"
-       }
+        "mood": "tension",
+        "props": [
+         {
+          "prop": "linterna_apagada",
+          "x": 0.5,
+          "clip": "still",
+          "scale": 0.85,
+          "lift": 170
+         }
+        ],
+        "light": "dark",
+        "offstage": [
+         "lia"
+        ]
+       },
+       "requires": [
+        "villain:sombra"
+       ]
       }
      ]
     },
@@ -1164,24 +2470,70 @@
      "variants": [
       {
        "id": "a",
-       "text": "{hero} trepó por el tronco, agarró {item.el} con cuidado y acercó la lucecita a la mecha. Una chispa, otra chispa... ¡FLUP! {item.El} se encendió y el bosque entero se llenó de luz dorada. Al verse descubierto, {villain.el} {villain} soltó {villain.botin} y salió corriendo, tapándose los ojos.",
+       "text": "{hero} trepó por el tronco, agarró {item.el} con cuidado y golpeó el pedernal del farolero: una chispa, otra chispa... ¡FLUP! {item.El} se encendió y el bosque entero se llenó de luz dorada. Al verse descubierto, {villain.el} {villain} soltó {villain.botin} y salió corriendo, tapándose los ojos.",
        "scene": {
         "bg": "bosque",
-        "actors": [
-         "hero"
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "cheer",
+          "x": 0.35
+         },
+         {
+          "who": "villain",
+          "clip": "scared",
+          "x": 0.78
+         }
         ],
-        "mood": "triumph"
+        "mood": "triumph",
+        "props": [
+         {
+          "prop": "linterna",
+          "x": 0.5,
+          "clip": "glow",
+          "scale": 0.85,
+          "lift": 170,
+          "emit": true
+         }
+        ],
+        "light": "night",
+        "offstage": [
+         "aldeano"
+        ]
        }
       },
       {
        "id": "b",
-       "text": "{hero} trepó por el tronco, con las manos temblorosas y la lucecita bien apretada. Acercó la llama a la mecha: una chispa, otra chispa... ¡FLUP! {item.El} se encendió y una luz dorada inundó el bosque. {villain.El} {villain}, descubierto con {villain.botin} entre los brazos, salió corriendo y no volvió a mirar atrás.",
+       "text": "{hero} trepó por el tronco, con las manos temblorosas, y golpeó el pedernal del farolero sobre la mecha: una chispa, otra chispa... ¡FLUP! {item.El} se encendió y una luz dorada inundó el bosque. {villain.El} {villain}, descubierto con {villain.botin} entre los brazos, salió corriendo y no volvió a mirar atrás.",
        "scene": {
         "bg": "bosque",
-        "actors": [
-         "hero"
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "cheer",
+          "x": 0.35
+         },
+         {
+          "who": "villain",
+          "clip": "scared",
+          "x": 0.78
+         }
         ],
-        "mood": "triumph"
+        "mood": "triumph",
+        "props": [
+         {
+          "prop": "linterna",
+          "x": 0.5,
+          "clip": "glow",
+          "scale": 0.85,
+          "lift": 170,
+          "emit": true
+         }
+        ],
+        "light": "night",
+        "offstage": [
+         "aldeano"
+        ]
        }
       }
      ]
@@ -1194,11 +2546,32 @@
        "text": "Gracias a la luz, a lo lejos se oyó un «¡Beee!». Era la cabrita, y detrás venía Lía, corriendo hacia la luz. {helper} llegó también, con los brazos abiertos. «Tuve miedo todo el tiempo», confesó {hero}. «Y aun así fuiste», sonrió {helper}.",
        "scene": {
         "bg": "bosque",
-        "actors": [
-         "hero",
-         "helper"
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "cheer"
+         },
+         {
+          "rig": "lia",
+          "clip": "cheer"
+         },
+         {
+          "who": "helper",
+          "clip": "cheer"
+         }
         ],
-        "mood": "joy"
+        "mood": "joy",
+        "props": [
+         {
+          "prop": "linterna",
+          "x": 0.5,
+          "clip": "glow",
+          "scale": 0.85,
+          "lift": 170,
+          "emit": true
+         }
+        ],
+        "light": "night"
        }
       },
       {
@@ -1206,11 +2579,32 @@
        "text": "Gracias a la luz, Lía y su cabrita encontraron el sendero y salieron corriendo del bosque. {helper} llegó también, con los brazos abiertos. «Tuve miedo todo el tiempo», confesó {hero}. «Y aun así fuiste», sonrió {helper}.",
        "scene": {
         "bg": "bosque",
-        "actors": [
-         "hero",
-         "helper"
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "cheer"
+         },
+         {
+          "rig": "lia",
+          "clip": "cheer"
+         },
+         {
+          "who": "helper",
+          "clip": "cheer"
+         }
         ],
-        "mood": "joy"
+        "mood": "joy",
+        "props": [
+         {
+          "prop": "linterna",
+          "x": 0.5,
+          "clip": "glow",
+          "scale": 0.85,
+          "lift": 170,
+          "emit": true
+         }
+        ],
+        "light": "night"
        }
       }
      ]
@@ -1220,26 +2614,76 @@
      "variants": [
       {
        "id": "a",
-       "text": "Volvieron todos juntos a {pueblo.el}, y los vecinos aplaudieron al ver brillar de nuevo la linterna en lo alto del roble. Esa noche, {hero} se acostó junto a la ventana. La oscuridad seguía allí, pero ya no daba tanto miedo, porque {hero} sabía que, con una lucecita y un paso pequeño, siempre se puede llegar. Y se durmió, tranquil{hero.o}.",
+       "text": "Volvieron todos juntos a {pueblo.el}, y los vecinos aplaudieron al ver brillar de nuevo la linterna en lo alto del roble. El viejo farolero le guiñó un ojo a {hero}: «Mañana la enciendes tú». Aquella noche, {hero} dejó la ventana abierta. La oscuridad seguía allí, pero ahora tenía un búho dentro, y a {hero} le pareció casi simpática. Y se quedó dormid{hero.o} mirando la luz.",
        "scene": {
         "bg": "pueblo",
-        "actors": [
-         "hero",
-         "helper"
+        "stage": [
+         {
+          "rig": "aldeana",
+          "clip": "clap"
+         },
+         {
+          "rig": "aldeano",
+          "clip": "wave"
+         },
+         {
+          "who": "hero",
+          "clip": "sleep"
+         },
+         {
+          "rig": "rosa",
+          "clip": "clap"
+         }
         ],
-        "mood": "sleep"
+        "mood": "sleep",
+        "props": [
+         {
+          "prop": "linterna",
+          "x": 0.9,
+          "clip": "glow",
+          "scale": 0.5,
+          "lift": 90,
+          "emit": true
+         }
+        ],
+        "light": "night"
        }
       },
       {
        "id": "b",
-       "text": "Todos regresaron juntos a {pueblo.el}, y los vecinos aplaudieron al ver la linterna brillar otra vez en lo alto del roble. Aquella noche, {hero} dejó la ventana abierta. La oscuridad seguía allí, pero ya no le parecía tan grande, ya que ahora sabía que un paso pequeño siempre se puede dar. Y se quedó dormid{hero.o} mirando la luz.",
+       "text": "Todos regresaron juntos a {pueblo.el}, y los vecinos aplaudieron al ver la linterna brillar otra vez en lo alto del roble. «Mañana la enciendes tú», le dijo el viejo farolero a {hero}, con un guiño. Aquella noche, {hero} dejó la ventana abierta. La oscuridad seguía allí, pero ya no le parecía tan grande: ahora tenía un búho dentro. Y se quedó dormid{hero.o} mirando la luz.",
        "scene": {
         "bg": "pueblo",
-        "actors": [
-         "hero",
-         "helper"
+        "stage": [
+         {
+          "rig": "aldeana",
+          "clip": "clap"
+         },
+         {
+          "rig": "aldeano",
+          "clip": "wave"
+         },
+         {
+          "who": "hero",
+          "clip": "sleep"
+         },
+         {
+          "rig": "rosa",
+          "clip": "clap"
+         }
         ],
-        "mood": "sleep"
+        "mood": "sleep",
+        "props": [
+         {
+          "prop": "linterna",
+          "x": 0.9,
+          "clip": "glow",
+          "scale": 0.5,
+          "lift": 90,
+          "emit": true
+         }
+        ],
+        "light": "night"
        }
       }
      ],

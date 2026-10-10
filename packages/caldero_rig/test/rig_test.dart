@@ -75,7 +75,7 @@ void main() {
       expect(rigPaths, isNotEmpty);
       for (final path in rigPaths) {
         final rig = Rig.fromJson(readJson(path));
-        expect(rig.type, 'humanoid');
+        expect(rig.type, anyOf('humanoid', 'prop'));
         var shapes = 0;
         void walk(RigNode n) {
           shapes += n.shapes.length;
@@ -87,7 +87,9 @@ void main() {
         }
 
         walk(rig.root);
-        expect(shapes, greaterThan(30), reason: rig.id);
+        // Un personaje tiene decenas de formas; un objeto (campana, pan…), al menos unas pocas.
+        final minShapes = rig.type == 'humanoid' ? 30 : 3;
+        expect(shapes, greaterThan(minShapes), reason: rig.id);
       }
     });
 
@@ -128,7 +130,7 @@ void main() {
         expect(lib.clips, contains(a.clip));
         expect(rigs, contains(a.rig));
       }
-      for (final rig in rigs.values) {
+      Set<String> bones(Rig rig) {
         final ids = <String>{};
         void collect(RigNode n) {
           ids.add(n.id);
@@ -137,6 +139,27 @@ void main() {
         }
 
         collect(rig.root);
+        return ids;
+      }
+
+      // Las animaciones de objetos (balanceo, llama, vapor…) apuntan a huesos de algún objeto.
+      final propBones = {
+        for (final r in rigs.values)
+          if (r.type == 'prop') ...bones(r),
+      };
+      for (final path in (index['extraClips'] as List<Object?>? ?? const [])) {
+        final props = ClipLibrary.fromJson(readJson(path! as String));
+        expect(props.rigType, 'prop');
+        for (final e in props.clips.entries) {
+          for (final track in e.value.tracks.keys) {
+            final bone = track.split('.').first;
+            final why = 'objeto: ${e.key}/$track';
+            expect(propBones, contains(bone), reason: why);
+          }
+        }
+      }
+      for (final rig in rigs.values.where((r) => r.type == 'humanoid')) {
+        final ids = bones(rig);
         for (final e in lib.clips.entries) {
           for (final track in e.value.tracks.keys) {
             expect(

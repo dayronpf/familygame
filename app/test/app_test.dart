@@ -18,6 +18,12 @@ class _NoArtBundle extends FileBundle {
   Future<ByteData> load(String key) => key.startsWith('assets/art/')
       ? Future.error(FlutterError('sin arte'))
       : super.load(key);
+
+  @override
+  Future<String> loadString(String key, {bool cache = true}) =>
+      key.startsWith('assets/art/')
+          ? Future.error(FlutterError('sin arte'))
+          : super.loadString(key, cache: cache);
 }
 
 FeedbackService _feedback() => FeedbackService(store: MemoryFeedbackStore());

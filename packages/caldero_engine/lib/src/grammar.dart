@@ -34,9 +34,10 @@ Map<String?, String> grammaticalForms(Entity e) {
   };
   if (e is Character) {
     forms['trait'] = e.trait[masculine ? 'm' : 'f']!;
-    forms.addAll(
-      e.attrs,
-    ); // `{rol.gesto}`, `{rol.miedo}`… (frases propias del personaje)
+    // `{rol.gesto}`, `{rol.miedo}`… (frases propias del personaje); aquí, la primera forma.
+    for (final a in e.attrs.entries) {
+      forms[a.key] = a.value.first;
+    }
   }
   for (final k in ['el', 'un', 'en']) {
     forms[capitalize(k)] = capitalize(forms[k]!);
@@ -44,8 +45,16 @@ Map<String?, String> grammaticalForms(Entity e) {
   return forms;
 }
 
-/// Sustituye los tokens de [template] con el [cast] dado.
-String renderTemplate(String template, Map<String, Entity> cast) {
+/// Elige una de las formas de un atributo con varias (`clave` = `rol.atributo`).
+typedef AttrChooser = String Function(String key, List<String> options);
+
+/// Sustituye los tokens de [template] con el [cast] dado. Si un atributo del personaje tiene varias
+/// formas, [choose] decide cuál (sin él, la primera).
+String renderTemplate(
+  String template,
+  Map<String, Entity> cast, {
+  AttrChooser? choose,
+}) {
   return template.replaceAllMapped(_token, (m) {
     final role = m.group(1)!;
     final attr = m.group(2);
@@ -55,7 +64,13 @@ String renderTemplate(String template, Map<String, Entity> cast) {
         'rol desconocido «$role» en: ${_excerpt(template)}',
       );
     }
-    final value = grammaticalForms(entity)[attr];
+    var value = grammaticalForms(entity)[attr];
+    if (entity is Character && attr != null) {
+      final options = entity.attrs[attr];
+      if (options != null && options.length > 1 && choose != null) {
+        value = choose('$role.$attr', options);
+      }
+    }
     if (value == null) {
       throw TemplateException(
         'la forma «$role.$attr» no existe para ${entity.id}',

@@ -80,10 +80,15 @@ ValidationReport validatePack(Pack pack, {int coverageSeeds = 50}) {
   );
 }
 
-void _checkRender(Fragment f, Map<String, Entity> cast, Set<String> problems) {
+void _checkRender(
+  Fragment f,
+  Map<String, Entity> cast,
+  Set<String> problems, {
+  AttrChooser? choose,
+}) {
   final String out;
   try {
-    out = renderTemplate(f.text, cast);
+    out = renderTemplate(f.text, cast, choose: choose);
   } on TemplateException catch (e) {
     problems.add('${f.id}: ${e.message}');
     return;
@@ -148,8 +153,8 @@ void _checkStructure(Pack pack, Set<String> problems) {
 // ---------------------------------------------------------------------------
 
 /// Un cuento más corto que esto es un resumen, no una historia para leer en voz alta.
-const int minStoryWords = 300;
-const int maxStoryWords = 650;
+const int minStoryWords = 420;
+const int maxStoryWords = 800;
 
 /// Mínimo de escenas en las que debe aparecer el nombre del héroe.
 const double minHeroPresence = 0.7;
@@ -226,13 +231,24 @@ int _checkPremise(
       if (bg != null && slotKinds[bg] != 'place') {
         problems.add('${v.id}: el fondo «$bg» no es una ranura de lugar');
       }
-      final actors = v.scene['actors'];
-      if (actors is List) {
-        for (final a in actors) {
-          if (slotKinds[a] != 'character') {
-            problems
-                .add('${v.id}: el actor «$a» no es una ranura de personaje');
-          }
+      for (final e in stageEntries(v.scene)) {
+        final who = e.who;
+        if (who != null && slotKinds[who] != 'character') {
+          problems.add('${v.id}: «$who» no es una ranura de personaje');
+        }
+        final rig = e.rig;
+        if (rig != null && !premise.npcs.containsKey(rig)) {
+          problems.add(
+            '${v.id}: el secundario «$rig» no está declarado en "npcs" de la premisa',
+          );
+        }
+      }
+      if (stageEntries(v.scene).length > maxOnStage) {
+        problems.add('${v.id}: más de $maxOnStage personajes en pantalla');
+      }
+      for (final o in _offstage(v.scene)) {
+        if (!slotKinds.containsKey(o) && !premise.npcs.containsKey(o)) {
+          problems.add('${v.id}: «$o» en "offstage" no existe');
         }
       }
     }
@@ -257,20 +273,28 @@ int _checkPremise(
         // Las variantes que exigen otro reparto no se aplican a este.
         final castReqs = v.requires.where((r) => r.contains(':'));
         if (!castReqs.every(state.contains)) continue;
-        renders++;
-        _checkRender(
-          Fragment(
-            id: v.id,
-            stage: 'opening',
-            values: const ['*'],
-            requires: v.requires,
-            adds: v.adds,
-            text: v.text,
-            scene: v.scene,
-          ),
-          cast,
-          problems,
-        );
+        // Cada forma de cada atributo con varias opciones debe dar un texto correcto.
+        final forms = cast.values
+            .whereType<Character>()
+            .expand((c) => c.attrs.values.map((o) => o.length))
+            .fold<int>(1, (a, b) => a > b ? a : b);
+        for (var k = 0; k < forms; k++) {
+          renders++;
+          _checkRender(
+            Fragment(
+              id: v.id,
+              stage: 'opening',
+              values: const ['*'],
+              requires: v.requires,
+              adds: v.adds,
+              text: v.text,
+              scene: v.scene,
+            ),
+            cast,
+            problems,
+            choose: (key, options) => options[k % options.length],
+          );
+        }
       }
     }
   }
@@ -383,6 +407,11 @@ void _checkStory(Premise premise, Story story, Set<String> problems) {
     if (!introduced) add('«$slot» (${e.id}) no se presenta en ninguna escena');
   }
 
+  // Texto ↔ ilustración: quien sale dibujado está en el texto y quien el texto cuenta sale dibujado
+  for (var i = 0; i < story.scenes.length; i++) {
+    _checkStage(premise, story, i, add);
+  }
+
   // Los lugares no cambian sin contar el viaje
   String? previousBg;
   for (var i = 0; i < story.scenes.length; i++) {
@@ -404,5 +433,90 @@ void _checkFixedGender(Variant v, Set<String> problems) {
       '${v.id}: género fijo «${m.group(0)}»: si se refiere al héroe usa {hero.o} '
       '(«quiet{hero.o}»); si no, reescribe',
     );
+  }
+}
+
+/// Máximo de personajes en una ilustración (más no caben sin pisarse).
+const int maxOnStage = 6;
+
+/// Un personaje de una ilustración: una ranura del reparto (`who`) o un secundario (`rig`).
+class StageEntry {
+  const StageEntry({this.who, this.rig, this.clip, this.x});
+
+  final String? who;
+  final String? rig;
+  final String? clip;
+
+  /// Posición horizontal opcional (0–1 del ancho visible); por defecto se reparten a partes iguales.
+  final double? x;
+}
+
+/// Personajes de una escena, de izquierda a derecha: la lista `stage` o, en packs antiguos, `actors`.
+List<StageEntry> stageEntries(Map<String, Object?> scene) {
+  final stage = scene['stage'];
+  if (stage is List) {
+    return [
+      for (final e in stage)
+        if (e is Map)
+          StageEntry(
+            who: e['who'] as String?,
+            rig: e['rig'] as String?,
+            clip: e['clip'] as String?,
+            x: (e['x'] as num?)?.toDouble(),
+          )
+        else if (e is String)
+          StageEntry(who: e),
+    ];
+  }
+  final actors = scene['actors'];
+  return [
+    if (actors is List)
+      for (final a in actors)
+        if (a is String) StageEntry(who: a),
+  ];
+}
+
+List<String> _offstage(Map<String, Object?> scene) {
+  final o = scene['offstage'];
+  return o is List ? [for (final x in o) x.toString()] : const [];
+}
+
+void _checkStage(
+  Premise premise,
+  Story story,
+  int i,
+  void Function(String) add,
+) {
+  final scene = story.scenes[i];
+  final text = scene.text;
+  final entries = stageEntries(scene.directives);
+  final offstage = _offstage(scene.directives);
+  final where = 'escena ${i + 1} (${scene.fragmentId})';
+
+  // Personajes del reparto (salvo el héroe, que puede estar sin nombrarse)
+  for (final role in story.cast.keys) {
+    final e = story.cast[role]!;
+    if (e is! Character) {
+      continue;
+    }
+    final named = text.contains(e.given);
+    final onStage = entries.any((x) => x.who == role);
+    if (onStage && !named && role != 'hero') {
+      add('$where: «$role» (${e.given}) sale dibujado pero el texto no lo nombra');
+    }
+    if (named && !onStage && !offstage.contains(role)) {
+      add('$where: el texto nombra a «$role» (${e.given}) pero no sale dibujado (¿offstage?)');
+    }
+  }
+  // Secundarios
+  for (final npc in premise.npcs.entries) {
+    final named = npc.value.any(text.contains);
+    final onStage = entries.any((x) => x.rig == npc.key);
+    if (onStage && !named) {
+      add('$where: «${npc.key}» sale dibujado pero el texto no lo nombra (${npc.value.join('/')})');
+    }
+    if (named && !onStage && !offstage.contains(npc.key)) {
+      add('$where: el texto nombra a «${npc.key}» pero no sale dibujado (¿offstage?)');
+    }
   }
 }

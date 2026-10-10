@@ -42,6 +42,8 @@ class ArtLibrary {
     required this.scene,
     this.scenes = const {},
     this.places = const {},
+    this.propClips = const {},
+    this.sizes = const {},
   });
 
   final Map<String, Rig> rigs;
@@ -55,6 +57,12 @@ class ArtLibrary {
 
   /// Lugares del pack (id del lugar → su escena y dónde se colocan los personajes).
   final Map<String, PlaceArt> places;
+
+  /// Animaciones de los objetos de la trama (balanceo, llama, vapor…).
+  final Map<String, Clip> propClips;
+
+  /// Tamaño relativo de cada personaje (los niños son más pequeños); 1 si no figura.
+  final Map<String, double> sizes;
 }
 
 const String artRoot = 'assets/art/';
@@ -83,7 +91,21 @@ Future<ArtLibrary> loadArtLibrary(
         in ((index['places'] as Map<String, Object?>?) ?? const {}).entries)
       e.key: PlaceArt.fromJson(e.value! as Map<String, Object?>),
   };
+  final propClips = <String, Clip>{};
+  for (final path
+      in ((index['extraClips'] as List<Object?>?) ?? const []).cast<String>()) {
+    propClips.addAll(
+      ClipLibrary.fromJson(await _json(bundle, '$artRoot$path')).clips,
+    );
+  }
+  final sizes = <String, double>{
+    for (final e
+        in ((index['sizes'] as Map<String, Object?>?) ?? const {}).entries)
+      e.key: (e.value! as num).toDouble(),
+  };
   return ArtLibrary(
+    propClips: propClips,
+    sizes: sizes,
     rigs: rigs,
     clips:
         ClipLibrary.fromJson(await _json(bundle, '$artRoot${index['clips']}')),

@@ -193,3 +193,18 @@ Lectura: **la meta de 60 fps se cumple con holgura** y la escena aguanta 24 pers
 - No se midió temperatura ni batería (paso 4).
 
 Se integra al plan en [`07-backlog.md`](07-backlog.md) y [`10-arte-y-estilo-visual.md`](10-arte-y-estilo-visual.md).
+
+## 10. Ampliación (vuelta 1): secundarios, objetos, gestos y luz
+
+- **14 personajes humanos** (6 principales + Tomás, Lía, Teo, Rosa, Beto, Hugo, aldeano y aldeana) generados por el mismo
+  `medieval_kit.py`: sombreros nuevos (gorra, panadera, pañuelo, paja), delantal, coletas; los niños son más pequeños (`size` en
+  `art/medieval/specs/characters.json`, copiado a `index.json`).
+- **8 objetos de la trama** como rigs de una pieza (`tools/art/props.py`): campana (colgada y rota), linterna (encendida y apagada),
+  olla con fuego y vapor, pan y pedazos de pan, búho. Usan el mismo formato y renderizador; sus animaciones (`art/clips/props.json`):
+  `swing`, `ring`, `glow`, `boil`, `hoot`, `still`.
+- **19 gestos** (antes 10): señalar, triste, pensar, sigilo, risa, dormir, ofrecer, negar y aplaudir.
+- **Escenario:** los personajes llegan caminando al aparecer; deriva suave de cámara; luz por escena (atardecer, noche, oscuridad,
+  frío); con 1–3 personajes crecen un poco y con 4+ se escalonan para dar profundidad; las linternas encendidas brillan por encima de
+  la luz.
+- **Límites:** los personajes siguen siendo de frente (sin perfil); no hay animales (la cabrita se nombra pero no se dibuja); el
+  búho es un objeto, no un personaje con acciones.

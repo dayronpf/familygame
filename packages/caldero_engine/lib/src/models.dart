@@ -58,15 +58,6 @@ List<String> _strList(
   throw PackFormatException('$where: "$key" debe ser una lista de textos');
 }
 
-Map<String, String> _strMap(Map<String, Object?> j, String key, String where) {
-  final v = j[key];
-  if (v == null) return const {};
-  if (v is Map && v.values.every((e) => e is String)) {
-    return Map<String, String>.from(v);
-  }
-  throw PackFormatException('$where: "$key" debe ser un objeto de textos');
-}
-
 /// Atributos que no pueden usarse como nombre propio porque ya tienen una forma gramatical.
 const Set<String> reservedForms = {
   'noun', 'el', 'un', 'del', 'al', 'en', 'o', 'trait', //
@@ -146,15 +137,35 @@ class Character extends Entity {
 
   /// Frases propias del personaje que los textos usan como `{rol.atributo}`: su gesto al
   /// pensar, cómo se le nota el miedo, dónde vive… Dan a cada personaje una voz distinta.
-  final Map<String, String> attrs;
+  /// Cada atributo puede tener VARIAS formas (se alternan para que no se repitan en un cuento).
+  final Map<String, List<String>> attrs;
 }
 
-Map<String, String> _attrs(Map<String, Object?> j, String where) {
-  final attrs = _strMap(j, 'attrs', where);
-  for (final k in attrs.keys) {
+Map<String, List<String>> _attrs(Map<String, Object?> j, String where) {
+  final raw = j['attrs'];
+  if (raw == null) {
+    return const {};
+  }
+  if (raw is! Map) {
+    throw PackFormatException('$where: "attrs" debe ser un objeto');
+  }
+  final attrs = <String, List<String>>{};
+  for (final e in raw.entries) {
+    final k = e.key as String;
     if (reservedForms.contains(k) || !RegExp(r'^[a-z]\w*$').hasMatch(k)) {
       throw PackFormatException('$where: atributo no permitido "$k"');
     }
+    final v = e.value;
+    final options = v is String
+        ? [v]
+        : v is List &&
+                v.isNotEmpty &&
+                v.every((x) => x is String && x.isNotEmpty)
+            ? List<String>.from(v)
+            : throw PackFormatException(
+                '$where: el atributo "$k" debe ser un texto o una lista de textos',
+              );
+    attrs[k] = options;
   }
   return attrs;
 }
@@ -390,6 +401,7 @@ class Premise {
     required this.title,
     required this.cast,
     required this.beats,
+    this.npcs = const {},
     this.weight = 1,
   });
 
@@ -450,12 +462,31 @@ class Premise {
       throw PackFormatException('$where: no tiene escenas');
     }
     final weight = j['weight'];
+    final npcsJson = j['npcs'];
+    final npcs = <String, List<String>>{};
+    if (npcsJson != null) {
+      if (npcsJson is! Map) {
+        throw PackFormatException('$where: "npcs" debe ser un objeto');
+      }
+      for (final e in npcsJson.entries) {
+        final v = e.value;
+        if (v is! List ||
+            v.isEmpty ||
+            !v.every((x) => x is String && x.isNotEmpty)) {
+          throw PackFormatException(
+            '$where: "npcs.${e.key}" debe ser una lista de palabras con las que el texto nombra al personaje',
+          );
+        }
+        npcs[e.key as String] = List<String>.from(v);
+      }
+    }
     return Premise(
       id: id,
       value: _str(j, 'value', where),
       title: _str(j, 'title', where),
       cast: cast,
       beats: beats,
+      npcs: npcs,
       weight: weight is num ? weight.toDouble() : 1,
     );
   }
@@ -471,6 +502,10 @@ class Premise {
   /// Ranura → requisitos. El orden de declaración es el orden en que se eligen.
   final Map<String, CastSpec> cast;
   final List<Beat> beats;
+
+  /// Personajes secundarios que salen en las ilustraciones (id del dibujo → palabras con que el texto los
+  /// nombra: «Tomás», «herrero»…). El validador exige que quien se nombra se dibuje y viceversa.
+  final Map<String, List<String>> npcs;
   final double weight;
 
   bool fitsValue(String valueId) => value == anyValue || value == valueId;

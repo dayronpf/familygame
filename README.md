@@ -31,6 +31,7 @@ mientras avanza y puede proyectarse como **holograma** con una pirámide transpa
 | [docs/10-arte-y-estilo-visual.md](docs/10-arte-y-estilo-visual.md) | Estilo visual, derechos de autor del arte, sistema modular y presupuesto de rendimiento |
 | [docs/12-valoraciones-y-mejora-continua.md](docs/12-valoraciones-y-mejora-continua.md) | Valoración 1–5 al final de cada cuento (con motivo opcional si es baja): qué se envía, evidencia, análisis y cómo mejora los cuentos |
 | [docs/13-auditoria-de-historias.md](docs/13-auditoria-de-historias.md) | Auditoría de coherencia de los cuentos generados (medida con `audit_stories`), causas y plan de arreglo |
+| [docs/14-rubrica-editorial.md](docs/14-rubrica-editorial.md) | Rúbrica y ciclo de mejora de los cuentos (corpus → revisión independiente → corrección → medición) con el registro de vueltas |
 | [docs/11-pipeline-de-arte-por-codigo.md](docs/11-pipeline-de-arte-por-codigo.md) | Arte generado por código (sin presupuesto ni herramientas de pago), pack medieval, 3D y límites |
 
 ## Estructura del repositorio
@@ -99,6 +100,6 @@ un registro escondido que bloqueaba toda instalación con «conflicto con un paq
 
 **Sprint 1 — «El caldero en Dart»** ✅ y **arte por código** (pack medieval) en marcha: motor, validador, esquema, CI,
 pantalla de cuentos, 6 personajes animados con 10 clips reutilizables, 5 lugares y **Taller de personajes** con medidor de fps.
-**MVP de prueba:** el pack «Reino de la Luna» (`content/packs/medieval`: 6 personajes, 5 lugares, 3 enseñanzas, 3 premisas) se lee con **dibujos animados en cada escena del cuento** (sin música ni voz todavía). Tras la [auditoría](docs/13-auditoria-de-historias.md), los cuentos nacen de **premisas** con hilo (3 premisas, ≈ 5 min leídas, reglas de coherencia en CI).
+**MVP de prueba:** el pack «Reino de la Luna» (`content/packs/medieval`: 6 personajes, 5 lugares, 3 enseñanzas, 3 premisas) se lee con **dibujos animados en cada escena del cuento** (sin música ni voz todavía). Tras la [auditoría](docs/13-auditoria-de-historias.md), los cuentos nacen de **premisas** con hilo (3 premisas, ≈ 6 min leídas, reglas de coherencia en CI) y se mejoran por vueltas de revisión ([14](docs/14-rubrica-editorial.md)).
 **Valoración 1–5 al final de cada cuento** (lo único que se recoge, anónimo; [docs/12](docs/12-valoraciones-y-mejora-continua.md)) lista en la app; falta el servidor que la reciba.
 Pendiente: probar en Android/iOS reales y medir rendimiento ([docs/11 §9](docs/11-pipeline-de-arte-por-codigo.md)). Ver [docs/07-backlog.md](docs/07-backlog.md).

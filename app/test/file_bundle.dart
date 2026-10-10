@@ -11,6 +11,12 @@ class FileBundle extends AssetBundle {
     return Future.value(ByteData.sublistView(Uint8List.fromList(bytes)));
   }
 
+  /// Los textos de más de 50 KB se decodifican en otro hilo (`compute`), que el reloj simulado de los
+  /// tests no completa nunca: aquí se leen siempre de forma síncrona.
+  @override
+  Future<String> loadString(String key, {bool cache = true}) =>
+      Future.value(File(key).readAsStringSync());
+
   @override
   Future<T> loadStructuredData<T>(
     String key,
