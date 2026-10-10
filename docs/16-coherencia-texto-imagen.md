@@ -69,6 +69,21 @@ Cualquier cuento posible del pack se valida (≈ 4000 versiones). Reglas:
 Las reglas se probaron con casos buenos y malos (`premise_test.dart`) y la app comprueba que toda hora y estación que pide un cuento
 existe dibujada (`story_stage_test.dart`).
 
+### 4. La acción se ve (ronda 9, tras revisar las imágenes)
+
+La primera revisión con imágenes (18 cuentos, tres lectores) dio 2–3 sobre 5: la hora y la estación ya cuadraban, pero **la acción no**:
+todos de pie y sonrientes, el que duerme sin cama, la cuerda, la vela, el pedernal o el saco que nunca se veían, el «interior de la
+torre» y la «puerta de la cabaña» dibujados como un prado. Lo que se añadió:
+
+| Capacidad | Para qué |
+|---|---|
+| Gestos nuevos: `shiver` (tiembla, brazos cruzados), `hug`, `sit`, `sit_sad`, `climb`, `hide` | Miedo, frío y culpa ya no se ven como alegría; abrazos; sentarse; trepar al roble; esconderse |
+| `stage[].rotate` (−90 = tumbado) y `props: manta` | Dormir **en la cama** (o en el suelo de la cocina) bajo una manta, con la cabeza en la almohada |
+| `props[].near` + `dx` + `lift` | El objeto en la mano o a los pies del personaje (la semilla, la bolsa, la vela, el pedernal, el pan, la taza, el saco) |
+| `rope: {from, to}` | La cuerda que une al héroe con su ayudante (puente, linterna); `to: left/right` sale de cuadro |
+| Lugar nuevo `campanario` | Interior de la torre: arco al cielo (día/atardecer/noche), antorcha, gancho con su cuerda, escalera |
+| Objetos nuevos | `puerta_cabana` (el villano se ve por la rendija), `roble` con hueco y rama para la linterna, `girasol_seco` (cuello doblado), `manta`, `taza`, `cuenco`, `regadera`, `cinta` |
+
 ## Cómo se revisa (a ojo, con el mismo pintor que la app)
 
 ```

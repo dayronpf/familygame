@@ -99,6 +99,7 @@ class StageSetup {
     this.props = const [],
     this.tint,
     this.focus = false,
+    this.ropes = const [],
   });
 
   final String placeId;
@@ -111,6 +112,9 @@ class StageSetup {
 
   /// Primer plano de un objeto (sin personajes, con viñeta): para que se vea lo que el texto cuenta.
   final bool focus;
+
+  /// Cuerdas entre personajes (la que el ayudante ata a la cintura del héroe).
+  final List<Rope> ropes;
 
   /// Objetos de la trama (campana, olla, linterna…).
   final List<ActorInstance> props;
@@ -170,6 +174,7 @@ StageSetup? stageFor(
   }
   final n = resolved.length;
   final actors = <ActorInstance>[];
+  final byKey = <String, ActorInstance>{};
   for (var i = 0; i < n; i++) {
     final (rigId, e, role) = resolved[i];
     final clip = art.clip(e.clip) ??
@@ -180,7 +185,7 @@ StageSetup? stageFor(
     // con pocos, crecen un poco para llenar la imagen.
     final back = n >= 4 && i.isOdd;
     final framing = n <= 2 ? 1.2 : (n == 3 ? 1.1 : 1.0);
-    actors.add(ActorInstance(
+    final actor = ActorInstance(
       rig: art.rigs[rigId]!,
       clip: clip,
       x: view.left + view.width * (e.x ?? (0.08 + 0.84 * (i + 0.5) / n)),
@@ -191,7 +196,10 @@ StageSetup? stageFor(
           (back ? 0.95 : 1) *
           (e.scale ?? 1),
       phase: i * 0.7,
-    ));
+      rotation: e.rotate ?? 0,
+    );
+    actors.add(actor);
+    byKey[e.who ?? e.rig ?? rigId] = actor;
   }
 
   final props = <ActorInstance>[];
@@ -202,17 +210,40 @@ StageSetup? stageFor(
       final rig = art.rigs[p['prop']];
       final clip = art.clip(p['clip'] as String?) ?? art.clip('still');
       if (rig == null || clip == null) continue;
+      // `near`: junto a un personaje (en su mano, a sus pies); `dx` = fracción del ancho visible a su derecha
+      final near = p['near'] == null ? null : byKey[p['near']];
+      final x = near != null
+          ? near.x + view.width * ((p['dx'] as num?)?.toDouble() ?? 0)
+          : view.left + view.width * ((p['x'] as num?)?.toDouble() ?? 0.5);
+      final lift = (p['lift'] as num?)?.toDouble();
       props.add(ActorInstance(
         rig: rig,
         clip: clip,
-        x: view.left + view.width * ((p['x'] as num?)?.toDouble() ?? 0.5),
-        y: place.floor - ((p['lift'] as num?)?.toDouble() ?? 0),
+        x: x,
+        y: (near?.y ?? place.floor) - (lift ?? 0),
         scale: place.scale * ((p['scale'] as num?)?.toDouble() ?? 1),
-        shadow: (p['lift'] as num?) == null,
-        front: p['front'] == true,
+        shadow: lift == null,
+        front: p['front'] == true || near != null && p['front'] != false,
         emissive: p['emit'] == true,
       ));
     }
+  }
+
+  // Cuerdas entre personajes: `rope: {from, to, sag}` (o una lista); `to` puede ser `left`/`right` (sale de cuadro)
+  final ropes = <Rope>[];
+  final rawRope = directives['rope'];
+  for (final r in rawRope is List ? rawRope : [if (rawRope != null) rawRope]) {
+    if (r is! Map) continue;
+    final from = byKey[r['from']];
+    if (from == null) continue;
+    final to = byKey[r['to']];
+    Offset waist(ActorInstance a) => Offset(a.x, a.y - 78 * a.scale);
+    final a = waist(from);
+    final b = to != null
+        ? waist(to)
+        : Offset(
+            r['to'] == 'left' ? view.left - 20 : view.right + 20, a.dy + 4);
+    ropes.add(Rope(a, b, sag: (r['sag'] as num?)?.toDouble() ?? 16));
   }
 
   return StageSetup(
@@ -223,6 +254,7 @@ StageSetup? stageFor(
     view: view,
     props: props,
     tint: lightTints[directives['light']],
+    ropes: ropes,
   );
 }
 
@@ -308,7 +340,11 @@ List<ActorInstance> withEntrance(StageSetup setup, StageArt? art, double t0) {
   final dist = setup.view.width * 0.3;
   return [
     for (final a in setup.actors)
-      a.entering(t0: t0, walk: walk, from: a.x < center ? -dist : dist),
+      // Quien está tumbado (dormido) no llega caminando: ya está en la cama
+      if (a.rotation != 0)
+        a
+      else
+        a.entering(t0: t0, walk: walk, from: a.x < center ? -dist : dist),
   ];
 }
 
@@ -385,6 +421,7 @@ class _StoryStageState extends State<StoryStage> {
                     tint: setup.tint,
                     camera: widget.animate && !setup.focus,
                     vignette: setup.focus,
+                    ropes: setup.ropes,
                     blurBackground: setup.focus,
                     clock: widget.clock,
                     view: view,

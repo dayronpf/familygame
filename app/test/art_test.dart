@@ -162,6 +162,8 @@ void main() {
         (tester) async {
       await open(tester);
       expect(find.byType(Slider), findsNothing);
+      // Con más gestos en la lista, el botón puede quedar fuera de la pantalla de prueba
+      await tester.ensureVisible(find.text('Prueba de carga (más personajes)'));
       await tester.tap(find.text('Prueba de carga (más personajes)'));
       await tester.pump();
       expect(find.byType(Slider), findsOneWidget);

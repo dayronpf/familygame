@@ -456,6 +456,7 @@ class StageEntry {
     this.x,
     this.lift,
     this.scale,
+    this.rotate,
   });
 
   final String? who;
@@ -468,6 +469,9 @@ class StageEntry {
   /// Cuánto se sube sobre el suelo (para pisar un puente o una tarima) y factor de tamaño (más lejos = menor).
   final double? lift;
   final double? scale;
+
+  /// Grados que se gira sobre los pies (−90 = tumbado con la cabeza a la izquierda: dormir en la cama).
+  final double? rotate;
 }
 
 /// Personajes de una escena, de izquierda a derecha: la lista `stage` o, en packs antiguos, `actors`.
@@ -484,6 +488,7 @@ List<StageEntry> stageEntries(Map<String, Object?> scene) {
             x: (e['x'] as num?)?.toDouble(),
             lift: (e['lift'] as num?)?.toDouble(),
             scale: (e['scale'] as num?)?.toDouble(),
+            rotate: (e['rotate'] as num?)?.toDouble(),
           )
         else if (e is String)
           StageEntry(who: e),

@@ -292,6 +292,99 @@ def maceta_brote():
     return rig("maceta_brote", "Maceta con brotes", [-34, -80, 68, 82], {}, node("root", (0, 0), shapes=_pot() + sprouts))
 
 
+# ------------------------------------------------- objetos de la ronda 8
+def manta():
+    """Manta roja con rayas: cubre al que duerme. Origen: base, centrado."""
+    body = [S("M-66,0 L-66,-20 Q-52,-42 -22,-36 Q8,-46 38,-37 Q62,-34 66,-18 L66,0 Z", "#b0453f", "#5a1a14", 2.5),
+            shade("M30,-37 Q62,-34 66,-18 L66,0 L40,0 Q46,-20 30,-37 Z")]
+    stripes = [S(f"M{x},-36 Q{x + 3},-18 {x},0", None, "#e07a68", 3) for x in (-44, -14, 16, 46)]
+    fold = [S("M-62,-22 Q-30,-32 0,-26 Q30,-34 62,-22", None, "#f0a090", 2, 0.7)]
+    return rig("manta", "Manta", [-70, -50, 140, 52], {}, node("root", (0, 0), shapes=body + stripes + fold))
+
+
+def taza():
+    """Taza de té humeante. Origen: base."""
+    sh = [S("M-18,-30 L18,-30 L14,0 L-14,0 Z", "#e8dcc4", "#6a5a3a", 2.5), shade("M6,-30 L18,-30 L14,0 L4,0 Z"),
+          S("M16,-24 C32,-24 32,-6 15,-8", None, "#6a5a3a", 3),
+          S(ell(0, -30, 18, 5), "#a8c85a", "#6a5a3a", 2)]
+    steam_ = [S("M-6,-40 C-12,-50 0,-54 -4,-66", None, "#ffffff", 3, 0.7), S("M6,-40 C0,-50 12,-54 8,-66", None, "#ffffff", 3, 0.7)]
+    return rig("taza", "Taza de té", [-24, -72, 52, 74], {}, node("root", (0, 0), shapes=sh + steam_))
+
+
+def cuenco():
+    """Cuenco de sopa caliente. Origen: base."""
+    sh = [S("M-26,-26 L26,-26 L18,0 L-18,0 Z", "#c98a3a", "#5a3a14", 2.5), shade("M12,-26 L26,-26 L18,0 L8,0 Z"),
+          S(ell(0, -26, 26, 6), "#e8a43a", "#5a3a14", 2),
+          S("M-8,-34 C-14,-46 -2,-50 -6,-62", None, "#ffffff", 3, 0.7), S("M8,-34 C2,-46 14,-50 10,-62", None, "#ffffff", 3, 0.7)]
+    return rig("cuenco", "Cuenco de sopa", [-30, -68, 60, 70], {}, node("root", (0, 0), shapes=sh))
+
+
+def regadera():
+    """Regadera de hojalata. Origen: base."""
+    sh = [S("M-24,-40 L16,-40 L20,0 L-28,0 Z", "#7a9ac0", "#2a3a5a", 2.5), shade("M6,-40 L16,-40 L20,0 L8,0 Z"),
+          S("M16,-30 L46,-56 L52,-50 L22,-20 Z", "#7a9ac0", "#2a3a5a", 2.5), S(ell(50, -53, 8, 4), "#5a7aa0", "#2a3a5a", 2),
+          S("M-24,-34 C-46,-44 -44,-12 -28,-12", None, "#2a3a5a", 4)]
+    return rig("regadera", "Regadera", [-52, -62, 108, 64], {}, node("root", (0, 0), shapes=sh))
+
+
+def cinta():
+    """Cinta azul de premio (roseta con dos colas). Origen: base."""
+    sh = [S("M-8,-12 L-20,18 L-10,14 L-4,22 L2,-8 Z", "#2f5ac0", "#1a2a6a", 2),
+          S("M8,-12 L20,18 L10,14 L4,22 L-2,-8 Z", "#3f6ad0", "#1a2a6a", 2),
+          S(ell(0, -22, 18, 18), "#3f6ad0", "#1a2a6a", 2.5), S(ell(0, -22, 10, 10), "#8fb0f0", None, 0),
+          S(ell(0, -22, 4, 4), "#f4c542", None, 0)]
+    return rig("cinta", "Cinta azul", [-24, -44, 48, 70], {}, node("root", (0, 0), shapes=[S(ell(0, 3, 14, 3), "#000000", None, 0, 0.0)] + sh))
+
+
+def girasol_seco():
+    """Girasol de otoño: el cuello se dobla y la cabeza, pesada de semillas, cuelga. Origen: base."""
+    cx, cy = 56, -104
+    petals = []
+    for k in range(12):
+        a = 2 * math.pi * k / 12
+        petals.append(S(ell(cx + 27 * math.cos(a), cy + 24 * math.sin(a), 13, 8), "#c89a30" if k % 2 == 0 else "#d8b050", "#8a6a18", 1.5))
+    seeds = [S(ell(cx + 9 * math.cos(a) * r_, cy + 8 * math.sin(a) * r_, 2.4, 2.4), "#f4f0e0", "#3a2412", 0.8)
+             for a, r_ in [(0.6, 1), (1.9, 1.5), (3.1, 1), (4.3, 1.6), (5.4, 1), (0, 0.3), (2.5, 2), (4.9, 2), (1.2, 2.2), (3.7, 2.2)]]
+    head = node("head", (0, -130), shapes=[S("M0,-150 C4,-168 40,-170 52,-134", None, "#8a7a3a", 9)] + petals
+                + [S(ell(cx, cy, 21, 20), "#4a2c16", "#2a180c", 2)] + seeds)
+    leaves = [S("M0,-60 C-34,-82 -46,-60 -40,-44 C-26,-48 -10,-52 0,-60 Z", "#a8914a", "#5a4a1c", 2),
+              S("M0,-96 C34,-118 46,-96 40,-80 C26,-84 10,-88 0,-96 Z", "#a8914a", "#5a4a1c", 2)]
+    stem = node("stem", (0, 0), shapes=[S(rrect(-5, -152, 10, 152, 4), "#8a7a3a")] + leaves, post=[head])
+    root = node("root", (0, 0), post=[stem], shapes=[S(ell(0, 2, 22, 6), "#5a3a22", None, 0, 0.7)])
+    return rig("girasol_seco", "Girasol seco", [-70, -210, 150, 220], {}, root)
+
+
+def roble():
+    """Roble viejo con un hueco en el tronco y una rama larga a la izquierda de la que cuelga la linterna.
+    La punta de la rama está en (-95, -245). Origen: pie del tronco."""
+    trunk = [S("M-34,0 C-30,-60 -26,-150 -22,-250 L24,-250 C30,-150 32,-60 38,0 Z", "#6a4426", "#2a180c", 3),
+             shade("M10,-250 L24,-250 C30,-150 32,-60 38,0 L18,0 C22,-80 16,-170 10,-250 Z"),
+             S("M-34,0 C-50,6 -60,8 -64,12 L-30,-6 Z", "#6a4426", "#2a180c", 2.5), S("M38,0 C54,6 64,8 70,12 L34,-6 Z", "#6a4426", "#2a180c", 2.5)]
+    hollow = [S(ell(4, -84, 22, 34), "#1a0f08", "#120a06", 2.5), S(ell(4, -64, 17, 18), "#000000", None, 0, 0.5)]
+    branch = [S("M-18,-236 C-50,-252 -80,-248 -102,-240 L-100,-250 C-78,-260 -44,-264 -16,-250 Z", "#6a4426", "#2a180c", 2.5),
+              S(ell(-98, -244, 5, 5), "#4a2c16", "#2a180c", 1.5)]
+    crown = [S(ell(0, -306, 118, 60), "#2f8f66", "#16463a", 3), S(ell(-58, -286, 50, 36), "#2a7d5b", "#16463a", 3),
+             S(ell(78, -280, 62, 40), "#2a7d5b", "#16463a", 3), S(ell(30, -326, 56, 34), "#38a074", None, 0, 0.8)]
+    return rig("roble", "Roble viejo", [-170, -370, 340, 384], {}, node("root", (0, 0), shapes=trunk + hollow + crown + branch))
+
+
+def puerta_cabana():
+    """Frente de una cabaña de piedra con una puerta de madera entreabierta: por la rendija (un hueco sin pintar,
+    de x = 6 a 24 desde el centro) se ve lo que haya detrás, p. ej. el que vive dentro. Origen: base, centrado."""
+    stone = "#9a9aa8"
+    wall = [S("M-110,0 L-110,-225 L-48,-225 L-48,0 Z", stone, "#4a4a5a", 2.5), S("M42,0 L42,-225 L110,-225 L110,0 Z", stone, "#4a4a5a", 2.5),
+            S("M-48,-225 L42,-225 L42,-205 L-48,-205 Z", stone, "#4a4a5a", 2.5)]
+    for y in range(-215, 0, 28):
+        wall.append(S(f"M-110,{y} L-48,{y}", None, "#6a6a7a", 1.5))
+        wall.append(S(f"M42,{y} L110,{y}", None, "#6a6a7a", 1.5))
+    door_l = [S("M-48,0 L-48,-205 L6,-205 L6,0 Z", "#7a4a2a", "#2a180c", 2.5)] + \
+             [S(f"M{x},0 L{x},-205", None, "#4a2a14", 1.5) for x in (-30, -12)] + \
+             [S(ell(-4, -95, 5, 5), "#f4c542", "#5a4410", 1.5)]
+    door_r = [S("M24,0 L24,-205 L42,-205 L42,0 Z", "#7a4a2a", "#2a180c", 2.5), S("M33,0 L33,-205", None, "#4a2a14", 1.5)]
+    roof = [S("M-120,-225 L0,-290 L120,-225 Z", "#a8453f", "#4a1a2a", 3), shade("M0,-290 L120,-225 L6,-225 Z")]
+    return rig("puerta_cabana", "Puerta de cabaña", [-124, -292, 248, 294], {}, node("root", (0, 0), shapes=wall + door_l + door_r + roof))
+
+
 # -------------------------------------------------------------------- mesa
 def mesa():
     """Mesa larga de madera con cuencos de sopa, cucharas y pan: para la fiesta de la plaza. Origen: base."""
@@ -369,4 +462,4 @@ def cofre():
 
 
 def build_all():
-    return [campana(), campana_rota(), linterna(), linterna_apagada(), olla(), pan(), trozos_de_pan(), buho(), cabrita(), bolsa(), cometa(), girasol(), semillas(), semillas_dos(), mesa(), maceta(), maceta_brote(), piedras(), hierba(), pedernal(), vela(), saco(), cofre()]
+    return [campana(), campana_rota(), linterna(), linterna_apagada(), olla(), pan(), trozos_de_pan(), buho(), cabrita(), bolsa(), cometa(), girasol(), semillas(), semillas_dos(), mesa(), manta(), taza(), cuenco(), regadera(), cinta(), girasol_seco(), roble(), puerta_cabana(), maceta(), maceta_brote(), piedras(), hierba(), pedernal(), vela(), saco(), cofre()]

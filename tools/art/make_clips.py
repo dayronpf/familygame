@@ -155,6 +155,59 @@ CLIPS = {
         "armR": keys((0, -62), (0.15, -48), (0.3, -62), (0.45, -48), (0.6, -62)),
         "root.dy": keys((0, 0), (0.15, -4), (0.3, 0), (0.45, -4), (0.6, 0)),
         "head": sine(0.6, 3)}),
+    # --- gestos de la ronda 8 (lo que el texto cuenta, ahora se ve)
+    # Temblor / frío / vergüenza: brazos cruzados sobre el pecho, cabeza gacha, tiembla rápido.
+    "shiver": dict(dur=0.4, loop=True, tracks={
+        "armL": keys((0, -70), (0.1, -66), (0.2, -70), (0.3, -66), (0.4, -70)),
+        "armR": keys((0, 70), (0.1, 66), (0.2, 70), (0.3, 66), (0.4, 70)),
+        "torso": keys((0, -1.6), (0.1, 1.6), (0.2, -1.6), (0.3, 1.6), (0.4, -1.6)),
+        "head": keys((0, 7), (0.2, 9), (0.4, 7)),
+        "head.dy": keys((0, 5), (0.4, 5)),
+        "root.dy": keys((0, 1), (0.1, 0), (0.2, 1), (0.3, 0), (0.4, 1)),
+        "legL": keys((0, -4), (0.4, -4)), "legR": keys((0, 4), (0.4, 4)),
+        "eyes.sy": keys((0, 0.45), (0.4, 0.45))}),
+    # Abrazo: los dos brazos abiertos hacia delante (dos personajes juntos se ven abrazados).
+    "hug": dict(dur=2.0, loop=True, tracks={
+        "armL": keys((0, 0), (0.4, 78), (1.6, 78), (2.0, 0)),
+        "armR": keys((0, 0), (0.4, -78), (1.6, -78), (2.0, 0)),
+        "head": keys((0, 0), (0.4, 8), (1.6, 8), (2.0, 0)),
+        "torso": keys((0, 0), (0.4, 3), (1.6, 3), (2.0, 0)),
+        "eyes.sy": keys((0, 1), (0.4, 0.3), (1.6, 0.3), (2.0, 1))}),
+    # Sentado (de frente): piernas cortas y el cuerpo más abajo.
+    "sit": dict(dur=3.0, loop=True, tracks={
+        "root.dy": keys((0, 33), (1.5, 34), (3.0, 33)),
+        "legL.sy": keys((0, 0.45), (3.0, 0.45)), "legR.sy": keys((0, 0.45), (3.0, 0.45)),
+        "legL": keys((0, 10), (3.0, 10)), "legR": keys((0, -10), (3.0, -10)),
+        "torso": sine(3.0, 1.0), "head": sine(3.0, 2.0, 0.1),
+        "armL": keys((0, -8), (3.0, -8)), "armR": keys((0, 8), (3.0, 8)),
+        "eyes.sy": blink(3.0, 0.6)}),
+    # Sentado y triste (Tomás junto al gancho vacío, un niño en el suelo).
+    "sit_sad": dict(dur=3.2, loop=True, tracks={
+        "root.dy": keys((0, 33), (1.6, 34), (3.2, 33)),
+        "legL.sy": keys((0, 0.45), (3.2, 0.45)), "legR.sy": keys((0, 0.45), (3.2, 0.45)),
+        "legL": keys((0, 10), (3.2, 10)), "legR": keys((0, -10), (3.2, -10)),
+        "head": keys((0, 9), (1.6, 11), (3.2, 9)), "head.dy": keys((0, 6), (3.2, 6)),
+        "torso": keys((0, 3), (1.6, 4), (3.2, 3)),
+        "armL": keys((0, -14), (3.2, -14)), "armR": keys((0, 14), (3.2, 14)),
+        "eyes.sy": keys((0, 0.5), (2.9, 0.5), (3.0, 0.12), (3.1, 0.5), (3.2, 0.5))}),
+    # Trepar: los brazos suben alternados y las piernas empujan.
+    "climb": dict(dur=1.2, loop=True, tracks={
+        "armL": keys((0, 150), (0.3, 118), (0.6, 150), (0.9, 170), (1.2, 150)),
+        "armR": keys((0, -118), (0.3, -150), (0.6, -170), (0.9, -150), (1.2, -118)),
+        "legL": sine(1.2, 22), "legR": sine(1.2, 22, 0.5),
+        "legL.dy": keys((0, 0), (0.3, -8), (0.6, 0), (1.2, 0)),
+        "legR.dy": keys((0, 0), (0.6, 0), (0.9, -8), (1.2, 0)),
+        "torso": sine(1.2, 3), "head": sine(1.2, -3),
+        "root.dy": keys((0, 0), (0.6, -4), (1.2, 0)),
+        "eyes.sy": keys((0, 0.8), (1.2, 0.8))}),
+    # Agachado, escondiéndose: encogido y quieto.
+    "hide": dict(dur=2.4, loop=True, tracks={
+        "root.dy": keys((0, 22), (1.2, 23), (2.4, 22)),
+        "legL.sy": keys((0, 0.6), (2.4, 0.6)), "legR.sy": keys((0, 0.6), (2.4, 0.6)),
+        "torso.sy": keys((0, 0.9), (2.4, 0.9)),
+        "head": keys((0, 6), (2.4, 6)),
+        "armL": keys((0, -40), (2.4, -40)), "armR": keys((0, 40), (2.4, 40)),
+        "eyes.sy": keys((0, 1.2), (2.4, 1.2))}),
 }
 
 

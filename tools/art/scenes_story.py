@@ -195,11 +195,11 @@ def rio():
                            "@water", "#124a7a", 3),
                           S(f"M0,350 C160,340 320,362 {W},346 L{W},352 C320,368 160,346 0,356 Z", "#9fe0ff", None, 0, 0.35)], wave)
     # puente de madera
-    bridge = [S(rrect(210, 330, 230, 14, 4), "#a8703c", "#4a2c14", 2.5)]
-    for x in range(222, 430, 26):
-        bridge.append(S(rrect(x, 332, 4, 10, 1), "#4a2c14", None, 0, 0.5))
-    bridge += [S(rrect(214, 300, 6, 34, 2), "#8a5a2b", "#3a2412", 2), S(rrect(430, 300, 6, 34, 2), "#8a5a2b", "#3a2412", 2),
-               S(rrect(214, 304, 222, 5, 2), "#8a5a2b", "#3a2412", 2)]
+    bridge = [S(rrect(206, 330, 238, 14, 4), "#8a7a66", "#3a2e24", 2.5)]
+    for x in range(214, 440, 11):  # unos cuarenta tablones, viejos y gastados
+        bridge.append(S(rrect(x, 331, 1.6, 12, 0.5), "#3a2e24", None, 0, 0.7))
+    bridge += [S(rrect(210, 298, 6, 36, 2), "#6a5a48", "#2a2018", 2), S(rrect(434, 298, 6, 36, 2), "#6a5a48", "#2a2018", 2),
+               S(rrect(210, 304, 230, 5, 2), "#6a5a48", "#2a2018", 2), S("M300,309 L300,330 M372,309 L372,330", None, "#6a5a48", 3)]
     near = layer("near", [S(f"M0,{FLOOR - 12} C160,{FLOOR - 36} 380,{FLOOR - 4} {W},{FLOOR - 30} L{W},{H} L0,{H} Z",
                            "@grass", "#1e5e3a", 3),
                           S(f"M0,{FLOOR + 34} C200,{FLOOR + 14} 420,{FLOOR + 48} {W},{FLOOR + 20} L{W},{H} L0,{H} Z", "#277a48", None, 0)]
@@ -422,6 +422,78 @@ def cuarto(time="noche", season=None):
     return scene("cuarto", name, grads, layers + [bed, stand, floor_])
 
 
+# --------------------------------------------------------------- campanario
+def campanario(time="noche"):
+    """Interior de la torre: muros de piedra, un arco abierto al cielo (a la hora que sea), vigas con un
+    gancho y la cuerda que cuelga de él, y la escalera que baja a la izquierda."""
+    sky_stops = looks.sky_stops(time, None)
+    grads = {"sky": {"type": "linear", "from": [0, 0], "to": [0, 1], "stops": sky_stops},
+             "sun": {"type": "radial", "stops": [[0, "#fff0b0", 0.95], [1, "#fff0b0", 0]]},
+             "moon": {"type": "radial", "stops": [[0, "#fff3c4", 0.55], [1, "#fff3c4", 0]]},
+             "stone": lin([[0, "#8f88b0", 1], [1, "#6a6490", 1]]),
+             "floor": lin([[0, "#6a6490", 1], [1, "#443f66", 1]]),
+             "torch": {"type": "radial", "stops": [[0, "#ffb45a", 0.6], [1, "#ffb45a", 0]]}}
+    sky_shapes = [S(f"M0,0 L{W},0 L{W},{H} L0,{H} Z", "@sky", None, 0)]
+    r = lcg(5)
+    post = []
+    if time == "noche":
+        sky_shapes += [S(ell(470, 150, 80, 80), "@moon", None, 0), S(ell(470, 150, 32, 32), "#fff3c4", None, 0)]
+        for i in range(14):
+            x, y = 400 + next(r) * 150, 110 + next(r) * 120
+            nd = node(f"st{i}", (x, y), shapes=[S(ell(x, y, 1.7, 1.7), "#fff6d8", None, 0)])
+            nd["anim"] = [ambient("opacity", [0.25, 0.95, 0.25], 3.0, next(r) * 3)]
+            post.append(nd)
+    else:
+        sy = 170 if time == "dia" else 262
+        sky_shapes += [S(ell(470, sy, 120, 120), "@sun", None, 0), S(ell(470, sy, 30, 30), "#fff3b0" if time == "dia" else "#fff0b0", None, 0)]
+    sky_shapes += [hills(262, 14, looks.tone("#5bb083", time, None), 3, None, 330), hills(284, 10, looks.tone("#3f9a62", time, None), 5, None, 330)]
+    sky = layer("sky", sky_shapes, post)
+
+    stone = "@stone"
+    wall_shapes = [S("M0,0 L380,0 L380,480 L0,480 Z", stone, None, 0), S("M560,0 L640,0 L640,480 L560,480 Z", stone, None, 0),
+                   S("M380,0 L560,0 L560,190 A90,90 0 0 0 380,190 Z", stone, None, 0), S("M380,300 L560,300 L560,480 L380,480 Z", stone, None, 0)]
+    for row, y in enumerate(range(20, 480, 34)):
+        off = 0 if row % 2 == 0 else 24
+        segs = [(0, 380), (560, 640)] + ([(380, 560)] if (y < 96 or y > 300) else [])
+        for x0, x1 in segs:
+            wall_shapes.append(S(f"M{x0},{y} L{x1},{y}", None, "#4a4570", 1.6, 0.6))
+            for x in range(x0 + off, x1, 48):
+                wall_shapes.append(S(f"M{x},{y} L{x},{y + 34}", None, "#4a4570", 1.6, 0.6))
+    wall_shapes.append(S("M376,306 L376,190 A94,94 0 0 1 564,190 L564,306", None, "#3a3560", 9))
+    wall_shapes.append(S(rrect(366, 296, 208, 14, 3), "#5a5480", "#2a2548", 2.5))
+    wall = layer("wall", wall_shapes)
+    # escalera que baja a la izquierda
+    steps = [S("M0,330 L120,330 L120,480 L0,480 Z", "#14101e", None, 0)]
+    for i in range(6):
+        steps.append(S(f"M0,{338 + i * 24} L{110 - i * 4},{338 + i * 24} L{110 - i * 4},{348 + i * 24} L0,{348 + i * 24} Z", "#3a3560", "#201c38", 1.5, 1.0 - i * 0.12))
+    stair = layer("stair", steps)
+    beam = [S(rrect(0, 0, W, 38, 0), "#6a4426", "#2a180c", 3), S(rrect(0, 28, W, 6, 0), "#000000", None, 0, 0.2)]
+    for x in (120, 300, 480):
+        beam.append(S(f"M{x},38 L{x - 22},64 L{x + 22},64 Z", "#5a3a22", "#2a180c", 2))
+    # gancho de hierro y la cuerda que cuelga
+    beam += [S("M240,38 L240,64 C240,84 262,84 262,66", None, "#3d3a4a", 6), S(rrect(232, 36, 16, 8, 3), "#3d3a4a", "#1a1824", 2),
+             S("M262,70 C262,150 252,200 256,262", None, "#3a2412", 6), S("M262,70 C262,150 252,200 256,262", None, "#c9a06a", 3.4),
+             S(ell(256, 266, 7, 9), "#c9a06a", "#3a2412", 2)]
+    # antorcha en la pared (encendida solo si no hay luz de día)
+    torch_shapes = [S(rrect(150, 150, 8, 40, 2), "#3d3a4a", "#1a1824", 2), S("M136,150 L172,150 L166,162 L142,162 Z", "#3d3a4a", "#1a1824", 2)]
+    torch_post = []
+    if time != "dia":
+        flame = node("flame", (154, 140), shapes=[S("M144,150 C140,132 152,126 154,108 C160,126 168,130 164,150 Z", "#ff8a2a", None, 0),
+                                                S("M149,150 C147,138 154,134 155,122 C159,134 163,138 160,150 Z", "#ffd34a", None, 0)])
+        flame["anim"] = [ambient("opacity", [0.75, 1.0, 0.82, 1.0], 1.6, 0.0)]
+        glow = node("glow", (154, 140), shapes=[S(ell(154, 140, 110, 90), "@torch", None, 0)])
+        glow["anim"] = [ambient("opacity", [0.7, 1.0, 0.75], 2.2, 0.3)]
+        torch_post = [glow, flame]
+    beams = layer("beam", beam + torch_shapes, torch_post)
+    floor_ = layer("floor", [S(rrect(0, FLOOR - 24, W, H - FLOOR + 24, 0), "@floor", "#26223e", 3)]
+                   + [S(f"M{x},{FLOOR - 24} L{x - 20},{H}", None, "#26223e", 1.5, 0.7) for x in range(0, W + 60, 80)])
+    layers_ = [wall, stair, beams, floor_]
+    for l_ in layers_:
+        looks._recolor_node(l_, time, None)
+    name = {"dia": "Campanario de día", "atardecer": "Campanario al atardecer", "noche": "Campanario de noche"}[time]
+    return scene("campanario", name, grads, [sky] + layers_)
+
+
 # ---------------------------------------------------------------- castillo (recorte del existente)
 CASTILLO_VIEW = [0, 250, 600, 450]
 
@@ -434,8 +506,9 @@ PLACES = {
     "aldea": {"scene": "aldea", "view": [0, 0, W, H], "floor": FLOOR, "scale": SCALE},
     "casa": {"scene": "casa", "view": [0, 0, W, H], "floor": FLOOR, "scale": SCALE},
     "cuarto": {"scene": "cuarto", "view": [0, 0, W, H], "floor": FLOOR, "scale": SCALE},
+    "campanario": {"scene": "campanario", "view": [0, 0, W, H], "floor": FLOOR, "scale": SCALE},
 }
-BUILDERS = {"bosque": bosque, "cueva": cueva, "rio": rio, "aldea": aldea, "casa": casa, "cuarto": cuarto}
+BUILDERS = {"bosque": bosque, "cueva": cueva, "rio": rio, "aldea": aldea, "casa": casa, "cuarto": cuarto, "campanario": campanario}
 
 
 # ------------------------------------------------- posiciones de los personajes
@@ -480,10 +553,11 @@ LOOKS = {
     "bosque": [(t, None) for t in ("dia", "atardecer", "noche")],
     "rio": [(t, None) for t in ("dia", "atardecer", "noche")],
     "castillo": [("dia", None), ("atardecer", None)],
+    "campanario": [("dia", None), ("atardecer", None)],
     "cuarto": [("dia", None), ("dia", "invierno"), ("dia", "primavera"), ("noche", "invierno"), ("noche", "primavera")],
 }
 # Hora del fondo base de cada lugar (la que se usa si el cuento no dice nada)
-BASE_TIME = {"aldea": "atardecer", "bosque": "dia", "rio": "dia", "castillo": "noche", "cuarto": "noche", "casa": "noche"}
+BASE_TIME = {"campanario": "noche", "aldea": "atardecer", "bosque": "dia", "rio": "dia", "castillo": "noche", "cuarto": "noche", "casa": "noche"}
 
 
 def write_scene(out, data):
@@ -499,7 +573,10 @@ def variants(out):
     for place, wanted in LOOKS.items():
         table[place] = {BASE_TIME[place]: PLACES[place]["scene"]}
         for time, season in wanted:
-            if place == "cuarto":
+            if place == "campanario":
+                sc = campanario(time)
+                sc["id"] = f"campanario__{time}"
+            elif place == "cuarto":
                 sc = cuarto(time, None if (time == "noche" and season == "primavera") else season)
                 sc["id"] = f"cuarto__{looks.key_of(time, season)}"
             else:

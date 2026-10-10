@@ -34,6 +34,14 @@
   "medieval/rigs/semillas.json",
   "medieval/rigs/semillas_dos.json",
   "medieval/rigs/mesa.json",
+  "medieval/rigs/manta.json",
+  "medieval/rigs/taza.json",
+  "medieval/rigs/cuenco.json",
+  "medieval/rigs/regadera.json",
+  "medieval/rigs/cinta.json",
+  "medieval/rigs/girasol_seco.json",
+  "medieval/rigs/roble.json",
+  "medieval/rigs/puerta_cabana.json",
   "medieval/rigs/maceta.json",
   "medieval/rigs/maceta_brote.json",
   "medieval/rigs/piedras.json",
@@ -51,6 +59,7 @@
   "medieval/scenes/aldea.json",
   "medieval/scenes/casa.json",
   "medieval/scenes/cuarto.json",
+  "medieval/scenes/campanario.json",
   "medieval/scenes/aldea__amanecer.json",
   "medieval/scenes/aldea__amanecer__invierno.json",
   "medieval/scenes/aldea__amanecer__otono.json",
@@ -70,6 +79,8 @@
   "medieval/scenes/bosque__atardecer.json",
   "medieval/scenes/bosque__dia.json",
   "medieval/scenes/bosque__noche.json",
+  "medieval/scenes/campanario__atardecer.json",
+  "medieval/scenes/campanario__dia.json",
   "medieval/scenes/castle_night__atardecer.json",
   "medieval/scenes/castle_night__dia.json",
   "medieval/scenes/cuarto__dia.json",
@@ -218,6 +229,22 @@
     "dia__primavera": "cuarto__dia__primavera",
     "noche__invierno": "cuarto__noche__invierno",
     "noche__primavera": "cuarto__noche__primavera"
+   }
+  },
+  "campanario": {
+   "scene": "campanario",
+   "view": [
+    0,
+    0,
+    640,
+    480
+   ],
+   "floor": 410,
+   "scale": 0.6,
+   "looks": {
+    "noche": "campanario",
+    "dia": "campanario__dia",
+    "atardecer": "campanario__atardecer"
    }
   }
  }

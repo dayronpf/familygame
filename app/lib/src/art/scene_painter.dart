@@ -47,6 +47,7 @@ class ActorInstance {
     this.walk,
     this.enterFrom = 0,
     this.t0 = 0,
+    this.rotation = 0,
   });
 
   final CompiledRig rig;
@@ -67,6 +68,9 @@ class ActorInstance {
   final double enterFrom;
   final double t0;
 
+  /// Giro sobre los pies en grados (−90: tumbado, la cabeza a la izquierda).
+  final double rotation;
+
   /// La misma figura desplazada a [nx] (el modo holograma junta a los personajes hacia el centro).
   ActorInstance withX(double nx) => ActorInstance(
         rig: rig,
@@ -81,6 +85,7 @@ class ActorInstance {
         walk: walk,
         enterFrom: enterFrom,
         t0: t0,
+        rotation: rotation,
       );
 
   ActorInstance entering({
@@ -101,7 +106,26 @@ class ActorInstance {
         walk: walk,
         enterFrom: from,
         t0: t0,
+        rotation: rotation,
       );
+}
+
+/// Una cuerda entre dos puntos de la escena (la que une al héroe y a su ayudante), con una curva floja.
+class Rope {
+  const Rope(this.a, this.b, {this.sag = 16});
+
+  final Offset a;
+  final Offset b;
+
+  /// Cuánto cuelga por el medio (en unidades de la escena).
+  final double sag;
+
+  @override
+  bool operator ==(Object other) =>
+      other is Rope && other.a == a && other.b == b && other.sag == sag;
+
+  @override
+  int get hashCode => Object.hash(a, b, sag);
 }
 
 /// Dibuja la escena, sus objetos y sus personajes. [clock] da los segundos transcurridos y repinta
@@ -115,6 +139,7 @@ class ScenePainter extends CustomPainter {
     this.tint,
     this.camera = false,
     this.vignette = false,
+    this.ropes = const [],
     this.blurBackground = false,
     this.showBackground = true,
     this.view,
@@ -131,6 +156,9 @@ class ScenePainter extends CustomPainter {
 
   /// Desenfoca el fondo (los lugares y su luz se intuyen, pero el objeto manda): primer plano.
   final bool blurBackground;
+
+  /// Cuerdas entre personajes (se dibujan por delante de ellos).
+  final List<Rope> ropes;
 
   /// Oscurece los bordes para centrar la mirada en el objeto (primer plano).
   final bool vignette;
@@ -160,7 +188,7 @@ class ScenePainter extends CustomPainter {
       }
     }
     final pose = samplePose(a.rig.rig, clip, tt);
-    if (a.shadow) {
+    if (a.shadow && a.rotation == 0) {
       final rx = 58 * a.scale * a.rig.rig.bodyScale + 8;
       canvas.drawOval(
           Rect.fromCenter(
@@ -169,6 +197,7 @@ class ScenePainter extends CustomPainter {
     }
     canvas.save();
     canvas.translate(x, a.y);
+    if (a.rotation != 0) canvas.rotate(a.rotation * math.pi / 180);
     canvas.scale(a.scale);
     a.rig.paint(canvas, pose);
     canvas.restore();
@@ -221,6 +250,26 @@ class ScenePainter extends CustomPainter {
     for (final p in props) {
       if (p.front && !p.emissive) _drawActor(canvas, p, t);
     }
+    for (final r in ropes) {
+      final path = Path()
+        ..moveTo(r.a.dx, r.a.dy)
+        ..quadraticBezierTo((r.a.dx + r.b.dx) / 2,
+            (r.a.dy + r.b.dy) / 2 + r.sag * 2, r.b.dx, r.b.dy);
+      canvas.drawPath(
+          path,
+          Paint()
+            ..style = PaintingStyle.stroke
+            ..strokeWidth = 5
+            ..strokeCap = StrokeCap.round
+            ..color = const Color(0xFF3A2412));
+      canvas.drawPath(
+          path,
+          Paint()
+            ..style = PaintingStyle.stroke
+            ..strokeWidth = 2.6
+            ..strokeCap = StrokeCap.round
+            ..color = const Color(0xFFC9A06A));
+    }
     final light = tint;
     if (light != null) {
       canvas.drawRect(
@@ -258,6 +307,7 @@ class ScenePainter extends CustomPainter {
       old.camera != camera ||
       old.vignette != vignette ||
       old.blurBackground != blurBackground ||
+      !listEquals(old.ropes, ropes) ||
       !listEquals(old.actors, actors) ||
       !listEquals(old.props, props);
 }

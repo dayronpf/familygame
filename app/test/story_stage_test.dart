@@ -524,4 +524,95 @@ void main() {
           closeTo(normal.actors.single.scale * 0.85, 1e-9));
     });
   });
+
+  group('la acción se ve: tumbados, objetos en la mano y cuerdas', () {
+    Map<String, Object?> base(Map<String, Object?> extra) => {
+          'bg': 'plaza',
+          'time': 'dia',
+          'mood': 'calm',
+          ...extra,
+        };
+
+    test('«rotate» tumba al personaje, sin sombra y sin llegar caminando', () {
+      final setup = stageFor(
+        art,
+        cast(),
+        base({
+          'stage': [
+            {'who': 'hero', 'clip': 'sleep', 'rotate': -90, 'lift': 150},
+            {'who': 'helper'},
+          ],
+        }),
+      )!;
+      expect(setup.actors.first.rotation, -90);
+      expect(setup.actors.last.rotation, 0);
+      final entering = withEntrance(setup, art, 0);
+      expect(entering.first.enterFrom, 0,
+          reason: 'quien duerme ya está en la cama');
+      expect(entering.last.enterFrom, isNot(0));
+    });
+
+    test('«near» pone el objeto junto al personaje, a la altura de su mano',
+        () {
+      final setup = stageFor(
+        art,
+        cast(),
+        base({
+          'stage': [
+            {'who': 'hero', 'x': 0.3},
+            {'who': 'helper', 'x': 0.7},
+          ],
+          'props': [
+            {'prop': 'vela', 'near': 'helper', 'dx': -0.05, 'lift': 60},
+          ],
+        }),
+      )!;
+      final helper = setup.actors.last;
+      final vela = setup.props.single;
+      expect(vela.x, closeTo(helper.x - 0.05 * setup.view.width, 0.01));
+      expect(vela.y, helper.y - 60);
+      expect(vela.front, isTrue, reason: 'se ve delante del personaje');
+    });
+
+    test('«rope» une a dos personajes y puede salir de cuadro', () {
+      final two = stageFor(
+        art,
+        cast(),
+        base({
+          'stage': [
+            {'who': 'hero', 'x': 0.3},
+            {'who': 'helper', 'x': 0.7},
+          ],
+          'rope': {'from': 'hero', 'to': 'helper'},
+        }),
+      )!;
+      expect(two.ropes, hasLength(1));
+      expect(two.ropes.single.a.dx, closeTo(two.actors.first.x, 0.01));
+      expect(two.ropes.single.b.dx, closeTo(two.actors.last.x, 0.01));
+      final out = stageFor(
+        art,
+        cast(),
+        base({
+          'stage': [
+            {'who': 'hero', 'x': 0.5},
+          ],
+          'rope': {'from': 'hero', 'to': 'left'},
+        }),
+      )!;
+      expect(out.ropes.single.b.dx, lessThan(out.view.left));
+    });
+
+    test('los gestos nuevos existen y se pueden dibujar', () {
+      for (final clip in [
+        'shiver',
+        'hug',
+        'sit',
+        'sit_sad',
+        'climb',
+        'hide',
+      ]) {
+        expect(art.clip(clip), isNotNull, reason: clip);
+      }
+    });
+  });
 }

@@ -89,6 +89,7 @@ Future<Uint8List> _render(StageSetup setup, double t) async {
     props: setup.props,
     tint: setup.tint,
     vignette: setup.focus,
+    ropes: setup.ropes,
     blurBackground: setup.focus,
     clock: ValueNotifier<double>(t),
     view: view,
