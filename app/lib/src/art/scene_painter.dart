@@ -67,6 +67,22 @@ class ActorInstance {
   final double enterFrom;
   final double t0;
 
+  /// La misma figura desplazada a [nx] (el modo holograma junta a los personajes hacia el centro).
+  ActorInstance withX(double nx) => ActorInstance(
+        rig: rig,
+        clip: clip,
+        x: nx,
+        y: y,
+        scale: scale,
+        phase: phase,
+        shadow: shadow,
+        front: front,
+        emissive: emissive,
+        walk: walk,
+        enterFrom: enterFrom,
+        t0: t0,
+      );
+
   ActorInstance entering({
     required double t0,
     required Clip? walk,

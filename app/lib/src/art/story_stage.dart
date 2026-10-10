@@ -200,6 +200,17 @@ StageSetup? stageFor(
   );
 }
 
+/// Los personajes de [setup] llegan caminando al aparecer la escena (desde el lado en que están).
+List<ActorInstance> withEntrance(StageSetup setup, StageArt? art, double t0) {
+  final walk = art?.clip('walk');
+  final center = setup.place.view.center.dx;
+  final dist = setup.place.view.width * 0.3;
+  return [
+    for (final a in setup.actors)
+      a.entering(t0: t0, walk: walk, from: a.x < center ? -dist : dist),
+  ];
+}
+
 /// Carga el arte del pack; si falta o está roto devuelve `null` (el cuento se lee igual, sin dibujos).
 Future<StageArt?> loadStageArt(AssetBundle bundle) async {
   try {
@@ -237,18 +248,9 @@ class StoryStage extends StatefulWidget {
 class _StoryStageState extends State<StoryStage> {
   late List<ActorInstance> _actors = _build();
 
-  List<ActorInstance> _build() {
-    final setup = widget.setup;
-    if (!widget.animate) return setup.actors;
-    final walk = widget.art?.clip('walk');
-    final center = setup.place.view.center.dx;
-    final dist = setup.place.view.width * 0.3;
-    final t0 = widget.clock.value;
-    return [
-      for (final a in setup.actors)
-        a.entering(t0: t0, walk: walk, from: a.x < center ? -dist : dist),
-    ];
-  }
+  List<ActorInstance> _build() => widget.animate
+      ? withEntrance(widget.setup, widget.art, widget.clock.value)
+      : widget.setup.actors;
 
   @override
   void didUpdateWidget(StoryStage old) {

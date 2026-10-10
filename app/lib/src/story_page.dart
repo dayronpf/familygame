@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 
 import 'art/story_stage.dart';
+import 'audio/ambience.dart';
+import 'cinema_page.dart';
+import 'hologram_page.dart';
+import 'narration/narrator.dart';
 import 'feedback/feedback_service.dart';
 import 'feedback/rating_card.dart';
 
@@ -22,7 +26,13 @@ class StoryPage extends StatefulWidget {
     required this.feedback,
     this.art,
     this.animate = true,
+    this.narrator,
+    this.ambience,
   });
+
+  /// Voz y fondo de los modos cine y holograma (por defecto, los del teléfono; las pruebas ponen mudos).
+  final Narrator Function()? narrator;
+  final Ambience Function()? ambience;
 
   final Story story;
 
@@ -89,6 +99,30 @@ class _StoryPageState extends State<StoryPage>
           ];
   }
 
+  void _openShow({required bool hologram}) {
+    final art = _stageArt;
+    if (art == null) return;
+    final narrator = widget.narrator?.call();
+    final ambience = widget.ambience?.call();
+    final page = hologram
+        ? HologramPage(
+            story: _story,
+            art: art,
+            setups: _setups,
+            narrator: narrator,
+            ambience: ambience,
+          )
+        : CinemaPage(
+            story: _story,
+            art: art,
+            setups: _setups,
+            narrator: narrator,
+            ambience: ambience,
+            animate: widget.animate,
+          );
+    Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => page));
+  }
+
   /// Si leyeron el cuento hasta el final y no respondieron, se les preguntará con calma más tarde.
   void _rememberIfUnanswered() {
     if (_reachedEnd && !_answered) {
@@ -139,7 +173,23 @@ class _StoryPageState extends State<StoryPage>
     final scheme = Theme.of(context).colorScheme;
     final body = text.titleLarge!.copyWith(height: 1.6);
     return Scaffold(
-      appBar: AppBar(title: Text(_story.moral.name)),
+      appBar: AppBar(
+        title: Text(_story.moral.name),
+        actions: [
+          if (_stageArt != null && _setups.any((s) => s != null)) ...[
+            IconButton(
+              icon: const Icon(Icons.movie_filter),
+              tooltip: 'Modo cine: escuchar con dibujos',
+              onPressed: () => _openShow(hologram: false),
+            ),
+            IconButton(
+              icon: const Icon(Icons.view_in_ar),
+              tooltip: 'Modo holograma (prisma sobre la pantalla)',
+              onPressed: () => _openShow(hologram: true),
+            ),
+          ],
+        ],
+      ),
       body: SafeArea(
         child: ListView(
           padding: const EdgeInsets.fromLTRB(24, 8, 24, 32),
