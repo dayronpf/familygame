@@ -134,3 +134,28 @@ farolero, pedernal, vela, saco y cofre.
 | Rosa recompensa con pan sin harina | Rosa va al molino por harina; el panecillo llega al atardecer |
 | «Los rodillas», «lo abrazó», «hasta al mago» | Corregidos; son errores objetivos que ahora el validador ayuda a evitar |
 | «Antes de irse, la abuela…» (puede inquietar al dormir) | «Al despedirse…»; fiesta del girasol en verano |
+
+### Vuelta 7 — las seis historias juntas (pack v0.9.0 → v0.10.0): 3,9 / 4,0 / 4,1 (media 4,0)
+
+Tres lectores nuevos, 12 cuentos cada uno (dos por historia). Sin defectos críticos de contenido; notas por historia
+(media de los lectores): bolsa del pozo 4,2–4,6 · campana 3,8–4,2 · semillas de sol 3,8–4,2 · puente 4,0 · olla 4,0 ·
+linterna 3,9–4,1. Veredicto: «apto para una prueba pequeña con familias» con los retoques siguientes, ya aplicados:
+
+| Defecto | Corrección |
+|---|---|
+| «Tú no cruzas solo» con heroína (error de género que el validador no veía) | Frase reescrita; el validador rechaza ahora `cruz… solo/sola` |
+| Linterna: el viento no puede apagar una linterna cerrada (y luego «donde no llega el viento») | El viento abre la puertecita de cristal; el héroe la cierra al encender |
+| Linterna: los adultos «no se atrevían» y se quedan quietos | Buscan con faroles que el viento apaga; esperan al amanecer por peligro, no por cobardía |
+| Linterna: la cuerda se prepara y nunca se usa; el consejo del ayudante no lo usa el héroe | El héroe tira una vez de la cuerda («aquí estoy») en el apagón y al final; truco propio de cada ayudante en la oscuridad |
+| Campana: el villano acusa sin motivo; el bandido «en una esquina» del cuarto | «Yo estaba en la escalera cuando se rompió… alguien tendrá que cargar con la culpa»; «al otro lado de la aldea» |
+| Puente: tras el resbalón no decide el héroe | «Voy a seguir», con la orilla a veinte tablones en cada sentido |
+| Olla: familia de los niños sin cerrar; «todas las sillas, hasta su única silla» | «Mañana mismo mandaremos aviso a vuestra familia»; trae su única silla y se sienta en el suelo |
+| Semillas: lógica del premio; «Yo solo regué lo que tú sembraste»; Lía sin presentar | «Alguno saldría el más alto»; «planté lo que tú me regalaste»; Lía aparece en la escena 2 |
+| Frases > 25 palabras y cuento de linterna de ≈ 950 palabras | Partidas y recortadas; la media del pack baja a ≈ 740 palabras (≈ 6,7 min) |
+
+Medida propia de variedad (coincidencia media entre dos cuentos de la misma historia): pozo 38 %, girasol 43 %, olla 46 %,
+campana 49 %, linterna 54 %, puente 56 %. Heroína y héroe salen casi igual de veces (Aldo 909 · Mara 891 de 1800).
+
+**Pendiente para después de probar con familias:** escuchar la voz sintética real («tilín», «Flup», «ñam», pausas en «…»),
+probar un lote con Mara de protagonista, protocolo de preguntas de comprensión y dónde se distrae el niño, revisar las
+ilustraciones con el texto, y más variantes por escena (puente 56 %, linterna 54 %).

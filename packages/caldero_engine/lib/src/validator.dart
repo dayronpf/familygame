@@ -171,7 +171,7 @@ final RegExp causalConnectors = RegExp(
 /// `{hero.o}` («quiet{hero.o}»); si aparecen literales, con una heroína (o un héroe) salen mal.
 final RegExp _fixedGender = RegExp(
   r'\b(?:quiet|dormid|tranquil|liger|helad|cansad|asustad|sorprendid|content|preocupad|confundid)(?:o|a)\b'
-  r'|\b(?:yo|entró|siguió|quedó|iba|estaba|fue|llegó|subió|ir|irse|iría|quedarse)\s+sol(?:o|a)\b'
+  r'|\b(?:yo|entró|siguió|quedó|iba|estaba|fue|llegó|subió|ir|irse|iría|quedarse|cruz\w+)\s+sol(?:o|a)\b'
   r'|(?<![\wáéíóúüñ])(?:él|ella)(?![\wáéíóúüñ])',
 );
 

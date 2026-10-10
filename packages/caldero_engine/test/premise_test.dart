@@ -776,6 +776,7 @@ void main() {
           v('mal3', '{hero} estaba dormida con {item.un}.'),
           v('mal4', '{hero} sí iba a ir, pero no iba a ir solo con {item.un}.'),
           v('mal5', 'Entre él y {hero} dejaron {item.un}.'),
+          v('mal6', 'Tú no cruzas solo con {item.un}, {hero}.'),
           v('bien',
               '{hero} se quedó quiet{hero.o} y sol{hero.o} con {item.un}. Solo quería dormir.'),
         ],
@@ -786,6 +787,7 @@ void main() {
     expect(p, contains('mal3: género fijo «dormida»'));
     expect(p, contains('mal4: género fijo «ir solo»'));
     expect(p, contains('mal5: género fijo «él»'));
+    expect(p, contains('mal6: género fijo «cruzas solo»'));
     expect(p, isNot(contains('bien: género fijo')));
   });
 
