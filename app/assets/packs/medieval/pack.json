@@ -3350,7 +3350,7 @@
      "variants": [
       {
        "id": "a",
-       "text": "Era día de mercado en {plaza.el}, y todo olía a pan, a manzanas y a canela. {hero}, {hero.rasgo}, se paró delante del puesto del molinero Beto. Colgaba allí {cometa.un} roja, con una cola larga de lazos amarillos. «Cuesta tres monedas de plata», dijo Beto. {hero} metió la mano en el bolsillo: solo tenía dos.",
+       "text": "Era día de mercado en {plaza.el}, y todo olía a pan, a manzanas y a canela. {hero}, {hero.rasgo}, se paró delante del puesto del molinero Beto. Colgaba allí {cometa.un} roja, con una cola larga de lazos amarillos. «Cuesta cinco monedas de plata», dijo Beto. {hero} metió la mano en el bolsillo: solo tenía dos.",
        "scene": {
         "bg": "plaza",
         "stage": [
@@ -3376,7 +3376,7 @@
       },
       {
        "id": "b",
-       "text": "En {plaza.el} había pregones y risas por todas partes, pero {hero} no miraba nada de eso. Solo miraba {cometa.un} roja que colgaba del puesto del molinero Beto, con su cola larga de lazos amarillos. «Tres monedas de plata», dijo Beto con un guiño. {hero} contó las suyas: una, dos. Faltaba una.",
+       "text": "En {plaza.el} había pregones y risas por todas partes, pero {hero} no miraba nada de eso. Solo miraba {cometa.un} roja que colgaba del puesto del molinero Beto, con su cola larga de lazos amarillos. «Cinco monedas de plata», dijo Beto con un guiño. {hero} contó las suyas: una, dos. Faltaban tres.",
        "scene": {
         "bg": "plaza",
         "stage": [
@@ -3402,7 +3402,7 @@
       },
       {
        "id": "c",
-       "text": "El día de mercado, {plaza.el} olía a canela y a pan caliente. Entre los puestos, el molinero Beto vendía {cometa.un} roja con la cola llena de lazos amarillos. {hero} la miró un rato largo. «Son tres monedas de plata», dijo Beto. {hero} sacó las suyas y las contó dos veces, por si acaso. Dos. Siempre dos.",
+       "text": "El día de mercado, {plaza.el} olía a canela y a pan caliente. Entre los puestos, el molinero Beto vendía {cometa.un} roja con la cola llena de lazos amarillos. {hero} la miró un rato largo. «Son cinco monedas de plata», dijo Beto. {hero} sacó las suyas y las contó dos veces, por si acaso. Dos. Siempre dos.",
        "scene": {
         "bg": "plaza",
         "stage": [
@@ -3436,7 +3436,7 @@
      "variants": [
       {
        "id": "a",
-       "text": "Al volver a casa, {hero} pasó junto al pozo. Algo brillaba entre las piedras. ¡Tilín! Era {item.un} de cuero, atada con una cuerda, y dentro había monedas de plata. {hero} las contó con el corazón latiendo: una, dos, tres. Tres monedas, justo las que faltaban. Miró a un lado y a otro. No había nadie. «¿De quién será?», preguntó al pozo. «…será… será…», contestó el eco.",
+       "text": "Al volver a casa, {hero} pasó junto al pozo. Algo brillaba entre las piedras. ¡Tilín! Era {item.un} de cuero, atada con una cuerda, y dentro había monedas de plata. {hero} las contó con el corazón latiendo: una, dos, tres. Tres monedas, justo las que le faltaban. Miró a un lado y a otro. No había nadie. «¿De quién será?», preguntó al pozo. «…será… será…», contestó el eco.",
        "scene": {
         "bg": "plaza",
         "stage": [
@@ -3458,7 +3458,7 @@
       },
       {
        "id": "b",
-       "text": "Junto al pozo, entre dos piedras, algo hizo ¡tilín! {hero} se agachó y sacó {item.un} de cuero, pesada y fría. Dentro había tres monedas de plata. Tres, justo las que le faltaban para la cometa. {hero} miró a un lado y a otro. No había nadie. «¿De quién será?», preguntó al pozo. «…será… será…», contestó el eco.",
+       "text": "Junto al pozo, entre dos piedras, algo hizo ¡tilín! {hero} se agachó y sacó {item.un} de cuero, pesada y fría. Dentro había tres monedas de plata. Tres, justo las que le faltaban para comprar la cometa. {hero} miró a un lado y a otro. No había nadie. «¿De quién será?», preguntó al pozo. «…será… será…», contestó el eco.",
        "scene": {
         "bg": "plaza",
         "stage": [
@@ -3538,7 +3538,7 @@
       },
       {
        "id": "c",
-       "text": "«Tres monedas de plata», pensó {hero}, «justo las que me faltan». Tocó {item.el} una vez más. Quien la había perdido no estaba cerca. Y la cometa roja estaba tan, tan cerca… Se guardó la bolsa en el bolsillo y echó a andar muy derecho, como si nada. ¡Tilín, tilín! {hero} aceleró el paso.",
+       "text": "«Tres monedas de plata», pensó {hero}, «justo las que me faltan para la cometa». Tocó {item.el} una vez más. Quien la había perdido no estaba cerca. Y la cometa roja estaba tan, tan cerca… Se guardó la bolsa en el bolsillo y echó a andar muy derecho, como si nada. ¡Tilín, tilín! {hero} aceleró el paso.",
        "scene": {
         "bg": "plaza",
         "stage": [
@@ -3580,7 +3580,7 @@
       },
       {
        "id": "b",
-       "text": "{hero} no podía dormir. Debajo de la almohada, {item.el} hacía tilín cada vez que respiraba. Pensó en la cometa roja, volando muy alto. Pero la cometa no se parecía a lo que sentía. Dentro del pecho había algo que pesaba como una piedra, y por eso no podía dormir. «Es solo una bolsa», se dijo. Pero la bolsa no se callaba, y el eco del pozo tampoco: «…será… será…».",
+       "text": "{hero} no podía dormir. Debajo de la almohada, {item.el} hacía tilín cada vez que respiraba. Cerró los ojos y vio la cometa roja, volando muy alto. Pero entonces, tilín, y en el pecho le pesó una piedra pequeña y fría. «Es solo una bolsa», se dijo. Pero la bolsa no se callaba, y el eco del pozo tampoco: «…será… será…».",
        "scene": {
         "bg": "cuarto",
         "stage": [
@@ -3603,7 +3603,7 @@
       },
       {
        "id": "c",
-       "text": "Esa noche, la luna se asomó a la ventana de {hero} y vio algo raro: un bulto debajo de la almohada que hacía tilín cuando respiraba. {hero} dio una vuelta, y tilín. Dio otra, y tilín, tilín. Se tapó la cabeza con la manta, pero el eco del pozo se colaba hasta debajo: «…será… será…». {hero} apretó los ojos, porque la bolsa pesaba y pesaba.",
+       "text": "Esa noche, la luna se asomó a la ventana de {hero} y vio algo raro. Debajo de la almohada había un bulto que hacía tilín cuando {hero} respiraba. {hero} dio una vuelta, y tilín. Dio otra, y tilín, tilín. Se tapó la cabeza con la manta, pero el eco del pozo se colaba hasta debajo: «…será… será…». {hero} apretó los ojos, porque la bolsa pesaba y pesaba.",
        "scene": {
         "bg": "cuarto",
         "stage": [
@@ -3696,7 +3696,7 @@
      "variants": [
       {
        "id": "a",
-       "text": "Con {item.el} en el bolsillo y un nudo en la garganta, {hero} fue a ver {helper.al} {helper}. Se lo contó todo sin respirar: la cometa, la bolsa, la noche sin dormir, el llanto de Rosa. {helper} lo escuchó sin interrumpir, porque sabía que eso era lo más difícil. Al final, {helper.consuelo}.",
+       "text": "Con {item.el} en el bolsillo y un nudo en la garganta, {hero} fue a ver {helper.al} {helper}. Se lo contó todo sin respirar: la cometa, la bolsa, la noche sin dormir, el llanto de Rosa. {helper} escuchó sin interrumpir, porque sabía que eso era lo más difícil. Al final, {helper.consuelo}.",
        "scene": {
         "bg": "plaza",
         "stage": [
@@ -3717,7 +3717,7 @@
       },
       {
        "id": "b",
-       "text": "{hero} caminó despacio hasta {helper.al} {helper}, con una mano sobre el bolsillo para que no sonara. En cuanto abrió la boca, todo salió de golpe: la cometa, la bolsa, la luna, el llanto de Rosa. {helper.El} {helper} no dijo ni una palabra. Solo {helper.gesto}.",
+       "text": "{hero} caminó despacio hacia {helper.el} {helper}, con una mano sobre el bolsillo para que no sonara. En cuanto abrió la boca, todo salió de golpe: la cometa, la bolsa, la luna, el llanto de Rosa. {helper.El} {helper} no dijo ni una palabra. Solo {helper.gesto}.",
        "scene": {
         "bg": "plaza",
         "stage": [
@@ -3746,7 +3746,7 @@
      "variants": [
       {
        "id": "zaf",
-       "text": "«Una vez encontré un anillo de oro en un camino», contó {helper} {helper.voz}. «Estuve tres días mirándolo. Al cuarto lo devolví, ya que no era mío. ¿Y sabes qué pasó? Esa noche dormí como un tronco.» {hero} abrió mucho los ojos. «Lo que no es tuyo habla por las noches», añadió {helper}, «si lo guardas».",
+       "text": "«Una vez encontré un anillo de oro en un camino», contó {helper} {helper.voz}. «Estuve tres días mirándolo. Al cuarto lo devolví, porque no era mío. ¿Y sabes qué pasó? Esa noche dormí como un tronco.» {hero} abrió mucho los ojos. «Y tú, ¿qué tal fue tu noche?», preguntó {helper}.",
        "scene": {
         "bg": "plaza",
         "stage": [
@@ -3767,7 +3767,7 @@
       },
       {
        "id": "bon",
-       "text": "«Cuando era rey me regalaron un sombrero que no era para mí», confesó {helper} {helper.voz}. «Me lo puse tres días, muy orgulloso. Hasta que vi a su dueño con la cabeza al sol, rojo como un tomate. Se lo devolví, y por eso me sentí más liviano que sin corona.»",
+       "text": "«Cuando era rey me dieron un sombrero por error», confesó {helper} {helper.voz}. «Me lo puse tres días, muy orgulloso. Hasta que vi a su dueño con la cabeza al sol, rojo como un tomate. Se lo devolví, y por eso la cabeza me pesó menos que con corona.»",
        "scene": {
         "bg": "plaza",
         "stage": [
@@ -3835,7 +3835,7 @@
      "variants": [
       {
        "id": "a",
-       "text": "{hero} corrió hasta Rosa, con un empujoncito {helper.del} {helper}, y le puso {item.el} en las manos. ¡Tilín! «Es tuya», dijo, casi sin voz. «La encontré ayer, junto al pozo. Me la quedé una noche entera, porque quería la cometa. Perdón.» Rosa abrió la boca, abrió los ojos y abrió la bolsa. Una, dos, tres… ¡Estaban todas!",
+       "text": "«Voy a decírselo», dijo {hero}. Le temblaban las rodillas, pero fue. {helper} se quedó atrás, mirando. {hero} le puso {item.el} a Rosa en las manos. ¡Tilín! «Es tuya», dijo, casi sin voz. «La encontré ayer, junto al pozo. Me la quedé una noche entera, porque quería la cometa. Perdón.» [[Rosa abrió la boca, abrió los ojos y abrió la bolsa.|Rosa abrió los ojos muy grandes y luego abrió la bolsa.]] Una, dos, tres… ¡Estaban todas!",
        "scene": {
         "bg": "plaza",
         "stage": [
@@ -3865,7 +3865,7 @@
       },
       {
        "id": "b",
-       "text": "{helper} le dio un empujoncito. Con el corazón a mil, {hero} dio un paso al frente. «Rosa», dijo, «esto es tuyo». Le tendió {item.el}. Tilín, tilín. «La encontré ayer y me la guardé porque quería la cometa. Pasé la noche sin dormir. Perdón.» Los vecinos se quedaron callados. Rosa miró la bolsa, miró a {hero}, y se echó a llorar, pero esta vez de otra manera.",
+       "text": "«Voy a decírselo», dijo {hero}, y {helper} se quedó atrás, mirando. Con el corazón a mil, {hero} dio un paso al frente. «Rosa», dijo, «esto es tuyo». Le tendió {item.el}. Tilín, tilín. «La encontré ayer y me la guardé porque quería la cometa. Pasé la noche sin dormir. Perdón.» Los vecinos [[se quedaron callados|dejaron de hablar]]. Rosa miró la bolsa, miró a {hero}, y se echó a llorar, pero con una sonrisa.",
        "scene": {
         "bg": "plaza",
         "stage": [
@@ -3896,7 +3896,7 @@
      "variants": [
       {
        "id": "a",
-       "text": "Rosa lo abrazó tan fuerte que casi le saca el aire. «Gracias a ti, mañana habrá pan», dijo. Sacó un panecillo caliente y se lo puso en las manos. {hero} sonrió, aunque un poquito se acordó de la cometa roja. Dos monedas no eran tres. Pero el panecillo estaba calentito, y el pecho ya no pesaba.",
+       "text": "Rosa abrazó a {hero} tan fuerte que casi le sacó el aire. «Gracias a ti, mañana habrá pan», dijo. «Voy corriendo al molino por harina, y esta tarde el primer panecillo es para ti.» {hero} sonrió, aunque un poquito se acordó de la cometa roja. Dos monedas no eran cinco. Pero el pecho ya no le pesaba.",
        "scene": {
         "bg": "plaza",
         "stage": [
@@ -3917,7 +3917,7 @@
       },
       {
        "id": "b",
-       "text": "Rosa se secó los ojos con el delantal. «Mañana habrá pan para todo el pueblo, gracias a ti», dijo, «y el primer panecillo es para ti». Se lo dio humeante, envuelto en papel. {hero} lo olió: olía a mantequilla y a sol. La cometa roja seguía colgada en el puesto de Beto. Pero {hero} ya no la miraba con tanta hambre.",
+       "text": "Rosa se secó los ojos con el delantal. «Mañana habrá pan para todo el pueblo, gracias a ti», dijo. «Voy al molino por harina, y esta tarde el primer panecillo es para ti.» La cometa roja seguía colgada en el puesto de Beto. Pero {hero} ya no la miraba con tanta hambre.",
        "scene": {
         "bg": "plaza",
         "stage": [
@@ -3938,7 +3938,7 @@
       },
       {
        "id": "c",
-       "text": "Rosa apretó la bolsa contra el pecho y, de pronto, soltó una carcajada. «¡Pan para todos!», gritó. Sacó del delantal un panecillo tibio y lo puso en las manos de {hero}. «El primero es tuyo, gracias a ti.» Olía tan rico que {hero} casi se lo come allí mismo, pero lo envolvió en su pañuelo. Dos monedas no eran tres. Pero un panecillo ya era algo.",
+       "text": "Rosa apretó la bolsa contra el pecho y, de pronto, soltó una carcajada. «¡Pan para todos!», gritó. «Corro al molino por harina. Y esta tarde, el primer panecillo es para ti, gracias a ti.» Dos monedas no eran cinco. Pero un panecillo ya era algo.",
        "scene": {
         "bg": "plaza",
         "stage": [
@@ -3964,7 +3964,7 @@
      "variants": [
       {
        "id": "a",
-       "text": "Al atardecer, {hero} y {helper} se sentaron junto al pozo a comerse el panecillo. Con el papel y dos palitos, {helper} hizo una cometa chiquita. Tenía la cola torcida y ningún lazo. El viento la levantó, ¡fiuuu!, y subió, subió, subió. {hero} se rio.",
+       "text": "Al atardecer, Rosa llegó con el primer panecillo, tibio y envuelto en papel. {hero} y {helper} se sentaron junto al pozo a comérselo. Con el papel, un hilo y dos palitos, {helper} hizo una cometa chiquita. Tenía la cola torcida y ningún lazo. El viento la levantó, ¡fiuuu!, y subió, subió, subió. {hero} se rio.",
        "scene": {
         "bg": "plaza",
         "stage": [
@@ -3987,12 +3987,15 @@
           "lift": 210
          }
         ],
-        "light": "dusk"
+        "light": "dusk",
+        "offstage": [
+         "rosa"
+        ]
        }
       },
       {
        "id": "b",
-       "text": "Cuando el cielo se puso naranja, {hero} y {helper} comieron el panecillo junto al pozo. Con el papel doblado y unos palitos, {helper} hizo una cometa pequeña, de cola torcida. El viento se la llevó de las manos, ¡fiuuu!, y la cometa subió, subió, subió. {hero} la siguió con los ojos hasta que fue un puntito.",
+       "text": "Cuando el cielo se puso naranja, Rosa llegó con el primer panecillo, tibio y envuelto en papel. {hero} y {helper} lo comieron junto al pozo. Con el papel doblado, un hilo y unos palitos, {helper} hizo una cometa pequeña, de cola torcida. El viento la levantó de las manos, ¡fiuuu!, y la cometa subió, subió, subió. El hilo aguantó, y {hero} la fue bajando, riendo.",
        "scene": {
         "bg": "plaza",
         "stage": [
@@ -4015,12 +4018,15 @@
           "lift": 210
          }
         ],
-        "light": "dusk"
+        "light": "dusk",
+        "offstage": [
+         "rosa"
+        ]
        }
       },
       {
        "id": "c",
-       "text": "A la hora en que las sombras se alargan, {hero} y {helper} subieron al borde del pozo. {hero} partió el panecillo en dos. Con el papel que lo envolvía y dos palitos, {helper} hizo una cometa diminuta, con una cola torcida y un solo lazo hecho de hierba. Volaba muy poco, pero volaba. {hero} la sujetó con el hilo y sintió el viento tirar de su mano.",
+       "text": "A la hora en que las sombras se alargan, Rosa llegó con el primer panecillo, envuelto en papel. {hero} lo partió en dos con {helper}. Con el papel, un hilo y dos palitos, {helper} hizo una cometa diminuta, con una cola torcida y un solo lazo hecho de hierba. Volaba muy poco, pero volaba. {hero} la sujetó con el hilo y sintió el viento tirar de su mano.",
        "scene": {
         "bg": "plaza",
         "stage": [
@@ -4043,7 +4049,10 @@
           "lift": 210
          }
         ],
-        "light": "dusk"
+        "light": "dusk",
+        "offstage": [
+         "rosa"
+        ]
        }
       }
      ]
@@ -4145,7 +4154,7 @@
      "variants": [
       {
        "id": "a",
-       "text": "La abuela de {hero} le había dejado {item.un}: cinco semillas de {flor.noun}, de las que dan flores grandes como soles. Cada primavera, el pueblo premiaba al {flor.noun} más alto con una cinta azul y una tarta de miel. «Este año gano yo», pensó {hero}, {hero.rasgo}. Pensaba plantar las cinco juntas, para que ninguna se quedara atrás.",
+       "text": "La abuela de {hero} le había dejado {item.un}: cinco semillas de {flor.noun}, de las que dan flores [[grandes como soles|más grandes que un sombrero|tan grandes que miraban al cielo de frente]]. Cada año, en la fiesta del girasol, el pueblo premiaba al {flor.noun} más alto con una cinta azul y una tarta de miel. «Este año gano yo», pensó {hero}. [[Pensaba plantar las cinco juntas, para que ninguna se quedara atrás.|Pensaba plantarlas todas en su rincón, bien juntitas, para que se hicieran compañía.]]",
        "scene": {
         "bg": "plaza",
         "stage": [
@@ -4167,7 +4176,7 @@
       },
       {
        "id": "b",
-       "text": "Antes de irse, la abuela de {hero} le dejó {item.un}. Dentro había cinco semillas de {flor.noun}. «Dan flores grandes como soles», le dijo. En la fiesta de primavera, el pueblo daba una cinta azul y una tarta de miel al {flor.noun} más alto. {hero} se imaginó con la cinta puesta, y sonrió. Pensaba plantar las cinco juntas, para que ninguna se quedara atrás.",
+       "text": "Al despedirse, la abuela de {hero} le dejó {item.un}. Dentro había cinco semillas de {flor.noun}. «Dan flores [[grandes como soles|altas como una puerta|amarillas como la miel]]», le dijo. En la fiesta del girasol, el pueblo daba una cinta azul y una tarta de miel al {flor.noun} más alto. {hero} se imaginó con la cinta puesta, y sonrió. [[Pensaba plantar las cinco juntas, para que ninguna se quedara atrás.|Pensaba plantarlas todas en su rincón, bien juntitas, para que se hicieran compañía.]]",
        "scene": {
         "bg": "plaza",
         "stage": [
@@ -4198,7 +4207,7 @@
      "variants": [
       {
        "id": "a",
-       "text": "Pero {plaza.en} no todos tenían semillas, porque la nevada había cubierto los huertos. Rosa, la panadera, miraba su tierra vacía. «Este año no tendré ni una flor», suspiró. Beto, el molinero, tampoco. «Ni una», dijo. {hero} apretó {item.el} en el bolsillo.",
+       "text": "Pero {plaza.en} no todos tenían semillas, porque la nevada había cubierto los huertos. [[Rosa, la panadera, miraba su tierra vacía.|Rosa, la panadera, se asomaba a su huerto sin nada.]] «Este año no tendré ni una flor», [[suspiró|dijo con un hilito de voz]]. Beto, el molinero, [[tampoco|estaba igual]]. «Ni una», dijo. {hero} apretó {item.el} en el bolsillo.",
        "scene": {
         "bg": "plaza",
         "stage": [
@@ -4247,7 +4256,7 @@
      "variants": [
       {
        "id": "a",
-       "text": "Aquella noche, {hero} puso las cinco semillas sobre la mesa y las contó. Una, dos, tres, cuatro, cinco. Con cinco, la cinta azul era casi suya. Con dos, solo quizá. Se las guardó otra vez y apagó la vela, pero tardó mucho en dormirse, porque no dejaba de pensar en la tierra vacía de Rosa.",
+       "text": "Aquella noche, {hero} puso las cinco semillas sobre la mesa y las contó. Una, dos, tres, cuatro, cinco. [[Con cinco, la cinta azul era casi suya. Con dos, solo quizá.|Con cinco, tendría el girasol más alto. Con dos, tendría uno normal.]] Se las guardó otra vez y [[apagó la vela|apagó la luz]]. Tardó mucho en dormirse, porque no dejaba de pensar en la tierra vacía de Rosa.",
        "scene": {
         "bg": "cuarto",
         "stage": [
@@ -4332,7 +4341,7 @@
      "variants": [
       {
        "id": "zaf",
-       "text": "«Una vez planté un huerto sin ayuda de nadie», contó {helper} {helper.voz}. «Era el más bonito del reino y el más callado. Sin abejas, sin vecinos que se asomaran. Estuve feliz un día entero. Al segundo día, me aburría.»",
+       "text": "«Una vez me comí una tarta de miel entera sin invitar a nadie», contó {helper} {helper.voz}. «Estaba riquísima y, aun así, me supo a poquito. Qué raro, ¿verdad?»",
        "scene": {
         "bg": "plaza",
         "stage": [
@@ -4353,7 +4362,7 @@
       },
       {
        "id": "bon",
-       "text": "«En mi castillo había un jardín enorme con una sola flor», dijo {helper} {helper.voz}. «Una rosa perfecta. Todos la admiraban, pero nadie la olía, porque estaba prohibido tocarla. Ahora tengo mil margaritas desordenadas, y huelen a gloria.»",
+       "text": "«En mi castillo había un jardín enorme con una sola flor», dijo {helper} {helper.voz}. «Una margarita perfecta. Todos la admiraban, pero nadie la olía, porque estaba prohibido tocarla. Ahora tengo mil margaritas desordenadas, y huelen a verano.»",
        "scene": {
         "bg": "plaza",
         "stage": [
@@ -4374,7 +4383,7 @@
       },
       {
        "id": "mar",
-       "text": "«De pequeña planté una flor para mí sola», contó {helper} {helper.voz}. «La vio una abeja. Luego tres. Luego una mariposa. Las flores no son de nadie, así que son de todo el que se asoma a mirarlas.»",
+       "text": "«De pequeña planté una flor para mí sola», contó {helper} {helper.voz}. «La vio una abeja. Luego tres. Luego una mariposa. Resultó que mi flor daba de comer a más gente que yo.»",
        "scene": {
         "bg": "plaza",
         "stage": [
@@ -4421,7 +4430,7 @@
      "variants": [
       {
        "id": "a",
-       "text": "Esa tarde, {hero} separó las semillas. Dos se quedaron en su bolsillo. Una fue para Rosa, otra para Beto y la última para Lía, la más pequeña del pueblo. «¿Para mí?», dijo Rosa, con los ojos muy abiertos. «Es poquito», dijo {hero}. «Pero es una.» Con solo dos, la cinta azul se alejó un poco. Rosa lo abrazó y le dejó la nariz llena de harina.",
+       "text": "Esa tarde, {hero} contó otra vez las semillas: una, dos, tres, cuatro, cinco. Respiró hondo. «Dos para mí», dijo despacio, «y tres para vosotros». Dos se quedaron en su bolsillo. Una fue para Rosa, otra para Beto y la última para Lía, la más pequeña del pueblo. [[«¿Para mí?», dijo Rosa, con los ojos muy abiertos.|«¿Para mí?», dijo Rosa, y se tapó la boca con las manos.]] «Es poquito», dijo {hero}. «Pero es una.» Con solo dos, la cinta azul se alejó un poco. Rosa abrazó a {hero} y le dejó la nariz llena de harina.",
        "scene": {
         "bg": "plaza",
         "stage": [
@@ -4455,7 +4464,7 @@
       },
       {
        "id": "b",
-       "text": "{hero} se sentó en el borde del pozo y abrió {item.el}. Se quedó con dos semillas. Las otras tres las repartió: una para Rosa, otra para Beto y otra para Lía, que apenas llegaba al mostrador. «Es poquito», dijo, «pero es una». Con solo dos, la cinta azul se alejó un poco. Beto se rio, Lía dio un saltito y Rosa se secó los ojos con el delantal.",
+       "text": "{hero} se sentó en el borde del pozo y abrió {item.el}. Las contó otra vez, despacio, y respiró hondo. Se quedó con dos semillas. Las otras tres las repartió: una para Rosa, otra para Beto y otra para Lía, que apenas llegaba al mostrador. «Es poquito», dijo, «pero es una». Con solo dos, la cinta azul se alejó un poco. [[Beto se rio, Lía dio un saltito y Rosa se secó los ojos con el delantal.|Lía dio tres saltitos, Beto se quitó la gorra y Rosa se secó los ojos con el delantal.]]",
        "scene": {
         "bg": "plaza",
         "stage": [
@@ -4494,7 +4503,7 @@
      "variants": [
       {
        "id": "a",
-       "text": "Pasaron las nieves, y luego las lluvias. {hero} regaba sus dos macetas cada mañana y cada mañana miraba la tierra: nada. Una mañana, dos hojitas verdes asomaron. ¡Habían brotado! Y ese mismo día, en casa de Rosa, de Beto y de Lía, también.",
+       "text": "{hero} plantó las suyas en dos macetas, junto a la ventana. [[Pasaron las nieves, y luego las lluvias.|Cayó la última nieve, y luego llovió y llovió.]] Cada mañana [[regaba las macetas y miraba la tierra: nada.|les echaba agua y se asomaba a la tierra: nada.]] Una mañana, dos hojitas verdes asomaron. ¡Habían brotado! Y ese mismo día brotaron también las semillas de Rosa, de Beto y de Lía.",
        "scene": {
         "bg": "plaza",
         "stage": [
@@ -4527,7 +4536,7 @@
       },
       {
        "id": "b",
-       "text": "Pasó el invierno, y llegó la primavera con sus charcos. {hero} regaba las dos macetas cada mañana y esperaba. Esperar era lo más difícil. Hasta que un día, dos puntitas verdes empujaron la tierra. Corrió a contarlo, y descubrió que en casa de Rosa, de Beto y de Lía también habían brotado.",
+       "text": "{hero} plantó sus dos semillas en dos macetas, junto a la ventana. Pasó el invierno, y llegó la primavera con sus charcos. [[Cada mañana las regaba y esperaba.|Cada mañana les echaba agua y les cantaba una canción.]] Esperar era lo más difícil. Hasta que un día, dos puntitas verdes empujaron la tierra. Corrió a contarlo, y descubrió que habían brotado también las semillas de Rosa, de Beto y de Lía.",
        "scene": {
         "bg": "plaza",
         "stage": [
@@ -4565,7 +4574,7 @@
      "variants": [
       {
        "id": "a",
-       "text": "El día de la fiesta, {plaza.el} se llenó de amarillo. Había girasoles en el balcón de Rosa, en la puerta de Beto y en la maceta rota de Lía. El más alto era el de Rosa, y ganó la cinta azul. Los de {hero} eran más bajos, pero tenían tantas abejas que zumbaban como una canción. {hero} sintió una puntita de pena. Entonces Rosa le puso la cinta azul en la oreja, de broma. «Esta cinta es de los dos», dijo. «Yo solo regué lo que tú sembraste.»",
+       "text": "Llegó el verano, y con el verano, la fiesta del girasol. {plaza.El} se llenó de amarillo. Había girasoles en el balcón de Rosa, en la puerta de Beto y en la maceta rota de Lía. El más alto era el de Rosa, y ganó la cinta azul. Los de {hero} eran más bajos, pero [[tenían tantas abejas que zumbaban como una canción|estaban llenos de abejas, que zumbaban de flor en flor]]. [[{hero} sintió una puntita de pena.|A {hero} se le encogió un poquito el corazón.]] Entonces Rosa le puso la cinta azul en la oreja, de broma. «Esta cinta es de los dos», dijo. «Yo solo regué lo que tú sembraste.»",
        "scene": {
         "bg": "plaza",
         "stage": [
@@ -4604,7 +4613,7 @@
       },
       {
        "id": "b",
-       "text": "Llegó la fiesta de primavera, y {plaza.el} parecía un campo de soles. El girasol de Rosa era el más alto, y se llevó la cinta azul. Beto aplaudía y Lía daba saltitos. Los de {hero} eran más bajos, pero las abejas los adoraban, porque olían a miel. {hero} sintió una puntita de pena, solo una. Rosa lo vio y le puso la cinta en la oreja, de broma. «Es de los dos», dijo. «Yo solo regué lo que tú sembraste.»",
+       "text": "Llegó el verano, y con el verano, la fiesta del girasol. {plaza.El} parecía un campo de soles. El girasol de Rosa era el más alto, y se llevó la cinta azul. Beto aplaudía y Lía daba saltitos. Los de {hero} eran más bajos, pero las abejas los adoraban, porque olían a miel. [[{hero} sintió una puntita de pena, solo una.|A {hero} se le encogió un poquito el corazón, solo un poquito.]] Rosa se dio cuenta y le puso la cinta en la oreja, de broma. «Es de los dos», dijo. «Yo solo regué lo que tú sembraste.»",
        "scene": {
         "bg": "plaza",
         "stage": [
@@ -4648,7 +4657,7 @@
      "variants": [
       {
        "id": "a",
-       "text": "En otoño, los girasoles se doblaron, pesados de semillas. Cada cabeza tenía cientos, ¡cientos!, como estrellitas negras y blancas. {hero} llenó una bolsa grande. «¿Cuántas casas tiene la aldea?», preguntó {helper}. «Treinta», dijo {hero}. «Pues a repartir», dijo {helper}. Y fueron de puerta en puerta, dejando un puñado en cada una.",
+       "text": "En otoño, los girasoles se doblaron, pesados de semillas. Cada cabeza tenía cientos, ¡cientos!, [[como estrellitas negras y blancas|como un cielo en miniatura|como granitos de noche con rayas de luna]]. {hero} llenó una bolsa grande. «¿Cuántas casas tiene la aldea?», preguntó {helper}. «Treinta», dijo {hero}, y se rascó la cabeza. «Entonces, treinta puñados.» Y fueron de puerta en puerta, [[dejando un puñado en cada una|dejando un puñado en cada umbral]].",
        "scene": {
         "bg": "plaza",
         "stage": [
@@ -4680,7 +4689,7 @@
       },
       {
        "id": "b",
-       "text": "Cuando las hojas se pusieron doradas, los girasoles bajaron la cabeza, cargados de semillas. ¡Cientos en cada flor! {hero} las recogió en una bolsa enorme. {helper} la miró y sonrió. «Treinta casas tiene la aldea», dijo. «Treinta puñados», contestó {hero}. Y salieron a repartirlos, uno por uno, hasta que no quedó ni una puerta sin su regalo.",
+       "text": "Cuando las hojas se pusieron doradas, los girasoles bajaron la cabeza, cargados de semillas. [[¡Cientos en cada flor!|¡Qué cantidad, en una sola flor!]] {hero} las recogió en una bolsa enorme. {helper} la miró y sonrió. «Treinta casas tiene la aldea», dijo. «Treinta puñados», contestó {hero}, y se rascó la cabeza. Y salieron a repartirlos, uno por uno, hasta que no quedó ni una puerta sin su regalo.",
        "scene": {
         "bg": "plaza",
         "stage": [
@@ -4717,7 +4726,7 @@
      "variants": [
       {
        "id": "a",
-       "text": "Esa noche, {hero} guardó una sola semilla en el bolsillo del pijama, por si acaso. Por la ventana se veían los tejados de la aldea y, abajo, las flores dormidas con la cabeza gacha. «El año que viene…», pensó, y se quedó dormid{hero.o} soñando con un pueblo entero color sol.",
+       "text": "Esa noche, {hero} guardó una sola semilla en el bolsillo del pijama, por si acaso. [[Por la ventana se veían los tejados de la aldea y, abajo, las flores dormidas con la cabeza gacha.|Por la ventana se veía la aldea a oscuras, con los girasoles dormidos como sombreros grandes.]] «El año que viene…», pensó, y se quedó dormid{hero.o} soñando con un pueblo entero color sol.",
        "scene": {
         "bg": "cuarto",
         "stage": [
@@ -4740,7 +4749,7 @@
       },
       {
        "id": "b",
-       "text": "En el cuarto de {hero} se oía el viento y, de vez en cuando, el crujido de un girasol que se mecía en la oscuridad. {hero} sonrió contra la almohada. Mañana habría que repartir otro puñado. Y pasado, otro. Se durmió contando soles: uno, dos, tres, cuatro, cinco… y muchísimos más.",
+       "text": "En el cuarto de {hero} se oía el viento y, de vez en cuando, el susurro de un girasol que se mecía en la oscuridad. {hero} sonrió contra la almohada. Mañana habría que repartir otro puñado. Y pasado, otro. Se durmió contando soles: uno, dos, tres, cuatro, cinco… y muchísimos más.",
        "scene": {
         "bg": "cuarto",
         "stage": [
@@ -4822,7 +4831,7 @@
      "variants": [
       {
        "id": "a",
-       "text": "Aquel otoño, Tomás, el viejo campanero, cayó enfermo. Tosía tanto que la campana, cada noche, sonaba un poco triste. Los vecinos decían que solo curaba {item.el}, que crece al otro lado del río. Pero el puente era viejo y crujía, así que nadie se atrevía a cruzarlo. {hero} los escuchó a todos sin decir nada.",
+       "text": "[[Aquel otoño|Una tarde de otoño]], Tomás, el viejo campanero, cayó enfermo. [[Tosía tanto que la campana, cada noche, sonaba un poco triste.|Tosía tanto que la campana ya no sonaba igual.]] Los vecinos decían que solo curaba {item.el}, que crece al otro lado del río. Pero el puente era viejo y crujía, así que nadie se atrevía a cruzarlo. {hero} miró la campana, que sonaba triste. «Iré yo», dijo, aunque le temblaba la voz.",
        "scene": {
         "bg": "plaza",
         "stage": [
@@ -4844,7 +4853,7 @@
       },
       {
        "id": "b",
-       "text": "Tomás, el viejo campanero, llevaba tres días tosiendo en su cama. «Solo lo curaría {item.el}», decían los vecinos, «la que crece al otro lado del río». Pero para llegar había que cruzar el puente de madera, el que hacía ¡cric, cric! con cada soplo de viento. Nadie quería ir, ya que el puente parecía a punto de romperse. {hero} sintió que le picaba la nuca.",
+       "text": "Tomás, el viejo campanero, llevaba [[tres|cuatro]] días tosiendo. «Solo lo curaría {item.el}», decían los vecinos, «la que crece al otro lado del río». Pero para llegar había que cruzar el puente de madera, el que hacía ¡cric, cric! con cada soplo de viento. Nadie quería ir, porque el puente parecía a punto de romperse. {hero} miró la campana, que sonaba triste. «Iré yo», dijo, aunque le temblaba la voz.",
        "scene": {
         "bg": "plaza",
         "stage": [
@@ -4874,7 +4883,7 @@
      "variants": [
       {
        "id": "a",
-       "text": "Al caer la tarde, {hero} llegó al río. El agua hacía ¡shhh!, y el puente de madera hacía ¡cric, cric! Eran cuarenta tablones, y {hero} los contó dos veces con el dedo. Debajo, el agua corría oscura y rápida. {hero} puso un pie en el primero. ¡Cric! Lo retiró de golpe. «No puedo», dijo en voz baja, porque el corazón le hacía ¡pum, pum, pum!",
+       "text": "[[Al caer la tarde, {hero} llegó al río.|{hero} llegó al río cuando el sol ya se escondía.]] El agua hacía ¡shhh!, y el puente de madera hacía ¡cric, cric! Eran cuarenta tablones, y {hero} los contó dos veces con el dedo. [[Debajo, el agua corría oscura y rápida.|Debajo, el río se arrastraba negro y veloz.]] {hero} puso un pie en el primero. ¡Cric! Lo retiró de golpe. «No puedo», dijo en voz baja. El corazón le hacía ¡pum, pum, pum!",
        "scene": {
         "bg": "rio",
         "stage": [
@@ -4889,7 +4898,7 @@
       },
       {
        "id": "b",
-       "text": "{hero} se plantó delante del puente. Cuarenta tablones, viejos y torcidos. El viento los hacía crujir: ¡cric, cric, cric! Debajo corría el río, negro y veloz. {hero} adelantó un pie, y el tablón gimió. Lo retiró. «No puedo», susurró. Los rodillas le hacían cosquillas, y el corazón, ¡pum, pum, pum!",
+       "text": "{hero} se plantó delante del puente. [[Cuarenta tablones, viejos y torcidos.|Cuarenta tablones, grises y gastados.]] El viento los hacía crujir: ¡cric, cric, cric! Debajo corría el río, negro y veloz. {hero} adelantó un pie, y el tablón gimió. Lo retiró. «No puedo», susurró. Le temblaban las rodillas, y el corazón hacía ¡pum, pum, pum!",
        "scene": {
         "bg": "rio",
         "stage": [
@@ -4910,7 +4919,7 @@
      "variants": [
       {
        "id": "a",
-       "text": "{helper} apareció junto al puente, con una cuerda al hombro. Se sentó al lado de {hero} y no dijo nada durante un rato. Escucharon el río. «A mí tampoco me gustan los puentes», dijo al fin.",
+       "text": "{helper} apareció junto al puente, con una cuerda al hombro. Se sentó al lado de {hero} y no dijo nada durante un rato. [[Escucharon el río.|Los dos escucharon el agua correr.]] «A mí tampoco me gustan los puentes», dijo al fin.",
        "scene": {
         "bg": "rio",
         "stage": [
@@ -4929,7 +4938,7 @@
       },
       {
        "id": "b",
-       "text": "Una sombra se acercó por el sendero: era {helper}, con una cuerda enrollada al hombro. Se acomodó junto a {hero}, miró el puente, miró el río y soltó un suspiro largo. «A mí tampoco me gustan los puentes», confesó.",
+       "text": "Una sombra se acercó por el sendero: era {helper}, con una cuerda enrollada al hombro. «Me dijeron que alguien iba a necesitar una», dijo. Se acomodó junto a {hero}, miró el puente, miró el río y [[soltó un suspiro largo|se frotó las manos]]. «A mí tampoco me gustan los puentes», confesó.",
        "scene": {
         "bg": "rio",
         "stage": [
@@ -4956,7 +4965,7 @@
      "variants": [
       {
        "id": "zaf",
-       "text": "«¿Sabes lo que no sabe hacer el miedo?», preguntó {helper} {helper.voz}. «Contar. Cuenta los tablones en voz alta y verás cómo se queda sin palabras, porque nunca aprendió los números.» Luego le ató la cuerda a la cintura, y el otro extremo, a un árbol.",
+       "text": "«¿Sabes lo que no sabe hacer el miedo?», preguntó {helper} {helper.voz}. «Contar. Cuenta los tablones en voz alta y verás cómo se queda sin palabras, porque nunca aprendió los números.» Luego le ató la cuerda a la cintura y se enrolló el otro extremo en el brazo. «Tú no cruzas solo.»",
        "scene": {
         "bg": "rio",
         "stage": [
@@ -4978,7 +4987,7 @@
       },
       {
        "id": "bon",
-       "text": "«En mi castillo cruzaba el foso cantando», confesó {helper} {helper.voz}. «Tres notas, siempre las mismas. Mi voz iba delante, y yo, detrás.» Luego le ató la cuerda a la cintura, y el otro extremo, a un árbol.",
+       "text": "«En mi castillo cruzaba el foso cantando», confesó {helper} {helper.voz}. «Tres notas, siempre las mismas. Mi voz iba delante, y yo, detrás.» Luego le ató la cuerda a la cintura y se enrolló el otro extremo en el brazo. «Tú no cruzas solo.»",
        "scene": {
         "bg": "rio",
         "stage": [
@@ -5000,7 +5009,7 @@
       },
       {
        "id": "mar",
-       "text": "«Mira siempre el tablón que viene, nunca el agua», dijo {helper} {helper.voz}. «Así se apunta una flecha: a lo que viene, no a lo que cae.» Luego le ató la cuerda a la cintura, y el otro extremo, a un árbol.",
+       "text": "«Mira siempre el tablón que viene, nunca el agua», dijo {helper} {helper.voz}. «Así se apunta una flecha: a lo que viene, no a lo que cae.» Luego le ató la cuerda a la cintura y se enrolló el otro extremo en el brazo. «Tú no cruzas solo.»",
        "scene": {
         "bg": "rio",
         "stage": [
@@ -5022,7 +5031,7 @@
       },
       {
        "id": "ald",
-       "text": "«Yo me agarro a la cuerda y le hablo a mis botas», contó {helper} {helper.voz}. «Botas, un paso. Botas, otro paso. Me hacen más caso que mis rodillas.» Luego le ató la cuerda a la cintura, y el otro extremo, a un árbol.",
+       "text": "«Yo me agarro a la cuerda y le hablo a mis botas», contó {helper} {helper.voz}. «Botas, un paso. Botas, otro paso. Me hacen más caso que mis rodillas.» Luego le ató la cuerda a la cintura y se enrolló el otro extremo en el brazo. «Tú no cruzas solo.»",
        "scene": {
         "bg": "rio",
         "stage": [
@@ -5048,8 +5057,8 @@
      "id": "primer_paso",
      "variants": [
       {
-       "id": "a",
-       "text": "{hero} respiró hondo. «Tengo miedo», susurró, «pero {hero.paso}». Puso el pie en el primer tablón. ¡Cric! Esta vez no lo retiró. «Uno», dijo. Desde la orilla, {helper} le hizo un gesto con el pulgar. El río hizo ¡shhh!, pero {hero} ya iba por el segundo.",
+       "id": "zaf",
+       "text": "{hero} respiró hondo. «Tengo miedo», susurró, «pero {hero.paso}». Puso el pie en el primer tablón. ¡Cric! Esta vez no lo retiró. «Uno», contó en voz alta. Desde la orilla, {helper} le hizo un gesto con el pulgar. El río hizo ¡shhh!, pero {hero} ya iba por el segundo: «Dos».",
        "scene": {
         "bg": "rio",
         "stage": [
@@ -5066,11 +5075,14 @@
         ],
         "mood": "mystery",
         "light": "dusk"
-       }
+       },
+       "requires": [
+        "helper:zafiro"
+       ]
       },
       {
-       "id": "b",
-       "text": "{hero} agarró la cuerda con las dos manos. «Tengo miedo», susurró, «pero {hero.paso}». El primer tablón crujió, ¡cric!, y {hero} no se movió. Respiró. Y entonces dio el segundo paso, y el tercero. Desde la orilla, {helper} le hizo un gesto con el pulgar.",
+       "id": "bon",
+       "text": "{hero} respiró hondo. «Tengo miedo», susurró, «pero {hero.paso}». Puso el pie en el primer tablón. ¡Cric! Y empezó a tararear tres notas, siempre las mismas: la, la, la. Desde la orilla, {helper} le hizo un gesto con el pulgar. El río hizo ¡shhh!, pero la voz de {hero} iba delante.",
        "scene": {
         "bg": "rio",
         "stage": [
@@ -5087,7 +5099,58 @@
         ],
         "mood": "mystery",
         "light": "dusk"
-       }
+       },
+       "requires": [
+        "helper:bonifacio"
+       ]
+      },
+      {
+       "id": "mar",
+       "text": "{hero} respiró hondo. «Tengo miedo», susurró, «pero {hero.paso}». Puso el pie en el primer tablón. ¡Cric! No miró el agua. Miró solo el tablón siguiente, y luego el siguiente. Desde la orilla, {helper} le hizo un gesto con el pulgar. El río hizo ¡shhh!, pero {hero} no lo escuchó.",
+       "scene": {
+        "bg": "rio",
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "sneak",
+          "x": 0.45
+         },
+         {
+          "who": "helper",
+          "clip": "wave",
+          "x": 0.15
+         }
+        ],
+        "mood": "mystery",
+        "light": "dusk"
+       },
+       "requires": [
+        "helper:mara"
+       ]
+      },
+      {
+       "id": "ald",
+       "text": "{hero} respiró hondo. «Tengo miedo», susurró, «pero {hero.paso}». Puso el pie en el primer tablón. ¡Cric! «Botas, un paso», murmuró {hero}. «Botas, otro paso.» Desde la orilla, {helper} le hizo un gesto con el pulgar. El río hizo ¡shhh!, pero las botas hicieron más caso que las rodillas.",
+       "scene": {
+        "bg": "rio",
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "sneak",
+          "x": 0.45
+         },
+         {
+          "who": "helper",
+          "clip": "wave",
+          "x": 0.15
+         }
+        ],
+        "mood": "mystery",
+        "light": "dusk"
+       },
+       "requires": [
+        "helper:aldo"
+       ]
       }
      ]
     },
@@ -5096,7 +5159,7 @@
      "variants": [
       {
        "id": "a",
-       "text": "En mitad del puente, el viento sopló fuerte, ¡fuuu!, y los tablones se balancearon. {hero} se agarró a la cuerda. Abajo, la luna se rompía en pedacitos de agua. De pronto, un pie resbaló, ¡plaf!, y una bota se mojó hasta el tobillo. «¡Ay!», gritó {hero}. El corazón le galopaba. Pero la cuerda aguantó, porque {helper} la sujetaba con todas sus fuerzas.",
+       "text": "En mitad del puente, el viento sopló fuerte, ¡fuuu!, y los tablones se balancearon. {hero} se agarró a la cuerda. [[Abajo, la luna se rompía en pedacitos de agua.|Abajo, el río se tragaba la luna a trocitos.]] De pronto, un pie resbaló, [[¡plaf!, y una bota se mojó hasta el tobillo|¡plaf!, y el agua fría le subió hasta el tobillo]]. «¡Ay!», gritó {hero}. El corazón le galopaba. Pero la cuerda aguantó, porque {helper} la sujetaba con todas sus fuerzas.",
        "scene": {
         "bg": "rio",
         "stage": [
@@ -5114,7 +5177,7 @@
       },
       {
        "id": "b",
-       "text": "A mitad de camino, el puente se meció como una cuna. {hero} se quedó quiet{hero.o}, abrazad{hero.o} a la cuerda. Un tablón mojado se le escapó bajo el pie, ¡plaf!, y la bota se llenó de agua fría. «¡Uf!», dijo {hero}. Tenía las manos blancas de tanto apretar. Pero no soltó la cuerda, porque era lo único firme que tenía.",
+       "text": "A mitad de camino, el puente [[se meció como una cuna|se balanceó como un columpio]]. {hero} se quedó quiet{hero.o}, abrazad{hero.o} a la cuerda. Un tablón mojado se le escapó bajo el pie, ¡plaf!, y la bota se llenó de agua fría. «¡Uf!», dijo {hero}. Tenía las manos blancas de tanto apretar. Pero no soltó la cuerda, porque era lo único firme que tenía.",
        "scene": {
         "bg": "rio",
         "stage": [
@@ -5134,7 +5197,7 @@
      "variants": [
       {
        "id": "a",
-       "text": "Al otro lado, entre las piedras, algo brillaba con una luz plateada: {item.el}. {hero} arrancó un puñado con cuidado, y las hojas le cosquillearon en los dedos. Con la hierba en el bolsillo y la bota chorreando, se quedó un momento mirando el puente, porque parecía más largo que antes.",
+       "text": "Al otro lado, entre las piedras, algo [[brillaba con una luz plateada|brillaba con una luz azulada, como de luciérnaga]]: {item.el}. {hero} arrancó un puñado con cuidado, y las hojas le cosquillearon en los dedos. Con la hierba en el bolsillo y la bota chorreando, se quedó un momento mirando el puente, porque parecía más largo que antes.",
        "scene": {
         "bg": "rio",
         "stage": [
@@ -5157,7 +5220,7 @@
       },
       {
        "id": "b",
-       "text": "Había llegado. Entre dos piedras, la hierba de luna brillaba como si alguien la hubiera encendido. {hero} arrancó un puñado, y las hojas le hicieron cosquillas en los dedos. Se la guardó en el bolsillo con mucho cuidado y se secó las manos en la ropa. Todavía le temblaban un poco. Pero sonreía.",
+       "text": "Había llegado. Entre dos piedras, la hierba de luna [[brillaba como si alguien la hubiera encendido|brillaba como una lámpara pequeñita]]. {hero} arrancó un puñado, y las hojas le hicieron cosquillas en los dedos. Se la guardó en el bolsillo con mucho cuidado y se secó las manos en la ropa. Todavía le temblaban un poco. Pero sonreía.",
        "scene": {
         "bg": "rio",
         "stage": [
@@ -5184,8 +5247,8 @@
      "id": "regreso",
      "variants": [
       {
-       "id": "a",
-       "text": "Volver fue peor, porque ya era de noche. Pero la luna se había puesto justo encima del río, y los tablones brillaban como un camino de plata. {hero} contó en voz alta: uno, dos, tres. El puente hacía ¡cric, cric! a cada paso, como si dijera: «Sigue, sigue». En el tablón cuarenta, {hero} saltó a la orilla, y {helper} le dio un abrazo.",
+       "id": "zaf",
+       "text": "Volver fue peor, porque ahora sabía lo que había debajo. Pero la luna se había puesto justo encima del río, y los tablones brillaban como un camino de plata. {hero} contó en voz alta: uno, dos, tres. El miedo se quedó callado, sin saber seguir la cuenta. En el tablón cuarenta, {hero} saltó a la orilla, y {helper} le dio un abrazo.",
        "scene": {
         "bg": "rio",
         "stage": [
@@ -5202,11 +5265,14 @@
         ],
         "mood": "hope",
         "light": "night"
-       }
+       },
+       "requires": [
+        "helper:zafiro"
+       ]
       },
       {
-       "id": "b",
-       "text": "Para volver, {hero} no cerró los ojos ni una vez. Miraba el tablón siguiente, y luego el siguiente. El puente crujía igual que antes, pero ya no daba tanto miedo, porque {hero} ya conocía su voz. Cuando pisó la orilla, las rodillas le temblaron un poquito. Y {helper} le dio un abrazo muy largo.",
+       "id": "bon",
+       "text": "Volver fue peor, porque ahora sabía lo que había debajo. Pero la luna se había puesto justo encima del río, y los tablones brillaban como un camino de plata. {hero} tarareó las tres notas de {helper}, siempre las mismas. Su voz iba delante, y {hero}, detrás. El puente hacía ¡cric, cric! a cada paso, como si dijera: «Sigue, sigue». En el tablón cuarenta, {hero} saltó a la orilla, y {helper} le dio un abrazo.",
        "scene": {
         "bg": "rio",
         "stage": [
@@ -5223,7 +5289,58 @@
         ],
         "mood": "hope",
         "light": "night"
-       }
+       },
+       "requires": [
+        "helper:bonifacio"
+       ]
+      },
+      {
+       "id": "mar",
+       "text": "Volver fue peor, porque ahora sabía lo que había debajo. Pero la luna se había puesto justo encima del río, y los tablones brillaban como un camino de plata. {hero} miró el tablón siguiente, y luego el siguiente, como le había dicho {helper}. El puente hacía ¡cric, cric! a cada paso, como si dijera: «Sigue, sigue». En el tablón cuarenta, {hero} saltó a la orilla, y {helper} le dio un abrazo.",
+       "scene": {
+        "bg": "rio",
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "sneak",
+          "x": 0.45
+         },
+         {
+          "who": "helper",
+          "clip": "cheer",
+          "x": 0.15
+         }
+        ],
+        "mood": "hope",
+        "light": "night"
+       },
+       "requires": [
+        "helper:mara"
+       ]
+      },
+      {
+       "id": "ald",
+       "text": "Volver fue peor, porque ahora sabía lo que había debajo. Pero la luna se había puesto justo encima del río, y los tablones brillaban como un camino de plata. {hero} le habló a las botas: «Botas, un paso. Botas, otro paso». El puente hacía ¡cric, cric! a cada paso, como si dijera: «Sigue, sigue». En el tablón cuarenta, {hero} saltó a la orilla, y {helper} le dio un abrazo.",
+       "scene": {
+        "bg": "rio",
+        "stage": [
+         {
+          "who": "hero",
+          "clip": "sneak",
+          "x": 0.45
+         },
+         {
+          "who": "helper",
+          "clip": "cheer",
+          "x": 0.15
+         }
+        ],
+        "mood": "hope",
+        "light": "night"
+       },
+       "requires": [
+        "helper:aldo"
+       ]
       }
      ]
     },
@@ -5232,7 +5349,7 @@
      "variants": [
       {
        "id": "a",
-       "text": "Tomás bebió el té de hierba de luna, sopló sobre la taza y tosió una vez más, la última. «Tienes la bota mojada y las orejas rojas», le dijo a {hero} con una sonrisa. «¿Tenías miedo?» «Muchísimo», dijo {hero}. «Pero el puente aguantó, y yo también.»",
+       "text": "{hero} corrió a la plaza con la hierba. Entre los vecinos prepararon un té, y Tomás lo bebió, [[sopló sobre la taza|sopló el vapor]] y tosió una vez más, la última. «Tienes la bota mojada y las orejas rojas», le dijo a {hero} con una sonrisa. «¿Tenías miedo?» «Muchísimo», dijo {hero}. «Pero el puente aguantó, y yo también.»",
        "scene": {
         "bg": "plaza",
         "stage": [
@@ -5253,12 +5370,15 @@
           "clip": "shimmer"
          }
         ],
-        "light": "night"
+        "light": "night",
+        "offstage": [
+         "aldeana"
+        ]
        }
       },
       {
        "id": "b",
-       "text": "Esa noche, Tomás bebió el té de hierba de luna, y su tos se fue apagando como una vela. «¿Quién ha cruzado el puente?», preguntó. «Yo», dijo {hero}. «¿Y tenías miedo?» «Muchísimo», contestó {hero}. «Pero el puente aguantó, y yo también.» Tomás le guiñó un ojo.",
+       "text": "Esa noche, en la plaza, Tomás bebió el té de hierba de luna, y [[su tos se fue apagando como una vela|su tos se fue haciendo chiquita, chiquita]]. «¿Quién ha cruzado el puente?», preguntó. «Yo», dijo {hero}. «¿Y tenías miedo?» «Muchísimo», contestó {hero}. «Pero el puente aguantó, y yo también.» Tomás le guiñó un ojo.",
        "scene": {
         "bg": "plaza",
         "stage": [
@@ -5290,7 +5410,7 @@
      "variants": [
       {
        "id": "a",
-       "text": "Aquella noche, la campana sonó otra vez fuerte y alegre. {hero} la oyó desde la cama, con los pies calentitos dentro de calcetines secos. El río seguía haciendo shhh, pero ya no decía «no puedes». Decía «buenas noches». {hero} cerró los ojos y cruzó el puente otra vez, solo que en sueños, muy despacio, y sin miedo.",
+       "text": "[[Aquella noche, la campana sonó otra vez fuerte y alegre.|La campana, esa noche, volvió a sonar fuerte y alegre.]] {hero} la oyó desde la cama, con los pies calentitos dentro de calcetines secos. El río seguía haciendo shhh, pero ya no decía «no puedes». Decía «buenas noches». {hero} cerró los ojos y cruzó el puente otra vez, solo que en sueños, muy despacio, con un poquito de miedo y, aun así, paso a paso.",
        "scene": {
         "bg": "cuarto",
         "stage": [
@@ -5305,7 +5425,7 @@
       },
       {
        "id": "b",
-       "text": "Esa noche se oyó la campana desde la cama de {hero}. Sonaba fuerte y redonda, sin una gota de tos. {hero} se arropó. Pensó en los cuarenta tablones, uno por uno, y en que los había contado todos. Afuera, el río hacía shhh. Y {hero} se durmió con el sonido del agua, que ahora sonaba a nana.",
+       "text": "[[Esa noche se oyó la campana desde la cama de {hero}.|Desde su cama, {hero} oyó la campana.]] Sonaba fuerte y redonda, sin una gota de tos. {hero} se arropó. Pensó en los cuarenta tablones, uno por uno, y en que los había cruzado todos. Afuera, el río hacía shhh. Y {hero} se durmió con el sonido del agua, que ahora sonaba a nana.",
        "scene": {
         "bg": "cuarto",
         "stage": [

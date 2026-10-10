@@ -96,3 +96,41 @@ Defectos que coincidieron y su corrección en v0.5.0:
 **Pack v0.5.0:** 805 palabras de media (≈ 7,3 min), 11,3 escenas, tope 950 palabras. Pendiente (no corregido todavía):
 solo 3 premisas (una por enseñanza), voces de los héroes casi idénticas, cabrita sin dibujar, tics de superficie
 («bajito», «tragó saliva», «aquella noche»).
+
+### Vuelta 4 — pack v0.5.0 → v0.6.0 (nota global 3,5 / 3,8 / 3,8)
+
+Notas globales de los tres lectores: A 3,5 · B 3,8 · C 3,8. Los fallos que coincidieron y su corrección:
+
+| Defecto | Corrección |
+|---|---|
+| «Entre él y Aldo» con heroína (género fijo) y «no iba a ir solo» (decide el narrador) | Frases reescritas; el validador ahora rechaza `él/ella` literales y `ir solo/sola` |
+| Linterna: el niño entra solo al bosque y el narrador decide por él; el párrafo del ladrón rompe el cierre | El héroe duda y decide en pantalla; botín que aparece en el regreso; el cierre acaba con el héroe dormido |
+| Olla: niños sin techo, sin familia; coste del sacrificio no compensado | Escena nueva interior (**cocina de Rosa**), `mantas`, cuenco del fondo «que raspa la cuchara» |
+| Cabrita citada y nunca dibujada | Rig nuevo `cabrita` con tres animaciones |
+
+### Vuelta 5 — pack v0.6.0 → v0.8.0 (3,8 / 3,9 / 4,0)
+
+Lo que impedía el 4,5 según los tres: variedad real entre cuentos de la misma historia (81–87 % de frases idénticas por
+la forma de medir de un lector), héroes sin voz propia, huecos de ilustración, tesis dichas en voz alta y símiles de adulto.
+Respuesta: **alternativas dentro de la frase** en el motor (`[[a|b|c]]`, probadas por el validador), variantes nuevas en
+las 12 escenas más repetidas, voz propia por héroe (`jura`, `paso`), cuerda de seguridad en la linterna, onomatopeyas
+legibles por voz sintética («Clang» en vez de «CLANG») y `tope de palabras` 950.
+
+Medida propia (coincidencia media de frases entre dos cuentos de la misma historia): olla 54 → 46 %, linterna 59 → 54 %.
+
+### Vuelta 6 — tres historias nuevas (pack v0.8.0 → v0.9.0): 3,5 / 3,9 / 3,7
+
+Se añaden **«La bolsa del pozo»** (honestidad, sin villano; la tentación nace del propio deseo, con un eco en el pozo),
+**«Las semillas de sol»** (generosidad; una cosecha que se reparte) y **«El puente que crujía»** (valentía; cuarenta
+tablones, cada ayudante con su técnica). Arte nuevo: bolsa, cometa, cuarto de noche, girasol, semillas, hierba de luna,
+farolero, pedernal, vela, saco y cofre.
+
+| Defecto (coincidencia de ≥ 2 lectores) | Corrección |
+|---|---|
+| Cuenta de las monedas que no cuadraba (la cometa costaba 3 y a Aldo le faltaba 1) | La cometa cuesta 5; tiene 2; faltan 3; la bolsa trae 3 |
+| El consejo del ayudante no se usaba al cruzar el puente | Una variante por ayudante en `primer_paso` y `regreso` (contar, tararear, mirar el tablón siguiente, hablar a las botas) |
+| Cuerda «atada a un árbol» y «sujetada por el ayudante» | El ayudante se enrolla el otro extremo en el brazo («Tú no cruzas solo») |
+| El héroe no decide (empujoncito; «escuchó a todos sin decir nada») | «Voy a decírselo», «Iré yo», «Dos para mí y tres para vosotros» |
+| Rosa recompensa con pan sin harina | Rosa va al molino por harina; el panecillo llega al atardecer |
+| «Los rodillas», «lo abrazó», «hasta al mago» | Corregidos; son errores objetivos que ahora el validador ayuda a evitar |
+| «Antes de irse, la abuela…» (puede inquietar al dormir) | «Al despedirse…»; fiesta del girasol en verano |
