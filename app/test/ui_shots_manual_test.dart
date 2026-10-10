@@ -37,8 +37,10 @@ void main() {
 
   testWidgets('capturas de la interfaz', (tester) async {
     await tester.runAsync(loadFonts);
+    final w = double.tryParse(Platform.environment['UI_W'] ?? '') ?? 412;
+    final h = double.tryParse(Platform.environment['UI_H'] ?? '') ?? 892;
     tester.view
-      ..physicalSize = const Size(412 * 2, 892 * 2)
+      ..physicalSize = Size(w * 2, h * 2)
       ..devicePixelRatio = 2;
     addTearDown(tester.view.reset);
     Directory(out!).createSync(recursive: true);

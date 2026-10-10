@@ -273,26 +273,28 @@ class _WizardPageState extends State<WizardPage> {
           child: summary
               ? Row(
                   children: [
-                    Expanded(
-                      child: OutlinedButton(
-                        key: const Key('wizard-change'),
-                        onPressed: () => _go(0),
-                        style: OutlinedButton.styleFrom(
-                          minimumSize: const Size.fromHeight(56),
-                        ),
-                        child: const Text('Cambiar'),
+                    // «Cambiar» toma el ancho de su palabra (nunca se parte en dos líneas); «Empezar» el resto
+                    OutlinedButton(
+                      key: const Key('wizard-change'),
+                      onPressed: () => _go(0),
+                      style: OutlinedButton.styleFrom(
+                        minimumSize: const Size(0, 56),
+                        padding: const EdgeInsets.symmetric(horizontal: 28),
                       ),
+                      child: const Text('Cambiar', softWrap: false),
                     ),
                     const SizedBox(width: 12),
                     Expanded(
-                      flex: 2,
                       child: FilledButton(
                         key: const Key('wizard-start'),
                         onPressed: () => _finish(skipped: false),
                         style: FilledButton.styleFrom(
                           minimumSize: const Size.fromHeight(56),
                         ),
-                        child: const Text('Empezar'),
+                        child: const FittedBox(
+                          fit: BoxFit.scaleDown,
+                          child: Text('Empezar', softWrap: false),
+                        ),
                       ),
                     ),
                   ],
@@ -305,7 +307,10 @@ class _WizardPageState extends State<WizardPage> {
                     style: FilledButton.styleFrom(
                       minimumSize: const Size.fromHeight(56),
                     ),
-                    child: const Text('Siguiente'),
+                    child: const FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Text('Siguiente', softWrap: false),
+                    ),
                   ),
                 ),
         ),
@@ -409,10 +414,13 @@ class _SummaryRow extends StatelessWidget {
           const SizedBox(width: 12),
           Text(label,
               style: text.titleMedium!.copyWith(color: Palette.mutedText)),
-          const Spacer(),
-          Text(
-            value,
-            style: text.titleMedium!.copyWith(fontWeight: FontWeight.w800),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Text(
+              value,
+              textAlign: TextAlign.end,
+              style: text.titleMedium!.copyWith(fontWeight: FontWeight.w800),
+            ),
           ),
         ],
       ),

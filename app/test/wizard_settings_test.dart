@@ -286,6 +286,37 @@ void main() {
           findsOneWidget);
     });
 
+    testWidgets(
+        'los botones del resumen no se parten en pantallas estrechas ni con letra grande',
+        (tester) async {
+      for (final width in [320.0, 412.0]) {
+        tester.view
+          ..physicalSize = Size(width, 800)
+          ..devicePixelRatio = 1;
+        tester.platformDispatcher.textScaleFactorTestValue = 1.3;
+        addTearDown(tester.platformDispatcher.clearAllTestValues);
+        await tester.pumpWidget(CalderoApp(
+          key: ValueKey(width),
+          bundle: _bundle,
+          feedback: _feedback(),
+          settings: AppSettings(MemorySettingsStore()),
+          voices: FakeVoices().services,
+          showWizard: true,
+          animateArt: false,
+        ));
+        await tester.pumpAndSettle();
+        await next(tester);
+        await next(tester);
+        await next(tester);
+        for (final label in ['Cambiar', 'Empezar']) {
+          final h = tester.getSize(find.text(label)).height;
+          expect(h, lessThan(40),
+              reason: '$label a $width dp (una sola línea)');
+        }
+        addTearDown(tester.view.reset);
+      }
+    });
+
     testWidgets('con un idioma de sistema sin cuentos se avisa en el wizard',
         (tester) async {
       await openApp(tester,

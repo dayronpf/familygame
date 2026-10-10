@@ -169,20 +169,31 @@ StageSetup? bannerSetup(StageArt art, Pack pack, Rect view) {
   );
 }
 
-/// La portada pequeña de un paquete (el castillo, quieto), para las tarjetas.
+/// La portada pequeña de un paquete (el castillo, quieto), para las tarjetas. Siempre **cubre** toda la tarjeta
+/// (recorta lo que sobre, como una foto de portada) para que no asome nada de lo que hay detrás, sea cual sea su
+/// proporción en cada teléfono.
 Widget castleCover(StageArt? art, Pack pack) {
-  final setup = art == null
-      ? null
-      : bannerSetup(art, pack, const Rect.fromLTWH(0, 350, 600, 306));
+  const view = Rect.fromLTWH(0, 330, 600, 350);
+  final setup = art == null ? null : bannerSetup(art, pack, view);
   if (setup == null) return const SizedBox.shrink();
-  return RepaintBoundary(
-    child: CustomPaint(
-      painter: ScenePainter(
-        scene: setup.scene,
-        actors: setup.actors,
-        props: setup.props,
-        clock: ValueNotifier<double>(0.5),
-        view: setup.view,
+  return SizedBox.expand(
+    child: FittedBox(
+      fit: BoxFit.cover,
+      clipBehavior: Clip.hardEdge,
+      child: SizedBox(
+        width: view.width,
+        height: view.height,
+        child: RepaintBoundary(
+          child: CustomPaint(
+            painter: ScenePainter(
+              scene: setup.scene,
+              actors: setup.actors,
+              props: setup.props,
+              clock: ValueNotifier<double>(0.5),
+              view: setup.view,
+            ),
+          ),
+        ),
       ),
     ),
   );

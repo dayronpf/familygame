@@ -1,1 +1,1 @@
-Cambiar este archivo (y subirlo) compila un APK de prueba. Ultima peticion: v0.3.0 con wizard, voz arreglada al adelantar, texto_voz y perfiles de edad (reintento para incluir el cambio de version).
+Cambiar este archivo (y subirlo) compila un APK de prueba. Ultima peticion: v0.3.0 con botones de letra gruesa, Cambiar en una linea y portada del paquete a todo el ancho.

@@ -62,7 +62,7 @@ class FakeTts implements TtsPort {
   }
 }
 
-Future<void> settle() => Future<void>.delayed(const Duration(milliseconds: 20));
+Future<void> settle() => Future<void>.delayed(const Duration(milliseconds: 80));
 
 TtsNarrator narratorOver(FakeTts tts) => TtsNarrator(
       tts: tts,
