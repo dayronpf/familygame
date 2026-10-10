@@ -1,15 +1,14 @@
 name: Android (APK de prueba)
 
-# Se ejecuta: a mano (Actions → «Android (APK de prueba)» → Run workflow), al publicar una etiqueta v*,
-# y al subir cambios de la app a la rama de trabajo (así siempre hay un APK reciente para probar).
+# Se ejecuta SOLO: a mano (Actions → «Android (APK de prueba)» → Run workflow) o al publicar una etiqueta v*.
+# Ya no compila en cada subida a la rama: el dueño del producto prefiere recibir un APK solo cuando la calidad
+# de los cuentos esté lista para probar (se lanza a mano en ese momento).
 # El APK sale firmado con una llave de PRUEBA fija (app/android/app/caldero-debug.p12, pública): sirve para instalar y
 # actualizar encima de la versión anterior, NO para publicar en Play Store.
 on:
   workflow_dispatch:
   push:
     tags: ['v*']
-    branches: ['claude/**']
-    paths: ['app/**', 'packages/**', 'art/**', 'content/**', '.github/workflows/android.yml']
 
 permissions:
   contents: write # para publicar el APK en la release fija «apk-latest»
