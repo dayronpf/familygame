@@ -22,27 +22,31 @@ class _SettingsPageState extends State<SettingsPage> {
 
   static final RatingEvent _example = RatingEvent(
     id: '3f2b8c1e-5a47-4d2e-9b0a-7c1d6e8f2a90',
-    recipe: const StoryRecipe(
+    recipe: StoryRecipe(
       packId: 'medieval',
       packVersion: '1.0.0',
       engineVersion: engineVersion,
       seed: 482913,
       valueId: 'honestidad',
-      cast: {
+      cast: const {
         'hero': 'aldo',
         'helper': 'zafiro',
         'villain': 'codicio',
-        'place': 'bosque',
-        'place2': 'rio'
+        'torre': 'castillo',
+        'plaza': 'aldea',
+        'item': 'campana',
       },
-      fragmentIds: [
-        'op_1',
-        'tr_hon_a',
-        'he_1',
-        'te_1',
-        'cl_hon_a',
-        're_hon_a',
-        'cl_end_1'
+      fragmentIds: const [
+        'campana.deseo.a',
+        'campana.error.b',
+        'campana.tentacion.a',
+        'campana.escondite.a',
+        'campana.ayuda.b',
+        'campana.consejo.a',
+        'campana.acusacion.a',
+        'campana.verdad.b',
+        'campana.consecuencia.a',
+        'campana.cierre.b',
       ],
     ),
     rating: 5,
@@ -51,27 +55,31 @@ class _SettingsPageState extends State<SettingsPage> {
 
   static final RatingEvent _exampleWithReasons = RatingEvent(
     id: '9c4d7e20-61b3-4f08-a2d5-1e8b3a6f7c42',
-    recipe: const StoryRecipe(
+    recipe: StoryRecipe(
       packId: 'medieval',
       packVersion: '1.0.0',
       engineVersion: engineVersion,
       seed: 77120,
       valueId: 'valentia',
-      cast: {
+      cast: const {
         'hero': 'mara',
         'helper': 'bonifacio',
         'villain': 'sombra',
-        'place': 'cueva',
-        'place2': 'aldea'
+        'pueblo': 'aldea',
+        'bosque': 'bosque',
+        'item': 'linterna',
       },
-      fragmentIds: [
-        'op_2',
-        'tr_val_b',
-        'he_2',
-        'te_2',
-        'cl_val_b',
-        're_val_b',
-        'cl_end_2'
+      fragmentIds: const [
+        'linterna.la_luz.b',
+        'linterna.tormenta.a',
+        'linterna.el_miedo.b',
+        'linterna.el_paso.a',
+        'linterna.el_bosque.a',
+        'linterna.las_sombras.b',
+        'linterna.el_roble.a',
+        'linterna.la_chispa.b',
+        'linterna.el_regreso.a',
+        'linterna.cierre.b',
       ],
     ),
     rating: 2,

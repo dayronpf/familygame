@@ -58,6 +58,21 @@ List<String> _strList(
   throw PackFormatException('$where: "$key" debe ser una lista de textos');
 }
 
+Map<String, String> _strMap(Map<String, Object?> j, String key, String where) {
+  final v = j[key];
+  if (v == null) return const {};
+  if (v is Map && v.values.every((e) => e is String)) {
+    return Map<String, String>.from(v);
+  }
+  throw PackFormatException('$where: "$key" debe ser un objeto de textos');
+}
+
+/// Atributos que no pueden usarse como nombre propio porque ya tienen una forma gramatical.
+const Set<String> reservedForms = {
+  'noun', 'el', 'un', 'del', 'al', 'en', 'o', 'trait', //
+  'El', 'Un', 'En',
+};
+
 List<Map<String, Object?>> _objList(Map<String, Object?> j, String key) {
   final v = j[key];
   if (v is List && v.every((e) => e is Map<String, Object?>)) {
@@ -86,6 +101,8 @@ class Character extends Entity {
     required this.roles,
     required this.alignment,
     required this.trait,
+    this.tags = const [],
+    this.attrs = const {},
   });
 
   factory Character.fromJson(Map<String, Object?> j) {
@@ -107,6 +124,8 @@ class Character extends Entity {
       roles: _strList(j, 'roles', where, required: true),
       alignment: _str(j, 'alignment', where),
       trait: {'m': trait['m']! as String, 'f': trait['f']! as String},
+      tags: _strList(j, 'tags', where),
+      attrs: _attrs(j, where),
     );
   }
 
@@ -121,6 +140,23 @@ class Character extends Entity {
 
   /// Adjetivo según género: `{'m': 'curioso', 'f': 'curiosa'}`.
   final Map<String, String> trait;
+
+  /// Etiquetas para que las premisas elijan al personaje adecuado (`greedy`, `wise`…).
+  final List<String> tags;
+
+  /// Frases propias del personaje que los textos usan como `{rol.atributo}`: su gesto al
+  /// pensar, cómo se le nota el miedo, dónde vive… Dan a cada personaje una voz distinta.
+  final Map<String, String> attrs;
+}
+
+Map<String, String> _attrs(Map<String, Object?> j, String where) {
+  final attrs = _strMap(j, 'attrs', where);
+  for (final k in attrs.keys) {
+    if (reservedForms.contains(k) || !RegExp(r'^[a-z]\w*$').hasMatch(k)) {
+      throw PackFormatException('$where: atributo no permitido "$k"');
+    }
+  }
+  return attrs;
 }
 
 class Place extends Entity {
@@ -129,6 +165,7 @@ class Place extends Entity {
     required super.noun,
     required super.gender,
     required this.mood,
+    this.tags = const [],
   });
 
   factory Place.fromJson(Map<String, Object?> j) {
@@ -139,10 +176,38 @@ class Place extends Entity {
       noun: _str(j, 'noun', where),
       gender: Gender.parse(j['gender'], where),
       mood: _str(j, 'mood', where),
+      tags: _strList(j, 'tags', where),
     );
   }
 
   final String mood;
+
+  /// Para qué sirve el lugar en una trama (`village`, `castle`, `forest`, `cave`, `water`…).
+  final List<String> tags;
+}
+
+/// Un objeto de la trama (una campana, un farol…). Se elige para cada cuento y sus textos
+/// lo nombran con `{item}`, `{item.el}`, etc.
+class Prop extends Entity {
+  const Prop({
+    required super.id,
+    required super.noun,
+    required super.gender,
+    this.tags = const [],
+  });
+
+  factory Prop.fromJson(Map<String, Object?> j) {
+    final id = _str(j, 'id', 'objeto');
+    final where = 'objeto "$id"';
+    return Prop(
+      id: id,
+      noun: _str(j, 'noun', where),
+      gender: Gender.parse(j['gender'], where),
+      tags: _strList(j, 'tags', where),
+    );
+  }
+
+  final List<String> tags;
 }
 
 class Moral {
@@ -233,6 +298,184 @@ class Fragment {
   bool get isGeneric => values.contains(anyValue);
 }
 
+/// Qué entidad puede ocupar una ranura del reparto de una premisa.
+class CastSpec {
+  const CastSpec({
+    required this.kind,
+    this.roles = const [],
+    this.tags = const [],
+    this.ids = const [],
+  });
+
+  factory CastSpec.fromJson(Map<String, Object?> j, String where) {
+    final kind = j['kind'];
+    if (kind != 'character' && kind != 'place' && kind != 'prop') {
+      throw PackFormatException(
+        '$where: "kind" debe ser "character", "place" o "prop"',
+      );
+    }
+    return CastSpec(
+      kind: kind! as String,
+      roles: _strList(j, 'roles', where),
+      tags: _strList(j, 'tags', where),
+      ids: _strList(j, 'ids', where),
+    );
+  }
+
+  /// `character`, `place` o `prop`.
+  final String kind;
+
+  /// Solo personajes: debe tener alguno de estos roles.
+  final List<String> roles;
+
+  /// Debe tener TODAS estas etiquetas.
+  final List<String> tags;
+
+  /// Si no está vacío, solo estos ids.
+  final List<String> ids;
+}
+
+/// Una forma de contar una escena. Todas las variantes de una escena cuentan los MISMOS hechos
+/// (cambian las palabras, no lo que ocurre), así que son intercambiables.
+class Variant {
+  const Variant({
+    required this.id,
+    required this.text,
+    required this.requires,
+    required this.adds,
+    required this.scene,
+    this.weight = 1,
+  });
+
+  /// Id completo `premisa.escena.variante`; es lo que viaja en la receta.
+  final String id;
+  final String text;
+
+  /// Etiquetas que deben existir: las del reparto (`villain:greedy`, `hero:aldo`) o las que
+  /// añadió una escena anterior.
+  final List<String> requires;
+  final List<String> adds;
+
+  /// Directivas de animación (`bg` = ranura de lugar, `actors` = ranuras de personaje, `mood`).
+  final Map<String, Object?> scene;
+  final double weight;
+}
+
+/// Una escena de la premisa, con sus variantes.
+class Beat {
+  const Beat({
+    required this.id,
+    required this.variants,
+    required this.introduces,
+    required this.moves,
+  });
+
+  final String id;
+  final List<Variant> variants;
+
+  /// Ranuras (personajes u objetos) que se presentan aquí: el texto debe nombrarlas y ninguna
+  /// escena anterior puede haberlo hecho.
+  final List<String> introduces;
+
+  /// El texto cuenta un desplazamiento a otro lugar (obligatorio si cambia el fondo).
+  final bool moves;
+}
+
+/// Una historia completa escrita por un autor: reparto con requisitos, hechos compartidos
+/// (objetos) y escenas con variantes. Es la unidad con la que el motor garantiza el hilo.
+class Premise {
+  const Premise({
+    required this.id,
+    required this.value,
+    required this.title,
+    required this.cast,
+    required this.beats,
+    this.weight = 1,
+  });
+
+  factory Premise.fromJson(Map<String, Object?> j) {
+    final id = _str(j, 'id', 'premisa');
+    final where = 'premisa "$id"';
+    final castJson = j['cast'];
+    if (castJson is! Map<String, Object?> || castJson.isEmpty) {
+      throw PackFormatException('$where: falta el reparto "cast"');
+    }
+    final cast = {
+      for (final e in castJson.entries)
+        e.key: CastSpec.fromJson(
+          e.value is Map<String, Object?>
+              ? e.value! as Map<String, Object?>
+              : throw PackFormatException('$where: ranura "${e.key}" inválida'),
+          '$where, ranura "${e.key}"',
+        ),
+    };
+    final beats = <Beat>[];
+    for (final b in _objList(j, 'beats')) {
+      final beatId = _str(b, 'id', where);
+      final bw = '$where, escena "$beatId"';
+      final variants = [
+        for (final v in _objList(b, 'variants'))
+          () {
+            final vid = _str(v, 'id', bw);
+            final vw = '$bw, variante "$vid"';
+            final weight = v['weight'];
+            if (weight != null &&
+                (weight is! num || weight < 0 || !weight.isFinite)) {
+              throw PackFormatException('$vw: "weight" debe ser un número ≥ 0');
+            }
+            final scene = v['scene'];
+            return Variant(
+              id: '$id.$beatId.$vid',
+              text: _str(v, 'text', vw),
+              requires: _strList(v, 'requires', vw),
+              adds: _strList(v, 'adds', vw),
+              scene: scene is Map<String, Object?> ? scene : const {},
+              weight: weight == null ? 1 : (weight as num).toDouble(),
+            );
+          }(),
+      ];
+      if (variants.isEmpty) {
+        throw PackFormatException('$bw: necesita al menos una variante');
+      }
+      beats.add(
+        Beat(
+          id: beatId,
+          variants: variants,
+          introduces: _strList(b, 'introduces', bw),
+          moves: b['moves'] == true,
+        ),
+      );
+    }
+    if (beats.isEmpty) {
+      throw PackFormatException('$where: no tiene escenas');
+    }
+    final weight = j['weight'];
+    return Premise(
+      id: id,
+      value: _str(j, 'value', where),
+      title: _str(j, 'title', where),
+      cast: cast,
+      beats: beats,
+      weight: weight is num ? weight.toDouble() : 1,
+    );
+  }
+
+  final String id;
+
+  /// Enseñanza que ilustra (id de `morals`), o `*`.
+  final String value;
+
+  /// Título del cuento; puede llevar tokens (`La {item.noun}…`).
+  final String title;
+
+  /// Ranura → requisitos. El orden de declaración es el orden en que se eligen.
+  final Map<String, CastSpec> cast;
+  final List<Beat> beats;
+  final double weight;
+
+  bool fitsValue(String valueId) => value == anyValue || value == valueId;
+}
+
 class Pack {
   const Pack({
     required this.id,
@@ -243,10 +486,12 @@ class Pack {
     required this.places,
     required this.morals,
     required this.fragments,
+    this.props = const [],
+    this.premises = const [],
   });
 
-  /// Versión del esquema de pack que entiende este motor.
-  static const int supportedSchema = 1;
+  /// Esquemas de pack que entiende este motor: 1 (fragmentos por etapa) y 2 (premisas).
+  static const Set<int> supportedSchemas = {1, 2};
 
   factory Pack.fromJson(Map<String, Object?> json) {
     final meta = json['pack'];
@@ -254,9 +499,9 @@ class Pack {
       throw PackFormatException('falta el bloque "pack"');
     }
     final schema = meta['schema'];
-    if (schema != supportedSchema) {
+    if (!supportedSchemas.contains(schema)) {
       throw PackFormatException(
-        'esquema de pack no soportado: $schema (este motor entiende $supportedSchema)',
+        'esquema de pack no soportado: $schema (este motor entiende $supportedSchemas)',
       );
     }
     return Pack(
@@ -276,10 +521,19 @@ class Pack {
         json,
         'morals',
       ).map(Moral.fromJson).toList(growable: false),
-      fragments: _objList(
-        json,
-        'fragments',
-      ).map(Fragment.fromJson).toList(growable: false),
+      fragments: schema == 1 || json['fragments'] != null
+          ? _objList(json, 'fragments')
+              .map(Fragment.fromJson)
+              .toList(growable: false)
+          : const [],
+      props: json['props'] == null
+          ? const []
+          : _objList(json, 'props').map(Prop.fromJson).toList(growable: false),
+      premises: json['premises'] == null
+          ? const []
+          : _objList(json, 'premises')
+              .map(Premise.fromJson)
+              .toList(growable: false),
     );
   }
 
@@ -291,6 +545,12 @@ class Pack {
   final List<Place> places;
   final List<Moral> morals;
   final List<Fragment> fragments;
+
+  /// Objetos de la trama (esquema 2).
+  final List<Prop> props;
+
+  /// Historias completas (esquema 2).
+  final List<Premise> premises;
 
   Moral? moralById(String id) {
     for (final m in morals) {
@@ -323,9 +583,13 @@ class Story {
     required this.cast,
     required this.scenes,
     required this.recipe,
+    this.title,
   });
 
   final int seed;
+
+  /// Título del cuento (solo las premisas lo tienen).
+  final String? title;
   final Moral moral;
 
   /// Roles `hero`, `helper`, `villain`, `place`, `place2`.

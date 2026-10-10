@@ -61,13 +61,30 @@ void main() {
       }
     });
 
-    test('todo ánimo y rol usados por los fragmentos tienen animación', () {
+    test('todo ánimo, rol y fondo usados por las escenas tienen su dibujo', () {
       final clips = art.library.clips.clips;
-      for (final f in pack.fragments) {
-        final mood = f.scene['mood'];
-        expect(moodClips, contains(mood), reason: '${f.id}: ánimo "$mood"');
-        for (final role in (f.scene['actors'] as List<Object?>? ?? const [])) {
-          expect(roleOrder, contains(role), reason: '${f.id}: rol "$role"');
+      for (final premise in pack.premises) {
+        final places = {
+          for (final e in premise.cast.entries)
+            if (e.value.kind == 'place') e.key: e.value,
+        };
+        for (final beat in premise.beats) {
+          for (final v in beat.variants) {
+            final mood = v.scene['mood'];
+            expect(moodClips, contains(mood), reason: '${v.id}: ánimo "$mood"');
+            expect(places, contains(v.scene['bg']), reason: '${v.id}: fondo');
+            for (final role
+                in (v.scene['actors'] as List<Object?>? ?? const [])) {
+              expect(roleOrder, contains(role), reason: '${v.id}: rol "$role"');
+            }
+          }
+        }
+        // Todo lugar que la premisa puede usar tiene escena.
+        for (final spec in places.values) {
+          for (final id in castCandidates(pack, spec).map((e) => e.id)) {
+            expect(art.library.places, contains(id),
+                reason: '${premise.id}: $id');
+          }
         }
       }
       for (final e in moodClips.entries) {
@@ -77,10 +94,14 @@ void main() {
       }
     });
 
-    test('cada fragmento tiene directivas y piden un fondo conocido', () {
-      for (final f in pack.fragments) {
-        expect(f.scene['bg'], anyOf('place', 'place2'), reason: f.id);
-        expect(f.scene['actors'], isNotEmpty, reason: f.id);
+    test('cada escena declara fondo y personajes', () {
+      for (final premise in pack.premises) {
+        for (final beat in premise.beats) {
+          for (final v in beat.variants) {
+            expect(v.scene['bg'], isNotNull, reason: v.id);
+            expect(v.scene['actors'], isNotEmpty, reason: v.id);
+          }
+        }
       }
     });
 

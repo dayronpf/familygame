@@ -144,6 +144,13 @@ class _StoryPageState extends State<StoryPage>
         child: ListView(
           padding: const EdgeInsets.fromLTRB(24, 8, 24, 32),
           children: [
+            if (_story.title != null) ...[
+              Text(
+                _story.title!,
+                style: text.headlineSmall!.copyWith(color: scheme.primary),
+              ),
+              const SizedBox(height: 16),
+            ],
             for (var i = 0; i < _story.scenes.length; i++) ...[
               if (i < _setups.length && _setups[i] != null) ...[
                 StoryStage(setup: _setups[i]!, clock: _clock),

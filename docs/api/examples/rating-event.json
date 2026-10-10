@@ -7,24 +7,28 @@
   "recipe": {
     "packId": "medieval",
     "packVersion": "1.0.0",
-    "engine": "0.1.0",
+    "engine": "0.2.0",
     "seed": 482913,
     "value": "honestidad",
     "cast": {
       "hero": "aldo",
       "helper": "zafiro",
       "villain": "codicio",
-      "place": "bosque",
-      "place2": "rio"
+      "torre": "castillo",
+      "plaza": "aldea",
+      "item": "campana"
     },
     "fragments": [
-      "op_1",
-      "tr_hon_a",
-      "he_1",
-      "te_1",
-      "cl_hon_a",
-      "re_hon_a",
-      "cl_end_1"
+      "campana.deseo.a",
+      "campana.error.b",
+      "campana.tentacion.a",
+      "campana.escondite.a",
+      "campana.ayuda.b",
+      "campana.consejo.a",
+      "campana.acusacion.a",
+      "campana.verdad.b",
+      "campana.consecuencia.a",
+      "campana.cierre.b"
     ]
   }
 }

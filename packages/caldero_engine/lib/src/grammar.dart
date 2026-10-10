@@ -34,6 +34,9 @@ Map<String?, String> grammaticalForms(Entity e) {
   };
   if (e is Character) {
     forms['trait'] = e.trait[masculine ? 'm' : 'f']!;
+    forms.addAll(
+      e.attrs,
+    ); // `{rol.gesto}`, `{rol.miedo}`… (frases propias del personaje)
   }
   for (final k in ['el', 'un', 'en']) {
     forms[capitalize(k)] = capitalize(forms[k]!);

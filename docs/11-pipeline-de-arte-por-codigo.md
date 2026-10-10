@@ -147,9 +147,9 @@ torneo, cueva del dragón, granja, biblioteca del castillo, colina de las lucié
 
 **Enseñanzas (6):** honestidad, generosidad, valentía + **humildad, perseverancia, amistad** (se escriben nuevas junto a los fragmentos).
 
-**Contenido que falta escribir:** ~120 fragmentos del pack (hoy el pack `medieval` de prueba tiene 29, en `content/packs/medieval/`: los 6
-personajes dibujados, 5 lugares y 3 enseñanzas con 2 variantes de problema, clímax y resolución cada una). Es el siguiente gran bloque del
-carril de contenido y se hace con el validador del motor.
+**Contenido que falta escribir:** hoy el pack `medieval` (`content/packs/medieval/`) tiene **3 premisas** completas (≈ 565 palabras cada una,
+9–10 escenas) con los 6 personajes dibujados, 5 lugares y 3 enseñanzas; el objetivo es **≥ 3 premisas por enseñanza** y las
+6 enseñanzas, escritas con el formato y las reglas de [06](06-modelo-de-contenido.md) y [13](13-auditoria-de-historias.md).
 
 ## 8. Próximos pasos de arte (propuesta, en orden)
 

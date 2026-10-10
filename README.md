@@ -88,6 +88,6 @@ semilla da un cuento distinto en Python y en Dart; lo que ambos comparten es el 
 
 **Sprint 1 — «El caldero en Dart»** ✅ y **arte por código** (pack medieval) en marcha: motor, validador, esquema, CI,
 pantalla de cuentos, 6 personajes animados con 10 clips reutilizables, 5 lugares y **Taller de personajes** con medidor de fps.
-**MVP de prueba:** el pack «Reino de la Luna» (`content/packs/medieval`: 6 personajes, 5 lugares, 3 enseñanzas, 29 fragmentos) se lee con **dibujos animados en cada escena del cuento** (sin música ni voz todavía).
+**MVP de prueba:** el pack «Reino de la Luna» (`content/packs/medieval`: 6 personajes, 5 lugares, 3 enseñanzas, 3 premisas) se lee con **dibujos animados en cada escena del cuento** (sin música ni voz todavía). Tras la [auditoría](docs/13-auditoria-de-historias.md), los cuentos nacen de **premisas** con hilo (3 premisas, ≈ 5 min leídas, reglas de coherencia en CI).
 **Valoración 1–5 al final de cada cuento** (lo único que se recoge, anónimo; [docs/12](docs/12-valoraciones-y-mejora-continua.md)) lista en la app; falta el servidor que la reciba.
 Pendiente: probar en Android/iOS reales y medir rendimiento ([docs/11 §9](docs/11-pipeline-de-arte-por-codigo.md)). Ver [docs/07-backlog.md](docs/07-backlog.md).

@@ -42,6 +42,19 @@ class StoryEngine {
           ));
     }
 
+    final premises = pack.premises
+        .where((p) => p.fitsValue(moral.id))
+        .toList(growable: false);
+    if (premises.isNotEmpty) {
+      return _generateFromPremise(
+        pack,
+        options.seed,
+        moral,
+        _pickWeighted(premises, (p) => p.weight, rng),
+        rng,
+      );
+    }
+
     final cast = castStory(pack, rng);
     final state = <String>{};
     final used = <String>{};
@@ -75,6 +88,128 @@ class StoryEngine {
       ),
     );
   }
+}
+
+/// Cuenta una [premise]: elige el reparto que cumple sus requisitos y, escena a escena, una
+/// variante compatible con él y con lo ya contado.
+Story _generateFromPremise(
+  Pack pack,
+  int seed,
+  Moral moral,
+  Premise premise,
+  Mulberry32 rng,
+) {
+  final cast = castPremise(pack, premise, rng);
+  final state = castState(cast, premise);
+  final scenes = <StoryScene>[];
+  for (final beat in premise.beats) {
+    final candidates = beat.variants
+        .where((v) => v.weight > 0 && state.containsAll(v.requires))
+        .toList();
+    if (candidates.isEmpty) {
+      throw StoryGenerationException(
+        'sin variante para ${premise.id}.${beat.id} estado=${(state.toList()..sort())}',
+      );
+    }
+    final variant = _pickWeighted(candidates, (v) => v.weight, rng);
+    state.addAll(variant.adds);
+    scenes.add(
+      StoryScene(
+        fragmentId: variant.id,
+        text: renderTemplate(variant.text, cast),
+        directives: variant.scene,
+      ),
+    );
+  }
+  return Story(
+    seed: seed,
+    moral: moral,
+    cast: cast,
+    scenes: scenes,
+    title: renderTemplate(premise.title, cast),
+    recipe: StoryRecipe(
+      packId: pack.id,
+      packVersion: pack.version,
+      engineVersion: engineVersion,
+      seed: seed,
+      valueId: moral.id,
+      cast: {for (final e in cast.entries) e.key: e.value.id},
+      fragmentIds: [for (final s in scenes) s.fragmentId],
+    ),
+  );
+}
+
+/// Entidades del pack que pueden ocupar una ranura.
+List<Entity> castCandidates(Pack pack, CastSpec spec) {
+  final List<Entity> all = switch (spec.kind) {
+    'character' => pack.characters,
+    'place' => pack.places,
+    _ => pack.props,
+  };
+  return all.where((e) {
+    if (spec.ids.isNotEmpty && !spec.ids.contains(e.id)) return false;
+    final tags = switch (e) {
+      final Character c => c.tags,
+      final Place p => p.tags,
+      final Prop p => p.tags,
+      _ => const <String>[],
+    };
+    if (!spec.tags.every(tags.contains)) return false;
+    if (e is Character &&
+        spec.roles.isNotEmpty &&
+        !spec.roles.any(e.roles.contains)) {
+      return false;
+    }
+    return true;
+  }).toList(growable: false);
+}
+
+/// Elige, ranura por ranura, entidades que cumplan los requisitos y no se repitan.
+Map<String, Entity> castPremise(Pack pack, Premise premise, Mulberry32 rng) {
+  final chosen = <String, Entity>{};
+  for (final slot in premise.cast.entries) {
+    final candidates = castCandidates(pack, slot.value)
+        .where((e) => !chosen.values.any((c) => c.id == e.id))
+        .toList();
+    if (candidates.isEmpty) {
+      throw StoryGenerationException(
+        'premisa ${premise.id}: ninguna entidad cumple la ranura «${slot.key}»',
+      );
+    }
+    chosen[slot.key] = rng.choice(candidates);
+  }
+  return chosen;
+}
+
+/// Etiquetas iniciales de un reparto: `ranura:id` y `ranura:etiqueta`.
+Set<String> castState(Map<String, Entity> cast, Premise premise) {
+  final state = <String>{};
+  for (final e in cast.entries) {
+    state.add('${e.key}:${e.value.id}');
+    final tags = switch (e.value) {
+      final Character c => c.tags,
+      final Place p => p.tags,
+      final Prop p => p.tags,
+      _ => const <String>[],
+    };
+    for (final t in tags) {
+      state.add('${e.key}:$t');
+    }
+  }
+  return state;
+}
+
+/// Elige según el peso. Con pesos iguales equivale a `rng.choice` (misma secuencia aleatoria).
+T _pickWeighted<T>(List<T> pool, double Function(T) weight, Mulberry32 rng) {
+  final first = weight(pool.first);
+  if (pool.every((x) => weight(x) == first)) return rng.choice(pool);
+  final total = pool.fold<double>(0, (sum, x) => sum + weight(x));
+  var r = rng.nextUint32() / 0x100000000 * total;
+  for (final x in pool) {
+    r -= weight(x);
+    if (r < 0) return x;
+  }
+  return pool.last;
 }
 
 /// Elige héroe, ayudante, villano y dos lugares distintos.
@@ -142,16 +277,7 @@ Fragment pickFragment(
   return _weightedChoice(pool, rng);
 }
 
-/// Elige un fragmento según su peso. Con pesos iguales equivale a `rng.choice` (misma secuencia
-/// aleatoria), así que los packs sin pesos generan exactamente los mismos cuentos que antes.
-Fragment _weightedChoice(List<Fragment> pool, Mulberry32 rng) {
-  final first = pool.first.weight;
-  if (pool.every((f) => f.weight == first)) return rng.choice(pool);
-  final total = pool.fold<double>(0, (sum, f) => sum + f.weight);
-  var r = rng.nextUint32() / 0x100000000 * total;
-  for (final f in pool) {
-    r -= f.weight;
-    if (r < 0) return f;
-  }
-  return pool.last;
-}
+/// Elige un fragmento según su peso (ver [_pickWeighted]); los packs sin pesos generan
+/// exactamente los mismos cuentos que antes.
+Fragment _weightedChoice(List<Fragment> pool, Mulberry32 rng) =>
+    _pickWeighted(pool, (f) => f.weight, rng);

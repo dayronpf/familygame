@@ -30,6 +30,39 @@ Campos a añadir en S1–S3: `age_band`, `scare` (0–3), `duration_s`, `tags`, 
 
 Roles disponibles: `hero`, `helper`, `villain`, `place`, `place2`.
 
+## Esquema 2: premisas (el que usa el pack medieval)
+
+El esquema 1 (un fragmento suelto por etapa) no daba hilo: ver [13](13-auditoria-de-historias.md). El **esquema 2** cuenta una
+**premisa** = una historia completa escrita por un autor.
+
+```jsonc
+{ "pack": { "schema": 2, … },
+  "characters": [{ …, "tags": ["wise"], "attrs": { "gesto": "se acarició la larga barba blanca", "miedo": "…", "voz": "…" } }],
+  "places":     [{ …, "tags": ["village", "settlement"] }],
+  "props":      [{ "id": "campana", "noun": "campana", "gender": "f" }],      // objetos de la trama
+  "premises": [{
+    "id": "campana", "value": "honestidad", "title": "La campana rota",
+    "cast": {                                  // ranuras con requisitos; el orden es el de elección
+      "hero":   { "kind": "character", "roles": ["hero"] },
+      "helper": { "kind": "character", "roles": ["helper"], "tags": ["wise"] },
+      "torre":  { "kind": "place", "ids": ["castillo"] },
+      "item":   { "kind": "prop",  "ids": ["campana"] } },
+    "beats": [{                                 // escenas, en orden
+      "id": "error", "introduces": ["villain"], "moves": false,
+      "variants": [{ "id": "a", "requires": ["villain:greedy"], "adds": ["escondido"],
+                     "scene": { "bg": "torre", "actors": ["hero"], "mood": "tension" },
+                     "text": "{hero} tiró de la cuerda y {item.el} se partió. {hero.miedo}." }] }] }] }
+```
+
+- **Tokens nuevos:** `{rol.atributo}` (frases propias del personaje), `{item}` y `{item.el}` (objetos y lugares de cualquier ranura).
+- **Etiquetas del reparto** que una variante puede exigir en `requires`: `ranura:id` (`villain:codicio`) y `ranura:etiqueta`
+  (`villain:greedy`); las `adds` de una escena anterior siguen funcionando.
+- **`introduces`**: la escena que presenta a un personaje u objeto (debe nombrarlo; nadie puede nombrarlo antes).
+- **`moves: true`**: el texto cuenta un desplazamiento (obligatorio si cambia el fondo `bg`).
+- **Las variantes de una escena cuentan los mismos hechos.** Si una debe contar otra cosa, es otra premisa.
+- La receta de valoración lleva ids `premisa.escena.variante` (`campana.error.a`).
+- Reglas de coherencia que bloquean un pack: [13 §5](13-auditoria-de-historias.md) y `validatePack`.
+
 ## Receta del cuento y pesos
 
 Cada cuento generado expone su **receta** (`story.recipe`): pack y versión, versión del motor, semilla, enseñanza, ids del reparto y ids de

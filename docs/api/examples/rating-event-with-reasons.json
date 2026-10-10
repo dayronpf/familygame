@@ -11,24 +11,28 @@
   "recipe": {
     "packId": "medieval",
     "packVersion": "1.0.0",
-    "engine": "0.1.0",
+    "engine": "0.2.0",
     "seed": 77120,
     "value": "valentia",
     "cast": {
       "hero": "mara",
       "helper": "bonifacio",
       "villain": "sombra",
-      "place": "cueva",
-      "place2": "aldea"
+      "pueblo": "aldea",
+      "bosque": "bosque",
+      "item": "linterna"
     },
     "fragments": [
-      "op_2",
-      "tr_val_b",
-      "he_2",
-      "te_2",
-      "cl_val_b",
-      "re_val_b",
-      "cl_end_2"
+      "linterna.la_luz.b",
+      "linterna.tormenta.a",
+      "linterna.el_miedo.b",
+      "linterna.el_paso.a",
+      "linterna.el_bosque.a",
+      "linterna.las_sombras.b",
+      "linterna.el_roble.a",
+      "linterna.la_chispa.b",
+      "linterna.el_regreso.a",
+      "linterna.cierre.b"
     ]
   }
 }

@@ -25,7 +25,7 @@ Pack versión N+1 ◀── revisión humana ◀── Panel «Calidad» (fragme
 ## 2. Por qué una nota sola no sirve, y qué se añade
 
 Una nota de «3» sin saber *qué cuento fue* no permite mejorar nada. Por eso la nota viaja con la **receta**:
-identificadores (no texto, no nombres) del pack y su versión, la semilla, la enseñanza, el reparto y los fragmentos
+identificadores (no texto, no nombres) del pack y su versión, la semilla, la enseñanza, el reparto y los fragmentos (desde el esquema 2, `premisa.escena.variante`: la premisa se lee en el primer id)
 elegidos. Es la misma clase de dato («un cuento valorado»); no hay ningún otro dato sobre la familia. Como el motor es
 determinista, con el pack y la semilla se reconstruye el cuento exacto; además la receta es autodescriptiva (lleva los ids), así
 que sigue sirviendo aunque el algoritmo cambie.

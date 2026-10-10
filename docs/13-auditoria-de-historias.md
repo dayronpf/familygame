@@ -1,4 +1,6 @@
-# 13 · Auditoría de las historias generadas (pack «Reino de la Luna», v0.1.0)
+# 13 · Auditoría de las historias generadas (pack «Reino de la Luna»)
+
+> **Estado:** auditoría de la v0.1.0 (§1–§4) y **resultado tras el cambio a premisas, v0.2.0 (§7)**.
 
 > **Veredicto:** tienes razón. Las historias no tienen hilo conductor. No es un problema de redacción de un par de frases:
 > es de **diseño del generador y del contenido**. El validador daba «0 problemas» porque solo comprueba gramática,
@@ -93,22 +95,53 @@ desordenado) → **una tentación con un motivo del villano** → **un intento f
 no resuelve, orienta** → **una elección con coste** (miedo al castigo) → **consecuencia** que muestra por qué la verdad importa.
 Todo lo que se menciona se usa después; nadie aparece sin presentarse.
 
-## 5. Plan propuesto (en este orden)
+## 5. Plan (N1–N3 hechos; ver §7)
 
 | Paso | Qué | Resultado medible |
 |---|---|---|
-| **N1** | **Cambiar el modelo**: del «un fragmento suelto por etapa» a **premisas**: cada cuento nace de una premisa escrita por un autor, con **hechos compartidos** (`{objeto}`, `{dueño}`, `{lugar}`) que viven en todas las escenas y escenas (*beats*) escritas para esa premisa. Los lugares y personajes se eligen entre los **compatibles** (etiquetas: aldea/naturaleza/subterráneo, avaro/embustero…) y el texto tiene variantes según su tipo | Una escena puede referirse a lo anterior; Codicio y Sombra dejan de ser intercambiables |
-| **N2** | **Reglas nuevas en el validador y en CI**: el héroe sale en ≥ 90 % de las escenas y en el cierre; el ayudante se presenta antes de actuar y sigue presente; el villano tiene motivo; un hecho no puede usarse sin haberse introducido; el lugar no cambia sin contar el viaje; ≥ 3 conectores causales; ≥ 330 palabras. `audit_stories` fija los umbrales y CI falla si no se cumplen | El sinsentido deja de poder entrar al pack |
-| **N3** | **3 premisas completas** (una por enseñanza, p. ej. *La campana rota*, *El invierno del granero*, *La linterna apagada*) con 3 variantes en las escenas clave, escritas al nivel de §4, que tú revisas | Primeros cuentos que de verdad se pueden leer a un niño |
-| **N4** | **Prueba con familias** (lectura en voz alta) y lectura de la valoración con «no tuvo sentido» / «se repitió». Recién con eso, escalar a ~12 premisas | Dato real, no mi impresión |
+| **N1** ✅ | **Cambiar el modelo**: del «un fragmento suelto por etapa» a **premisas**: cada cuento nace de una premisa escrita por un autor, con **hechos compartidos** (`{objeto}`, `{dueño}`, `{lugar}`) que viven en todas las escenas y escenas (*beats*) escritas para esa premisa. Los lugares y personajes se eligen entre los **compatibles** (etiquetas: aldea/naturaleza/subterráneo, avaro/embustero…) y el texto tiene variantes según su tipo | Una escena puede referirse a lo anterior; Codicio y Sombra dejan de ser intercambiables |
+| **N2** ✅ | **Reglas nuevas en el validador y en CI**: el héroe sale en ≥ 90 % de las escenas y en el cierre; el ayudante se presenta antes de actuar y sigue presente; el villano tiene motivo; un hecho no puede usarse sin haberse introducido; el lugar no cambia sin contar el viaje; ≥ 3 conectores causales; ≥ 330 palabras. `audit_stories` fija los umbrales y CI falla si no se cumplen | El sinsentido deja de poder entrar al pack |
+| **N3** ✅ | **3 premisas completas** (una por enseñanza, p. ej. *La campana rota*, *El invierno del granero*, *La linterna apagada*) con 3 variantes en las escenas clave, escritas al nivel de §4, que tú revisas | Primeros cuentos que de verdad se pueden leer a un niño |
+| **N4** ☐ | **Prueba con familias** (lectura en voz alta) y lectura de la valoración con «no tuvo sentido» / «se repitió». Recién con eso, escalar a ~12 premisas | Dato real, no mi impresión |
 
 Lo que **no** hago sin que lo decidas: borrar el pack actual o cambiar el formato de packs (rompe cuentos guardados y
 valoraciones; se haría como versión 2 del esquema).
 
-## 6. Decisiones que necesito de ti
+## 6. Decisiones (resueltas)
 
-1. ¿Vamos con el **modelo de premisas** (N1–N4)? Es el cambio grande, y el que de verdad arregla esto.
-2. ¿Te parecen bien las 3 premisas de arranque, o prefieres proponer las tuyas? (La parte creativa es tuya; yo redacto borradores y
-   construyo el motor y las reglas.)
-3. ¿Quieres que mientras tanto **retire las 3 escenas «prueba»** del pack actual (las que más sinsentidos producen) para que lo que
-   pruebes en el teléfono sea menos malo? Es un parche, no la solución.
+Se aprobó el modelo de premisas, las 3 premisas de arranque (*La campana rota*, *La olla de los poquitos* —antes «El invierno del
+granero»; la historia cambió al escribirla— y *La linterna apagada*) y la autoría literaria queda en manos del equipo (borradores
+míos, revisión humana, ADR-008). Las 3 escenas «de prueba» del pack antiguo desaparecieron con él.
+
+## 7. Resultado tras el cambio (v0.2.0, 3 000 cuentos, misma herramienta)
+
+| Medida | Antes (v0.1.0) | Ahora (v0.2.0) |
+|---|---|---|
+| Palabras por cuento | 193 (≈ 1,8 min) | **565** (≈ 5 min) |
+| Escenas | 7 sueltas | **9–10** enlazadas |
+| Conectores causales | 1 en todo el pack | **5,8 por cuento** (mínimo 3, lo exige el validador) |
+| Citas de diálogo | 2,0 (12 % sin ninguna) | **12,6** (ninguno sin diálogo) |
+| Onomatopeyas / sonidos | casi ninguna | 90 % de los cuentos |
+| Ayudante | aparece a mitad, sin presentación | **presentado en una escena que lo introduce** y sigue presente |
+| Villano | desaparece en la «prueba» | motivo propio (favor, despensa, botín) y consecuencia |
+| Héroe en el cierre | 0 % | **100 %** |
+| Cambios de lugar sin contar | 2 por cuento | **0** (el validador exige `moves: true`) |
+| «Para resolverlo…» | 35 % | 0 % |
+| El reparto cambia el texto | no (solo el nombre) | **sí** (gesto, voz, miedo, objeto, favor, guarida) |
+| Cuentos únicos (de 1 000 por enseñanza) | — | 92–97 % |
+
+**Cómo se consiguió** (ADR-018): cada cuento nace de una **premisa** escrita por un autor, con **hechos compartidos** (el objeto, el
+lugar, quién es quién), escenas con **variantes intercambiables** (cuentan lo mismo con otras palabras) y **atributos propios de cada
+personaje** (`{helper.gesto}`, `{hero.miedo}`, `{villain.favor}`…). El validador **rechaza** el pack si alguien actúa antes de
+presentarse, un personaje desaparece, el lugar cambia sin contar el viaje, hay menos de 300 palabras, menos de 3 causas o menos de
+2 diálogos (17 pruebas, 9 de ellas negativas).
+
+**Límites que siguen en pie (honestos):**
+
+- **Una sola premisa por enseñanza.** Con 92–97 % de textos distintos, la *trama* se repite: quien lea «Honestidad» tres veces verá
+  tres veces la campana (con otro héroe, ayudante, villano y otras palabras). Hacen falta **≥ 3 premisas por enseñanza** antes de
+  salir a familias (plan N4).
+- Sigue siendo un borrador: **lo firma un autor humano** y falta la prueba de lectura en voz alta con niños.
+- Los 5 lugares con arte se reutilizan; faltan objetos de la trama dibujados (campana, linterna, olla) y personajes de reparto
+  (Tomás, Lía, Teo).
+- El validador mide estructura (presentaciones, causas, longitud…), **no talento**: no sabe si un cuento es bonito.

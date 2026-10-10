@@ -70,8 +70,10 @@ StageSetup? stageFor(
   Map<String, Entity> cast,
   Map<String, Object?> directives,
 ) {
+  // `bg` es la ranura de lugar del reparto (premisas: `torre`, `bosque`…; esquema 1: `place`/`place2`).
   final bg = directives['bg'];
-  final placeEntity = cast[bg == 'place2' ? 'place2' : 'place'];
+  final slot = bg is String ? cast[bg] : null;
+  final placeEntity = slot is Place ? slot : cast['place'];
   if (placeEntity == null) return null;
   final place = art.library.places[placeEntity.id];
   final scene = art.sceneFor(placeEntity.id);

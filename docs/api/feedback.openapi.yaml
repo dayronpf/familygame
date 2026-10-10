@@ -133,19 +133,22 @@ components:
           pattern: '^[a-z][a-z0-9_]{0,39}$'
         cast:
           type: object
-          description: Rol → id (hero, helper, villain, place, place2).
+          description: Ranura → id (hero, helper, villain, place, place2 en el esquema 1; en el 2 también las del reparto de la premisa, p. ej. item, torre).
           maxProperties: 8
           additionalProperties:
             type: string
             pattern: '^[a-z][a-z0-9_]{0,39}$'
         fragments:
           type: array
-          description: Ids de los fragmentos, en orden de etapa.
+          description: |
+            Ids de los fragmentos o escenas, en orden. Esquema 1: `op_1`. Esquema 2: `premisa.escena.variante`
+            (p. ej. `campana.error.a`).
           minItems: 1
           maxItems: 20
           items:
             type: string
-            pattern: '^[a-z][a-z0-9_]{0,39}$'
+            maxLength: 100
+            pattern: '^[a-z][a-z0-9_]*(\.[a-z][a-z0-9_]*){0,2}$'
     FeedbackResult:
       type: object
       required: [accepted]

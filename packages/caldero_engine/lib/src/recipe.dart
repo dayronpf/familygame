@@ -1,5 +1,5 @@
 /// Versión del algoritmo del motor. Sube cuando cambie cómo se arma un cuento.
-const String engineVersion = '0.1.0';
+const String engineVersion = '0.2.0';
 
 /// La «receta» de un cuento: todo lo necesario para saber QUÉ cuento fue, sin su texto
 /// y sin ningún dato personal. Es lo que viaja junto a una valoración.

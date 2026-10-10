@@ -66,7 +66,8 @@ void main() {
   }
 
   Future<void> scrollToRating(WidgetTester tester) async {
-    await tester.scrollUntilVisible(find.byKey(const Key('rating-5')), 300);
+    await tester.scrollUntilVisible(find.byKey(const Key('rating-5')), 300,
+        maxScrolls: 200);
     await tester.pumpAndSettle();
   }
 
@@ -95,7 +96,8 @@ void main() {
     expect(recipe['seed'], 3);
     expect(recipe['value'], 'honestidad');
     expect(recipe['packId'], 'medieval');
-    expect((recipe['fragments']! as List<Object?>), hasLength(7));
+    expect(recipe['fragments']! as List<Object?>,
+        hasLength(inInclusiveRange(8, 12)));
     expect(await service.queuedCount(), 0, reason: 'ya salió');
   });
 

@@ -41,6 +41,7 @@ Los sprints 0–3 están detallados; el resto se refina cuando se acerca («Ahor
 | E2-01 | Como autor, quiero un **esquema JSON de pack** versionado para validar el contenido | Esquema publicado; el pack demo lo cumple; versión de esquema en el pack | S | ✅ `content/schema/pack.schema.json` + `tools/validate_schema.py`; rechaza packs rotos |
 | E2-02 | Como app, quiero un **motor de cuentos en Dart** equivalente al prototipo | Misma semilla + pack ⇒ mismo cuento (determinista); pruebas | M | ✅ 24 pruebas (RNG contrastado con la implementación de referencia, 1000 semillas × 3 enseñanzas, cuento «golden»). *Cambio:* ya no se exige paridad con Python (otro generador aleatorio); se exige determinismo propio. |
 | E2-03 | Como equipo, quiero el **validador de packs** en CI | Falla en token inexistente, frase mal cerrada, artículo mal capitalizado, contracción faltante y falta de cobertura | M | ✅ `dart run caldero_engine:validate_pack` |
+| E2-07 | **Motor de premisas** (esquema 2) y reglas de coherencia en el validador | Presentaciones, viajes contados, causas, longitud; pruebas negativas | L | ✅ ver [13](13-auditoria-de-historias.md) y ADR-018 |
 | E1-07 | Como equipo, quiero el **libro de licencias de assets** | Plantilla creada y regla en la Definición de Terminado | S | ✅ `ASSETS_LICENSES.md` |
 | E4-01 | Como adulto, quiero **elegir una enseñanza y generar un cuento** | Selector + «Crear cuento» + texto | M | ✅ 5 pruebas de widgets; recorrido verificado en un navegador (build web temporal) |
 
@@ -84,7 +85,7 @@ El primer pack, gratuito, es medieval («Reino de la Luna», nombre provisional)
 | E13-06 | Biblioteca de animaciones (caminar, correr, sorpresa, miedo, alegría, parpadeo) | Clips como datos, reutilizables por rig | M | ✅ 10 clips en 5 KB, paridad Python↔Dart comprobada |
 | E13-08 | **Mostrar el arte en los cuentos:** cada fragmento elige escena, personajes y clip (`scene.bg/actors/mood`) | El lector anima la escena del fragmento que se narra | M | 🟡 **MVP hecho:** cada escena del cuento muestra el fondo de su lugar, sus personajes y un clip según el ánimo (`story_stage.dart`); falta transiciones, objetos de la trama y voz |
 | E13-07 | Kit de fondos del pack (aldea, bosque, cueva, río, interior) | 15 lugares con capas y paletas | L | 🟡 5 de ~15 lugares (castillo, bosque, cueva, río, aldea) |
-| E3-03 | **Contenido del pack medieval:** ~25 personajes, ~15 lugares, 6 enseñanzas y ~120 fragmentos | Pasa el validador; revisión editorial | L (contenido) | 🟡 pack de prueba: 6 personajes, 5 lugares, 3 enseñanzas, 29 fragmentos (validador sin problemas); faltan ~19 personajes, ~10 lugares y ~90 fragmentos |
+| E3-03 | **Contenido del pack medieval:** ~25 personajes, ~15 lugares, 6 enseñanzas y ~120 fragmentos | Pasa el validador; revisión editorial | L (contenido) | 🟡 3 premisas completas (565 palabras, 9–10 escenas) con 6 personajes con voz propia; faltan ≥ 2 premisas más por enseñanza (≥ 3 en total), 3 enseñanzas más (humildad, perseverancia, amistad), personajes y lugares |
 
 ## Valoraciones y mejora continua (E14) — prioridad desde el primer día
 
