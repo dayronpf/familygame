@@ -1,1 +1,1 @@
-Cambiar este archivo (y subirlo) compila un APK de prueba. Ultima peticion: v0.2.0 con interfaz nueva (splash, paquetes, Mis cuentos), cuentos coherentes con la imagen y cama arreglada.
+Cambiar este archivo (y subirlo) compila un APK de prueba. Ultima peticion: v0.2.0 con wizard, voz arreglada al adelantar, texto_voz y perfiles de edad.
