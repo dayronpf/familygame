@@ -49,6 +49,7 @@ packages/caldero_rig/     Rigs 2D, clips de animación y escenas (Dart puro, con
 content/packs/            Packs de contenido (fuente de verdad) y su esquema JSON
 tools/                    Prototipo en Python, validador de esquema, sincronía de assets
 tools/art/                Generadores de personajes y escenas (arte por código)
+tools/rename_app.py       Cambia el nombre del juego en todos los sitios que lo escriben a mano (cuando se elija el definitivo)
 art/                      Arte como datos: personajes, clips, escenas y vistas previas (PNG/GIF/SVG)
 docs/                     Visión, metodología, roadmap, arquitectura, backlog…
 ASSETS_LICENSES.md        Libro de licencias de todo asset de terceros
@@ -104,8 +105,18 @@ un registro escondido que bloqueaba toda instalación con «conflicto con un paq
 
 ## Estado
 
-**Sprint 1 — «El caldero en Dart»** ✅ y **arte por código** (pack medieval) en marcha: motor, validador, esquema, CI,
-pantalla de cuentos, 6 personajes animados con 10 clips reutilizables, 5 lugares y **Taller de personajes** con medidor de fps.
-**MVP de prueba:** el pack «Reino de la Luna» (`content/packs/medieval`: 6 personajes, 5 lugares, 3 enseñanzas, 3 premisas) se lee con **dibujos animados en cada escena del cuento** (sin música ni voz todavía). Tras la [auditoría](docs/13-auditoria-de-historias.md), los cuentos nacen de **premisas** con hilo (3 premisas, ≈ 6 min leídas, reglas de coherencia en CI) y se mejoran por vueltas de revisión ([14](docs/14-rubrica-editorial.md)).
-**Valoración 1–5 al final de cada cuento** (lo único que se recoge, anónimo; [docs/12](docs/12-valoraciones-y-mejora-continua.md)) lista en la app; falta el servidor que la reciba.
-Pendiente: probar en Android/iOS reales y medir rendimiento ([docs/11 §9](docs/11-pipeline-de-arte-por-codigo.md)). Ver [docs/07-backlog.md](docs/07-backlog.md).
+**Qué hay (11 de octubre de 2026).** Una app Flutter (Android; iOS sin probar) que cuenta cuentos originales de dormir, generados por
+un motor determinista a partir de **premisas** con hilo y una enseñanza, con **dibujos animados por código** en cada escena, **voz** del
+teléfono, sonido de fondo y un **modo holograma** (prisma sobre la pantalla; guía PDF «Holograma en casa»).
+
+* **Contenido:** el pack gratuito «Reino de la Luna» (`content/packs/medieval`): 15 cuentos (3 para 2–3 años, 6 para 4–5, 6 para 6–8),
+  15 personajes, 8 lugares y 3 enseñanzas, con las reglas de coherencia texto↔imagen, de edad y de vocabulario en CI.
+* **Para la familia:** asistente de primer uso, **el nombre del niño como protagonista**, **varios niños** con su propio estante,
+  modos cine, holograma, **solo audio** y **«Leemos juntos»**, **temporizador de sueño con bajada gradual** de volumen y brillo,
+  «Mis cuentos», compartir y valoración anónima 1–5 (lo único que se recoge; [docs/12](docs/12-valoraciones-y-mejora-continua.md)).
+* **Arte:** personajes con cara animable y brazos con codo ([docs/16](docs/16-coherencia-texto-imagen.md)), generados por código y
+  reproducibles en CI.
+
+**Lo que falta:** probar en teléfonos reales y con familias; elegir el nombre definitivo (se cambia en un solo sitio con
+`tools/rename_app.py`); más contenido; el servidor de catálogo y las compras; y los caminos elegibles ([docs/20](docs/20-caminos-elegibles.md),
+solo diseño). El estado historia por historia está en [docs/07-backlog.md](docs/07-backlog.md) y la hoja de ruta en [docs/02-roadmap.md](docs/02-roadmap.md).

@@ -24,7 +24,15 @@ from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.platypus import (BaseDocTemplate, Flowable, Frame, KeepTogether, PageBreak, PageTemplate, Paragraph,
                                 Spacer, Table, TableStyle)
 
-APP_NAME = "Caldero de Cuentos"  # si el juego cambia de nombre, se cambia aquí y se vuelve a generar
+def _app_name():
+    """El nombre del juego sale de un solo sitio: `app/lib/src/brand.dart` (lo cambia `tools/rename_app.py`)."""
+    import re
+    brand = Path(__file__).resolve().parents[2] / "app/lib/src/brand.dart"
+    m = re.search(r"const String appName = '([^']+)';", brand.read_text(encoding="utf-8"))
+    return m.group(1) if m else "Caldero de Cuentos"
+
+
+APP_NAME = _app_name()
 FONTS = Path("/usr/share/fonts/truetype/dejavu")
 pdfmetrics.registerFont(TTFont("Sans", str(FONTS / "DejaVuSans.ttf")))
 pdfmetrics.registerFont(TTFont("Sans-Bold", str(FONTS / "DejaVuSans-Bold.ttf")))

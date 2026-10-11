@@ -4,11 +4,13 @@ import 'package:flutter/scheduler.dart';
 
 import 'art/story_stage.dart';
 import 'audio/ambience.dart';
+import 'audio_only_page.dart';
 import 'cinema_page.dart';
 import 'hologram_page.dart';
 import 'narration/narrator.dart';
 import 'feedback/feedback_service.dart';
 import 'feedback/rating_card.dart';
+import 'shared_reading_page.dart';
 import 'shelf/story_shelf.dart';
 import 'ui/palette.dart';
 
@@ -31,6 +33,7 @@ class StoryPage extends StatefulWidget {
     this.age,
     this.heroName,
     this.heroGender,
+    this.childId,
     this.art,
     this.animate = true,
     this.narrator,
@@ -47,6 +50,7 @@ class StoryPage extends StatefulWidget {
   final String? age;
   final String? heroName;
   final String? heroGender;
+  final String? childId;
 
   /// Arte de los cuentos (puede tardar o faltar: entonces se lee solo el texto).
   final Future<StageArt?>? art;
@@ -112,6 +116,7 @@ class _StoryPageState extends State<StoryPage>
         age: widget.age,
         heroName: widget.heroName,
         heroGender: widget.heroGender,
+        childId: widget.childId,
       );
 
   /// Anota el cuento en «Mis cuentos» (los últimos que se contaron).
@@ -157,6 +162,30 @@ class _StoryPageState extends State<StoryPage>
             animate: widget.animate,
           );
     Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => page));
+  }
+
+  /// Solo audio: la pantalla se queda negra y el cuento sigue sonando.
+  void _openAudioOnly() {
+    Navigator.of(context).push(MaterialPageRoute<void>(
+      builder: (_) => AudioOnlyPage(
+        story: _story,
+        narrator: widget.narrator?.call(),
+        ambience: widget.ambience?.call(),
+      ),
+    ));
+  }
+
+  /// Leemos juntos: texto grande por escenas para leer en voz alta (con turnos con la voz si se quiere).
+  void _openSharedReading() {
+    Navigator.of(context).push(MaterialPageRoute<void>(
+      builder: (_) => SharedReadingPage(
+        story: _story,
+        art: _stageArt,
+        setups: _setups,
+        narrator: widget.narrator?.call(),
+        animate: widget.animate,
+      ),
+    ));
   }
 
   /// Si leyeron el cuento hasta el final y no respondieron, se les preguntará con calma más tarde.
@@ -228,6 +257,31 @@ class _StoryPageState extends State<StoryPage>
                 ? 'Quitar de Mis cuentos'
                 : 'Guardar en Mis cuentos',
             onPressed: () => widget.shelf.toggleFavorite(_entry),
+          ),
+          PopupMenuButton<String>(
+            key: const Key('more-modes'),
+            tooltip: 'Más formas de contar',
+            icon: const Icon(Icons.more_vert),
+            onSelected: (v) =>
+                v == 'audio' ? _openAudioOnly() : _openSharedReading(),
+            itemBuilder: (_) => const [
+              PopupMenuItem(
+                value: 'audio',
+                child: ListTile(
+                  leading: Icon(Icons.headphones),
+                  title: Text('Solo audio'),
+                  subtitle: Text('Pantalla negra, el cuento sigue sonando'),
+                ),
+              ),
+              PopupMenuItem(
+                value: 'shared',
+                child: ListTile(
+                  leading: Icon(Icons.menu_book),
+                  title: Text('Leemos juntos'),
+                  subtitle: Text('Texto grande para leer en voz alta'),
+                ),
+              ),
+            ],
           ),
           if (_stageArt != null && _setups.any((s) => s != null)) ...[
             IconButton(

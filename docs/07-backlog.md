@@ -3,6 +3,10 @@
 Formato: `ID · Historia · Talla (S/M/L) · Prioridad (Must/Should/Could)`. Las historias L se parten antes de entrar a un sprint.
 Los sprints 0–3 están detallados; el resto se refina cuando se acerca («Ahora / Siguiente / Después»).
 
+> **Estado a 11 de octubre de 2026.** El cliente (app, motor, voz, arte, modos de contar) va muy por delante de lo previsto; el
+> servidor y las compras no se han empezado. Las tablas de abajo dicen qué está hecho (✅), a medias (🟡) o sin empezar (☐); lo
+> que falta de verdad está al final, en **Lo que falta** (la hoja de ruta por releases está en [02](02-roadmap.md)).
+
 ## Épicas
 
 | ID | Épica | Release |
@@ -29,9 +33,9 @@ Los sprints 0–3 están detallados; el resto se refina cuando se acerca («Ahor
 | E1-01 | Visión, metodología y roadmap documentados | M | Must | ✅ |
 | E1-02 | Reglas de contenido y derechos de autor | M | Must | ✅ |
 | E2-S01 | **Spike:** prototipo del caldero y modelo de contenido | M | Must | ✅ |
-| E1-03 | Elegir nombre definitivo y comprobar marca/dominio | S | Must | ☐ |
+| E1-03 | Elegir nombre definitivo y comprobar marca/dominio | S | Must | 🟡 candidatos y dominios en [19](19-nombres-y-dominios.md); el nombre vive en un solo sitio (`app/lib/src/brand.dart`) y se cambia con `tools/rename_app.py`; **falta elegirlo** y comprobar marca |
 | E1-04 | Crear proyecto Flutter + estructura de carpetas | S | Must | ✅ |
-| E1-05 | CI en GitHub Actions (lint + test + validar packs) | M | Must | ✅ escrito; pendiente de primera ejecución en GitHub |
+| E1-05 | CI en GitHub Actions (lint + test + validar packs) | M | Must | ✅ en cada subida: formato, análisis, pruebas del motor, los rigs y la app, validación de packs, arte reproducible, esquema y APK de prueba |
 | E1-06 | Crear cuentas de desarrollador (Google Play, Apple) | S | Should | ☐ |
 
 ## Sprint 1 · «El caldero en Dart» (objetivo: generar un cuento desde la app)
@@ -51,25 +55,25 @@ Android/iOS reales (el entorno de desarrollo actual no tiene SDK de Android ni X
 
 ## Sprint 2 · «Un cuento que da gusto leer» (objetivo: lectura nocturna agradable)
 
-| ID | Historia | Criterios de aceptación | Talla |
-|---|---|---|---|
-| E4-02 | Lector de **texto grande en modo noche** (tonos cálidos, bajo brillo) | Legible a 1 m; sin blancos puros; ajuste de tamaño | M |
-| E4-03 | **Lectura compartida:** avanzar por escenas con toque/deslizar | Retroceder/avanzar; barra de progreso discreta | M |
-| E4-04 | Guardar **historial y favoritos** localmente + repetir cuento por semilla | Se reabre el mismo cuento | M |
-| E2-04 | Parámetros de generación: **edad, duración, nivel de susto** | Cambian la selección de fragmentos; pruebas | M |
-| E3-01 | **Guía editorial** y plantilla de autor de fragmentos | Documento + 10 fragmentos de ejemplo revisados | S |
+| ID | Historia | Criterios de aceptación | Talla | Estado |
+|---|---|---|---|---|
+| E4-02 | Lector de **texto grande en modo noche** (tonos cálidos, bajo brillo) | Legible a 1 m; sin blancos puros; ajuste de tamaño | M | ✅ paleta de noche sin blanco puro; «Leemos juntos» con letra ajustable (20–42) |
+| E4-03 | **Lectura compartida:** avanzar por escenas con toque/deslizar | Retroceder/avanzar; barra de progreso discreta | M | ✅ «Leemos juntos» ([17](17-interfaz-para-ninos.md)), también con turnos con la voz |
+| E4-04 | Guardar **historial y favoritos** localmente + repetir cuento por semilla | Se reabre el mismo cuento | M | ✅ «Mis cuentos» (favoritos y 12 últimos, uno por niño) |
+| E2-04 | Parámetros de generación: **edad, duración, nivel de susto** | Cambian la selección de fragmentos; pruebas | M | ✅ edad (perfiles 2–3, 4–5, 6–8, 9–12: longitud, oración, vocabulario, sin villano en 2–5; [18](18-voz-edades-y-wizard.md)). La duración y el susto salen del perfil, no son mandos aparte |
+| E3-01 | **Guía editorial** y plantilla de autor de fragmentos | Documento + 10 fragmentos de ejemplo revisados | S | ✅ [06](06-modelo-de-contenido.md), [14](14-rubrica-editorial.md) y las reglas del validador |
 
 ## Sprint 3 · «Hay muchos cuentos» (objetivo: pack semilla y primera prueba con familias)
 
-| ID | Historia | Criterios de aceptación | Talla |
-|---|---|---|---|
-| E3-02 | **Pack semilla**: ~25 personajes, ~15 lugares, ~120 fragmentos, 6 enseñanzas | Pasa validador y revisión editorial | L (contenido) |
-| E2-05 | **Personajes elegidos por el niño** (héroe y lugar) | Reparto respeta la elección | M |
-| E2-06 | Casos de gramática: plurales y `article_override` | Pruebas con *los tres hermanos*, *el agua* | S |
-| E4-05 | Build interno para testers (TestFlight / pista interna) | 5 testers instalan sin ayuda | S |
-| UX-01 | **Prueba con 10 familias** (guion de observación y encuesta corta) | Resultados documentados; decisión de continuar/ajustar | M |
-| E11-01 | **Contrato OpenAPI v1** (catálogo, descarga, instalaciones, entitlements) + servidor simulado | La app puede sincronizar contra el simulado; contrato revisado | M |
-| E11-02 | **Spike S-07:** elegir tecnología de backend y de panel (coste, privacidad, operación) | Decisión escrita (ADR) con comparativa | S |
+| ID | Historia | Criterios de aceptación | Talla | Estado |
+|---|---|---|---|---|
+| E3-02 | **Pack semilla**: ~25 personajes, ~15 lugares, ~120 fragmentos, 6 enseñanzas | Pasa validador y revisión editorial | L (contenido) | 🟡 15 cuentos (6 de 6–8, 6 de 4–5, 3 de 2–3), 15 personajes con arte, 8 lugares, 3 enseñanzas; **faltan** 3 enseñanzas, más cuentos por edad (hoy 3 de 2–3) y 9–12 |
+| E2-05 | **Personajes elegidos por el niño** (héroe y lugar) | Reparto respeta la elección | M | 🟡 **su nombre y su género** ✅ (el héroe lleva su nombre; nunca viaja en la receta); elegir el lugar ☐ |
+| E2-06 | Casos de gramática: plurales y `article_override` | Pruebas con *los tres hermanos*, *el agua* | S | ✅ artículos, contracciones, género del héroe (`{hero.o}`) y el validador de género fijo |
+| E4-05 | Build interno para testers (TestFlight / pista interna) | 5 testers instalan sin ayuda | S | 🟡 APK de prueba en cada petición (Android); iOS ☐ |
+| UX-01 | **Prueba con 10 familias** (guion de observación y encuesta corta) | Resultados documentados; decisión de continuar/ajustar | M | ☐ |
+| E11-01 | **Contrato OpenAPI v1** (catálogo, descarga, instalaciones, entitlements) + servidor simulado | La app puede sincronizar contra el simulado; contrato revisado | M | 🟡 solo el de valoraciones (`docs/api/feedback.openapi.yaml`); catálogo, descargas y compras ☐ |
+| E11-02 | **Spike S-07:** elegir tecnología de backend y de panel (coste, privacidad, operación) | Decisión escrita (ADR) con comparativa | S | ☐ |
 
 ## Pack inicial medieval y arte por código (añadido tras decidir presupuesto cero)
 
@@ -82,10 +86,11 @@ El primer pack, gratuito, es medieval («Reino de la Luna», nombre provisional)
 | E13-03 | Especificaciones de personajes en JSON (no en código) | El generador las lee; el panel podrá editarlas | S | ✅ `art/medieval/specs/` |
 | E13-04 | **Renderizador Flutter** de rigs y escenas + pantalla de prueba | Mismas poses que la vista previa; FPS y memoria medidos en Android de gama media | L | 🟡 renderizador y taller hechos y verificados en navegador (0,17 % de píxeles distintos de la referencia); medido en un teléfono de 120 Hz: 116–121 fps con hasta 24 personajes ([11 §9](11-pipeline-de-arte-por-codigo.md)); **falta un Android de gama media/baja** |
 | E13-05 | Rig de criatura (dragón) | Cuerpo, alas y cola articulados; se ve bien junto a los humanoides | M | ☐ A3 |
-| E13-06 | Biblioteca de animaciones (caminar, correr, sorpresa, miedo, alegría, parpadeo) | Clips como datos, reutilizables por rig | M | ✅ 19 clips de personajes + 6 de objetos, paridad Python↔Dart comprobada |
+| E13-06 | Biblioteca de animaciones (caminar, correr, sorpresa, miedo, alegría, parpadeo) | Clips como datos, reutilizables por rig | M | ✅ 30 clips de personajes + 14 de objetos, paridad Python↔Dart comprobada |
+| E13-09 | **Expresión por acción:** cara animable (cejas, boca, mirada) y brazos con codo | Cada acción tiene su cara y su pose; revisión con imágenes | M | ✅ [16](16-coherencia-texto-imagen.md) §6: cinemática inversa al generar los clips; clips nuevos `eat`, `blow`, `yawn`, `proud`, `wonder` |
 | E13-08 | **Mostrar el arte en los cuentos:** cada fragmento elige escena, personajes y clip (`scene.bg/actors/mood`) | El lector anima la escena del fragmento que se narra | M | ✅ Escenario animado por escena: hasta 6 personajes (principales y secundarios), objetos animados, luz, entrada caminando y cámara; regla texto↔ilustración en el validador |
-| E13-07 | Kit de fondos del pack (aldea, bosque, cueva, río, interior) | 15 lugares con capas y paletas | L | 🟡 5 de ~15 lugares (castillo, bosque, cueva, río, aldea) |
-| E3-03 | **Contenido del pack medieval:** ~25 personajes, ~15 lugares, 6 enseñanzas y ~120 fragmentos | Pasa el validador; revisión editorial | L (contenido) | 🟡 3 premisas completas (565 palabras, 9–10 escenas) con 6 personajes con voz propia; faltan ≥ 2 premisas más por enseñanza (≥ 3 en total), 3 enseñanzas más (humildad, perseverancia, amistad), personajes y lugares |
+| E13-07 | Kit de fondos del pack (aldea, bosque, cueva, río, interior) | 15 lugares con capas y paletas | L | 🟡 8 de ~15 lugares (castillo, bosque, cueva, río, aldea, cocina de Rosa, cuarto, campanario), con día/atardecer/noche y estaciones |
+| E3-03 | **Contenido del pack medieval:** ~25 personajes, ~15 lugares, 6 enseñanzas y ~120 fragmentos | Pasa el validador; revisión editorial | L (contenido) | 🟡 15 premisas (6 de 6–8 con 580–930 palabras, 6 de 4–5 con ≈ 300–350, 3 de 2–3 con ≈ 180) y 3 enseñanzas (honestidad, generosidad, valentía); faltan 3 enseñanzas (humildad, perseverancia, amistad), cuentos de 9–12 y más variantes por cuento |
 
 ## Valoraciones y mejora continua (E14) — prioridad desde el primer día
 
@@ -120,15 +125,34 @@ Cada cuento termina pidiendo una nota de 1 a 5; es el único dato que se recoge.
 
 > La entrega de packs (antes S-05) deja de ser un spike: es el núcleo del release 0.2.
 
-## Releases 0.2 – 1.0 (nivel épica; se detalla al acercarse)
+## Lo que ya se hizo del plan de releases (y lo que falta)
 
-- **0.2 Catálogo (E11, E12, E13):** backend v0 con versiones inmutables y manifiesto firmado; sincronización en la app (hash, firma, instalación atómica, starter embebido); panel v0 (CRUD, validación, vista previa, publicar); guía de estilo y spike de arte.
-- **0.3 Voz (E5):** modo Escucha, Lectura compartida con voz, temporizador de sueño, sincronización texto-voz.
-- **0.4 Vida (E6, E13):** motor de escenas, rigs modulares, kit del pack gratuito (~10 personajes, ~6 fondos), ambientes y efectos, sincronización por frase.
-- **0.5 Holograma (E7):** vista de 4 orientaciones, calibración, wakelock, bloqueo táctil, plantilla PDF y guía de montaje.
-- **1.0 (E8, E9, E11, E12):** entitlements y verificación de compras, webhooks, panel de ventas, roles y auditoría, puerta parental, pack «Reino de la Luna (medieval)», privacidad, formularios de tiendas, revisión legal, prueba cerrada.
+El plan original ([02](02-roadmap.md)) ponía el servidor antes que la voz y el arte. Se hizo al revés: con presupuesto cero y los packs
+dentro de la app, el cliente avanzó primero.
+
+| Release | Estado | Detalle |
+|---|---|---|
+| 0.1 Chispa | ✅ | Motor de premisas, validador, receta y valoraciones, favoritos, pack medieval |
+| 0.3 Voz (E5) | ✅ casi | Voz del sistema con arreglo de «adelantar», `texto_voz`, wizard y perfiles de edad; modo Escucha (cine), **Leemos juntos**, **solo audio**, **temporizador con bajada gradual**. Falta probar en teléfonos reales y la voz neuronal/pregenerada (decisión S-02) |
+| 0.4 Vida (E6, E13) | ✅ casi | Escenario animado, luces y estaciones, expresiones por acción; el rendimiento solo se midió en un teléfono de gama alta |
+| 0.5 Holograma (E7) | ✅ casi | Modo holograma, plantilla y guía PDF; **sin probar con una pirámide real** |
+| 0.2 Catálogo (E11, E12) | ☐ | Backend, sincronización de packs, manifiesto firmado y panel de administración: sin empezar |
+| 1.0 Lanzamiento (E8, E9) | ☐ | Compras y suscripciones, privacidad, formularios y fichas de tiendas, revisión legal, prueba cerrada, id definitivo de la app |
+
+## Lo que falta (ordenado por lo que desbloquea)
+
+1. **Probar en teléfonos reales** (Android gama media, iOS) y con **niños y familias** (UX-01): es lo que más se sabe menos.
+2. **Elegir el nombre** y comprobar la marca; después el id técnico de la app, el icono y las fichas.
+3. **Más contenido:** cuentos de 9–12 y más para 2–3, tres enseñanzas nuevas, más lugares; y la prueba editorial con lectores
+   de los cuentos pequeños (hoy solo los revisó una persona con las imágenes y el validador).
+4. **Backend y catálogo (0.2)** para que los paquetes lleguen sin actualizar la app, y **compras (1.0)** para venderlos.
+5. **Audio con la pantalla bloqueada:** servicio en primer plano para el modo solo audio.
+6. **Caminos elegibles** (el niño decide): diseño hecho en [20](20-caminos-elegibles.md); sin construir.
+7. Lo que depende de licencias o cuentas: léxico por edad, voz neuronal, segundo idioma, iOS (TestFlight).
 
 ## Ideas para después (Could)
 
-Cuento con el nombre del niño · segundo idioma · modo solo audio con pantalla apagada · sonidos para dormir ·
-más tamaños de pirámide · logros suaves sin presión · compartir una semilla («el cuento de hoy») · modo cuentacuentos para abuelos a distancia (solo si se resuelve privacidad).
+Caminos elegibles ([20](20-caminos-elegibles.md)) · segundo idioma · sonidos para dormir · más tamaños de pirámide ·
+logros suaves sin presión · compartir una semilla («el cuento de hoy») · modo cuentacuentos para abuelos a distancia (solo si se resuelve privacidad) ·
+recordatorio a la hora de dormir.
+(Hechos y ya fuera de esta lista: cuento con el nombre del niño, modo solo audio, varios niños, lectura compartida.)

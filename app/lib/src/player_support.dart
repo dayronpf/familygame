@@ -9,6 +9,7 @@ import 'audio/ambience.dart';
 import 'narration/narrator.dart';
 import 'narration/playback.dart';
 import 'settings/app_settings.dart';
+import 'ui/screen_dimmer.dart';
 
 /// Cómo se crean la voz y el sonido de fondo (las pruebas ponen versiones mudas).
 typedef NarratorFactory = Narrator Function();
@@ -87,4 +88,47 @@ Future<void> leaveShowMode() async {
   try {
     await SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
   } catch (_) {}
+}
+
+/// El fundido del temporizador de sueño: baja a la vez la voz, la música y el brillo, y lo devuelve todo cuando el
+/// adulto vuelve a reproducir o sale de la pantalla.
+class SleepFade {
+  SleepFade({
+    required this.playback,
+    required this.ambience,
+    required this.dimmer,
+  });
+
+  final StoryPlayback playback;
+  final Ambience ambience;
+  final ScreenDimmer dimmer;
+  bool _dark = false;
+
+  /// El oído nota el volumen en escala logarítmica: con `nivel²` la bajada se siente pareja.
+  static double volumeFor(double level) => level * level;
+
+  /// [level] de 1 a 0 (lo manda el temporizador cada segundo).
+  void apply(double level) {
+    _dark = level < 1;
+    playback.setVolume(volumeFor(level));
+    ambience.setLevel(volumeFor(level));
+    dimmer.setLevel(level);
+  }
+
+  /// Se cumplió el temporizador: silencio total; la pantalla se queda oscura hasta que el adulto la despierte.
+  Future<void> finish() async {
+    await playback.pause();
+    await ambience.stop();
+  }
+
+  /// Vuelve todo a como estaba (se quitó el temporizador, se pulsó reproducir o se salió de la pantalla).
+  Future<void> reset() async {
+    if (!_dark) return;
+    _dark = false;
+    await playback.setVolume(1);
+    await ambience.setLevel(1);
+    await dimmer.restore();
+  }
+
+  Future<void> dispose() => dimmer.restore();
 }

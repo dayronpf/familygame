@@ -19,6 +19,7 @@ class ShelfEntry {
     this.age,
     this.heroName,
     this.heroGender,
+    this.childId,
   });
 
   factory ShelfEntry.fromStory(
@@ -27,6 +28,7 @@ class ShelfEntry {
     String? age,
     String? heroName,
     String? heroGender,
+    String? childId,
   }) {
     final hero = story.cast['hero'];
     return ShelfEntry(
@@ -41,6 +43,7 @@ class ShelfEntry {
       age: age,
       heroName: heroName,
       heroGender: heroGender,
+      childId: childId,
     );
   }
 
@@ -56,6 +59,7 @@ class ShelfEntry {
         age: j['age'] as String?,
         heroName: j['heroName'] as String?,
         heroGender: j['heroGender'] as String?,
+        childId: j['childId'] as String?,
       );
 
   /// Semilla del cuento y enseñanza que se eligió al crearlo (`null` = «Sorpréndeme»).
@@ -74,9 +78,12 @@ class ShelfEntry {
   final String? heroName;
   final String? heroGender;
 
+  /// De qué niño es (los estantes anteriores a los perfiles no lo tienen: se ven con todos).
+  final String? childId;
+
   /// Identifica el cuento (misma semilla, misma elección y mismo protagonista = mismo cuento).
   String get key =>
-      '$packId:$seed:${option ?? '*'}:${age ?? ''}:${heroGender ?? ''}:${heroName ?? ''}';
+      '$packId:$seed:${option ?? '*'}:${age ?? ''}:${heroGender ?? ''}:${heroName ?? ''}:${childId ?? ''}';
 
   Map<String, Object?> toJson() => {
         'seed': seed,
@@ -90,6 +97,7 @@ class ShelfEntry {
         if (age != null) 'age': age,
         if (heroName != null) 'heroName': heroName,
         if (heroGender != null) 'heroGender': heroGender,
+        if (childId != null) 'childId': childId,
       };
 }
 
@@ -134,8 +142,23 @@ class StoryShelf extends ChangeNotifier {
   List<ShelfEntry> _recent = [];
   bool _loaded = false;
 
-  List<ShelfEntry> get favorites => List.unmodifiable(_favorites);
-  List<ShelfEntry> get recent => List.unmodifiable(_recent);
+  /// De qué niño se enseña el estante (`null` = todos). Lo que se guardó sin niño (estantes antiguos) se ve siempre.
+  String? viewer;
+
+  bool _visible(ShelfEntry e) =>
+      viewer == null || e.childId == null || e.childId == viewer;
+
+  List<ShelfEntry> get favorites =>
+      List.unmodifiable(_favorites.where(_visible));
+  List<ShelfEntry> get recent => List.unmodifiable(_recent.where(_visible));
+
+  /// Borra lo que guardó un niño que ya no está.
+  Future<void> removeChild(String childId) {
+    _favorites.removeWhere((e) => e.childId == childId);
+    _recent.removeWhere((e) => e.childId == childId);
+    notifyListeners();
+    return _save();
+  }
 
   Future<void> load() async {
     if (_loaded) return;

@@ -1,1 +1,1 @@
-Cambiar este archivo (y subirlo) compila un APK de prueba. Ultima peticion: v0.4.0 con cuentos para 2-3 y 4-5 anos, nombre del nino como protagonista y expresiones nuevas.
+Cambiar este archivo (y subirlo) compila un APK de prueba. Ultima peticion: v0.5.0 con temporizador de sueno gradual, solo audio, Leemos juntos y varios ninos.

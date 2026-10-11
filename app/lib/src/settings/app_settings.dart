@@ -124,6 +124,9 @@ class ChildProfile {
   /// Nombre listo para el cuento (recortado y sin símbolos), o `null` si no hay.
   String? get heroName => normalizeChildName(name);
 
+  /// Cómo se llama en las listas: su nombre o, si no lo tiene, «Niño 2» (según su lugar).
+  String label(int index) => heroName ?? 'Niño ${index + 1}';
+
   /// Cómo suena el narrador para este niño: velocidad del perfil de edad × la lectura que eligió la familia.
   VoiceConfig get voiceConfig => VoiceConfig(
         voice: voice,
@@ -219,6 +222,7 @@ class AppSettings extends ChangeNotifier {
     notifyListeners();
   }
 
+  /// Cambia al niño activo (el de siempre: Ajustes y el inicio hablan de él).
   Future<void> updateChild({
     String? age,
     String? language,
@@ -226,8 +230,29 @@ class AppSettings extends ChangeNotifier {
     ReadingSpeed? speed,
     String? name,
     Object? heroGender = ChildProfile._keep,
+  }) =>
+      updateProfile(
+        _active,
+        age: age,
+        language: language,
+        voice: voice,
+        speed: speed,
+        name: name,
+        heroGender: heroGender,
+      );
+
+  /// Cambia a cualquier niño de la lista.
+  Future<void> updateProfile(
+    int index, {
+    String? age,
+    String? language,
+    Object? voice = ChildProfile._keep,
+    ReadingSpeed? speed,
+    String? name,
+    Object? heroGender = ChildProfile._keep,
   }) {
-    _profiles = [..._profiles]..[_active] = child.copyWith(
+    if (index < 0 || index >= _profiles.length) return Future.value();
+    _profiles = [..._profiles]..[index] = _profiles[index].copyWith(
         age: age,
         language: language,
         voice: voice,
@@ -237,6 +262,64 @@ class AppSettings extends ChangeNotifier {
       );
     notifyListeners();
     return _save();
+  }
+
+  /// Qué niño está activo (la lista se guarda con el orden en que se añadieron).
+  int get activeIndex => _active;
+
+  /// Cuántos niños se pueden tener (el teléfono es de una familia, no de una escuela).
+  static const int maxChildren = 6;
+
+  /// Añade un niño y lo deja activo. Hereda el idioma, la voz y la velocidad del activo: lo que se escucha es del
+  /// teléfono, no del niño. Devuelve su lugar en la lista, o `null` si ya no caben más.
+  Future<int?> addChild(
+      {String name = '', String? age, String? heroGender}) async {
+    if (_profiles.length >= maxChildren) return null;
+    final base = child;
+    final id = 'nino-${DateTime.now().microsecondsSinceEpoch}';
+    _profiles = [
+      ..._profiles,
+      ChildProfile(
+        id: id,
+        name: name,
+        age: age ?? base.age,
+        language: base.language,
+        voice: base.voice,
+        speed: base.speed,
+        heroGender: heroGender,
+      ),
+    ];
+    _active = _profiles.length - 1;
+    notifyListeners();
+    await _save();
+    return _active;
+  }
+
+  /// Pasa al niño de [index].
+  Future<void> selectChild(int index) {
+    if (index < 0 || index >= _profiles.length || index == _active) {
+      return Future.value();
+    }
+    _active = index;
+    notifyListeners();
+    return _save();
+  }
+
+  /// Quita a un niño (siempre queda al menos uno). Devuelve su id para que se limpie lo que guardó, o `null`.
+  Future<String?> removeChild(int index) async {
+    if (_profiles.length <= 1 || index < 0 || index >= _profiles.length) {
+      return null;
+    }
+    final gone = _profiles[index];
+    _profiles = [..._profiles]..removeAt(index);
+    if (index < _active) {
+      _active--;
+    } else if (_active >= _profiles.length) {
+      _active = _profiles.length - 1;
+    }
+    notifyListeners();
+    await _save();
+    return gone.id;
   }
 
   Future<void> setMusic({bool? on, double? volume}) {

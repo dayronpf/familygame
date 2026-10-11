@@ -85,6 +85,9 @@ class StoryPlayback extends ChangeNotifier {
 
   Future<void> toggle() => _playing ? pause() : Future.sync(play);
 
+  /// Volumen de la voz (fundido del temporizador de sueño).
+  Future<void> setVolume(double volume) => narrator.setVolume(volume);
+
   int _jump = 0; // el último salto es el que manda
   bool _resume = false; // había voz cuando se pidió saltar
 

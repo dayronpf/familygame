@@ -24,6 +24,10 @@ class _FakeNarrator implements Narrator {
   Completer<void>? pending;
   bool manual = false;
   int stops = 0;
+  final volumes = <double>[];
+
+  @override
+  Future<void> setVolume(double volume) async => volumes.add(volume);
 
   @override
   Future<void> speak(String sentence) {
@@ -45,6 +49,9 @@ class _FakeNarrator implements Narrator {
 
 class _FakeAmbience implements Ambience {
   int starts = 0, stops = 0;
+  final levels = <double>[];
+  @override
+  Future<void> setLevel(double level) async => levels.add(level);
   @override
   Future<void> start() async => starts++;
   @override

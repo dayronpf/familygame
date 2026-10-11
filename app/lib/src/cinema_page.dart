@@ -9,6 +9,7 @@ import 'hologram_page.dart';
 import 'narration/narrator.dart';
 import 'narration/playback.dart';
 import 'player_support.dart';
+import 'ui/screen_dimmer.dart';
 import 'ui/sleep_timer.dart';
 
 /// Modo cine: el cuento a pantalla completa, con cielo de estrellas, una escena por vez que
@@ -23,6 +24,7 @@ class CinemaPage extends StatefulWidget {
     this.ambience,
     this.autoStart = true,
     this.animate = true,
+    this.dimmer,
   });
 
   final Story story;
@@ -33,6 +35,9 @@ class CinemaPage extends StatefulWidget {
   final bool autoStart;
   final bool animate;
 
+  /// Quien baja el brillo en el fundido del temporizador (por defecto, el de la pantalla del teléfono).
+  final ScreenDimmer? dimmer;
+
   @override
   State<CinemaPage> createState() => _CinemaPageState();
 }
@@ -42,6 +47,11 @@ class _CinemaPageState extends State<CinemaPage>
   late final StageClock _clock = StageClock(this);
   late final StoryPlayback _playback;
   late final Ambience _ambience = widget.ambience ?? ambienceFor(context);
+  late final SleepFade _fade = SleepFade(
+    playback: _playback,
+    ambience: _ambience,
+    dimmer: widget.dimmer ?? SystemDimmer(),
+  );
   bool _hearVoice = true;
   late bool _hearMusic = musicOn(context);
 
@@ -70,6 +80,7 @@ class _CinemaPageState extends State<CinemaPage>
 
   @override
   void dispose() {
+    _fade.dispose();
     _playback.dispose();
     _ambience.stop();
     _ambience.dispose();
@@ -79,10 +90,7 @@ class _CinemaPageState extends State<CinemaPage>
   }
 
   /// El temporizador se cumplió: se calla la voz y el fondo.
-  Future<void> _sleep() async {
-    await _playback.pause();
-    await _ambience.stop();
-  }
+  Future<void> _sleep() => _fade.finish();
 
   Future<void> _toHologram() async {
     final nav = Navigator.of(context);
@@ -172,7 +180,11 @@ class _CinemaPageState extends State<CinemaPage>
                               .copyWith(color: scheme.primary),
                         ),
                       ),
-                      SleepTimerButton(onExpire: _sleep),
+                      SleepTimerButton(
+                        onExpire: _sleep,
+                        onFade: _fade.apply,
+                        onCancel: _fade.reset,
+                      ),
                       IconButton(
                         icon: const Icon(Icons.view_in_ar),
                         color: Colors.white,
@@ -236,7 +248,10 @@ class _CinemaPageState extends State<CinemaPage>
                       color: scheme.primary,
                       iconSize: 52,
                       tooltip: pb.playing ? 'Pausa' : 'Reproducir',
-                      onPressed: pb.toggle,
+                      onPressed: () {
+                        _fade.reset();
+                        pb.toggle();
+                      },
                     ),
                     IconButton(
                       icon: const Icon(Icons.skip_next),

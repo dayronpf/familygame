@@ -14,6 +14,7 @@ class FakeTts implements TtsPort {
   bool hasSpanish = true;
   int stops = 0;
   double? rate;
+  double? volume;
   TtsVoice? voice;
   List<TtsVoice> installed = const [];
 
@@ -28,7 +29,7 @@ class FakeTts implements TtsPort {
   @override
   Future<void> setPitch(double pitch) async {}
   @override
-  Future<void> setVolume(double volume) async {}
+  Future<void> setVolume(double v) async => volume = v;
   @override
   Future<List<TtsVoice>> voices() async => installed;
   @override

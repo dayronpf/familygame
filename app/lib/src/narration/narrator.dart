@@ -39,6 +39,9 @@ int _words(String s) =>
 abstract class Narrator {
   Future<void> speak(String sentence);
   Future<void> stop();
+
+  /// Volumen de la voz (0–1), para el fundido del temporizador de sueño. Se nota desde la siguiente frase.
+  Future<void> setVolume(double volume) async {}
   Future<void> dispose() async {}
 }
 
@@ -73,6 +76,9 @@ class TimedNarrator implements Narrator {
     final c = _current;
     if (c != null && !c.isCompleted) c.complete();
   }
+
+  @override
+  Future<void> setVolume(double volume) async {}
 
   @override
   Future<void> dispose() => stop();
@@ -237,7 +243,7 @@ class TtsNarrator implements Narrator {
       }
       await tts.setSpeechRate(rateFor(_config.speed));
       await tts.setPitch(0.95);
-      await tts.setVolume(1.0);
+      await tts.setVolume(_volume);
       return true;
     } catch (e) {
       debugPrint('Sin voz del sistema: $e');
@@ -257,6 +263,18 @@ class TtsNarrator implements Narrator {
         await _tts.setVoice(voice);
       }
       await _tts.setSpeechRate(rateFor(config.speed));
+    } catch (_) {}
+  }
+
+  double _volume = 1.0;
+
+  /// Volumen de la voz: se guarda para cuando el motor aún no esté listo y se aplica en cuanto lo está.
+  @override
+  Future<void> setVolume(double volume) async {
+    _volume = volume.clamp(0.0, 1.0);
+    if (_ready == null) return;
+    try {
+      if (await _ready!) await _tts.setVolume(_volume);
     } catch (_) {}
   }
 

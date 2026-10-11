@@ -16,11 +16,13 @@ import 'share.dart';
 import 'shelf/my_stories_tab.dart';
 import 'shelf/story_shelf.dart';
 import 'story_page.dart';
+import 'ui/children_page.dart';
 import 'ui/hero_banner.dart';
 import 'ui/moral_style.dart';
 import 'ui/moral_tile.dart';
 import 'ui/night_background.dart';
 import 'ui/palette.dart';
+import 'brand.dart';
 
 /// Pantalla de inicio, pensada para que la entienda un niño: una portada viva, tarjetas grandes para elegir lo
 /// que se aprende y un único botón enorme para crear el cuento. Tres pestañas: Inicio, Paquetes y Mis cuentos.
@@ -102,6 +104,7 @@ class _HomePageState extends State<HomePage> {
     final age = replay != null ? replay.age : child?.age;
     final heroName = replay != null ? replay.heroName : child?.heroName;
     final heroGender = replay != null ? replay.heroGender : child?.heroGender;
+    final childId = replay?.childId ?? child?.id;
     final engine = StoryEngine(pack);
     // Cada «otro cuento» usa una semilla nueva; el primero, la pedida (o la del reloj).
     var first = true;
@@ -128,6 +131,7 @@ class _HomePageState extends State<HomePage> {
           age: age,
           heroName: heroName,
           heroGender: heroGender,
+          childId: childId,
           art: _art,
           animate: widget.animateArt,
           onAnother: next,
@@ -143,6 +147,7 @@ class _HomePageState extends State<HomePage> {
         builder: (_) => SettingsPage(
           feedback: widget.feedback,
           bundle: widget.bundle,
+          shelf: widget.shelf,
           agesWithStories: agesWithStories,
         ),
       ),
@@ -150,9 +155,53 @@ class _HomePageState extends State<HomePage> {
     _refreshPending();
   }
 
+  /// Elegir a otro niño (sin pedir la pregunta de adultos: cambiar de niño no cambia nada importante).
+  Future<void> _switchChild() async {
+    final settings = SettingsScope.maybeOf(context);
+    if (settings == null) return;
+    await showModalBottomSheet<void>(
+      context: context,
+      backgroundColor: Palette.card,
+      builder: (context) => SafeArea(
+        child: ListenableBuilder(
+          listenable: settings,
+          builder: (context, _) => Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const SizedBox(height: 12),
+              Text('¿Para quién es el cuento?',
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleLarge!
+                      .copyWith(fontWeight: FontWeight.w800)),
+              const SizedBox(height: 8),
+              for (var i = 0; i < settings.profiles.length; i++)
+                ListTile(
+                  key: Key('switch-${settings.profiles[i].id}'),
+                  leading: ChildAvatar(profile: settings.profiles[i], index: i),
+                  title: Text(settings.profiles[i].label(i)),
+                  trailing: i == settings.activeIndex
+                      ? const Icon(Icons.check_circle, color: Palette.amber)
+                      : null,
+                  onTap: () {
+                    settings.selectChild(i);
+                    Navigator.pop(context);
+                  },
+                ),
+              const SizedBox(height: 8),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final text = Theme.of(context).textTheme;
+    // Se vuelve a dibujar al cambiar de niño; el estante enseña solo los cuentos del activo.
+    final settings = SettingsScope.watch(context);
+    widget.shelf.viewer = settings?.child.id;
     return Scaffold(
       body: NightBackground(
         child: SafeArea(
@@ -180,6 +229,8 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   _TopBar(
                     onSettings: () => _openSettings(pack.agesWithStories),
+                    settings: settings,
+                    onSwitchChild: _switchChild,
                   ),
                   Expanded(
                     child: switch (_tab) {
@@ -246,7 +297,10 @@ class _HomePageState extends State<HomePage> {
                 builder: (context, art) => HeroBanner(
                   art: art.data,
                   pack: pack,
-                  greeting: '¡Hola! ¿Qué cuento\nquieres esta noche?',
+                  greeting: SettingsScope.maybeOf(context)?.child.heroName ==
+                          null
+                      ? '¡Hola! ¿Qué cuento\nquieres esta noche?'
+                      : '¡Hola, ${SettingsScope.maybeOf(context)!.child.heroName}!\n¿Qué cuento quieres?',
                   animate: widget.animateArt,
                 ),
               ),
@@ -376,9 +430,15 @@ class _HomePageState extends State<HomePage> {
 }
 
 class _TopBar extends StatelessWidget {
-  const _TopBar({required this.onSettings});
+  const _TopBar({
+    required this.onSettings,
+    required this.onSwitchChild,
+    this.settings,
+  });
 
   final VoidCallback onSettings;
+  final VoidCallback onSwitchChild;
+  final AppSettings? settings;
 
   @override
   Widget build(BuildContext context) {
@@ -390,12 +450,23 @@ class _TopBar extends StatelessWidget {
           const Icon(Icons.nightlight_round, color: Palette.amber, size: 26),
           const SizedBox(width: 8),
           Expanded(
-            child: Text('Caldero de Cuentos',
+            child: Text(appName,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: text.titleLarge!.copyWith(
                     fontWeight: FontWeight.w800, color: Palette.cream)),
           ),
+          if (settings != null && settings!.profiles.length > 1)
+            IconButton(
+              key: const Key('child-switch'),
+              tooltip: 'Cambiar de niño',
+              onPressed: onSwitchChild,
+              icon: ChildAvatar(
+                profile: settings!.child,
+                index: settings!.activeIndex,
+                radius: 15,
+              ),
+            ),
           IconButton(
             key: const Key('share-app'),
             tooltip: 'Recomendar a un amigo',

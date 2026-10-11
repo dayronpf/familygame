@@ -6,10 +6,13 @@ import 'package:flutter/material.dart';
 import 'feedback/feedback_service.dart';
 import 'feedback/rating_event.dart';
 import 'settings/app_settings.dart';
+import 'shelf/story_shelf.dart';
+import 'ui/children_page.dart';
 import 'guide/holograma_guide.dart';
 import 'share.dart';
 import 'ui/voice_picker.dart';
 import 'workshop_page.dart';
+import 'brand.dart';
 
 /// Ajustes para adultos: permiso de valoraciones y transparencia total sobre qué se envía.
 class SettingsPage extends StatefulWidget {
@@ -17,10 +20,14 @@ class SettingsPage extends StatefulWidget {
     super.key,
     required this.feedback,
     this.bundle,
+    this.shelf,
     this.agesWithStories = const {'6-8'},
   });
 
   final FeedbackService feedback;
+
+  /// El estante de cuentos (para borrar los de un niño al quitarlo).
+  final StoryShelf? shelf;
 
   /// Para abrir el Taller de personajes (herramienta de prueba).
   final AssetBundle? bundle;
@@ -36,10 +43,20 @@ class _SettingsPageState extends State<SettingsPage> {
   bool? _enabled;
   int _queued = 0;
   TextEditingController? _nameCtl;
+  String? _nameFor;
 
-  /// El campo del nombre conserva lo que se escribe aunque los ajustes se redibujen con cada letra.
-  TextEditingController _nameController(String initial) =>
-      _nameCtl ??= TextEditingController(text: initial);
+  /// El campo del nombre conserva lo que se escribe aunque los ajustes se redibujen con cada letra; si se cambia de
+  /// niño empieza uno nuevo con el nombre del otro.
+  TextEditingController _nameController(String childId, String initial) {
+    if (_nameFor != childId) {
+      final old = _nameCtl;
+      // el campo viejo aún está en pantalla durante este armado: se suelta después
+      WidgetsBinding.instance.addPostFrameCallback((_) => old?.dispose());
+      _nameCtl = TextEditingController(text: initial);
+      _nameFor = childId;
+    }
+    return _nameCtl!;
+  }
 
   @override
   void dispose() {
@@ -149,6 +166,24 @@ class _SettingsPageState extends State<SettingsPage> {
     final profile = AgeProfile.byId(child.age)!;
     final hasStories = widget.agesWithStories.contains(child.age);
     return [
+      ListTile(
+        key: const Key('setting-children'),
+        contentPadding: EdgeInsets.zero,
+        leading: ChildAvatar(
+            profile: child, index: settings.activeIndex, radius: 22),
+        title: const Text('Niños'),
+        subtitle: Text(settings.profiles.length == 1
+            ? 'Solo ${child.label(0)}. Toca para añadir a otro niño.'
+            : '${settings.profiles.length} niños · ahora: ${child.label(settings.activeIndex)}'),
+        trailing: const Icon(Icons.chevron_right),
+        onTap: () => Navigator.of(context).push(
+          MaterialPageRoute<void>(
+            builder: (_) =>
+                ChildrenPage(settings: settings, shelf: widget.shelf),
+          ),
+        ),
+      ),
+      const SizedBox(height: 12),
       Text('Cuentos y voz', style: text.titleMedium),
       const SizedBox(height: 4),
       Text('Los cambios valen desde el siguiente cuento.',
@@ -192,7 +227,7 @@ class _SettingsPageState extends State<SettingsPage> {
       const SizedBox(height: 8),
       TextField(
         key: const Key('setting-name'),
-        controller: _nameController(settings.child.name),
+        controller: _nameController(settings.child.id, settings.child.name),
         maxLength: maxChildNameLength,
         textCapitalization: TextCapitalization.words,
         decoration: const InputDecoration(
@@ -425,8 +460,7 @@ class _SettingsPageState extends State<SettingsPage> {
                       ),
                     ),
                   const SizedBox(height: 8),
-                  Text('Caldero de Cuentos · versión $appVersion',
-                      style: text.bodySmall),
+                  Text('$appName · versión $appVersion', style: text.bodySmall),
                 ],
               ),
       ),

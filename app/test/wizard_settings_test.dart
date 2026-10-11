@@ -366,6 +366,8 @@ void main() {
 
       expect(find.text('Cuentos y voz'), findsOneWidget);
 
+      await tester.scrollUntilVisible(find.byKey(const Key('setting-age')), 100,
+          scrollable: find.byType(Scrollable).first);
       await tester.tap(find.descendant(
           of: find.byKey(const Key('setting-age')),
           matching: find.text('6–8')));

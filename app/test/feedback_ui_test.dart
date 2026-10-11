@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:caldero_app/src/brand.dart';
 import 'package:caldero_app/src/app.dart';
 import 'package:caldero_app/src/feedback/feedback_service.dart';
 import 'package:caldero_app/src/feedback/feedback_store.dart';
@@ -417,7 +418,7 @@ void main() {
       expect(find.text('Solo para adultos'), findsOneWidget);
       await answerGate(tester, correct: false);
       expect(find.text('Ajustes para adultos'), findsNothing);
-      expect(find.text('Caldero de Cuentos'), findsOneWidget);
+      expect(find.text(appName), findsOneWidget);
     });
 
     testWidgets('muestra con transparencia qué se envía y un ejemplo exacto',

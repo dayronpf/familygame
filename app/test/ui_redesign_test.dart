@@ -1,3 +1,4 @@
+import 'package:caldero_app/src/brand.dart';
 import 'package:caldero_app/src/app.dart';
 import 'package:caldero_app/src/feedback/feedback_service.dart';
 import 'package:caldero_app/src/feedback/feedback_store.dart';
@@ -92,7 +93,7 @@ void main() {
       expect(find.byKey(const Key('splash-version')), findsOneWidget);
       expect(tester.widget<Text>(find.byKey(const Key('splash-version'))).data,
           'v$appVersion');
-      expect(find.text('Caldero de Cuentos'), findsWidgets);
+      expect(find.text(appName), findsWidgets);
       await tester.pump(const Duration(seconds: 3));
       await tester.pump(const Duration(milliseconds: 100));
       // el splash se desvanece (medio segundo) antes de irse

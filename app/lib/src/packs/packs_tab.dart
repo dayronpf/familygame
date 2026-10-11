@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../share.dart';
 import '../ui/palette.dart';
 import 'pack_catalog.dart';
+import '../brand.dart';
 
 /// Pestaña «Paquetes»: los que ya son suyos, a color; los que llegarán, en gris; y una invitación a
 /// recomendar la app a un amigo.
@@ -104,7 +105,7 @@ class _ShareCard extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Text(
-              'Recomienda Caldero de Cuentos a otra familia: más niños durmiendo con un buen cuento.',
+              'Recomienda $appName a otra familia: más niños durmiendo con un buen cuento.',
               style: text.bodyMedium),
           const SizedBox(height: 14),
           FilledButton.icon(

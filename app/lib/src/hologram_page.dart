@@ -11,6 +11,7 @@ import 'audio/ambience.dart';
 import 'narration/narrator.dart';
 import 'narration/playback.dart';
 import 'player_support.dart';
+import 'ui/screen_dimmer.dart';
 import 'ui/sleep_timer.dart';
 
 /// Modo holograma: cuatro copias de la escena sobre negro, una por cada cara de un prisma
@@ -26,6 +27,7 @@ class HologramPage extends StatefulWidget {
     this.narrator,
     this.ambience,
     this.autoStart = true,
+    this.dimmer,
   });
 
   final Story story;
@@ -34,6 +36,9 @@ class HologramPage extends StatefulWidget {
   final Narrator? narrator;
   final Ambience? ambience;
   final bool autoStart;
+
+  /// Quien baja el brillo en el fundido del temporizador (por defecto, el de la pantalla del teléfono).
+  final ScreenDimmer? dimmer;
 
   @override
   State<HologramPage> createState() => _HologramPageState();
@@ -44,6 +49,11 @@ class _HologramPageState extends State<HologramPage>
   late final StageClock _clock = StageClock(this);
   late final StoryPlayback _playback;
   late final Ambience _ambience = widget.ambience ?? ambienceFor(context);
+  late final SleepFade _fade = SleepFade(
+    playback: _playback,
+    ambience: _ambience,
+    dimmer: widget.dimmer ?? SystemDimmer(),
+  );
   List<ActorInstance> _actors = const [];
   List<ActorInstance> _props = const [];
   double _crop = 1;
@@ -137,6 +147,7 @@ class _HologramPageState extends State<HologramPage>
   @override
   void dispose() {
     _hide?.cancel();
+    _fade.dispose();
     _playback.removeListener(_onPlayback);
     _playback.dispose();
     _ambience.stop();
@@ -214,15 +225,17 @@ class _HologramPageState extends State<HologramPage>
                             color: const Color(0xFF9EEBFF),
                             iconSize: 30,
                             onPicked: _scheduleHide,
-                            onExpire: () {
-                              _playback.pause();
-                              _ambience.stop();
-                            },
+                            onFade: _fade.apply,
+                            onCancel: _fade.reset,
+                            onExpire: _fade.finish,
                           ),
                           _icon(Icons.skip_previous, 'Escena anterior',
                               pb.previous),
                           _icon(pb.playing ? Icons.pause : Icons.play_arrow,
-                              pb.playing ? 'Pausa' : 'Continuar', pb.toggle),
+                              pb.playing ? 'Pausa' : 'Continuar', () {
+                            _fade.reset();
+                            pb.toggle();
+                          }),
                           _icon(Icons.skip_next, 'Escena siguiente', pb.next),
                           _icon(_hearVoice ? Icons.volume_up : Icons.volume_off,
                               'Voz', () {

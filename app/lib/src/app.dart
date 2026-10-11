@@ -13,6 +13,7 @@ import 'theme.dart';
 import 'ui/splash_page.dart';
 import 'ui/voice_services.dart';
 import 'ui/wizard_page.dart';
+import 'brand.dart';
 
 class CalderoApp extends StatefulWidget {
   const CalderoApp({
@@ -90,7 +91,7 @@ class _CalderoAppState extends State<CalderoApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Caldero de Cuentos',
+      title: appName,
       debugShowCheckedModeBanner: false,
       theme: nightTheme(),
       // Sin animación (pruebas): las estrellitas y demás adornos se quedan quietos, como con «reducir movimiento».

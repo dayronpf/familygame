@@ -1,13 +1,21 @@
 import 'dart:async';
+import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
-/// Botón de la lunita para dormir: el adulto elige cuántos minutos más suena el cuento y, al cumplirse, se
-/// llama a [onExpire] (la página detiene la voz y el sonido de fondo) y se desea «Dulces sueños».
+/// Botón de la lunita para dormir: el adulto elige cuántos minutos más suena el cuento. **No corta de golpe:** en
+/// los últimos [fadeDuration] (90 s; menos si el temporizador es muy corto) avisa con [onFade] (de 1 a 0, una vez
+/// por [fadeTick]) para que la página baje el volumen de la voz y de la música y el brillo de la pantalla. Al
+/// cumplirse llama a [onExpire] (detiene la voz y el sonido de fondo) y desea «Dulces sueños». Si se quita o se
+/// cambia el temporizador a mitad del fundido se llama a [onCancel] para devolver volumen y brillo.
 class SleepTimerButton extends StatefulWidget {
   const SleepTimerButton({
     super.key,
     required this.onExpire,
+    this.onFade,
+    this.onCancel,
+    this.fadeDuration = const Duration(seconds: 90),
+    this.fadeTick = const Duration(seconds: 1),
     this.color = Colors.white,
     this.iconSize,
     this.onPicked,
@@ -15,6 +23,12 @@ class SleepTimerButton extends StatefulWidget {
   });
 
   final VoidCallback onExpire;
+
+  /// Nivel del fundido: 1 = todo como siempre, 0 = en silencio y a oscuras.
+  final void Function(double level)? onFade;
+  final VoidCallback? onCancel;
+  final Duration fadeDuration;
+  final Duration fadeTick;
   final Color color;
   final double? iconSize;
 
@@ -34,30 +48,61 @@ class SleepTimerButton extends StatefulWidget {
 
 class _SleepTimerButtonState extends State<SleepTimerButton> {
   Timer? _timer;
+  Timer? _fadeTimer;
   int? _minutes;
+  bool _fading = false;
 
   @override
   void dispose() {
     _timer?.cancel();
+    _fadeTimer?.cancel();
     super.dispose();
   }
 
   void _set(int? minutes) {
     _timer?.cancel();
+    _fadeTimer?.cancel();
+    if (_fading) {
+      _fading = false;
+      widget.onCancel?.call(); // estaba bajando: vuelve el volumen y el brillo
+    }
     setState(() => _minutes = minutes);
     widget.onPicked?.call();
     if (minutes == null) return;
-    _timer = Timer(widget.minutesToDuration(minutes), () {
-      if (!mounted) return;
-      setState(() => _minutes = null);
-      widget.onExpire();
-      ScaffoldMessenger.maybeOf(context)?.showSnackBar(
-        const SnackBar(
-          content: Text('🌙 Dulces sueños'),
-          duration: Duration(seconds: 6),
-        ),
-      );
+    final total = widget.minutesToDuration(minutes);
+    final fade =
+        total < widget.fadeDuration * 2 ? total * 0.5 : widget.fadeDuration;
+    _timer = Timer(total - fade, () => _startFade(fade));
+  }
+
+  void _startFade(Duration fade) {
+    if (!mounted) return;
+    final tick = widget.fadeTick.inMicroseconds;
+    final steps = math.max(1, fade.inMicroseconds ~/ math.max(1, tick));
+    var i = 0;
+    _fading = true;
+    _fadeTimer = Timer.periodic(widget.fadeTick, (t) {
+      if (!mounted) return t.cancel();
+      i++;
+      final level = (1 - i / steps).clamp(0.0, 1.0);
+      widget.onFade?.call(level);
+      if (i >= steps) {
+        t.cancel();
+        _expire();
+      }
     });
+  }
+
+  void _expire() {
+    _fading = false;
+    setState(() => _minutes = null);
+    widget.onExpire();
+    ScaffoldMessenger.maybeOf(context)?.showSnackBar(
+      const SnackBar(
+        content: Text('🌙 Dulces sueños'),
+        duration: Duration(seconds: 6),
+      ),
+    );
   }
 
   @override

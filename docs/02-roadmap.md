@@ -7,6 +7,25 @@ lo que manda son los **criterios de salida** de cada release.
 > se añade la versión **0.2 «Catálogo»** (≈ 3 sprints). El plan pasa de ~13 a ~16 sprints hasta el lanzamiento.
 > Es el precio de que todo el contenido, las actualizaciones y las compras vivan en un sistema administrable.
 
+## Dónde estamos (11 de octubre de 2026)
+
+Con presupuesto cero y los packs dentro de la app, **el cliente se adelantó al servidor**: las releases 0.1, 0.3, 0.4 y 0.5 están hechas
+en lo esencial y la 0.2 («Catálogo») y la 1.0 («Lanzamiento») no se han empezado. El detalle, historia por historia, está en
+[07](07-backlog.md).
+
+| Release | Estado | Lo que falta para dar la salida por cumplida |
+|---|---|---|
+| Sprint 0 · Fundamentos | ✅ | Elegir el nombre definitivo (hoy «Caldero de Cuentos» es provisional) y las cuentas de desarrollador |
+| 0.1 «Chispa» | ✅ | La prueba con 10 familias (≥ 70 % «me contaría otro»); el contrato de API del catálogo |
+| 0.2 «Catálogo» | ☐ | Todo: backend, sincronización, manifiesto firmado, panel v0. Hoy los packs van embebidos en la app |
+| 0.3 «Voz» | ✅ casi | Probar 8 min de cuento sin cortes en 2 Android y 2 iOS reales; elegir la voz con familias (S-02). Hecho: voz del sistema, modo Escucha, **Leemos juntos**, temporizador con **bajada gradual de volumen y brillo**, solo audio |
+| 0.4 «Vida» | ✅ casi | Medir los 60 FPS en gama media; hecho: escenario animado, luces, estaciones, expresiones por acción |
+| 0.5 «Holograma» | ✅ casi | Probarlo con una pirámide real y con 5 familias; hecho: modo holograma, plantilla y guía PDF |
+| 1.0 «Lanzamiento» | ☐ | Compras, privacidad, tiendas, revisión legal y prueba cerrada |
+
+Lo que el plan no preveía y se hizo: **cuentos por edad** (2–3, 4–5, 6–8), **el nombre del niño como protagonista**, **varios niños** en
+un teléfono, el **diseño de caminos elegibles** ([20](20-caminos-elegibles.md)) y el PDF de montaje del holograma.
+
 ## Vista general
 
 ```
@@ -38,7 +57,7 @@ Visión, plan, arquitectura, reglas de contenido y derechos; prototipo del calde
 
 ### 0.3 «Voz» — narración (S7–S8)
 - Spike y decisión de voz (sistema vs. neuronal offline vs. nube) — ADR-004. **Spike S-06 de compras** (para adelantar los trámites de tiendas).
-- Modo **Escucha** y modo **Lectura compartida** con voz; temporizador de sueño con bajada gradual de volumen y brillo.
+- Modo **Escucha** y modo **Lectura compartida** con voz; temporizador de sueño con bajada gradual de volumen y brillo. ✅ *Hecho* (Escucha = cine con voz; «Leemos juntos» con turnos; solo audio; falta probar en teléfonos reales).
 - **Salida:** un cuento de 8 min se narra sin cortes en 2 Android y 2 iOS; la voz es aceptable según 5 familias.
 
 ### 0.4 «Vida» — animación (S9–S11)
@@ -58,7 +77,7 @@ Visión, plan, arquitectura, reglas de contenido y derechos; prototipo del calde
 
 ### Post-1.0 (cadencia «tren de contenido»)
 - Un pack premium cada 4–6 semanas, **publicado desde el panel sin nueva versión de app**.
-- Compositor de personajes por piezas en el panel; cuentos con el nombre del niño; segundo idioma; modo cuna (solo audio).
+- Compositor de personajes por piezas en el panel; segundo idioma; caminos elegibles ([20](20-caminos-elegibles.md)). (Ya hechos: cuentos con el nombre del niño y modo solo audio.)
 - Cuenta opcional de adulto para compartir compras entre dispositivos.
 - IA solo como ayuda de borradores para autores y para escribir generadores de arte; nunca generación libre sin revisión humana.
 

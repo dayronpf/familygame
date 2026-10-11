@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:caldero_app/src/brand.dart';
 import 'package:caldero_app/src/app.dart';
 import 'package:caldero_app/src/art/story_stage.dart';
 import 'package:caldero_app/src/pack_loader.dart';
@@ -56,7 +57,7 @@ void main() {
 
   testWidgets('muestra las enseñanzas del pack', (tester) async {
     await openApp(tester);
-    expect(find.text('Caldero de Cuentos'), findsOneWidget);
+    expect(find.text(appName), findsOneWidget);
     for (final name in [
       'Sorpréndeme',
       'Honestidad',

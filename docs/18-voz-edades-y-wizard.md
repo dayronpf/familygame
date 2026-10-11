@@ -138,7 +138,7 @@ familias por grupo):
 | Audio pregenerado en el servidor (Google Cloud TTS) y reproductor `just_audio` con marcas de tiempo | Necesita cuenta con facturación y servidor; hoy los cuentos nacen de premisas (no son fijos), así que habría que generar el audio al crear cada cuento. Es la **pregunta abierta** de la especificación y decide la estrategia |
 | Validador de vocabulario por nivel de edad (Manzano y Piñeiro, normas de edad de adquisición, EsPal) | Hay que verificar la licencia de cada base antes de empaquetarla; sin esos datos un validador inventado daría falsa seguridad |
 | Inglés y portugués de Brasil | Cada idioma es una versión propia de los cuentos (texto, normalizador, onomatopeyas, léxico, voces, interfaz traducida); hoy solo existe la versión en español |
-| Cuentos para 2–3 y 4–5 años | Trabajo editorial: tramas más cortas y sin peligro |
+| Cuentos para 9–12 años | Sin premisas propias: reciben las de 6–8 con su voz. Trabajo editorial (tramas más largas y ambiguas) |
 | Prompt para una IA generadora | Los cuentos no los genera una IA; no hay donde usarlo |
 | Saludos de muestra como audio empaquetado | Habría que grabarlos o generarlos con una voz concreta |
 | Resaltado por marcas de tiempo del audio | Depende del audio pregenerado |

@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import '../feedback/rating_event.dart';
 import 'night_background.dart';
 import 'palette.dart';
+import '../brand.dart';
 
 /// Pantalla de bienvenida (todo centrado en vertical): una noche de cuento; la luna sale, el caldero aparece con un
 /// rebote y se enciende, de él salen volando cuentos (un libro, un castillo, una corona, un sombrero de mago) entre
@@ -121,7 +122,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
                         ),
                         const SizedBox(height: 6),
                         _TitleReveal(
-                          text: 'Caldero de Cuentos',
+                          text: appName,
                           progress: _span(0.40, 0.72, Curves.easeOut),
                           shimmer: _span(0.70, 0.98, Curves.easeInOut),
                           style: text.displaySmall!.copyWith(
@@ -137,7 +138,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
                           child: Transform.translate(
                             offset: Offset(0, (1 - tagline) * 8),
                             child: Text(
-                              'Cuentos para soñar',
+                              appTagline,
                               style: text.titleMedium!.copyWith(
                                 color: Palette.amber,
                                 letterSpacing: 1.2,
