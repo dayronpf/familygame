@@ -72,3 +72,15 @@ Consejos: habitación en penumbra, brillo al máximo, móvil apoyado plano; el m
 - Las animaciones siguen siendo las de cada escena (gestos en bucle, entrada caminando, cambio de escena con
   fundido); falta animar «al ritmo de la frase» (gestos según el diálogo) y un narrador más expresivo.
 - Un teléfono sin voz en español cae al modo por tiempo.
+
+## Holograma en casa (PDF para armar la pirámide)
+
+`app/assets/guides/holograma-en-casa.pdf` (5 páginas, **tamaño carta**) explica cómo hacer la pirámide invertida de plástico transparente que
+refleja el modo holograma: aviso de **adulto presente** (hay tijeras), lista de materiales (imprescindibles y recomendados), paso a paso con dibujos,
+cómo verlo y qué hacer si se ve al revés, y **dos plantillas a escala real** (teléfono y tableta) con una regla de 5 cm para comprobar que la impresión salió al 100 %.
+La app lo ofrece en la tarjeta «Holograma en casa» del inicio y en Ajustes de adultos (se comparte con el menú del teléfono).
+
+* **Geometría** (la misma de `HologramLayout`, `gap = 0,16`): cada cara es un trapecio de **1 cm (base chica, sobre la pantalla) × 6 cm × 3,5 cm de alto**;
+  la cara queda a ≈ 45° con la pantalla. La plantilla de tableta es la anterior ×2,5 (2,5 × 15 × 8,75 cm). Regla práctica: la base chica mide 1/6 del lado corto de la pantalla.
+* **Se genera con código:** `python3 tools/guide/make_holograma_pdf.py` (ReportLab + DejaVu Sans). El nombre del juego es la constante `APP_NAME`.
+* **Pruebas** (`app/test/guide_test.dart`): es un PDF, tiene 5 páginas y ninguna es A4; la pantalla entrega los bytes al compartir y avisa del adulto.

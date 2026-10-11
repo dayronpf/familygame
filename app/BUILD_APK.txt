@@ -1,1 +1,1 @@
-Cambiar este archivo (y subirlo) compila un APK de prueba. Ultima peticion: v0.3.0 con botones de letra gruesa, Cambiar en una linea y portada del paquete a todo el ancho.
+Cambiar este archivo (y subirlo) compila un APK de prueba. Ultima peticion: v0.3.0 con arte arreglado (rama y cuerda), guia Holograma en casa (PDF carta).
