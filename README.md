@@ -36,6 +36,7 @@ mientras avanza y puede proyectarse como **holograma** con una pirámide transpa
 | [docs/16-coherencia-texto-imagen.md](docs/16-coherencia-texto-imagen.md) | Lo que se lee es lo que se ve: hora, estación, primeros planos, reglas del validador y revisión con imágenes |
 | [docs/17-interfaz-para-ninos.md](docs/17-interfaz-para-ninos.md) | Interfaz para niños: splash, inicio, paquetes (los que llegarán, en gris), Mis cuentos, compartir y temporizador para dormir |
 | [docs/18-voz-edades-y-wizard.md](docs/18-voz-edades-y-wizard.md) | Voz (bug de adelantar, `texto_voz`), perfiles de edad, wizard de primer uso y Ajustes; lo diferido y por qué |
+| [docs/19-nombres-y-dominios.md](docs/19-nombres-y-dominios.md) | Nombres posibles del juego con su disponibilidad de dominio (.com, .app, .net, .org) y lo que falta comprobar (marca, tiendas) |
 | [docs/11-pipeline-de-arte-por-codigo.md](docs/11-pipeline-de-arte-por-codigo.md) | Arte generado por código (sin presupuesto ni herramientas de pago), pack medieval, 3D y límites |
 
 ## Estructura del repositorio
