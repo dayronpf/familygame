@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'feedback/feedback_service.dart';
 import 'feedback/rating_event.dart';
 import 'settings/app_settings.dart';
+import 'guide/holograma_guide.dart';
 import 'share.dart';
 import 'ui/voice_picker.dart';
 import 'workshop_page.dart';
@@ -351,6 +352,20 @@ class _SettingsPageState extends State<SettingsPage> {
                     subtitle: const Text(
                         'Envía el enlace por WhatsApp, mensajes o correo.'),
                     onTap: () => shareApp(context),
+                  ),
+                  ListTile(
+                    key: const Key('settings-guide'),
+                    contentPadding: EdgeInsets.zero,
+                    leading: const Icon(Icons.view_in_ar),
+                    title: const Text('Holograma en casa (PDF)'),
+                    subtitle: const Text(
+                        'Instrucciones y plantilla para hacer la pirámide, en tamaño carta.'),
+                    onTap: () => Navigator.of(context).push(
+                      MaterialPageRoute<void>(
+                        builder: (_) =>
+                            HologramGuidePage(bundle: widget.bundle),
+                      ),
+                    ),
                   ),
                   if (widget.bundle != null)
                     ListTile(

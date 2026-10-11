@@ -4,9 +4,11 @@ import 'dart:ui' as ui;
 import 'package:caldero_app/src/app.dart';
 import 'package:caldero_app/src/feedback/feedback_service.dart';
 import 'package:caldero_app/src/feedback/feedback_store.dart';
+import 'package:caldero_app/src/guide/holograma_guide.dart';
 import 'package:caldero_app/src/narration/narrator.dart';
 import 'package:caldero_app/src/settings/app_settings.dart';
 import 'package:caldero_app/src/shelf/story_shelf.dart';
+import 'package:caldero_app/src/theme.dart';
 import 'package:caldero_app/src/ui/voice_services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -156,5 +158,33 @@ void main() {
       }
       await shot(n);
     }
+  }, skip: out == null);
+
+  testWidgets('captura de la guía del holograma', (tester) async {
+    await tester.runAsync(loadFonts);
+    tester.view
+      ..physicalSize = const Size(412 * 2, 892 * 2)
+      ..devicePixelRatio = 2;
+    addTearDown(tester.view.reset);
+    Directory(out!).createSync(recursive: true);
+    final boundary = GlobalKey();
+    await tester.pumpWidget(RepaintBoundary(
+      key: boundary,
+      child: MediaQuery(
+        data: const MediaQueryData(disableAnimations: true),
+        child: MaterialApp(
+          theme: nightTheme(),
+          home: HologramGuidePage(bundle: FileBundle()),
+        ),
+      ),
+    ));
+    await tester.pump(const Duration(milliseconds: 500));
+    await tester.runAsync(() async {
+      final b =
+          boundary.currentContext!.findRenderObject()! as RenderRepaintBoundary;
+      final image = await b.toImage(pixelRatio: 1.0);
+      final data = await image.toByteData(format: ui.ImageByteFormat.png);
+      File('$out/14_guia.png').writeAsBytesSync(data!.buffer.asUint8List());
+    });
   }, skip: out == null);
 }

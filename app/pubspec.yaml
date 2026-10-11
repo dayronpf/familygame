@@ -31,6 +31,8 @@ flutter:
     # Copias de content/packs/*; las sincroniza tools/sync_assets.sh y las verifica CI.
     - assets/packs/demo/
     - assets/packs/medieval/
+    # Guía en PDF (la genera tools/guide/make_holograma_pdf.py)
+    - assets/guides/
     # Arte generado por código (art/): lo sincroniza tools/sync_assets.sh y lo verifica CI.
     - assets/art/medieval/index.json
     - assets/art/medieval/rigs/

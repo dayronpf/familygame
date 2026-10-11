@@ -6,6 +6,7 @@ import 'feedback/adult_gate.dart';
 import 'feedback/feedback_service.dart';
 import 'feedback/feedback_store.dart';
 import 'feedback/rating_card.dart';
+import 'guide/holograma_guide.dart';
 import 'pack_loader.dart';
 import 'packs/packs_tab.dart';
 import 'seed.dart';
@@ -278,6 +279,14 @@ class _HomePageState extends State<HomePage> {
                   );
                 },
               ),
+              const SizedBox(height: 18),
+              _GuideCard(
+                onTap: () => Navigator.of(context).push(
+                  MaterialPageRoute<void>(
+                    builder: (_) => HologramGuidePage(bundle: widget.bundle),
+                  ),
+                ),
+              ),
             ],
           ),
         ),
@@ -434,6 +443,56 @@ class _ContinueCard extends StatelessWidget {
               ),
               const Icon(Icons.replay_circle_filled,
                   color: Palette.amber, size: 38),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/// Invitación (discreta) a armar el holograma en casa; lleva a la guía y al PDF.
+class _GuideCard extends StatelessWidget {
+  const _GuideCard({required this.onTap});
+
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final text = Theme.of(context).textTheme;
+    return Material(
+      key: const Key('guide-card'),
+      color: Palette.cardSoft,
+      borderRadius: BorderRadius.circular(24),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(24),
+        onTap: onTap,
+        child: Padding(
+          padding: const EdgeInsets.all(14),
+          child: Row(
+            children: [
+              Container(
+                width: 52,
+                height: 52,
+                decoration: const BoxDecoration(
+                    color: Palette.teal, shape: BoxShape.circle),
+                child: const Icon(Icons.view_in_ar, color: Color(0xFF06322C)),
+              ),
+              const SizedBox(width: 14),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Holograma en casa',
+                        style: text.titleMedium!
+                            .copyWith(fontWeight: FontWeight.w800)),
+                    Text('Haz una pirámide con un adulto',
+                        style:
+                            text.bodySmall!.copyWith(color: Palette.mutedText)),
+                  ],
+                ),
+              ),
+              const Icon(Icons.chevron_right, color: Palette.amber),
             ],
           ),
         ),
