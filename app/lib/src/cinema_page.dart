@@ -226,6 +226,34 @@ class _CinemaPageState extends State<CinemaPage>
                     ),
                   ),
                 ),
+                if (pb.finished)
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(24, 6, 24, 10),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: FilledButton.icon(
+                            key: const Key('finished-back'),
+                            onPressed: () => Navigator.pop(context),
+                            icon: const Icon(Icons.arrow_back),
+                            label: const Text('Volver'),
+                          ),
+                        ),
+                        const SizedBox(width: 12),
+                        Expanded(
+                          child: OutlinedButton.icon(
+                            key: const Key('finished-replay'),
+                            onPressed: () {
+                              _fade.reset();
+                              pb.toggle();
+                            },
+                            icon: const Icon(Icons.replay),
+                            label: const Text('Otra vez'),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 LinearProgressIndicator(
                   value: (pb.scene + 1) / pb.scenes.length,
                   minHeight: 3,

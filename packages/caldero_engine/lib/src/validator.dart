@@ -703,6 +703,51 @@ final List<(RegExp, String)> _featureWords = [
   (RegExp(r'\bpuente\b', caseSensitive: false), 'puente'),
 ];
 
+/// Objetos que el texto puede nombrar y el dibujo que los representa (cualquiera de esos objetos basta). Lo que se cuenta
+/// tiene que verse: si el texto dice «una mariposa», la escena dibuja la mariposa (o la acerca con `focus`).
+final List<(RegExp, String, Set<String>)> _objectWords = [
+  (RegExp(r'\bmariposa', caseSensitive: false), 'mariposa', {'mariposa'}),
+  (
+    RegExp(r'\btaza\b', caseSensitive: false),
+    'taza',
+    {'taza', 'taza_leche', 'taza_volcada'}
+  ),
+  (
+    RegExp(r'\b(?:panecillo|bollo)s?\b', caseSensitive: false),
+    'panecillo',
+    {'pan', 'trozos_de_pan'}
+  ),
+  (
+    RegExp(r'\blinterna\b', caseSensitive: false),
+    'linterna',
+    {'linterna', 'linterna_apagada'}
+  ),
+  (RegExp(r'\bmanta\b', caseSensitive: false), 'manta', {'manta'}),
+  (RegExp(r'\bcuenco\b', caseSensitive: false), 'cuenco', {'cuenco'}),
+  (RegExp(r'\bcabrita\b', caseSensitive: false), 'cabrita', {'cabrita'}),
+  (RegExp(r'\bpiedras\b', caseSensitive: false), 'piedras', {'piedras'}),
+  (
+    RegExp(r'\bcampana\b', caseSensitive: false),
+    'campana',
+    {'campana', 'campana_colgada', 'campana_rota'}
+  ),
+  (RegExp(r'\bbolsa\b', caseSensitive: false), 'bolsa', {'bolsa'}),
+  (RegExp(r'\bcometa\b', caseSensitive: false), 'cometa', {'cometa'}),
+  (
+    RegExp(r'\bsemillas\b', caseSensitive: false),
+    'semillas',
+    {'semillas', 'semillas_dos'}
+  ),
+  (
+    RegExp(r'\bgirasol\b', caseSensitive: false),
+    'girasol',
+    {'girasol', 'girasol_seco'}
+  ),
+  (RegExp(r'\bhierba de luna\b', caseSensitive: false), 'hierba', {'hierba'}),
+  (RegExp(r'\bolla\b', caseSensitive: false), 'olla', {'olla'}),
+  (RegExp(r'\bpan\b', caseSensitive: false), 'pan', {'pan', 'trozos_de_pan'}),
+];
+
 /// Horas y estaciones (`time`, `season`), rasgos del lugar y primer plano de los objetos nuevos:
 /// lo que el texto cuenta es lo que se ve.
 void _checkSetting(
@@ -786,6 +831,26 @@ void _checkSetting(
             '(dibújalo con un objeto, cambia el texto o márcalo «unseen»)');
       }
     }
+  }
+
+  // Lo que se cuenta se ve: cada objeto que la narración nombra está dibujado en la escena (o en su primer plano)
+  final drawn = <String>{
+    for (final p in (d['props'] is List ? d['props']! as List : const []))
+      if (p is Map) '${p['prop']}',
+    if (d['focus'] is Map) '${(d['focus']! as Map)['prop']}',
+    for (final e in stageEntries(d))
+      if (e.rig != null) e.rig!,
+  };
+  final hidden = {
+    for (final x in (d['unseen'] is List ? d['unseen']! as List : const []))
+      '$x',
+  };
+  final spoken = text.replaceAll(RegExp('«[^»]*»'), ' ');
+  for (final (re, key, rigs) in _objectWords) {
+    if (!re.hasMatch(spoken) || hidden.contains(key)) continue;
+    if (rigs.any(drawn.contains)) continue;
+    add('$where: el texto nombra «$key» pero no se ve en la escena '
+        '(dibújalo con un objeto, acércalo con un primer plano o márcalo «unseen»)');
   }
 
   // Un objeto que se presenta se ve de cerca: primer plano (`focus`) de ese objeto

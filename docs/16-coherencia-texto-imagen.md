@@ -120,6 +120,23 @@ rectos y una cara fija. Ahora:
 Se revisan con `app/test/render_poses_manual_test.dart` (`POSES_OUT=… POSES_RIGS=aldo,mara,rosa,zafiro`): una imagen de cuerpo y una de
 cara por animación y personaje.
 
+### 7. «Si el texto lo nombra, se ve» (ronda 13)
+
+Un padre de familia lo vio en el teléfono: el cuento de *La taza de leche* decía «vio pasar una mariposa» y «tiró la taza, y la
+leche se derramó», y en pantalla no había mariposa ni leche. Ahora es una **regla del validador**: si la narración (sin lo que se
+dice entre «») nombra uno de los objetos del cuento —mariposa, taza, pan o panecillo, linterna, manta, cuenco, cabrita, piedras,
+campana, bolsa, cometa, semillas, girasol, hierba de luna, olla—, la escena lo dibuja (`props`), lo acerca (`focus`: primer plano
+con el fondo desenfocado) o declara **por qué no se ve** con `unseen` (un recuerdo, un olor, algo que pasa fuera de cuadro).
+
+* **Lo que es acción se dibuja o se acerca.** En *La taza de leche* ahora hay un primer plano de la **mariposa** (nueva, con alas que
+  aletean: clip `flutter`) y otro de la **taza volcada con la leche derramada**.
+* **Lo que no lo es se declara.** Las 68 menciones que la regla encontró en los cuentos anteriores (por variante y objeto) se revisaron una a una: 46 eran
+  recuerdos, olores o cosas dichas de pasada («olía a pan», «se lo contó todo: la cometa, la bolsa…») y llevan `unseen`; las otras 22 se dibujaron (la bolsa en el
+  bolsillo, la cometa en el puesto de Beto, el cuenco que toma el villano, el pan que se come, las piedras junto a la hierba, la
+  campana chiquita en lo alto de la torre).
+* Quedan fuera de la regla la arquitectura y la ropa («escalones», «capa»), que forman parte del lugar o del personaje.
+* Los secundarios dibujados como personaje (`rig`, por ejemplo la cabrita) cuentan como dibujados.
+
 ## Cómo se revisa (a ojo, con el mismo pintor que la app)
 
 ```

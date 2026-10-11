@@ -735,6 +735,39 @@ void main() {
       expect(problems(ok), isNot(contains('no se ve «mesa»')));
     });
 
+    test(
+        'lo que el texto cuenta se ve: una mariposa nombrada hay que dibujarla',
+        () {
+      const text = 'Entonces vio pasar una mariposa. ¡Plaf! Tiró la taza.';
+      final sin = problems(scene(text, {'time': 'dia'}));
+      expect(sin, contains('nombra «mariposa» pero no se ve en la escena'));
+      expect(sin, contains('nombra «taza» pero no se ve en la escena'));
+      // dibujada (o en primer plano) cuenta; también un secundario dibujado
+      final con = problems(scene(text, {
+        'time': 'dia',
+        'props': [
+          {'prop': 'mariposa', 'x': 0.6},
+          {'prop': 'taza_volcada', 'x': 0.4},
+        ],
+      }));
+      expect(con, isNot(contains('pero no se ve en la escena')));
+      final zoom = problems(scene('Pasó una mariposa.', {
+        'time': 'dia',
+        'focus': {'prop': 'mariposa', 'x': 0.5, 'fill': 0.5},
+      }));
+      expect(zoom, isNot(contains('nombra «mariposa»')));
+      // un recuerdo o un olor se declaran con `unseen`
+      final recuerdo = problems(scene('Soñó con la mariposa.', {
+        'time': 'dia',
+        'unseen': ['mariposa'],
+      }));
+      expect(recuerdo, isNot(contains('nombra «mariposa»')));
+      // lo que se dice entre comillas no cuenta como narración
+      final dialogo =
+          problems(scene('«¡Una mariposa!», dijo.', {'time': 'dia'}));
+      expect(dialogo, isNot(contains('nombra «mariposa»')));
+    });
+
     test('un lugar sin metadatos no se comprueba (packs antiguos)', () {
       final p = problems(scene(
         'Por la mañana, junto al pozo, nevó.',

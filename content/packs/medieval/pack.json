@@ -616,7 +616,10 @@
                   "x": 0.7,
                   "lift": 235,
                   "fill": 0.6
-                }
+                },
+                "unseen": [
+                  "pan"
+                ]
               }
             },
             {
@@ -940,6 +943,10 @@
                     "lift": 30,
                     "scale": 1.0
                   }
+                ],
+                "unseen": [
+                  "campana",
+                  "pan"
                 ]
               }
             },
@@ -980,6 +987,10 @@
                     "lift": 30,
                     "scale": 1.0
                   }
+                ],
+                "unseen": [
+                  "campana",
+                  "pan"
                 ]
               }
             }
@@ -1068,6 +1079,9 @@
                     "lift": 30,
                     "scale": 1.0
                   }
+                ],
+                "unseen": [
+                  "pan"
                 ]
               }
             },
@@ -1101,6 +1115,9 @@
                 ],
                 "offstage": [
                   "villain"
+                ],
+                "unseen": [
+                  "campana"
                 ]
               }
             }
@@ -1475,6 +1492,9 @@
                     "scale": 0.9,
                     "clip": "still"
                   }
+                ],
+                "unseen": [
+                  "bolsa"
                 ]
               }
             },
@@ -1519,6 +1539,9 @@
                     "scale": 0.9,
                     "clip": "still"
                   }
+                ],
+                "unseen": [
+                  "bolsa"
                 ]
               }
             }
@@ -2071,7 +2094,10 @@
                 ],
                 "mood": "hope",
                 "time": "dia",
-                "season": "invierno"
+                "season": "invierno",
+                "unseen": [
+                  "bolsa"
+                ]
               }
             },
             {
@@ -2107,7 +2133,10 @@
                 ],
                 "mood": "hope",
                 "time": "dia",
-                "season": "invierno"
+                "season": "invierno",
+                "unseen": [
+                  "bolsa"
+                ]
               }
             }
           ]
@@ -2161,6 +2190,14 @@
                     "x": 0.74,
                     "scale": 0.9,
                     "clip": "boil"
+                  },
+                  {
+                    "prop": "trozos_de_pan",
+                    "dx": 0.06,
+                    "lift": 60,
+                    "scale": 0.5,
+                    "front": true,
+                    "near": "lia"
                   }
                 ]
               }
@@ -2211,6 +2248,14 @@
                     "x": 0.74,
                     "scale": 0.9,
                     "clip": "boil"
+                  },
+                  {
+                    "prop": "trozos_de_pan",
+                    "dx": 0.06,
+                    "lift": 60,
+                    "scale": 0.5,
+                    "front": true,
+                    "near": "lia"
                   }
                 ]
               }
@@ -2557,6 +2602,14 @@
                     "lift": 102,
                     "scale": 0.45,
                     "clip": "boil"
+                  },
+                  {
+                    "prop": "cuenco",
+                    "dx": 0.07,
+                    "lift": 50,
+                    "scale": 0.8,
+                    "front": true,
+                    "near": "villain"
                   }
                 ]
               }
@@ -2604,6 +2657,14 @@
                     "lift": 102,
                     "scale": 0.45,
                     "clip": "boil"
+                  },
+                  {
+                    "prop": "cuenco",
+                    "dx": 0.07,
+                    "lift": 50,
+                    "scale": 0.8,
+                    "front": true,
+                    "near": "villain"
                   }
                 ]
               }
@@ -2859,6 +2920,9 @@
                     "lift": 16,
                     "scale": 1.15
                   }
+                ],
+                "unseen": [
+                  "pan"
                 ]
               }
             },
@@ -2923,6 +2987,9 @@
                     "lift": 16,
                     "scale": 1.15
                   }
+                ],
+                "unseen": [
+                  "olla"
                 ]
               }
             }
@@ -4264,6 +4331,9 @@
                   "aldeana",
                   "farolero",
                   "rosa"
+                ],
+                "unseen": [
+                  "cabrita"
                 ]
               }
             },
@@ -4386,7 +4456,10 @@
                   "x": 0.5,
                   "lift": 150,
                   "fill": 0.6
-                }
+                },
+                "unseen": [
+                  "pan"
+                ]
               }
             },
             {
@@ -4416,7 +4489,10 @@
                   "x": 0.5,
                   "lift": 150,
                   "fill": 0.6
-                }
+                },
+                "unseen": [
+                  "pan"
+                ]
               }
             }
           ],
@@ -4438,7 +4514,10 @@
                   "prop": "bolsa",
                   "x": 0.5,
                   "fill": 0.5
-                }
+                },
+                "unseen": [
+                  "piedras"
+                ]
               }
             },
             {
@@ -4452,7 +4531,11 @@
                   "prop": "bolsa",
                   "x": 0.5,
                   "fill": 0.5
-                }
+                },
+                "unseen": [
+                  "cometa",
+                  "piedras"
+                ]
               }
             },
             {
@@ -4466,7 +4549,10 @@
                   "prop": "bolsa",
                   "x": 0.5,
                   "fill": 0.5
-                }
+                },
+                "unseen": [
+                  "piedras"
+                ]
               }
             }
           ],
@@ -4491,7 +4577,16 @@
                     "x": 0.5
                   }
                 ],
-                "props": []
+                "props": [
+                  {
+                    "prop": "bolsa",
+                    "dx": 0.05,
+                    "lift": 58,
+                    "scale": 0.45,
+                    "front": true,
+                    "near": "hero"
+                  }
+                ]
               }
             },
             {
@@ -4508,7 +4603,16 @@
                     "x": 0.5
                   }
                 ],
-                "props": []
+                "props": [
+                  {
+                    "prop": "bolsa",
+                    "dx": 0.05,
+                    "lift": 58,
+                    "scale": 0.45,
+                    "front": true,
+                    "near": "hero"
+                  }
+                ]
               }
             },
             {
@@ -4525,7 +4629,19 @@
                     "x": 0.5
                   }
                 ],
-                "props": []
+                "props": [
+                  {
+                    "prop": "bolsa",
+                    "dx": 0.05,
+                    "lift": 58,
+                    "scale": 0.45,
+                    "front": true,
+                    "near": "hero"
+                  }
+                ],
+                "unseen": [
+                  "cometa"
+                ]
               }
             }
           ]
@@ -4576,7 +4692,8 @@
               "scene": {
                 "time": "noche",
                 "unseen": [
-                  "pozo"
+                  "pozo",
+                  "cometa"
                 ],
                 "bg": "cuarto",
                 "mood": "tension",
@@ -4748,7 +4865,12 @@
                 "offstage": [
                   "rosa"
                 ],
-                "time": "dia"
+                "time": "dia",
+                "unseen": [
+                  "bolsa",
+                  "cometa",
+                  "pan"
+                ]
               }
             },
             {
@@ -4770,7 +4892,11 @@
                 "offstage": [
                   "rosa"
                 ],
-                "time": "dia"
+                "time": "dia",
+                "unseen": [
+                  "bolsa",
+                  "cometa"
+                ]
               }
             }
           ],
@@ -4975,7 +5101,15 @@
                     "x": 0.56
                   }
                 ],
-                "props": [],
+                "props": [
+                  {
+                    "prop": "cometa",
+                    "x": 0.86,
+                    "lift": 140,
+                    "scale": 0.6,
+                    "clip": "sway"
+                  }
+                ],
                 "offstage": [
                   "beto"
                 ]
@@ -5000,7 +5134,15 @@
                     "x": 0.56
                   }
                 ],
-                "props": [],
+                "props": [
+                  {
+                    "prop": "cometa",
+                    "x": 0.86,
+                    "lift": 140,
+                    "scale": 0.6,
+                    "clip": "sway"
+                  }
+                ],
                 "offstage": [
                   "beto"
                 ]
@@ -5036,6 +5178,9 @@
                 ],
                 "offstage": [
                   "beto"
+                ],
+                "unseen": [
+                  "panecillo"
                 ]
               }
             }
@@ -5231,6 +5376,10 @@
                     "scale": 1.05,
                     "front": true
                   }
+                ],
+                "unseen": [
+                  "bolsa",
+                  "cometa"
                 ]
               }
             }
@@ -5311,7 +5460,10 @@
                   "prop": "semillas",
                   "x": 0.5,
                   "fill": 0.5
-                }
+                },
+                "unseen": [
+                  "girasol"
+                ]
               }
             },
             {
@@ -5326,7 +5478,10 @@
                   "prop": "semillas",
                   "x": 0.5,
                   "fill": 0.5
-                }
+                },
+                "unseen": [
+                  "girasol"
+                ]
               }
             }
           ],
@@ -5391,6 +5546,9 @@
                     "lift": 45,
                     "scale": 0.6
                   }
+                ],
+                "unseen": [
+                  "semillas"
                 ]
               }
             },
@@ -5447,6 +5605,9 @@
                     "lift": 45,
                     "scale": 0.6
                   }
+                ],
+                "unseen": [
+                  "semillas"
                 ]
               }
             }
@@ -5484,7 +5645,10 @@
                   "x": 0.2,
                   "lift": 148,
                   "fill": 0.5
-                }
+                },
+                "unseen": [
+                  "manta"
+                ]
               }
             }
           ],
@@ -5756,6 +5920,9 @@
                   "rosa",
                   "beto",
                   "lia"
+                ],
+                "unseen": [
+                  "semillas"
                 ]
               }
             },
@@ -5798,6 +5965,9 @@
                   "rosa",
                   "beto",
                   "lia"
+                ],
+                "unseen": [
+                  "semillas"
                 ]
               }
             }
@@ -6003,6 +6173,22 @@
                     "near": "hero",
                     "dx": 0.1,
                     "scale": 1.5
+                  },
+                  {
+                    "prop": "bolsa",
+                    "dx": 0.07,
+                    "lift": 40,
+                    "scale": 0.7,
+                    "front": true,
+                    "near": "hero"
+                  },
+                  {
+                    "prop": "semillas",
+                    "dx": 0.07,
+                    "lift": 40,
+                    "scale": 0.6,
+                    "front": true,
+                    "near": "helper"
                   }
                 ]
               }
@@ -6047,6 +6233,22 @@
                     "near": "hero",
                     "dx": 0.1,
                     "scale": 1.5
+                  },
+                  {
+                    "prop": "bolsa",
+                    "dx": 0.07,
+                    "lift": 40,
+                    "scale": 0.7,
+                    "front": true,
+                    "near": "hero"
+                  },
+                  {
+                    "prop": "semillas",
+                    "dx": 0.07,
+                    "lift": 40,
+                    "scale": 0.6,
+                    "front": true,
+                    "near": "helper"
                   }
                 ]
               }
@@ -6199,7 +6401,8 @@
                   "fill": 0.5
                 },
                 "unseen": [
-                  "puente"
+                  "puente",
+                  "campana"
                 ]
               }
             },
@@ -6216,7 +6419,8 @@
                   "fill": 0.5
                 },
                 "unseen": [
-                  "puente"
+                  "puente",
+                  "campana"
                 ]
               }
             }
@@ -6676,6 +6880,11 @@
                     "dx": 0.07,
                     "lift": 46,
                     "scale": 0.8
+                  },
+                  {
+                    "prop": "piedras",
+                    "x": 0.28,
+                    "scale": 0.8
                   }
                 ],
                 "rope": {
@@ -6710,6 +6919,11 @@
                     "near": "hero",
                     "dx": 0.07,
                     "lift": 46,
+                    "scale": 0.8
+                  },
+                  {
+                    "prop": "piedras",
+                    "x": 0.28,
                     "scale": 0.8
                   }
                 ],
@@ -6954,7 +7168,8 @@
                 "time": "noche",
                 "unseen": [
                   "puente",
-                  "cama"
+                  "cama",
+                  "campana"
                 ],
                 "bg": "cuarto",
                 "mood": "sleep",
@@ -6985,7 +7200,8 @@
               "scene": {
                 "time": "noche",
                 "unseen": [
-                  "cama"
+                  "cama",
+                  "campana"
                 ],
                 "bg": "cuarto",
                 "mood": "sleep",
@@ -7087,7 +7303,10 @@
                   "x": 0.5,
                   "fill": 0.55,
                   "clip": "goat_idle"
-                }
+                },
+                "unseen": [
+                  "pan"
+                ]
               }
             }
           ],
@@ -7524,19 +7743,19 @@
           ]
         },
         {
-          "id": "plaf",
+          "id": "mesa",
           "variants": [
             {
-              "id": "taza_plaf",
-              "text": "{hero} dejó la taza en la mesa. Entonces vio pasar una mariposa. Se giró deprisa y ¡plaf! Con el codo tiró la taza, y la leche se derramó por toda la mesa.",
+              "id": "taza_mesa",
+              "text": "{hero} dejó la taza en la mesa y se sentó a mirar el pueblo. Hacía un día muy bonito.",
               "scene": {
                 "bg": "plaza",
-                "mood": "tension",
+                "mood": "calm",
                 "time": "dia",
                 "stage": [
                   {
                     "who": "hero",
-                    "clip": "surprised",
+                    "clip": "idle",
                     "x": 0.4
                   }
                 ],
@@ -7547,15 +7766,55 @@
                     "scale": 1.0
                   },
                   {
-                    "prop": "taza_volcada",
+                    "prop": "taza_leche",
                     "x": 0.62,
-                    "lift": 46,
-                    "scale": 0.8
+                    "lift": 50,
+                    "scale": 0.7
                   }
                 ],
                 "offstage": [
                   "rosa"
                 ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "mariposa",
+          "variants": [
+            {
+              "id": "taza_mariposa",
+              "text": "De pronto, ¡frrr!, pasó volando una mariposa naranja, con puntitos negros. {hero} se giró deprisa para mirarla.",
+              "scene": {
+                "bg": "plaza",
+                "mood": "hope",
+                "time": "dia",
+                "focus": {
+                  "prop": "mariposa",
+                  "x": 0.5,
+                  "fill": 0.5,
+                  "clip": "flutter",
+                  "lift": 60
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "plaf",
+          "variants": [
+            {
+              "id": "taza_plaf",
+              "text": "¡Plaf! Con el codo, {hero} tiró la taza. La leche se derramó por todas partes.",
+              "scene": {
+                "bg": "plaza",
+                "mood": "tension",
+                "time": "dia",
+                "focus": {
+                  "prop": "taza_volcada",
+                  "x": 0.5,
+                  "fill": 0.6
+                }
               }
             }
           ]
@@ -8017,6 +8276,9 @@
                 ],
                 "offstage": [
                   "teo"
+                ],
+                "unseen": [
+                  "linterna"
                 ]
               }
             }
@@ -8457,7 +8719,10 @@
                     "x": 0.7
                   }
                 ],
-                "props": []
+                "props": [],
+                "unseen": [
+                  "campana"
+                ]
               }
             }
           ],
@@ -8485,7 +8750,14 @@
                     "x": 0.76
                   }
                 ],
-                "props": []
+                "props": [
+                  {
+                    "prop": "campana",
+                    "x": 0.5,
+                    "lift": 300,
+                    "scale": 0.14
+                  }
+                ]
               }
             }
           ],
@@ -8623,7 +8895,7 @@
           "variants": [
             {
               "id": "campana_mediodia_cierre",
-              "text": "Al bajar, los vecinos esperaban con la mesa puesta. Teo le dio a {hero} un abrazo muy fuerte. «Subiste porque diste un paso y luego otro», dijo Teo. {hero} comió con ganas, porque subir torres da mucha hambre. Y allá arriba, la campana brillaba al sol.",
+              "text": "Al bajar, los vecinos esperaban con la mesa puesta. Teo le dio a {hero} un abrazo muy fuerte. «Subiste porque diste un paso y luego otro», dijo Teo. {hero} comió con ganas, porque subir torres da mucha hambre.",
               "scene": {
                 "bg": "plaza",
                 "mood": "joy",
@@ -8776,6 +9048,14 @@
                   {
                     "prop": "mesa",
                     "x": 0.62
+                  },
+                  {
+                    "prop": "pan",
+                    "dx": 0.05,
+                    "lift": 70,
+                    "scale": 0.45,
+                    "front": true,
+                    "near": "hero"
                   }
                 ],
                 "offstage": [
@@ -8807,6 +9087,9 @@
                     "prop": "mesa",
                     "x": 0.62
                   }
+                ],
+                "unseen": [
+                  "panecillo"
                 ]
               }
             }
@@ -8868,6 +9151,12 @@
                   {
                     "prop": "mesa",
                     "x": 0.58
+                  },
+                  {
+                    "prop": "pan",
+                    "x": 0.58,
+                    "lift": 50,
+                    "scale": 0.4
                   }
                 ]
               }
@@ -9290,6 +9579,9 @@
                 "season": "invierno",
                 "offstage": [
                   "rosa"
+                ],
+                "unseen": [
+                  "pan"
                 ]
               }
             }

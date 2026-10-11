@@ -170,6 +170,42 @@ void main() {
       await close(tester);
     });
 
+    testWidgets('al terminar el cuento hay un botón para volver',
+        (tester) async {
+      phone(tester);
+      await tester.pumpWidget(MaterialApp(
+        home: Builder(
+          builder: (context) => Scaffold(
+            body: TextButton(
+              onPressed: () =>
+                  Navigator.of(context).push(MaterialPageRoute<void>(
+                builder: (_) => AudioOnlyPage(
+                  story: _story(),
+                  narrator: _Voice(),
+                  ambience: _Music(),
+                  dimmer: _Screen(),
+                ),
+              )),
+              child: const Text('abrir'),
+            ),
+          ),
+        ),
+      ));
+      await tester.tap(find.text('abrir'));
+      await tester.pumpAndSettle(const Duration(milliseconds: 100));
+      expect(find.byKey(const Key('finished-back')), findsNothing);
+      // la voz de mentira tarda 20 ms por frase: el cuento acaba en unos segundos
+      for (var k = 0; k < 400; k++) {
+        await tester.pump(const Duration(milliseconds: 100));
+        if (find.byKey(const Key('finished-back')).evaluate().isNotEmpty) break;
+      }
+      expect(find.byKey(const Key('finished-back')), findsOneWidget);
+      await tester.tap(find.byKey(const Key('finished-back')));
+      await tester.pumpAndSettle();
+      expect(find.byType(AudioOnlyPage), findsNothing);
+      expect(find.text('abrir'), findsOneWidget);
+    });
+
     testWidgets('se puede pausar y trae el temporizador de sueño',
         (tester) async {
       phone(tester);
@@ -235,10 +271,11 @@ void main() {
       }
       expect(find.text('Enseñanza'), findsOneWidget);
       expect(find.textContaining(story.moralLine), findsWidgets);
-      final next =
-          tester.widget<IconButton>(find.byKey(const Key('shared-next')));
-      expect(next.onPressed, isNull);
-      await close(tester);
+      expect(find.byKey(const Key('shared-next')), findsNothing);
+      expect(find.byKey(const Key('shared-done')), findsOneWidget);
+      await tester.tap(find.byKey(const Key('shared-done')));
+      await tester.pumpAndSettle();
+      expect(find.byType(SharedReadingPage), findsNothing);
     });
 
     testWidgets('«Escuchar esta escena» lee solo esa escena', (tester) async {

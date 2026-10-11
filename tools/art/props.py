@@ -378,6 +378,21 @@ def taza_volcada():
     return rig("taza_volcada", "Taza volcada", [-48, -28, 110, 34], {}, node("root", (0, 0), shapes=shapes))
 
 
+def mariposa():
+    """Mariposa naranja con puntitos, de frente. Origen: el cuerpo. Huesos: `wingL`/`wingR` (aletean) y `body`."""
+    def wing(side):
+        up = f"M0,-6 C{side*18},-40 {side*58},-44 {side*60},-18 C{side*60},-2 {side*30},4 0,-2 Z"
+        low = f"M0,-2 C{side*26},0 {side*46},14 {side*38},32 C{side*28},40 {side*8},20 0,4 Z"
+        return [S(up, "#ff9a3c", "#7a3a10", 2.5), S(low, "#ffc247", "#7a3a10", 2.5),
+                S(ell(side * 38, -22, 6, 6), "#3a1a08", None), S(ell(side * 26, 18, 4, 4), "#3a1a08", None),
+                shine(f"M{side*10},-14 C{side*20},-32 {side*38},-36 {side*46},-26 C{side*30},-26 {side*18},-18 {side*10},-14 Z")]
+    body = [S(rrect(-4, -20, 8, 44, 4), "#3a1a08", None),
+            S(ell(0, -24, 7, 7), "#3a1a08", None),
+            S("M-2,-28 C-10,-48 -16,-50 -20,-46", None, "#3a1a08", 2), S("M2,-28 C10,-48 16,-50 20,-46", None, "#3a1a08", 2)]
+    root = node("root", (0, 0), pre=[node("wingL", (0, -4), shapes=wing(-1)), node("wingR", (0, -4), shapes=wing(1))], shapes=body)
+    return rig("mariposa", "Mariposa", [-66, -54, 132, 98], {}, root)
+
+
 def cuenco():
     """Cuenco de sopa caliente. Origen: base."""
     sh = [S("M-26,-26 L26,-26 L18,0 L-18,0 Z", "#c98a3a", "#5a3a14", 2.5), shade("M12,-26 L26,-26 L18,0 L8,0 Z"),
@@ -555,4 +570,4 @@ def cofre():
 
 
 def build_all():
-    return [campana(), campana_rota(), linterna(), linterna_apagada(), olla(), pan(), trozos_de_pan(), buho(), cabrita(), bolsa(), cometa(), girasol(), semillas(), semillas_dos(), mesa(), manta(), taza(), taza_leche(), taza_volcada(), escalones(), capa(), sombra_gigante(), cuenco(), regadera(), cinta(), girasol_seco(), campana_colgada(), cuerda_rollo(), roble(), puerta_cabana(), maceta(), maceta_brote(), piedras(), hierba(), pedernal(), vela(), saco(), cofre()]
+    return [campana(), campana_rota(), linterna(), linterna_apagada(), olla(), pan(), trozos_de_pan(), buho(), cabrita(), bolsa(), cometa(), girasol(), semillas(), semillas_dos(), mesa(), manta(), taza(), taza_leche(), taza_volcada(), mariposa(), escalones(), capa(), sombra_gigante(), cuenco(), regadera(), cinta(), girasol_seco(), campana_colgada(), cuerda_rollo(), roble(), puerta_cabana(), maceta(), maceta_brote(), piedras(), hierba(), pedernal(), vela(), saco(), cofre()]

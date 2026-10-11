@@ -453,6 +453,10 @@ PROP_CLIPS = {
     "sun": dict(dur=3.2, loop=True, tracks={"stem": sine(3.2, 3), "head": sine(3.2, 5, 0.3)}),
     "grow": dict(dur=3.0, loop=False, tracks={"stem.sy": keys((0, 0.2), (3.0, 1.0)), "stem.sx": keys((0, 0.6), (3.0, 1.0)), "head": keys((0, -8), (1.5, 6), (3.0, 0))}),
     "shimmer": dict(dur=2.4, loop=True, tracks={"glow.sx": keys((0, 1), (1.2, 1.15), (2.4, 1)), "glow.sy": keys((0, 1), (1.2, 1.15), (2.4, 1)), "leaves": sine(2.4, 2)}),
+    # La mariposa aletea (las alas giran a la vez en sentidos opuestos) y sube y baja mientras vuela
+    "flutter": dict(dur=0.5, loop=True, tracks={
+        "wingL": sine(0.5, 34), "wingR": sine(0.5, -34),
+        "root.dy": keys((0, 0), (0.125, -5), (0.25, 0), (0.375, -5), (0.5, 0))}),
     "goat_idle": dict(dur=2.8, loop=True, tracks={
         "head": sine(2.8, 5), "tail": sine(0.9, 16), "eyes.sy": blink(2.8, 0.5),
         "root.dy": keys((0, 0), (1.4, -1.5), (2.8, 0))}),

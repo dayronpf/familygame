@@ -1,1 +1,1 @@
-Cambiar este archivo (y subirlo) compila un APK de prueba. Ultima peticion: v0.5.0 con temporizador de sueno gradual, solo audio, Leemos juntos y varios ninos.
+Cambiar este archivo (y subirlo) compila un APK de prueba. Ultima peticion: v0.5.1 con el boton Volver al terminar, mariposa y primeros planos en La taza de leche, y la regla de que todo objeto nombrado se ve.

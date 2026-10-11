@@ -86,6 +86,8 @@ class _HologramPageState extends State<HologramPage>
 
   /// Cuando cambia la escena, el dibujo nuevo llega caminando.
   void _onPlayback() {
+    // Al terminar el cuento los controles se quedan a la vista, con el botón «Volver»
+    if (_playback.finished && !_controls && mounted) _controls = true;
     if (_playback.scene != _shownScene) {
       final s = _playback.current.setup;
       setState(() {
@@ -219,6 +221,17 @@ class _HologramPageState extends State<HologramPage>
                       child: Wrap(
                         alignment: WrapAlignment.center,
                         children: [
+                          if (pb.finished)
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 12, vertical: 4),
+                              child: FilledButton.icon(
+                                key: const Key('finished-back'),
+                                onPressed: () => Navigator.pop(context),
+                                icon: const Icon(Icons.arrow_back),
+                                label: const Text('Volver'),
+                              ),
+                            ),
                           _icon(Icons.close, 'Salir',
                               () => Navigator.pop(context)),
                           SleepTimerButton(

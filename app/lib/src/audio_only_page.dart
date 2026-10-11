@@ -61,7 +61,11 @@ class _AudioOnlyPageState extends State<AudioOnlyPage> {
       scenes: playScenes(widget.story, const []),
       narrator: widget.narrator ?? narratorFor(context),
       title: widget.story.title,
-    )..addListener(() => mounted ? setState(() {}) : null);
+    )..addListener(() {
+        if (!mounted) return;
+        // Al terminar los controles se quedan a la vista (con el botón «Volver»)
+        setState(() => _controls = _controls || _playback.finished);
+      });
     _hearMusic = musicOn(context);
     enterShowMode(immersive: true);
     _screen.setLevel(0);
@@ -155,6 +159,15 @@ class _AudioOnlyPageState extends State<AudioOnlyPage> {
                           color: Palette.mutedText.withValues(alpha: 0.5),
                         ),
                   ),
+                  if (pb.finished) ...[
+                    const SizedBox(height: 16),
+                    FilledButton.icon(
+                      key: const Key('finished-back'),
+                      onPressed: () => Navigator.pop(context),
+                      icon: const Icon(Icons.arrow_back),
+                      label: const Text('Volver'),
+                    ),
+                  ],
                   const Spacer(),
                   Wrap(
                     alignment: WrapAlignment.center,

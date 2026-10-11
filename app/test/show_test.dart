@@ -376,5 +376,56 @@ void main() {
       expect(find.byTooltip('Reproducir'), findsOneWidget);
       await tester.pumpWidget(const SizedBox());
     });
+
+    testWidgets('al terminar el cuento el cine ofrece volver y oírlo otra vez',
+        (tester) async {
+      tester.view.physicalSize = const Size(800, 1600);
+      tester.view.devicePixelRatio = 2;
+      addTearDown(tester.view.reset);
+      final voice = _FakeNarrator();
+      await tester.pumpWidget(MaterialApp(
+        home: Builder(
+          builder: (context) => Scaffold(
+            body: TextButton(
+              onPressed: () =>
+                  Navigator.of(context).push(MaterialPageRoute<void>(
+                builder: (_) => CinemaPage(
+                  story: story,
+                  art: art,
+                  setups: setups,
+                  narrator: voice,
+                  ambience: _FakeAmbience(),
+                ),
+              )),
+              child: const Text('abrir'),
+            ),
+          ),
+        ),
+      ));
+      await tester.tap(find.text('abrir'));
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 600));
+      expect(find.byKey(const Key('finished-back')), findsNothing,
+          reason: 'mientras suena no estorba');
+      for (var k = 0; k < 600; k++) {
+        await tester.pump(const Duration(milliseconds: 100));
+        if (find.byKey(const Key('finished-back')).evaluate().isNotEmpty) break;
+      }
+      expect(find.byKey(const Key('finished-back')), findsOneWidget);
+      expect(find.byKey(const Key('finished-replay')), findsOneWidget);
+      // «Otra vez» vuelve a empezar y el botón de volver desaparece
+      await tester.tap(find.byKey(const Key('finished-replay')));
+      await tester.pump(const Duration(milliseconds: 200));
+      expect(find.byKey(const Key('finished-back')), findsNothing);
+      voice.said.clear();
+      for (var k = 0; k < 600; k++) {
+        await tester.pump(const Duration(milliseconds: 100));
+        if (find.byKey(const Key('finished-back')).evaluate().isNotEmpty) break;
+      }
+      await tester.tap(find.byKey(const Key('finished-back')));
+      await tester.pumpAndSettle();
+      expect(find.byType(CinemaPage), findsNothing);
+      expect(find.text('abrir'), findsOneWidget);
+    });
   });
 }

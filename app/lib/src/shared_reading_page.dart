@@ -308,14 +308,22 @@ class _SharedReadingPageState extends State<SharedReadingPage>
                       ],
                     ),
                   ),
-                  IconButton(
-                    key: const Key('shared-next'),
-                    icon: const Icon(Icons.chevron_right),
-                    iconSize: 36,
-                    color: Palette.cream,
-                    tooltip: 'Escena siguiente',
-                    onPressed: _page >= last ? null : () => _go(_page + 1),
-                  ),
+                  if (_page >= last)
+                    FilledButton.icon(
+                      key: const Key('shared-done'),
+                      onPressed: () => Navigator.pop(context),
+                      icon: const Icon(Icons.check),
+                      label: const Text('Terminar'),
+                    )
+                  else
+                    IconButton(
+                      key: const Key('shared-next'),
+                      icon: const Icon(Icons.chevron_right),
+                      iconSize: 36,
+                      color: Palette.cream,
+                      tooltip: 'Escena siguiente',
+                      onPressed: () => _go(_page + 1),
+                    ),
                 ],
               ),
             ),
