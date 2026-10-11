@@ -1,1 +1,1 @@
-Cambiar este archivo (y subirlo) compila un APK de prueba. Ultima peticion: v0.3.0 con arte arreglado (rama y cuerda), guia Holograma en casa (PDF carta).
+Cambiar este archivo (y subirlo) compila un APK de prueba. Ultima peticion: v0.3.0 con splash mejorado y centrado.

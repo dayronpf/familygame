@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 import 'dart:ui' as ui;
 
@@ -9,6 +10,7 @@ import 'package:caldero_app/src/narration/narrator.dart';
 import 'package:caldero_app/src/settings/app_settings.dart';
 import 'package:caldero_app/src/shelf/story_shelf.dart';
 import 'package:caldero_app/src/theme.dart';
+import 'package:caldero_app/src/ui/splash_page.dart';
 import 'package:caldero_app/src/ui/voice_services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -186,5 +188,39 @@ void main() {
       final data = await image.toByteData(format: ui.ImageByteFormat.png);
       File('$out/14_guia.png').writeAsBytesSync(data!.buffer.asUint8List());
     });
+  }, skip: out == null);
+
+  testWidgets('fotogramas del splash', (tester) async {
+    await tester.runAsync(loadFonts);
+    tester.view
+      ..physicalSize = const Size(412 * 2, 892 * 2)
+      ..devicePixelRatio = 2;
+    addTearDown(tester.view.reset);
+    Directory(out!).createSync(recursive: true);
+    final boundary = GlobalKey();
+    await tester.pumpWidget(RepaintBoundary(
+      key: boundary,
+      child: MaterialApp(
+        theme: nightTheme(),
+        home: SplashPage(
+          onFinished: () {},
+          ready: Completer<void>().future,
+          minimum: const Duration(milliseconds: 3600),
+        ),
+      ),
+    ));
+    var elapsed = 0;
+    for (final ms in [400, 900, 1500, 2100, 2700, 3300, 3900]) {
+      await tester.pump(Duration(milliseconds: ms - elapsed));
+      elapsed = ms;
+      await tester.runAsync(() async {
+        final b = boundary.currentContext!.findRenderObject()!
+            as RenderRepaintBoundary;
+        final image = await b.toImage(pixelRatio: 0.7);
+        final data = await image.toByteData(format: ui.ImageByteFormat.png);
+        File('$out/splash_$ms.png')
+            .writeAsBytesSync(data!.buffer.asUint8List());
+      });
+    }
   }, skip: out == null);
 }

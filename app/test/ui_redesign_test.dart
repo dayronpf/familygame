@@ -95,6 +95,8 @@ void main() {
       expect(find.text('Caldero de Cuentos'), findsWidgets);
       await tester.pump(const Duration(seconds: 3));
       await tester.pump(const Duration(milliseconds: 100));
+      // el splash se desvanece (medio segundo) antes de irse
+      await tester.pump(const Duration(milliseconds: 600));
       expect(find.byKey(const Key('splash-version')), findsNothing);
     });
   });

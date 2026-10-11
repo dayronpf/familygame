@@ -26,7 +26,7 @@ class CalderoApp extends StatefulWidget {
     this.voices = const VoiceServices(),
     this.showWizard = false,
     this.showSplash = false,
-    this.splashMinimum = const Duration(milliseconds: 3000),
+    this.splashMinimum = const Duration(milliseconds: 3600),
   });
 
   /// Si `false`, los dibujos de los cuentos no se animan (pruebas).
@@ -119,14 +119,20 @@ class _CalderoAppState extends State<CalderoApp> {
                     animateArt: widget.animateArt,
                   ),
           ),
-          if (_splash)
-            Positioned.fill(
-              child: SplashPage(
-                ready: _ready,
-                minimum: widget.splashMinimum,
-                onFinished: () => setState(() => _splash = false),
-              ),
+          // El splash se desvanece al caer (en vez de desaparecer de golpe)
+          Positioned.fill(
+            child: AnimatedSwitcher(
+              duration: const Duration(milliseconds: 500),
+              child: _splash
+                  ? SplashPage(
+                      key: const ValueKey('splash'),
+                      ready: _ready,
+                      minimum: widget.splashMinimum,
+                      onFinished: () => setState(() => _splash = false),
+                    )
+                  : const SizedBox.shrink(key: ValueKey('home')),
             ),
+          ),
         ],
       ),
     );
