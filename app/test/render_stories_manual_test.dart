@@ -17,6 +17,7 @@ import 'file_bundle.dart';
 ///
 /// Se salta si no se pide. Uso (desde `app/`):
 ///   RENDER_OUT=/tmp/escenas RENDER_PREMISES=girasol,campana RENDER_PER=2 flutter test test/render_stories_manual_test.dart
+/// `RENDER_AGE=2-3|4-5|6-8` pide cuentos de esa edad.
 /// Escribe `<premisa>_<n>_<escena>.png` y `<premisa>_<n>.json` (texto y directivas de cada escena).
 void main() {
   final out = Platform.environment['RENDER_OUT'];
@@ -24,6 +25,7 @@ void main() {
       .split(',')
       .where((e) => e.isNotEmpty)
       .toSet();
+  final renderAge = Platform.environment['RENDER_AGE'];
   final per = int.tryParse(Platform.environment['RENDER_PER'] ?? '') ?? 2;
 
   testWidgets('dibuja las escenas de cuentos reales', (tester) async {
@@ -38,7 +40,7 @@ void main() {
       final count = <String, int>{};
       final heroes = <String, Set<String>>{};
       for (var seed = 1; seed < 4000; seed++) {
-        final story = engine.generate(StoryOptions(seed: seed));
+        final story = engine.generate(StoryOptions(seed: seed, age: renderAge));
         final id = story.scenes.first.fragmentId.split('.').first;
         if (wanted.isNotEmpty && !wanted.contains(id)) continue;
         final hero = story.recipe.cast['hero'] ?? '';

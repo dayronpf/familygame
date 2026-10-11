@@ -206,18 +206,29 @@ void main() {
       await tester.pumpAndSettle();
       expect(find.byKey(const Key('age-note')), findsNothing,
           reason: 'hay cuentos de 6–8');
-      await next(tester); // edad → resumen
+      await next(tester); // edad → nombre
+
+      expect(find.text('¿Cómo se llama el niño?'), findsOneWidget);
+      await tester.enterText(
+          find.byKey(const Key('wizard-name')), '  Valentina ');
+      await tester.tap(find.byKey(const Key('gender-f')));
+      await tester.pumpAndSettle();
+      await next(tester); // nombre → resumen
 
       expect(find.text('Todo listo'), findsOneWidget);
       expect(find.text('Español'), findsOneWidget);
       expect(find.text('Brisa'), findsOneWidget);
       expect(find.text('6–8 años'), findsOneWidget);
+      expect(find.text('Valentina'), findsOneWidget);
       await tester.tap(find.byKey(const Key('wizard-start')));
       await tester.pumpAndSettle();
 
       expect(find.text('Crear cuento'), findsOneWidget);
       expect(s.wizardDone, isTrue);
       expect(s.child.age, '6-8');
+      expect(s.child.name, 'Valentina');
+      expect(s.child.heroName, 'Valentina');
+      expect(s.child.heroGender, 'f');
       expect(s.child.voice, voiceOptions(_voices)[1].voice);
     });
 
@@ -248,7 +259,7 @@ void main() {
       await openApp(tester);
       await next(tester);
       await next(tester);
-      await tester.tap(find.byKey(const Key('age-2-3')));
+      await tester.tap(find.byKey(const Key('age-9-12')));
       await tester.pumpAndSettle();
       expect(find.byKey(const Key('age-note')), findsOneWidget);
       expect(find.textContaining('6–8 años'), findsWidgets);
@@ -279,6 +290,7 @@ void main() {
       await next(tester);
       await next(tester);
       await next(tester);
+      await next(tester);
       expect(find.text('Todo listo'), findsOneWidget);
       await tester.tap(find.byKey(const Key('wizard-change')));
       await tester.pumpAndSettle();
@@ -305,6 +317,7 @@ void main() {
           animateArt: false,
         ));
         await tester.pumpAndSettle();
+        await next(tester);
         await next(tester);
         await next(tester);
         await next(tester);
@@ -362,11 +375,17 @@ void main() {
 
       await tester.tap(find.descendant(
           of: find.byKey(const Key('setting-age')),
-          matching: find.text('2–3')));
+          matching: find.text('9–12')));
       await tester.pumpAndSettle();
-      expect(settings.child.age, '2-3');
+      expect(settings.child.age, '9-12');
+      await tester.scrollUntilVisible(
+          find.byKey(const Key('setting-age-note')), 100,
+          scrollable: find.byType(Scrollable).first);
       expect(find.byKey(const Key('setting-age-note')), findsOneWidget);
 
+      await tester.scrollUntilVisible(
+          find.byKey(const Key('setting-speed')), 100,
+          scrollable: find.byType(Scrollable).first);
       await tester.tap(find.descendant(
           of: find.byKey(const Key('setting-speed')),
           matching: find.text('Lenta')));
@@ -374,14 +393,16 @@ void main() {
       expect(settings.child.speed, ReadingSpeed.slow);
 
       await tester.scrollUntilVisible(
-          find.byKey(const Key('setting-music')), 200);
+          find.byKey(const Key('setting-music')), 200,
+          scrollable: find.byType(Scrollable).first);
       await tester.ensureVisible(find.byKey(const Key('setting-music')));
       await tester.pumpAndSettle();
       await tester.tap(find.byKey(const Key('setting-music')));
       await tester.pumpAndSettle();
       expect(settings.music, isFalse);
       await tester.scrollUntilVisible(
-          find.byKey(const Key('setting-downloads')), 200);
+          find.byKey(const Key('setting-downloads')), 200,
+          scrollable: find.byType(Scrollable).first);
       expect(find.byKey(const Key('setting-downloads')), findsOneWidget);
     });
 

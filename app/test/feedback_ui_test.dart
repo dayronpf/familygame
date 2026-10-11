@@ -427,11 +427,15 @@ void main() {
       await tester.pumpAndSettle();
       await answerGate(tester, correct: true);
       expect(find.text('Ajustes para adultos'), findsOneWidget);
-      await tester.scrollUntilVisible(find.text('Qué enviamos'), 300);
+      await tester.scrollUntilVisible(find.text('Qué enviamos'), 300,
+          scrollable: find.byType(Scrollable).first);
       expect(find.text('Qué enviamos'), findsOneWidget);
+      await tester.scrollUntilVisible(find.text('Qué NO enviamos'), 300,
+          scrollable: find.byType(Scrollable).first);
       expect(find.text('Qué NO enviamos'), findsOneWidget);
       await tester.scrollUntilVisible(
-          find.byKey(const Key('example-tile')), 300);
+          find.byKey(const Key('example-tile')), 300,
+          scrollable: find.byType(Scrollable).first);
       await tester.tap(find.byKey(const Key('example-tile')));
       await tester.pumpAndSettle();
       await tester.scrollUntilVisible(
@@ -483,7 +487,8 @@ void main() {
       await tester.pumpAndSettle();
       await answerGate(tester, correct: true);
       await tester.scrollUntilVisible(
-          find.byKey(const Key('feedback-switch')), 300);
+          find.byKey(const Key('feedback-switch')), 300,
+          scrollable: find.byType(Scrollable).first);
       expect(find.textContaining('Esperando para enviarse: 1'), findsOneWidget);
 
       await tester.tap(find.byKey(const Key('feedback-switch')));

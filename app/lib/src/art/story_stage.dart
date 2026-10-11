@@ -43,6 +43,7 @@ const Map<String, Map<String, String>> moodClips = {
     'villain': 'scared',
     'extra': 'clap'
   },
+  'sad': {'hero': 'sad', 'helper': 'think', 'villain': 'idle', 'extra': 'sad'},
   'joy': {'hero': 'cheer', 'helper': 'wave', 'villain': 'bow', 'extra': 'clap'},
   'sleep': {
     'hero': 'sleep',

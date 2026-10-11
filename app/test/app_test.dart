@@ -74,8 +74,8 @@ void main() {
     await tester.tap(find.text('Crear cuento'));
     await tester.pumpAndSettle();
 
-    // El héroe del pack medieval es siempre Aldo o Mara.
-    expect(find.textContaining(RegExp('Aldo|Mara')), findsWidgets);
+    // El héroe del pack medieval es siempre Aldo o Mara (aparece en alguna escena, aunque la primera sea de otro).
+    await scrollTo(tester, find.textContaining(RegExp('Aldo|Mara')));
     await scrollTo(tester, find.text('Enseñanza'));
     expect(find.text('Enseñanza'), findsOneWidget);
     // La enseñanza que se muestra es la del pack (no un texto escrito aquí, que se quedaría viejo).
@@ -84,8 +84,10 @@ void main() {
             as Map<String, Object?>;
     final moral = (pack['morals']! as List)
         .cast<Map<String, Object?>>()
-        .firstWhere((m) => m['id'] == 'honestidad')['text']! as String;
-    expect(find.text(moral), findsOneWidget);
+        .firstWhere((m) => m['id'] == 'honestidad');
+    // La edad por defecto es 4–5: la enseñanza se dice en su forma sencilla.
+    expect(
+        find.text((moral['simple']! as Map)['4-5']! as String), findsOneWidget);
   });
 
   testWidgets('cada escena del cuento lleva su dibujo animado', (tester) async {
@@ -145,8 +147,7 @@ void main() {
     expect(storyText(), isNot(first));
     await scrollTo(tester, find.text('Enseñanza'));
     expect(
-      find.text(
-          'Ser valiente no es no tener miedo, sino dar el primer paso a pesar de él.'),
+      find.text('Un paso pequeñito, y luego otro, y llegamos lejos.'),
       findsOneWidget,
     );
   });
@@ -179,7 +180,8 @@ void main() {
     await tester.tap(find.byKey(const Key('gate-ok')));
     await tester.pumpAndSettle();
     final button = find.byKey(const Key('open-workshop'));
-    await tester.scrollUntilVisible(button, 200);
+    await tester.scrollUntilVisible(button, 200,
+        scrollable: find.byType(Scrollable).first);
     await tester.ensureVisible(button);
     await tester.pumpAndSettle();
     await tester.tap(button);

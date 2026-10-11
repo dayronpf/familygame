@@ -1,4 +1,5 @@
-import 'package:caldero_engine/caldero_engine.dart' show AgeProfile;
+import 'package:caldero_engine/caldero_engine.dart'
+    show AgeProfile, maxChildNameLength, normalizeChildName;
 import 'package:flutter/material.dart';
 
 import '../narration/narrator.dart';
@@ -8,7 +9,8 @@ import 'palette.dart';
 import 'voice_picker.dart';
 import 'voice_services.dart';
 
-/// Wizard de primer uso (menos de un minuto): idioma, voz del narrador, edad del niño y un resumen. Solo sale la
+/// Wizard de primer uso (menos de un minuto): idioma, voz del narrador, edad del niño, su nombre (opcional) y un
+/// resumen. Solo sale la
 /// primera vez; todo se cambia después en Ajustes. «Saltar» deja los valores por defecto: idioma del sistema,
 /// primera voz y perfil 4–5.
 class WizardPage extends StatefulWidget {
@@ -32,18 +34,29 @@ class WizardPage extends StatefulWidget {
 }
 
 class _WizardPageState extends State<WizardPage> {
-  static const int summaryStep = 3;
+  static const int summaryStep = 4;
   int _step = 0;
   late String _language = widget.settings.child.language;
   TtsVoice? _voice;
   String? _voiceName;
   String _age = AgeProfile.defaultId;
+  late final TextEditingController _name =
+      TextEditingController(text: widget.settings.child.name);
+  String? _gender;
+
+  @override
+  void dispose() {
+    _name.dispose();
+    super.dispose();
+  }
 
   Future<void> _finish({required bool skipped}) async {
     await widget.settings.completeWizard(
       language: skipped ? resolveLanguage(_language) : _language,
       voice: skipped ? null : _voice,
       age: skipped ? AgeProfile.defaultId : _age,
+      name: skipped ? '' : _name.text.trim(),
+      heroGender: skipped ? null : _gender,
     );
     widget.onDone();
   }
@@ -197,8 +210,62 @@ class _WizardPageState extends State<WizardPage> {
             ],
           ),
         );
+      case 3:
+        return _frame(
+          text,
+          icon: Icons.auto_stories,
+          title: '¿Cómo se llama el niño?',
+          body: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Si lo escribes, será el protagonista de sus cuentos. '
+                'Es opcional y el nombre se queda en este teléfono.',
+                style: text.bodyMedium!.copyWith(color: Palette.mutedText),
+              ),
+              const SizedBox(height: 14),
+              TextField(
+                key: const Key('wizard-name'),
+                controller: _name,
+                maxLength: maxChildNameLength,
+                textCapitalization: TextCapitalization.words,
+                textInputAction: TextInputAction.done,
+                style: text.titleLarge,
+                decoration: const InputDecoration(
+                  hintText: 'Su nombre',
+                  counterText: '',
+                  prefixIcon: Icon(Icons.edit_outlined),
+                ),
+                onChanged: (_) => setState(() {}),
+              ),
+              const SizedBox(height: 18),
+              Text('¿Quién protagoniza?',
+                  style: text.titleMedium!.copyWith(color: Palette.cream)),
+              const SizedBox(height: 10),
+              _ChoiceCard(
+                key: const Key('gender-m'),
+                title: 'Un niño',
+                selected: _gender == 'm',
+                onTap: () => setState(() => _gender = 'm'),
+              ),
+              _ChoiceCard(
+                key: const Key('gender-f'),
+                title: 'Una niña',
+                selected: _gender == 'f',
+                onTap: () => setState(() => _gender = 'f'),
+              ),
+              _ChoiceCard(
+                key: const Key('gender-any'),
+                title: 'Que decida el cuento',
+                selected: _gender == null,
+                onTap: () => setState(() => _gender = null),
+              ),
+            ],
+          ),
+        );
       default:
         final age = AgeProfile.byId(_age);
+        final heroName = normalizeChildName(_name.text);
         final lang = supportedLanguages.firstWhere(
           (l) => l.code == _language,
           orElse: () => supportedLanguages.first,
@@ -221,6 +288,12 @@ class _WizardPageState extends State<WizardPage> {
                 icon: Icons.child_care,
                 label: 'Edad',
                 value: age?.label ?? _age,
+              ),
+              _SummaryRow(
+                icon: Icons.auto_stories,
+                label: 'Héroe',
+                value: heroName ?? 'Al azar',
+                key: const Key('summary-hero'),
               ),
               const SizedBox(height: 8),
               Text(

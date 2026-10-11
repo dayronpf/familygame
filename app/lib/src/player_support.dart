@@ -43,7 +43,7 @@ List<PlayScene> playScenes(Story story, List<StageSetup?> setups) {
     out.add(PlayScene(text: story.scenes[i].text, setup: last));
   }
   out.add(PlayScene(
-      text: 'La enseñanza de hoy: ${story.moral.text}',
+      text: 'La enseñanza de hoy: ${story.moralLine}',
       setup: last,
       isMoral: true));
   return out;

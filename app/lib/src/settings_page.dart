@@ -35,6 +35,17 @@ class SettingsPage extends StatefulWidget {
 class _SettingsPageState extends State<SettingsPage> {
   bool? _enabled;
   int _queued = 0;
+  TextEditingController? _nameCtl;
+
+  /// El campo del nombre conserva lo que se escribe aunque los ajustes se redibujen con cada letra.
+  TextEditingController _nameController(String initial) =>
+      _nameCtl ??= TextEditingController(text: initial);
+
+  @override
+  void dispose() {
+    _nameCtl?.dispose();
+    super.dispose();
+  }
 
   static final RatingEvent _example = RatingEvent(
     id: '3f2b8c1e-5a47-4d2e-9b0a-7c1d6e8f2a90',
@@ -172,6 +183,38 @@ class _SettingsPageState extends State<SettingsPage> {
         onSelected: (o) => settings.updateChild(voice: o.voice),
       ),
       const SizedBox(height: 8),
+      Text('Protagonista', style: text.bodyLarge),
+      const SizedBox(height: 4),
+      Text(
+        'Si escribes el nombre del niño, será el héroe de sus cuentos. Se queda en este teléfono.',
+        style: text.bodySmall,
+      ),
+      const SizedBox(height: 8),
+      TextField(
+        key: const Key('setting-name'),
+        controller: _nameController(settings.child.name),
+        maxLength: maxChildNameLength,
+        textCapitalization: TextCapitalization.words,
+        decoration: const InputDecoration(
+          hintText: 'Nombre (opcional)',
+          counterText: '',
+          prefixIcon: Icon(Icons.edit_outlined),
+        ),
+        onChanged: (v) => settings.updateChild(name: v.trim()),
+      ),
+      const SizedBox(height: 10),
+      SegmentedButton<String?>(
+        key: const Key('setting-gender'),
+        showSelectedIcon: false,
+        segments: const [
+          ButtonSegment(value: 'm', label: Text('Niño')),
+          ButtonSegment(value: 'f', label: Text('Niña')),
+          ButtonSegment(value: null, label: Text('Al azar')),
+        ],
+        selected: {child.heroGender},
+        onSelectionChanged: (v) => settings.updateChild(heroGender: v.first),
+      ),
+      const SizedBox(height: 16),
       Text('Edad del niño', style: text.bodyLarge),
       const SizedBox(height: 8),
       SegmentedButton<String>(

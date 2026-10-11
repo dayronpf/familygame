@@ -1,6 +1,7 @@
 import 'dart:convert';
 
-import 'package:caldero_engine/caldero_engine.dart' show AgeProfile;
+import 'package:caldero_engine/caldero_engine.dart'
+    show AgeProfile, normalizeChildName;
 import 'package:flutter/widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -50,6 +51,7 @@ class ChildProfile {
     this.language = 'es',
     this.voice,
     this.speed = ReadingSpeed.normal,
+    this.heroGender,
   });
 
   factory ChildProfile.fromJson(Map<String, Object?> j) => ChildProfile(
@@ -64,10 +66,21 @@ class ChildProfile {
                 locale: (j['voz_idioma'] as String?) ?? 'es',
               ),
         speed: ReadingSpeed.byName(j['velocidad'] as String?),
+        heroGender: switch (j['genero']) {
+          'm' => 'm',
+          'f' => 'f',
+          _ => null,
+        },
       );
 
   final String id;
+
+  /// Cómo se llama el niño (puede estar vacío). Si se escribe, es el protagonista de sus cuentos; solo vive en el
+  /// teléfono: nunca viaja con la valoración.
   final String name;
+
+  /// `m` o `f`: el protagonista de los cuentos es un niño o una niña. `null` = lo decide la semilla.
+  final String? heroGender;
 
   /// Id del perfil de edad (`2-3`, `4-5`, `6-8`, `9-12`).
   final String age;
@@ -83,6 +96,7 @@ class ChildProfile {
     String? language,
     Object? voice = _keep,
     ReadingSpeed? speed,
+    Object? heroGender = _keep,
   }) =>
       ChildProfile(
         id: id,
@@ -91,6 +105,9 @@ class ChildProfile {
         language: language ?? this.language,
         voice: identical(voice, _keep) ? this.voice : voice as TtsVoice?,
         speed: speed ?? this.speed,
+        heroGender: identical(heroGender, _keep)
+            ? this.heroGender
+            : heroGender as String?,
       );
 
   Map<String, Object?> toJson() => {
@@ -101,7 +118,11 @@ class ChildProfile {
         'voz': voice?.name,
         'voz_idioma': voice?.locale,
         'velocidad': speed.name,
+        'genero': heroGender,
       };
+
+  /// Nombre listo para el cuento (recortado y sin símbolos), o `null` si no hay.
+  String? get heroName => normalizeChildName(name);
 
   /// Cómo suena el narrador para este niño: velocidad del perfil de edad × la lectura que eligió la familia.
   VoiceConfig get voiceConfig => VoiceConfig(
@@ -203,12 +224,16 @@ class AppSettings extends ChangeNotifier {
     String? language,
     Object? voice = ChildProfile._keep,
     ReadingSpeed? speed,
+    String? name,
+    Object? heroGender = ChildProfile._keep,
   }) {
     _profiles = [..._profiles]..[_active] = child.copyWith(
         age: age,
         language: language,
         voice: voice,
         speed: speed,
+        name: name,
+        heroGender: heroGender,
       );
     notifyListeners();
     return _save();
@@ -226,10 +251,17 @@ class AppSettings extends ChangeNotifier {
     String? language,
     TtsVoice? voice,
     String? age,
+    String? name,
+    String? heroGender,
   }) {
     _wizardDone = true;
-    _profiles = [..._profiles]..[_active] =
-        child.copyWith(language: language, voice: voice, age: age);
+    _profiles = [..._profiles]..[_active] = child.copyWith(
+        language: language,
+        voice: voice,
+        age: age,
+        name: name,
+        heroGender: heroGender,
+      );
     notifyListeners();
     return _save();
   }

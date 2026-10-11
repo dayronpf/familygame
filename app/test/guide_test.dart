@@ -117,7 +117,8 @@ void main() {
       await tester.tap(find.byKey(const Key('gate-ok')));
       await tester.pumpAndSettle();
       await tester.scrollUntilVisible(
-          find.byKey(const Key('settings-guide')), 200);
+          find.byKey(const Key('settings-guide')), 200,
+          scrollable: find.byType(Scrollable).first);
       await tester.ensureVisible(find.byKey(const Key('settings-guide')));
       await tester.pumpAndSettle();
       await tester.tap(find.byKey(const Key('settings-guide')));

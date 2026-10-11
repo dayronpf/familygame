@@ -84,13 +84,24 @@ class _HomePageState extends State<HomePage> {
     if (mounted) setState(() => _pending = p);
   }
 
-  void _openStory(Pack pack, {required int? seed, required String? option}) {
+  /// Cuenta un cuento. Sin [replay] se usan los ajustes de ahora (edad, nombre y género del niño); al volver a
+  /// contar uno guardado se usan los que tenía, para que salga el mismo.
+  void _openStory(
+    Pack pack, {
+    required int? seed,
+    required String? option,
+    ShelfEntry? replay,
+  }) {
     if (_pendingAnswered) {
       setState(() {
         _pendingAnswered = false;
         _pending = null;
       });
     }
+    final child = SettingsScope.maybeOf(context)?.child;
+    final age = replay != null ? replay.age : child?.age;
+    final heroName = replay != null ? replay.heroName : child?.heroName;
+    final heroGender = replay != null ? replay.heroGender : child?.heroGender;
     final engine = StoryEngine(pack);
     // Cada «otro cuento» usa una semilla nueva; el primero, la pedida (o la del reloj).
     var first = true;
@@ -100,7 +111,9 @@ class _HomePageState extends State<HomePage> {
       return engine.generate(StoryOptions(
         seed: s,
         valueId: option,
-        age: SettingsScope.maybeOf(context)?.child.age,
+        age: age,
+        heroName: heroName,
+        heroGender: heroGender,
       ));
     }
 
@@ -112,6 +125,9 @@ class _HomePageState extends State<HomePage> {
           feedback: widget.feedback,
           shelf: widget.shelf,
           option: option,
+          age: age,
+          heroName: heroName,
+          heroGender: heroGender,
           art: _art,
           animate: widget.animateArt,
           onAnother: next,
@@ -179,8 +195,8 @@ class _HomePageState extends State<HomePage> {
                         ),
                       _ => MyStoriesTab(
                           shelf: widget.shelf,
-                          onOpen: (e) =>
-                              _openStory(pack, seed: e.seed, option: e.option),
+                          onOpen: (e) => _openStory(pack,
+                              seed: e.seed, option: e.option, replay: e),
                         ),
                     },
                   ),
@@ -274,7 +290,7 @@ class _HomePageState extends State<HomePage> {
                     child: _ContinueCard(
                       entry: last,
                       onTap: () => _openStory(pack,
-                          seed: last.seed, option: last.option),
+                          seed: last.seed, option: last.option, replay: last),
                     ),
                   );
                 },

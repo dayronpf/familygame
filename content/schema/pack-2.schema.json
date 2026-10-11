@@ -245,6 +245,17 @@
           "text": {
             "type": "string",
             "minLength": 1
+          },
+          "simple": {
+            "type": "object",
+            "description": "Texto de la enseñanza para otras edades (clave: 2-3, 4-5...); sin clave se usa «text»",
+            "additionalProperties": false,
+            "patternProperties": {
+              "^(2-3|4-5|6-8|9-12)$": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
           }
         }
       }

@@ -61,36 +61,78 @@ void main() {
     final pack = Pack.fromJson(packJson());
     final engine = StoryEngine(pack);
 
-    test('todos los cuentos posibles encajan en el perfil 6–8 que declaran',
-        () {
-      final seen = <String, StoryMetrics>{};
+    test('todos los cuentos posibles encajan en el perfil que declaran', () {
+      final seen = <String>{};
       final bad = <String>[];
-      for (var seed = 1; seed <= 1500; seed++) {
-        final s = engine.generate(StoryOptions(seed: seed));
-        final m = measureStory(s, speed: 0.9);
-        final id = s.scenes.first.fragmentId.split('.').first;
-        seen[id] = m;
-        if (!m.fits(AgeProfile.byId('6-8')!)) {
-          bad.add(
-            '$id seed $seed: ${m.words} palabras, media ${m.avgSentence.toStringAsFixed(1)}',
-          );
+      for (final age in ['2-3', '4-5', '6-8']) {
+        final profile = AgeProfile.byId(age)!;
+        for (var seed = 1; seed <= 1500; seed++) {
+          final s = engine.generate(StoryOptions(seed: seed, age: age));
+          final id = s.scenes.first.fragmentId.split('.').first;
+          final premise = pack.premises.firstWhere((p) => p.id == id);
+          expect(premise.ages, contains(age), reason: '$id para $age');
+          seen.add(id);
+          final m = measureStory(s, speed: profile.speed);
+          if (!m.fits(profile)) {
+            bad.add(
+              '$id seed $seed ($age): ${m.words} palabras, media ${m.avgSentence.toStringAsFixed(1)}',
+            );
+          }
         }
       }
-      expect(seen, hasLength(pack.premises.length));
+      expect(seen, pack.premises.map((p) => p.id).toSet());
       expect(bad, isEmpty, reason: bad.take(5).join('\n'));
     });
 
-    test('ninguno es para 2–3 ni 4–5 (tienen peligro y son largos)', () {
-      for (final p in pack.premises) {
-        expect(p.ages, ['6-8'], reason: p.id);
+    test('hay cuentos para 2–3, 4–5 y 6–8, cada uno con las tres enseñanzas',
+        () {
+      expect(pack.agesWithStories, {'2-3', '4-5', '6-8'});
+      for (final age in ['2-3', '4-5', '6-8']) {
+        for (final m in pack.morals) {
+          expect(
+            pack.premises
+                .where((p) => p.ages.contains(age) && p.fitsValue(m.id)),
+            isNotEmpty,
+            reason: '$age ${m.id}',
+          );
+        }
       }
-      expect(pack.agesWithStories, {'6-8'});
     });
 
-    test('sin cuentos de la edad pedida se usa el perfil más cercano', () {
+    test(
+        'los cuentos pequeños no llevan villano y la enseñanza se dice sencilla',
+        () {
+      for (final p in pack.premises
+          .where((p) => p.ages.contains('2-3') || p.ages.contains('4-5'))) {
+        expect(p.ages, hasLength(1), reason: p.id);
+        for (final c in p.cast.values) {
+          expect(c.roles, isNot(contains('villain')), reason: p.id);
+        }
+      }
+      for (final age in ['2-3', '4-5']) {
+        final s = engine.generate(StoryOptions(seed: 3, age: age));
+        expect(s.moralLine, s.moral.simple[age], reason: age);
+        expect(s.moralLine, isNot(s.moral.text));
+        expect(s.fullText, endsWith(s.moralLine));
+      }
+      final older = engine.generate(StoryOptions(seed: 3, age: '6-8'));
+      expect(older.moralLine, older.moral.text);
+    });
+
+    test('con la edad pedida solo salen cuentos de esa edad', () {
+      for (var seed = 1; seed <= 120; seed++) {
+        for (final age in ['2-3', '4-5', '6-8']) {
+          final s = engine.generate(StoryOptions(seed: seed, age: age));
+          final id = s.scenes.first.fragmentId.split('.').first;
+          expect(pack.premises.firstWhere((p) => p.id == id).ages, [age]);
+        }
+      }
+    });
+
+    test('la edad sin cuentos usa el perfil más cercano', () {
       expect(pack.resolveAge('6-8'), '6-8');
-      expect(pack.resolveAge('2-3'), '6-8');
-      expect(pack.resolveAge('4-5'), '6-8');
+      expect(pack.resolveAge('2-3'), '2-3');
+      expect(pack.resolveAge('4-5'), '4-5');
       expect(pack.resolveAge('9-12'), '6-8');
       expect(pack.resolveAge(null), isNull);
       expect(pack.resolveAge('raro'), isNull);

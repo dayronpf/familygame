@@ -16,9 +16,18 @@ class ShelfEntry {
     required this.hero,
     required this.packId,
     required this.day,
+    this.age,
+    this.heroName,
+    this.heroGender,
   });
 
-  factory ShelfEntry.fromStory(Story story, {required String? option}) {
+  factory ShelfEntry.fromStory(
+    Story story, {
+    required String? option,
+    String? age,
+    String? heroName,
+    String? heroGender,
+  }) {
     final hero = story.cast['hero'];
     return ShelfEntry(
       seed: story.recipe.seed,
@@ -29,6 +38,9 @@ class ShelfEntry {
       hero: hero is Character ? hero.given : '',
       packId: story.recipe.packId,
       day: DateTime.now().toIso8601String().substring(0, 10),
+      age: age,
+      heroName: heroName,
+      heroGender: heroGender,
     );
   }
 
@@ -41,6 +53,9 @@ class ShelfEntry {
         hero: (j['hero'] ?? '') as String,
         packId: (j['pack'] ?? 'medieval') as String,
         day: (j['day'] ?? '') as String,
+        age: j['age'] as String?,
+        heroName: j['heroName'] as String?,
+        heroGender: j['heroGender'] as String?,
       );
 
   /// Semilla del cuento y enseñanza que se eligió al crearlo (`null` = «Sorpréndeme»).
@@ -53,8 +68,15 @@ class ShelfEntry {
   final String packId;
   final String day;
 
-  /// Identifica el cuento (misma semilla y misma elección = mismo cuento).
-  String get key => '$packId:$seed:${option ?? '*'}';
+  /// Con qué se generó, para contarlo otra vez igual: perfil de edad, nombre del protagonista y su género. Se
+  /// guarda solo aquí, en el teléfono (nunca viaja con la valoración).
+  final String? age;
+  final String? heroName;
+  final String? heroGender;
+
+  /// Identifica el cuento (misma semilla, misma elección y mismo protagonista = mismo cuento).
+  String get key =>
+      '$packId:$seed:${option ?? '*'}:${age ?? ''}:${heroGender ?? ''}:${heroName ?? ''}';
 
   Map<String, Object?> toJson() => {
         'seed': seed,
@@ -65,6 +87,9 @@ class ShelfEntry {
         'hero': hero,
         'pack': packId,
         'day': day,
+        if (age != null) 'age': age,
+        if (heroName != null) 'heroName': heroName,
+        if (heroGender != null) 'heroGender': heroGender,
       };
 }
 

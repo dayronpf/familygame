@@ -123,6 +123,19 @@ class Character extends Entity {
   /// Nombre propio («Nilo»).
   final String given;
 
+  /// El mismo personaje con otro nombre (el del niño que escucha el cuento): conserva id, dibujo, género y atributos.
+  Character withGiven(String name) => Character(
+        id: id,
+        noun: noun,
+        gender: gender,
+        given: name,
+        roles: roles,
+        alignment: alignment,
+        trait: trait,
+        tags: tags,
+        attrs: attrs,
+      );
+
   /// `hero`, `helper`, `villain`…
   final List<String> roles;
 
@@ -239,15 +252,42 @@ class Prop extends Entity {
 }
 
 class Moral {
-  const Moral({required this.id, required this.name, required this.text});
+  const Moral({
+    required this.id,
+    required this.name,
+    required this.text,
+    this.simple = const {},
+  });
 
   factory Moral.fromJson(Map<String, Object?> j) {
     final id = _str(j, 'id', 'enseñanza');
     final where = 'enseñanza "$id"';
+    final simple = <String, String>{};
+    final raw = j['simple'];
+    if (raw != null) {
+      if (raw is! Map<String, Object?>) {
+        throw PackFormatException('$where: "simple" debe ser un objeto');
+      }
+      for (final e in raw.entries) {
+        final v = e.value;
+        if (v is! String || v.trim().isEmpty) {
+          throw PackFormatException(
+            '$where: "simple.${e.key}" debe ser un texto',
+          );
+        }
+        if (!const ['2-3', '4-5', '6-8', '9-12'].contains(e.key)) {
+          throw PackFormatException(
+            '$where: edad "${e.key}" desconocida en "simple"',
+          );
+        }
+        simple[e.key] = v;
+      }
+    }
     return Moral(
       id: id,
       name: _str(j, 'name', where),
       text: _str(j, 'text', where),
+      simple: simple,
     );
   }
 
@@ -258,6 +298,12 @@ class Moral {
 
   /// Frase de cierre del cuento.
   final String text;
+
+  /// Formas más sencillas de la frase para los más pequeños (`2-3`, `4-5`), por perfil de edad.
+  final Map<String, String> simple;
+
+  /// La frase para [age]: la sencilla si la hay y, si no, la de siempre.
+  String textFor(String? age) => simple[age] ?? text;
 }
 
 class Fragment {
@@ -652,9 +698,16 @@ class Story {
     required this.scenes,
     required this.recipe,
     this.title,
-  });
+    String? moralText,
+  }) : moralText = moralText ?? '';
 
   final int seed;
+
+  /// La enseñanza dicha para la edad del niño (puede ser la forma sencilla). Vacío = la de [moral].
+  final String moralText;
+
+  /// La frase de enseñanza que se lee y se narra.
+  String get moralLine => moralText.isEmpty ? moral.text : moralText;
 
   /// Título del cuento (solo las premisas lo tienen).
   final String? title;
@@ -669,5 +722,5 @@ class Story {
 
   /// Texto completo del cuento, con la enseñanza al final.
   String get fullText =>
-      '${scenes.map((s) => s.text).join('\n\n')}\n\nEnseñanza: ${moral.text}';
+      '${scenes.map((s) => s.text).join('\n\n')}\n\nEnseñanza: $moralLine';
 }

@@ -3,7 +3,7 @@
     "schema": 2,
     "id": "medieval",
     "name": "Reino de la Luna (prueba)",
-    "version": "0.13.1",
+    "version": "0.14.0",
     "license": "Contenido original, todos los derechos reservados al autor del proyecto",
     "language": "es",
     "age_band": "4-7"
@@ -463,23 +463,67 @@
       "tags": [
         "herb"
       ]
+    },
+    {
+      "id": "cabrita",
+      "noun": "cabrita",
+      "gender": "f",
+      "tags": [
+        "animal"
+      ]
+    },
+    {
+      "id": "manta",
+      "noun": "manta",
+      "gender": "f",
+      "tags": [
+        "warm"
+      ]
+    },
+    {
+      "id": "taza_leche",
+      "noun": "taza",
+      "gender": "f",
+      "tags": [
+        "drink"
+      ]
+    },
+    {
+      "id": "cuenco",
+      "noun": "cuenco",
+      "gender": "m",
+      "tags": [
+        "food"
+      ]
     }
   ],
   "morals": [
     {
       "id": "honestidad",
       "name": "Honestidad",
-      "text": "Un secreto pesa más que la verdad, aunque la verdad dé miedo."
+      "text": "Un secreto pesa más que la verdad, aunque la verdad dé miedo.",
+      "simple": {
+        "2-3": "Decir la verdad hace el corazón ligero.",
+        "4-5": "Cuando decimos la verdad, el corazón se siente ligero."
+      }
     },
     {
       "id": "generosidad",
       "name": "Generosidad",
-      "text": "Cuando compartimos lo poco que tenemos, la alegría crece para todos."
+      "text": "Cuando compartimos lo poco que tenemos, la alegría crece para todos.",
+      "simple": {
+        "2-3": "Compartir es bonito.",
+        "4-5": "Si compartimos, hay alegría para todos."
+      }
     },
     {
       "id": "valentia",
       "name": "Valentía",
-      "text": "Ser valiente no es no tener miedo, sino dar el primer paso a pesar de él."
+      "text": "Ser valiente no es no tener miedo, sino dar el primer paso a pesar de él.",
+      "simple": {
+        "2-3": "Con un pasito pequeño se empieza.",
+        "4-5": "Un paso pequeñito, y luego otro, y llegamos lejos."
+      }
     }
   ],
   "premises": [
@@ -6968,6 +7012,2415 @@
             }
           ],
           "moves": true
+        }
+      ]
+    },
+    {
+      "id": "cabrita",
+      "value": "generosidad",
+      "title": "El pan y la cabrita",
+      "ages": [
+        "2-3"
+      ],
+      "npcs": {},
+      "cast": {
+        "hero": {
+          "kind": "character",
+          "roles": [
+            "hero"
+          ]
+        },
+        "plaza": {
+          "kind": "place",
+          "ids": [
+            "aldea"
+          ]
+        },
+        "item": {
+          "kind": "prop",
+          "ids": [
+            "pan"
+          ]
+        },
+        "cabra": {
+          "kind": "prop",
+          "ids": [
+            "cabrita"
+          ]
+        }
+      },
+      "beats": [
+        {
+          "id": "pan",
+          "variants": [
+            {
+              "id": "cabrita_pan",
+              "text": "{hero} salió a pasear por {plaza.el}. Llevaba {item.un} calentito en la mano, porque tenía hambre. ¡Qué bien olía! «Mmm, qué rico», dijo {hero}.",
+              "scene": {
+                "bg": "plaza",
+                "mood": "calm",
+                "time": "dia",
+                "focus": {
+                  "prop": "pan",
+                  "x": 0.5,
+                  "fill": 0.5
+                }
+              }
+            }
+          ],
+          "introduces": [
+            "item"
+          ]
+        },
+        {
+          "id": "beee",
+          "variants": [
+            {
+              "id": "cabrita_beee",
+              "text": "De pronto se oyó: ¡beee! Era {cabra.un} chiquitita. Miraba el pan con sus ojos grandes, porque también tenía hambre. «¡Beee!», dijo la cabrita, y le sonó la barriguita.",
+              "scene": {
+                "bg": "plaza",
+                "mood": "hope",
+                "time": "dia",
+                "focus": {
+                  "prop": "cabrita",
+                  "x": 0.5,
+                  "fill": 0.55,
+                  "clip": "goat_idle"
+                }
+              }
+            }
+          ],
+          "introduces": [
+            "cabra"
+          ]
+        },
+        {
+          "id": "partir",
+          "variants": [
+            {
+              "id": "cabrita_partir",
+              "text": "{hero} miró su pan. Miró a la cabrita. Era su pan, y {hero} tenía hambre. Pero la cabrita también, así que {hero} lo partió en dos. «Pan para los dos», dijo.",
+              "scene": {
+                "bg": "plaza",
+                "mood": "hope",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "offer",
+                    "x": 0.38
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "cabrita",
+                    "clip": "goat_idle",
+                    "x": 0.7,
+                    "scale": 0.9
+                  },
+                  {
+                    "prop": "trozos_de_pan",
+                    "near": "hero",
+                    "dx": -0.07,
+                    "lift": 58,
+                    "scale": 0.55
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "comer",
+          "variants": [
+            {
+              "id": "cabrita_comer",
+              "text": "La cabrita comió su mitad: ñam, ñam. {hero} comió la suya: ñam, ñam. ¡Qué rico estaba! La cabrita dio un salto de alegría, porque ya no tenía hambre. «¡Beee, beee!»",
+              "scene": {
+                "bg": "plaza",
+                "mood": "joy",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "cheer",
+                    "x": 0.36
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "cabrita",
+                    "clip": "goat_baa",
+                    "x": 0.7,
+                    "scale": 0.9
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "saltos",
+          "variants": [
+            {
+              "id": "cabrita_saltos",
+              "text": "La cabrita hizo cabriolas. Saltó a la izquierda: ¡hop! Saltó a la derecha: ¡hop! {hero} saltó con la cabrita: ¡hop, hop! Los dos se rieron mucho.",
+              "scene": {
+                "bg": "plaza",
+                "mood": "joy",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "jump",
+                    "x": 0.4
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "cabrita",
+                    "clip": "goat_walk",
+                    "x": 0.68,
+                    "scale": 0.9
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "cierre",
+          "variants": [
+            {
+              "id": "cabrita_cierre",
+              "text": "Después, {hero} y la cabrita se sentaron juntitos. A {hero} le dio sueño, pues había caminado mucho. Cerró los ojos, y la cabrita también. Y así, juntitos, los dos se quedaron muy contentos.",
+              "scene": {
+                "bg": "plaza",
+                "mood": "calm",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "sit",
+                    "x": 0.4
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "cabrita",
+                    "clip": "goat_idle",
+                    "x": 0.66,
+                    "scale": 0.9
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "piedras",
+      "value": "valentia",
+      "title": "Pasito a pasito",
+      "ages": [
+        "2-3"
+      ],
+      "npcs": {
+        "lia": [
+          "Lía"
+        ]
+      },
+      "cast": {
+        "hero": {
+          "kind": "character",
+          "roles": [
+            "hero"
+          ]
+        },
+        "rio": {
+          "kind": "place",
+          "ids": [
+            "rio"
+          ]
+        }
+      },
+      "beats": [
+        {
+          "id": "rio",
+          "variants": [
+            {
+              "id": "piedras_rio",
+              "text": "{hero} llegó {rio.al}. ¡Qué agua tan brillante! Al otro lado estaba Lía, la amiga de {hero}. «¡Ven, ven!», dijo Lía, y movió la mano.",
+              "scene": {
+                "bg": "rio",
+                "mood": "hope",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "idle",
+                    "x": 0.22
+                  },
+                  {
+                    "rig": "lia",
+                    "clip": "wave",
+                    "x": 0.8,
+                    "lift": 84,
+                    "scale": 0.8
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "piedras",
+                    "x": 0.52,
+                    "lift": 46,
+                    "scale": 1.0
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "piedras",
+          "variants": [
+            {
+              "id": "piedras_piedras",
+              "text": "Para cruzar había cinco piedras en el agua. {hero} las miró: una, dos, tres, cuatro, cinco. A {hero} le hacía cosquillas la barriga. Los pies no querían moverse, pues el agua hacía glu, glu. Lía esperaba al otro lado.",
+              "scene": {
+                "bg": "rio",
+                "mood": "mystery",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "think",
+                    "x": 0.22
+                  },
+                  {
+                    "rig": "lia",
+                    "clip": "idle",
+                    "x": 0.8,
+                    "lift": 84,
+                    "scale": 0.8
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "piedras",
+                    "x": 0.52,
+                    "lift": 46,
+                    "scale": 1.0
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "pasito",
+          "variants": [
+            {
+              "id": "piedras_pasito",
+              "text": "«Un pasito», se dijo {hero}. Puso un pie en la primera piedra. ¡Plin! Y no pasó nada. «Otro pasito», dijo {hero}, y puso el otro pie en la segunda.",
+              "scene": {
+                "bg": "rio",
+                "mood": "hope",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "walk",
+                    "x": 0.4,
+                    "lift": 52
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "piedras",
+                    "x": 0.52,
+                    "lift": 46,
+                    "scale": 1.0
+                  }
+                ],
+                "offstage": [
+                  "lia"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "mitad",
+          "variants": [
+            {
+              "id": "piedras_mitad",
+              "text": "Tercera piedra: ¡plin! Cuarta piedra: ¡plin! La quinta se movió un poquito. {hero} se agarró fuerte al aire con las dos manos. Pero no pasó nada. {hero} respiró hondo y miró a Lía.",
+              "scene": {
+                "bg": "rio",
+                "mood": "hope",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "walk",
+                    "x": 0.58,
+                    "lift": 52
+                  },
+                  {
+                    "rig": "lia",
+                    "clip": "wave",
+                    "x": 0.86,
+                    "lift": 84,
+                    "scale": 0.8
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "piedras",
+                    "x": 0.52,
+                    "lift": 46,
+                    "scale": 1.0
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "cruzar",
+          "variants": [
+            {
+              "id": "piedras_cruzar",
+              "text": "Paso a paso, {hero} pisó las cinco piedras, porque cada pasito era pequeño. En la última, ¡hop!, saltó a la orilla. Lía abrió los brazos. «¡Lo has hecho!», dijo Lía.",
+              "scene": {
+                "bg": "rio",
+                "mood": "triumph",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "jump",
+                    "x": 0.7,
+                    "lift": 84,
+                    "scale": 0.8
+                  },
+                  {
+                    "rig": "lia",
+                    "clip": "cheer",
+                    "x": 0.86,
+                    "lift": 84,
+                    "scale": 0.8
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "piedras",
+                    "x": 0.44,
+                    "lift": 46,
+                    "scale": 1.0
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "cierre",
+          "variants": [
+            {
+              "id": "piedras_cierre",
+              "text": "Los dos amigos, {hero} y Lía, se dieron un abrazo. {hero} miró atrás, a las piedras. Ya no se veían tan grandes. Así que {hero} sonrió, content{hero.o} y con el corazón calentito.",
+              "scene": {
+                "bg": "rio",
+                "mood": "joy",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "hug",
+                    "x": 0.66,
+                    "lift": 84,
+                    "scale": 0.8
+                  },
+                  {
+                    "rig": "lia",
+                    "clip": "hug",
+                    "x": 0.76,
+                    "lift": 84,
+                    "scale": 0.8
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "piedras",
+                    "x": 0.3,
+                    "lift": 46,
+                    "scale": 1.0
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "taza",
+      "value": "honestidad",
+      "title": "La taza de leche",
+      "ages": [
+        "2-3"
+      ],
+      "npcs": {
+        "rosa": [
+          "Rosa"
+        ]
+      },
+      "cast": {
+        "hero": {
+          "kind": "character",
+          "roles": [
+            "hero"
+          ]
+        },
+        "plaza": {
+          "kind": "place",
+          "ids": [
+            "aldea"
+          ]
+        },
+        "item": {
+          "kind": "prop",
+          "ids": [
+            "taza_leche"
+          ]
+        }
+      },
+      "beats": [
+        {
+          "id": "taza",
+          "variants": [
+            {
+              "id": "taza_taza",
+              "text": "Rosa, la panadera, le dio a {hero} {item.un} de leche tibia. «Cuidado, que está llena», dijo Rosa. {hero} la sujetó con las dos manos, porque no quería derramar ni una gota.",
+              "scene": {
+                "bg": "plaza",
+                "mood": "calm",
+                "time": "dia",
+                "focus": {
+                  "prop": "taza_leche",
+                  "x": 0.5,
+                  "fill": 0.45
+                }
+              }
+            }
+          ],
+          "introduces": [
+            "item"
+          ]
+        },
+        {
+          "id": "plaf",
+          "variants": [
+            {
+              "id": "taza_plaf",
+              "text": "{hero} dejó la taza en la mesa. Entonces vio pasar una mariposa. Se giró deprisa y ¡plaf! Con el codo tiró la taza, y la leche se derramó por toda la mesa.",
+              "scene": {
+                "bg": "plaza",
+                "mood": "tension",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "surprised",
+                    "x": 0.3
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "mesa",
+                    "x": 0.62,
+                    "scale": 1.0
+                  },
+                  {
+                    "prop": "taza_leche",
+                    "x": 0.62,
+                    "lift": 50,
+                    "scale": 0.75
+                  }
+                ],
+                "offstage": [
+                  "rosa"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "rosa",
+          "variants": [
+            {
+              "id": "taza_rosa",
+              "text": "Rosa volvió y miró la mesa. «¿Quién ha tirado la leche?», dijo Rosa. A {hero} se le pusieron las mejillas como tomates. Tenía un poquito de vergüenza.",
+              "scene": {
+                "bg": "plaza",
+                "mood": "tension",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "sad",
+                    "x": 0.28
+                  },
+                  {
+                    "rig": "rosa",
+                    "clip": "talk",
+                    "x": 0.84
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "mesa",
+                    "x": 0.56,
+                    "scale": 1.0
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "verdad",
+          "variants": [
+            {
+              "id": "taza_verdad",
+              "text": "{hero} respiró hondo. «Fui yo», dijo {hero}. «Lo siento, Rosa.» Rosa sonrió. «Gracias por decirme la verdad. Pues así se arregla todo.»",
+              "scene": {
+                "bg": "plaza",
+                "mood": "hope",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "bow",
+                    "x": 0.28
+                  },
+                  {
+                    "rig": "rosa",
+                    "clip": "talk",
+                    "x": 0.84
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "mesa",
+                    "x": 0.56,
+                    "scale": 1.0
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "abrazo",
+          "variants": [
+            {
+              "id": "taza_abrazo",
+              "text": "Rosa le dio un abrazo a {hero}. «Todos tiramos cosas alguna vez», dijo Rosa. «Lo importante es decirlo. ¿Me ayudas a limpiar?» {hero} dijo que sí con la cabeza.",
+              "scene": {
+                "bg": "plaza",
+                "mood": "hope",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "hug",
+                    "x": 0.44
+                  },
+                  {
+                    "rig": "rosa",
+                    "clip": "hug",
+                    "x": 0.58
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "mesa",
+                    "x": 0.82,
+                    "scale": 0.9
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "cierre",
+          "variants": [
+            {
+              "id": "taza_cierre",
+              "text": "Rosa y {hero} limpiaron la mesa juntos. Después Rosa llenó otra taza de leche. {hero} la bebió despacito. Se quedó con la barriga calentita y el corazón liviano, porque ya no escondía nada.",
+              "scene": {
+                "bg": "plaza",
+                "mood": "joy",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "cheer",
+                    "x": 0.3
+                  },
+                  {
+                    "rig": "rosa",
+                    "clip": "clap",
+                    "x": 0.84
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "mesa",
+                    "x": 0.56,
+                    "scale": 1.0
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "linterna_teo",
+      "value": "honestidad",
+      "title": "La linterna de Teo",
+      "ages": [
+        "4-5"
+      ],
+      "npcs": {
+        "teo": [
+          "Teo"
+        ]
+      },
+      "cast": {
+        "hero": {
+          "kind": "character",
+          "roles": [
+            "hero"
+          ]
+        },
+        "plaza": {
+          "kind": "place",
+          "ids": [
+            "aldea"
+          ]
+        },
+        "cuarto": {
+          "kind": "place",
+          "ids": [
+            "cuarto"
+          ]
+        },
+        "item": {
+          "kind": "prop",
+          "ids": [
+            "linterna"
+          ]
+        }
+      },
+      "beats": [
+        {
+          "id": "prestamo",
+          "variants": [
+            {
+              "id": "linterna_teo_prestamo",
+              "text": "Teo, el amigo de {hero}, tenía una linterna que brillaba como una estrellita. La quería mucho, porque se la había regalado su abuelo. «Te la presto hasta mañana», dijo Teo. «Pero cuídala mucho, ¿vale?» {hero} dijo que sí con la cabeza, muy serio, y se la llevó con las dos manos.",
+              "scene": {
+                "bg": "plaza",
+                "mood": "hope",
+                "time": "dia",
+                "focus": {
+                  "prop": "linterna",
+                  "x": 0.5,
+                  "fill": 0.5,
+                  "clip": "glow"
+                }
+              }
+            }
+          ],
+          "introduces": [
+            "item"
+          ]
+        },
+        {
+          "id": "caida",
+          "variants": [
+            {
+              "id": "linterna_teo_caida",
+              "text": "{hero} corrió a jugar con la linterna por {plaza.el}. Corrió, saltó y dio una vuelta entera. Como iba tan deprisa, tropezó con una piedra, ¡cras!, y la linterna cayó al suelo. Se le apagó la luz. {hero} la sacudió, pero no se encendía.",
+              "scene": {
+                "bg": "plaza",
+                "mood": "tension",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "surprised",
+                    "x": 0.34
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "linterna_apagada",
+                    "x": 0.6,
+                    "scale": 0.9
+                  }
+                ],
+                "offstage": [
+                  "teo"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "esconder",
+          "variants": [
+            {
+              "id": "linterna_teo_esconder",
+              "text": "{hero} no quería que Teo se pusiera triste, así que tuvo una idea: esconder la linterna debajo de la cama. «Si nadie la ve, nadie se enterará», pensó. Pero la barriga le hacía nudos, y {hero} no tenía ganas de merendar.",
+              "scene": {
+                "bg": "cuarto",
+                "mood": "tension",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "sneak",
+                    "x": 0.4
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "linterna_apagada",
+                    "near": "hero",
+                    "dx": 0.08,
+                    "lift": 40,
+                    "scale": 0.7
+                  }
+                ],
+                "offstage": [
+                  "teo"
+                ]
+              }
+            }
+          ],
+          "moves": true
+        },
+        {
+          "id": "tarde",
+          "variants": [
+            {
+              "id": "linterna_teo_tarde",
+              "text": "Por la tarde, Teo pasó por la casa de {hero}. «¿Cómo está mi linterna?», preguntó Teo desde la puerta. «Bien... muy bien», dijo {hero}, mirando al suelo. Teo se fue tan campante, pero {hero} se sintió peor, porque había dicho algo que no era verdad.",
+              "scene": {
+                "bg": "cuarto",
+                "mood": "sad",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "hide",
+                    "x": 0.3
+                  },
+                  {
+                    "rig": "teo",
+                    "clip": "talk",
+                    "x": 0.8
+                  }
+                ],
+                "props": []
+              }
+            }
+          ]
+        },
+        {
+          "id": "nudo",
+          "variants": [
+            {
+              "id": "linterna_teo_nudo",
+              "text": "Esa noche, {hero} no podía dormir. Daba vueltas en la cama, y vueltas, y más vueltas. La luna asomaba por la ventana, pero {hero} no la miraba. El nudo de la barriga seguía ahí. «Mañana se lo diré a Teo», pensó {hero}, y por fin se durmió.",
+              "scene": {
+                "bg": "cuarto",
+                "mood": "sleep",
+                "time": "noche",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "sleep",
+                    "x": 0.31,
+                    "rotate": -90,
+                    "lift": 152,
+                    "scale": 0.95
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "manta",
+                    "x": 0.2,
+                    "lift": 118,
+                    "scale": 1.05,
+                    "front": true
+                  }
+                ],
+                "offstage": [
+                  "teo"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "verdad",
+          "variants": [
+            {
+              "id": "linterna_teo_verdad",
+              "text": "A la mañana siguiente, {hero} salió con la linterna apagada en las manos. Teo estaba junto al pozo. «Teo, se me cayó tu linterna y se apagó», dijo {hero} con voz bajita. «Perdóname. Quise esconderla, pero no me sentí bien. Ayer te dije una cosa que no era verdad.»",
+              "scene": {
+                "bg": "plaza",
+                "mood": "hope",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "bow",
+                    "x": 0.3
+                  },
+                  {
+                    "rig": "teo",
+                    "clip": "surprised",
+                    "x": 0.74
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "linterna_apagada",
+                    "near": "hero",
+                    "dx": 0.08,
+                    "lift": 30,
+                    "scale": 0.7
+                  }
+                ]
+              }
+            }
+          ],
+          "moves": true
+        },
+        {
+          "id": "arreglo",
+          "variants": [
+            {
+              "id": "linterna_teo_arreglo",
+              "text": "Teo miró la linterna. Luego miró a {hero}. «Gracias por contármelo», dijo Teo. «Mira, solo se había soltado un tornillito.» Teo dio dos vueltas, y ¡clic!, la luz volvió. «Lo importante es que me lo has dicho.»",
+              "scene": {
+                "bg": "plaza",
+                "mood": "joy",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "cheer",
+                    "x": 0.3
+                  },
+                  {
+                    "rig": "teo",
+                    "clip": "offer",
+                    "x": 0.72
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "linterna",
+                    "near": "teo",
+                    "dx": -0.08,
+                    "lift": 60,
+                    "scale": 0.7,
+                    "clip": "glow"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "cierre",
+          "variants": [
+            {
+              "id": "linterna_teo_cierre",
+              "text": "Aquella noche, {hero} se acostó con el corazón liviano. Ya no había nudo en la barriga. Por la ventana se veía la luz de Teo, que brillaba como una estrellita. {hero} sonrió y se durmió enseguida.",
+              "scene": {
+                "bg": "cuarto",
+                "mood": "sleep",
+                "time": "noche",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "sleep",
+                    "x": 0.31,
+                    "rotate": -90,
+                    "lift": 152,
+                    "scale": 0.95
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "manta",
+                    "x": 0.2,
+                    "lift": 118,
+                    "scale": 1.05,
+                    "front": true
+                  }
+                ],
+                "offstage": [
+                  "teo"
+                ]
+              }
+            }
+          ],
+          "moves": true
+        }
+      ]
+    },
+    {
+      "id": "manta_lia",
+      "value": "generosidad",
+      "title": "La manta de Lía",
+      "ages": [
+        "4-5"
+      ],
+      "npcs": {
+        "lia": [
+          "Lía"
+        ],
+        "rosa": [
+          "Rosa"
+        ]
+      },
+      "cast": {
+        "hero": {
+          "kind": "character",
+          "roles": [
+            "hero"
+          ]
+        },
+        "plaza": {
+          "kind": "place",
+          "ids": [
+            "aldea"
+          ]
+        },
+        "item": {
+          "kind": "prop",
+          "ids": [
+            "manta"
+          ]
+        }
+      },
+      "beats": [
+        {
+          "id": "frio",
+          "variants": [
+            {
+              "id": "manta_lia_frio",
+              "text": "Aquella mañana nevaba despacito, con copos grandes como plumas. Todo estaba blanco y en silencio. {hero} salió de casa con su manta nueva, la más suave y calentita del mundo. «Me la pondré en los hombros», pensó {hero}, «porque hoy hace mucho frío».",
+              "scene": {
+                "bg": "plaza",
+                "mood": "calm",
+                "time": "dia",
+                "focus": {
+                  "prop": "manta",
+                  "x": 0.5,
+                  "fill": 0.55
+                },
+                "season": "invierno"
+              }
+            }
+          ],
+          "introduces": [
+            "item"
+          ]
+        },
+        {
+          "id": "lia",
+          "variants": [
+            {
+              "id": "manta_lia_lia",
+              "text": "Junto al pozo estaba Lía, la amiga de {hero}. Tiritaba: brrr, brrr. Le castañeteaban los dientes: tac, tac, tac. Se había olvidado la bufanda en casa, y su abrigo era muy finito. Lía se frotaba las manos, pero no se calentaba. Se le habían puesto rojas las puntas de la nariz.",
+              "scene": {
+                "bg": "plaza",
+                "mood": "sad",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "idle",
+                    "x": 0.3
+                  },
+                  {
+                    "rig": "lia",
+                    "clip": "shiver",
+                    "x": 0.7
+                  }
+                ],
+                "props": [],
+                "season": "invierno"
+              }
+            }
+          ]
+        },
+        {
+          "id": "duda",
+          "variants": [
+            {
+              "id": "manta_lia_duda",
+              "text": "{hero} miró su manta. Era tan suave... Solo había una, y era su favorita. «¿Y si me quedo sin manta?», pensó {hero}. Pero Lía tiritaba tanto que a {hero} le dio pena, y la pena pesó más que las ganas de guardársela.",
+              "scene": {
+                "bg": "plaza",
+                "mood": "mystery",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "think",
+                    "x": 0.3
+                  },
+                  {
+                    "rig": "lia",
+                    "clip": "shiver",
+                    "x": 0.7
+                  }
+                ],
+                "props": [],
+                "season": "invierno"
+              }
+            }
+          ]
+        },
+        {
+          "id": "compartir",
+          "variants": [
+            {
+              "id": "manta_lia_compartir",
+              "text": "«Ven, Lía», dijo {hero}. «Hay sitio para ti y para mí.» Abrió la manta, y la manta abrazó a los dos amigos. Lía sonrió por primera vez en toda la mañana.",
+              "scene": {
+                "bg": "plaza",
+                "mood": "joy",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "hug",
+                    "x": 0.44
+                  },
+                  {
+                    "rig": "lia",
+                    "clip": "hug",
+                    "x": 0.56
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "manta",
+                    "near": "hero",
+                    "dx": 0.06,
+                    "lift": 62,
+                    "scale": 1.6
+                  }
+                ],
+                "season": "invierno"
+              }
+            }
+          ]
+        },
+        {
+          "id": "calor",
+          "variants": [
+            {
+              "id": "manta_lia_calor",
+              "text": "Pegaditos bajo la manta, ya no sentían frío. Lía rio, y {hero} rio también, porque los copos de nieve les hacían cosquillas en la nariz. Sacaron la lengua para atrapar uno. Hasta la nieve parecía bailar.",
+              "scene": {
+                "bg": "plaza",
+                "mood": "joy",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "laugh",
+                    "x": 0.44
+                  },
+                  {
+                    "rig": "lia",
+                    "clip": "laugh",
+                    "x": 0.56
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "manta",
+                    "near": "hero",
+                    "dx": 0.06,
+                    "lift": 62,
+                    "scale": 1.6
+                  }
+                ],
+                "season": "invierno"
+              }
+            }
+          ]
+        },
+        {
+          "id": "huellas",
+          "variants": [
+            {
+              "id": "manta_lia_huellas",
+              "text": "Después dieron pasos grandes y pasos chiquitos por la nieve. Las huellas de {hero} eran grandes, y las de Lía, pequeñas. Juntas parecían un caminito que nadie había pisado antes.",
+              "scene": {
+                "bg": "plaza",
+                "mood": "joy",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "walk",
+                    "x": 0.42
+                  },
+                  {
+                    "rig": "lia",
+                    "clip": "walk",
+                    "x": 0.56
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "manta",
+                    "near": "hero",
+                    "dx": 0.07,
+                    "lift": 62,
+                    "scale": 1.6
+                  }
+                ],
+                "season": "invierno"
+              }
+            }
+          ]
+        },
+        {
+          "id": "rosa",
+          "variants": [
+            {
+              "id": "manta_lia_rosa",
+              "text": "Entonces llegó Rosa con dos bollos calientes. «Vi a dos amigos bajo una manta, así que traje dos bollos», dijo Rosa. «Uno para cada uno.» Lía y {hero} se los comieron despacito, sin dejar ni una miga.",
+              "scene": {
+                "bg": "plaza",
+                "mood": "joy",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "sit",
+                    "x": 0.3
+                  },
+                  {
+                    "rig": "lia",
+                    "clip": "sit",
+                    "x": 0.48
+                  },
+                  {
+                    "rig": "rosa",
+                    "clip": "offer",
+                    "x": 0.76
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "manta",
+                    "near": "hero",
+                    "dx": 0.07,
+                    "lift": 36,
+                    "scale": 1.0
+                  }
+                ],
+                "season": "invierno"
+              }
+            }
+          ]
+        },
+        {
+          "id": "cierre",
+          "variants": [
+            {
+              "id": "manta_lia_cierre",
+              "text": "Esa tarde, la nieve dejó de caer. {hero} y Lía volvieron juntos, con la manta sobre los hombros, y el frío no los alcanzó. Lía le dio las gracias con un abrazo muy apretado. {hero} se sentía como si llevara un sol pequeñito dentro del pecho.",
+              "scene": {
+                "bg": "plaza",
+                "mood": "calm",
+                "time": "atardecer",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "walk",
+                    "x": 0.42
+                  },
+                  {
+                    "rig": "lia",
+                    "clip": "walk",
+                    "x": 0.58
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "manta",
+                    "near": "hero",
+                    "dx": 0.07,
+                    "lift": 62,
+                    "scale": 1.6
+                  }
+                ],
+                "season": "invierno",
+                "offstage": [
+                  "rosa"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "campana_mediodia",
+      "value": "valentia",
+      "title": "La campana del mediodía",
+      "ages": [
+        "4-5"
+      ],
+      "npcs": {
+        "teo": [
+          "Teo"
+        ]
+      },
+      "cast": {
+        "hero": {
+          "kind": "character",
+          "roles": [
+            "hero"
+          ]
+        },
+        "plaza": {
+          "kind": "place",
+          "ids": [
+            "aldea"
+          ]
+        },
+        "torre": {
+          "kind": "place",
+          "ids": [
+            "castillo"
+          ]
+        },
+        "interior": {
+          "kind": "place",
+          "ids": [
+            "campanario"
+          ]
+        },
+        "item": {
+          "kind": "prop",
+          "ids": [
+            "campana"
+          ]
+        }
+      },
+      "beats": [
+        {
+          "id": "campana",
+          "variants": [
+            {
+              "id": "campana_mediodia_campana",
+              "text": "En lo alto de la torre había una campana grande y dorada. Cada mediodía sonaba: ¡din, don! Y todos en la aldea sabían que era hora de comer.",
+              "scene": {
+                "bg": "torre",
+                "mood": "calm",
+                "time": "dia",
+                "focus": {
+                  "prop": "campana",
+                  "x": 0.5,
+                  "fill": 0.6,
+                  "clip": "ring",
+                  "lift": 235
+                }
+              }
+            }
+          ],
+          "introduces": [
+            "item"
+          ]
+        },
+        {
+          "id": "silencio",
+          "variants": [
+            {
+              "id": "campana_mediodia_silencio",
+              "text": "Pero ese día el campanero estaba resfriado, y la campana no sonó. Pasó el mediodía, y nada. Teo se tocó la barriga. «Tengo hambre», dijo Teo. «¿Quién puede tocar la campana?» {hero} levantó la mano, aunque le temblaba un poquito.",
+              "scene": {
+                "bg": "plaza",
+                "mood": "hope",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "wave",
+                    "x": 0.3
+                  },
+                  {
+                    "rig": "teo",
+                    "clip": "talk",
+                    "x": 0.7
+                  }
+                ],
+                "props": []
+              }
+            }
+          ],
+          "moves": true
+        },
+        {
+          "id": "escalones",
+          "variants": [
+            {
+              "id": "campana_mediodia_escalones",
+              "text": "Pero al llegar a la torre, {hero} miró hacia arriba. ¡Cuántos escalones! Y arriba del todo estaba la campana, chiquitita de tan lejos. A {hero} le temblaron las rodillas de nervios. Teo se quedó abajo, para contar.",
+              "scene": {
+                "bg": "torre",
+                "mood": "tension",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "surprised",
+                    "x": 0.3
+                  },
+                  {
+                    "rig": "teo",
+                    "clip": "point",
+                    "x": 0.76
+                  }
+                ],
+                "props": []
+              }
+            }
+          ],
+          "moves": true
+        },
+        {
+          "id": "respira",
+          "variants": [
+            {
+              "id": "campana_mediodia_respira",
+              "text": "{hero} cerró los ojos y respiró hondo, como hacen los valientes. Teo lo miraba desde abajo. Pensó: «No tengo que subirlos todos de golpe. Solo tengo que subir el primero». Y puso el pie en el primer escalón.",
+              "scene": {
+                "bg": "torre",
+                "mood": "hope",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "think",
+                    "x": 0.3
+                  },
+                  {
+                    "rig": "teo",
+                    "clip": "talk",
+                    "x": 0.76
+                  }
+                ],
+                "props": []
+              }
+            }
+          ]
+        },
+        {
+          "id": "subir",
+          "variants": [
+            {
+              "id": "campana_mediodia_subir",
+              "text": "«Un escalón», dijo {hero}, y subió uno. «Dos escalones», y subió otro. Los escalones eran de piedra y estaban fríos. Así, escalón a escalón, {hero} fue subiendo, porque no miraba hacia abajo, sino al siguiente. «¡Vas por el veinte!», dijo Teo desde el suelo. «¡Sigue, sigue!»",
+              "scene": {
+                "bg": "interior",
+                "mood": "hope",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "walk",
+                    "x": 0.3
+                  }
+                ],
+                "props": [],
+                "offstage": [
+                  "teo"
+                ]
+              }
+            }
+          ],
+          "moves": true
+        },
+        {
+          "id": "arriba",
+          "variants": [
+            {
+              "id": "campana_mediodia_arriba",
+              "text": "Por fin, {hero} llegó arriba. Se agarró a la barandilla y respiró hondo. Allí colgaba la campana, grande y dorada, de una cuerda gruesa. Desde allí se veía toda la aldea, chiquitita. Al corazón de {hero} le latía rápido, pero ya no le temblaban las rodillas.",
+              "scene": {
+                "bg": "interior",
+                "mood": "triumph",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "idle",
+                    "x": 0.74
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "campana_colgada",
+                    "clip": "swing",
+                    "x": 0.41,
+                    "lift": 336,
+                    "scale": 1.0
+                  }
+                ],
+                "offstage": [
+                  "teo"
+                ]
+              }
+            }
+          ],
+          "moves": true
+        },
+        {
+          "id": "din_don",
+          "variants": [
+            {
+              "id": "campana_mediodia_din_don",
+              "text": "{hero} agarró la cuerda y tiró con todas sus fuerzas. ¡DIN, DON! La campana cantó tan fuerte que las palomas salieron volando. Abajo, Teo daba saltos de alegría. «¡Ya puedo comer!», dijo, y toda la aldea aplaudió.",
+              "scene": {
+                "bg": "interior",
+                "mood": "joy",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "cheer",
+                    "x": 0.74
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "campana_colgada",
+                    "clip": "ring",
+                    "x": 0.41,
+                    "lift": 336,
+                    "scale": 1.0
+                  }
+                ],
+                "offstage": [
+                  "teo"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "cierre",
+          "variants": [
+            {
+              "id": "campana_mediodia_cierre",
+              "text": "Al bajar, toda la aldea esperaba con la mesa puesta. Teo le dio a {hero} un abrazo muy fuerte. «Subiste porque diste un paso y luego otro», dijo Teo. {hero} comió con ganas, porque subir torres da mucha hambre. Y allá arriba, la campana brillaba al sol.",
+              "scene": {
+                "bg": "plaza",
+                "mood": "joy",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "hug",
+                    "x": 0.42
+                  },
+                  {
+                    "rig": "teo",
+                    "clip": "hug",
+                    "x": 0.55
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "mesa",
+                    "x": 0.82,
+                    "scale": 0.9
+                  }
+                ]
+              }
+            }
+          ],
+          "moves": true
+        }
+      ]
+    },
+    {
+      "id": "panecillo",
+      "value": "honestidad",
+      "title": "El panecillo de Rosa",
+      "ages": [
+        "4-5"
+      ],
+      "npcs": {
+        "rosa": [
+          "Rosa"
+        ]
+      },
+      "cast": {
+        "hero": {
+          "kind": "character",
+          "roles": [
+            "hero"
+          ]
+        },
+        "plaza": {
+          "kind": "place",
+          "ids": [
+            "aldea"
+          ]
+        },
+        "item": {
+          "kind": "prop",
+          "ids": [
+            "pan"
+          ]
+        }
+      },
+      "beats": [
+        {
+          "id": "cesta",
+          "variants": [
+            {
+              "id": "panecillo_cesta",
+              "text": "Rosa, la panadera, trajo a la plaza una cesta de panecillos dorados. Todavía humeaban, y el aire olía a mantequilla. «Son para la fiesta de esta tarde», dijo Rosa. «Se miran, pero no se tocan.»",
+              "scene": {
+                "bg": "plaza",
+                "mood": "calm",
+                "time": "dia",
+                "focus": {
+                  "prop": "pan",
+                  "x": 0.5,
+                  "fill": 0.5
+                }
+              }
+            }
+          ],
+          "introduces": [
+            "item"
+          ]
+        },
+        {
+          "id": "olor",
+          "variants": [
+            {
+              "id": "panecillo_olor",
+              "text": "Rosa se fue a buscar más harina, porque no le alcanzaba para la fiesta. {hero} pasó junto a la mesa. Los panecillos olían a mantequilla, y a {hero} le hizo «gruuu» la barriga. Miró a un lado. Miró al otro. No había nadie.",
+              "scene": {
+                "bg": "plaza",
+                "mood": "mystery",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "think",
+                    "x": 0.3
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "mesa",
+                    "x": 0.62
+                  },
+                  {
+                    "prop": "pan",
+                    "x": 0.62,
+                    "lift": 70,
+                    "scale": 0.5
+                  }
+                ],
+                "offstage": [
+                  "rosa"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "tentacion",
+          "variants": [
+            {
+              "id": "panecillo_tentacion",
+              "text": "«Solo uno», pensó {hero}. «Uno chiquitito, y nadie se dará cuenta.» Como no había nadie cerca, estiró la mano. Se comió el panecillo en dos bocados: ñam, ñam. ¡Qué rico estaba!",
+              "scene": {
+                "bg": "plaza",
+                "mood": "tension",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "sneak",
+                    "x": 0.3
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "mesa",
+                    "x": 0.62
+                  }
+                ],
+                "offstage": [
+                  "rosa"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "migas",
+          "variants": [
+            {
+              "id": "panecillo_migas",
+              "text": "Pero cuando terminó, a {hero} le dio vergüenza. Tenía migas en la barbilla y en la nariz, y ya no estaba el panecillo. Ahora la barriga estaba llena, pero el corazón pesaba, porque {hero} sabía que no había sido justo.",
+              "scene": {
+                "bg": "plaza",
+                "mood": "sad",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "sad",
+                    "x": 0.3
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "mesa",
+                    "x": 0.62
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "duda",
+          "variants": [
+            {
+              "id": "panecillo_duda",
+              "text": "{hero} se limpió las migas con la manga. Pensó en irse corriendo y decir que no sabía nada. Pero entonces pensó en Rosa, que había trabajado tanto con la harina. «Si me callo, el nudo no se va», se dijo {hero}.",
+              "scene": {
+                "bg": "plaza",
+                "mood": "mystery",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "think",
+                    "x": 0.3
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "mesa",
+                    "x": 0.62
+                  }
+                ],
+                "offstage": [
+                  "rosa"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "cuenta",
+          "variants": [
+            {
+              "id": "panecillo_cuenta",
+              "text": "Rosa volvió con la harina. Contó los panecillos: uno, dos, tres... Había uno menos. Miró a {hero}. «¿Sabes qué ha pasado con un panecillo?», dijo Rosa.",
+              "scene": {
+                "bg": "plaza",
+                "mood": "tension",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "hide",
+                    "x": 0.3
+                  },
+                  {
+                    "rig": "rosa",
+                    "clip": "think",
+                    "x": 0.82
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "mesa",
+                    "x": 0.58
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "verdad",
+          "variants": [
+            {
+              "id": "panecillo_verdad",
+              "text": "{hero} tragó saliva. «Me lo comí yo», dijo {hero}. «Lo siento. No debí hacerlo sin preguntar.» Rosa se rio. «Ya lo sabía, tienes migas en la nariz. Pero gracias por decirme la verdad, pues así no hay secretos. La próxima vez, pídeme uno.»",
+              "scene": {
+                "bg": "plaza",
+                "mood": "hope",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "bow",
+                    "x": 0.3
+                  },
+                  {
+                    "rig": "rosa",
+                    "clip": "laugh",
+                    "x": 0.82
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "mesa",
+                    "x": 0.58
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "cierre",
+          "variants": [
+            {
+              "id": "panecillo_cierre",
+              "text": "Al atardecer, {hero} ayudó a Rosa a repartir los panecillos en la fiesta. Todos aplaudieron cuando llegó la música. Y al final, Rosa le regaló uno entero, calentito. {hero} lo comió despacio, sin esconderse de nadie, y el corazón volvió a estar liviano.",
+              "scene": {
+                "bg": "plaza",
+                "mood": "joy",
+                "time": "atardecer",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "cheer",
+                    "x": 0.34
+                  },
+                  {
+                    "rig": "rosa",
+                    "clip": "offer",
+                    "x": 0.8
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "pan",
+                    "near": "rosa",
+                    "dx": -0.06,
+                    "lift": 62,
+                    "scale": 0.5
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sombras",
+      "value": "valentia",
+      "title": "Las sombras del cuarto",
+      "ages": [
+        "4-5"
+      ],
+      "npcs": {},
+      "cast": {
+        "hero": {
+          "kind": "character",
+          "roles": [
+            "hero"
+          ]
+        },
+        "cuarto": {
+          "kind": "place",
+          "ids": [
+            "cuarto"
+          ]
+        },
+        "item": {
+          "kind": "prop",
+          "ids": [
+            "manta"
+          ]
+        }
+      },
+      "beats": [
+        {
+          "id": "manta",
+          "variants": [
+            {
+              "id": "sombras_manta",
+              "text": "Esa noche, {hero} estrenaba cuarto. Su cama era grande, y su manta olía a jabón y a campo. Por la ventana entraba un poquito de luz. «¡Qué bonita!», dijo {hero}, y se tapó hasta la barbilla.",
+              "scene": {
+                "bg": "cuarto",
+                "mood": "calm",
+                "time": "noche",
+                "focus": {
+                  "prop": "manta",
+                  "x": 0.5,
+                  "fill": 0.55
+                }
+              }
+            }
+          ],
+          "introduces": [
+            "item"
+          ]
+        },
+        {
+          "id": "sombra",
+          "variants": [
+            {
+              "id": "sombras_sombra",
+              "text": "Cuando se apagó la última vela de la aldea, el cuarto se llenó de sombras. En un rincón había una forma muy alta, con dos brazos largos y un pico en la cabeza. ¡Parecía un gigante! {hero} no se movió ni un pelo.",
+              "scene": {
+                "bg": "cuarto",
+                "mood": "tension",
+                "time": "noche",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "scared",
+                    "x": 0.31,
+                    "rotate": -90,
+                    "lift": 152,
+                    "scale": 0.95
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "manta",
+                    "x": 0.2,
+                    "lift": 118,
+                    "scale": 1.05,
+                    "front": true
+                  },
+                  {
+                    "prop": "sombra_gigante",
+                    "x": 0.72,
+                    "scale": 1.5
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "crujido",
+          "variants": [
+            {
+              "id": "sombras_crujido",
+              "text": "De pronto, ¡crac! La madera de la cama crujió. {hero} contuvo la respiración. ¡Crac, otra vez! Era solo la cama, que se estiraba como un gato después de la siesta, pero {hero} todavía no lo sabía.",
+              "scene": {
+                "bg": "cuarto",
+                "mood": "tension",
+                "time": "noche",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "hide",
+                    "x": 0.31,
+                    "rotate": -90,
+                    "lift": 152,
+                    "scale": 0.95
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "manta",
+                    "x": 0.2,
+                    "lift": 118,
+                    "scale": 1.05,
+                    "front": true
+                  },
+                  {
+                    "prop": "sombra_gigante",
+                    "x": 0.72,
+                    "scale": 1.5
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "respirar",
+          "variants": [
+            {
+              "id": "sombras_respirar",
+              "text": "{hero} se tapó con la manta hasta la nariz. El corazón hacía pum, pum, pum. Respiró despacio: uno, dos, tres. Pero {hero} pensó: «Los gigantes no caben en un cuarto tan pequeño, así que este gigante es muy raro». Y decidió mirar con un solo ojo.",
+              "scene": {
+                "bg": "cuarto",
+                "mood": "tension",
+                "time": "noche",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "hide",
+                    "x": 0.31,
+                    "rotate": -90,
+                    "lift": 152,
+                    "scale": 0.95
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "manta",
+                    "x": 0.2,
+                    "lift": 118,
+                    "scale": 1.05,
+                    "front": true
+                  },
+                  {
+                    "prop": "sombra_gigante",
+                    "x": 0.72,
+                    "scale": 1.5
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "mirar",
+          "variants": [
+            {
+              "id": "sombras_mirar",
+              "text": "Primero asomó un ojo. Luego, el otro. Y {hero} se levantó de la cama: un pie, y otro pie, y otro pie más. Poco a poco llegó hasta el rincón, porque quería ver de cerca al gigante.",
+              "scene": {
+                "bg": "cuarto",
+                "mood": "hope",
+                "time": "noche",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "sneak",
+                    "x": 0.46
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "sombra_gigante",
+                    "x": 0.72,
+                    "scale": 1.5
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "capa",
+          "variants": [
+            {
+              "id": "sombras_capa",
+              "text": "¡No era un gigante! Era su capa colgada, con el sombrero encima. {hero} se rio tan fuerte que la risa rebotó por todo el cuarto. «¡Menudo gigante!», dijo {hero}. «Si es mi capa, pues no da ningún miedo.» Se rio otra vez, hasta que le dolió la barriga.",
+              "scene": {
+                "bg": "cuarto",
+                "mood": "joy",
+                "time": "noche",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "laugh",
+                    "x": 0.46
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "capa",
+                    "x": 0.72,
+                    "scale": 1.5
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "cierre",
+          "variants": [
+            {
+              "id": "sombras_cierre",
+              "text": "{hero} volvió a la cama y se tapó con la manta, esta vez sin miedo. Antes de cerrar los ojos, saludó a la capa con la mano: «Buenas noches, gigante». Por la ventana entraba la luna, grande y amiga. {hero} se durmió sin soltar la manta, porque ya sabía que las sombras de la noche son solo capas.",
+              "scene": {
+                "bg": "cuarto",
+                "mood": "sleep",
+                "time": "noche",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "sleep",
+                    "x": 0.31,
+                    "rotate": -90,
+                    "lift": 152,
+                    "scale": 0.95
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "manta",
+                    "x": 0.2,
+                    "lift": 118,
+                    "scale": 1.05,
+                    "front": true
+                  },
+                  {
+                    "prop": "capa",
+                    "x": 0.72,
+                    "scale": 1.5
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sopa",
+      "value": "generosidad",
+      "title": "Sopa para dos",
+      "ages": [
+        "4-5"
+      ],
+      "npcs": {
+        "beto": [
+          "Beto"
+        ],
+        "rosa": [
+          "Rosa"
+        ]
+      },
+      "cast": {
+        "hero": {
+          "kind": "character",
+          "roles": [
+            "hero"
+          ]
+        },
+        "plaza": {
+          "kind": "place",
+          "ids": [
+            "aldea"
+          ]
+        },
+        "item": {
+          "kind": "prop",
+          "ids": [
+            "cuenco"
+          ]
+        }
+      },
+      "beats": [
+        {
+          "id": "cuenco",
+          "variants": [
+            {
+              "id": "sopa_cuenco",
+              "text": "En invierno, la aldea olía a sopa. Nevaba, y los tejados parecían cubiertos de azúcar. Rosa le dio a {hero} {item.un} lleno de sopa humeante. {hero} se lo llevó a la plaza con mucho cuidado, sin derramar ni una gota.",
+              "scene": {
+                "bg": "plaza",
+                "mood": "calm",
+                "time": "dia",
+                "focus": {
+                  "prop": "cuenco",
+                  "x": 0.5,
+                  "fill": 0.5,
+                  "clip": "still"
+                },
+                "season": "invierno"
+              }
+            }
+          ],
+          "introduces": [
+            "item"
+          ]
+        },
+        {
+          "id": "beto",
+          "variants": [
+            {
+              "id": "sopa_beto",
+              "text": "Allí estaba Beto, el molinero. Tenía las manos frías y la barriga vacía. Ese día no había viento, y sin viento el molino no gira. Sin molino no hay harina, y sin harina no hay pan. Beto miraba el cielo, esperando al viento, y suspiraba muy bajito.",
+              "scene": {
+                "bg": "plaza",
+                "mood": "sad",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "idle",
+                    "x": 0.3
+                  },
+                  {
+                    "rig": "beto",
+                    "clip": "sit_sad",
+                    "x": 0.7
+                  }
+                ],
+                "props": [],
+                "season": "invierno",
+                "offstage": [
+                  "rosa"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "soplar",
+          "variants": [
+            {
+              "id": "sopa_soplar",
+              "text": "{hero} sopló la sopa: fff, fff. Olía muy rico. Era todo lo que {hero} tenía para comer. Miró el cuenco. Miró a Beto. Beto no pidió nada, porque le daba vergüenza.",
+              "scene": {
+                "bg": "plaza",
+                "mood": "mystery",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "think",
+                    "x": 0.3
+                  },
+                  {
+                    "rig": "beto",
+                    "clip": "sit_sad",
+                    "x": 0.7
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "cuenco",
+                    "near": "hero",
+                    "dx": 0.07,
+                    "lift": 52,
+                    "scale": 0.6
+                  }
+                ],
+                "season": "invierno"
+              }
+            }
+          ]
+        },
+        {
+          "id": "decidir",
+          "variants": [
+            {
+              "id": "sopa_decidir",
+              "text": "«Beto, ven a sentarte», dijo {hero}. «Hay sopa para dos si la tomamos despacito.» Y le pasó primero el cuenco, con las dos manos, para que no se enfriara.",
+              "scene": {
+                "bg": "plaza",
+                "mood": "hope",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "offer",
+                    "x": 0.36
+                  },
+                  {
+                    "rig": "beto",
+                    "clip": "talk",
+                    "x": 0.64
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "cuenco",
+                    "near": "hero",
+                    "dx": 0.07,
+                    "lift": 52,
+                    "scale": 0.6
+                  }
+                ],
+                "season": "invierno"
+              }
+            }
+          ]
+        },
+        {
+          "id": "compartir",
+          "variants": [
+            {
+              "id": "sopa_compartir",
+              "text": "Beto tomó un sorbo, y luego {hero} tomó otro. Una vez tú, una vez yo, hasta que no quedó ni una gota. La sopa sabía más rica así, porque cada sorbo se compartía.",
+              "scene": {
+                "bg": "plaza",
+                "mood": "joy",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "sit",
+                    "x": 0.36
+                  },
+                  {
+                    "rig": "beto",
+                    "clip": "sit",
+                    "x": 0.6
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "cuenco",
+                    "x": 0.48,
+                    "lift": 30,
+                    "scale": 0.6
+                  }
+                ],
+                "season": "invierno"
+              }
+            }
+          ]
+        },
+        {
+          "id": "raspar",
+          "variants": [
+            {
+              "id": "sopa_raspar",
+              "text": "Cuando la sopa se acabó, {hero} raspó el fondo del cuenco con la cuchara: ras, ras. Beto se rio. Los dos tenían la barriga calentita y las mejillas coloradas, y la nieve ya no les daba frío.",
+              "scene": {
+                "bg": "plaza",
+                "mood": "joy",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "laugh",
+                    "x": 0.36
+                  },
+                  {
+                    "rig": "beto",
+                    "clip": "laugh",
+                    "x": 0.6
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "cuenco",
+                    "x": 0.48,
+                    "lift": 30,
+                    "scale": 0.6
+                  }
+                ],
+                "season": "invierno"
+              }
+            }
+          ]
+        },
+        {
+          "id": "viento",
+          "variants": [
+            {
+              "id": "sopa_viento",
+              "text": "Entonces sopló el viento: ¡fiuuu! Las aspas del molino empezaron a girar, y giraron, y giraron. «¡Gracias a ti tengo ganas de trabajar!», dijo Beto. «Mañana te traeré un pan enorme.»",
+              "scene": {
+                "bg": "plaza",
+                "mood": "triumph",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "cheer",
+                    "x": 0.36
+                  },
+                  {
+                    "rig": "beto",
+                    "clip": "cheer",
+                    "x": 0.64
+                  }
+                ],
+                "props": [],
+                "season": "invierno"
+              }
+            }
+          ]
+        },
+        {
+          "id": "cierre",
+          "variants": [
+            {
+              "id": "sopa_cierre",
+              "text": "Al día siguiente, el pan de Beto llegó a la puerta de {hero}. Era tan grande que había que llevarlo entre dos. {hero} lo partió con Beto y con Rosa, y los tres se rieron de tanto pan. Aquella tarde, la aldea entera olía a pan caliente.",
+              "scene": {
+                "bg": "plaza",
+                "mood": "joy",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "cheer",
+                    "x": 0.3
+                  },
+                  {
+                    "rig": "beto",
+                    "clip": "offer",
+                    "x": 0.52
+                  },
+                  {
+                    "rig": "rosa",
+                    "clip": "clap",
+                    "x": 0.76
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "pan",
+                    "near": "beto",
+                    "dx": -0.07,
+                    "lift": 62,
+                    "scale": 0.6
+                  }
+                ],
+                "season": "invierno"
+              }
+            }
+          ]
         }
       ]
     }

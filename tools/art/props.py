@@ -294,12 +294,17 @@ def maceta_brote():
 
 # ------------------------------------------------- objetos de la ronda 8
 def manta():
-    """Manta roja con rayas: cubre al que duerme. Origen: base, centrado."""
-    body = [S("M-66,0 L-66,-20 Q-52,-42 -22,-36 Q8,-46 38,-37 Q62,-34 66,-18 L66,0 Z", "#b0453f", "#5a1a14", 2.5),
+    """Manta de lana a cuadros con flecos: cubre al que duerme o se echa sobre los hombros. Origen: base, centrado."""
+    wool, edge, cream, mustard = "#4b78b5", "#1d3556", "#f3e6c4", "#e8b24a"
+    body = [S("M-66,0 L-66,-20 Q-52,-42 -22,-36 Q8,-46 38,-37 Q62,-34 66,-18 L66,0 Z", wool, edge, 2.5),
             shade("M30,-37 Q62,-34 66,-18 L66,0 L40,0 Q46,-20 30,-37 Z")]
-    stripes = [S(f"M{x},-36 Q{x + 3},-18 {x},0", None, "#e07a68", 3) for x in (-44, -14, 16, 46)]
-    fold = [S("M-62,-22 Q-30,-32 0,-26 Q30,-34 62,-22", None, "#f0a090", 2, 0.7)]
-    return rig("manta", "Manta", [-70, -50, 140, 52], {}, node("root", (0, 0), shapes=body + stripes + fold))
+    # cuadros: franjas verticales crema y horizontales mostaza, como una tela escocesa
+    plaid = [S(f"M{x},-38 Q{x + 3},-18 {x},0", None, cream, 4, 0.85) for x in (-48, -16, 16, 48)]
+    plaid += [S(f"M-64,{y} Q0,{y - 8} 64,{y}", None, mustard, 3, 0.9) for y in (-26, -11)]
+    fold = [S("M-62,-22 Q-30,-32 0,-26 Q30,-34 62,-22", None, "#a9c6ea", 2, 0.7)]
+    # flecos en la orilla de abajo
+    fringe = [S(f"M{x},0 L{x - 1},7", None, cream, 2.5) for x in range(-62, 66, 8)]
+    return rig("manta", "Manta", [-70, -50, 140, 62], {}, node("root", (0, 0), shapes=body + plaid + fold + fringe))
 
 
 def taza():
@@ -309,6 +314,46 @@ def taza():
           S(ell(0, -30, 18, 5), "#a8c85a", "#6a5a3a", 2)]
     steam_ = [S("M-6,-40 C-12,-50 0,-54 -4,-66", None, "#ffffff", 3, 0.7), S("M6,-40 C0,-50 12,-54 8,-66", None, "#ffffff", 3, 0.7)]
     return rig("taza", "Taza de té", [-24, -72, 52, 74], {}, node("root", (0, 0), shapes=sh + steam_))
+
+
+def taza_leche():
+    """Taza de leche tibia (blanca, con vapor). Origen: base."""
+    sh = [S("M-18,-30 L18,-30 L14,0 L-14,0 Z", "#e8dcc4", "#6a5a3a", 2.5), shade("M6,-30 L18,-30 L14,0 L4,0 Z"),
+          S("M16,-24 C32,-24 32,-6 15,-8", None, "#6a5a3a", 3),
+          S(ell(0, -30, 18, 5), "#fbf8ef", "#6a5a3a", 2),
+          S(ell(-5, -31, 6, 1.6), "#ffffff", None, 0, 0.8)]
+    steam_ = [S("M-6,-40 C-12,-50 0,-54 -4,-66", None, "#ffffff", 3, 0.7), S("M6,-40 C0,-50 12,-54 8,-66", None, "#ffffff", 3, 0.7)]
+    return rig("taza_leche", "Taza de leche", [-24, -72, 52, 74], {}, node("root", (0, 0), shapes=sh + steam_))
+
+
+def _capa(dark):
+    """Capa verde colgada de un perchero con un sombrero encima; `dark` la deja como una sombra alta de brazos
+    largos (lo que el niño cree ver de noche). Origen: base del perchero."""
+    wood = "#241a3c" if dark else "#8a5a2b"
+    line = "#120c22" if dark else "#4a2f14"
+    cloak = "#241a3c" if dark else "#3f8f55"
+    cloak2 = "#2c2146" if dark else "#2f7044"
+    hat = "#241a3c" if dark else "#7a3a9a"
+    op = 0.92 if dark else 1.0
+    arm = 62 if dark else 50   # la sombra tiene los brazos más largos
+    shapes = [S(ell(0, 0, 22, 5), wood, None, 0, 0.5),
+              S(rrect(-4, -150, 8, 150, 3), wood, line, 2, op),
+              S(rrect(-arm, -124, arm * 2, 8, 4), wood, line, 2, op),
+              S("M-50,-120 Q-60,-70 -46,-18 Q-30,-6 0,-12 Q30,-6 46,-18 Q60,-70 50,-120 Q0,-134 -50,-120 Z", cloak, line, 2.5, op),
+              S("M-6,-124 Q-12,-70 -6,-14 Q8,-10 16,-16 Q8,-70 12,-126 Z", cloak2, None, 0, 0.8 if not dark else 0.5),
+              S(ell(0, -152, 28, 6), hat, line, 2, op),
+              S("M-18,-154 Q-8,-176 2,-214 Q14,-178 20,-154 Z", hat, line, 2.5, op)]
+    if not dark:
+        shapes += [S("M-6,-132 Q0,-140 8,-132", None, "#e0c870", 2), S("M2,-212 Q18,-206 22,-194 Q10,-196 2,-212 Z", "#d94a4a", "#7a1a1a", 1.5)]
+    return shapes
+
+
+def capa():
+    return rig("capa", "Capa en el perchero", [-70, -220, 140, 228], {}, node("root", (0, 0), shapes=_capa(False)))
+
+
+def sombra_gigante():
+    return rig("sombra_gigante", "Sombra alta", [-76, -220, 152, 228], {}, node("root", (0, 0), shapes=_capa(True)))
 
 
 def cuenco():
@@ -488,4 +533,4 @@ def cofre():
 
 
 def build_all():
-    return [campana(), campana_rota(), linterna(), linterna_apagada(), olla(), pan(), trozos_de_pan(), buho(), cabrita(), bolsa(), cometa(), girasol(), semillas(), semillas_dos(), mesa(), manta(), taza(), cuenco(), regadera(), cinta(), girasol_seco(), campana_colgada(), cuerda_rollo(), roble(), puerta_cabana(), maceta(), maceta_brote(), piedras(), hierba(), pedernal(), vela(), saco(), cofre()]
+    return [campana(), campana_rota(), linterna(), linterna_apagada(), olla(), pan(), trozos_de_pan(), buho(), cabrita(), bolsa(), cometa(), girasol(), semillas(), semillas_dos(), mesa(), manta(), taza(), taza_leche(), capa(), sombra_gigante(), cuenco(), regadera(), cinta(), girasol_seco(), campana_colgada(), cuerda_rollo(), roble(), puerta_cabana(), maceta(), maceta_brote(), piedras(), hierba(), pedernal(), vela(), saco(), cofre()]

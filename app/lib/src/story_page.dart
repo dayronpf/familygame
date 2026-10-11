@@ -28,6 +28,9 @@ class StoryPage extends StatefulWidget {
     required this.feedback,
     required this.shelf,
     this.option,
+    this.age,
+    this.heroName,
+    this.heroGender,
     this.art,
     this.animate = true,
     this.narrator,
@@ -39,6 +42,11 @@ class StoryPage extends StatefulWidget {
   final Ambience Function()? ambience;
 
   final Story story;
+
+  /// Con qué se generó este cuento (para guardarlo en «Mis cuentos» y contarlo igual otra vez).
+  final String? age;
+  final String? heroName;
+  final String? heroGender;
 
   /// Arte de los cuentos (puede tardar o faltar: entonces se lee solo el texto).
   final Future<StageArt?>? art;
@@ -98,7 +106,13 @@ class _StoryPageState extends State<StoryPage>
     if (mounted) setState(() {});
   }
 
-  ShelfEntry get _entry => ShelfEntry.fromStory(_story, option: widget.option);
+  ShelfEntry get _entry => ShelfEntry.fromStory(
+        _story,
+        option: widget.option,
+        age: widget.age,
+        heroName: widget.heroName,
+        heroGender: widget.heroGender,
+      );
 
   /// Anota el cuento en «Mis cuentos» (los últimos que se contaron).
   void _remember() => widget.shelf.addRecent(_entry);
@@ -266,7 +280,7 @@ class _StoryPageState extends State<StoryPage>
                       style: text.labelLarge!.copyWith(color: scheme.primary),
                     ),
                     const SizedBox(height: 8),
-                    Text(_story.moral.text, style: body),
+                    Text(_story.moralLine, style: body),
                   ],
                 ),
               ),

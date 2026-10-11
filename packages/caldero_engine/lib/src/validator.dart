@@ -1,3 +1,6 @@
+import 'dart:math' as math;
+
+import 'age.dart';
 import 'engine.dart';
 import 'grammar.dart';
 import 'models.dart';
@@ -175,6 +178,66 @@ final RegExp _fixedGender = RegExp(
   r'|(?<![\wáéíóúüñ])(?:él|ella)(?![\wáéíóúüñ])',
 );
 
+/// Mínimo y máximo de palabras de un cuento de [premise]: los de su perfil de edad con un margen (el reparto de cada
+/// versión cambia un poco la longitud); sin edad declarada, los generales.
+({int min, int max}) storyWordLimits(Premise premise) {
+  final profiles = [
+    for (final a in premise.ages)
+      if (AgeProfile.byId(a) != null) AgeProfile.byId(a)!,
+  ];
+  if (profiles.isEmpty) return (min: minStoryWords, max: maxStoryWords);
+  final lo = profiles.map((p) => p.minWords).reduce(math.min);
+  final hi = profiles.map((p) => p.maxWords).reduce(math.max);
+  return (min: (lo * 0.85).floor(), max: (hi * 1.15).ceil());
+}
+
+/// Palabras que no caben en un cuento para 2–3 años (ni miedo, ni oscuridad amenazante, ni separación).
+final RegExp _notForToddlers = RegExp(
+  r'\b(?:miedo|asust\w*|susto|oscur\w*|monstruo\w*|peligr\w*|muert\w*|mori\w*|sangre|matar|perdid[oa]s?|llor[óo]\w*|grit[óo]\w*|enfad\w*|gruñ\w*|ladr[óo]n\w*|bandid\w*|espada\w*|arma|armas)\b',
+  caseSensitive: false,
+);
+
+/// Palabras que no caben en un cuento para 4–5 años (sin peligro real; las emociones se nombran pero se resuelven).
+final RegExp _notForLittle = RegExp(
+  r'\b(?:monstruo\w*|peligr\w*|muert\w*|mori\w*|sangre|matar|ladr[óo]n\w*|bandid\w*|espada\w*|arma|armas|fantasma\w*|bruja\w*)\b',
+  caseSensitive: false,
+);
+
+/// Reglas por edad (docs/18): oración típica, longitud máxima de oración, contenido y final tranquilo.
+void _checkAge(Premise premise, List<String> texts, void Function(String) add) {
+  if (texts.isNotEmpty && texts.last.contains('?')) {
+    add('el último párrafo termina con una pregunta abierta (para dormir se cierra en calma)');
+  }
+  if (premise.ages.isEmpty) return;
+  final profiles = [
+    for (final a in premise.ages)
+      if (AgeProfile.byId(a) != null) AgeProfile.byId(a)!,
+  ];
+  final m = measureText(texts);
+  final lo = profiles.map((p) => p.minSentence).reduce(math.min) - 1.5;
+  final hi = profiles.map((p) => p.maxSentence).reduce(math.max) + 2.0;
+  if (m.avgSentence < lo || m.avgSentence > hi) {
+    add(
+      'oración media de ${m.avgSentence.toStringAsFixed(1)} palabras: fuera de lo típico '
+      'para ${premise.ages.join('/')} (${lo.toStringAsFixed(1)}–${hi.toStringAsFixed(1)})',
+    );
+  }
+  final young = premise.ages.every((a) => a == '2-3' || a == '4-5');
+  if (!young) return;
+  final maxSentence = profiles.map((p) => p.maxSentence).reduce(math.max) * 2;
+  if (m.maxSentence > maxSentence) {
+    add('una oración de ${m.maxSentence} palabras (máximo $maxSentence para ${premise.ages.join('/')})');
+  }
+  final toddler = premise.ages.contains('2-3');
+  final banned = toddler ? _notForToddlers : _notForLittle;
+  for (final t in texts) {
+    final hit = banned.firstMatch(t);
+    if (hit != null) {
+      add('«${hit.group(0)}» no cabe en un cuento para ${premise.ages.join('/')}');
+    }
+  }
+}
+
 int _words(String s) => RegExp(r'[\wáéíóúüñÁÉÍÓÚÜÑ]+').allMatches(s).length;
 
 String _name(Entity e) => e is Character ? e.given : e.noun;
@@ -192,6 +255,18 @@ int _checkPremise(
   var renders = 0;
   if (pack.moralById(premise.value) == null && premise.value != anyValue) {
     problems.add('$pid: enseñanza inexistente "${premise.value}"');
+  }
+
+  // Los cuentos para 2–5 años no llevan villano (sin peligro real)
+  if (premise.ages.isNotEmpty &&
+      premise.ages.every((a) => a == '2-3' || a == '4-5')) {
+    for (final e in premise.cast.entries) {
+      if (e.value.kind == 'character' && e.value.roles.contains('villain')) {
+        problems.add(
+          '$pid: «${e.key}» es un villano y el cuento es para ${premise.ages.join('/')}',
+        );
+      }
+    }
   }
 
   // --- estructura estática
@@ -352,12 +427,14 @@ void _checkStory(Premise premise, Story story, Set<String> problems) {
   void add(String msg) => problems.add('$pid [$who]: $msg');
 
   final total = texts.fold<int>(0, (n, t) => n + _words(t));
-  if (total < minStoryWords) {
-    add('muy corto: $total palabras (mínimo $minStoryWords)');
+  final limits = storyWordLimits(premise);
+  if (total < limits.min) {
+    add('muy corto: $total palabras (mínimo ${limits.min} para su edad)');
   }
-  if (total > maxStoryWords) {
-    add('muy largo: $total palabras (máximo $maxStoryWords)');
+  if (total > limits.max) {
+    add('muy largo: $total palabras (máximo ${limits.max} para su edad)');
   }
+  _checkAge(premise, texts, add);
 
   final causal = causalConnectors.allMatches(texts.join(' ')).length;
   if (causal < 3) {

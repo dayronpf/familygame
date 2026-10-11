@@ -1,6 +1,7 @@
 import 'age.dart';
 import 'grammar.dart';
 import 'models.dart';
+import 'names.dart';
 import 'recipe.dart';
 import 'rng.dart';
 
@@ -15,7 +16,13 @@ class StoryGenerationException implements Exception {
 }
 
 class StoryOptions {
-  const StoryOptions({required this.seed, this.valueId, this.age});
+  const StoryOptions({
+    required this.seed,
+    this.valueId,
+    this.age,
+    this.heroName,
+    this.heroGender,
+  });
 
   /// Misma semilla + mismo pack + mismas opciones ⇒ mismo cuento.
   final int seed;
@@ -26,6 +33,12 @@ class StoryOptions {
   /// Perfil de edad (`2-3`, `4-5`, `6-8`, `9-12`) o `null` para cualquiera. Si el pack no tiene cuentos de esa
   /// edad se usan los del perfil más cercano (ver `Pack.resolveAge`).
   final String? age;
+
+  /// Nombre del niño que escucha el cuento: el héroe lo lleva en el texto y en la voz (nunca viaja en la receta).
+  final String? heroName;
+
+  /// `m` o `f`: elige un héroe de ese género (el dibujo y la gramática siguen al héroe elegido). `null` = al azar.
+  final String? heroGender;
 }
 
 /// El «caldero»: elige enseñanza, reparto y fragmentos coherentes.
@@ -61,10 +74,16 @@ class StoryEngine {
         moral,
         _pickWeighted(premises, (p) => p.weight, rng),
         rng,
+        moralText: moral.textFor(age),
+        heroName: normalizeChildName(options.heroName),
+        heroGender: options.heroGender,
       );
     }
 
-    final cast = castStory(pack, rng);
+    final cast = _personalize(
+      castStory(pack, rng),
+      normalizeChildName(options.heroName),
+    );
     final state = <String>{};
     final used = <String>{};
     final scenes = <StoryScene>[];
@@ -106,9 +125,15 @@ Story _generateFromPremise(
   int seed,
   Moral moral,
   Premise premise,
-  Mulberry32 rng,
-) {
-  final cast = castPremise(pack, premise, rng);
+  Mulberry32 rng, {
+  String? moralText,
+  String? heroName,
+  String? heroGender,
+}) {
+  final cast = _personalize(
+    castPremise(pack, premise, rng, heroGender: heroGender, heroName: heroName),
+    heroName,
+  );
   final state = castState(cast, premise);
   final scenes = <StoryScene>[];
   // Atributos con varias formas: cada uso de `rol.atributo` toma la siguiente, empezando por una al
@@ -151,6 +176,7 @@ Story _generateFromPremise(
     cast: cast,
     scenes: scenes,
     title: renderTemplate(premise.title, cast),
+    moralText: moralText,
     recipe: StoryRecipe(
       packId: pack.id,
       packVersion: pack.version,
@@ -188,13 +214,44 @@ List<Entity> castCandidates(Pack pack, CastSpec spec) {
   }).toList(growable: false);
 }
 
+/// Pone el nombre del niño al héroe (si lo hay): el dibujo, el género y los atributos siguen siendo los del héroe.
+Map<String, Entity> _personalize(Map<String, Entity> cast, String? heroName) {
+  final hero = cast['hero'];
+  if (heroName == null || hero is! Character) return cast;
+  return {...cast, 'hero': hero.withGiven(heroName)};
+}
+
 /// Elige, ranura por ranura, entidades que cumplan los requisitos y no se repitan.
-Map<String, Entity> castPremise(Pack pack, Premise premise, Mulberry32 rng) {
+///
+/// [heroGender] (`m`/`f`) limita el héroe a ese género. Si el niño se llama como otro personaje del pack, ese
+/// personaje no se elige para el resto de ranuras (no habría dos «Mara» en el mismo cuento).
+Map<String, Entity> castPremise(
+  Pack pack,
+  Premise premise,
+  Mulberry32 rng, {
+  String? heroGender,
+  String? heroName,
+}) {
   final chosen = <String, Entity>{};
   for (final slot in premise.cast.entries) {
-    final candidates = castCandidates(pack, slot.value)
+    var candidates = castCandidates(pack, slot.value)
         .where((e) => !chosen.values.any((c) => c.id == e.id))
         .toList();
+    if (slot.key == 'hero' && heroGender != null) {
+      final byGender = candidates
+          .where((e) => e.gender.name == heroGender)
+          .toList(growable: false);
+      if (byGender.isNotEmpty) candidates = byGender;
+    }
+    if (slot.key != 'hero' && heroName != null) {
+      final free = candidates
+          .where(
+            (e) => !(e is Character &&
+                e.given.toLowerCase() == heroName.toLowerCase()),
+          )
+          .toList(growable: false);
+      if (free.isNotEmpty) candidates = free;
+    }
     if (candidates.isEmpty) {
       throw StoryGenerationException(
         'premisa ${premise.id}: ninguna entidad cumple la ranura «${slot.key}»',
