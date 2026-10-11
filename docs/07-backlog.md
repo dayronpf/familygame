@@ -146,7 +146,9 @@ dentro de la app, el cliente avanzó primero.
 3. **Más contenido:** cuentos de 9–12 y más para 2–3, tres enseñanzas nuevas, más lugares; y la prueba editorial con lectores
    de los cuentos pequeños (hoy solo los revisó una persona con las imágenes y el validador).
 4. **Backend y catálogo (0.2)** para que los paquetes lleguen sin actualizar la app, y **compras (1.0)** para venderlos.
-5. **Audio con la pantalla bloqueada:** servicio en primer plano para el modo solo audio.
+5. **Audio con la pantalla bloqueada:** hecho en Android (servicio en primer plano con notificación de medios, v0.5.2);
+   falta probarlo en teléfonos reales, sobre todo los que matan apps en segundo plano (Xiaomi, Huawei…), y en iOS (modo
+   de fondo `audio` puesto, sin probar).
 6. **Caminos elegibles** (el niño decide): diseño hecho en [20](20-caminos-elegibles.md); sin construir.
 7. Lo que depende de licencias o cuentas: léxico por edad, voz neuronal, segundo idioma, iOS (TestFlight).
 

@@ -1,7 +1,7 @@
 name: caldero_app
 description: "Cuentos originales con enseñanza, narrados y animados."
 publish_to: 'none'
-version: 0.5.1+6
+version: 0.5.2+7
 
 environment:
   sdk: ^3.5.0

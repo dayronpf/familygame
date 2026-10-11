@@ -4,6 +4,7 @@ import 'package:caldero_engine/caldero_engine.dart';
 import 'package:flutter/material.dart';
 
 import 'audio/ambience.dart';
+import 'audio/background_audio.dart';
 import 'narration/narrator.dart';
 import 'narration/playback.dart';
 import 'player_support.dart';
@@ -14,9 +15,9 @@ import 'ui/sleep_timer.dart';
 /// Modo solo audio: la pantalla se queda negra y con el brillo al mínimo (en una pantalla OLED, apagada del todo) y el
 /// cuento sigue sonando. Un toque enseña los controles unos segundos. Sirve para dejar el teléfono en la mesita.
 ///
-/// Con la pantalla negra **encendida** el cuento no depende de que Android deje al app trabajando con la pantalla
-/// bloqueada. Si el adulto bloquea el teléfono a mano, que siga o no sonando lo decide el teléfono (la voz del
-/// sistema suele seguir un buen rato, pero no está garantizado).
+/// Si el adulto bloquea el teléfono, el cuento sigue: un servicio en primer plano con notificación de medios
+/// (`BackgroundSession`, ver `audio/background_audio.dart`) evita que Android duerma o mate la app, y deja
+/// reproducir/pausar/parar en la pantalla de bloqueo. En iOS lo permite el modo de fondo `audio`.
 class AudioOnlyPage extends StatefulWidget {
   const AudioOnlyPage({
     super.key,
@@ -24,6 +25,7 @@ class AudioOnlyPage extends StatefulWidget {
     this.narrator,
     this.ambience,
     this.dimmer,
+    this.background,
     this.autoStart = true,
   });
 
@@ -33,6 +35,9 @@ class AudioOnlyPage extends StatefulWidget {
 
   /// Quien baja el brillo (por defecto, el de la pantalla del teléfono; las pruebas ponen uno de mentira).
   final ScreenDimmer? dimmer;
+
+  /// Quien mantiene el cuento vivo con la pantalla bloqueada (por defecto, el servicio de Android).
+  final BackgroundAudio? background;
   final bool autoStart;
 
   @override
@@ -50,6 +55,7 @@ class _AudioOnlyPageState extends State<AudioOnlyPage> {
     ambience: _ambience,
     dimmer: const NoDimmer(),
   );
+  late final BackgroundSession _bg;
   bool _controls = true;
   bool _hearMusic = true;
   Timer? _hide;
@@ -67,6 +73,12 @@ class _AudioOnlyPageState extends State<AudioOnlyPage> {
         setState(() => _controls = _controls || _playback.finished);
       });
     _hearMusic = musicOn(context);
+    // Servicio en primer plano con notificación de medios: el cuento sigue con la pantalla bloqueada.
+    _bg = BackgroundSession(
+      playback: _playback,
+      audio: widget.background ?? defaultBackgroundAudio(),
+      title: widget.story.title ?? widget.story.moral.name,
+    )..start(playing: widget.autoStart);
     enterShowMode(immersive: true);
     _screen.setLevel(0);
     if (widget.autoStart) {
@@ -93,6 +105,7 @@ class _AudioOnlyPageState extends State<AudioOnlyPage> {
   @override
   void dispose() {
     _hide?.cancel();
+    _bg.close();
     _playback.dispose();
     _ambience.stop();
     _ambience.dispose();

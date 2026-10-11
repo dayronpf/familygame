@@ -8,6 +8,7 @@ import 'art/hologram.dart';
 import 'art/scene_painter.dart';
 import 'art/story_stage.dart';
 import 'audio/ambience.dart';
+import 'audio/background_audio.dart';
 import 'narration/narrator.dart';
 import 'narration/playback.dart';
 import 'player_support.dart';
@@ -28,6 +29,7 @@ class HologramPage extends StatefulWidget {
     this.ambience,
     this.autoStart = true,
     this.dimmer,
+    this.background,
   });
 
   final Story story;
@@ -39,6 +41,9 @@ class HologramPage extends StatefulWidget {
 
   /// Quien baja el brillo en el fundido del temporizador (por defecto, el de la pantalla del teléfono).
   final ScreenDimmer? dimmer;
+
+  /// Quien mantiene el cuento vivo con la pantalla bloqueada (por defecto, el servicio de Android).
+  final BackgroundAudio? background;
 
   @override
   State<HologramPage> createState() => _HologramPageState();
@@ -63,6 +68,7 @@ class _HologramPageState extends State<HologramPage>
   bool _controls = true;
   Timer? _hide;
   bool _hearVoice = true;
+  BackgroundSession? _bg;
 
   @override
   void initState() {
@@ -75,6 +81,12 @@ class _HologramPageState extends State<HologramPage>
     _onPlayback();
     _loadLayout();
     enterShowMode(immersive: true);
+    // Con la pantalla bloqueada el cuento sigue (servicio en primer plano con notificación de medios).
+    _bg = BackgroundSession(
+      playback: _playback,
+      audio: widget.background ?? defaultBackgroundAudio(),
+      title: widget.story.title ?? widget.story.moral.name,
+    )..start(playing: widget.autoStart);
     if (widget.autoStart) {
       _ambience.start();
       WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -149,6 +161,7 @@ class _HologramPageState extends State<HologramPage>
   @override
   void dispose() {
     _hide?.cancel();
+    _bg?.close();
     _fade.dispose();
     _playback.removeListener(_onPlayback);
     _playback.dispose();

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 import 'art/story_stage.dart';
 import 'audio/ambience.dart';
+import 'audio/background_audio.dart';
 import 'hologram_page.dart';
 import 'narration/narrator.dart';
 import 'narration/playback.dart';
@@ -25,6 +26,7 @@ class CinemaPage extends StatefulWidget {
     this.autoStart = true,
     this.animate = true,
     this.dimmer,
+    this.background,
   });
 
   final Story story;
@@ -37,6 +39,9 @@ class CinemaPage extends StatefulWidget {
 
   /// Quien baja el brillo en el fundido del temporizador (por defecto, el de la pantalla del teléfono).
   final ScreenDimmer? dimmer;
+
+  /// Quien mantiene el cuento vivo con la pantalla bloqueada (por defecto, el servicio de Android).
+  final BackgroundAudio? background;
 
   @override
   State<CinemaPage> createState() => _CinemaPageState();
@@ -54,6 +59,16 @@ class _CinemaPageState extends State<CinemaPage>
   );
   bool _hearVoice = true;
   late bool _hearMusic = musicOn(context);
+  BackgroundSession? _bg;
+
+  /// Con la pantalla bloqueada el cuento sigue (servicio en primer plano con notificación de medios).
+  void _openBackground({required bool playing}) {
+    _bg = BackgroundSession(
+      playback: _playback,
+      audio: widget.background ?? defaultBackgroundAudio(),
+      title: widget.story.title ?? widget.story.moral.name,
+    )..start(playing: playing);
+  }
 
   @override
   void initState() {
@@ -64,6 +79,7 @@ class _CinemaPageState extends State<CinemaPage>
       title: widget.story.title,
     )..addListener(() => mounted ? setState(() {}) : null);
     enterShowMode(immersive: false);
+    _openBackground(playing: widget.autoStart);
     if (widget.autoStart) {
       if (_hearMusic) _ambience.start();
       WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -80,6 +96,7 @@ class _CinemaPageState extends State<CinemaPage>
 
   @override
   void dispose() {
+    _bg?.close();
     _fade.dispose();
     _playback.dispose();
     _ambience.stop();
@@ -96,6 +113,7 @@ class _CinemaPageState extends State<CinemaPage>
     final nav = Navigator.of(context);
     await _playback.pause();
     await _ambience.stop();
+    await _bg?.close(); // el holograma abre el suyo
     await nav.push(MaterialPageRoute<void>(
       builder: (_) => HologramPage(
         story: widget.story,
@@ -108,6 +126,7 @@ class _CinemaPageState extends State<CinemaPage>
     // Al volver del holograma se recupera el modo cine (pausado, con su fondo si estaba activo).
     if (!mounted) return;
     enterShowMode(immersive: false);
+    _openBackground(playing: false);
     if (_hearMusic) _ambience.start();
   }
 

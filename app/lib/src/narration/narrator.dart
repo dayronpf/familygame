@@ -129,7 +129,22 @@ abstract class TtsPort {
 
 /// El motor real (`flutter_tts`).
 class FlutterTtsPort implements TtsPort {
-  FlutterTtsPort([FlutterTts? tts]) : _tts = tts ?? FlutterTts();
+  FlutterTtsPort([FlutterTts? tts]) : _tts = tts ?? FlutterTts() {
+    // iOS: con la categoría por defecto la pantalla bloqueada (o el interruptor de silencio) calla la voz.
+    // «playback» + el modo de fondo `audio` de Info.plist la dejan seguir; se mezcla con la música del cuento.
+    if (!kIsWeb && defaultTargetPlatform == TargetPlatform.iOS) {
+      _tts
+          .setIosAudioCategory(
+        IosTextToSpeechAudioCategory.playback,
+        [IosTextToSpeechAudioCategoryOptions.mixWithOthers],
+        IosTextToSpeechAudioMode.spokenAudio,
+      )
+          .catchError((Object e) {
+        debugPrint('Sin audio en segundo plano en iOS: $e');
+        return null;
+      });
+    }
+  }
 
   final FlutterTts _tts;
 
