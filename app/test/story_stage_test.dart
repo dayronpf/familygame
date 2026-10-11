@@ -592,6 +592,9 @@ void main() {
       expect(two.ropes, hasLength(1));
       expect(two.ropes.single.a.dx, closeTo(two.actors.first.x, 0.01));
       expect(two.ropes.single.b.dx, closeTo(two.actors.last.x, 0.01));
+      // atada a la cintura en los dos extremos (con vuelta y nudo), no una línea suelta
+      expect(two.ropes.single.wrapA, greaterThan(0));
+      expect(two.ropes.single.wrapB, greaterThan(0));
       final out = stageFor(
         art,
         cast(),
@@ -603,6 +606,9 @@ void main() {
         }),
       )!;
       expect(out.ropes.single.b.dx, lessThan(out.view.left));
+      expect(out.ropes.single.wrapA, greaterThan(0));
+      expect(out.ropes.single.wrapB, 0,
+          reason: 'el extremo que sale de cuadro no se ata a nadie');
     });
 
     test('los gestos nuevos existen y se pueden dibujar', () {

@@ -80,9 +80,16 @@ torre» y la «puerta de la cabaña» dibujados como un prado. Lo que se añadi�
 | Gestos nuevos: `shiver` (tiembla, brazos cruzados), `hug`, `sit`, `sit_sad`, `climb`, `hide` | Miedo, frío y culpa ya no se ven como alegría; abrazos; sentarse; trepar al roble; esconderse |
 | `stage[].rotate` (−90 = tumbado) y `props: manta` | Dormir **en la cama** (o en el suelo de la cocina) bajo una manta, con la cabeza en la almohada |
 | `props[].near` + `dx` + `lift` | El objeto en la mano o a los pies del personaje (la semilla, la bolsa, la vela, el pedernal, el pan, la taza, el saco) |
-| `rope: {from, to}` | La cuerda que une al héroe con su ayudante (puente, linterna); `to: left/right` sale de cuadro |
+| `rope: {from, to}` | La cuerda que une al héroe con su ayudante (puente, linterna); `to: left/right` sale de cuadro. Se dibuja **atada a la cintura** (aro y nudo en cada extremo con persona); los dos que se unen van juntos, sin nadie en medio, o parece una línea que cruza la escena |
 | Lugar nuevo `campanario` | Interior de la torre: arco al cielo (día/atardecer/noche), antorcha, gancho con su cuerda, escalera |
 | Objetos nuevos | `puerta_cabana` (el villano se ve por la rendija), `roble` con hueco y rama para la linterna, `girasol_seco` (cuello doblado), `manta`, `taza`, `cuenco`, `regadera`, `cinta` |
+
+### 5. Dos fallos que vio el dueño en el teléfono (ronda 11)
+
+* **Personaje flotando:** el héroe trepaba al roble sin ningún apoyo, delante del tronco. El roble tiene ahora una **rama baja y gruesa**
+  (cara de arriba a y ≈ −55) y el héroe pisa en ella con la mano en la linterna.
+* **«La soga no sé qué es»:** la cuerda era una línea de color al nivel de la cintura que cruzaba a otros personajes y colgaba suelta.
+  Ahora lleva vuelta y nudo en la cintura, y en la escena del regreso el héroe y su ayudante van juntos.
 
 ## Cómo se revisa (a ojo, con el mismo pintor que la app)
 

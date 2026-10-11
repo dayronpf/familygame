@@ -3,7 +3,7 @@
     "schema": 2,
     "id": "medieval",
     "name": "Reino de la Luna (prueba)",
-    "version": "0.13.0",
+    "version": "0.13.1",
     "license": "Contenido original, todos los derechos reservados al autor del proyecto",
     "language": "es",
     "age_band": "4-7"
@@ -3958,8 +3958,8 @@
                   {
                     "who": "hero",
                     "clip": "climb",
-                    "x": 0.835,
-                    "lift": 80,
+                    "x": 0.765,
+                    "lift": 56,
                     "scale": 0.85
                   },
                   {
@@ -4006,8 +4006,8 @@
                   {
                     "who": "hero",
                     "clip": "climb",
-                    "x": 0.835,
-                    "lift": 80,
+                    "x": 0.765,
+                    "lift": 56,
                     "scale": 0.85
                   },
                   {
@@ -4064,22 +4064,22 @@
                   {
                     "rig": "lia",
                     "clip": "cheer",
-                    "x": 0.25
+                    "x": 0.43
                   },
                   {
                     "rig": "cabrita",
                     "clip": "goat_baa",
-                    "x": 0.4
+                    "x": 0.58
                   },
                   {
                     "who": "helper",
                     "clip": "cheer",
-                    "x": 0.55
+                    "x": 0.27
                   },
                   {
                     "rig": "farolero",
                     "clip": "talk",
-                    "x": 0.68
+                    "x": 0.72
                   }
                 ],
                 "props": [
@@ -4128,22 +4128,22 @@
                   {
                     "rig": "lia",
                     "clip": "cheer",
-                    "x": 0.25
+                    "x": 0.43
                   },
                   {
                     "rig": "cabrita",
                     "clip": "goat_baa",
-                    "x": 0.4
+                    "x": 0.58
                   },
                   {
                     "who": "helper",
                     "clip": "cheer",
-                    "x": 0.55
+                    "x": 0.27
                   },
                   {
                     "rig": "farolero",
                     "clip": "talk",
-                    "x": 0.68
+                    "x": 0.72
                   }
                 ],
                 "props": [

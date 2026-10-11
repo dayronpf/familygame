@@ -112,7 +112,7 @@ class ActorInstance {
 
 /// Una cuerda entre dos puntos de la escena (la que une al héroe y a su ayudante), con una curva floja.
 class Rope {
-  const Rope(this.a, this.b, {this.sag = 16});
+  const Rope(this.a, this.b, {this.sag = 16, this.wrapA = 0, this.wrapB = 0});
 
   final Offset a;
   final Offset b;
@@ -120,12 +120,22 @@ class Rope {
   /// Cuánto cuelga por el medio (en unidades de la escena).
   final double sag;
 
-  @override
-  bool operator ==(Object other) =>
-      other is Rope && other.a == a && other.b == b && other.sag == sag;
+  /// Medio ancho de la vuelta atada a la cintura en cada extremo (0 = el extremo queda suelto, p. ej. sale de cuadro).
+  /// Sin esa vuelta la cuerda parece una línea que cruza la escena en lugar de algo atado a alguien.
+  final double wrapA;
+  final double wrapB;
 
   @override
-  int get hashCode => Object.hash(a, b, sag);
+  bool operator ==(Object other) =>
+      other is Rope &&
+      other.a == a &&
+      other.b == b &&
+      other.sag == sag &&
+      other.wrapA == wrapA &&
+      other.wrapB == wrapB;
+
+  @override
+  int get hashCode => Object.hash(a, b, sag, wrapA, wrapB);
 }
 
 /// Dibuja la escena, sus objetos y sus personajes. [clock] da los segundos transcurridos y repinta
@@ -269,6 +279,26 @@ class ScenePainter extends CustomPainter {
             ..strokeWidth = 2.6
             ..strokeCap = StrokeCap.round
             ..color = const Color(0xFFC9A06A));
+      // La vuelta atada a la cintura (un aro y un nudo) en cada extremo que está en una persona
+      for (final (end, wrap) in [(r.a, r.wrapA), (r.b, r.wrapB)]) {
+        if (wrap <= 0) continue;
+        final ring =
+            Rect.fromCenter(center: end, width: wrap * 2, height: wrap * 0.8);
+        canvas.drawOval(
+            ring,
+            Paint()
+              ..style = PaintingStyle.stroke
+              ..strokeWidth = 5
+              ..color = const Color(0xFF3A2412));
+        canvas.drawOval(
+            ring,
+            Paint()
+              ..style = PaintingStyle.stroke
+              ..strokeWidth = 2.6
+              ..color = const Color(0xFFC9A06A));
+        canvas.drawCircle(end, 4.5, Paint()..color = const Color(0xFF3A2412));
+        canvas.drawCircle(end, 2.6, Paint()..color = const Color(0xFFC9A06A));
+      }
     }
     final light = tint;
     if (light != null) {

@@ -292,7 +292,13 @@ StageSetup? stageFor(
         ? waist(to)
         : Offset(
             r['to'] == 'left' ? view.left - 20 : view.right + 20, a.dy + 4);
-    ropes.add(Rope(a, b, sag: (r['sag'] as num?)?.toDouble() ?? 16));
+    ropes.add(Rope(
+      a,
+      b,
+      sag: (r['sag'] as num?)?.toDouble() ?? 16,
+      wrapA: 17 * from.scale,
+      wrapB: to == null ? 0 : 17 * to.scale,
+    ));
   }
 
   return StageSetup(

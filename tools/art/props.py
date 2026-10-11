@@ -355,17 +355,22 @@ def girasol_seco():
 
 
 def roble():
-    """Roble viejo con un hueco en el tronco y una rama larga a la izquierda de la que cuelga la linterna.
-    La punta de la rama está en (-95, -245). Origen: pie del tronco."""
+    """Roble viejo con un hueco en el tronco, una rama larga a la izquierda de la que cuelga la linterna y una rama
+    baja donde se apoya quien trepa (su cara de arriba está a y ≈ -55, entre x = -100 y -30).
+    La punta de la rama alta está en (-95, -245). Origen: pie del tronco."""
     trunk = [S("M-34,0 C-30,-60 -26,-150 -22,-250 L24,-250 C30,-150 32,-60 38,0 Z", "#6a4426", "#2a180c", 3),
              shade("M10,-250 L24,-250 C30,-150 32,-60 38,0 L18,0 C22,-80 16,-170 10,-250 Z"),
              S("M-34,0 C-50,6 -60,8 -64,12 L-30,-6 Z", "#6a4426", "#2a180c", 2.5), S("M38,0 C54,6 64,8 70,12 L34,-6 Z", "#6a4426", "#2a180c", 2.5)]
     hollow = [S(ell(4, -84, 22, 34), "#1a0f08", "#120a06", 2.5), S(ell(4, -64, 17, 18), "#000000", None, 0, 0.5)]
     branch = [S("M-18,-236 C-50,-252 -80,-248 -102,-240 L-100,-250 C-78,-260 -44,-264 -16,-250 Z", "#6a4426", "#2a180c", 2.5),
               S(ell(-98, -244, 5, 5), "#4a2c16", "#2a180c", 1.5)]
+    # rama baja y gruesa (a unos 55 de altura): donde se apoya quien trepa; sin ella se vería flotando delante del tronco
+    step = [S("M-30,-34 C-52,-40 -72,-44 -100,-46 L-100,-58 C-72,-60 -50,-58 -30,-66 Z", "#6a4426", "#2a180c", 2.5),
+            shade("M-30,-34 C-52,-40 -72,-44 -100,-46 L-100,-50 C-70,-50 -48,-46 -30,-44 Z"),
+            S(ell(-98, -52, 6, 6), "#4a2c16", "#2a180c", 1.5)]
     crown = [S(ell(0, -306, 118, 60), "#2f8f66", "#16463a", 3), S(ell(-58, -286, 50, 36), "#2a7d5b", "#16463a", 3),
              S(ell(78, -280, 62, 40), "#2a7d5b", "#16463a", 3), S(ell(30, -326, 56, 34), "#38a074", None, 0, 0.8)]
-    return rig("roble", "Roble viejo", [-170, -370, 340, 384], {}, node("root", (0, 0), shapes=trunk + hollow + crown + branch))
+    return rig("roble", "Roble viejo", [-170, -370, 340, 384], {}, node("root", (0, 0), shapes=trunk + step + hollow + crown + branch))
 
 
 def puerta_cabana():
