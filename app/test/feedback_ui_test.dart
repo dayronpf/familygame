@@ -457,6 +457,9 @@ void main() {
             .readAsStringSync(),
       ) as Map<String, Object?>;
       expect(shownReasons..remove('app'), fixtureReasons..remove('app'));
+      await tester.scrollUntilVisible(
+          find.textContaining('Nunca se envía texto escrito'), -300,
+          scrollable: find.byType(Scrollable).first);
       expect(
           find.textContaining('Nunca se envía texto escrito'), findsOneWidget);
       expect(json, contains('"rating": 5'));
