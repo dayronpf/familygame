@@ -360,6 +360,7 @@ def build(spec):
     return {"format": "caldero-rig", "version": 1, "id": s["id"], "name": s["name"], "rig": "humanoid",
             "viewBox": [-130, -350, 260, 370], "bodyScale": s.get("scale", 1.0),
             "rest": s.get("rest", REST), "itemUpright": s.get("hold_r") in ("sword", "staff"),
+            "itemUprightL": s.get("hold_l") in ("shield", "bow"),
             "itemTilt": s.get("item_tilt", 0), "palette": s["palette"], "root": root}
 
 
@@ -427,15 +428,15 @@ PIJAMA = {"aldo": {"primary": "#9ab8f0", "secondary": "#ffffff", "pants": "#9ab8
 
 
 def load_cast():
-    """Los personajes del pack y sus variantes de actuación: `<id>_miedo` (ceño preocupado y boca hacia abajo, para
-    miedo, frío, tristeza o culpa) y, para los protagonistas, `<id>_pijama` (sin armadura ni armas, para dormir)."""
+    """Los personajes del pack y sus variantes de actuación: `<id>_miedo` (sin armas, para miedo, frío, tristeza o culpa: la cara la
+    pone cada animación) y, para los protagonistas, `<id>_pijama` (sin armadura ni armas, para dormir)."""
     doc = json.loads((OUT / "specs" / "characters.json").read_text(encoding="utf-8"))
     base = doc["characters"]
     out = list(base)
     for c in base:
         if c.get("variant_of"):
             continue
-        v = {**c, "id": f'{c["id"]}_miedo', "name": f'{c["name"]} (con miedo)', "mouth": "frown", "brows": "worried", "variant_of": c["id"]}
+        v = {**c, "id": f'{c["id"]}_miedo', "name": f'{c["name"]} (con miedo)', "variant_of": c["id"]}
         if c["id"] == "aldo":  # con miedo no esgrime la espada ni el escudo (le taparían la cara al cruzar los brazos)
             for k in ("hold_r", "hold_l", "item_tilt"):
                 v.pop(k, None)

@@ -398,8 +398,12 @@ ARM_POSES = {
                               (1.2, (-6, -118), (24, -150)), (1.5, (-6, -118), (12, -164)), (d, N, N)]),
     "yawn": lambda d: arms(d, [(0, N, N), (0.6, N, (14, -168)), (2.4, N, (14, -168)), (d, N, N)]),
     "blow": lambda d: arms(d, [(0, N, N), (0.4, (-14, -118), (14, -118)), (1.8, (-14, -118), (14, -118)), (d, N, N)]),
+    "hug": lambda d: arms(d, [(0, N, N), (0.4, (-16, -122), (16, -122)), (1.6, (-16, -122), (16, -122)), (d, N, N)]),
     "wonder": lambda d: arms(d, [(0, N, N), (0.4, (-58, -150), (58, -150)), (2.0, (-58, -150), (58, -150)), (d, N, N)]),
 }
+# (el arma de la mano derecha se aparta de la cara: se inclina hacia fuera)
+for _name, _deg in {"eat": 55, "think": 55, "yawn": 55, "hide": 50, "surprised": 45, "scared": 45, "blow": 40}.items():
+    CLIPS[_name]["tracks"]["itemR"] = hold(CLIPS[_name]["dur"], _deg)
 for _name, _arm in ARM_POSES.items():
     CLIPS[_name]["tracks"].update(_arm(CLIPS[_name]["dur"]))
 CLIPS["cheer"]["tracks"].update({"foreArmL": keys((0, 0), (0.25, -8), (0.6, -28), (0.9, -8), (1.2, 0)),

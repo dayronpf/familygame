@@ -225,7 +225,8 @@ StageSetup? stageFor(
     final clip = art.clip(e.clip) ?? art.clip(clipName) ?? art.clip('idle');
     if (clip == null) continue;
     // Cara de miedo o pijama según lo que hace (si el personaje tiene esa variante)
-    final variant = clipName == 'sleep'
+    // Tumbado en la cama (dormido o no) se ve en pijama, sin casco ni armadura
+    final variant = clipName == 'sleep' || (e.rotate ?? 0) != 0
         ? 'pijama'
         : (fearClips.contains(clipName) ? 'miedo' : null);
     final dressed = variant != null && art.rigs.containsKey('${rigId}_$variant')

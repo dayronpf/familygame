@@ -112,7 +112,12 @@ Pose samplePose(Rig rig, Clip clip, double t) {
   }
   if (rig.itemUpright) {
     // el arma sigue erguida: se contrarresta el giro del hombro y el del codo
-    p['itemR'] = -(p['armR']! + (p['foreArmR'] ?? 0)) + rig.itemTilt;
+    p['itemR'] =
+        (p['itemR'] ?? 0) - (p['armR']! + (p['foreArmR'] ?? 0)) + rig.itemTilt;
+  }
+  if (rig.itemUprightL) {
+    // el escudo y el arco siguen casi erguidos (80 %)
+    p['itemL'] = (p['itemL'] ?? 0) - 0.8 * (p['armL']! + (p['foreArmL'] ?? 0));
   }
   return p;
 }

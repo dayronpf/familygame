@@ -162,6 +162,7 @@ class Rig {
     required this.bodyScale,
     required this.rest,
     required this.itemUpright,
+    this.itemUprightL = false,
     required this.itemTilt,
     required this.palette,
     required this.root,
@@ -188,6 +189,7 @@ class Rig {
       bodyScale: j['bodyScale'] == null ? 1 : _d(j['bodyScale'], 'bodyScale'),
       rest: rest,
       itemUpright: j['itemUpright'] == true,
+      itemUprightL: j['itemUprightL'] == true,
       itemTilt: j['itemTilt'] == null ? 0 : _d(j['itemTilt'], 'itemTilt'),
       palette: palette,
       root: RigNode.fromJson(j['root']),
@@ -204,6 +206,9 @@ class Rig {
   final double bodyScale;
   final Map<String, double> rest;
   final bool itemUpright;
+
+  /// El escudo o el arco de la mano izquierda se mantienen casi erguidos aunque el brazo se mueva.
+  final bool itemUprightL;
   final double itemTilt;
   final Map<String, String> palette;
   final RigNode root;

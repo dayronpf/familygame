@@ -356,6 +356,28 @@ def sombra_gigante():
     return rig("sombra_gigante", "Sombra alta", [-76, -220, 152, 228], {}, node("root", (0, 0), shapes=_capa(True)))
 
 
+def escalones():
+    """Cinco escalones de piedra que suben hacia la derecha. Origen: base, centrado."""
+    shapes = []
+    for i in range(5):
+        x0 = -110 + i * 44
+        h = 22 * (i + 1)
+        shapes += [S(f"M{x0},0 L{x0},{-h} L110,{-h} L110,0 Z", "#a9a5bd", "#5c5874", 2.5),
+                   S(f"M{x0},{-h} L110,{-h}", None, "#d6d3e6", 3, 0.8),
+                   shade(f"M{x0 + 30},{-h + 4} L110,{-h + 4} L110,0 L{x0 + 30},0 Z")]
+    return rig("escalones", "Escalones de piedra", [-114, -120, 228, 126], {}, node("root", (0, 0), shapes=shapes))
+
+
+def taza_volcada():
+    """Taza de leche tumbada con la leche derramada. Origen: base."""
+    shapes = [S(ell(8, -1, 40, 6), "#fbf8ef", "#cfc8b4", 2, 0.95),
+              S(ell(-26, -2, 4, 2), "#fbf8ef", None, 0, 0.9), S(ell(52, -3, 3, 1.6), "#fbf8ef", None, 0, 0.9),
+              S("M-36,-18 L-6,-24 L-6,-2 L-36,-4 Z", "#e8dcc4", "#6a5a3a", 2.5), shade("M-18,-20 L-6,-24 L-6,-2 L-18,-3 Z"),
+              S(ell(-36, -11, 4, 7), "#fbf8ef", "#6a5a3a", 2),
+              S("M-6,-19 C8,-21 8,-6 -6,-7", None, "#6a5a3a", 3)]
+    return rig("taza_volcada", "Taza volcada", [-48, -28, 110, 34], {}, node("root", (0, 0), shapes=shapes))
+
+
 def cuenco():
     """Cuenco de sopa caliente. Origen: base."""
     sh = [S("M-26,-26 L26,-26 L18,0 L-18,0 Z", "#c98a3a", "#5a3a14", 2.5), shade("M12,-26 L26,-26 L18,0 L8,0 Z"),
@@ -533,4 +555,4 @@ def cofre():
 
 
 def build_all():
-    return [campana(), campana_rota(), linterna(), linterna_apagada(), olla(), pan(), trozos_de_pan(), buho(), cabrita(), bolsa(), cometa(), girasol(), semillas(), semillas_dos(), mesa(), manta(), taza(), taza_leche(), capa(), sombra_gigante(), cuenco(), regadera(), cinta(), girasol_seco(), campana_colgada(), cuerda_rollo(), roble(), puerta_cabana(), maceta(), maceta_brote(), piedras(), hierba(), pedernal(), vela(), saco(), cofre()]
+    return [campana(), campana_rota(), linterna(), linterna_apagada(), olla(), pan(), trozos_de_pan(), buho(), cabrita(), bolsa(), cometa(), girasol(), semillas(), semillas_dos(), mesa(), manta(), taza(), taza_leche(), taza_volcada(), escalones(), capa(), sombra_gigante(), cuenco(), regadera(), cinta(), girasol_seco(), campana_colgada(), cuerda_rollo(), roble(), puerta_cabana(), maceta(), maceta_brote(), piedras(), hierba(), pedernal(), vela(), saco(), cofre()]

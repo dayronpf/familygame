@@ -7109,22 +7109,23 @@
                   {
                     "who": "hero",
                     "clip": "offer",
-                    "x": 0.38
+                    "x": 0.34
                   }
                 ],
                 "props": [
                   {
                     "prop": "cabrita",
                     "clip": "goat_idle",
-                    "x": 0.7,
+                    "x": 0.58,
                     "scale": 0.9
                   },
                   {
                     "prop": "trozos_de_pan",
                     "near": "hero",
-                    "dx": -0.07,
-                    "lift": 58,
-                    "scale": 0.55
+                    "dx": 0.08,
+                    "lift": 56,
+                    "scale": 0.6,
+                    "front": true
                   }
                 ]
               }
@@ -7145,14 +7146,14 @@
                   {
                     "who": "hero",
                     "clip": "eat",
-                    "x": 0.36
+                    "x": 0.34
                   }
                 ],
                 "props": [
                   {
                     "prop": "cabrita",
                     "clip": "goat_baa",
-                    "x": 0.7,
+                    "x": 0.58,
                     "scale": 0.9
                   }
                 ]
@@ -7174,14 +7175,14 @@
                   {
                     "who": "hero",
                     "clip": "jump",
-                    "x": 0.4
+                    "x": 0.36
                   }
                 ],
                 "props": [
                   {
                     "prop": "cabrita",
                     "clip": "goat_walk",
-                    "x": 0.68,
+                    "x": 0.6,
                     "scale": 0.9
                   }
                 ]
@@ -7210,7 +7211,7 @@
                   {
                     "prop": "cabrita",
                     "clip": "goat_idle",
-                    "x": 0.66,
+                    "x": 0.58,
                     "scale": 0.9
                   }
                 ]
@@ -7296,12 +7297,12 @@
                 "stage": [
                   {
                     "who": "hero",
-                    "clip": "think",
+                    "clip": "sneak",
                     "x": 0.22
                   },
                   {
                     "rig": "lia",
-                    "clip": "idle",
+                    "clip": "wave",
                     "x": 0.8,
                     "lift": 84,
                     "scale": 0.8
@@ -7332,7 +7333,7 @@
                 "stage": [
                   {
                     "who": "hero",
-                    "clip": "walk",
+                    "clip": "sneak",
                     "x": 0.4,
                     "lift": 52
                   }
@@ -7365,7 +7366,7 @@
                 "stage": [
                   {
                     "who": "hero",
-                    "clip": "walk",
+                    "clip": "sneak",
                     "x": 0.58,
                     "lift": 52
                   },
@@ -7536,7 +7537,7 @@
                   {
                     "who": "hero",
                     "clip": "surprised",
-                    "x": 0.3
+                    "x": 0.4
                   }
                 ],
                 "props": [
@@ -7546,10 +7547,10 @@
                     "scale": 1.0
                   },
                   {
-                    "prop": "taza_leche",
+                    "prop": "taza_volcada",
                     "x": 0.62,
-                    "lift": 50,
-                    "scale": 0.75
+                    "lift": 46,
+                    "scale": 0.8
                   }
                 ],
                 "offstage": [
@@ -7573,7 +7574,7 @@
                   {
                     "who": "hero",
                     "clip": "sad",
-                    "x": 0.28
+                    "x": 0.3
                   },
                   {
                     "rig": "rosa",
@@ -7584,8 +7585,14 @@
                 "props": [
                   {
                     "prop": "mesa",
-                    "x": 0.56,
+                    "x": 0.62,
                     "scale": 1.0
+                  },
+                  {
+                    "prop": "taza_volcada",
+                    "x": 0.62,
+                    "lift": 46,
+                    "scale": 0.8
                   }
                 ]
               }
@@ -7606,7 +7613,7 @@
                   {
                     "who": "hero",
                     "clip": "bow",
-                    "x": 0.28
+                    "x": 0.3
                   },
                   {
                     "rig": "rosa",
@@ -7617,8 +7624,14 @@
                 "props": [
                   {
                     "prop": "mesa",
-                    "x": 0.56,
+                    "x": 0.62,
                     "scale": 1.0
+                  },
+                  {
+                    "prop": "taza_volcada",
+                    "x": 0.62,
+                    "lift": 46,
+                    "scale": 0.8
                   }
                 ]
               }
@@ -7639,19 +7652,25 @@
                   {
                     "who": "hero",
                     "clip": "hug",
-                    "x": 0.44
+                    "x": 0.26
                   },
                   {
                     "rig": "rosa",
                     "clip": "hug",
-                    "x": 0.58
+                    "x": 0.38
                   }
                 ],
                 "props": [
                   {
                     "prop": "mesa",
-                    "x": 0.82,
-                    "scale": 0.9
+                    "x": 0.62,
+                    "scale": 1.0
+                  },
+                  {
+                    "prop": "taza_volcada",
+                    "x": 0.62,
+                    "lift": 46,
+                    "scale": 0.8
                   }
                 ]
               }
@@ -7672,19 +7691,27 @@
                   {
                     "who": "hero",
                     "clip": "eat",
-                    "x": 0.3
+                    "x": 0.34
                   },
                   {
                     "rig": "rosa",
-                    "clip": "clap",
+                    "clip": "offer",
                     "x": 0.84
                   }
                 ],
                 "props": [
                   {
                     "prop": "mesa",
-                    "x": 0.56,
+                    "x": 0.62,
                     "scale": 1.0
+                  },
+                  {
+                    "prop": "taza_leche",
+                    "near": "hero",
+                    "dx": 0.07,
+                    "lift": 74,
+                    "scale": 0.7,
+                    "front": true
                   }
                 ]
               }
@@ -7775,7 +7802,9 @@
                 "props": [
                   {
                     "prop": "linterna_apagada",
-                    "x": 0.6,
+                    "near": "hero",
+                    "dx": 0.1,
+                    "lift": 0,
                     "scale": 0.9
                   }
                 ],
@@ -7895,23 +7924,24 @@
                 "time": "dia",
                 "stage": [
                   {
-                    "who": "hero",
-                    "clip": "bow",
+                    "rig": "teo",
+                    "clip": "surprised",
                     "x": 0.3
                   },
                   {
-                    "rig": "teo",
-                    "clip": "surprised",
-                    "x": 0.74
+                    "who": "hero",
+                    "clip": "bow",
+                    "x": 0.58
                   }
                 ],
                 "props": [
                   {
                     "prop": "linterna_apagada",
                     "near": "hero",
-                    "dx": 0.08,
-                    "lift": 30,
-                    "scale": 0.7
+                    "dx": 0.0,
+                    "lift": 40,
+                    "scale": 0.8,
+                    "front": true
                   }
                 ]
               }
@@ -7938,16 +7968,17 @@
                   {
                     "rig": "teo",
                     "clip": "offer",
-                    "x": 0.72
+                    "x": 0.62
                   }
                 ],
                 "props": [
                   {
                     "prop": "linterna",
                     "near": "teo",
-                    "dx": -0.08,
-                    "lift": 60,
-                    "scale": 0.7,
+                    "dx": -0.05,
+                    "lift": 40,
+                    "scale": 0.8,
+                    "front": true,
                     "clip": "glow"
                   }
                 ]
@@ -7960,7 +7991,7 @@
           "variants": [
             {
               "id": "linterna_teo_cierre",
-              "text": "Aquella noche, {hero} se acostó con el corazón liviano. Ya no había nudo en la barriga. Por la ventana se veía la luz de Teo, que brillaba como una estrellita. {hero} sonrió y se durmió enseguida.",
+              "text": "Aquella noche, {hero} se acostó con el corazón liviano. Ya no había nudo en la barriga. Pensó en Teo y en su linterna, que brillaba otra vez como una estrellita. {hero} sonrió y se durmió enseguida.",
               "scene": {
                 "bg": "cuarto",
                 "mood": "sleep",
@@ -8075,7 +8106,16 @@
                     "x": 0.7
                   }
                 ],
-                "props": [],
+                "props": [
+                  {
+                    "prop": "manta",
+                    "near": "hero",
+                    "dx": 0.0,
+                    "lift": 88,
+                    "scale": 0.9,
+                    "front": true
+                  }
+                ],
                 "season": "invierno"
               }
             }
@@ -8103,7 +8143,16 @@
                     "x": 0.7
                   }
                 ],
-                "props": [],
+                "props": [
+                  {
+                    "prop": "manta",
+                    "near": "hero",
+                    "dx": 0.0,
+                    "lift": 88,
+                    "scale": 0.9,
+                    "front": true
+                  }
+                ],
                 "season": "invierno"
               }
             }
@@ -8136,8 +8185,9 @@
                     "prop": "manta",
                     "near": "hero",
                     "dx": 0.06,
-                    "lift": 62,
-                    "scale": 1.6
+                    "lift": 84,
+                    "scale": 1.5,
+                    "front": true
                   }
                 ],
                 "season": "invierno"
@@ -8172,8 +8222,9 @@
                     "prop": "manta",
                     "near": "hero",
                     "dx": 0.06,
-                    "lift": 62,
-                    "scale": 1.6
+                    "lift": 84,
+                    "scale": 1.5,
+                    "front": true
                   }
                 ],
                 "season": "invierno"
@@ -8207,9 +8258,10 @@
                   {
                     "prop": "manta",
                     "near": "hero",
-                    "dx": 0.07,
-                    "lift": 62,
-                    "scale": 1.6
+                    "dx": 0.06,
+                    "lift": 84,
+                    "scale": 1.5,
+                    "front": true
                   }
                 ],
                 "season": "invierno"
@@ -8241,7 +8293,7 @@
                   {
                     "rig": "rosa",
                     "clip": "offer",
-                    "x": 0.76
+                    "x": 0.68
                   }
                 ],
                 "props": [
@@ -8249,8 +8301,16 @@
                     "prop": "manta",
                     "near": "hero",
                     "dx": 0.07,
-                    "lift": 36,
-                    "scale": 1.0
+                    "lift": 70,
+                    "scale": 1.5,
+                    "front": true
+                  },
+                  {
+                    "prop": "trozos_de_pan",
+                    "near": "rosa",
+                    "dx": -0.06,
+                    "lift": 62,
+                    "scale": 0.5
                   }
                 ],
                 "season": "invierno"
@@ -8284,9 +8344,10 @@
                   {
                     "prop": "manta",
                     "near": "hero",
-                    "dx": 0.07,
-                    "lift": 62,
-                    "scale": 1.6
+                    "dx": 0.06,
+                    "lift": 84,
+                    "scale": 1.5,
+                    "front": true
                   }
                 ],
                 "season": "invierno",
@@ -8309,6 +8370,12 @@
       "npcs": {
         "teo": [
           "Teo"
+        ],
+        "aldeano": [
+          "vecinos"
+        ],
+        "aldeana": [
+          "vecinos"
         ]
       },
       "cast": {
@@ -8465,10 +8532,17 @@
                   {
                     "who": "hero",
                     "clip": "walk",
-                    "x": 0.3
+                    "x": 0.6,
+                    "lift": 73
                   }
                 ],
-                "props": [],
+                "props": [
+                  {
+                    "prop": "escalones",
+                    "x": 0.55,
+                    "scale": 2.2
+                  }
+                ],
                 "offstage": [
                   "teo"
                 ]
@@ -8482,7 +8556,7 @@
           "variants": [
             {
               "id": "campana_mediodia_arriba",
-              "text": "Por fin, {hero} llegó arriba. Se agarró a la barandilla y respiró hondo. Allí colgaba la campana, grande y dorada, de una cuerda gruesa. Desde allí se veía toda la aldea, chiquitita. Al corazón de {hero} le latía rápido, pero ya no le temblaban las rodillas.",
+              "text": "Por fin, {hero} llegó arriba. Se apoyó en la pared y respiró hondo. Allí colgaba la campana, grande y dorada, de una cuerda gruesa. Desde allí se veía toda la aldea, chiquitita. Al corazón de {hero} le latía rápido, pero ya no le temblaban las rodillas.",
               "scene": {
                 "bg": "interior",
                 "mood": "triumph",
@@ -8516,7 +8590,7 @@
           "variants": [
             {
               "id": "campana_mediodia_din_don",
-              "text": "{hero} agarró la cuerda y tiró con todas sus fuerzas. ¡DIN, DON! La campana cantó tan fuerte que las palomas salieron volando. Abajo, Teo daba saltos de alegría. «¡Ya puedo comer!», dijo, y toda la aldea aplaudió.",
+              "text": "{hero} agarró la cuerda y tiró con todas sus fuerzas. ¡DIN, DON! La campana cantó tan fuerte que se oyó en toda la aldea. Abajo, Teo daba saltos de alegría. «¡Ya puedo comer!», dijo.",
               "scene": {
                 "bg": "interior",
                 "mood": "joy",
@@ -8525,7 +8599,7 @@
                   {
                     "who": "hero",
                     "clip": "cheer",
-                    "x": 0.74
+                    "x": 0.45
                   }
                 ],
                 "props": [
@@ -8549,16 +8623,26 @@
           "variants": [
             {
               "id": "campana_mediodia_cierre",
-              "text": "Al bajar, toda la aldea esperaba con la mesa puesta. Teo le dio a {hero} un abrazo muy fuerte. «Subiste porque diste un paso y luego otro», dijo Teo. {hero} comió con ganas, porque subir torres da mucha hambre. Y allá arriba, la campana brillaba al sol.",
+              "text": "Al bajar, los vecinos esperaban con la mesa puesta. Teo le dio a {hero} un abrazo muy fuerte. «Subiste porque diste un paso y luego otro», dijo Teo. {hero} comió con ganas, porque subir torres da mucha hambre. Y allá arriba, la campana brillaba al sol.",
               "scene": {
                 "bg": "plaza",
                 "mood": "joy",
                 "time": "dia",
                 "stage": [
                   {
+                    "rig": "aldeano",
+                    "clip": "clap",
+                    "x": 0.12
+                  },
+                  {
+                    "rig": "aldeana",
+                    "clip": "clap",
+                    "x": 0.24
+                  },
+                  {
                     "who": "hero",
                     "clip": "hug",
-                    "x": 0.42
+                    "x": 0.43
                   },
                   {
                     "rig": "teo",
@@ -8569,7 +8653,7 @@
                 "props": [
                   {
                     "prop": "mesa",
-                    "x": 0.82,
+                    "x": 0.84,
                     "scale": 0.9
                   }
                 ]
@@ -8660,8 +8744,8 @@
                   {
                     "prop": "pan",
                     "x": 0.62,
-                    "lift": 70,
-                    "scale": 0.5
+                    "lift": 50,
+                    "scale": 0.4
                   }
                 ],
                 "offstage": [
@@ -8777,7 +8861,7 @@
                   {
                     "rig": "rosa",
                     "clip": "think",
-                    "x": 0.82
+                    "x": 0.68
                   }
                 ],
                 "props": [
@@ -8809,7 +8893,7 @@
                   {
                     "rig": "rosa",
                     "clip": "laugh",
-                    "x": 0.82
+                    "x": 0.68
                   }
                 ],
                 "props": [
@@ -8841,7 +8925,7 @@
                   {
                     "rig": "rosa",
                     "clip": "offer",
-                    "x": 0.8
+                    "x": 0.68
                   }
                 ],
                 "props": [
@@ -8915,7 +8999,7 @@
           "variants": [
             {
               "id": "sombras_sombra",
-              "text": "Cuando se apagó la última vela de la aldea, el cuarto se llenó de sombras. En un rincón había una forma muy alta, con dos brazos largos y un pico en la cabeza. ¡Parecía un gigante! {hero} no se movió ni un pelo.",
+              "text": "Cuando la aldea se quedó en silencio, el cuarto se llenó de sombras. En un rincón había una forma muy alta, con dos brazos largos y un pico en la cabeza. ¡Parecía un gigante! {hero} no se movió ni un pelo.",
               "scene": {
                 "bg": "cuarto",
                 "mood": "tension",
@@ -8923,7 +9007,7 @@
                 "stage": [
                   {
                     "who": "hero",
-                    "clip": "scared",
+                    "clip": "surprised",
                     "x": 0.31,
                     "rotate": -90,
                     "lift": 152,
@@ -8934,8 +9018,8 @@
                   {
                     "prop": "manta",
                     "x": 0.2,
-                    "lift": 118,
-                    "scale": 1.05,
+                    "lift": 126,
+                    "scale": 1.2,
                     "front": true
                   },
                   {
@@ -8961,7 +9045,7 @@
                 "stage": [
                   {
                     "who": "hero",
-                    "clip": "hide",
+                    "clip": "scared",
                     "x": 0.31,
                     "rotate": -90,
                     "lift": 152,
@@ -8972,8 +9056,8 @@
                   {
                     "prop": "manta",
                     "x": 0.2,
-                    "lift": 118,
-                    "scale": 1.05,
+                    "lift": 126,
+                    "scale": 1.2,
                     "front": true
                   },
                   {
@@ -9010,8 +9094,8 @@
                   {
                     "prop": "manta",
                     "x": 0.2,
-                    "lift": 118,
-                    "scale": 1.05,
+                    "lift": 126,
+                    "scale": 1.2,
                     "front": true
                   },
                   {
@@ -9104,8 +9188,8 @@
                   {
                     "prop": "manta",
                     "x": 0.2,
-                    "lift": 118,
-                    "scale": 1.05,
+                    "lift": 126,
+                    "scale": 1.2,
                     "front": true
                   },
                   {
@@ -9199,7 +9283,7 @@
                   {
                     "rig": "beto",
                     "clip": "sit_sad",
-                    "x": 0.7
+                    "x": 0.64
                   }
                 ],
                 "props": [],
@@ -9230,16 +9314,17 @@
                   {
                     "rig": "beto",
                     "clip": "sit_sad",
-                    "x": 0.7
+                    "x": 0.64
                   }
                 ],
                 "props": [
                   {
                     "prop": "cuenco",
                     "near": "hero",
-                    "dx": 0.07,
+                    "dx": 0.06,
                     "lift": 52,
-                    "scale": 0.6
+                    "scale": 1.0,
+                    "front": true
                   }
                 ],
                 "season": "invierno"
@@ -9273,9 +9358,10 @@
                   {
                     "prop": "cuenco",
                     "near": "hero",
-                    "dx": 0.07,
+                    "dx": 0.06,
                     "lift": 52,
-                    "scale": 0.6
+                    "scale": 1.0,
+                    "front": true
                   }
                 ],
                 "season": "invierno"
@@ -9302,15 +9388,17 @@
                   {
                     "rig": "beto",
                     "clip": "sit",
-                    "x": 0.6
+                    "x": 0.64
                   }
                 ],
                 "props": [
                   {
                     "prop": "cuenco",
-                    "x": 0.48,
-                    "lift": 30,
-                    "scale": 0.6
+                    "near": "hero",
+                    "dx": 0.08,
+                    "lift": 34,
+                    "scale": 1.0,
+                    "front": true
                   }
                 ],
                 "season": "invierno"
@@ -9336,16 +9424,18 @@
                   },
                   {
                     "rig": "beto",
-                    "clip": "laugh",
-                    "x": 0.6
+                    "clip": "clap",
+                    "x": 0.64
                   }
                 ],
                 "props": [
                   {
                     "prop": "cuenco",
-                    "x": 0.48,
-                    "lift": 30,
-                    "scale": 0.6
+                    "near": "hero",
+                    "dx": 0.08,
+                    "lift": 34,
+                    "scale": 1.0,
+                    "front": true
                   }
                 ],
                 "season": "invierno"
@@ -9405,7 +9495,7 @@
                   {
                     "rig": "rosa",
                     "clip": "clap",
-                    "x": 0.76
+                    "x": 0.72
                   }
                 ],
                 "props": [
@@ -9414,7 +9504,7 @@
                     "near": "beto",
                     "dx": -0.07,
                     "lift": 62,
-                    "scale": 0.6
+                    "scale": 1.3
                   }
                 ],
                 "season": "invierno"

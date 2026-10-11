@@ -45,7 +45,9 @@ def sample_pose(rig, clip, t):
         else:
             p[track] = p.get(track, 0.0) + v
     if rig.get("itemUpright"):  # el arma sigue erguida aunque el brazo se mueva
-        p["itemR"] = -(p["armR"] + p.get("foreArmR", 0)) + rig.get("itemTilt", 0)
+        p["itemR"] = p.get("itemR", 0.0) - (p["armR"] + p.get("foreArmR", 0)) + rig.get("itemTilt", 0)
+    if rig.get("itemUprightL"):  # el escudo y el arco siguen casi erguidos (80 %)
+        p["itemL"] = p.get("itemL", 0.0) - 0.8 * (p["armL"] + p.get("foreArmL", 0))
     return p
 
 
