@@ -111,7 +111,8 @@ Pose samplePose(Rig rig, Clip clip, double t) {
     p[track] = absolute ? v : (p[track] ?? 0) + v;
   }
   if (rig.itemUpright) {
-    p['itemR'] = -p['armR']! + rig.itemTilt; // el arma sigue erguida
+    // el arma sigue erguida: se contrarresta el giro del hombro y el del codo
+    p['itemR'] = -(p['armR']! + (p['foreArmR'] ?? 0)) + rig.itemTilt;
   }
   return p;
 }

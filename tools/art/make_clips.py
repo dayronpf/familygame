@@ -211,6 +211,208 @@ CLIPS = {
 }
 
 
+# ---------------------------------------------------------------- brazos con codo: la mano va a un punto
+# El brazo mide 26 (hombro→codo) + 22 (codo→mano). `hand(lado, (x, y))` calcula cuánto girar hombro y codo para
+# que la mano llegue al punto (coordenadas del dibujo; el hombro derecho está en (36, -140)). Es cinemática inversa
+# de dos huesos, hecha al generar los clips: en el clip solo quedan ángulos.
+L1, L2 = 26.0, 22.0
+REST_ARM = {-1: 9.0, 1: -9.0}   # el reposo de armL / armR (se suma a la pista)
+
+
+def _norm(a):
+    return (a + 180) % 360 - 180
+
+
+def hand(side, target):
+    """Ángulos (pista del hombro, pista del codo) para que la mano de `side` (-1 izq., +1 der.) llegue a `target`."""
+    if target is None:
+        return 0.0, 0.0
+    sx, sy = 36 * side, -140.0
+    tx, ty = target
+    dx, dy = tx - sx, ty - sy
+    d = math.hypot(dx, dy)
+    d = min(max(d, abs(L1 - L2) + 0.5), L1 + L2 - 0.5)
+    base = math.atan2(dy, dx)
+    alpha = math.acos((L1 * L1 + d * d - L2 * L2) / (2 * L1 * d))
+    best = None
+    for sign in (1, -1):
+        psi1 = base + sign * alpha
+        ex, ey = sx + L1 * math.cos(psi1), sy + L1 * math.sin(psi1)
+        score = ey + 0.2 * side * ex          # el codo queda lo más abajo posible (y algo hacia fuera)
+        if best is None or score > best[0]:
+            best = (score, psi1, ex, ey)
+    _, psi1, ex, ey = best
+    hx, hy = sx + dx * d / math.hypot(dx, dy), sy + dy * d / math.hypot(dx, dy)
+    psi2 = math.atan2(hy - ey, hx - ex)
+    a1 = _norm(math.degrees(psi1) - 90)       # dirección «abajo» = 0°, en sentido horario
+    f = _norm(math.degrees(psi2 - psi1))
+    return a1 - REST_ARM[side], f
+
+
+def arms(dur, frames):
+    """Pistas armL/foreArmL/armR/foreArmR a partir de `[(t, objetivoIzq, objetivoDer), ...]` (None = en reposo)."""
+    t = {"armL": [], "foreArmL": [], "armR": [], "foreArmR": []}
+    prev = {}
+    for time, tl, tr in frames:
+        for side, name, target in ((-1, "L", tl), (1, "R", tr)):
+            a1, f = hand(side, target)
+            # sin saltos de 360° entre claves
+            if name in prev:
+                pa, pf = prev[name]
+                a1 = pa + _norm(a1 - pa)
+                f = pf + _norm(f - pf)
+            prev[name] = (a1, f)
+            t["arm" + name].append([r(time), r(a1)])
+            t["foreArm" + name].append([r(time), r(f)])
+    return t
+
+
+def mirror(p):
+    return (-p[0], p[1])
+
+
+# ---------------------------------------------------------------- caras (cejas, boca, mirada) y gestos nuevos
+# Huesos de la cara: `browL`/`browR` (giran: negativo = el extremo de dentro sube), `mouth` (la sonrisa; sy<0 la
+# vuelve un gesto triste), `jaw` (boca abierta: una lente casi plana que se agranda con sy) y `eyes.dx/dy` (mirada).
+WORRY, ANGRY = 15, 11
+
+
+def hold(dur, v):
+    return keys((0, v), (dur, v))
+
+
+def cycle(dur, vals):
+    """Valores repartidos a partes iguales en `dur` (el último vuelve al primero)."""
+    n = len(vals)
+    return keys(*[(dur * i / n, v) for i, v in enumerate(vals)], (dur, vals[0]))
+
+
+def brows(dur, rot=0.0, dy=0.0):
+    t = {}
+    if rot:
+        t["browL"] = hold(dur, -rot)
+        t["browR"] = hold(dur, rot)
+    if dy:
+        t["browL.dy"] = hold(dur, dy)
+        t["browR.dy"] = hold(dur, dy)
+    return t
+
+
+def open_mouth(dur, sy, sx=1.0, wobble=0.0, n=4):
+    """Boca abierta (con la línea de la sonrisa escondida); `wobble` la hace temblar o masticar."""
+    vals = [sy + (wobble if i % 2 else -wobble) for i in range(n)] if wobble else [sy]
+    return {"jaw.sy": cycle(dur, vals) if wobble else hold(dur, sy), "jaw.sx": hold(dur, sx), "mouth.sy": hold(dur, 0.01)}
+
+
+FACES = {
+    "idle": lambda d: {"eyes.dx": keys((0, 0), (0.9, -2.5), (1.3, -2.5), (1.6, 0), (2.2, 2.5), (2.6, 2.5), (3, 0))},
+    "wave": lambda d: {**brows(d, dy=-2), "mouth.sx": hold(d, 1.2)},
+    "cheer": lambda d: {**brows(d, dy=-4), **open_mouth(d, 4, 1.15, 1.0)},
+    "jump": lambda d: {**brows(d, dy=-5), **open_mouth(d, 5, 0.9)},
+    "surprised": lambda d: {**brows(d, dy=-7), **open_mouth(d, 6, 0.65)},
+    "scared": lambda d: {**brows(d, WORRY, -3), **open_mouth(d, 4.5, 0.9, 1.2), "eyes.dx": cycle(d, [-1.5, 1.5, -1.5, 1.5])},
+    "talk": lambda d: {**brows(d, dy=-1), "mouth.sy": cycle(d, [1, 0.35, 0.9, 0.3, 1, 0.45, 0.8, 0.3]),
+                       "jaw.sy": cycle(d, [1, 5, 1.5, 6, 1, 4.5, 2, 5.5]), "jaw.sx": hold(d, 0.95)},
+    "bow": lambda d: {"mouth.sx": hold(d, 1.15)},
+    "point": lambda d: {**brows(d, dy=-2), "mouth.sx": hold(d, 1.15)},
+    "sad": lambda d: {**brows(d, WORRY, 1), "mouth.sy": hold(d, -1.0), "mouth.dy": hold(d, 4), "mouth.sx": hold(d, 0.85)},
+    "think": lambda d: {"browL": hold(d, 6), "browR.dy": hold(d, -6), "mouth.sx": hold(d, 0.6), "mouth.dx": hold(d, 5),
+                        "eyes.dx": keys((0, 0), (0.5, -5), (d * 0.8, -5), (d, 0)), "eyes.dy": keys((0, 0), (0.5, -4), (d * 0.8, -4), (d, 0))},
+    "sneak": lambda d: {**brows(d, -ANGRY), "mouth.sx": hold(d, 0.6), "eyes.dx": cycle(d, [-5, 5, -5, 5])},
+    "laugh": lambda d: {**brows(d, dy=-3), **open_mouth(d, 5.5, 1.3, 0.8, 8)},
+    "sleep": lambda d: {"mouth.sx": hold(d, 0.55), "jaw.sy": cycle(d, [1.2, 2.4, 1.2, 2.0]), "jaw.sx": hold(d, 0.5)},
+    "offer": lambda d: {**brows(d, dy=-2), "mouth.sx": hold(d, 1.15)},
+    "no": lambda d: {**brows(d, -ANGRY), "mouth.sy": hold(d, -0.7), "mouth.dy": hold(d, 2)},
+    "clap": lambda d: {**brows(d, dy=-3), **open_mouth(d, 3.5, 1.1)},
+    "shiver": lambda d: {**brows(d, WORRY - 4), **open_mouth(d, 2.2, 0.8, 1.2, 8)},
+    "hug": lambda d: {**brows(d, dy=-2), "mouth.sx": hold(d, 1.3)},
+    "sit_sad": lambda d: {**brows(d, WORRY, 1), "mouth.sy": hold(d, -1.0), "mouth.dy": hold(d, 4), "mouth.sx": hold(d, 0.85)},
+    "climb": lambda d: {**brows(d, -ANGRY + 3), **open_mouth(d, 2.5, 0.8, 0.5)},
+    "hide": lambda d: {**brows(d, WORRY - 3, -1), "eyes.dx": keys((0, -5), (0.6 * d, -5), (0.7 * d, 5), (d, 5))},
+    "run": lambda d: {**brows(d, -6), **open_mouth(d, 2.2, 0.9, 0.5)},
+}
+
+NEW_CLIPS = {
+    # comer: la mano a la boca y a masticar
+    "eat": dict(dur=1.8, loop=True, tracks={
+        "armR": keys((0, 0), (0.3, -140), (0.6, -128), (0.9, -140), (1.2, -128), (1.5, -140), (1.8, 0)),
+        "armL": sine(1.8, 3, 0.2), "torso": sine(1.8, 1.2), "head": keys((0, 0), (0.3, 3), (1.5, 3), (1.8, 0)),
+        "root.dy": keys((0, 0), (0.45, -1), (0.9, 0), (1.35, -1), (1.8, 0)),
+        "eyes.sy": keys((0, 1), (0.3, 0.55), (1.5, 0.55), (1.8, 1)),
+        "mouth.sx": hold(1.8, 1.15), "mouth.sy": hold(1.8, 0.01),
+        "jaw.sy": keys((0, 1), (0.3, 1), (0.45, 3), (0.6, 1), (0.75, 3), (0.9, 1), (1.05, 3), (1.2, 1), (1.35, 3), (1.5, 1), (1.8, 1)),
+        "browL.dy": hold(1.8, -1), "browR.dy": hold(1.8, -1)}),
+    # soplar la sopa: se inclina, los labios en «o» pequeña
+    "blow": dict(dur=2.2, loop=True, tracks={
+        "armL": keys((0, 0), (0.4, 62), (1.8, 62), (2.2, 0)), "armR": keys((0, 0), (0.4, -62), (1.8, -62), (2.2, 0)),
+        "torso": keys((0, 0), (0.4, 4), (1.8, 4), (2.2, 0)), "head": keys((0, 0), (0.4, 7), (1.8, 7), (2.2, 0)),
+        "head.dy": keys((0, 0), (0.4, 3), (1.8, 3), (2.2, 0)),
+        "eyes.sy": keys((0, 1), (0.4, 0.55), (1.8, 0.55), (2.2, 1)),
+        "jaw.sx": hold(2.2, 0.5), "mouth.sy": hold(2.2, 0.01),
+        "jaw.sy": keys((0, 1), (0.5, 4), (0.8, 2), (1.1, 4), (1.4, 2), (1.7, 4), (2.2, 1)),
+        "browL.dy": hold(2.2, -1), "browR.dy": hold(2.2, -1)}),
+    # orgulloso: pecho fuera, barbilla arriba, brazos separados
+    "proud": dict(dur=2.4, loop=True, tracks={
+        "armL": keys((0, 0), (0.4, 38), (2.0, 38), (2.4, 0)), "armR": keys((0, 0), (0.4, -38), (2.0, -38), (2.4, 0)),
+        "torso.sy": keys((0, 1), (0.4, 1.04), (2.0, 1.04), (2.4, 1)), "torso": sine(2.4, 0.8),
+        "head": keys((0, 0), (0.4, -5), (2.0, -5), (2.4, 0)), "root.dy": keys((0, 0), (1.2, -2), (2.4, 0)),
+        "eyes.sy": keys((0, 1), (0.4, 0.75), (2.0, 0.75), (2.4, 1)), "mouth.sx": hold(2.4, 1.25),
+        "browL.dy": hold(2.4, -2), "browR.dy": hold(2.4, -2), "eyes.dx": keys((0, 0), (1.2, 3), (2.4, 0))}),
+    # bostezo: la mano a la boca, ojos cerrados, cabeza atrás
+    "yawn": dict(dur=3.2, loop=True, tracks={
+        "armR": keys((0, 0), (0.6, -142), (2.4, -142), (3.2, 0)), "armL": sine(3.2, 2, 0.3),
+        "head": keys((0, 0), (0.6, -6), (2.2, -6), (3.2, 0)), "torso.sy": keys((0, 1), (0.8, 1.04), (2.0, 1.04), (3.2, 1)),
+        "eyes.sy": keys((0, 1), (0.6, 0.12), (2.6, 0.12), (3.2, 0.6)),
+        "jaw.sy": keys((0, 1), (0.6, 1), (1.0, 7), (2.2, 7), (2.7, 1), (3.2, 1)),
+        "jaw.sx": hold(3.2, 1.3), "mouth.sy": hold(3.2, 0.01),
+        "browL.dy": keys((0, 0), (1.0, 2), (2.2, 2), (3.2, 0)), "browR.dy": keys((0, 0), (1.0, 2), (2.2, 2), (3.2, 0))}),
+    # asombro: mira hacia arriba con la boca en «o»
+    "wonder": dict(dur=2.4, loop=True, tracks={
+        "head": keys((0, 0), (0.4, -8), (2.0, -8), (2.4, 0)), "torso": keys((0, 0), (0.4, -2), (2.0, -2), (2.4, 0)),
+        "armL": keys((0, 0), (0.4, 24), (2.0, 24), (2.4, 0)), "armR": keys((0, 0), (0.4, -24), (2.0, -24), (2.4, 0)),
+        "root.dy": keys((0, 0), (1.2, -2), (2.4, 0)),
+        "eyes.sy": hold(2.4, 1.25), "eyes.dy": keys((0, 0), (0.4, -4), (2.0, -4), (2.4, 0)),
+        "jaw.sy": hold(2.4, 4), "jaw.sx": hold(2.4, 0.8), "mouth.sy": hold(2.4, 0.01),
+        "browL.dy": hold(2.4, -6), "browR.dy": hold(2.4, -6)}),
+}
+CLIPS.update(NEW_CLIPS)
+
+N = None
+ARM_POSES = {
+    "wave": lambda d: arms(d, [(0, N, N), (0.3, N, (56, -184)), (0.6, N, (68, -174)), (0.9, N, (56, -184)),
+                               (1.2, N, (68, -174)), (1.5, N, (56, -184)), (d, N, N)]),
+    "surprised": lambda d: arms(d, [(0, N, N), (0.12, (-30, -170), (30, -170)), (1.2, (-30, -170), (30, -170)), (d, N, N)]),
+    "scared": lambda d: arms(d, [(0, (-26, -164), (26, -164)), (0.125, (-29, -168), (29, -168)),
+                                 (0.25, (-26, -164), (26, -164)), (0.375, (-29, -168), (29, -168)), (d, (-26, -164), (26, -164))]),
+    "talk": lambda d: arms(d, [(0, N, N), (0.3, N, (60, -120)), (0.7, (-58, -118), (52, -134)),
+                               (1.1, (-50, -130), (60, -118)), (1.4, N, (48, -128)), (d, N, N)]),
+    "think": lambda d: arms(d, [(0, N, N), (0.4, (-4, -118), (10, -160)), (2.6, (-4, -118), (10, -160)), (d, N, N)]),
+    "sad": lambda d: arms(d, [(0, (-10, -102), (10, -102)), (1.6, (-12, -104), (12, -104)), (d, (-10, -102), (10, -102))]),
+    "laugh": lambda d: arms(d, [(0, (-14, -112), (14, -112)), (0.4, (-16, -108), (16, -108)), (d, (-14, -112), (14, -112))]),
+    "clap": lambda d: arms(d, [(0, (-4, -124), (4, -124)), (0.3, (-26, -120), (26, -120)), (d, (-4, -124), (4, -124))]),
+    "shiver": lambda d: arms(d, [(0, (4, -132), (-4, -132)), (0.1, (8, -130), (-8, -130)), (0.2, (4, -132), (-4, -132)),
+                                 (0.3, (8, -130), (-8, -130)), (d, (4, -132), (-4, -132))]),
+    "hide": lambda d: arms(d, [(0, (-16, -182), (16, -182)), (d, (-16, -182), (16, -182))]),
+    "proud": lambda d: arms(d, [(0, N, N), (0.4, (-46, -98), (46, -98)), (2.0, (-46, -98), (46, -98)), (d, N, N)]),
+    "eat": lambda d: arms(d, [(0, N, N), (0.3, (-6, -118), (12, -164)), (0.6, (-6, -118), (24, -150)), (0.9, (-6, -118), (12, -164)),
+                              (1.2, (-6, -118), (24, -150)), (1.5, (-6, -118), (12, -164)), (d, N, N)]),
+    "yawn": lambda d: arms(d, [(0, N, N), (0.6, N, (14, -168)), (2.4, N, (14, -168)), (d, N, N)]),
+    "blow": lambda d: arms(d, [(0, N, N), (0.4, (-14, -118), (14, -118)), (1.8, (-14, -118), (14, -118)), (d, N, N)]),
+    "wonder": lambda d: arms(d, [(0, N, N), (0.4, (-58, -150), (58, -150)), (2.0, (-58, -150), (58, -150)), (d, N, N)]),
+}
+for _name, _arm in ARM_POSES.items():
+    CLIPS[_name]["tracks"].update(_arm(CLIPS[_name]["dur"]))
+CLIPS["cheer"]["tracks"].update({"foreArmL": keys((0, 0), (0.25, -8), (0.6, -28), (0.9, -8), (1.2, 0)),
+                                 "foreArmR": keys((0, 0), (0.25, 8), (0.6, 28), (0.9, 8), (1.2, 0))})
+# un poco de holgura natural en el codo, en reposo y al caminar
+CLIPS["idle"]["tracks"].update({"foreArmL": hold(3.0, -7), "foreArmR": hold(3.0, 7)})
+CLIPS["walk"]["tracks"].update({"foreArmL": sine(0.8, -9, 0.25), "foreArmR": sine(0.8, -9, 0.25)})
+for _name, _face in FACES.items():
+    _c = CLIPS[_name]
+    for _k, _v in _face(_c["dur"]).items():
+        _c["tracks"].setdefault(_k, _v)
+
+
 def steam(offset, dur=3.0, rise=62):
     """Una nube de vapor que sube, crece y se disuelve; `offset` desfasa cada nube. Bucle sin costuras."""
     n = 12

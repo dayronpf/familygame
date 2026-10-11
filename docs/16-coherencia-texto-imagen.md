@@ -91,6 +91,35 @@ torre» y la «puerta de la cabaña» dibujados como un prado. Lo que se añadi�
 * **«La soga no sé qué es»:** la cuerda era una línea de color al nivel de la cintura que cruzaba a otros personajes y colgaba suelta.
   Ahora lleva vuelta y nudo en la cintura, y en la escena del regreso el héroe y su ayudante van juntos.
 
+### 6. Cuentos para 2–3 y 4–5 años y expresiones (ronda 12)
+
+La revisión con imágenes de los nueve cuentos nuevos (hojas de contacto, escena a escena) encontró y corrigió:
+
+| Qué se veía | Arreglo |
+|---|---|
+| La manta parecía un filete (roja, con rayas) | Manta a cuadros azul con franjas crema y mostaza y flecos |
+| La taza tenía un líquido verde (era té) | `taza_leche`, blanca; la taza sigue sobre la mesa mientras se cuenta que se derrama |
+| Las piedras del río estaban en la hierba y el héroe flotaba | Piedras **en el agua** (`lift`), el héroe las pisa y Lía espera en la otra orilla, más pequeña y alzada |
+| «Un gigante» que nunca se veía | `sombra_gigante` (silueta alta de brazos largos) y, al descubrir qué es, `capa` con su sombrero |
+| El héroe «trepaba» en el aire delante del castillo | La subida se cuenta dentro del campanario, con los pies en el suelo |
+| La cabrita ampliada despegaba las patas del cuerpo | El primer plano usa `goat_idle` |
+
+**Poses y expresiones por acción** (`tools/art/medieval_kit.py`, `make_clips.py`): hasta ahora cada acción era un cuerpo con brazos
+rectos y una cara fija. Ahora:
+
+* **Cara animable.** Cejas (`browL`/`browR`, giran: «preocupado»/«decidido»), boca (`mouth`, con `sy < 0` es un gesto triste), boca
+  abierta (`jaw`, una «D» que se agranda para hablar, reír o asombrarse) y mirada (`eyes.dx/dy`). Cada acción tiene su cara: asombro
+  con cejas arriba y boca en «o», risa con boca abierta y ojos entornados, tristeza con cejas caídas y boca invertida, pensar con la
+  mirada arriba y una ceja alzada, sigilo con cejas fruncidas y ojos que vigilan, hablar con la boca siguiendo las sílabas.
+* **Brazos con codo** (`foreArmL/R`). Los clips indican *dónde va la mano* y `hand()` calcula hombro y codo (cinemática inversa de
+  dos huesos, al generar): saludar con el antebrazo, aplaudir con las manos juntas, la mano en la barbilla para pensar, a la boca
+  para comer o bostezar, en las caderas para el orgullo, en las mejillas para el susto. El arma sigue erguida compensando también el codo.
+* **Clips nuevos:** `eat`, `blow` (soplar la sopa), `yawn`, `proud`, `wonder`. Los cuentos nuevos los usan donde el texto lo cuenta
+  (comer, soplar, asombrarse al ver la aldea desde la torre).
+
+Se revisan con `app/test/render_poses_manual_test.dart` (`POSES_OUT=… POSES_RIGS=aldo,mara,rosa,zafiro`): una imagen de cuerpo y una de
+cara por animación y personaje.
+
 ## Cómo se revisa (a ojo, con el mismo pintor que la app)
 
 ```

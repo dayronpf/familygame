@@ -88,7 +88,9 @@ def node(id_, pivot, shapes=(), pre=(), post=()):
 
 
 # ------------------------------------------------------------------ cabeza
-def head_shapes(s):
+def head_parts(s):
+    """La cabeza en capas, cada una un hueso para poder actuar: cara, cada ceja, boca, boca abierta (`jaw`) y
+    lo que va por encima (barba y sombrero)."""
     sh = []
     hat = s.get("hat")
     # --- detrás de la cara
@@ -124,18 +126,22 @@ def head_shapes(s):
           "determined": ("M-24,-204 L-8,-203", "M8,-203 L24,-204"),
           "sleepy": ("M-24,-202 Q-16,-199 -8,-202", "M8,-202 Q16,-199 24,-202"),
           "worried": ("M-25,-198 Q-16,-206 -8,-206", "M8,-206 Q16,-206 25,-198")}[brow]
-    if hat != "helmet":
-        for d in bs:
-            sh.append(S(d, None, mix(s["palette"].get("hair", "#4a3426"), DARK, 0.2) if not hat == "hood" else "#f3e6c8", 3.4))
+    brow_col = mix(s["palette"].get("hair", "#4a3426"), DARK, 0.2) if not hat == "hood" else "#f3e6c8"
+    brows = [[S(d, None, brow_col, 3.4)] if hat != "helmet" else [] for d in bs]
     # --- boca
     mouth = s.get("mouth", "smile")
     md = {"smile": "M-10,-168 Q0,-158 10,-168", "flat": "M-9,-166 L9,-166",
           "smirk": "M-10,-165 Q2,-162 10,-170", "frown": "M-10,-162 Q0,-170 10,-162",
           "open": None}[mouth]
     if md:
-        sh.append(S(md, None, DARK, 3.2))
+        mouth_sh = [S(md, None, DARK, 3.2)]
     else:
-        sh.append(S("M-9,-170 Q0,-152 9,-170 Z", "#7a1f2e", DARK, 2.5))
+        mouth_sh = [S("M-9,-170 Q0,-152 9,-170 Z", "#7a1f2e", DARK, 2.5)]
+    # --- boca abierta: una «D» casi plana que las animaciones agrandan (sy) para hablar, reír o asombrarse
+    jaw = [S("M-8.5,-168 L8.5,-168 Q0,-165.2 -8.5,-168 Z", "#7a1f2e", None, 0), S(ell(0, -166.6, 4.2, 0.8), "#e8788a", None, 0)]
+    gear = []
+    sh_face = sh
+    sh = gear
     # --- barba / bigote
     if s.get("beard"):
         sh.append(S("M-43,-176 C-52,-118 52,-118 43,-176 C36,-166 20,-170 0,-160 C-20,-170 -36,-166 -43,-176 Z", "$beard"))
@@ -197,7 +203,13 @@ def head_shapes(s):
     elif hat == "beret":
         sh.append(S("M-52,-214 C-46,-254 40,-262 60,-234 C58,-214 -30,-204 -52,-214 Z", "$hat"))
         sh.append(S("M54,-238 C86,-266 104,-252 114,-228 C98,-246 82,-242 56,-228 Z", "$gold"))
-    return sh
+    return {"face": sh_face, "browL": brows[0], "browR": brows[1], "mouth": mouth_sh, "jaw": jaw, "gear": gear}
+
+
+def head_shapes(s):
+    """La cabeza entera en una lista (el orden de dibujo de siempre)."""
+    p = head_parts(s)
+    return p["face"] + p["browL"] + p["browR"] + p["mouth"] + p["gear"]
 
 
 def eyes_shapes(s):
@@ -287,16 +299,18 @@ def leg_shapes(cx, s):
 
 
 def arm_shapes(side, s):
+    """El brazo en dos huesos: la parte de arriba (hombro) y el antebrazo con la mano (codo en y = -114)."""
     sx = 36 * side  # +1 derecha del espectador
     sleeve = "$metal" if s.get("outfit") == "armor" else "$primary"
-    sh = [S(rrect(sx - 10, -148, 20, 54, 10), sleeve), shade(rrect(sx + 2, -146, 8, 50, 4))]
+    upper = [S(rrect(sx - 10, -148, 20, 42, 10), sleeve), shade(rrect(sx + 2, -146, 8, 38, 4))]
     if s.get("outfit") == "armor":
-        sh.append(S(ell(sx, -144, 14, 11), "$metal"))
-        sh.append(shine(ell(sx - 4, -148, 5, 3)))
-    sh.append(S(ell(sx, -92, 10, 10), "$skin"))
+        upper.append(S(ell(sx, -144, 14, 11), "$metal"))
+        upper.append(shine(ell(sx - 4, -148, 5, 3)))
+    fore = [S(rrect(sx - 9.5, -120, 19, 30, 9.5), sleeve), shade(rrect(sx + 2, -118, 7.5, 26, 4)),
+            S(ell(sx, -92, 10, 10), "$skin")]
     it = []
     item = s.get("hold_r") if side > 0 else s.get("hold_l")
-    sh, arm_only = it, sh
+    sh, arm_only = it, (upper, fore)
     if item == "sword":
         sh += [S(rrect(sx - 4.5, -196, 9, 100, 4), "#e8eef5"), shine(rrect(sx - 2, -190, 2.5, 80, 1)),
                S(rrect(sx - 16, -104, 32, 8, 4), "$gold"), S(ell(sx, -86, 5, 5), "$gold")]
@@ -326,13 +340,19 @@ def build(spec):
     s = spec
     armL, itemL = arm_shapes(-1, s)
     armR, itemR = arm_shapes(+1, s)
+    hp = head_parts(s)
     torso = node("torso", (0, -75),
                  pre=back_shapes(s) and [node("back", (0, -75), shapes=back_shapes(s))] or [],
                  shapes=torso_shapes(s),
-                 post=[node("armL", (-36, -140), shapes=armL, post=[node("itemL", (-36, -92), shapes=itemL)]),
-                       node("head", (0, -150), shapes=head_shapes(s),
-                            post=[node("eyes", (0, -188), shapes=eyes_shapes(s))]),
-                       node("armR", (36, -140), shapes=armR, post=[node("itemR", (36, -92), shapes=itemR)])])
+                 post=[node("armL", (-36, -140), shapes=armL[0], post=[node("foreArmL", (-36, -114), shapes=armL[1], post=[node("itemL", (-36, -92), shapes=itemL)])]),
+                       node("head", (0, -150), shapes=hp["face"],
+                            post=[node("eyes", (0, -188), shapes=eyes_shapes(s)),
+                                  node("browL", (-16, -204), shapes=hp["browL"]),
+                                  node("browR", (16, -204), shapes=hp["browR"]),
+                                  node("mouth", (0, -167), shapes=hp["mouth"]),
+                                  node("gear", (0, -150), shapes=hp["gear"]),
+                                  node("jaw", (0, -168), shapes=hp["jaw"])]),
+                       node("armR", (36, -140), shapes=armR[0], post=[node("foreArmR", (36, -114), shapes=armR[1], post=[node("itemR", (36, -92), shapes=itemR)])])])
     root = node("root", (0, -75),
                 pre=[node("legL", (-14, -78), shapes=leg_shapes(-14, s)),
                      node("legR", (14, -78), shapes=leg_shapes(14, s))],

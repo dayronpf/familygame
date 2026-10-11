@@ -68,11 +68,41 @@ familias por grupo):
 * `measureStory` mide palabras, oraciones y minutos; `StoryMetrics.fits(perfil)` compara.
 * Cada premisa declara `ages` (en `pack.json`; el esquema y el validador lo comprueban). `StoryOptions(age: …)` elige solo las
   premisas de ese perfil; **si no hay cuentos de esa edad se usan los del perfil más cercano** (`Pack.resolveAge`) y la app lo dice.
-* **Medida real:** los seis cuentos del Reino de la Luna tienen 580–930 palabras y 8,3–11,9 palabras por oración → todos son
-  **6–8**, y así están declarados. Ninguno sirve para 2–3 ni 4–5 (tienen peligro: perderse de noche, un villano, un trueno). Una
-  prueba lo exige para todas las versiones posibles.
-* Por eso, hoy, elegir 2–3, 4–5 o 9–12 da igual cuentos 6–8 con la **velocidad de voz** de esa edad, y el wizard y Ajustes lo
-  avisan sin disimular («algunos tienen sustos suaves: mejor leerlos juntos»). Escribir cuentos para 2–3 y 4–5 es trabajo editorial pendiente.
+* **Medida real** (`test/age_test.dart`, para todas las versiones posibles de cada cuento):
+
+  | Edad | Cuentos | Palabras | Oración media | Oración más larga |
+  |---|---|---|---|---|
+  | 2–3 | `cabrita`, `piedras`, `taza` | 175–190 | 6,5–7,4 | ≤ 17 |
+  | 4–5 | `linterna_teo`, `manta_lia`, `campana_mediodia`, `panecillo`, `sombras`, `sopa` | 296–353 | 7,5–9,4 | ≤ 20 |
+  | 6–8 | `campana`, `olla`, `linterna`, `pozo`, `girasol`, `puente` | 580–930 | 8,3–11,9 | ≤ 32 |
+
+  Cada edad tiene al menos un cuento por enseñanza (honestidad, generosidad, valentía) y una prueba lo exige.
+* **Reglas del validador por edad** (`_checkAge`, además de las de siempre): palabras del perfil con un margen del 15 %, oración media y
+  oración máxima (el doble de la típica), **sin villano** en 2–5, vocabulario (2–3 sin «miedo», «oscuro», «llorar», «perdido»…; 4–5 sin
+  monstruos ni peligro de verdad) y el último párrafo **nunca termina en pregunta** (para dormir se cierra en calma).
+* **La enseñanza se dice según la edad:** cada enseñanza trae `simple` con una frase para 2–3 y otra para 4–5
+  («Decir la verdad hace el corazón ligero» / «Cuando decimos la verdad, el corazón se siente ligero»). `Story.moralLine` es la que se
+  lee, se narra y se comparte; en 6–8 sigue la de siempre.
+* **Cómo escribir un cuento pequeño:** ritmo corto y repetición («Un pasito… otro pasito»), onomatopeyas, un solo problema, una
+  emoción que se nombra y se resuelve en la misma escena, y el héroe con *una* ayuda (un amigo o un objeto, nunca un villano). Las
+  premisas usan solo personajes y objetos que ya tienen arte; los 2–3 caben en 5–6 escenas y los 4–5 en 6–8.
+* Cuando una edad no tiene cuentos de una enseñanza se usa la más cercana (`resolveAge`); hoy **9–12 sigue sin cuentos propios** y
+  recibe los de 6–8 con su voz y velocidad.
+
+## 3 bis. El nombre del niño como protagonista
+
+* `StoryOptions(heroName:, heroGender:)`: el héroe lleva el nombre del niño (`Character.withGiven`) en el texto, el título, la voz y
+  el dibujo sigue siendo el de Aldo o Mara según el género elegido (`m`/`f`; sin género decide la semilla). La gramática (`{hero.o}`,
+  «contenta»/«contento») sigue al héroe elegido.
+* `normalizeChildName`: quita cifras, emojis y signos, junta espacios, pone mayúscula inicial en cada palabra (también tras un guion)
+  y corta a 16 letras. Lo vacío o sin letras no es un nombre.
+* Si el niño se llama como otro personaje del pack (Lía, Zafiro, Mara…), ese personaje no se elige para las demás ranuras: nunca
+  salen dos iguales. Ningún héroe del pack se cuela en el texto (prueba sobre 300 semillas × 3 edades).
+* **Privacidad:** el nombre y el género viven en `ChildProfile` (solo en el teléfono) y en el estante local (para volver a contar el
+  cuento igual). **Nunca entran en `StoryRecipe`**: la receta con y sin nombre es idéntica y la valoración no lo lleva
+  (`test/names_test.dart`).
+* App: el wizard tiene un paso «¿Cómo se llama el niño?» (opcional) con «Un niño / Una niña / Que decida el cuento»; Ajustes tiene
+  los mismos campos. Los estantes antiguos (sin edad ni nombre) se siguen leyendo.
 
 ## 4. Wizard de primer uso y Ajustes
 
