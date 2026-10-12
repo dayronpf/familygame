@@ -22,6 +22,9 @@ class Palette {
     'honestidad': Color(0xFF5DA9FF),
     'generosidad': Color(0xFFFF8FB1),
     'valentia': Color(0xFFFF9F5A),
+    'humildad': Color(0xFF7ED6A1),
+    'perseverancia': Color(0xFFFFD166),
+    'amistad': Color(0xFF6FE3D0),
   };
   static const Color surprise = Color(0xFFB48CFF);
 }

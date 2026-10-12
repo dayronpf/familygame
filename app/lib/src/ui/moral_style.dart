@@ -20,6 +20,12 @@ class MoralStyle {
         MoralStyle(Color(0xFFFF8FB1), Icons.volunteer_activism, 'Compartir'),
     'valentia': MoralStyle(
         Color(0xFFFF9F5A), Icons.shield_outlined, 'Dar el primer paso'),
+    'humildad':
+        MoralStyle(Color(0xFF7ED6A1), Icons.spa_outlined, 'Pedir ayuda'),
+    'perseverancia':
+        MoralStyle(Color(0xFFFFD166), Icons.trending_up, 'Intentarlo otra vez'),
+    'amistad': MoralStyle(
+        Color(0xFF6FE3D0), Icons.people_outline, 'Cuidar a los amigos'),
   };
 
   static MoralStyle of(String id) =>

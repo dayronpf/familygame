@@ -38,7 +38,7 @@ const List<PackInfo> packCatalog = [
     tagline: 'Castillos, magos y valientes',
     description:
         'Cuentos de un reino medieval: campanas rotas, linternas apagadas, puentes que crujen y '
-        'semillas que se vuelven soles. Con enseñanzas de honestidad, generosidad y valentía.',
+        'semillas que se vuelven soles. Con enseñanzas de honestidad, generosidad, valentía, humildad, perseverancia y amistad.',
     icon: Icons.castle_outlined,
     colors: [Color(0xFF6B4FD8), Color(0xFF3B2A8A)],
     status: PackStatus.available,

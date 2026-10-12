@@ -94,6 +94,9 @@
   "medieval/scenes/casa.json",
   "medieval/scenes/cuarto.json",
   "medieval/scenes/campanario.json",
+  "medieval/scenes/colina.json",
+  "medieval/scenes/huerto.json",
+  "medieval/scenes/lago.json",
   "medieval/scenes/aldea__amanecer.json",
   "medieval/scenes/aldea__amanecer__invierno.json",
   "medieval/scenes/aldea__amanecer__otono.json",
@@ -117,11 +120,20 @@
   "medieval/scenes/campanario__dia.json",
   "medieval/scenes/castle_night__atardecer.json",
   "medieval/scenes/castle_night__dia.json",
+  "medieval/scenes/colina__atardecer.json",
+  "medieval/scenes/colina__dia.json",
+  "medieval/scenes/colina__noche.json",
   "medieval/scenes/cuarto__dia.json",
   "medieval/scenes/cuarto__dia__invierno.json",
   "medieval/scenes/cuarto__dia__primavera.json",
   "medieval/scenes/cuarto__noche__invierno.json",
   "medieval/scenes/cuarto__noche__primavera.json",
+  "medieval/scenes/huerto__atardecer.json",
+  "medieval/scenes/huerto__dia.json",
+  "medieval/scenes/huerto__noche.json",
+  "medieval/scenes/lago__atardecer.json",
+  "medieval/scenes/lago__dia.json",
+  "medieval/scenes/lago__noche.json",
   "medieval/scenes/rio__atardecer.json",
   "medieval/scenes/rio__dia.json",
   "medieval/scenes/rio__noche.json",
@@ -307,6 +319,54 @@
     "noche": "campanario",
     "dia": "campanario__dia",
     "atardecer": "campanario__atardecer"
+   }
+  },
+  "colina": {
+   "scene": "colina",
+   "view": [
+    0,
+    0,
+    640,
+    480
+   ],
+   "floor": 410,
+   "scale": 0.6,
+   "looks": {
+    "dia": "colina__dia",
+    "atardecer": "colina__atardecer",
+    "noche": "colina__noche"
+   }
+  },
+  "huerto": {
+   "scene": "huerto",
+   "view": [
+    0,
+    0,
+    640,
+    480
+   ],
+   "floor": 410,
+   "scale": 0.6,
+   "looks": {
+    "dia": "huerto__dia",
+    "atardecer": "huerto__atardecer",
+    "noche": "huerto__noche"
+   }
+  },
+  "lago": {
+   "scene": "lago",
+   "view": [
+    0,
+    0,
+    640,
+    480
+   ],
+   "floor": 410,
+   "scale": 0.6,
+   "looks": {
+    "dia": "lago__dia",
+    "atardecer": "lago__atardecer",
+    "noche": "lago__noche"
    }
   }
  }

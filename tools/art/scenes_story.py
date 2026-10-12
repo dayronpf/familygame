@@ -210,6 +210,99 @@ def rio(with_bridge=True, sid="rio", name="Río de plata"):
     return scene(sid, name, grads, [sky, far, water, near])
 
 
+# ------------------------------------------------------------------ colina
+def colina():
+    """Una colina con un roble y un camino que sube; al fondo, las casitas de la aldea."""
+    grads = {"sky": lin([[0, "#3f86d6", 1], [0.6, "#8fd0f0", 1], [1, "#e8f6ff", 1]]),
+             "sun": {"type": "radial", "stops": [[0, "#fff6c8", 0.85], [1, "#fff6c8", 0]]},
+             "grass": lin([[0, "#6cc070", 1], [1, "#2f7a48", 1]])}
+    sky = layer("sky", [full("@sky"), S(ell(500, 120, 120, 120), "@sun", None, 0), S(ell(500, 120, 30, 30), "#fff3c4", None, 0)])
+    village = sum([house(x, 292, w, h, "#e8d8b8", "#a8453f") for x, w, h in ((372, 28, 22), (410, 24, 18), (446, 30, 24))], [])
+    far = layer("far", [hills(236, 26, "#8fd29a", 21), hills(278, 20, "#5bb083", 22)] + village)
+    hill = S(f"M-20,{FLOOR + 36} C110,{FLOOR - 40} 260,{FLOOR - 92} 420,{FLOOR - 64} C520,{FLOOR - 46} 580,{FLOOR - 30} 680,{FLOOR - 52} "
+             f"L680,{H} L-20,{H} Z", "@grass", "#1e5e3a", 3)
+    path = [S(f"M150,{H} C210,{FLOOR + 24} 330,{FLOOR + 8} 366,{FLOOR - 26} C390,{FLOOR - 52} 430,{FLOOR - 66} 470,{FLOOR - 62}",
+              None, "#c9a870", 26, 0.95),
+            S(f"M150,{H} C210,{FLOOR + 24} 330,{FLOOR + 8} 366,{FLOOR - 26} C390,{FLOOR - 52} 430,{FLOOR - 66} 470,{FLOOR - 62}",
+              None, "#e8d3a8", 18, 0.95)]
+    mid = layer("mid", [hill] + path + oak(540, FLOOR - 40, 1.35, "#4aa86a", "#3a9460")
+                + [S(ell(x, FLOOR + y, 6, 4), c, None, 0) for x, y, c in
+                   [(60, 38, "#ff8fa3"), (240, 58, "#f4c542"), (430, 52, "#ffffff"), (590, 64, "#ff8fa3"), (120, 66, "#f4c542")]])
+    near = layer("near", [S(f"M0,{FLOOR + 30} C200,{FLOOR + 8} 420,{FLOOR + 44} {W},{FLOOR + 12} L{W},{H} L0,{H} Z", "#277a48", None, 0)],
+                 fireflies(8, 17, 240, 430))
+    return scene("colina", "Colina del roble", grads, [sky, far, mid, near])
+
+
+# ------------------------------------------------------------------ huerto
+def huerto():
+    """Huerto con bancales de coles y zanahorias, una valla de madera, un espantapájaros y un cobertizo."""
+    grads = {"sky": lin([[0, "#3f86d6", 1], [0.6, "#8fd0f0", 1], [1, "#f2f8ff", 1]]),
+             "sun": {"type": "radial", "stops": [[0, "#fff6c8", 0.85], [1, "#fff6c8", 0]]},
+             "soil": lin([[0, "#9a6a40", 1], [1, "#6a4426", 1]]),
+             "grass": lin([[0, "#6cc070", 1], [1, "#2f8a54", 1]])}
+    sky = layer("sky", [full("@sky"), S(ell(120, 110, 110, 110), "@sun", None, 0), S(ell(120, 110, 28, 28), "#fff3c4", None, 0)])
+    fence = [S(rrect(0, 268, W, 7, 2), "#b08a58", "#4a3018", 2), S(rrect(0, 288, W, 7, 2), "#b08a58", "#4a3018", 2)]
+    fence += [S(rrect(x, 254, 8, 56, 2), "#b08a58", "#4a3018", 2) for x in range(6, W, 52)]
+    shed = [S(rrect(486, 222, 96, 80, 3), "#c9a070", "#4a2c1a", 2.5), S(poly([(478, 224), (590, 224), (534, 186)]), "#a8453f", "#4a1a2a", 2.5),
+            S(rrect(514, 250, 36, 52, 3), "#5a3a2a", "#2a1a14", 2), S(rrect(496, 238, 16, 16, 2), "#ffd27a", "#5a3a14", 2)]
+    far = layer("far", [hills(236, 22, "#8fd29a", 41), hills(262, 14, "#5bb083", 43)] + shed + fence)
+    soil = S(f"M0,{FLOOR - 70} C160,{FLOOR - 86} 420,{FLOOR - 56} {W},{FLOOR - 78} L{W},{H} L0,{H} Z", "@soil", "#4a2c14", 3)
+    rows = []
+    for k, y in enumerate((FLOOR - 52, FLOOR - 22, FLOOR + 10, FLOOR + 44)):
+        rows.append(S(f"M-10,{y} C160,{y - 10} 420,{y + 8} {W + 10},{y - 4}", None, "#5a3a1e", 10, 0.55))
+        for i in range(9):
+            x = 36 + i * 68 + (k % 2) * 30
+            if k % 2 == 0:
+                rows += [S(ell(x, y - 6, 17, 13), "#78c868", "#2a6a30", 2), S(ell(x, y - 8, 9, 7), "#a8e090", None, 0, 0.8)]
+            else:
+                rows += [S(poly([(x - 10, y - 12), (x - 3, y - 20), (x, y - 6)]), "#5ab04a", None, 0),
+                         S(poly([(x + 10, y - 12), (x + 3, y - 20), (x, y - 6)]), "#5ab04a", None, 0),
+                         S(poly([(x - 4, y - 4), (x + 4, y - 4), (x, y + 6)]), "#f08a30", "#a04a10", 1.5)]
+    scare = [S(rrect(318, 236, 5, 70, 2), "#8a5a2b", "#3a2412", 2), S(rrect(292, 252, 58, 5, 2), "#8a5a2b", "#3a2412", 2),
+             S(poly([(298, 254), (344, 254), (338, 290), (304, 290)]), "#4a7ac8", "#1a3a68", 2),
+             S(ell(320, 234, 12, 12), "#e8c88a", "#6a4a22", 2), S(poly([(306, 230), (334, 230), (320, 212)]), "#8a5a2b", "#3a2412", 2)]
+    mid = layer("mid", [soil] + scare + rows)
+    near = layer("near", [S(f"M0,{FLOOR + 62} C200,{FLOOR + 44} 420,{FLOOR + 74} {W},{FLOOR + 52} L{W},{H} L0,{H} Z", "@grass", "#1e5e3a", 3)]
+                + [S(ell(x, FLOOR + y, 6, 4), c, None, 0) for x, y, c in [(70, 74, "#ff8fa3"), (300, 80, "#f4c542"), (560, 72, "#ffffff")]])
+    return scene("huerto", "Huerto", grads, [sky, far, mid, near])
+
+
+# -------------------------------------------------------------------- lago
+def lago():
+    """Un lago quieto con un embarcadero, juncos y la orilla de hierba en primer plano."""
+    grads = {"sky": lin([[0, "#3f7fd0", 1], [0.7, "#9fd6ff", 1], [1, "#e8f6ff", 1]]),
+             "sun": {"type": "radial", "stops": [[0, "#fff6c8", 0.85], [1, "#fff6c8", 0]]},
+             "water": lin([[0, "#7ac8e8", 1], [1, "#2a78b0", 1]]),
+             "grass": lin([[0, "#5cc070", 1], [1, "#2f8a54", 1]])}
+    sky = layer("sky", [full("@sky"), S(ell(480, 130, 110, 110), "@sun", None, 0), S(ell(480, 130, 28, 28), "#fff3c4", None, 0)])
+    far = layer("far", [hills(236, 24, "#8aa8c8", 51), hills(268, 18, "#5f9a8a", 52),
+                        S(poly([(60, 268), (130, 196), (200, 268)]), "#8a8fb0", "#4a4f70", 2.5),
+                        S(poly([(110, 214), (130, 196), (150, 218), (130, 224)]), "#ffffff", None, 0, 0.9)])
+    r = lcg(61)
+    ripples = []
+    for i in range(7):
+        x, y = 80 + i * 78, 300 + next(r) * 60
+        nd = node(f"rp{i}", (x, y), shapes=[S(f"M{n(x)},{n(y)} Q{n(x + 14)},{n(y - 6)} {n(x + 28)},{n(y)} Q{n(x + 42)},{n(y + 6)} {n(x + 56)},{n(y)}",
+                                              None, "#e8f6ff", 3, 0.8)])
+        nd["anim"] = [ambient("opacity", [0.2, 0.9, 0.2], 2.6, i * 0.5)]
+        ripples.append(nd)
+    water = layer("mid", [S(f"M0,284 L{W},284 L{W},{FLOOR - 24} C420,{FLOOR - 6} 220,{FLOOR - 36} 0,{FLOOR - 14} Z", "@water", "#124a7a", 3),
+                          S(ell(480, 330, 60, 8), "#fff6c8", None, 0, 0.35)], ripples)
+    pier = [S(rrect(30, 352, 190, 10, 3), "#8a6a46", "#3a2412", 2.5)] + [S(rrect(x, 362, 7, 46, 2), "#6a4a30", "#2a1a10", 2) for x in (44, 110, 176)]
+    boat = [S("M366,350 C378,372 446,372 458,350 Z", "#a8453f", "#4a1a1a", 2.5), S(rrect(409, 312, 3, 40, 1), "#6a4a22", None, 0),
+            S(poly([(412, 314), (412, 346), (446, 346)]), "#f4ecd8", "#6a5a3a", 2)]
+    reeds = []
+    for x in (560, 580, 600, 618):
+        reeds += [S(f"M{x},{FLOOR - 4} C{x - 4},{FLOOR - 40} {x + 3},{FLOOR - 64} {x + 1},{FLOOR - 84}", None, "#3a7a3a", 3.5),
+                  S(rrect(x - 3, FLOOR - 90, 7, 18, 3), "#8a5a2b", "#3a2412", 1.5)]
+    near = layer("near", [S(f"M0,{FLOOR - 10} C160,{FLOOR - 32} 380,{FLOOR - 2} {W},{FLOOR - 26} L{W},{H} L0,{H} Z", "@grass", "#1e5e3a", 3),
+                          S(f"M0,{FLOOR + 40} C200,{FLOOR + 20} 420,{FLOOR + 52} {W},{FLOOR + 24} L{W},{H} L0,{H} Z", "#277a48", None, 0)]
+                + pier + boat + reeds
+                + [S(ell(x, FLOOR + y, 6, 4), c, None, 0) for x, y, c in [(180, 52, "#ff8fa3"), (360, 64, "#f4c542"), (470, 46, "#ffffff")]],
+                fireflies(8, 71, 240, 420))
+    return scene("lago", "Lago", grads, [sky, far, water, near])
+
+
 # ------------------------------------------------------------------- aldea
 POZO_X, POZO_Y = 262, 396
 FLOWERS = [(540, 40, "#ff8fa3"), (590, 60, "#f4c542"), (20, 62, "#ffffff"), (500, 66, "#ffffff")]
@@ -515,8 +608,12 @@ PLACES = {
     "casa": {"scene": "casa", "view": [0, 0, W, H], "floor": FLOOR, "scale": SCALE},
     "cuarto": {"scene": "cuarto", "view": [0, 0, W, H], "floor": FLOOR, "scale": SCALE},
     "campanario": {"scene": "campanario", "view": [0, 0, W, H], "floor": FLOOR, "scale": SCALE},
+    "colina": {"scene": "colina", "view": [0, 0, W, H], "floor": FLOOR, "scale": SCALE},
+    "huerto": {"scene": "huerto", "view": [0, 0, W, H], "floor": FLOOR, "scale": SCALE},
+    "lago": {"scene": "lago", "view": [0, 0, W, H], "floor": FLOOR, "scale": SCALE},
 }
-BUILDERS = {"bosque": bosque, "cueva": cueva, "rio": rio, "vado": lambda: rio(False, "vado", "Vado del río"), "aldea": aldea, "casa": casa, "cuarto": cuarto, "campanario": campanario}
+BUILDERS = {"bosque": bosque, "cueva": cueva, "rio": rio, "vado": lambda: rio(False, "vado", "Vado del río"), "aldea": aldea, "casa": casa, "cuarto": cuarto, "campanario": campanario,
+            "colina": colina, "huerto": huerto, "lago": lago}
 
 
 # ------------------------------------------------- posiciones de los personajes
@@ -551,6 +648,9 @@ SKY_AT = {
     "bosque": dict(w=W, h=H, sun_x=470, sun_y_day=110, horizon=268),
     "rio": dict(w=W, h=H, sun_x=100, sun_y_day=120, horizon=255),
     "vado": dict(w=W, h=H, sun_x=100, sun_y_day=120, horizon=255),
+    "colina": dict(w=W, h=H, sun_x=500, sun_y_day=120, horizon=250),
+    "huerto": dict(w=W, h=H, sun_x=120, sun_y_day=110, horizon=245),
+    "lago": dict(w=W, h=H, sun_x=480, sun_y_day=130, horizon=250),
     "castillo": dict(w=600, h=800, sun_x=470, sun_y_day=150, horizon=560),
 }
 # El castillo base es nocturno: de día sus colinas violetas pasan a verdes
@@ -562,12 +662,15 @@ LOOKS = {
     "bosque": [(t, None) for t in ("dia", "atardecer", "noche")],
     "rio": [(t, None) for t in ("dia", "atardecer", "noche")],
     "vado": [(t, None) for t in ("dia", "atardecer", "noche")],
+    "colina": [(t, None) for t in ("dia", "atardecer", "noche")],
+    "huerto": [(t, None) for t in ("dia", "atardecer", "noche")],
+    "lago": [(t, None) for t in ("dia", "atardecer", "noche")],
     "castillo": [("dia", None), ("atardecer", None)],
     "campanario": [("dia", None), ("atardecer", None)],
     "cuarto": [("dia", None), ("dia", "invierno"), ("dia", "primavera"), ("noche", "invierno"), ("noche", "primavera")],
 }
 # Hora del fondo base de cada lugar (la que se usa si el cuento no dice nada)
-BASE_TIME = {"campanario": "noche", "aldea": "atardecer", "bosque": "dia", "rio": "dia", "vado": "dia", "castillo": "noche", "cuarto": "noche", "casa": "noche"}
+BASE_TIME = {"campanario": "noche", "aldea": "atardecer", "bosque": "dia", "rio": "dia", "vado": "dia", "colina": "dia", "huerto": "dia", "lago": "dia", "castillo": "noche", "cuarto": "noche", "casa": "noche"}
 
 
 def write_scene(out, data):
