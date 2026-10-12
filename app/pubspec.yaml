@@ -1,7 +1,7 @@
 name: caldero_app
 description: "Cuentos originales con enseñanza, narrados y animados."
 publish_to: 'none'
-version: 0.6.2+10
+version: 0.7.0+11
 
 environment:
   sdk: ^3.5.0
@@ -32,6 +32,8 @@ flutter:
     # Copias de content/packs/*; las sincroniza tools/sync_assets.sh y las verifica CI.
     - assets/packs/demo/
     - assets/packs/medieval/
+    # Política de privacidad y términos de uso (los sincroniza tools/sync_assets.sh desde content/legal/).
+    - assets/legal/
     # Guía en PDF (la genera tools/guide/make_holograma_pdf.py)
     - assets/guides/
     # Arte generado por código (art/): lo sincroniza tools/sync_assets.sh y lo verifica CI.
@@ -41,3 +43,4 @@ flutter:
     - assets/art/clips/
     # Sonido de fondo sintetizado por tools/audio/make_ambient.py.
     - assets/audio/
+    - assets/audio/sfx/

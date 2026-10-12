@@ -171,6 +171,20 @@ class StoryShelf extends ChangeNotifier {
     return _save();
   }
 
+  /// Lo que se guarda, tal cual (para «Ver mis datos»).
+  Map<String, Object?> exportJson() => {
+        'favorites': [for (final e in _favorites) e.toJson()],
+        'recent': [for (final e in _recent) e.toJson()],
+      };
+
+  /// Borra todos los cuentos guardados (de todos los niños).
+  Future<void> clearAll() {
+    _favorites = [];
+    _recent = [];
+    notifyListeners();
+    return _save();
+  }
+
   Future<void> load() async {
     if (_loaded) return;
     _loaded = true;

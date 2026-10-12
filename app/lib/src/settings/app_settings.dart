@@ -187,6 +187,7 @@ class AppSettings extends ChangeNotifier {
   int _active = 0;
   bool _wizardDone = false;
   bool _music = true;
+  bool _effects = true;
   double _musicVolume = 0.22;
   bool _loaded = false;
 
@@ -200,6 +201,9 @@ class AppSettings extends ChangeNotifier {
   ChildProfile get child => _profiles[_active];
   bool get music => _music;
 
+  /// Efectos de sonido del cuento («¡Cric!», «¡Beee!»…); por defecto sí.
+  bool get effects => _effects;
+
   /// Volumen del sonido de fondo (0–1); bajito para que mande la voz.
   double get musicVolume => _musicVolume;
 
@@ -212,6 +216,7 @@ class AppSettings extends ChangeNotifier {
         final j = jsonDecode(raw) as Map<String, Object?>;
         _wizardDone = j['wizard_completado'] == true;
         _music = j['musica'] != false;
+        _effects = j['efectos'] != false;
         _musicVolume =
             ((j['volumen_musica'] as num?) ?? 0.22).toDouble().clamp(0.0, 1.0);
         final list = [
@@ -334,6 +339,34 @@ class AppSettings extends ChangeNotifier {
     return gone.id;
   }
 
+  /// Lo que se guarda, tal cual (para «Ver mis datos»).
+  Map<String, Object?> exportJson() => {
+        'wizard_completado': _wizardDone,
+        'musica': _music,
+        'efectos': _effects,
+        'volumen_musica': _musicVolume,
+        'activo': _active,
+        'perfiles': [for (final p in _profiles) p.toJson()],
+      };
+
+  /// Borra todo lo guardado y vuelve al estado de la primera vez (el asistente de bienvenida vuelve a salir).
+  Future<void> resetAll() {
+    _profiles = [const ChildProfile()];
+    _active = 0;
+    _wizardDone = false;
+    _music = true;
+    _effects = true;
+    _musicVolume = 0.22;
+    notifyListeners();
+    return _save();
+  }
+
+  Future<void> setEffects(bool on) {
+    _effects = on;
+    notifyListeners();
+    return _save();
+  }
+
   Future<void> setMusic({bool? on, double? volume}) {
     if (on != null) _music = on;
     if (volume != null) _musicVolume = volume.clamp(0.0, 1.0);
@@ -364,6 +397,7 @@ class AppSettings extends ChangeNotifier {
   Future<void> _save() => _store.write(jsonEncode({
         'wizard_completado': _wizardDone,
         'musica': _music,
+        if (!_effects) 'efectos': false,
         'volumen_musica': _musicVolume,
         'activo': _active,
         'perfiles': [for (final p in _profiles) p.toJson()],

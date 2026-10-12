@@ -4,6 +4,7 @@ import 'package:flutter/scheduler.dart';
 
 import 'art/story_stage.dart';
 import 'audio/ambience.dart';
+import 'audio/sfx.dart';
 import 'audio_only_page.dart';
 import 'cinema_page.dart';
 import 'hologram_page.dart';
@@ -42,11 +43,13 @@ class StoryPage extends StatefulWidget {
     this.animate = true,
     this.narrator,
     this.ambience,
+    this.sfx,
   });
 
   /// Voz y fondo de los modos cine y holograma (por defecto, los del teléfono; las pruebas ponen mudos).
   final Narrator Function()? narrator;
   final Ambience Function()? ambience;
+  final Sfx Function()? sfx;
 
   final Story story;
 
@@ -177,6 +180,7 @@ class _StoryPageState extends State<StoryPage>
             setups: _setups,
             narrator: narrator,
             ambience: ambience,
+            sfx: widget.sfx?.call(),
           )
         : CinemaPage(
             story: _story,
@@ -185,6 +189,7 @@ class _StoryPageState extends State<StoryPage>
             setups: _setups,
             narrator: narrator,
             ambience: ambience,
+            sfx: widget.sfx?.call(),
             animate: widget.animate,
           );
     Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => page));
@@ -197,6 +202,7 @@ class _StoryPageState extends State<StoryPage>
         story: _flow?.finish() ?? _story,
         narrator: widget.narrator?.call(),
         ambience: widget.ambience?.call(),
+        sfx: widget.sfx?.call(),
       ),
     ));
   }

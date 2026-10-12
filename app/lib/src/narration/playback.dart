@@ -1,10 +1,11 @@
 import 'dart:async';
 
 import 'package:caldero_engine/caldero_engine.dart'
-    show StoryChoice, normalizeForVoice;
+    show SoundEffect, SpokenText, StoryChoice, normalizeForVoice, speechParts;
 import 'package:flutter/foundation.dart';
 
 import '../art/story_stage.dart';
+import '../audio/sfx.dart';
 import 'narrator.dart';
 
 /// Una escena para reproducir: su texto (que se narra y, en el modo cine, se muestra) y su dibujo.
@@ -49,6 +50,7 @@ class StoryPlayback extends ChangeNotifier {
     this.gap = const Duration(milliseconds: 700),
     this.narrate = true,
     this.resolve,
+    this.sfx,
     this.firstWait = const Duration(seconds: 20),
     this.secondWait = const Duration(seconds: 15),
   }) : scenes = List.of(scenes);
@@ -57,6 +59,10 @@ class StoryPlayback extends ChangeNotifier {
   final List<PlayScene> scenes;
   final Narrator narrator;
   final String? title;
+
+  /// Efectos de sonido de las frases («¡Cric!», «¡Beee!»…): la voz dice lo de alrededor y el efecto suena en su
+  /// sitio. Sin él, los efectos simplemente no se dicen.
+  final Sfx? sfx;
 
   /// Sigue el cuento con la opción elegida (`null` = que elija la app) y devuelve **todas** las escenas que
   /// vienen después de la pregunta (incluida la enseñanza final). Sin él, no se pregunta nada.
@@ -145,13 +151,17 @@ class StoryPlayback extends ChangeNotifier {
     _cancelBreath();
     _cancelAsk();
     notifyListeners();
+    unawaited(sfx?.stop());
     await narrator.stop();
   }
 
   Future<void> toggle() => _playing ? pause() : Future.sync(play);
 
   /// Volumen de la voz (fundido del temporizador de sueño).
-  Future<void> setVolume(double volume) => narrator.setVolume(volume);
+  Future<void> setVolume(double volume) {
+    sfx?.setLevel(volume);
+    return narrator.setVolume(volume);
+  }
 
   int _jump = 0; // el último salto es el que manda
   bool _resume = false; // había voz cuando se pidió saltar
@@ -171,6 +181,7 @@ class StoryPlayback extends ChangeNotifier {
     _finished = false;
     _playing = false;
     notifyListeners();
+    unawaited(sfx?.stop());
     await narrator.stop();
     if (token != _jump || _disposed) return;
     final resume = _resume;
@@ -187,6 +198,24 @@ class StoryPlayback extends ChangeNotifier {
     final voice = normalizeForVoice(s);
     if (voice.isEmpty) return Future.value();
     return narrate ? narrator.speak(voice) : TimedNarrator().speak(voice);
+  }
+
+  /// Una frase del cuento: la voz dice lo que hay entre los efectos de sonido y cada efecto suena en su sitio
+  /// («El viento la levantó, ¡fiuuu!, y subió» → voz, viento, voz). Sin [sfx], los efectos no suenan (ni se dicen).
+  Future<void> _sayStory(String s, int run) async {
+    final parts = speechParts(s);
+    if (parts.length == 1 && parts.first is SpokenText) {
+      return _say((parts.first as SpokenText).text);
+    }
+    for (final part in parts) {
+      if (!_alive(run)) return;
+      switch (part) {
+        case SpokenText(:final text):
+          await _say(text);
+        case SoundEffect(:final sound):
+          await sfx?.play(sound);
+      }
+    }
   }
 
   bool _alive(int run) => !_disposed && run == _run;
@@ -287,7 +316,7 @@ class StoryPlayback extends ChangeNotifier {
       final sc = scenes[_scene];
       while (_alive(run) && _sentence < sc.sentences.length) {
         notifyListeners();
-        await _say(sc.sentences[_sentence]);
+        await _sayStory(sc.sentences[_sentence], run);
         if (!_alive(run)) return;
         _sentence++;
       }
@@ -326,6 +355,7 @@ class StoryPlayback extends ChangeNotifier {
     _cancelBreath();
     _cancelAsk();
     narrator.stop();
+    sfx?.stop();
     super.dispose();
   }
 }

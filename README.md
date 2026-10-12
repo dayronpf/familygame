@@ -37,6 +37,8 @@ mientras avanza y puede proyectarse como **holograma** con una pirámide transpa
 | [docs/17-interfaz-para-ninos.md](docs/17-interfaz-para-ninos.md) | Interfaz para niños: splash, inicio, paquetes (los que llegarán, en gris), Mis cuentos, compartir y temporizador para dormir |
 | [docs/18-voz-edades-y-wizard.md](docs/18-voz-edades-y-wizard.md) | Voz (bug de adelantar, `texto_voz`), perfiles de edad, wizard de primer uso y Ajustes; lo diferido y por qué |
 | [docs/19-nombres-y-dominios.md](docs/19-nombres-y-dominios.md) | Nombres posibles del juego con su disponibilidad de dominio (.com, .app, .net, .org) y lo que falta comprobar (marca, tiendas) |
+| [docs/22-privacidad-y-tiendas.md](docs/22-privacidad-y-tiendas.md) | Qué datos guarda y envía la app, política de privacidad y términos (dentro de la app), «Ver mis datos»/«Borrar», y la lista de comprobación para las tiendas (Families Policy, etiqueta de privacidad) |
+| [docs/21-efectos-de-sonido.md](docs/21-efectos-de-sonido.md) | Los efectos de sonido del cuento (balido, crujido, chapoteo…): cómo se separan de la voz, los 18 archivos y sus licencias (todo CC0 o sintetizado) |
 | [docs/20-caminos-elegibles.md](docs/20-caminos-elegibles.md) | Valoración, diseño técnico y estado de «el niño decide»: una pregunta por cuento, tres ramas que vuelven al mismo desenlace, plan por fases y riesgos (sueño, privacidad). Fase 0 construida en v0.6.0 |
 | [docs/11-pipeline-de-arte-por-codigo.md](docs/11-pipeline-de-arte-por-codigo.md) | Arte generado por código (sin presupuesto ni herramientas de pago), pack medieval, 3D y límites |
 

@@ -132,6 +132,51 @@ void main() {
       );
     });
 
+    test('speechParts separa lo que se dice de los sonidos, en orden', () {
+      List<String> show(String t) => [
+            for (final p in speechParts(t))
+              switch (p) {
+                SpokenText(:final text) => text,
+                SoundEffect(:final sound) => '<$sound>',
+              },
+          ];
+      expect(
+        show('El viento la levantó, ¡fiuuu!, y subió.'),
+        ['El viento la levantó,', '<wind>', 'y subió.'],
+      );
+      expect(
+        show('Se oyó un balido: «¡beee!».'),
+        ['Se oyó un balido.', '<bleat>'],
+      );
+      expect(
+        show('¡Cric, cric! Crujió la rama.'),
+        ['<creak>', 'Crujió la rama.'],
+      );
+      expect(
+        show('Saltó: ¡hop! Saltó otra vez: ¡hop!'),
+        ['Saltó.', '<hop>', 'Saltó otra vez.', '<hop>'],
+      );
+      expect(
+        show('Sin ningún sonido, 3 faroles.'),
+        ['Sin ningún sonido, tres faroles.'],
+      );
+      expect(show('«¡Ay!», gritó Aldo.'), ['¡Ay! gritó Aldo.']);
+      expect(show('¡Plaf!'), ['<splash>']);
+    });
+
+    test('todos los sonidos de la lista tienen archivo', () {
+      final ids = spanishVoiceRules.soundEffects.values.toSet();
+      final files = Directory('../../app/assets/audio/sfx')
+          .listSync()
+          .map((f) => f.uri.pathSegments.last.replaceAll('.ogg', ''))
+          .toSet();
+      expect(
+        files.containsAll(ids),
+        isTrue,
+        reason: '${ids.difference(files)}',
+      );
+    });
+
     test('lo que dice un personaje no es un efecto de sonido', () {
       expect(normalizeForVoice('«¡Ay!», gritó Aldo.'), '¡Ay! gritó Aldo.');
       expect(

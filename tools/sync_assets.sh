@@ -17,6 +17,11 @@ for pack in "${PACKS[@]}"; do
   else rm -rf "$dst"; mkdir -p "$(dirname "$dst")"; cp -r "$src" "$dst"; fi
 done
 
+# --- textos legales (política de privacidad y términos de uso: se leen dentro de la app)
+dst=app/assets/legal
+if $check; then diff -r content/legal "$dst" >/dev/null || fail "$dst"
+else rm -rf "$dst"; mkdir -p "$(dirname "$dst")"; cp -r content/legal "$dst"; fi
+
 # --- arte (rigs, escenas, índice y clips; no las vistas previas ni las especificaciones)
 dst=app/assets/art
 if $check; then

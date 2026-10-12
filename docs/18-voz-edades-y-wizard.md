@@ -33,7 +33,7 @@ Pendiente de comprobar **en un teléfono real** (Android e iOS): la prueba imita
 normalizada; la pantalla conserva el texto original. Reglas, en este orden:
 
 0. **quita los efectos de sonido entre `¡ !`** (`¡Cric!`, `«¡Beee!»`, `¡Fuuush!`, `¡Plaf!`…; lista cerrada `soundEffects`): **la voz
-   no los dice**. Un motor de voz no sabe imitar un balido o un crujido y los lee como palabras raras; los efectos se ven en pantalla.
+   no los dice** (desde la v0.7.0 la app los **reproduce como sonido** en su sitio de la frase, ver [21](21-efectos-de-sonido.md)). Un motor de voz no sabe imitar un balido o un crujido y los lee como palabras raras; los efectos se ven en pantalla.
    Se arregla la puntuación que queda (`una ráfaga: ¡fuuu! La luz…` → `una ráfaga. La luz…`; `«¡Beee!», dijo…` → `Dijo…`). Lo que
    **dice un personaje** (`¡Ay!`, `¡Uf!`, `¡Ja!`, `¡Atrás!`) no está en la lista y se dice. **Regla de autoría:** el texto tiene que
    seguir teniendo sentido sin el efecto, así que se *describe* el sonido y el efecto va aparte («se oyó un balido: «¡beee!»», «el

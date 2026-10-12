@@ -86,6 +86,24 @@ class FeedbackService {
     }
   }
 
+  /// Lo que hay guardado sin enviar (para «Ver mis datos»).
+  Future<Map<String, Object?>> exportJson() async => {
+        'enviar_valoraciones': await enabled,
+        'valoraciones_pendientes': await store.readQueue(),
+        'cuentos_por_valorar': [
+          for (final p in await store.readPending()) p.toJson(),
+        ],
+      };
+
+  /// Borra las valoraciones guardadas y vuelve al ajuste de la primera vez.
+  Future<void> clearAll() async {
+    await _locked(() => store.writeQueue(const []));
+    await store.writePending(const []);
+    await store.writeRetryAt(0, 0);
+    await store.writeEnabled(true);
+    pendingChanges.value++;
+  }
+
   Future<int> queuedCount() async => (await store.readQueue()).length;
 
   /// Registra la valoración de un cuento. Devuelve el id del evento (para añadirle motivos después)

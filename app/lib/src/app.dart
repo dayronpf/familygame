@@ -66,6 +66,25 @@ class _CalderoAppState extends State<CalderoApp> {
   late bool _wizard = widget.showWizard && !_settings.wizardDone;
   late bool _splash = widget.showSplash;
 
+  /// Si se borran los datos (Ajustes), el asistente de bienvenida vuelve a salir.
+  void _showWizardAgain() {
+    if (widget.showWizard && !_settings.wizardDone && !_wizard && mounted) {
+      setState(() => _wizard = true);
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _settings.addListener(_showWizardAgain);
+  }
+
+  @override
+  void dispose() {
+    _settings.removeListener(_showWizardAgain);
+    super.dispose();
+  }
+
   /// Se precarga el arte mientras suena el splash, para que el inicio ya esté listo al caer.
   late final Future<void> _ready = widget.showSplash
       ? Future.wait<void>([

@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'art/story_stage.dart';
 import 'audio/ambience.dart';
 import 'audio/background_audio.dart';
+import 'audio/sfx.dart';
 import 'hologram_page.dart';
 import 'narration/narrator.dart';
 import 'narration/playback.dart';
@@ -29,6 +30,7 @@ class CinemaPage extends StatefulWidget {
     this.animate = true,
     this.dimmer,
     this.background,
+    this.sfx,
     this.flow,
   });
 
@@ -49,6 +51,9 @@ class CinemaPage extends StatefulWidget {
   /// Quien mantiene el cuento vivo con la pantalla bloqueada (por defecto, el servicio de Android).
   final BackgroundAudio? background;
 
+  /// Efectos de sonido (por defecto, según los ajustes; las pruebas ponen uno de mentira).
+  final Sfx? sfx;
+
   @override
   State<CinemaPage> createState() => _CinemaPageState();
 }
@@ -57,6 +62,7 @@ class _CinemaPageState extends State<CinemaPage>
     with SingleTickerProviderStateMixin {
   late final StageClock _clock = StageClock(this);
   late final StoryPlayback _playback;
+  late final Sfx _sfx = widget.sfx ?? sfxFor(context);
   late final Ambience _ambience = widget.ambience ?? ambienceFor(context);
   late final SleepFade _fade = SleepFade(
     playback: _playback,
@@ -111,6 +117,7 @@ class _CinemaPageState extends State<CinemaPage>
       ),
       narrator: widget.narrator ?? narratorFor(context),
       title: widget.story.title,
+      sfx: _sfx,
       resolve: flow == null ? null : _resolve,
     )..addListener(() => mounted ? setState(() {}) : null);
     enterShowMode(immersive: false);
@@ -134,6 +141,7 @@ class _CinemaPageState extends State<CinemaPage>
     _bg?.close();
     _fade.dispose();
     _playback.dispose();
+    _sfx.dispose();
     _ambience.stop();
     _ambience.dispose();
     _clock.dispose();

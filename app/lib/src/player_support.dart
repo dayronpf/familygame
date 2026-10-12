@@ -6,6 +6,7 @@ import 'package:wakelock_plus/wakelock_plus.dart';
 
 import 'art/story_stage.dart';
 import 'audio/ambience.dart';
+import 'audio/sfx.dart';
 import 'narration/narrator.dart';
 import 'narration/playback.dart';
 import 'settings/app_settings.dart';
@@ -28,6 +29,12 @@ Ambience ambienceFor(BuildContext context) {
   final s = SettingsScope.maybeOf(context);
   if (s == null) return defaultAmbience();
   return s.music ? AssetAmbience(volume: s.musicVolume) : SilentAmbience();
+}
+
+/// Los efectos de sonido según los ajustes (sin ajustes, como en las pruebas, no suenan).
+Sfx sfxFor(BuildContext context) {
+  final s = SettingsScope.maybeOf(context);
+  return s != null && s.effects ? AssetSfx() : SilentSfx();
 }
 
 bool musicOn(BuildContext context) =>

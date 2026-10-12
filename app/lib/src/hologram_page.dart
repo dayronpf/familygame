@@ -9,6 +9,7 @@ import 'art/scene_painter.dart';
 import 'art/story_stage.dart';
 import 'audio/ambience.dart';
 import 'audio/background_audio.dart';
+import 'audio/sfx.dart';
 import 'narration/narrator.dart';
 import 'narration/playback.dart';
 import 'player_support.dart';
@@ -30,6 +31,7 @@ class HologramPage extends StatefulWidget {
     this.autoStart = true,
     this.dimmer,
     this.background,
+    this.sfx,
   });
 
   final Story story;
@@ -45,6 +47,9 @@ class HologramPage extends StatefulWidget {
   /// Quien mantiene el cuento vivo con la pantalla bloqueada (por defecto, el servicio de Android).
   final BackgroundAudio? background;
 
+  /// Efectos de sonido (por defecto, según los ajustes; las pruebas ponen uno de mentira).
+  final Sfx? sfx;
+
   @override
   State<HologramPage> createState() => _HologramPageState();
 }
@@ -53,6 +58,7 @@ class _HologramPageState extends State<HologramPage>
     with SingleTickerProviderStateMixin {
   late final StageClock _clock = StageClock(this);
   late final StoryPlayback _playback;
+  late final Sfx _sfx = widget.sfx ?? sfxFor(context);
   late final Ambience _ambience = widget.ambience ?? ambienceFor(context);
   late final SleepFade _fade = SleepFade(
     playback: _playback,
@@ -77,6 +83,7 @@ class _HologramPageState extends State<HologramPage>
       scenes: playScenes(widget.story, widget.setups),
       narrator: widget.narrator ?? narratorFor(context),
       title: widget.story.title,
+      sfx: _sfx,
     )..addListener(_onPlayback);
     _onPlayback();
     _loadLayout();
@@ -165,6 +172,7 @@ class _HologramPageState extends State<HologramPage>
     _fade.dispose();
     _playback.removeListener(_onPlayback);
     _playback.dispose();
+    _sfx.dispose();
     _ambience.stop();
     _ambience.dispose();
     _clock.dispose();

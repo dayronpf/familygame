@@ -13,6 +13,8 @@ import 'share.dart';
 import 'ui/voice_picker.dart';
 import 'workshop_page.dart';
 import 'brand.dart';
+import 'legal/legal_page.dart';
+import 'legal/my_data_page.dart';
 
 /// Ajustes para adultos: permiso de valoraciones y transparencia total sobre qué se envía.
 class SettingsPage extends StatefulWidget {
@@ -326,6 +328,15 @@ class _SettingsPageState extends State<SettingsPage> {
             const Icon(Icons.volume_up),
           ],
         ),
+      SwitchListTile(
+        key: const Key('setting-effects'),
+        contentPadding: EdgeInsets.zero,
+        title: const Text('Efectos de sonido'),
+        subtitle: const Text(
+            'Un balido, un crujido, un chapoteo… suenan en los momentos del cuento en que se oyen.'),
+        value: settings.effects,
+        onChanged: settings.setEffects,
+      ),
       ListTile(
         key: const Key('setting-downloads'),
         contentPadding: EdgeInsets.zero,
@@ -335,6 +346,61 @@ class _SettingsPageState extends State<SettingsPage> {
             'Los cuentos ya están dentro de la app: funcionan sin internet.'),
       ),
     ];
+  }
+
+  void _openLegal(String title, String asset) {
+    Navigator.of(context).push(MaterialPageRoute<void>(
+      builder: (_) => LegalPage(title: title, asset: asset),
+    ));
+  }
+
+  Future<Map<String, Object?>> _myData() async {
+    final settings = SettingsScope.maybeOf(context);
+    return {
+      if (settings != null) 'ajustes': settings.exportJson(),
+      if (widget.shelf != null) 'mis_cuentos': widget.shelf!.exportJson(),
+      'valoraciones': await widget.feedback.exportJson(),
+    };
+  }
+
+  void _openMyData() {
+    Navigator.of(context).push(MaterialPageRoute<void>(
+      builder: (_) => MyDataPage(load: _myData),
+    ));
+  }
+
+  /// Borra todo lo guardado en el teléfono (con confirmación) y vuelve al inicio, donde el asistente de
+  /// bienvenida vuelve a salir.
+  Future<void> _confirmDelete() async {
+    final ok = await showDialog<bool>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        key: const Key('delete-dialog'),
+        title: const Text('¿Borrar todo?'),
+        content: const Text(
+            'Se borrarán los perfiles de los niños, los cuentos guardados, los ajustes y las valoraciones que no se hayan enviado. No se puede deshacer.'),
+        actions: [
+          TextButton(
+            key: const Key('delete-cancel'),
+            onPressed: () => Navigator.pop(ctx, false),
+            child: const Text('Cancelar'),
+          ),
+          FilledButton(
+            key: const Key('delete-confirm'),
+            onPressed: () => Navigator.pop(ctx, true),
+            child: const Text('Borrar'),
+          ),
+        ],
+      ),
+    );
+    if (ok != true || !mounted) return;
+    final settings = SettingsScope.maybeOf(context);
+    final nav = Navigator.of(context);
+    await settings?.resetAll();
+    await widget.shelf?.clearAll();
+    await widget.feedback.clearAll();
+    if (!mounted) return;
+    nav.popUntil((r) => r.isFirst);
   }
 
   @override
@@ -372,7 +438,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   const _Bullets(items: [
                     'La nota que dieron, de 1 a 5.',
                     'Si la nota es baja (3 o menos) y quieren contarlo, el motivo: se eligen entre cinco opciones («No tuvo sentido», «Se repitió», «Muy largo o muy corto», «Dio miedo», «No me gustó la enseñanza»). Nunca se envía texto escrito.',
-                    'Qué cuento fue, solo con códigos: la enseñanza, los personajes y las partes que lo formaron. Con eso podemos mejorar las partes que no gustan.',
+                    'Qué cuento fue, solo con códigos: la enseñanza, los personajes, las partes que lo formaron y los caminos que eligió el niño. Con eso podemos mejorar las partes que no gustan.',
                     'El día (sin la hora) y la versión de la app.',
                   ]),
                   const SizedBox(height: 16),
@@ -435,6 +501,61 @@ class _SettingsPageState extends State<SettingsPage> {
                     ],
                   ),
                   const SizedBox(height: 16),
+                  const Divider(height: 32),
+                  Text('Privacidad y datos', style: text.titleMedium),
+                  const SizedBox(height: 4),
+                  ListTile(
+                    key: const Key('settings-privacy'),
+                    contentPadding: EdgeInsets.zero,
+                    leading: const Icon(Icons.privacy_tip_outlined),
+                    title: const Text('Política de privacidad'),
+                    subtitle: const Text(
+                        'Qué guarda la app, qué envía (solo si lo permiten) y para qué.'),
+                    onTap: () => _openLegal('Política de privacidad',
+                        'assets/legal/politica-de-privacidad.es.md'),
+                  ),
+                  ListTile(
+                    key: const Key('settings-terms'),
+                    contentPadding: EdgeInsets.zero,
+                    leading: const Icon(Icons.description_outlined),
+                    title: const Text('Términos de uso'),
+                    onTap: () => _openLegal('Términos de uso',
+                        'assets/legal/terminos-de-uso.es.md'),
+                  ),
+                  ListTile(
+                    key: const Key('settings-my-data'),
+                    contentPadding: EdgeInsets.zero,
+                    leading: const Icon(Icons.fact_check_outlined),
+                    title: const Text('Ver mis datos'),
+                    subtitle: const Text(
+                        'Todo lo que la app guarda en este teléfono, tal cual.'),
+                    onTap: _openMyData,
+                  ),
+                  ListTile(
+                    key: const Key('settings-delete-data'),
+                    contentPadding: EdgeInsets.zero,
+                    leading: Icon(Icons.delete_outline,
+                        color: Theme.of(context).colorScheme.error),
+                    title: const Text('Borrar los datos de este teléfono'),
+                    subtitle: const Text(
+                        'Perfiles, cuentos guardados, ajustes y valoraciones pendientes.'),
+                    onTap: _confirmDelete,
+                  ),
+                  ListTile(
+                    key: const Key('settings-licenses'),
+                    contentPadding: EdgeInsets.zero,
+                    leading: const Icon(Icons.info_outline),
+                    title: const Text('Licencias y créditos'),
+                    subtitle: const Text(
+                        'Sonidos de Kenney.nl y AntumDeluge (CC0) y componentes de código abierto.'),
+                    onTap: () => showLicensePage(
+                      context: context,
+                      applicationName: appName,
+                      applicationVersion: appVersion,
+                      applicationLegalese:
+                          'Cuentos, dibujos y música originales del proyecto. Efectos de sonido: grabaciones CC0 de Kenney.nl y de AntumDeluge (OpenGameArt) y sonidos sintetizados por el proyecto (CC0).',
+                    ),
+                  ),
                   const Divider(height: 32),
                   ListTile(
                     key: const Key('settings-share'),

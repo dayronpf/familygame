@@ -19,9 +19,10 @@ class VoiceRules {
   /// Palabra (minúsculas, ya sin letras repetidas) → cómo se dice. Onomatopeyas aprobadas y nombres propios.
   final Map<String, String> pronunciation;
 
-  /// Efectos de sonido («¡Cric!», «¡Beee!», «¡Plaf!»), en minúsculas y ya sin letras alargadas. **La voz no los
-  /// dice**: un motor de voz no sabe imitar sonidos y los lee como palabras raras («bi», «cric»). Se ven en pantalla.
-  final Set<String> soundEffects;
+  /// Efectos de sonido («¡Cric!», «¡Beee!», «¡Plaf!»): palabra en minúsculas y ya sin letras alargadas → id del
+  /// sonido (`creak`, `bleat`, `splash`…). **La voz no los dice**: un motor de voz no sabe imitar sonidos y los lee
+  /// como palabras raras («bi», «cric»). La app los reproduce como sonido (`speechParts`) y se ven en pantalla.
+  final Map<String, String> soundEffects;
 
   /// Una frase más larga se parte en dos con un punto (solo para la voz; en pantalla queda igual).
   final int maxSentenceWords;
@@ -52,13 +53,27 @@ const Map<String, String> _esPronunciation = {
   'chis': 'chis',
 };
 
-/// Efectos de sonido del pack (formas ya sin letras alargadas: «¡Fuuush!» → `fush`). Las interjecciones de un
-/// personaje («¡Ay!», «¡Uf!», «¡Ja!») no están aquí: son palabras que sí se dicen.
-const Set<String> _esSoundEffects = {
-  'be', 'cric', 'fu', 'fiu', 'fush', 'fr', 'tilín', 'sh', 'chis', 'pst', //
-  'clang', 'clong', 'cling', 'clinc', 'clic', 'din', 'don', 'gr', 'plaf', //
-  'plof', 'plin', 'rum', 'crac', 'cras', 'hop', 'pum', 'uh', 'suish', //
-  'flup', 'pof',
+/// Efectos de sonido del pack: forma sin letras alargadas («¡Fuuush!» → `fush`) → sonido (`assets/audio/sfx/<id>.ogg`).
+/// Las interjecciones de un personaje («¡Ay!», «¡Uf!», «¡Ja!») no están aquí: son palabras que sí se dicen.
+const Map<String, String> _esSoundEffects = {
+  'be': 'bleat', //
+  'cric': 'creak',
+  'fu': 'wind', 'fiu': 'wind', 'fush': 'wind', 'suish': 'wind',
+  'fr': 'flutter',
+  'tilín': 'coins',
+  'sh': 'hiss', 'chis': 'hiss', 'pst': 'hiss',
+  'clang': 'clang', 'clong': 'clang',
+  'cling': 'clink', 'clinc': 'clink',
+  'clic': 'click',
+  'din': 'bell', 'don': 'bell',
+  'gr': 'growl', 'rum': 'growl',
+  'plaf': 'splash',
+  'plof': 'plop', 'flup': 'plop', 'pof': 'plop',
+  'plin': 'drop',
+  'crac': 'crack', 'cras': 'crack',
+  'hop': 'hop',
+  'pum': 'thump',
+  'uh': 'hoot',
 };
 
 const VoiceRules spanishVoiceRules = VoiceRules();
@@ -95,7 +110,7 @@ String _dropSoundEffects(String t, VoiceRules rules) {
               .replaceAllMapped(_repeated, (r) => r.group(1)!),
         )
         .toList();
-    if (words.isEmpty || !words.every(rules.soundEffects.contains)) {
+    if (words.isEmpty || !words.every(rules.soundEffects.containsKey)) {
       return m.group(0)!;
     }
     removed = true;
@@ -126,6 +141,67 @@ String _dropSoundEffects(String t, VoiceRules rules) {
     out = out[0].toUpperCase() + out.substring(1);
   }
   return out;
+}
+
+/// Un trozo de lo que se narra: texto para la voz o un efecto de sonido.
+sealed class SpeechPart {
+  const SpeechPart();
+}
+
+class SpokenText extends SpeechPart {
+  const SpokenText(this.text);
+
+  /// Ya normalizado para la voz.
+  final String text;
+
+  @override
+  String toString() => 'SpokenText($text)';
+}
+
+class SoundEffect extends SpeechPart {
+  const SoundEffect(this.sound);
+
+  /// Id del sonido (`creak`, `bleat`…), ver [VoiceRules.soundEffects].
+  final String sound;
+
+  @override
+  String toString() => 'SoundEffect($sound)';
+}
+
+/// Parte la frase en lo que dice la voz y los efectos de sonido, **en orden**: «El viento la levantó, ¡fiuuu!, y
+/// subió.» → [«El viento la levantó,», sonido `wind`, «y subió.»]. La app dice cada trozo y reproduce cada sonido
+/// entre medias. Los trozos de texto salen ya normalizados ([normalizeForVoice]).
+List<SpeechPart> speechParts(
+  String text, {
+  VoiceRules rules = spanishVoiceRules,
+}) {
+  final parts = <SpeechPart>[];
+  var last = 0;
+  void spoken(String raw) {
+    var t = raw.replaceFirst(RegExp(r'^[\s,;:]+'), '');
+    t = t.replaceFirst(RegExp('[\\s«“"]+\$'), '');
+    if (t.endsWith(':')) t = '${t.substring(0, t.length - 1)}.';
+    final v = normalizeForVoice(t, rules: rules);
+    if (RegExp(r'\p{L}', unicode: true).hasMatch(v)) parts.add(SpokenText(v));
+  }
+
+  for (final m in _effectSegment.allMatches(text)) {
+    final words = RegExp(r'\p{L}+', unicode: true)
+        .allMatches(m.group(1)!)
+        .map(
+          (w) => w
+              .group(0)!
+              .toLowerCase()
+              .replaceAllMapped(_repeated, (r) => r.group(1)!),
+        )
+        .toList();
+    if (words.isEmpty || !words.every(rules.soundEffects.containsKey)) continue;
+    spoken(text.substring(last, m.start));
+    parts.add(SoundEffect(rules.soundEffects[words.first]!));
+    last = m.end;
+  }
+  spoken(text.substring(last));
+  return parts;
 }
 
 /// Pasa [text] a lo que debe decir la voz. Reglas, en este orden:

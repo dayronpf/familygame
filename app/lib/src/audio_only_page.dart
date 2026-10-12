@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 import 'audio/ambience.dart';
 import 'audio/background_audio.dart';
+import 'audio/sfx.dart';
 import 'narration/narrator.dart';
 import 'narration/playback.dart';
 import 'player_support.dart';
@@ -26,6 +27,7 @@ class AudioOnlyPage extends StatefulWidget {
     this.ambience,
     this.dimmer,
     this.background,
+    this.sfx,
     this.autoStart = true,
   });
 
@@ -38,6 +40,9 @@ class AudioOnlyPage extends StatefulWidget {
 
   /// Quien mantiene el cuento vivo con la pantalla bloqueada (por defecto, el servicio de Android).
   final BackgroundAudio? background;
+
+  /// Efectos de sonido (por defecto, según los ajustes; las pruebas ponen uno de mentira).
+  final Sfx? sfx;
   final bool autoStart;
 
   @override
@@ -46,6 +51,7 @@ class AudioOnlyPage extends StatefulWidget {
 
 class _AudioOnlyPageState extends State<AudioOnlyPage> {
   late final StoryPlayback _playback;
+  late final Sfx _sfx = widget.sfx ?? sfxFor(context);
   late final Ambience _ambience = widget.ambience ?? ambienceFor(context);
   late final ScreenDimmer _screen = widget.dimmer ?? SystemDimmer();
 
@@ -67,6 +73,7 @@ class _AudioOnlyPageState extends State<AudioOnlyPage> {
       scenes: playScenes(widget.story, const []),
       narrator: widget.narrator ?? narratorFor(context),
       title: widget.story.title,
+      sfx: _sfx,
     )..addListener(() {
         if (!mounted) return;
         // Al terminar los controles se quedan a la vista (con el botón «Volver»)
@@ -107,6 +114,7 @@ class _AudioOnlyPageState extends State<AudioOnlyPage> {
     _hide?.cancel();
     _bg.close();
     _playback.dispose();
+    _sfx.dispose();
     _ambience.stop();
     _ambience.dispose();
     _screen.restore();

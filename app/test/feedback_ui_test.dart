@@ -490,8 +490,14 @@ void main() {
       await tester.scrollUntilVisible(
           find.byKey(const Key('feedback-switch')), 300,
           scrollable: find.byType(Scrollable).first);
+      await tester.scrollUntilVisible(
+          find.textContaining('Esperando para enviarse: 1'), 100,
+          scrollable: find.byType(Scrollable).first);
       expect(find.textContaining('Esperando para enviarse: 1'), findsOneWidget);
 
+      await tester.scrollUntilVisible(
+          find.byKey(const Key('feedback-switch')), -100,
+          scrollable: find.byType(Scrollable).first);
       await tester.tap(find.byKey(const Key('feedback-switch')));
       await tester.pumpAndSettle();
       expect(store.enabled, isFalse);
