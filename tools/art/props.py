@@ -145,34 +145,40 @@ def buho():
     return rig("buho", "Búho", [-70, -140, 140, 150], OWL, root)
 
 # ------------------------------------------------------------------ cabrita
-GOAT = {"fur": "#f3ecda", "fur2": "#d9cfb4", "hoof": "#4a3a30", "horn": "#cdb67a", "ear": "#b98a62",
+GOAT = {"fur": "#f3ecda", "fur2": "#d3c8aa", "hoof": "#4a3a30", "horn": "#cdb67a", "ear": "#b98a62",
         "eye": "#2a1c14", "nose": "#e9a6a0", "beard": "#e8dfc6"}
 
 
 def cabrita():
-    """Cabrita de perfil mirando a la derecha. Origen: bajo las pezuñas, centrada. Huesos: legsA/legsB
-    (patas), tail, head (cabeza y cuello), eyes (parpadeo)."""
-    def leg(x):
-        return [S(rrect(x - 5, -34, 10, 34, 4), "$fur2"), S(rrect(x - 6, -8, 12, 8, 3), "$hoof")]
+    """Cabrita de perfil mirando a la derecha. Origen: bajo las pezuñas, centrada. Huesos: legFN/legBN (patas
+    cercanas, delantera y trasera), legFF/legBF (las lejanas), tail, head (cabeza; gira sobre el cuello) y eyes
+    (parpadeo). Las patas van detrás del cuerpo: nacen dentro de él y no queda hueco entre cuerpo y patas."""
+    def leg(x, fur):
+        return [S(f"M{x - 6},-62 C{x - 6},-44 {x - 4},-30 {x - 3.4},-12 L{x + 3.4},-12 C{x + 4},-30 {x + 6},-44 {x + 6},-62 Z", fur),
+                S(f"M{x - 4.6},-12 L{x + 4.6},-12 L{x + 5.4},0 L{x - 5.4},0 Z", "$hoof")]
 
-    legs_b = node("legsB", (-26, -34), shapes=leg(-26) + leg(30))           # patas lejanas (hacia atrás)
-    legs_a = node("legsA", (-12, -34), shapes=leg(-12) + leg(42))           # patas cercanas
-    tail = node("tail", (-48, -62), shapes=[S("M-48,-62 C-62,-72 -66,-58 -58,-52 C-56,-56 -52,-58 -48,-56 Z", "$fur")])
-    eyes = node("eyes", (26, -96), shapes=[S(ell(26, -96, 3.4, 4.4), "$eye", None), S(ell(25, -97.5, 1.1, 1.1), "#ffffff", None)])
-    head = node("head", (34, -70), shapes=[
-        S("M28,-72 C34,-96 46,-110 62,-100 C74,-96 82,-84 80,-74 C74,-66 52,-68 44,-60 C38,-60 30,-64 28,-72 Z", "$fur"),
-        S("M62,-100 C74,-96 82,-84 80,-74 C74,-66 64,-70 60,-76 Z", "$fur2", None, 0, 0.55),
-        S(ell(78, -80, 4.2, 3.2), "$nose", None),
-        S("M44,-60 C46,-48 52,-44 54,-52 C52,-56 48,-58 44,-60 Z", "$beard"),
-        S("M34,-99 C28,-120 40,-126 44,-114 C42,-110 38,-104 34,-99 Z", "$horn"),
-        S("M46,-102 C46,-114 58,-114 54,-104 Z", "$ear"),
-        S("M38,-100 C26,-100 20,-92 24,-86 C30,-90 36,-92 40,-94 Z", "$ear"),
+    def bone(id_, x, fur):
+        return node(id_, (x, -56), shapes=leg(x, fur))
+
+    legs = [bone("legBF", -24, "$fur2"), bone("legFF", 22, "$fur2"), bone("legBN", -36, "$fur"), bone("legFN", 34, "$fur")]
+    tail = node("tail", (-52, -78), shapes=[S("M-52,-80 C-60,-98 -72,-94 -67,-82 C-62,-85 -58,-83 -54,-73 Z", "$fur")])
+    eyes = node("eyes", (68, -118), shapes=[S(ell(68, -118, 3.8, 4.8), "$eye", None), S(ell(66.8, -119.6, 1.3, 1.3), "#ffffff", None)])
+    head = node("head", (50, -108), shapes=[
+        S("M54,-130 C50,-148 38,-152 32,-146 C42,-146 46,-138 50,-128 Z", "$horn"),
+        S("M46,-122 C54,-134 72,-132 84,-120 C92,-112 94,-102 88,-98 C80,-98 70,-100 62,-104 C52,-106 44,-114 46,-122 Z", "$fur"),
+        S("M62,-104 C70,-100 80,-98 88,-98 C94,-102 92,-112 84,-120 C84,-110 74,-102 62,-104 Z", "$fur2", None, 0, 0.55),
+        S(ell(89, -103, 4.2, 3.4), "$nose", None),
+        S("M92,-100 C86,-98 80,-100 76,-101", None, "$eye", 1.6),
+        S("M72,-98 C70,-88 74,-84 77,-90 C78,-94 76,-97 72,-98 Z", "$beard"),
+        S("M50,-118 C38,-124 28,-118 26,-112 C36,-110 44,-110 50,-112 Z", "$ear"),
     ], post=[eyes])
-    body = [S("M-52,-70 C-56,-92 -30,-100 0,-98 C34,-98 48,-92 46,-72 C46,-52 36,-42 0,-40 C-34,-40 -50,-48 -52,-70 Z", "$fur"),
-            shade("M10,-96 C34,-98 48,-92 46,-72 C46,-52 36,-42 4,-40 C24,-56 22,-78 10,-96 Z"),
-            shine("M-40,-86 C-30,-94 -14,-96 0,-96 C-18,-90 -32,-80 -38,-70 Z")]
-    root = node("root", (0, 0), pre=[legs_b], shapes=body, post=[legs_a, tail, head])
-    return rig("cabrita", "Cabrita", [-80, -135, 170, 140], GOAT, root)
+    body = [S("M-54,-68 C-56,-90 -34,-97 -6,-96 C12,-95 26,-96 36,-106 C42,-114 46,-122 54,-124 L62,-108 "
+              "C56,-98 54,-84 50,-68 C46,-50 32,-42 2,-42 C-30,-42 -52,-46 -54,-68 Z", "$fur"),
+            shade("M14,-95 C26,-96 36,-106 42,-114 C46,-122 54,-124 54,-124 L62,-108 C56,-98 54,-84 50,-68 "
+                  "C46,-50 32,-42 2,-42 C24,-56 26,-80 14,-95 Z"),
+            shine("M-42,-84 C-32,-92 -16,-94 -4,-94 C-22,-88 -34,-78 -40,-66 Z")]
+    root = node("root", (0, 0), pre=legs, shapes=body, post=[tail, head])
+    return rig("cabrita", "Cabrita", [-80, -156, 176, 162], GOAT, root)
 
 # ------------------------------------------------------------------ bolsa
 BAG = {"leather": "#9a6a3c", "leather2": "#b98a52", "rope": "#e8d3a8", "coin": "#f4e9c0"}

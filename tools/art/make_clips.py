@@ -458,14 +458,26 @@ PROP_CLIPS = {
         "wingL": sine(0.5, 34), "wingR": sine(0.5, -34),
         "root.dy": keys((0, 0), (0.125, -5), (0.25, 0), (0.375, -5), (0.5, 0))}),
     "goat_idle": dict(dur=2.8, loop=True, tracks={
-        "head": sine(2.8, 5), "tail": sine(0.9, 16), "eyes.sy": blink(2.8, 0.5),
-        "root.dy": keys((0, 0), (1.4, -1.5), (2.8, 0))}),
+        "head": sine(2.8, 4), "tail": sine(0.9, 14), "eyes.sy": blink(2.8, 0.5),
+        "root.dy": keys((0, 0), (1.4, -1.2), (2.8, 0))}),
+    # Cabecea hacia arriba al balar, y la barriga y la cola acompañan
     "goat_baa": dict(dur=1.4, loop=True, tracks={
-        "head": keys((0, 0), (0.25, -16), (0.7, -12), (1.1, 2), (1.4, 0)), "tail": sine(0.6, 20),
-        "eyes.sy": blink(1.4, 0.4), "root.dy": keys((0, 0), (0.25, -3), (0.7, -2), (1.4, 0))}),
+        "head": keys((0, 0), (0.25, -14), (0.7, -11), (1.1, 2), (1.4, 0)), "tail": sine(0.6, 18),
+        "eyes.sy": blink(1.4, 0.4), "root.dy": keys((0, 0), (0.25, -2), (0.7, -1.5), (1.4, 0))}),
+    # Camina al trote diagonal: delantera cercana con trasera lejana, y al revés
     "goat_walk": dict(dur=0.8, loop=True, tracks={
-        "legsA": sine(0.8, 22), "legsB": sine(0.8, -22), "head": sine(0.8, 4), "tail": sine(0.4, 12),
+        "legFN": sine(0.8, 24), "legBF": sine(0.8, 24), "legFF": sine(0.8, -24), "legBN": sine(0.8, -24),
+        "head": sine(0.8, 4), "tail": sine(0.4, 12),
         "root.dy": keys((0, 0), (0.2, -3), (0.4, 0), (0.6, -3), (0.8, 0))}),
+    # Cabriola: salta con las patas recogidas (delanteras hacia delante, traseras hacia atrás) y cae
+    "goat_hop": dict(dur=1.0, loop=True, tracks={
+        "root.dy": keys((0, 0), (0.15, 0), (0.4, -26), (0.65, 0), (1.0, 0)),
+        "legFN": keys((0, 0), (0.15, 8), (0.4, 38), (0.65, 6), (1.0, 0)),
+        "legFF": keys((0, 0), (0.15, 8), (0.4, 30), (0.65, 6), (1.0, 0)),
+        "legBN": keys((0, 0), (0.15, -8), (0.4, -38), (0.65, -6), (1.0, 0)),
+        "legBF": keys((0, 0), (0.15, -8), (0.4, -30), (0.65, -6), (1.0, 0)),
+        "head": keys((0, 0), (0.15, 6), (0.4, -10), (0.65, 4), (1.0, 0)), "tail": sine(0.5, 20),
+        "eyes.sy": blink(1.0, 0.4)}),
     "hoot": dict(dur=3.4, loop=True, tracks={
         "eyes.sy": blink(3.4, 0.55),
         "root.sy": keys((0, 1), (0.5, 1.04), (1.0, 1), (3.4, 1)),

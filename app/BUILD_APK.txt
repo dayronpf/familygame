@@ -1,1 +1,1 @@
-Cambiar este archivo (y subirlo) compila un APK de prueba. Ultima peticion: v0.6.0 con la primera pregunta al niño (caminos elegibles) en La linterna apagada.
+Cambiar este archivo (y subirlo) compila un APK de prueba. Ultima peticion: v0.6.2 con la voz sin efectos de sonido (¡beee!, ¡cric!…) y la cabrita redibujada y animada.
