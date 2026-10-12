@@ -3,7 +3,7 @@
     "schema": 2,
     "id": "medieval",
     "name": "Reino de la Luna (prueba)",
-    "version": "0.16.1",
+    "version": "0.18.1",
     "license": "Contenido original, todos los derechos reservados al autor del proyecto",
     "language": "es",
     "age_band": "4-7",
@@ -642,7 +642,7 @@
       "text": "Presumir no hace más grande a nadie; pedir ayuda y reconocer un error, sí.",
       "simple": {
         "2-3": "Pedir ayuda está bien.",
-        "4-5": "Todos sabemos algo, y todos necesitamos ayuda alguna vez."
+        "4-5": "Pedir ayuda también es de grandes."
       }
     },
     {
@@ -651,7 +651,7 @@
       "text": "Lo que parece imposible se consigue con un intento más, y otro, y otro.",
       "simple": {
         "2-3": "Otra vez, otra vez, y lo logramos.",
-        "4-5": "Si lo intentamos otra vez, poco a poco lo conseguimos."
+        "4-5": "Si lo intentamos otra vez, y pensamos un poquito, lo conseguimos."
       }
     },
     {
@@ -660,7 +660,7 @@
       "text": "Un amigo de verdad está a tu lado cuando lo necesitas y se alegra de cómo eres.",
       "simple": {
         "2-3": "Los amigos se cuidan.",
-        "4-5": "Los buenos amigos se cuidan y juegan juntos."
+        "4-5": "Los buenos amigos nos ayudan cuando estamos tristes."
       }
     }
   ],
@@ -7967,7 +7967,7 @@
           "variants": [
             {
               "id": "cabrita_pan",
-              "text": "{hero} salió a pasear por {plaza.el}. Llevaba {item.un} calentito en la mano, porque tenía hambre. ¡Qué bien olía! «Mmm, qué rico», dijo {hero}.",
+              "text": "{hero} salió a pasear por la plaza. Llevaba {item.un} calentito en la mano, porque tenía hambre. ¡Qué bien olía! «Ñam, qué rico», dijo {hero}.",
               "scene": {
                 "bg": "plaza",
                 "mood": "calm",
@@ -8015,7 +8015,7 @@
           "variants": [
             {
               "id": "cabrita_partir",
-              "text": "{hero} miró su pan. Miró a la cabrita. Era su pan, y {hero} tenía hambre. Pero la cabrita también, así que {hero} lo partió en dos. «Pan para los dos», dijo.",
+              "text": "{hero} miró su pan. Miró a la cabrita. Era su pan, y {hero} tenía hambre. Pero la cabrita también, así que {hero} lo partió en dos. «Un trozo para ti, y otro para mí», dijo.",
               "scene": {
                 "bg": "plaza",
                 "mood": "hope",
@@ -8081,7 +8081,7 @@
           "variants": [
             {
               "id": "cabrita_saltos",
-              "text": "La cabrita hizo cabriolas. Saltó a la izquierda: ¡hop! Saltó a la derecha: ¡hop! {hero} saltó con la cabrita: ¡hop, hop! Los dos se rieron mucho.",
+              "text": "La cabrita hizo saltitos. Saltó a la izquierda: ¡hop! Saltó a la derecha: ¡hop! {hero} saltó con la cabrita: ¡hop, hop! Se rieron mucho. Luego saltaron más despacito, cada vez más despacito: hop… hop… Y se pararon a respirar.",
               "scene": {
                 "bg": "plaza",
                 "mood": "joy",
@@ -8110,7 +8110,7 @@
           "variants": [
             {
               "id": "cabrita_cierre",
-              "text": "Después, {hero} y la cabrita se sentaron juntitos. A {hero} le dio sueño, pues había caminado mucho. Cerró los ojos, y la cabrita también. Y así, juntitos, los dos se quedaron muy contentos.",
+              "text": "Después, {hero} y la cabrita se sentaron muy cerquita. Con la barriguita llena, a {hero} le dio sueño. Cerró los ojos, y la cabrita también. Y así, muy cerquita, se quedaron en calma, con una sonrisa.",
               "scene": {
                 "bg": "plaza",
                 "mood": "calm",
@@ -8204,7 +8204,7 @@
           "variants": [
             {
               "id": "piedras_piedras",
-              "text": "Para cruzar había cinco piedras en el agua. {hero} las miró: una, dos, tres, cuatro, cinco. A {hero} le hacía cosquillas la barriga. Los pies no querían moverse, pues el agua hacía glu, glu. Lía esperaba al otro lado.",
+              "text": "Para cruzar había cinco piedras en el agua. El agua era bajita, bajita. {hero} las miró: una, dos, tres, cuatro, cinco. A {hero} le temblaba la barriguita. Los pies no querían moverse, porque el agua hacía glu, glu. Lía esperaba al otro lado.",
               "scene": {
                 "bg": "rio",
                 "mood": "mystery",
@@ -8240,7 +8240,7 @@
           "variants": [
             {
               "id": "piedras_pasito",
-              "text": "«Un pasito», se dijo {hero}. Puso un pie en la primera piedra. ¡Plin! Y no pasó nada. «Otro pasito», dijo {hero}, y puso el otro pie en la segunda.",
+              "text": "«Un pasito», se dijo {hero}. Puso un pie en la piedra. ¡Plin! Y no pasó nada. «Una», contó. «Otro pasito», dijo {hero}, y puso el otro pie en la siguiente. ¡Plin! «Dos», contó.",
               "scene": {
                 "bg": "rio",
                 "mood": "hope",
@@ -8273,7 +8273,7 @@
           "variants": [
             {
               "id": "piedras_mitad",
-              "text": "Tercera piedra: ¡plin! Cuarta piedra: ¡plin! La quinta se movió un poquito. {hero} se agarró fuerte al aire con las dos manos. Pero no pasó nada. {hero} respiró hondo y miró a Lía.",
+              "text": "Tres: ¡plin! Cuatro: ¡plin! Solo faltaba una. La última piedra se movió un poquito, y {hero} se paró. «¡Tú puedes, un pasito más!», dijo Lía desde la orilla. {hero} respiró hondo y miró a Lía.",
               "scene": {
                 "bg": "rio",
                 "mood": "hope",
@@ -8287,7 +8287,7 @@
                   },
                   {
                     "rig": "lia",
-                    "clip": "wave",
+                    "clip": "cheer",
                     "x": 0.86,
                     "lift": 84,
                     "scale": 0.8
@@ -8310,7 +8310,7 @@
           "variants": [
             {
               "id": "piedras_cruzar",
-              "text": "Paso a paso, {hero} pisó las cinco piedras, porque cada pasito era pequeño. En la última, ¡hop!, saltó a la orilla. Lía abrió los brazos. «¡Lo has hecho!», dijo Lía.",
+              "text": "{hero} pisó la última piedra. Se movió un poquito, pero {hero} no se paró, porque cada pasito era pequeño. Entonces saltó a la orilla: ¡hop! Lía abrió los brazos. «¡Lo lograste!», dijo Lía.",
               "scene": {
                 "bg": "rio",
                 "mood": "triumph",
@@ -8348,7 +8348,7 @@
           "variants": [
             {
               "id": "piedras_cierre",
-              "text": "Los dos amigos, {hero} y Lía, se dieron un abrazo. {hero} miró atrás, a las piedras. Ya no se veían tan grandes. Así que {hero} sonrió, content{hero.o} y con el corazón calentito.",
+              "text": "{hero} y Lía se dieron un abrazo. {hero} miró atrás, a las piedras. Ya no se veían tan grandes. Así que {hero} sonrió, content{hero.o} y con el corazón calentito.",
               "scene": {
                 "bg": "rio",
                 "mood": "joy",
@@ -8421,7 +8421,7 @@
           "variants": [
             {
               "id": "taza_taza",
-              "text": "Rosa, la panadera, le dio a {hero} {item.un} de leche tibia. «Cuidado, que está llena», dijo Rosa. {hero} la sujetó con las dos manos, porque no quería derramar ni una gota.",
+              "text": "Rosa, la panadera, le dio a {hero} {item.un} de leche tibia. «Cuidado, que está llena», dijo Rosa. {hero} la agarró con las dos manos, porque no quería que se cayera ni una gota.",
               "scene": {
                 "bg": "plaza",
                 "mood": "calm",
@@ -8443,7 +8443,7 @@
           "variants": [
             {
               "id": "taza_mesa",
-              "text": "{hero} dejó la taza en la mesa y se sentó a mirar el pueblo. Hacía un día muy bonito.",
+              "text": "Rosa entró en la panadería, porque tenía mucho trabajo. {hero} dejó la taza en la mesa y se sentó a mirar el pueblo.",
               "scene": {
                 "bg": "plaza",
                 "mood": "calm",
@@ -8501,7 +8501,7 @@
           "variants": [
             {
               "id": "taza_plaf",
-              "text": "¡Plaf! Con el codo, {hero} tiró la taza. La leche se derramó por todas partes.",
+              "text": "¡Plaf! Con el codo, {hero} tiró la taza, y la leche se cayó por todas partes.",
               "scene": {
                 "bg": "plaza",
                 "mood": "tension",
@@ -8520,7 +8520,7 @@
           "variants": [
             {
               "id": "taza_rosa",
-              "text": "Rosa volvió y miró la mesa. «¿Quién ha tirado la leche?», dijo Rosa. A {hero} se le pusieron las mejillas como tomates. Tenía un poquito de vergüenza.",
+              "text": "Rosa volvió de la panadería y miró la mesa. «¿Quién tiró la leche?», dijo Rosa. {hero} escondió las manos a la espalda, porque tenía un poquito de vergüenza. Se le pusieron las mejillas como tomates.",
               "scene": {
                 "bg": "plaza",
                 "mood": "tension",
@@ -8559,7 +8559,7 @@
           "variants": [
             {
               "id": "taza_verdad",
-              "text": "{hero} respiró hondo. «Fui yo», dijo {hero}. «Lo siento, Rosa.» Rosa sonrió. «Gracias por decirme la verdad. Pues así se arregla todo.»",
+              "text": "{hero} respiró hondo y sacó las manos de la espalda. «Fui yo», dijo {hero}. «Lo siento, Rosa.» Rosa sonrió. «Gracias por decirme la verdad.»",
               "scene": {
                 "bg": "plaza",
                 "mood": "hope",
@@ -8598,7 +8598,7 @@
           "variants": [
             {
               "id": "taza_abrazo",
-              "text": "Rosa le dio un abrazo a {hero}. «Todos tiramos cosas alguna vez», dijo Rosa. «Lo importante es decirlo. ¿Me ayudas a limpiar?» {hero} dijo que sí con la cabeza.",
+              "text": "Rosa le dio un abrazo a {hero}. «Todos tiramos cosas alguna vez», dijo Rosa. «¿Me ayudas a limpiar?» {hero} dijo que sí con la cabeza.",
               "scene": {
                 "bg": "plaza",
                 "mood": "hope",
@@ -8637,7 +8637,7 @@
           "variants": [
             {
               "id": "taza_cierre",
-              "text": "Rosa y {hero} limpiaron la mesa juntos. Después Rosa llenó otra taza de leche. {hero} la bebió despacito. Se quedó con la barriga calentita y el corazón liviano, porque ya no escondía nada.",
+              "text": "Rosa y {hero} limpiaron la mesa con un trapito. Después Rosa llenó otra taza de leche. {hero} la bebió despacito. Se quedó con la barriga calentita y el corazón ligero.",
               "scene": {
                 "bg": "plaza",
                 "mood": "joy",
@@ -8719,7 +8719,7 @@
           "variants": [
             {
               "id": "linterna_teo_prestamo",
-              "text": "Teo, el amigo de {hero}, tenía una linterna que brillaba como una estrellita. La quería mucho, porque se la había regalado su abuelo. «Te la presto hasta mañana», dijo Teo. «Pero cuídala mucho, ¿vale?» {hero} dijo que sí con la cabeza, muy serio, y se la llevó con las dos manos.",
+              "text": "Teo, el amigo de {hero}, tenía una linterna que brillaba como una estrellita. La quería mucho, porque se la había regalado su abuelo. «Te la presto hasta mañana», dijo Teo. «Pero cuídala mucho, ¿vale?» {hero} puso la cara muy seria, dijo que sí con la cabeza y se la llevó con cuidado.",
               "scene": {
                 "bg": "plaza",
                 "mood": "hope",
@@ -8742,7 +8742,7 @@
           "variants": [
             {
               "id": "linterna_teo_caida",
-              "text": "{hero} corrió a jugar con la linterna por {plaza.el}. Corrió, saltó y dio una vuelta entera. Como iba tan deprisa, tropezó con una piedra, ¡cras!, y la linterna cayó al suelo. Se le apagó la luz. {hero} la sacudió, pero no se encendía.",
+              "text": "{hero} corrió a jugar con la linterna por la plaza. Corrió, saltó y dio una vuelta entera. Como iba tan deprisa, tropezó con una piedra, ¡cras!, y la linterna cayó al suelo. Se le apagó la luz. {hero} la sacudió, pero no se encendía.",
               "scene": {
                 "bg": "plaza",
                 "mood": "tension",
@@ -8775,7 +8775,7 @@
           "variants": [
             {
               "id": "linterna_teo_esconder",
-              "text": "{hero} no quería que Teo se pusiera triste, así que tuvo una idea: esconder la linterna debajo de la cama. «Si nadie la ve, nadie se enterará», pensó. Pero la barriga le hacía nudos, y {hero} no tenía ganas de merendar.",
+              "text": "{hero} no quería que Teo se pusiera triste, así que tuvo una idea: esconder la linterna debajo de la cama. «Si nadie la ve, nadie se enterará», pensó. Pero la barriga le hacía nudos, y a {hero} se le quitaron las ganas de jugar.",
               "scene": {
                 "bg": "cuarto",
                 "mood": "tension",
@@ -8809,7 +8809,7 @@
           "variants": [
             {
               "id": "linterna_teo_tarde",
-              "text": "Por la tarde, Teo pasó por la casa de {hero}. «¿Cómo está mi linterna?», preguntó Teo desde la puerta. «Bien... muy bien», dijo {hero}, mirando al suelo. Teo se fue tan campante, pero {hero} se sintió peor, porque había dicho algo que no era verdad.",
+              "text": "Por la tarde, Teo pasó por la casa de {hero}. «¿Cómo está mi linterna?», preguntó Teo desde la puerta. «Bien... muy bien», dijo {hero}, mirando al suelo. Teo se fue silbando, pero {hero} se sintió peor.",
               "scene": {
                 "bg": "cuarto",
                 "mood": "sad",
@@ -8872,7 +8872,7 @@
           "variants": [
             {
               "id": "linterna_teo_verdad",
-              "text": "A la mañana siguiente, {hero} salió con la linterna apagada en las manos. Teo estaba junto al pozo. «Teo, se me cayó tu linterna y se apagó», dijo {hero} con voz bajita. «Perdóname. Quise esconderla, pero no me sentí bien. Ayer te dije una cosa que no era verdad.»",
+              "text": "A la mañana siguiente, {hero} salió con la linterna apagada en las manos. Teo estaba junto al pozo. «Teo, se me cayó tu linterna y se apagó», dijo {hero}, mirándole a los ojos. «Perdóname. Quise esconderla, pero no me sentí bien. Ayer te dije una cosa que no era verdad.»",
               "scene": {
                 "bg": "plaza",
                 "mood": "hope",
@@ -8909,7 +8909,7 @@
           "variants": [
             {
               "id": "linterna_teo_arreglo",
-              "text": "Teo miró la linterna. Luego miró a {hero}. «Gracias por contármelo», dijo Teo. «Mira, solo se había soltado un tornillito.» Teo dio dos vueltas, y la luz volvió: ¡clic! «Lo importante es que me lo has dicho.»",
+              "text": "Teo miró la linterna. Luego miró a {hero}. «Gracias por contármelo», dijo Teo. «Mira, solo se había soltado un tornillito.» Teo apretó el tornillito, una vuelta, dos vueltas, y la luz volvió: ¡clic! «¡Ya está!», dijo Teo.",
               "scene": {
                 "bg": "plaza",
                 "mood": "joy",
@@ -8946,7 +8946,7 @@
           "variants": [
             {
               "id": "linterna_teo_cierre",
-              "text": "Aquella noche, {hero} se acostó con el corazón liviano. Ya no había nudo en la barriga. Pensó en Teo y en su linterna, que brillaba otra vez como una estrellita. {hero} sonrió y se durmió enseguida.",
+              "text": "Aquella noche, {hero} se acostó con el corazón ligero. Ya no había nudo en la barriga. Pensó en Teo y en su linterna, que brillaba otra vez como una estrellita. {hero} sonrió y se durmió enseguida.",
               "scene": {
                 "bg": "cuarto",
                 "mood": "sleep",
@@ -9047,7 +9047,7 @@
           "variants": [
             {
               "id": "manta_lia_lia",
-              "text": "Junto al pozo estaba Lía, la amiga de {hero}. Tiritaba: brrr, brrr. Le castañeteaban los dientes: tac, tac, tac. Se había olvidado la bufanda en casa, y su abrigo era muy finito. Lía se frotaba las manos, pero no se calentaba. Se le habían puesto rojas las puntas de la nariz.",
+              "text": "Junto al pozo estaba Lía, la amiga de {hero}. Tiritaba: brrr, brrr. Le temblaban los dientes: tac, tac, tac. Se había olvidado la bufanda en casa, y su abrigo era muy finito. Lía se frotaba las manos, pero no se calentaba. Se le había puesto roja la punta de la nariz.",
               "scene": {
                 "bg": "plaza",
                 "mood": "sad",
@@ -9121,7 +9121,7 @@
           "variants": [
             {
               "id": "manta_lia_compartir",
-              "text": "«Ven, Lía», dijo {hero}. «Hay sitio para ti y para mí.» Abrió la manta, y la manta abrazó a los dos amigos. Lía sonrió por primera vez en toda la mañana.",
+              "text": "«Ven, Lía», dijo {hero}. «Hay sitio para ti y para mí.» Abrió la manta, y la manta abrazó a Lía y a {hero}. Lía sonrió por primera vez en toda la mañana.",
               "scene": {
                 "bg": "plaza",
                 "mood": "joy",
@@ -9158,7 +9158,7 @@
           "variants": [
             {
               "id": "manta_lia_calor",
-              "text": "Pegaditos bajo la manta, ya no sentían frío. Lía rio, y {hero} rio también, porque los copos de nieve les hacían cosquillas en la nariz. Sacaron la lengua para atrapar uno. Hasta la nieve parecía bailar.",
+              "text": "Muy cerquita bajo la manta, ya no sentían frío. Lía rio, y {hero} rio también, porque los copos de nieve les hacían cosquillas en la nariz. Sacaron la lengua para atrapar uno. Hasta la nieve parecía bailar.",
               "scene": {
                 "bg": "plaza",
                 "mood": "joy",
@@ -9191,48 +9191,11 @@
           ]
         },
         {
-          "id": "huellas",
-          "variants": [
-            {
-              "id": "manta_lia_huellas",
-              "text": "Después dieron pasos grandes y pasos chiquitos por la nieve. Las huellas de {hero} eran grandes, y las de Lía, pequeñas. Juntas parecían un caminito que nadie había pisado antes.",
-              "scene": {
-                "bg": "plaza",
-                "mood": "joy",
-                "time": "dia",
-                "stage": [
-                  {
-                    "who": "hero",
-                    "clip": "walk",
-                    "x": 0.42
-                  },
-                  {
-                    "rig": "lia",
-                    "clip": "walk",
-                    "x": 0.56
-                  }
-                ],
-                "props": [
-                  {
-                    "prop": "manta",
-                    "near": "hero",
-                    "dx": 0.06,
-                    "lift": 84,
-                    "scale": 1.5,
-                    "front": true
-                  }
-                ],
-                "season": "invierno"
-              }
-            }
-          ]
-        },
-        {
           "id": "rosa",
           "variants": [
             {
               "id": "manta_lia_rosa",
-              "text": "Entonces llegó Rosa con dos bollos calientes. «Vi a dos amigos bajo una manta, así que traje dos bollos», dijo Rosa. «Uno para cada uno.» Lía y {hero} se los comieron despacito, sin dejar ni una miga.",
+              "text": "Entonces llegó Rosa con dos bollos calientes. «Vi a Lía y a {hero} bajo una manta, así que traje dos bollos», dijo Rosa. «Un bollo para ti, y otro para ti.» Lía y {hero} se los comieron despacito, sin dejar ni una miga.",
               "scene": {
                 "bg": "plaza",
                 "mood": "joy",
@@ -9281,7 +9244,7 @@
           "variants": [
             {
               "id": "manta_lia_cierre",
-              "text": "Esa tarde, la nieve dejó de caer. {hero} y Lía volvieron juntos, con la manta sobre los hombros, y el frío no los alcanzó. Lía le dio las gracias con un abrazo muy apretado. {hero} se sentía como si llevara un sol pequeñito dentro del pecho.",
+              "text": "Esa tarde, la nieve dejó de caer. {hero} y Lía caminaron hasta la casa de Lía, con la manta sobre los hombros. El frío se quedó fuera. Lía le dio las gracias con un abrazo muy apretado, y le devolvió la manta. Esa noche, {hero} se durmió con la manta calentita y el sol pequeñito dentro del pecho.",
               "scene": {
                 "bg": "plaza",
                 "mood": "calm",
@@ -9398,7 +9361,7 @@
           "variants": [
             {
               "id": "campana_mediodia_silencio",
-              "text": "Pero ese día el campanero estaba resfriado, y la campana no sonó. Pasó el mediodía, y nada. Teo se tocó la barriga. «Tengo hambre», dijo Teo. «¿Quién puede tocar la campana?» {hero} levantó la mano, aunque le temblaba un poquito.",
+              "text": "Pero ese día el campanero estaba resfriado, y la campana no sonó. Pasó el mediodía, y nada. Su amigo Teo se tocó la barriga. «Tengo hambre», dijo Teo. «¿Quién puede tocar la campana?» {hero} levantó la mano, aunque le temblaba un poquito.",
               "scene": {
                 "bg": "plaza",
                 "mood": "hope",
@@ -9464,7 +9427,7 @@
           "variants": [
             {
               "id": "campana_mediodia_respira",
-              "text": "{hero} cerró los ojos y respiró hondo, como hacen los valientes. Teo lo miraba desde abajo. Pensó: «No tengo que subirlos todos de golpe. Solo tengo que subir el primero». Y puso el pie en el primer escalón.",
+              "text": "{hero} cerró los ojos y respiró hondo. Teo miraba hacia arriba. {hero} pensó: «No tengo que subirlos todos de golpe. Solo tengo que subir el primero». Así que puso el pie en el primer escalón.",
               "scene": {
                 "bg": "torre",
                 "mood": "hope",
@@ -9491,7 +9454,7 @@
           "variants": [
             {
               "id": "campana_mediodia_subir",
-              "text": "«Un escalón», dijo {hero}, y subió uno. «Dos escalones», y subió otro. Los escalones eran de piedra y estaban fríos. Así, escalón a escalón, {hero} fue subiendo, porque no miraba hacia abajo, sino al siguiente. «¡Vas por el veinte!», dijo Teo desde el suelo. «¡Sigue, sigue!»",
+              "text": "«Un escalón», dijo {hero}, y subió uno, con la mano en la cuerda de la pared. «Dos escalones», y subió otro. Los escalones eran de piedra y estaban fríos. Así, escalón a escalón, {hero} fue subiendo, porque no miraba hacia abajo, sino al siguiente. «¡Vas por el veinte!», dijo Teo desde el suelo. «¡Sigue, sigue!»",
               "scene": {
                 "bg": "interior",
                 "mood": "hope",
@@ -9524,7 +9487,7 @@
           "variants": [
             {
               "id": "campana_mediodia_arriba",
-              "text": "Por fin, {hero} llegó arriba. Se apoyó en la pared y respiró hondo. Allí colgaba la campana, grande y dorada, de una cuerda gruesa. Desde allí se veía toda la aldea, chiquitita. Al corazón de {hero} le latía rápido, pero ya no le temblaban las rodillas.",
+              "text": "Por fin, {hero} llegó arriba. Se apoyó en la pared para descansar un momento. Allí colgaba la campana, grande y dorada, de una cuerda gruesa. Desde allí se veía toda la aldea, chiquitita. El corazón de {hero} latía rápido, pero ya no le temblaban las rodillas.",
               "scene": {
                 "bg": "interior",
                 "mood": "triumph",
@@ -9558,7 +9521,7 @@
           "variants": [
             {
               "id": "campana_mediodia_din_don",
-              "text": "{hero} agarró la cuerda y tiró con todas sus fuerzas. ¡DIN, DON! La campana cantó tan fuerte que se oyó en toda la aldea. Abajo, Teo daba saltos de alegría. «¡Ya puedo comer!», dijo.",
+              "text": "{hero} agarró la cuerda y tiró con todas sus fuerzas. La campana cantó tan fuerte que se oyó en toda la aldea: ¡din, don! Abajo, Teo daba saltos de alegría. «¡Ya puedo comer!», dijo.",
               "scene": {
                 "bg": "interior",
                 "mood": "joy",
@@ -9591,7 +9554,7 @@
           "variants": [
             {
               "id": "campana_mediodia_cierre",
-              "text": "Al bajar, los vecinos esperaban con la mesa puesta. Teo le dio a {hero} un abrazo muy fuerte. «Subiste porque diste un paso y luego otro», dijo Teo. {hero} comió con ganas, porque subir torres da mucha hambre.",
+              "text": "Al bajar, los vecinos esperaban con la mesa puesta. Teo le dio a {hero} un abrazo muy fuerte. «¡Qué alto subiste!», dijo Teo. {hero} comió con ganas, porque subir torres da mucha hambre. Después de la cena, {hero} se acostó pensando en los escalones, uno a uno, y se durmió.",
               "scene": {
                 "bg": "plaza",
                 "mood": "joy",
@@ -9766,7 +9729,7 @@
           "variants": [
             {
               "id": "panecillo_migas",
-              "text": "Pero cuando terminó, a {hero} le dio vergüenza. Tenía migas en la barbilla y en la nariz, y ya no estaba el panecillo. Ahora la barriga estaba llena, pero el corazón pesaba, porque {hero} sabía que no había sido justo.",
+              "text": "Pero cuando terminó, a {hero} le dio vergüenza. Tenía migas en la barbilla y en la nariz, y ya no estaba el panecillo. Ahora {hero} tenía un nudo en la barriga, porque sabía que no estaba bien.",
               "scene": {
                 "bg": "plaza",
                 "mood": "sad",
@@ -9826,7 +9789,7 @@
           "variants": [
             {
               "id": "panecillo_cuenta",
-              "text": "Rosa volvió con la harina. Contó los panecillos: uno, dos, tres... Había uno menos. Miró a {hero}. «¿Sabes qué ha pasado con un panecillo?», dijo Rosa.",
+              "text": "Rosa volvió con la harina. Contó los panecillos: uno, dos, tres... Había uno menos. Miró a {hero}. «¿Sabes qué pasó con un panecillo?», dijo Rosa.",
               "scene": {
                 "bg": "plaza",
                 "mood": "tension",
@@ -9864,7 +9827,7 @@
           "variants": [
             {
               "id": "panecillo_verdad",
-              "text": "{hero} tragó saliva. «Me lo comí yo», dijo {hero}. «Lo siento. No debí hacerlo sin preguntar.» Rosa se rio. «Ya lo sabía, tienes migas en la nariz. Pero gracias por decirme la verdad, pues así no hay secretos. La próxima vez, pídeme uno.»",
+              "text": "{hero} miró al suelo y luego a Rosa. «Me lo comí yo», dijo {hero}. «Lo siento. No debí hacerlo sin preguntar.» Rosa sonrió. «Gracias por decírmelo tú. Tenías migas en la nariz, pero me gusta que me lo cuentes tú. La próxima vez, pídeme uno.»",
               "scene": {
                 "bg": "plaza",
                 "mood": "hope",
@@ -9896,7 +9859,7 @@
           "variants": [
             {
               "id": "panecillo_cierre",
-              "text": "Al atardecer, {hero} ayudó a Rosa a repartir los panecillos en la fiesta. Todos aplaudieron cuando llegó la música. Y al final, Rosa le regaló uno entero, calentito. {hero} lo comió despacio, sin esconderse de nadie, y el corazón volvió a estar liviano.",
+              "text": "Al atardecer, {hero} ayudó a Rosa a repartir los panecillos en la fiesta. Todos aplaudieron cuando llegó la música. Y al final, Rosa le regaló uno entero, calentito, por haber ayudado tanto. {hero} lo comió despacio, sin esconderse de nadie. Cuando la fiesta terminó, {hero} se fue a casa. Se acostó con el corazón ligero, oyendo la música de lejos.",
               "scene": {
                 "bg": "plaza",
                 "mood": "joy",
@@ -9962,7 +9925,7 @@
           "variants": [
             {
               "id": "sombras_manta",
-              "text": "Esa noche, {hero} estrenaba cuarto. Su cama era grande, y su manta olía a jabón y a campo. Por la ventana entraba un poquito de luz. «¡Qué bonita!», dijo {hero}, y se tapó hasta la barbilla.",
+              "text": "Esa noche, {hero} estrenaba cuarto. Su cama era grande, y su manta olía a jabón y a campo. Por la ventana entraba un poquito de luz. «¡Qué cuarto tan bonito!», dijo {hero}, y se tapó hasta la barbilla.",
               "scene": {
                 "bg": "cuarto",
                 "mood": "calm",
@@ -10022,7 +9985,7 @@
           "variants": [
             {
               "id": "sombras_crujido",
-              "text": "De pronto, un ruido: ¡crac! La madera de la cama crujió. {hero} contuvo la respiración. Otra vez el ruido: ¡crac! Era solo la cama, que se estiraba como un gato después de la siesta, pero {hero} todavía no lo sabía.",
+              "text": "De pronto, un ruido: ¡crac! La madera de la cama crujió. {hero} abrió mucho los ojos. Otra vez el ruido: ¡crac! Era solo la cama, que se estiraba como un gato después de la siesta, pero {hero} todavía no lo sabía.",
               "scene": {
                 "bg": "cuarto",
                 "mood": "tension",
@@ -10060,7 +10023,7 @@
           "variants": [
             {
               "id": "sombras_respirar",
-              "text": "{hero} se tapó con la manta hasta la nariz. El corazón hacía pum, pum, pum. Respiró despacio: uno, dos, tres. Pero {hero} pensó: «Los gigantes no caben en un cuarto tan pequeño, así que este gigante es muy raro».",
+              "text": "{hero} se tapó con la manta hasta la nariz. El corazón hacía pum, pum, pum. Respiró despacio: uno, dos, tres. Entonces {hero} pensó: «Los gigantes no caben en un cuarto tan pequeño, así que este gigante es muy raro».",
               "scene": {
                 "bg": "cuarto",
                 "mood": "tension",
@@ -10112,14 +10075,14 @@
                 }
               },
               {
-                "id": "vela",
-                "label": "Encender la vela",
+                "id": "linterna",
+                "label": "Encender la linterna",
                 "icon": {
                   "glyph": "lightbulb",
-                  "art": "vela"
+                  "art": "linterna"
                 },
                 "says": {
-                  "recuerdo": "sopló la vela"
+                  "recuerdo": "apagó la linterna"
                 }
               }
             ]
@@ -10130,7 +10093,7 @@
           "variants": [
             {
               "id": "ojo",
-              "text": "{hero} asomó un ojo. Luego, el otro. Y se levantó de la cama: un pie, y otro pie, y otro pie más. Poco a poco llegó hasta el rincón, porque quería ver de cerca al gigante.",
+              "text": "{hero} asomó un ojo por encima de la manta. Luego, el otro. El gigante seguía allí, sin moverse. Entonces {hero} se levantó: un pasito, y otro pasito, y otro más. Poco a poco llegó hasta el rincón, porque quería ver de cerca al gigante.",
               "scene": {
                 "bg": "cuarto",
                 "mood": "hope",
@@ -10143,6 +10106,13 @@
                   }
                 ],
                 "props": [
+                  {
+                    "prop": "manta",
+                    "x": 0.2,
+                    "lift": 126,
+                    "scale": 1.2,
+                    "front": false
+                  },
                   {
                     "prop": "sombra_gigante",
                     "x": 0.72,
@@ -10158,8 +10128,8 @@
               ]
             },
             {
-              "id": "vela",
-              "text": "{hero} alargó la mano y encendió la vela de la mesita. La luz hizo un círculo amarillo en el cuarto. Con la vela en la mano, dio un pie, y otro pie. Llegó hasta el rincón, porque quería ver de cerca al gigante.",
+              "id": "linterna",
+              "text": "{hero} alargó la mano y encendió su linterna. La luz hizo un círculo amarillo en el cuarto. Con la linterna en la mano, dio un pasito, y otro pasito. Llegó hasta el rincón, porque quería ver de cerca al gigante.",
               "scene": {
                 "bg": "cuarto",
                 "mood": "hope",
@@ -10178,7 +10148,7 @@
                     "scale": 1.5
                   },
                   {
-                    "prop": "vela",
+                    "prop": "linterna",
                     "near": "hero",
                     "dx": 0.06,
                     "lift": 52,
@@ -10188,7 +10158,7 @@
                 ]
               },
               "requires": [
-                "camino:vela"
+                "camino:linterna"
               ],
               "adds": [
                 "dio_el_paso"
@@ -10201,7 +10171,7 @@
           "variants": [
             {
               "id": "sombras_capa",
-              "text": "¡No era un gigante! Era su capa colgada, con el sombrero encima. {hero} se rio tan fuerte que la risa rebotó por todo el cuarto. «¡Menudo gigante!», dijo {hero}. «Si es mi capa, pues no da ningún miedo.» Se rio otra vez, hasta que le dolió la barriga.",
+              "text": "¡No era un gigante! Era su capa colgada, con el sombrero encima. {hero} se rio bajito. «¡Menudo gigante!», dijo {hero}. «¡Si es mi capa, no da miedo!» Se rio otra vez, con la mano en la boca.",
               "scene": {
                 "bg": "cuarto",
                 "mood": "joy",
@@ -10232,7 +10202,7 @@
           "variants": [
             {
               "id": "sombras_cierre",
-              "text": "{hero} volvió a la cama y se tapó con la manta, esta vez sin miedo. Antes de cerrar los ojos, {camino.recuerdo} y saludó a la capa con la mano: «Buenas noches, gigante». Por la ventana entraba la luna, grande y amiga. {hero} se durmió sin soltar la manta, porque ya sabía que las sombras de la noche son solo capas.",
+              "text": "{hero} volvió a la cama y se tapó con la manta, esta vez sin miedo. Antes de cerrar los ojos, {camino.recuerdo} y saludó a la capa con la mano: «Buenas noches, gigante». Por la ventana entraba la luna, grande y amiga. {hero} se durmió sin soltar la manta, porque ya sabía que, mirando de cerca, el gigante se hace pequeño.",
               "scene": {
                 "bg": "cuarto",
                 "mood": "sleep",
@@ -10260,6 +10230,9 @@
                     "x": 0.72,
                     "scale": 1.5
                   }
+                ],
+                "unseen": [
+                  "linterna"
                 ]
               }
             }
@@ -10308,7 +10281,7 @@
           "variants": [
             {
               "id": "sopa_cuenco",
-              "text": "En invierno, la aldea olía a sopa. Nevaba, y los tejados parecían cubiertos de azúcar. Rosa le dio a {hero} {item.un} lleno de sopa humeante. {hero} se lo llevó a la plaza con mucho cuidado, sin derramar ni una gota.",
+              "text": "En invierno, la aldea olía a sopa. Nevaba, y los tejados parecían cubiertos de azúcar. Rosa le dio a {hero} {item.un} lleno de sopa humeante, con una cuchara de madera. {hero} se lo llevó a la plaza con mucho cuidado, sin derramar ni una gota.",
               "scene": {
                 "bg": "plaza",
                 "mood": "calm",
@@ -10332,7 +10305,7 @@
           "variants": [
             {
               "id": "sopa_beto",
-              "text": "Allí estaba Beto, el molinero. Tenía las manos frías y la barriga vacía. Ese día no había viento, y sin viento el molino no gira. Sin molino no hay harina, y sin harina no hay pan. Beto miraba el cielo, esperando al viento, y suspiraba muy bajito.",
+              "text": "Allí estaba Beto, el molinero. Tenía las manos frías y la barriga vacía. Ese día no había viento, y sin viento el molino no gira. Sin molino no hay harina, y sin harina no hay pan. Beto miraba el cielo, esperando al viento, y suspiraba.",
               "scene": {
                 "bg": "plaza",
                 "mood": "sad",
@@ -10403,7 +10376,7 @@
           "variants": [
             {
               "id": "sopa_decidir",
-              "text": "«Beto, ven a sentarte», dijo {hero}. «Hay sopa para dos si la tomamos despacito.» Y le pasó primero el cuenco, con las dos manos, para que no se enfriara.",
+              "text": "«Beto, ven a sentarte», dijo {hero}. «Hay sopa para dos si la tomamos despacito.» Y le pasó primero el cuenco, con las dos manos, para que Beto tomara el primer sorbo.",
               "scene": {
                 "bg": "plaza",
                 "mood": "hope",
@@ -10440,7 +10413,7 @@
           "variants": [
             {
               "id": "sopa_compartir",
-              "text": "Beto tomó un sorbo, y luego {hero} tomó otro. Una vez tú, una vez yo, hasta que no quedó ni una gota. La sopa sabía más rica así, porque cada sorbo se compartía.",
+              "text": "Beto tomó un sorbo, y luego {hero} tomó otro. Una vez tú, una vez yo, hasta que no quedó ni una gota. La sopa sabía más rica así.",
               "scene": {
                 "bg": "plaza",
                 "mood": "joy",
@@ -10514,7 +10487,7 @@
           "variants": [
             {
               "id": "sopa_viento",
-              "text": "Entonces sopló el viento: ¡fiuuu! Las aspas del molino empezaron a girar, y giraron, y giraron. «¡Gracias a ti tengo ganas de trabajar!», dijo Beto. «Mañana te traeré un pan enorme.»",
+              "text": "Entonces sopló el viento: ¡fiuuu! Las aspas del molino empezaron a girar, y giraron, y giraron. «¡Ahora tengo fuerza para trabajar!», dijo Beto. «Mañana te traeré un pan enorme.»",
               "scene": {
                 "bg": "plaza",
                 "mood": "triumph",
@@ -10550,7 +10523,7 @@
           "variants": [
             {
               "id": "sopa_cierre",
-              "text": "Al día siguiente, el pan de Beto llegó a la puerta de {hero}. Era tan grande que había que llevarlo entre dos. {hero} lo partió con Beto y con Rosa, y los tres se rieron de tanto pan. Aquella tarde, la aldea entera olía a pan caliente.",
+              "text": "Al día siguiente, Beto llevó un pan enorme a la puerta de {hero}. Era tan grande que había que llevarlo entre dos. {hero} lo partió con Beto y con Rosa, porque había pan para todos. Los tres se rieron de tanto pan. Luego, con la tripita llena de pan, {hero} se durmió oyendo girar el molino.",
               "scene": {
                 "bg": "plaza",
                 "mood": "joy",
@@ -10635,7 +10608,7 @@
           "variants": [
             {
               "id": "cuenco_yo_solo_cuenco",
-              "text": "Rosa había hecho sopa de calabaza para toda la aldea. La sirvió en {item.un} enorme, con dos asas. Humeaba, y olía a dulce. «Hay que llevarlo a la plaza», dijo Rosa. «Está lleno hasta arriba, así que pesa mucho.»",
+              "text": "Rosa había hecho sopa de calabaza para toda la aldea. La sirvió en {item.un} enorme, con dos asas. La sopa humeaba un poquito, y ya estaba tibia. Olía a dulce. «Hay que llevarlo a la plaza», dijo Rosa. «Yo salgo detrás con el pan. El cuenco está lleno hasta arriba, así que pesa mucho.»",
               "scene": {
                 "bg": "plaza",
                 "mood": "calm",
@@ -10658,7 +10631,7 @@
           "variants": [
             {
               "id": "cuenco_yo_solo_yo_solo_a",
-              "text": "{hero} se puso de puntillas. «¡Yo sol{hero.o}! ¡Yo sol{hero.o}!», dijo {hero}. «Ya soy grande, y puedo llevarlo.» Rosa sonrió y puso el cuenco en sus manos. «Está bien», dijo Rosa. «Yo me quedo en la cocina. Ve con cuidado.»",
+              "text": "{hero} se puso de puntillas. «¡Yo sol{hero.o}! ¡Yo sol{hero.o}!», dijo {hero}. «Ya soy grande, y puedo llevarlo.» Rosa sonrió. «Pesa mucho, pero te dejo probar», dijo Rosa, y puso el cuenco en sus manos. «Yo salgo detrás con el pan. Ve con cuidado.»",
               "scene": {
                 "bg": "plaza",
                 "mood": "hope",
@@ -10689,7 +10662,7 @@
             },
             {
               "id": "cuenco_yo_solo_yo_solo_b",
-              "text": "«¡Yo sol{hero.o}!», dijo {hero}, y estiró los brazos. «Soy grande, puedo llevarlo. ¡Mira qué fuerte soy!» Rosa sonrió. Le dio el cuenco con las dos manos. «Yo me quedo en la cocina», dijo Rosa. «Ve despacio, que está lleno.»",
+              "text": "«¡Yo sol{hero.o}!», dijo {hero}, y estiró los brazos. «Soy grande, puedo llevarlo. ¡Mira qué fuerte soy!» Rosa sonrió y le dio el cuenco con cuidado. «Pesa mucho, pero te dejo probar», dijo Rosa. «Yo salgo detrás con el pan. Ve despacio, que está lleno.»",
               "scene": {
                 "bg": "plaza",
                 "mood": "hope",
@@ -10813,7 +10786,7 @@
           "variants": [
             {
               "id": "cuenco_yo_solo_beto_a",
-              "text": "Justo entonces llegó Beto, el molinero, silbando una canción. «¡Qué cuenco tan grande!», dijo Beto. «¿Te echo una mano?» {hero} miró la sopa del suelo. Miró el cuenco. Le picaba el orgullo, pero los brazos dolían más. Así que respiró hondo. «Sí, Beto, ayúdame, por favor», dijo {hero}.",
+              "text": "Justo entonces llegó Beto, el molinero, silbando una canción. «¡Qué cuenco tan grande!», dijo Beto. «¿Te echo una mano?» {hero} miró la sopa del suelo. Miró el cuenco. Le daba un poco de vergüenza pedir ayuda, pero los brazos dolían más. «Sí, Beto, ayúdame, por favor», dijo {hero}.",
               "scene": {
                 "bg": "plaza",
                 "mood": "hope",
@@ -10957,7 +10930,7 @@
           "variants": [
             {
               "id": "cuenco_yo_solo_plaza",
-              "text": "Llegaron a la plaza, donde los vecinos esperaban con sus cucharas. Pusieron el cuenco sobre la mesa grande. ¡Qué bien olía! Todos aplaudieron: clap, clap, clap. «Para eso estamos los vecinos», dijo Beto. {hero} se sintió orgullos{hero.o}, pero de otra manera: orgullos{hero.o} de haber pedido ayuda.",
+              "text": "Llegaron a la plaza, donde los vecinos esperaban con sus cucharas. Pusieron el cuenco sobre la mesa grande. ¡Qué bien olía! Todos aplaudieron: clap, clap, clap. «Para eso estamos los vecinos», dijo Beto. {hero} se sintió muy content{hero.o}.",
               "scene": {
                 "bg": "plaza",
                 "mood": "triumph",
@@ -10999,7 +10972,7 @@
           "variants": [
             {
               "id": "cuenco_yo_solo_cierre",
-              "text": "Esa noche, {hero} volvió a la cocina de Rosa. Rosa le sirvió un plato de sopa tibia y le dio un abrazo. «Hoy pediste ayuda», dijo Rosa. «Y toda la aldea comió sopa.» Por la ventana asomaba la luna. {hero} bostezó, se acurrucó junto al horno calentito y cerró los ojos, feliz y con sueño.",
+              "text": "Esa noche, {hero} volvió a la cocina de Rosa. Rosa le sirvió un plato de sopa tibia y le dio un abrazo. «Entre los dos llegasteis», dijo Rosa. «Y toda la aldea comió sopa.» Por la ventana asomaba la luna. {hero} bostezó, y Rosa arropó a {hero} en su camita. Con los ojos cerrados y la barriga caliente, {hero} se durmió.",
               "scene": {
                 "bg": "cocina",
                 "mood": "sleep",
@@ -11054,7 +11027,7 @@
           "variants": [
             {
               "id": "torre_de_piedras_orilla_a",
-              "text": "{hero} llegó a la orilla del lago. El agua no se movía, y los juncos se mecían: shhh, shhh. En la arena había muchas piedras planas, lisas y frescas. «Con estas piedras haré una torre», dijo {hero}. «Una torre muy alta.»",
+              "text": "{hero} llegó a la orilla del lago. Los juncos se mecían: shhh, shhh. En la arena había piedras grandes y piedras chiquitas, todas lisas y frescas. «Con estas piedras haré una torre», dijo {hero}. «Una torre muy alta.»",
               "scene": {
                 "bg": "orilla",
                 "mood": "calm",
@@ -11078,7 +11051,7 @@
             },
             {
               "id": "torre_de_piedras_orilla_b",
-              "text": "Junto al lago había una playita de arena. Los juncos se mecían: shhh, shhh. {hero} encontró piedras planas, lisas y frescas, y las juntó todas. «Voy a hacer una torre», dijo {hero}. «La torre más alta del mundo.»",
+              "text": "Junto al lago había una playita de arena. Los juncos se mecían: shhh, shhh. {hero} encontró piedras grandes y piedras chiquitas, lisas y frescas, y las juntó todas. «Voy a hacer una torre», dijo {hero}. «La torre más alta del mundo.»",
               "scene": {
                 "bg": "orilla",
                 "mood": "calm",
@@ -11107,7 +11080,7 @@
           "variants": [
             {
               "id": "torre_de_piedras_apilar",
-              "text": "{hero} puso una piedra. Puso otra encima, y otra, y otra. Una, dos, tres, cuatro. La torre crecía y crecía. {hero} contuvo la respiración, porque no quería que se cayera. «Ya casi», susurró {hero}.",
+              "text": "{hero} puso primero una piedra chiquita, porque era la más fácil de coger. Puso otra encima, y otra, y otra. Una, dos, tres, cuatro. La torre crecía y crecía. {hero} la miraba sin parpadear, porque no quería que se cayera. «Ya casi», susurró {hero}.",
               "scene": {
                 "bg": "orilla",
                 "mood": "hope",
@@ -11142,7 +11115,7 @@
           "variants": [
             {
               "id": "torre_de_piedras_cae_una_a",
-              "text": "Entonces la torre se tambaleó: tic, tac, tic, tac. ¡Plaf! Las piedras rodaron por la arena. {hero} suspiró: ¡ooh! Pero enseguida sonrió. «¡Otra vez!», dijo {hero}, y juntó las piedras.",
+              "text": "Entonces la torre se movió: tic, tac, tic, tac. ¡Plaf! Las piedras rodaron por la arena. {hero} suspiró: ¡ooh! Pero enseguida sonrió. «¡Otra vez!», dijo {hero}, y juntó las piedras.",
               "scene": {
                 "bg": "orilla",
                 "mood": "tension",
@@ -11166,7 +11139,7 @@
             },
             {
               "id": "torre_de_piedras_cae_una_b",
-              "text": "De pronto, la torre se movió: tic, tac, tic, tac. ¡Plaf! Las piedras rodaron hasta el agua: plin, plin. {hero} dijo «¡ooh!», pero enseguida sonrió. «¡Otra vez!», dijo {hero}, y juntó las piedras.",
+              "text": "De pronto, la torre se movió: tic, tac, tic, tac. ¡Plaf! Las piedras rodaron por la arena, lejos de la torre. {hero} dijo «¡ooh!», pero enseguida sonrió. «¡Otra vez!», dijo {hero}, y juntó las piedras.",
               "scene": {
                 "bg": "orilla",
                 "mood": "tension",
@@ -11219,7 +11192,7 @@
             },
             {
               "id": "torre_de_piedras_cae_dos_b",
-              "text": "{hero} puso una piedra, otra y otra. Esta vez la torre llegó todavía más alto. Tic, tac, tic, tac... ¡plaf! Se cayó otra vez. A {hero} le dio un poco de rabia. Respiró hondo: uno, dos, tres. «¡Otra vez!»",
+              "text": "{hero} puso una piedra, otra y otra. Esta vez la torre llegó todavía más alto. Tic, tac, tic, tac... ¡plaf! Se cayó otra vez. A {hero} le dio un poco de rabia. Contó despacio: uno, dos, tres. «¡Otra vez!»",
               "scene": {
                 "bg": "orilla",
                 "mood": "tension",
@@ -11248,7 +11221,7 @@
           "variants": [
             {
               "id": "torre_de_piedras_cae_tres",
-              "text": "El cielo se puso naranja. {hero} hizo una torre más: una piedra, otra y otra. ¡Plaf! Se cayó por tercera vez. «Otra vez», dijo {hero}, pero esta vez más despacito. «Primero voy a pensar.»",
+              "text": "Se hacía tarde, y el cielo se puso naranja. {hero} hizo una torre más: una piedra, otra y otra. ¡Plaf! Se cayó por tercera vez. «Otra vez», dijo {hero}, pero esta vez más despacito. «Primero voy a pensar.»",
               "scene": {
                 "bg": "orilla",
                 "mood": "mystery",
@@ -11277,7 +11250,7 @@
           "variants": [
             {
               "id": "torre_de_piedras_aprende_a",
-              "text": "{hero} se sentó a mirar las piedras. Abajo había piedras chiquitas, y arriba, piedras grandes. Por eso la torre se caía, pues las chiquitas no podían con las grandes. «¡Ya sé!», dijo {hero}. «Las piedras grandes van abajo, y las chiquitas, arriba.»",
+              "text": "{hero} se sentó a mirar las piedras. Abajo había piedras chiquitas, y arriba, piedras grandes. Por eso la torre se caía: las chiquitas no podían con el peso de las grandes. «¡Ya sé!», dijo {hero}. «Las piedras grandes van abajo, y las chiquitas, arriba.»",
               "scene": {
                 "bg": "orilla",
                 "mood": "hope",
@@ -11304,7 +11277,7 @@
             },
             {
               "id": "torre_de_piedras_aprende_b",
-              "text": "{hero} se quedó mirando las piedras un buen rato. Las de abajo eran chiquitas, y las de arriba, grandes. Así que la torre se caía, porque las chiquitas no aguantaban a las grandes. «¡Ya sé!», dijo {hero}. «Las grandes van abajo. Las chiquitas, arriba.»",
+              "text": "{hero} se quedó mirando las piedras un buen rato. Las de abajo eran chiquitas, y las de arriba, grandes. Así que la torre se caía, porque las chiquitas no podían con el peso de las grandes. «¡Ya sé!», dijo {hero}. «Las grandes van abajo. Las chiquitas, arriba.»",
               "scene": {
                 "bg": "orilla",
                 "mood": "hope",
@@ -11336,7 +11309,7 @@
           "variants": [
             {
               "id": "torre_de_piedras_torre",
-              "text": "Con mucho cuidado, {hero} puso primero la piedra más grande, ancha y plana. Encima, una un poquito más chica. Encima, otra más chica todavía. Y arriba del todo, la más chiquitita de todas. La torre se quedó firme. Ni un tic, ni un tac. «¡Lo logré!», dijo {hero}, y dio una palmada.",
+              "text": "Con mucho cuidado, {hero} puso primero la piedra más grande, ancha y plana. Encima, una un poquito más chica. Encima, otra más chica todavía. Y arriba del todo, la más chiquitita de todas. La torre se quedó firme. Ni un tic, ni un tac. No era la más alta del mundo, pero era la más firme. «¡Lo logré!», dijo {hero}, y dio una palmada.",
               "scene": {
                 "bg": "orilla",
                 "mood": "triumph",
@@ -11374,7 +11347,7 @@
           "variants": [
             {
               "id": "torre_de_piedras_cierre_a",
-              "text": "Cuando salió la luna, el lago se llenó de plata. Allí, en el agua, había otra luna, redonda y blanca. Y al lado, otra torre chiquita: la torre de {hero}, reflejada. {hero} se sentó junto a su torre. Bostezó: ¡aaah! Cerró los ojos, con la luna en el agua y el corazón en calma.",
+              "text": "Cuando salió la luna, el lago se llenó de plata. Allí, en el agua, había otra luna, redonda y blanca. Y al lado, otra torre chiquita: la torre de {hero}, reflejada. {hero} se despidió de su torre con la mano, y volvió a casa bostezando: ¡aaah! En la cama, cerró los ojos. Desde lejos, el lago cantaba: shhh, shhh. Y {hero} se durmió con el corazón en calma.",
               "scene": {
                 "bg": "orilla",
                 "mood": "sleep",
@@ -11382,7 +11355,7 @@
                 "stage": [
                   {
                     "who": "hero",
-                    "clip": "sit",
+                    "clip": "wave",
                     "x": 0.34
                   }
                 ],
@@ -11393,6 +11366,9 @@
                     "scale": 1.0,
                     "lift": 0
                   }
+                ],
+                "unseen": [
+                  "cama"
                 ]
               },
               "requires": [
@@ -11401,7 +11377,7 @@
             },
             {
               "id": "torre_de_piedras_cierre_b",
-              "text": "Después salió la luna, y el lago se llenó de plata. Allí, en el agua, había otra luna, redonda y blanca. Y al lado, otra torre chiquita: la torre de {hero}, reflejada. {hero} se sentó junto a su torre. Bostezó: ¡aaah! Cerró los ojos, y el lago le cantó bajito: shhh, shhh.",
+              "text": "Después salió la luna, y el lago se llenó de plata. Allí, en el agua, había otra luna, redonda y blanca. Y al lado, otra torre chiquita: la torre de {hero}, reflejada. {hero} se despidió de su torre con la mano, y volvió a casa bostezando: ¡aaah! En la cama, cerró los ojos. Desde muy lejos, el lago le cantó: shhh, shhh.",
               "scene": {
                 "bg": "orilla",
                 "mood": "sleep",
@@ -11409,7 +11385,7 @@
                 "stage": [
                   {
                     "who": "hero",
-                    "clip": "sit",
+                    "clip": "wave",
                     "x": 0.34
                   }
                 ],
@@ -11420,6 +11396,9 @@
                     "scale": 1.0,
                     "lift": 0
                   }
+                ],
+                "unseen": [
+                  "cama"
                 ]
               },
               "requires": [
@@ -11468,7 +11447,7 @@
           "variants": [
             {
               "id": "cinta_de_lia_cinta_a",
-              "text": "Lía tenía {item.un} azul. Era su cinta favorita, suave y brillante. Aquella tarde, {hero} y Lía subieron a la colina del roble para jugar. Lía se la puso en el pelo, con un lazo. «¿Me queda bien?», preguntó Lía. «Muy bien», dijo {hero}.",
+              "text": "Lía tenía {item.un} azul, suave y brillante. «Es mi cinta favorita», dijo Lía. «Es suave como una nube.» Aquella tarde, {hero} y Lía subieron a la colina del roble para jugar. Lía se la puso en el pelo, con un lazo. «¿Me queda bien?», preguntó Lía. «Muy bien», dijo {hero}.",
               "scene": {
                 "bg": "colina",
                 "mood": "calm",
@@ -11482,7 +11461,7 @@
             },
             {
               "id": "cinta_de_lia_cinta_b",
-              "text": "Lía tenía {item.un} azul que brillaba como el cielo. Era su cinta favorita, y siempre la llevaba en el pelo. Aquella tarde, Lía y {hero} subieron juntos a la colina del roble. «¿Se me ve la cinta?», preguntó Lía. «Se ve preciosa», dijo {hero}.",
+              "text": "Lía tenía {item.un} azul que brillaba como el cielo. Siempre la llevaba en el pelo. Aquella tarde, Lía y {hero} subieron a la colina del roble. «¿Se me ve la cinta?», preguntó Lía. «Se ve preciosa», dijo {hero}.",
               "scene": {
                 "bg": "colina",
                 "mood": "calm",
@@ -11504,7 +11483,7 @@
           "variants": [
             {
               "id": "cinta_de_lia_jugar_a",
-              "text": "Corrieron cuesta arriba y cuesta abajo. Rodaron por la hierba y se rieron mucho. De pronto sopló el viento: ¡fiuuu! Lía corrió más deprisa, con el pelo al aire, y {hero} corrió detrás de Lía.",
+              "text": "Corrieron cuesta arriba y cuesta abajo. Rodaron por la hierba y se rieron mucho. De pronto sopló el viento: ¡fiuuu! Lía corrió más deprisa, con el pelo al aire, y {hero} corrió detrás de Lía. Algo azul voló por el aire, pero iban riéndose y no lo vieron.",
               "scene": {
                 "bg": "colina",
                 "mood": "joy",
@@ -11534,7 +11513,7 @@
             },
             {
               "id": "cinta_de_lia_jugar_b",
-              "text": "Subieron corriendo hasta el roble y bajaron rodando por la hierba. ¡Cómo se reían! De pronto sopló el viento: ¡fiuuu! A Lía se le alborotó el pelo, y {hero} corrió para alcanzarla.",
+              "text": "Subieron corriendo hasta el roble y bajaron rodando por la hierba. ¡Cómo se reían! De pronto sopló el viento: ¡fiuuu! A Lía se le despeinó el pelo, y {hero} corrió para alcanzarla. Algo azul voló por el aire, pero iban riéndose y no lo vieron.",
               "scene": {
                 "bg": "colina",
                 "mood": "joy",
@@ -11569,7 +11548,7 @@
           "variants": [
             {
               "id": "cinta_de_lia_falta",
-              "text": "Cuando pararon, Lía se tocó el pelo. ¡La cinta no estaba! «¡Mi cinta azul!», dijo Lía. Se sentó en la hierba, con la carita triste, porque era su cinta favorita. «Ya no está», dijo Lía. {hero} se sentó a su lado.",
+              "text": "Cuando pararon, Lía se tocó el pelo. ¡La cinta no estaba! «¡Mi cinta azul!», dijo Lía. Se sentó en la hierba, con la carita triste, porque la quería mucho. «Ya no está», dijo Lía. {hero} se sentó a su lado.",
               "scene": {
                 "bg": "colina",
                 "mood": "sad",
@@ -11595,7 +11574,7 @@
           "variants": [
             {
               "id": "cinta_de_lia_ayuda_a",
-              "text": "{hero} le tomó la mano a Lía. «No estés triste», dijo {hero}. «Vamos a buscarla juntos, porque dos pares de ojos ven más que uno.» Lía se secó los ojos y asintió. «Vamos», dijo Lía.",
+              "text": "{hero} dejó el juego para buscar la cinta con Lía, y le tomó la mano. «No estés triste», dijo {hero}. «Vamos a buscarla, porque dos pares de ojos ven más que uno.» Lía se secó los ojos y dijo que sí con la cabeza. «Vamos», dijo Lía.",
               "scene": {
                 "bg": "colina",
                 "mood": "hope",
@@ -11619,7 +11598,7 @@
             },
             {
               "id": "cinta_de_lia_ayuda_b",
-              "text": "{hero} abrazó a Lía. «Yo te ayudo a buscarla», dijo {hero}. «Dos pares de ojos ven más que uno, así que la vamos a encontrar.» Lía sonrió un poquito. «Vamos», dijo Lía.",
+              "text": "{hero} dejó el juego para sentarse a buscar la cinta con Lía, y la abrazó. «Yo te ayudo a buscarla», dijo {hero}. «Y la vamos a encontrar.» Lía sonrió un poquito. «Vamos», dijo Lía.",
               "scene": {
                 "bg": "colina",
                 "mood": "hope",
@@ -11777,7 +11756,7 @@
           "variants": [
             {
               "id": "cinta_de_lia_estrellas_a",
-              "text": "Después se tumbaron en la hierba, uno al lado del otro. Salieron las primeras estrellas: una, dos, tres. La cinta azul se movía despacito con la brisa. A Lía se le cerraban los ojos, y a {hero} también. Se dieron la mano, y las estrellas parpadearon sobre los dos amigos.",
+              "text": "Después Lía y {hero} se tumbaron en la hierba, hombro con hombro. Salieron las primeras estrellas: una, dos, tres. La cinta azul se movía despacito con la brisa. Abajo, en la aldea, se encendían las ventanas. Pronto sería hora de volver, y la cinta azul seguiría en su sitio, porque estaba bien atada.",
               "scene": {
                 "bg": "colina",
                 "mood": "sleep",
@@ -11810,7 +11789,7 @@
             },
             {
               "id": "cinta_de_lia_estrellas_b",
-              "text": "Más tarde se sentaron juntos, bajo el roble, a mirar el cielo. Se encendieron las estrellas: una, dos, tres. La cinta azul bailaba con la brisa. {hero} bostezó, y Lía bostezó. Apoyaron la cabeza uno en el otro, con las estrellas arriba y la cinta en su sitio.",
+              "text": "Más tarde se sentaron bajo el roble, a mirar el cielo. Se encendieron las estrellas: una, dos, tres. La cinta azul bailaba con la brisa. {hero} bostezó, y Lía bostezó. Apoyaron las cabezas, cabeza con cabeza. Abajo, en la aldea, se encendían las ventanas. Pronto sería hora de volver, y la cinta azul seguiría en su sitio, porque estaba bien atada.",
               "scene": {
                 "bg": "colina",
                 "mood": "sleep",
@@ -12007,7 +11986,7 @@
           "variants": [
             {
               "id": "ayudita_lejos",
-              "text": "{hero} miró hacia la plaza. ¡Qué lejos! Lejos, lejos, lejos. Y el saco, grande, grande, grande. «Necesito ayuda», pensó {hero}, porque el saco pesaba mucho.",
+              "text": "{hero} miró hacia la plaza. «Uf… ¡Qué lejos!», suspiró {hero}. Lejos, lejos, lejos. Y el saco, grande, grande, grande. «Necesito ayuda», dijo bajito, porque el saco pesaba mucho.",
               "scene": {
                 "bg": "plaza",
                 "mood": "mystery",
@@ -12038,7 +12017,7 @@
           "variants": [
             {
               "id": "ayudita_rosa_a",
-              "text": "En la puerta estaba Rosa, la panadera. Rosa miró a {hero}. Miró el saco grande. «Rosa, ¿me ayudas?», dijo {hero}. «Sí, claro», dijo Rosa. «Con mucho gusto.»",
+              "text": "En la puerta de la panadería estaba Rosa, la panadera. Rosa miró a {hero}. Miró el saco grande. «Rosa, ¿me ayudas?», dijo {hero}. «¡Claro que sí!», dijo Rosa.",
               "scene": {
                 "bg": "plaza",
                 "mood": "hope",
@@ -12072,7 +12051,7 @@
             },
             {
               "id": "ayudita_rosa_b",
-              "text": "Rosa, la panadera, estaba en la puerta. {hero} la miró. «Rosa, ¿me ayudas?», dijo {hero}. «¡Pesa, pesa, pesa!» Rosa sonrió. «Sí, claro. Yo agarro este lado.»",
+              "text": "Rosa, la panadera, estaba en la puerta de la panadería. {hero} la miró. «Rosa, ¿me ayudas?», dijo {hero}. «¡Pesa, pesa, pesa!» Rosa sonrió. «Sí, claro. Yo agarro este lado.»",
               "scene": {
                 "bg": "plaza",
                 "mood": "hope",
@@ -12144,7 +12123,7 @@
             },
             {
               "id": "ayudita_juntos_b",
-              "text": "Los dos levantaron el saco. Rosa por un lado, {hero} por el otro. Un pasito, otro pasito. «Pesa menos», dijo {hero}. «¡Pesa menos, pesa menos!» Y Rosa se rio.",
+              "text": "Rosa y {hero} levantaron el saco. Rosa por un lado, {hero} por el otro. Un pasito, otro pasito. «Pesa menos», dijo {hero}, porque ya no le dolían los brazos. «¡Pesa menos, pesa menos!» Y Rosa se rio.",
               "scene": {
                 "bg": "plaza",
                 "mood": "joy",
@@ -12182,7 +12161,7 @@
           "variants": [
             {
               "id": "ayudita_cierre_a",
-              "text": "Llegaron a la plaza. ¡Plof! Dejaron el saco en el suelo. «Gracias, Rosa», dijo {hero}. Rosa le dio un abrazo. El saco pesaba poquito, porque lo llevaban entre dos. {hero} bostezó: ¡aaah! Y se acurrucó con Rosa, con mucho sueño.",
+              "text": "Llegaron a la plaza y dejaron el saco en el suelo: ¡plof! «Gracias, Rosa», dijo {hero}. Rosa le dio un abrazo. {hero} bostezó: ¡aaah! Se sentaron junto al saco, y {hero} se acurrucó con Rosa, con mucho sueño.",
               "scene": {
                 "bg": "plaza",
                 "mood": "calm",
@@ -12213,7 +12192,7 @@
             },
             {
               "id": "ayudita_cierre_b",
-              "text": "Ya estaban en la plaza. ¡Plof! El saco se quedó en el suelo. «Gracias, Rosa», dijo {hero}. Rosa abrió los brazos. Entre los dos, el saco había pesado poquito, pues cada uno llevaba un lado. {hero} bostezó: ¡aaah! Y se acurrucó con Rosa, con mucho sueño.",
+              "text": "Ya estaban en la plaza. ¡Plof! El saco se quedó en el suelo. «Gracias, Rosa», dijo {hero}. Rosa abrió los brazos. {hero} bostezó: ¡aaah! Se sentaron junto al saco, y {hero} se acurrucó con Rosa, con mucho sueño.",
               "scene": {
                 "bg": "plaza",
                 "mood": "calm",
@@ -12280,7 +12259,7 @@
           "variants": [
             {
               "id": "otra_vez_cometa_a",
-              "text": "{hero} tenía {item.un} roja. Una cometa roja, con una cola larga. «Quiero que vueles», dijo {hero}. «Vuela, vuela, vuela.»",
+              "text": "{hero} tenía {item.un} roja en la colina. Una cometa roja, con una cola larga. «Quiero que vueles», dijo {hero}. «Vuela, vuela, vuela.»",
               "scene": {
                 "bg": "colina",
                 "mood": "calm",
@@ -12316,7 +12295,7 @@
           "variants": [
             {
               "id": "otra_vez_primera",
-              "text": "{hero} corrió, corrió, corrió. La cometa fue detrás: zum, zum. Pero la cometa cayó. ¡Plaf! «¡Otra vez!», dijo {hero}.",
+              "text": "{hero} corrió, corrió, corrió. La cometa fue detrás: zum, zum. Pero la cometa cayó, porque casi no había viento. ¡Plaf! «¡Otra vez!», dijo {hero}.",
               "scene": {
                 "bg": "colina",
                 "mood": "hope",
@@ -12401,7 +12380,7 @@
           "variants": [
             {
               "id": "otra_vez_tercera_a",
-              "text": "{hero} corrió, corrió, corrió. La cometa subió un poquito, un poquito, un poquito. Pero la cometa cayó. ¡Plaf! {hero} se sentó un ratito, porque se le cansaron las piernas. Luego se levantó. «Otra vez», dijo {hero}, despacito.",
+              "text": "{hero} corrió, corrió, corrió. La cometa subió un poquito, un poquito, un poquito. Pero la cometa cayó. ¡Plaf! {hero} se sentó en la hierba y suspiró: «Uf.» Le dolían las piernas, porque había corrido mucho. Luego se levantó. «Otra vez», dijo {hero}, despacito.",
               "scene": {
                 "bg": "colina",
                 "mood": "tension",
@@ -12429,7 +12408,7 @@
             },
             {
               "id": "otra_vez_tercera_b",
-              "text": "Una vez más, {hero} corrió, corrió, corrió. La cometa subió un poquito, un poquito, un poquito. Pero la cometa cayó. ¡Plaf! {hero} se sentó un ratito, porque se le cansaron las piernas. Luego se levantó. «Otra vez», dijo {hero}, despacito.",
+              "text": "Una vez más, {hero} corrió, corrió, corrió. La cometa subió un poquito, un poquito, un poquito. Pero la cometa cayó. ¡Plaf! {hero} se sentó un ratito y suspiró: «Uf.» Le dolían las piernas, porque había corrido mucho. Luego se levantó. «Otra vez», dijo {hero}, despacito.",
               "scene": {
                 "bg": "colina",
                 "mood": "tension",
@@ -12462,7 +12441,7 @@
           "variants": [
             {
               "id": "otra_vez_viento",
-              "text": "De pronto, ¡fiuuu! Llegó el viento. Sopló y sopló sobre la colina. La cometa se llenó de aire: ¡flap, flap! Así que {hero} la agarró fuerte de la cuerda.",
+              "text": "Una vez más, {hero} levantó la cometa con los brazos bien estirados. De pronto llegó el viento: ¡fiuuu! Sopló y sopló sobre la colina. La cometa se llenó de aire: ¡flap, flap! Así que {hero} la agarró fuerte de la cuerda.",
               "scene": {
                 "bg": "colina",
                 "mood": "mystery",
@@ -12542,7 +12521,7 @@
           "variants": [
             {
               "id": "otra_vez_cierre_a",
-              "text": "El cielo se puso naranja. La cometa bailaba, bailaba, bailaba. {hero} se sentó en la hierba, con la cuerda en la mano. Bostezó: ¡aaah! Cerró los ojos, pues había corrido mucho. La cometa, arriba, se mecía despacito, y {hero} sonrió con sueño.",
+              "text": "Pasó un ratito largo. El cielo se puso naranja. La cometa bailaba, bailaba, bailaba. {hero} se sentó en la hierba, con la cuerda en la mano. Bostezó: ¡aaah! Cerró los ojos. Había corrido mucho. La cometa, arriba, se movía despacito, y {hero} sonrió con sueño.",
               "scene": {
                 "bg": "colina",
                 "mood": "sleep",
@@ -12570,7 +12549,7 @@
             },
             {
               "id": "otra_vez_cierre_b",
-              "text": "El cielo se puso naranja. La cometa bailaba, bailaba, bailaba. {hero} se tumbó en la hierba, con la cuerda en la mano. Bostezó: ¡aaah! Cerró los ojos, pues había corrido mucho. La cometa, arriba, se mecía despacito, y {hero} sonrió con sueño.",
+              "text": "Pasó un ratito largo. El cielo se puso naranja. La cometa bailaba, bailaba, bailaba. {hero} se tumbó en la hierba, con la cuerda en la mano. Bostezó: ¡aaah! Cerró los ojos. Había corrido mucho. La cometa, arriba, se movía despacito, y {hero} sonrió con sueño.",
               "scene": {
                 "bg": "colina",
                 "mood": "sleep",
@@ -12652,7 +12631,7 @@
             },
             {
               "id": "regar_juntos_brote_b",
-              "text": "En el huerto, {hero} y Lía encontraron una maceta. Dentro había {item.un} verde, pequeñito, pequeñito. Se veía agachadito, pues tenía sed.",
+              "text": "En el huerto, {hero} y Lía encontraron una maceta. Dentro había {item.un} verde, pequeñito, pequeñito. Se veía agachadito, porque tenía sed.",
               "scene": {
                 "bg": "huerto",
                 "mood": "calm",
@@ -12751,7 +12730,7 @@
           "variants": [
             {
               "id": "regar_juntos_sombra_a",
-              "text": "Hacía mucho sol, y el brote seguía agachadito. Entonces {hero} y Lía hicieron sombra con las manos. Sombrita, sombrita, sombrita para el brote. Era para que el sol no le picara.",
+              "text": "Hacía mucho sol, y el brote seguía agachadito. Entonces {hero} y Lía hicieron sombra con las manos. Sombrita, sombrita, sombrita para el brote. Así el sol no le picaba. Luego {hero} hizo sombrita también para Lía, que tenía sol en la cara.",
               "scene": {
                 "bg": "huerto",
                 "mood": "hope",
@@ -12779,7 +12758,7 @@
             },
             {
               "id": "regar_juntos_sombra_b",
-              "text": "El sol picaba, y el brote seguía agachadito. Así que {hero} y Lía le hicieron sombra con las manos. Sombrita, sombrita, sombrita para el brote. Ya no le picaba el sol.",
+              "text": "El sol picaba, y el brote seguía agachadito. Así que {hero} y Lía le hicieron sombra con las manos. Sombrita, sombrita, sombrita para el brote. Ya no le picaba el sol. Luego {hero} hizo sombrita también para Lía, que tenía sol en la cara.",
               "scene": {
                 "bg": "huerto",
                 "mood": "hope",
@@ -12898,7 +12877,7 @@
           "variants": [
             {
               "id": "regar_juntos_cierre_a",
-              "text": "El cielo se puso naranja. {hero} y Lía se sentaron junto a la maceta. Lía bostezó: ¡aaah! {hero} bostezó también. Se dieron un abrazo, pues se querían mucho. Y el brote, derechito, se quedó dormidito a su lado.",
+              "text": "El cielo se puso naranja. {hero} y Lía se sentaron junto a la maceta. Lía bostezó: ¡aaah! {hero} bostezó también. Se dieron la mano, porque se querían mucho. Y el brote, derechito, se quedó dormidito a su lado.",
               "scene": {
                 "bg": "huerto",
                 "mood": "sleep",
@@ -12926,7 +12905,7 @@
             },
             {
               "id": "regar_juntos_cierre_b",
-              "text": "El cielo se puso naranja. {hero} y Lía se sentaron juntos, al lado de la maceta. Lía bostezó: ¡aaah! {hero} bostezó también. Se abrazaron, porque se querían mucho. Y el brote, derechito, se quedó dormidito a su lado.",
+              "text": "El cielo se puso naranja. {hero} y Lía se sentaron al lado de la maceta, muy cerquita. Lía bostezó: ¡aaah! {hero} bostezó también. Se dieron la mano y un abrazo, porque se querían mucho. Y el brote, derechito, se quedó dormidito a su lado.",
               "scene": {
                 "bg": "huerto",
                 "mood": "sleep",
@@ -21616,6 +21595,5 @@
         }
       ]
     }
-  ],
-  "version": "0.18.0"
+  ]
 }

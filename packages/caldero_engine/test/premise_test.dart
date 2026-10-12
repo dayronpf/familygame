@@ -992,6 +992,8 @@ void main() {
           v('mal6', 'Tú no cruzas solo con {item.un}, {hero}.'),
           v('bien',
               '{hero} se quedó quiet{hero.o} y sol{hero.o} con {item.un}. Solo quería dormir.'),
+          // «corazón ligero»: el adjetivo concuerda con «corazón», no con el héroe
+          v('bien2', '{hero} dormía con el corazón ligero y {item.un}.'),
         ],
       },
     ])).join('\n');
@@ -1002,6 +1004,7 @@ void main() {
     expect(p, contains('mal5: género fijo «él»'));
     expect(p, contains('mal6: género fijo «cruzas solo»'));
     expect(p, isNot(contains('bien: género fijo')));
+    expect(p, isNot(contains('bien2: género fijo')));
   });
 
   test('el pack medieval real pasa todas las reglas de coherencia', () {

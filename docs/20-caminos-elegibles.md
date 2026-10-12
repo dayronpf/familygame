@@ -18,7 +18,7 @@
 > | Ajuste por niño «Preguntas en el cuento» (6–8 y 9–12; por defecto encendido) y `ShelfEntry.choices` (un cuento guardado se cuenta igual, sin preguntar) | `settings_page.dart`, `app_settings.dart`, `shelf/story_shelf.dart` | Solo dos estados: «Preguntar» y «que elija la app» (silencioso). El «Nunca» del diseño se fundió con él |
 > | Pruebas | `packages/caldero_engine/test/choice_test.dart`, `app/test/choices_test.dart`, `hero_name_test.dart`, `tools/feedback/test_contract.py` | |
 >
-> **Contenido con elección (pack 0.16.2):** `linterna` (6–8, 3 opciones), `puente` «El puente que crujía» (6–8, 3: *agarrarse a la cuerda* / *respirar hondo* / *mirar al frente*) y `sombras` «Las sombras del cuarto» (**4–5, 2 opciones**: *asomar un ojo* / *encender la vela*; la rama es corta y concreta). Todas con dibujo propio en las tarjetas.
+> **Contenido con elección (pack 0.16.2):** `linterna` (6–8, 3 opciones), `puente` «El puente que crujía» (6–8, 3: *agarrarse a la cuerda* / *respirar hondo* / *mirar al frente*) y `sombras` «Las sombras del cuarto» (**4–5, 2 opciones**: *asomar un ojo* / *encender la linterna*; la rama es corta y concreta). Todas con dibujo propio en las tarjetas.
 >
 > **Falta (Fase 1+):** probar de noche con 5–10 familias y medir (§6); `choice_ids` en el servidor y el análisis con `option` y las filas `auto` (§5); preguntas en cuentos de 9–12 (hasta 2); probar el holograma con un prisma real.
 
