@@ -3,7 +3,7 @@
     "schema": 2,
     "id": "medieval",
     "name": "Reino de la Luna (prueba)",
-    "version": "0.15.2",
+    "version": "0.16.1",
     "license": "Contenido original, todos los derechos reservados al autor del proyecto",
     "language": "es",
     "age_band": "4-7",
@@ -392,6 +392,23 @@
       "mood": "calm",
       "tags": [
         "castle"
+      ],
+      "times": [
+        "dia",
+        "atardecer",
+        "noche"
+      ],
+      "seasons": [],
+      "features": []
+    },
+    {
+      "id": "vado",
+      "noun": "río de plata",
+      "gender": "m",
+      "mood": "calm",
+      "tags": [
+        "river",
+        "wild"
       ],
       "times": [
         "dia",
@@ -3759,6 +3776,13 @@
                     "dx": 0.06,
                     "lift": 40,
                     "scale": 0.35
+                  },
+                  {
+                    "prop": "rafaga",
+                    "x": 0.28,
+                    "lift": 170,
+                    "scale": 1.5,
+                    "clip": "gust"
                   }
                 ],
                 "rope": {
@@ -3793,6 +3817,13 @@
                     "dx": 0.06,
                     "lift": 40,
                     "scale": 0.35
+                  },
+                  {
+                    "prop": "rafaga",
+                    "x": 0.28,
+                    "lift": 170,
+                    "scale": 1.5,
+                    "clip": "gust"
                   }
                 ],
                 "rope": {
@@ -3827,6 +3858,13 @@
                     "dx": 0.06,
                     "lift": 40,
                     "scale": 0.35
+                  },
+                  {
+                    "prop": "rafaga",
+                    "x": 0.28,
+                    "lift": 170,
+                    "scale": 1.5,
+                    "clip": "gust"
                   }
                 ],
                 "rope": {
@@ -5511,6 +5549,13 @@
                     "dx": -0.06,
                     "lift": 62,
                     "scale": 0.5
+                  },
+                  {
+                    "prop": "rafaga",
+                    "x": 0.3,
+                    "lift": 170,
+                    "scale": 1.4,
+                    "clip": "gust"
                   }
                 ]
               }
@@ -5553,6 +5598,13 @@
                     "dx": -0.06,
                     "lift": 62,
                     "scale": 0.5
+                  },
+                  {
+                    "prop": "rafaga",
+                    "x": 0.3,
+                    "lift": 170,
+                    "scale": 1.4,
+                    "clip": "gust"
                   }
                 ]
               }
@@ -5595,6 +5647,13 @@
                     "dx": -0.06,
                     "lift": 62,
                     "scale": 0.5
+                  },
+                  {
+                    "prop": "rafaga",
+                    "x": 0.3,
+                    "lift": 170,
+                    "scale": 1.4,
+                    "clip": "gust"
                   }
                 ]
               }
@@ -6951,7 +7010,7 @@
           "variants": [
             {
               "id": "zaf",
-              "text": "{hero} respiró hondo. «Tengo miedo», susurró, «pero {hero.paso}». Puso el pie en el primer tablón. ¡Cric! Esta vez no lo retiró. «Uno», contó en voz alta. Desde la orilla, {helper} le hizo un gesto con la mano. El río susurró ¡shhh!, pero {hero} ya iba por el segundo: «Dos».",
+              "text": "{hero} respiró hondo. «Tengo miedo», susurró, «pero {hero.paso}». Puso el pie en el primer tablón. ¡Cric! Esta vez no lo retiró. «Uno», contó en voz alta. Desde la orilla, {helper} le hizo un gesto con la mano. El río susurró ¡shhh!, pero {hero} ya iba por el segundo: «Dos». De pronto, el puente empezó a mecerse.",
               "scene": {
                 "time": "atardecer",
                 "bg": "rio",
@@ -6983,7 +7042,7 @@
             },
             {
               "id": "bon",
-              "text": "{hero} respiró hondo. «Tengo miedo», susurró, «pero {hero.paso}». Puso el pie en el primer tablón. ¡Cric! Y empezó a tararear tres notas, siempre las mismas: la, la, la. Desde la orilla, {helper} le hizo un gesto con la mano. El río susurró ¡shhh!, pero la voz de {hero} iba delante.",
+              "text": "{hero} respiró hondo. «Tengo miedo», susurró, «pero {hero.paso}». Puso el pie en el primer tablón. ¡Cric! Y empezó a tararear tres notas, siempre las mismas: la, la, la. Desde la orilla, {helper} le hizo un gesto con la mano. El río susurró ¡shhh!, pero la voz de {hero} iba delante. De pronto, el puente empezó a mecerse.",
               "scene": {
                 "time": "atardecer",
                 "bg": "rio",
@@ -7015,7 +7074,7 @@
             },
             {
               "id": "mar",
-              "text": "{hero} respiró hondo. «Tengo miedo», susurró, «pero {hero.paso}». Puso el pie en el primer tablón. ¡Cric! No miró el agua. Miró solo el tablón siguiente, y luego el siguiente. Desde la orilla, {helper} le hizo un gesto con la mano. El río susurró ¡shhh!, pero {hero} no lo escuchó.",
+              "text": "{hero} respiró hondo. «Tengo miedo», susurró, «pero {hero.paso}». Puso el pie en el primer tablón. ¡Cric! No miró el agua. Miró solo el tablón siguiente, y luego el siguiente. Desde la orilla, {helper} le hizo un gesto con la mano. El río susurró ¡shhh!, pero {hero} no lo escuchó. De pronto, el puente empezó a mecerse.",
               "scene": {
                 "time": "atardecer",
                 "bg": "rio",
@@ -7047,7 +7106,7 @@
             },
             {
               "id": "ald",
-              "text": "{hero} respiró hondo. «Tengo miedo», susurró, «pero {hero.paso}». Puso el pie en el primer tablón. ¡Cric! «Botas, un paso», murmuró {hero}. «Botas, otro paso.» Desde la orilla, {helper} le hizo un gesto con la mano. El río susurró ¡shhh!, pero las botas hicieron más caso que las rodillas.",
+              "text": "{hero} respiró hondo. «Tengo miedo», susurró, «pero {hero.paso}». Puso el pie en el primer tablón. ¡Cric! «Botas, un paso», murmuró {hero}. «Botas, otro paso.» Desde la orilla, {helper} le hizo un gesto con la mano. El río susurró ¡shhh!, pero las botas hicieron más caso que las rodillas. De pronto, el puente empezó a mecerse.",
               "scene": {
                 "time": "atardecer",
                 "bg": "rio",
@@ -7077,14 +7136,51 @@
                 "helper:aldo"
               ]
             }
-          ]
+          ],
+          "choice": {
+            "id": "apoyo",
+            "ask": "El puente se mece. ¿Qué hace {hero}?",
+            "talk": "Pregúntale: ¿qué harías tú en medio del puente?",
+            "options": [
+              {
+                "id": "cuerda",
+                "label": "Agarrarse a la cuerda",
+                "icon": {
+                  "glyph": "touch_app"
+                },
+                "says": {
+                  "recuerdo": "la cuerda que nunca se soltó"
+                }
+              },
+              {
+                "id": "aire",
+                "label": "Respirar hondo",
+                "icon": {
+                  "glyph": "spa"
+                },
+                "says": {
+                  "recuerdo": "el aire que entra y sale, despacito"
+                }
+              },
+              {
+                "id": "vista",
+                "label": "Mirar al frente",
+                "icon": {
+                  "glyph": "visibility"
+                },
+                "says": {
+                  "recuerdo": "una estrellita brillando al otro lado"
+                }
+              }
+            ]
+          }
         },
         {
           "id": "mitad",
           "variants": [
             {
-              "id": "a",
-              "text": "En mitad del puente, el viento sopló fuerte, ¡fuuu!, y los tablones se balancearon. {hero} se agarró a la cuerda. [[Abajo, la luna se rompía en pedacitos de agua.|Abajo, el río se tragaba la luna a trocitos.]] De pronto, un pie resbaló, [[¡plaf!, y una bota se mojó hasta el tobillo|¡plaf!, y el agua fría le subió hasta el tobillo]]. «¡Ay!», gritó {hero}. El corazón le galopaba. Pero la cuerda aguantó, porque {helper} la sujetaba con todas sus fuerzas. {hero} se quedó quiet{hero.o} un momento, con el corazón en la garganta. La orilla estaba a veinte tablones, hacia atrás; la hierba, a veinte, hacia delante. Respiró. «Voy a seguir», dijo, y levantó el pie mojado.",
+              "id": "cuerda_a",
+              "text": "El viento sopló fuerte, ¡fuuu!, y los tablones se balancearon. {hero} se agarró a la cuerda con las dos manos y apretó, apretó, apretó. [[Abajo, la luna se rompía en pedacitos de agua.|Abajo, el río se tragaba la luna a trocitos.]] De pronto, un pie resbaló, [[¡plaf!, y una bota se mojó hasta el tobillo|¡plaf!, y el agua fría le subió hasta el tobillo]]. «¡Ay!», gritó {hero}. Pero la cuerda aguantó, porque {helper} la sujetaba con todas sus fuerzas. {hero} se quedó quiet{hero.o} un momento, con el corazón en la garganta. La orilla estaba a veinte tablones, hacia atrás; la hierba, a veinte, hacia delante. «Voy a seguir», dijo, y levantó el pie mojado.",
               "scene": {
                 "time": "noche",
                 "bg": "rio",
@@ -7098,7 +7194,15 @@
                     "scale": 0.85
                   }
                 ],
-                "props": [],
+                "props": [
+                  {
+                    "prop": "rafaga",
+                    "x": 0.3,
+                    "lift": 150,
+                    "scale": 1.4,
+                    "clip": "gust"
+                  }
+                ],
                 "rope": {
                   "from": "hero",
                   "to": "left",
@@ -7107,10 +7211,16 @@
                 "offstage": [
                   "helper"
                 ]
-              }
+              },
+              "requires": [
+                "apoyo:cuerda"
+              ],
+              "adds": [
+                "dio_el_paso"
+              ]
             },
             {
-              "id": "b",
+              "id": "cuerda_b",
               "text": "A mitad de camino, el puente [[se meció como una cuna|se balanceó como un columpio]]. {hero} se quedó quiet{hero.o}, abrazad{hero.o} a la cuerda. Un tablón mojado se le escapó bajo el pie, ¡plaf!, y la bota se llenó de agua fría. «¡Uf!», dijo {hero}. Tenía las manos blancas de tanto apretar. Pero no soltó la cuerda, porque era lo único firme que tenía. Se detuvo un momento, con el corazón en la garganta. La orilla estaba a veinte tablones, hacia atrás; la hierba, a veinte, hacia delante. Respiró. «Voy a seguir», dijo, y levantó el pie mojado.",
               "scene": {
                 "time": "noche",
@@ -7125,13 +7235,185 @@
                     "scale": 0.85
                   }
                 ],
-                "props": [],
+                "props": [
+                  {
+                    "prop": "rafaga",
+                    "x": 0.3,
+                    "lift": 150,
+                    "scale": 1.4,
+                    "clip": "gust"
+                  }
+                ],
                 "rope": {
                   "from": "hero",
                   "to": "left",
                   "sag": 14
                 }
-              }
+              },
+              "requires": [
+                "apoyo:cuerda"
+              ],
+              "adds": [
+                "dio_el_paso"
+              ]
+            },
+            {
+              "id": "aire_a",
+              "text": "El viento sopló fuerte, ¡fuuu!, y los tablones se balancearon. {hero} cerró los ojos y respiró: dentro, uno, dos; fuera, uno, dos. [[Abajo, la luna se rompía en pedacitos de agua.|Abajo, el río se tragaba la luna a trocitos.]] De pronto, un pie resbaló, ¡plaf!, y el agua fría le subió hasta el tobillo. «¡Ay!», dijo {hero}, pero siguió respirando. El puente se fue calmando, como una cuna que se calma. La orilla estaba a veinte tablones, hacia atrás; la hierba, a veinte, hacia delante. «Voy a seguir», dijo, y levantó el pie mojado.",
+              "scene": {
+                "time": "noche",
+                "bg": "rio",
+                "mood": "tension",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "idle",
+                    "x": 0.5,
+                    "lift": 80,
+                    "scale": 0.85
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "rafaga",
+                    "x": 0.3,
+                    "lift": 150,
+                    "scale": 1.4,
+                    "clip": "gust"
+                  }
+                ],
+                "rope": {
+                  "from": "hero",
+                  "to": "left",
+                  "sag": 14
+                },
+                "offstage": [
+                  "helper"
+                ]
+              },
+              "requires": [
+                "apoyo:aire"
+              ],
+              "adds": [
+                "dio_el_paso"
+              ]
+            },
+            {
+              "id": "aire_b",
+              "text": "A mitad de camino, el puente [[se meció como una cuna|se balanceó como un columpio]]. {hero} se quedó quiet{hero.o} y respiró despacio, como cuando uno quiere dormirse. Un tablón mojado se le escapó bajo el pie, ¡plaf!, y la bota se llenó de agua fría. «¡Uf!», dijo {hero}. Contó cuatro respiraciones, y el corazón dejó de galopar. Se detuvo un momento, con la espalda recta. La orilla estaba a veinte tablones, hacia atrás; la hierba, a veinte, hacia delante. «Voy a seguir», dijo, y levantó el pie mojado.",
+              "scene": {
+                "time": "noche",
+                "bg": "rio",
+                "mood": "tension",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "idle",
+                    "x": 0.5,
+                    "lift": 80,
+                    "scale": 0.85
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "rafaga",
+                    "x": 0.3,
+                    "lift": 150,
+                    "scale": 1.4,
+                    "clip": "gust"
+                  }
+                ],
+                "rope": {
+                  "from": "hero",
+                  "to": "left",
+                  "sag": 14
+                }
+              },
+              "requires": [
+                "apoyo:aire"
+              ],
+              "adds": [
+                "dio_el_paso"
+              ]
+            },
+            {
+              "id": "vista_a",
+              "text": "El viento sopló fuerte, ¡fuuu!, y los tablones se balancearon. {hero} no miró el agua: miró la otra orilla, donde algo brillaba como una estrellita. [[Abajo, la luna se rompía en pedacitos de agua.|Abajo, el río se tragaba la luna a trocitos.]] De pronto, un pie resbaló, ¡plaf!, y el agua fría le subió hasta el tobillo. «¡Ay!», dijo {hero}, sin apartar los ojos de la estrellita. La estrellita no se movía, y eso ayudaba. La orilla estaba a veinte tablones, hacia atrás; la hierba, a veinte, hacia delante. «Voy a seguir», dijo, y levantó el pie mojado.",
+              "scene": {
+                "time": "noche",
+                "bg": "rio",
+                "mood": "tension",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "sneak",
+                    "x": 0.5,
+                    "lift": 80,
+                    "scale": 0.85
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "rafaga",
+                    "x": 0.3,
+                    "lift": 150,
+                    "scale": 1.4,
+                    "clip": "gust"
+                  }
+                ],
+                "rope": {
+                  "from": "hero",
+                  "to": "left",
+                  "sag": 14
+                },
+                "offstage": [
+                  "helper"
+                ]
+              },
+              "requires": [
+                "apoyo:vista"
+              ],
+              "adds": [
+                "dio_el_paso"
+              ]
+            },
+            {
+              "id": "vista_b",
+              "text": "A mitad de camino, el puente [[se meció como una cuna|se balanceó como un columpio]]. {hero} levantó la cabeza y miró al frente, justo donde terminaba el último tablón. Un tablón mojado se le escapó bajo el pie, ¡plaf!, y la bota se llenó de agua fría. «¡Uf!», dijo {hero}. «Mira adonde quieres llegar, no adonde podrías caer», pensó. Se detuvo un momento, sin bajar la vista. La orilla estaba a veinte tablones, hacia atrás; la hierba, a veinte, hacia delante. «Voy a seguir», dijo, y levantó el pie mojado.",
+              "scene": {
+                "time": "noche",
+                "bg": "rio",
+                "mood": "tension",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "sneak",
+                    "x": 0.5,
+                    "lift": 80,
+                    "scale": 0.85
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "rafaga",
+                    "x": 0.3,
+                    "lift": 150,
+                    "scale": 1.4,
+                    "clip": "gust"
+                  }
+                ],
+                "rope": {
+                  "from": "hero",
+                  "to": "left",
+                  "sag": 14
+                }
+              },
+              "requires": [
+                "apoyo:vista"
+              ],
+              "adds": [
+                "dio_el_paso"
+              ]
             }
           ]
         },
@@ -7176,7 +7458,10 @@
                   "to": "left",
                   "sag": 20
                 }
-              }
+              },
+              "requires": [
+                "dio_el_paso"
+              ]
             },
             {
               "id": "b",
@@ -7216,7 +7501,10 @@
                   "to": "left",
                   "sag": 20
                 }
-              }
+              },
+              "requires": [
+                "dio_el_paso"
+              ]
             }
           ]
         },
@@ -7480,7 +7768,7 @@
             },
             {
               "id": "b",
-              "text": "[[Esa noche se oyó la campana desde la cama de {hero}.|Desde su cama, {hero} oyó la campana.]] Sonaba fuerte y redonda, sin una gota de tos. {hero} se arropó. Pensó en los cuarenta tablones, uno por uno, y en que los había cruzado todos. Fuera, el río hacía shhh. Y {hero} se durmió con el sonido del agua, que ahora sonaba a nana.",
+              "text": "[[Esa noche se oyó la campana desde la cama de {hero}.|Desde su cama, {hero} oyó la campana.]] Sonaba fuerte y redonda, sin una gota de tos. {hero} se arropó. Pensó en los cuarenta tablones, uno por uno, y en {apoyo.recuerdo}: los había cruzado todos. Fuera, el río hacía shhh. Y {hero} se durmió con el sonido del agua, que ahora sonaba a nana.",
               "scene": {
                 "time": "noche",
                 "unseen": [
@@ -7746,7 +8034,7 @@
         "rio": {
           "kind": "place",
           "ids": [
-            "rio"
+            "vado"
           ]
         }
       },
@@ -7780,7 +8068,7 @@
                     "prop": "piedras",
                     "x": 0.52,
                     "lift": 46,
-                    "scale": 1.0
+                    "scale": 1.25
                   }
                 ]
               }
@@ -7816,7 +8104,7 @@
                     "prop": "piedras",
                     "x": 0.52,
                     "lift": 46,
-                    "scale": 1.0
+                    "scale": 1.25
                   }
                 ]
               }
@@ -7846,7 +8134,7 @@
                     "prop": "piedras",
                     "x": 0.52,
                     "lift": 46,
-                    "scale": 1.0
+                    "scale": 1.25
                   }
                 ],
                 "offstage": [
@@ -7886,7 +8174,7 @@
                     "prop": "piedras",
                     "x": 0.52,
                     "lift": 46,
-                    "scale": 1.0
+                    "scale": 1.25
                   }
                 ]
               }
@@ -7924,7 +8212,7 @@
                     "prop": "piedras",
                     "x": 0.44,
                     "lift": 46,
-                    "scale": 1.0
+                    "scale": 1.25
                   }
                 ]
               }
@@ -7962,7 +8250,7 @@
                     "prop": "piedras",
                     "x": 0.3,
                     "lift": 46,
-                    "scale": 1.0
+                    "scale": 1.25
                   }
                 ]
               }
@@ -9648,7 +9936,7 @@
           "variants": [
             {
               "id": "sombras_respirar",
-              "text": "{hero} se tapó con la manta hasta la nariz. El corazón hacía pum, pum, pum. Respiró despacio: uno, dos, tres. Pero {hero} pensó: «Los gigantes no caben en un cuarto tan pequeño, así que este gigante es muy raro». Y decidió mirar con un solo ojo.",
+              "text": "{hero} se tapó con la manta hasta la nariz. El corazón hacía pum, pum, pum. Respiró despacio: uno, dos, tres. Pero {hero} pensó: «Los gigantes no caben en un cuarto tan pequeño, así que este gigante es muy raro».",
               "scene": {
                 "bg": "cuarto",
                 "mood": "tension",
@@ -9679,14 +9967,44 @@
                 ]
               }
             }
-          ]
+          ],
+          "choice": {
+            "id": "camino",
+            "ask": "¿Qué hace {hero}?",
+            "talk": "Pregúntale: ¿tú qué harías?",
+            "ages": [
+              "4-5"
+            ],
+            "options": [
+              {
+                "id": "ojo",
+                "label": "Asomar un ojo",
+                "icon": {
+                  "glyph": "visibility"
+                },
+                "says": {
+                  "recuerdo": "se rio bajito"
+                }
+              },
+              {
+                "id": "vela",
+                "label": "Encender la vela",
+                "icon": {
+                  "glyph": "lightbulb"
+                },
+                "says": {
+                  "recuerdo": "sopló la vela"
+                }
+              }
+            ]
+          }
         },
         {
           "id": "mirar",
           "variants": [
             {
-              "id": "sombras_mirar",
-              "text": "Primero asomó un ojo. Luego, el otro. Y {hero} se levantó de la cama: un pie, y otro pie, y otro pie más. Poco a poco llegó hasta el rincón, porque quería ver de cerca al gigante.",
+              "id": "ojo",
+              "text": "{hero} asomó un ojo. Luego, el otro. Y se levantó de la cama: un pie, y otro pie, y otro pie más. Poco a poco llegó hasta el rincón, porque quería ver de cerca al gigante.",
               "scene": {
                 "bg": "cuarto",
                 "mood": "hope",
@@ -9705,7 +10023,50 @@
                     "scale": 1.5
                   }
                 ]
-              }
+              },
+              "requires": [
+                "camino:ojo"
+              ],
+              "adds": [
+                "dio_el_paso"
+              ]
+            },
+            {
+              "id": "vela",
+              "text": "{hero} alargó la mano y encendió la vela de la mesita. La luz hizo un círculo amarillo en el cuarto. Con la vela en la mano, dio un pie, y otro pie. Llegó hasta el rincón, porque quería ver de cerca al gigante.",
+              "scene": {
+                "bg": "cuarto",
+                "mood": "hope",
+                "time": "noche",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "sneak",
+                    "x": 0.46
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "sombra_gigante",
+                    "x": 0.72,
+                    "scale": 1.5
+                  },
+                  {
+                    "prop": "vela",
+                    "near": "hero",
+                    "dx": 0.06,
+                    "lift": 52,
+                    "scale": 1.1,
+                    "clip": "glow"
+                  }
+                ]
+              },
+              "requires": [
+                "camino:vela"
+              ],
+              "adds": [
+                "dio_el_paso"
+              ]
             }
           ]
         },
@@ -9733,7 +10094,10 @@
                     "scale": 1.5
                   }
                 ]
-              }
+              },
+              "requires": [
+                "dio_el_paso"
+              ]
             }
           ]
         },
@@ -9742,7 +10106,7 @@
           "variants": [
             {
               "id": "sombras_cierre",
-              "text": "{hero} volvió a la cama y se tapó con la manta, esta vez sin miedo. Antes de cerrar los ojos, saludó a la capa con la mano: «Buenas noches, gigante». Por la ventana entraba la luna, grande y amiga. {hero} se durmió sin soltar la manta, porque ya sabía que las sombras de la noche son solo capas.",
+              "text": "{hero} volvió a la cama y se tapó con la manta, esta vez sin miedo. Antes de cerrar los ojos, {camino.recuerdo} y saludó a la capa con la mano: «Buenas noches, gigante». Por la ventana entraba la luna, grande y amiga. {hero} se durmió sin soltar la manta, porque ya sabía que las sombras de la noche son solo capas.",
               "scene": {
                 "bg": "cuarto",
                 "mood": "sleep",
@@ -10006,7 +10370,7 @@
                 ],
                 "props": [
                   {
-                    "prop": "cuenco",
+                    "prop": "cuenco_vacio",
                     "near": "hero",
                     "dx": 0.08,
                     "lift": 34,
@@ -10041,7 +10405,15 @@
                     "x": 0.64
                   }
                 ],
-                "props": [],
+                "props": [
+                  {
+                    "prop": "rafaga",
+                    "x": 0.56,
+                    "lift": 150,
+                    "scale": 1.5,
+                    "clip": "gust"
+                  }
+                ],
                 "season": "invierno"
               }
             }

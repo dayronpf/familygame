@@ -128,7 +128,9 @@ void main() {
           StoryOptions(seed: s, valueId: 'valentia', age: '6-8'),
         );
         expect(a.fullText, b.fullText);
-        if (a.choices.isNotEmpty) seen.add(a.choices.single.optionId);
+        for (final c in a.choices) {
+          if (c.premiseId == 'linterna') seen.add(c.optionId);
+        }
       }
       expect(seen, {'oido', 'tacto', 'luna'});
     });

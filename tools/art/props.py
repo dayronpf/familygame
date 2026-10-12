@@ -333,24 +333,30 @@ def taza_leche():
 
 
 def _capa(dark):
-    """Capa verde colgada de un perchero con un sombrero encima; `dark` la deja como una sombra alta de brazos
-    largos (lo que el niño cree ver de noche). Origen: base del perchero."""
+    """Capa verde colgada de un perchero con un sombrero encima: cuello con broche, cuerpo que se ensancha, pliegues
+    y bajo en picos. `dark` la deja como una sombra alta de brazos largos (lo que el niño cree ver de noche).
+    Origen: base del perchero."""
     wood = "#241a3c" if dark else "#8a5a2b"
     line = "#120c22" if dark else "#4a2f14"
     cloak = "#241a3c" if dark else "#3f8f55"
-    cloak2 = "#2c2146" if dark else "#2f7044"
+    cloak2 = "#2c2146" if dark else "#2a6a40"
     hat = "#241a3c" if dark else "#7a3a9a"
     op = 0.92 if dark else 1.0
     arm = 62 if dark else 50   # la sombra tiene los brazos más largos
+    body = ("M-24,-124 C-40,-104 -58,-64 -60,-14 L-46,-24 L-32,-8 L-16,-22 L0,-6 L16,-22 L32,-8 L46,-24 L60,-14 "
+            "C58,-64 40,-104 24,-124 Q0,-134 -24,-124 Z")
     shapes = [S(ell(0, 0, 22, 5), wood, None, 0, 0.5),
               S(rrect(-4, -150, 8, 150, 3), wood, line, 2, op),
               S(rrect(-arm, -124, arm * 2, 8, 4), wood, line, 2, op),
-              S("M-50,-120 Q-60,-70 -46,-18 Q-30,-6 0,-12 Q30,-6 46,-18 Q60,-70 50,-120 Q0,-134 -50,-120 Z", cloak, line, 2.5, op),
-              S("M-6,-124 Q-12,-70 -6,-14 Q8,-10 16,-16 Q8,-70 12,-126 Z", cloak2, None, 0, 0.8 if not dark else 0.5),
+              S(body, cloak, line, 2.5, op),
+              S("M-30,-114 C-44,-86 -50,-50 -48,-24 L-36,-28 C-38,-56 -32,-90 -22,-116 Z", cloak2, None, 0, 0.7 if not dark else 0.4),
+              S("M-14,-122 C-20,-84 -18,-44 -14,-22 M2,-124 C6,-84 4,-44 2,-14 M18,-122 C24,-84 24,-44 20,-22", None, cloak2, 3, 0.9 if not dark else 0.5),
+              S("M-22,-126 Q0,-118 22,-126 Q0,-138 -22,-126 Z", cloak2, line, 2, op),
               S(ell(0, -152, 28, 6), hat, line, 2, op),
               S("M-18,-154 Q-8,-176 2,-214 Q14,-178 20,-154 Z", hat, line, 2.5, op)]
     if not dark:
-        shapes += [S("M-6,-132 Q0,-140 8,-132", None, "#e0c870", 2), S("M2,-212 Q18,-206 22,-194 Q10,-196 2,-212 Z", "#d94a4a", "#7a1a1a", 1.5)]
+        shapes += [S(ell(0, -120, 5, 5), "#f4c542", "#8a6a14", 1.5), S("M-6,-118 L-10,-98 M6,-118 L10,-98", None, "#e0c870", 2),
+                   S("M2,-212 Q18,-206 22,-194 Q10,-196 2,-212 Z", "#d94a4a", "#7a1a1a", 1.5)]
     return shapes
 
 
@@ -399,12 +405,32 @@ def mariposa():
     return rig("mariposa", "Mariposa", [-66, -54, 132, 98], {}, root)
 
 
-def cuenco():
-    """Cuenco de sopa caliente. Origen: base."""
+def _cuenco(steam):
     sh = [S("M-26,-26 L26,-26 L18,0 L-18,0 Z", "#c98a3a", "#5a3a14", 2.5), shade("M12,-26 L26,-26 L18,0 L8,0 Z"),
-          S(ell(0, -26, 26, 6), "#e8a43a", "#5a3a14", 2),
-          S("M-8,-34 C-14,-46 -2,-50 -6,-62", None, "#ffffff", 3, 0.7), S("M8,-34 C2,-46 14,-50 10,-62", None, "#ffffff", 3, 0.7)]
-    return rig("cuenco", "Cuenco de sopa", [-30, -68, 60, 70], {}, node("root", (0, 0), shapes=sh))
+          S(ell(0, -26, 26, 6), "#e8a43a" if steam else "#a87028", "#5a3a14", 2)]
+    if steam:  # sopa caliente: sale vapor
+        sh += [S("M-8,-34 C-14,-46 -2,-50 -6,-62", None, "#ffffff", 3, 0.7), S("M8,-34 C2,-46 14,-50 10,-62", None, "#ffffff", 3, 0.7)]
+    else:      # vacío: se ve el fondo y algo de caldo en las paredes, sin vapor
+        sh += [S(ell(0, -25, 20, 3.4), "#8a5a1e", None, 0, 0.8), S(ell(-8, -24, 6, 1.4), "#e8a43a", None, 0, 0.7)]
+    return sh
+
+
+def cuenco():
+    """Cuenco de sopa caliente (con vapor). Origen: base."""
+    return rig("cuenco", "Cuenco de sopa", [-30, -68, 60, 70], {}, node("root", (0, 0), shapes=_cuenco(True)))
+
+
+def cuenco_vacio():
+    """Cuenco ya vacío (sin vapor). Origen: base."""
+    return rig("cuenco_vacio", "Cuenco vacío", [-30, -40, 60, 44], {}, node("root", (0, 0), shapes=_cuenco(False)))
+
+
+def rafaga():
+    """Tres rayas de viento que se curvan al final (para una ráfaga). Origen: centro."""
+    sh = [S("M-70,-44 C-40,-56 -6,-34 26,-46 C46,-52 62,-44 64,-34 C62,-30 54,-32 52,-38", None, "#ffffff", 4, 0.85),
+          S("M-52,-10 C-24,-22 8,-2 40,-14 C58,-20 72,-12 74,-2 C72,2 64,0 62,-6", None, "#ffffff", 4, 0.75),
+          S("M-82,24 C-52,14 -22,32 6,22 C22,16 34,22 34,30", None, "#ffffff", 4, 0.65)]
+    return rig("rafaga", "Ráfaga de viento", [-90, -64, 170, 100], {}, node("root", (0, 0), shapes=sh))
 
 
 def regadera():
@@ -576,4 +602,4 @@ def cofre():
 
 
 def build_all():
-    return [campana(), campana_rota(), linterna(), linterna_apagada(), olla(), pan(), trozos_de_pan(), buho(), cabrita(), bolsa(), cometa(), girasol(), semillas(), semillas_dos(), mesa(), manta(), taza(), taza_leche(), taza_volcada(), mariposa(), escalones(), capa(), sombra_gigante(), cuenco(), regadera(), cinta(), girasol_seco(), campana_colgada(), cuerda_rollo(), roble(), puerta_cabana(), maceta(), maceta_brote(), piedras(), hierba(), pedernal(), vela(), saco(), cofre()]
+    return [campana(), campana_rota(), linterna(), linterna_apagada(), olla(), pan(), trozos_de_pan(), buho(), cabrita(), bolsa(), cometa(), girasol(), semillas(), semillas_dos(), mesa(), manta(), taza(), taza_leche(), taza_volcada(), mariposa(), escalones(), capa(), sombra_gigante(), cuenco(), cuenco_vacio(), rafaga(), regadera(), cinta(), girasol_seco(), campana_colgada(), cuerda_rollo(), roble(), puerta_cabana(), maceta(), maceta_brote(), piedras(), hierba(), pedernal(), vela(), saco(), cofre()]

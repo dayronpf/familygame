@@ -138,7 +138,7 @@ def head_parts(s):
     else:
         mouth_sh = [S("M-9,-170 Q0,-152 9,-170 Z", "#7a1f2e", DARK, 2.5)]
     # --- boca abierta: una «D» casi plana que las animaciones agrandan (sy) para hablar, reír o asombrarse
-    jaw = [S("M-8.5,-168 L8.5,-168 Q0,-165.2 -8.5,-168 Z", "#7a1f2e", None, 0), S(ell(0, -166.6, 4.2, 0.8), "#e8788a", None, 0)]
+    jaw = [S("M-8.5,-168 L8.5,-168 Q0,-165.2 -8.5,-168 Z", "#7a1f2e", None, 0), S(ell(0, -167.0, 3.2, 0.4), "#e8788a", None, 0)]
     gear = []
     sh_face = sh
     sh = gear

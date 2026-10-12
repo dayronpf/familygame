@@ -457,6 +457,10 @@ PROP_CLIPS = {
     "flutter": dict(dur=0.5, loop=True, tracks={
         "wingL": sine(0.5, 34), "wingR": sine(0.5, -34),
         "root.dy": keys((0, 0), (0.125, -5), (0.25, 0), (0.375, -5), (0.5, 0))}),
+    # La ráfaga cruza de lado a lado y se estira un poco al pasar
+    "gust": dict(dur=1.4, loop=True, tracks={
+        "root.dx": keys((0, -34), (0.7, 34), (1.4, -34)), "root.sx": keys((0, 1), (0.7, 1.15), (1.4, 1)),
+        "root.dy": keys((0, 0), (0.35, -4), (0.7, 0), (1.05, 4), (1.4, 0))}),
     "goat_idle": dict(dur=2.8, loop=True, tracks={
         "head": sine(2.8, 4), "tail": sine(0.9, 14), "eyes.sy": blink(2.8, 0.5),
         "root.dy": keys((0, 0), (1.4, -1.2), (2.8, 0))}),

@@ -1,1 +1,1 @@
-Cambiar este archivo (y subirlo) compila un APK de prueba. Ultima peticion: v0.6.2 con la voz sin efectos de sonido (¡beee!, ¡cric!…) y la cabrita redibujada y animada.
+Cambiar este archivo (y subirlo) compila un APK de prueba. Ultima peticion: v0.7.1 con efectos de sonido reales, privacidad y borrar datos, preguntas nuevas en Las sombras del cuarto y El puente que crujia, y retoques de arte (vapor, viento, luna, puente, capa, lengua, cabrita).

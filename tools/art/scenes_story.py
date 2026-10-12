@@ -167,7 +167,7 @@ def cueva():
 
 
 # --------------------------------------------------------------------- río
-def rio():
+def rio(with_bridge=True, sid="rio", name="Río de plata"):
     grads = {"sky": lin([[0, "#3f7fd0", 1], [0.7, "#9fd6ff", 1], [1, "#e8f6ff", 1]]),
              "water": lin([[0, "#3aa6d8", 1], [1, "#1e6aa8", 1]]),
              "grass": lin([[0, "#5cc070", 1], [1, "#2f8a54", 1]]),
@@ -194,19 +194,20 @@ def rio():
     water = layer("mid", [S(f"M0,330 C140,318 300,342 {W},322 L{W},{FLOOR - 22} C400,{FLOOR - 4} 200,{FLOOR - 36} 0,{FLOOR - 12} Z",
                            "@water", "#124a7a", 3),
                           S(f"M0,350 C160,340 320,362 {W},346 L{W},352 C320,368 160,346 0,356 Z", "#9fe0ff", None, 0, 0.35)], wave)
-    # puente de madera
+    # puente de madera (el vado, el mismo río sin puente, sirve para cruzar por las piedras)
     bridge = [S(rrect(206, 330, 238, 14, 4), "#8a7a66", "#3a2e24", 2.5)]
     for x in range(214, 440, 11):  # unos cuarenta tablones, viejos y gastados
         bridge.append(S(rrect(x, 331, 1.6, 12, 0.5), "#3a2e24", None, 0, 0.7))
     bridge += [S(rrect(210, 298, 6, 36, 2), "#6a5a48", "#2a2018", 2), S(rrect(434, 298, 6, 36, 2), "#6a5a48", "#2a2018", 2),
                S(rrect(210, 304, 230, 5, 2), "#6a5a48", "#2a2018", 2), S("M300,309 L300,330 M372,309 L372,330", None, "#6a5a48", 3)]
+    bridge_shapes = bridge
     near = layer("near", [S(f"M0,{FLOOR - 12} C160,{FLOOR - 36} 380,{FLOOR - 4} {W},{FLOOR - 30} L{W},{H} L0,{H} Z",
                            "@grass", "#1e5e3a", 3),
                           S(f"M0,{FLOOR + 34} C200,{FLOOR + 14} 420,{FLOOR + 48} {W},{FLOOR + 20} L{W},{H} L0,{H} Z", "#277a48", None, 0)]
-                + bridge + oak(70, FLOOR - 6, 0.85)
+                + (bridge_shapes if with_bridge else []) + oak(70, FLOOR - 6, 0.85)
                 + [S(ell(x, FLOOR + y, 6, 4), c, None, 0) for x, y, c in
                    [(180, 44, "#ff8fa3"), (330, 60, "#f4c542"), (520, 46, "#ffffff"), (600, 64, "#ff8fa3")]])
-    return scene("rio", "Río de plata", grads, [sky, far, water, near])
+    return scene(sid, name, grads, [sky, far, water, near])
 
 
 # ------------------------------------------------------------------- aldea
@@ -382,8 +383,7 @@ def cuarto(time="noche", season=None):
             nd = node(f"wst{i}", (x, y), shapes=[S(ell(x, y, 1.8, 1.8), "#fff6d8", None, 0)])
             nd["anim"] = [ambient("opacity", [0.2, 1.0, 0.2], 2.8, next(r) * 2.8)]
             sky_things.append(nd)
-        deco = [S(ell(330, 118, 52, 52), "@moon", None, 0), S(ell(330, 118, 22, 22), "#fff6c8", None, 0),
-                S(ell(340, 112, 18, 18), "#2a3a7a", None, 0)]
+        deco = [S(ell(330, 118, 52, 52), "@moon", None, 0), S(looks._crescent(330, 118, 24, 21, 10), "#fff6c8", None, 0)]
     elif season == "invierno":
         for i in range(16):
             x, y = 262 + next(r) * 116, 66 + next(r) * 150
@@ -510,12 +510,13 @@ PLACES = {
     "bosque": {"scene": "bosque", "view": [0, 0, W, H], "floor": FLOOR, "scale": SCALE},
     "cueva": {"scene": "cueva", "view": [0, 0, W, H], "floor": FLOOR, "scale": SCALE},
     "rio": {"scene": "rio", "view": [0, 0, W, H], "floor": FLOOR, "scale": SCALE},
+    "vado": {"scene": "vado", "view": [0, 0, W, H], "floor": FLOOR, "scale": SCALE},
     "aldea": {"scene": "aldea", "view": [0, 0, W, H], "floor": FLOOR, "scale": SCALE},
     "casa": {"scene": "casa", "view": [0, 0, W, H], "floor": FLOOR, "scale": SCALE},
     "cuarto": {"scene": "cuarto", "view": [0, 0, W, H], "floor": FLOOR, "scale": SCALE},
     "campanario": {"scene": "campanario", "view": [0, 0, W, H], "floor": FLOOR, "scale": SCALE},
 }
-BUILDERS = {"bosque": bosque, "cueva": cueva, "rio": rio, "aldea": aldea, "casa": casa, "cuarto": cuarto, "campanario": campanario}
+BUILDERS = {"bosque": bosque, "cueva": cueva, "rio": rio, "vado": lambda: rio(False, "vado", "Vado del río"), "aldea": aldea, "casa": casa, "cuarto": cuarto, "campanario": campanario}
 
 
 # ------------------------------------------------- posiciones de los personajes
@@ -549,6 +550,7 @@ SKY_AT = {
     "aldea": dict(w=W, h=H, sun_x=150, sun_y_day=100, horizon=300),
     "bosque": dict(w=W, h=H, sun_x=470, sun_y_day=110, horizon=268),
     "rio": dict(w=W, h=H, sun_x=100, sun_y_day=120, horizon=255),
+    "vado": dict(w=W, h=H, sun_x=100, sun_y_day=120, horizon=255),
     "castillo": dict(w=600, h=800, sun_x=470, sun_y_day=150, horizon=560),
 }
 # El castillo base es nocturno: de día sus colinas violetas pasan a verdes
@@ -559,12 +561,13 @@ LOOKS = {
     "aldea": [(t, s) for t in looks.TIMES for s in (None, *looks.SEASONS)],
     "bosque": [(t, None) for t in ("dia", "atardecer", "noche")],
     "rio": [(t, None) for t in ("dia", "atardecer", "noche")],
+    "vado": [(t, None) for t in ("dia", "atardecer", "noche")],
     "castillo": [("dia", None), ("atardecer", None)],
     "campanario": [("dia", None), ("atardecer", None)],
     "cuarto": [("dia", None), ("dia", "invierno"), ("dia", "primavera"), ("noche", "invierno"), ("noche", "primavera")],
 }
 # Hora del fondo base de cada lugar (la que se usa si el cuento no dice nada)
-BASE_TIME = {"campanario": "noche", "aldea": "atardecer", "bosque": "dia", "rio": "dia", "castillo": "noche", "cuarto": "noche", "casa": "noche"}
+BASE_TIME = {"campanario": "noche", "aldea": "atardecer", "bosque": "dia", "rio": "dia", "vado": "dia", "castillo": "noche", "cuarto": "noche", "casa": "noche"}
 
 
 def write_scene(out, data):

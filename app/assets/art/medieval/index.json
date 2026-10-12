@@ -60,6 +60,8 @@
   "medieval/rigs/capa.json",
   "medieval/rigs/sombra_gigante.json",
   "medieval/rigs/cuenco.json",
+  "medieval/rigs/cuenco_vacio.json",
+  "medieval/rigs/rafaga.json",
   "medieval/rigs/regadera.json",
   "medieval/rigs/cinta.json",
   "medieval/rigs/girasol_seco.json",
@@ -81,6 +83,7 @@
   "medieval/scenes/bosque.json",
   "medieval/scenes/cueva.json",
   "medieval/scenes/rio.json",
+  "medieval/scenes/vado.json",
   "medieval/scenes/aldea.json",
   "medieval/scenes/casa.json",
   "medieval/scenes/cuarto.json",
@@ -115,7 +118,10 @@
   "medieval/scenes/cuarto__noche__primavera.json",
   "medieval/scenes/rio__atardecer.json",
   "medieval/scenes/rio__dia.json",
-  "medieval/scenes/rio__noche.json"
+  "medieval/scenes/rio__noche.json",
+  "medieval/scenes/vado__atardecer.json",
+  "medieval/scenes/vado__dia.json",
+  "medieval/scenes/vado__noche.json"
  ],
  "clips": "clips/humanoid.json",
  "extraClips": [
@@ -200,6 +206,22 @@
     "dia": "rio__dia",
     "atardecer": "rio__atardecer",
     "noche": "rio__noche"
+   }
+  },
+  "vado": {
+   "scene": "vado",
+   "view": [
+    0,
+    0,
+    640,
+    480
+   ],
+   "floor": 410,
+   "scale": 0.6,
+   "looks": {
+    "dia": "vado__dia",
+    "atardecer": "vado__atardecer",
+    "noche": "vado__noche"
    }
   },
   "aldea": {

@@ -140,12 +140,33 @@ void main() {
         .join('|');
     final first = storyText();
 
+    /// Si el cuento trae una pregunta, se contesta («Elige por nosotros») para llegar a la enseñanza.
+    Future<void> answerIfAsked() async {
+      final forMe = find.byKey(const Key('choice-for-me'));
+      await tester.scrollUntilVisible(
+        find.text('Contar otro cuento'),
+        300,
+        scrollable: find.byType(Scrollable).first,
+      );
+      if (forMe.evaluate().isNotEmpty) {
+        await tester.ensureVisible(forMe);
+        await tester.tap(forMe);
+        await tester.pumpAndSettle();
+      }
+    }
+
+    await answerIfAsked();
     final another = find.text('Contar otro cuento');
-    await tester.scrollUntilVisible(another, 300);
+    await tester.scrollUntilVisible(
+      another,
+      300,
+      scrollable: find.byType(Scrollable).first,
+    );
     await tester.tap(another);
     await tester.pumpAndSettle();
 
     expect(storyText(), isNot(first));
+    await answerIfAsked();
     await scrollTo(tester, find.text('Enseñanza'));
     expect(
       find.text('Un paso pequeñito, y luego otro, y llegamos lejos.'),
