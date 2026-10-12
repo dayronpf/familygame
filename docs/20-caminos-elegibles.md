@@ -172,7 +172,7 @@ Un beat puede llevar `choice`: **primero se cuenta el beat y luego se hace la pr
   "ages": ["6-8", "9-12"],               // opcional; sin él, las edades de la premisa. Fuera de ellas se elige sola
   "options": [                           // 2 o 3
     { "id": "oido",                      // → etiqueta camino:oido
-      "label": "Seguir el beee",         // ≤ 28 car., sin puntuación, se lee tal cual
+      "label": "Seguir el balido",         // ≤ 28 car., sin puntuación, se lee tal cual
       "icon": { "art": "cabrita" },      // un dibujo del arte (id de rig) O un glifo de una lista cerrada; nunca emoji
       "adds": [],                        // etiquetas extra (opcional)
       "says": { "llegada": "…", "recuerdo": "…" } }   // frases para {camino.llegada}, {camino.recuerdo}
@@ -295,18 +295,18 @@ enseñanza final sigue siendo la última). `previous`/`next` funcionan igual; `n
 | Momento | Qué pasa |
 |---|---|
 | Fin de la última frase | respiro de 0,7 s (`gap` actual) y aparecen las 3 tarjetas |
-| 0–12 s | la voz dice la pregunta y las etiquetas («¿Cómo sigue Aldo en la oscuridad? Seguir el beee. Ir de tronco en tronco. Esperar y respirar»: 17 palabras ≈ 10 s, más las pausas ≈ 12 s); cada tarjeta se ilumina al nombrarla. Todo pasa por `normalizeForVoice` |
+| 0–12 s | la voz dice la pregunta y las etiquetas («¿Cómo sigue Aldo en la oscuridad? Seguir el balido. Ir de tronco en tronco. Esperar y respirar»: 17 palabras ≈ 10 s, más las pausas ≈ 12 s); cada tarjeta se ilumina al nombrarla. Todo pasa por `normalizeForVoice` |
 | +20 s sin toque | repite solo las etiquetas (≈ 8 s) |
 | +15 s sin toque | «Esta vez elijo yo.» → `resolve(id, auto: true)`; la tarjeta elegida se ilumina 2 s |
 | Máximo | ≈ 57 s. Con temporizador de sueño armado, 0 s (se elige sola, sin pausa) |
 
-**Cine** ([cinema_page.dart](../app/lib/src/cinema_page.dart)): las tarjetas sustituyen a los subtítulos mientras se pregunta (≥ 96 dp de lado, icono de 48 dp, texto grande; `Semantics(button, label: 'Opción 1 de 3: Seguir el beee')`). La barra de progreso usa `premise.beats.length + 1` como total (hoy `scenes.length`, que crecería). Sin cuenta atrás.
+**Cine** ([cinema_page.dart](../app/lib/src/cinema_page.dart)): las tarjetas sustituyen a los subtítulos mientras se pregunta (≥ 96 dp de lado, icono de 48 dp, texto grande; `Semantics(button, label: 'Opción 1 de 3: Seguir el balido')`). La barra de progreso usa `premise.beats.length + 1` como total (hoy `scenes.length`, que crecería). Sin cuenta atrás.
 
 **Holograma** ([hologram_page.dart](../app/lib/src/hologram_page.dart)): no hay texto y los controles se ocultan solos. Durante la pregunta `_controls` se fuerza a visible y las tarjetas (icono + etiqueta) van en la barra inferior; la voz es la misma. La geometría del prisma (cuñas de 90°, [15](15-modo-cine-y-holograma.md)) **no se ha probado con un prisma real**, así que en la Fase 0 el holograma **elige solo** (`interactive: false`) y la pregunta no llega a mostrarse; en la Fase 1 se habilita tras probar con familias.
 
 **Temporizador de sueño** ([sleep_timer.dart](../app/lib/src/ui/sleep_timer.dart)): hoy el botón guarda su propio estado y la página solo recibe `onExpire`/`onPicked`. Se añade un `ValueNotifier<bool> armed` (o `onPicked(int? minutes)`) para que la página cree el `StoryRun` con `interactive: !armed`. Si vence mientras se pregunta, `pause()` cancela la espera y no elige nada.
 
-**Pantalla de texto** ([story_page.dart](../app/lib/src/story_page.dart)): hoy pinta `_story.scenes` en un `ListView`. Con un `ValueNotifier<StoryRun>` compartido con cine y holograma (para que lo elegido en uno se vea en los otros), la lista pinta las escenas del `run` y, al final, un bloque «pregunta + 3 tarjetas + `talk` en letra pequeña + botón “Elige por nosotros”». **Sin espera automática** (el adulto manda). Al tocar, el bloque se pliega en una línea («Elegisteis: Seguir el beee»), las escenas nuevas aparecen debajo y se desplaza hasta ellas. La enseñanza y la ficha de valoración solo salen cuando `run.isComplete` (la valoración necesita la receta con `choices`).
+**Pantalla de texto** ([story_page.dart](../app/lib/src/story_page.dart)): hoy pinta `_story.scenes` en un `ListView`. Con un `ValueNotifier<StoryRun>` compartido con cine y holograma (para que lo elegido en uno se vea en los otros), la lista pinta las escenas del `run` y, al final, un bloque «pregunta + 3 tarjetas + `talk` en letra pequeña + botón “Elige por nosotros”». **Sin espera automática** (el adulto manda). Al tocar, el bloque se pliega en una línea («Elegisteis: Seguir el balido»), las escenas nuevas aparecen debajo y se desplaza hasta ellas. La enseñanza y la ficha de valoración solo salen cuando `run.isComplete` (la valoración necesita la receta con `choices`).
 
 ### 3.4 Validador: todas las rutas sin explosión
 
@@ -368,7 +368,7 @@ a propósito (§2.4).
     "ask": "¿Cómo sigue {hero} en la oscuridad?",
     "talk": "Pregúntale: ¿cuál de las tres cosas harías tú, y por qué?",
     "options": [
-      { "id": "oido", "label": "Seguir el beee", "icon": {"art": "cabrita"},
+      { "id": "oido", "label": "Seguir el balido", "icon": {"art": "cabrita"},
         "says": { "llegada": "El «beee» sonó ya muy cerca, y las manos de {hero} toparon con una corteza enorme: el roble viejo.",
                   "recuerdo": "una cabrita que dice beee" } },
       { "id": "tacto", "label": "Ir de tronco en tronco", "icon": {"art": "roble"},

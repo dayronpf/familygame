@@ -6,8 +6,11 @@ import 'package:test/test.dart';
 
 void main() {
   group('casos de la especificación', () {
-    test('letras alargadas: «¡Fiuuu, fuuush!» → «¡Fiu, fush!»', () {
-      expect(normalizeForVoice('¡Fiuuu, fuuush!'), '¡Fiu, fush!');
+    test(
+        'letras alargadas: «¡Fiuuu, fuuush!» no se dice; «Fiuuu» suelto → «Fiu»',
+        () {
+      expect(normalizeForVoice('¡Fiuuu, fuuush!'), '');
+      expect(normalizeForVoice('Hizo fiuuu y se fue'), 'Hizo fiu y se fue');
     });
 
     test('comillas angulares: se quitan y el signo pegado se arregla', () {
@@ -59,8 +62,8 @@ void main() {
     test('puntos suspensivos: queda un solo punto', () {
       expect(normalizeForVoice('Esperó……'), 'Esperó.');
       expect(
-        normalizeForVoice('una chispa, otra chispa... ¡Flup!'),
-        'una chispa, otra chispa. ¡Flup!',
+        normalizeForVoice('una chispa, otra chispa... ¡Hola!'),
+        'una chispa, otra chispa. ¡Hola!',
       );
       expect(
         normalizeForVoice('otro, otro… «¡Es muy poco!».'),
@@ -88,15 +91,81 @@ void main() {
   });
 
   group('onomatopeyas del pack', () {
-    test('se dicen bien o se describen', () {
+    test('un «shhh» que dice un personaje sí se dice (como «chis»)', () {
       expect(
         normalizeForVoice('«Aquí no hay nadie. Shhh», susurró.'),
         'Aquí no hay nadie. Chis, susurró.',
       );
-      expect(normalizeForVoice('¡Grrr! Teo la oyó.'), '¡Gruñ! Teo la oyó.');
-      expect(normalizeForVoice('¡Craaac!'), '¡Crac!');
-      expect(normalizeForVoice('se oyó un «¡Beee!».'), 'se oyó un ¡Bee!');
-      expect(normalizeForVoice('¡Fuuush!'), '¡Fush!');
+    });
+
+    test('los efectos de sonido entre ¡! no se dicen: se ven en pantalla', () {
+      expect(normalizeForVoice('¡Craaac!'), '');
+      expect(normalizeForVoice('«¡Beee, beee!»'), '');
+      expect(normalizeForVoice('¡Grrr! Teo la oyó.'), 'Teo la oyó.');
+      expect(
+        normalizeForVoice(
+          'De pronto llegó una ráfaga: ¡fuuu! La lucecita se apagó.',
+        ),
+        'De pronto llegó una ráfaga. La lucecita se apagó.',
+      );
+      expect(
+        normalizeForVoice('Se oyó un balido chiquitito: «¡beee!».'),
+        'Se oyó un balido chiquitito.',
+      );
+      expect(
+        normalizeForVoice('El viento la levantó, ¡fiuuu!, y subió.'),
+        'El viento la levantó, y subió.',
+      );
+      expect(
+        normalizeForVoice(
+          'La cabrita baló, «¡beee!», y le sonó la barriguita.',
+        ),
+        'La cabrita baló, y le sonó la barriguita.',
+      );
+      expect(
+        normalizeForVoice('en el suelo: ¡clong! «Y le di la bolsa.»'),
+        'en el suelo. Y le di la bolsa.',
+      );
+      expect(
+        normalizeForVoice('«¡Beee!», dijo la cabrita.'),
+        'Dijo la cabrita.',
+      );
+    });
+
+    test('lo que dice un personaje no es un efecto de sonido', () {
+      expect(normalizeForVoice('«¡Ay!», gritó Aldo.'), '¡Ay! gritó Aldo.');
+      expect(
+        normalizeForVoice('Se rio, ¡ja!, y siguió.'),
+        'Se rio, ¡ja! y siguió.',
+      );
+      expect(
+        normalizeForVoice('«¡Atrás!», gruñó una voz.'),
+        '¡Atrás! gruñó una voz.',
+      );
+      expect(
+        normalizeForVoice('¡Cric, cuidado!'),
+        '¡Cric, cuidado!',
+        reason: 'mezclado con palabras: es una frase',
+      );
+    });
+
+    test('voiceIssues avisa si al quitar el sonido la frase queda cortada', () {
+      expect(
+        voiceIssues(
+          normalizeForVoice(
+            'El agua hacía ¡shhh!, y el puente hacía ¡cric!',
+          ),
+        ),
+        contains('frase cortada (¿un efecto de sonido sin verbo?)'),
+      );
+      expect(
+        voiceIssues(
+          normalizeForVoice(
+            'El agua susurraba ¡shhh!, y el puente crujía ¡cric!',
+          ),
+        ),
+        isEmpty,
+      );
     });
 
     test('palabras normales con dos letras iguales no se tocan', () {
@@ -111,7 +180,7 @@ void main() {
     const clean = 'La campana rodó escalera abajo. Aldo no dijo nada.';
     expect(normalizeForVoice(clean), clean);
     expect(voiceIssues(clean), isEmpty);
-    const dirty = '«¡NO!» Fiuuu... 3 faroles ★';
+    const dirty = '«¡NO!» Fiuuu... 3 faroles ★ ¡Cric!';
     final once = normalizeForVoice(dirty);
     expect(normalizeForVoice(once), once);
   });

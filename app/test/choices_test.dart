@@ -257,6 +257,13 @@ void main() {
           scrollable: find.byType(Scrollable).first,
         );
 
+    /// Tras elegir, la pregunta se pliega en una línea que queda más arriba.
+    Future<void> showPicked(WidgetTester tester) => tester.scrollUntilVisible(
+          find.byKey(const Key('choice-picked')),
+          -300,
+          scrollable: find.byType(Scrollable).first,
+        );
+
     Future<void> showMoral(WidgetTester tester) => tester.scrollUntilVisible(
           find.text('Enseñanza'),
           600,
@@ -302,7 +309,7 @@ void main() {
       expect(find.byKey(const Key('choice-oido')), findsOneWidget);
       expect(find.byKey(const Key('choice-tacto')), findsOneWidget);
       expect(find.byKey(const Key('choice-luna')), findsOneWidget);
-      expect(find.text('Seguir el beee'), findsOneWidget);
+      expect(find.text('Seguir el balido'), findsOneWidget);
       expect(find.textContaining('cuál de las tres'), findsOneWidget,
           reason: 'la nota para el adulto');
       expect(find.text('Enseñanza'), findsNothing);
@@ -315,7 +322,9 @@ void main() {
       final before = find.byType(Text).evaluate().length;
       await tapKey(tester, 'choice-luna');
       expect(find.byKey(const Key('choice-block')), findsNothing);
+      await showPicked(tester);
       expect(find.byKey(const Key('choice-picked')), findsOneWidget);
+      await showPicked(tester);
       expect(find.text('Elegisteis: Esperar y respirar'), findsOneWidget);
       await showMoral(tester);
       expect(find.text('Enseñanza'), findsOneWidget);
@@ -325,6 +334,7 @@ void main() {
     testWidgets('«Elige por nosotros» contesta la app', (tester) async {
       await open(tester, _pendingRun());
       await tapKey(tester, 'choice-for-me');
+      await showPicked(tester);
       expect(find.byKey(const Key('choice-picked')), findsOneWidget);
       await showMoral(tester);
       expect(find.text('Enseñanza'), findsOneWidget);

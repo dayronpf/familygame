@@ -32,12 +32,19 @@ Pendiente de comprobar **en un teléfono real** (Android e iOS): la prueba imita
 `caldero_engine/lib/src/voice.dart` → `normalizeForVoice(texto)` (español). El reproductor le manda a la voz la frase
 normalizada; la pantalla conserva el texto original. Reglas, en este orden:
 
+0. **quita los efectos de sonido entre `¡ !`** (`¡Cric!`, `«¡Beee!»`, `¡Fuuush!`, `¡Plaf!`…; lista cerrada `soundEffects`): **la voz
+   no los dice**. Un motor de voz no sabe imitar un balido o un crujido y los lee como palabras raras; los efectos se ven en pantalla.
+   Se arregla la puntuación que queda (`una ráfaga: ¡fuuu! La luz…` → `una ráfaga. La luz…`; `«¡Beee!», dijo…` → `Dijo…`). Lo que
+   **dice un personaje** (`¡Ay!`, `¡Uf!`, `¡Ja!`, `¡Atrás!`) no está en la lista y se dice. **Regla de autoría:** el texto tiene que
+   seguir teniendo sentido sin el efecto, así que se *describe* el sonido y el efecto va aparte («se oyó un balido: «¡beee!»», «el
+   puente crujía ¡cric!»), nunca «hacía ¡cric!» ni «sonó un «¡beee!» chiquitito». `voiceIssues` avisa de las frases que quedan
+   cortadas («hacía.», «con un,», «el.») y la prueba de aceptación recorre todos los cuentos del pack;
 1. quita emojis y símbolos (`&` → «y», `%` → «por ciento»);
 2. reduce letras repetidas 3 o más veces a una (`fiuuu` → `fiu`);
 3. quita comillas «» y “” y arregla el signo pegado (`!».` → `!`);
 4. números (hasta 999 999, con coma decimal) y abreviaturas (`Sr.`, `Dra.`, `etc.`…) a palabras;
 5. baja las mayúsculas de énfasis (`¡NO!` → `¡No!`);
-6. diccionario de pronunciación de las onomatopeyas del pack (`Shhh` → «chis», `Grrr` → «gruñ», `Beee` → «bee»…);
+6. diccionario de pronunciación de las onomatopeyas que sí se dicen (un `Shhh` de un personaje → «chis»; `fiuuu` suelto → «fiu»);
 7. suspensivos → un punto (o una coma si sigue minúscula);
 8. frases de más de 20 palabras → se parten con un punto por la coma más cercana a la mitad.
 

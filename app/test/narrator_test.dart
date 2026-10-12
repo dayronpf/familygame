@@ -133,15 +133,15 @@ void main() {
         () async {
       final tts = FakeTts();
       final n = narratorOver(tts);
-      const screen = '«¡Fiuuu, fuuush!» dijo el viento. Eran 3 faroles.';
+      const screen = '«¡Hola!» dijo el viento, con 3 faroles. ¡Fuuush!';
       final pb = StoryPlayback(
         scenes: [PlayScene(text: screen, setup: null)],
         narrator: n,
       );
       pb.play();
       await settle();
-      expect(
-          tts.spoken.first, '¡Fiu, fush! dijo el viento. Eran tres faroles.');
+      // Los efectos de sonido no se dicen; lo demás, sí (cifras en palabras, sin comillas)
+      expect(tts.spoken.first, '¡Hola! dijo el viento, con tres faroles.');
       expect(pb.current.text, screen);
       pb.dispose();
     });

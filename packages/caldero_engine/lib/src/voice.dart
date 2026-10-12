@@ -9,6 +9,7 @@ class VoiceRules {
   const VoiceRules({
     this.abbreviations = _esAbbreviations,
     this.pronunciation = _esPronunciation,
+    this.soundEffects = _esSoundEffects,
     this.maxSentenceWords = 20,
   });
 
@@ -17,6 +18,10 @@ class VoiceRules {
 
   /// Palabra (minúsculas, ya sin letras repetidas) → cómo se dice. Onomatopeyas aprobadas y nombres propios.
   final Map<String, String> pronunciation;
+
+  /// Efectos de sonido («¡Cric!», «¡Beee!», «¡Plaf!»), en minúsculas y ya sin letras alargadas. **La voz no los
+  /// dice**: un motor de voz no sabe imitar sonidos y los lee como palabras raras («bi», «cric»). Se ven en pantalla.
+  final Set<String> soundEffects;
 
   /// Una frase más larga se parte en dos con un punto (solo para la voz; en pantalla queda igual).
   final int maxSentenceWords;
@@ -47,6 +52,15 @@ const Map<String, String> _esPronunciation = {
   'chis': 'chis',
 };
 
+/// Efectos de sonido del pack (formas ya sin letras alargadas: «¡Fuuush!» → `fush`). Las interjecciones de un
+/// personaje («¡Ay!», «¡Uf!», «¡Ja!») no están aquí: son palabras que sí se dicen.
+const Set<String> _esSoundEffects = {
+  'be', 'cric', 'fu', 'fiu', 'fush', 'fr', 'tilín', 'sh', 'chis', 'pst', //
+  'clang', 'clong', 'cling', 'clinc', 'clic', 'din', 'don', 'gr', 'plaf', //
+  'plof', 'plin', 'rum', 'crac', 'cras', 'hop', 'pum', 'uh', 'suish', //
+  'flup', 'pof',
+};
+
 const VoiceRules spanishVoiceRules = VoiceRules();
 
 final RegExp _emoji = RegExp(
@@ -61,7 +75,62 @@ final RegExp _allCaps =
     RegExp(r'(?<![\p{L}\p{N}])[\p{Lu}]{2,}(?![\p{L}\p{N}])', unicode: true);
 final RegExp _digits = RegExp(r'\d+(?:[.,]\d+)?');
 
+/// Un efecto de sonido entre signos de exclamación, con sus comillas si las lleva: `¡Cric!`, `«¡Beee!»`,
+/// `¡Cric, cric!`.
+final RegExp _effectSegment = RegExp('[«“"]?¡([^!¡«»]*)!»?[”"]?');
+
+/// Marca donde había un efecto de sonido (se limpia al final del paso 0).
+const String _gap = '\u0001';
+
+/// Quita los efectos de sonido de [t] y deja la frase bien puntuada (paso 0 de [normalizeForVoice]).
+String _dropSoundEffects(String t, VoiceRules rules) {
+  var removed = false;
+  var out = t.replaceAllMapped(_effectSegment, (m) {
+    final words = RegExp(r'\p{L}+', unicode: true)
+        .allMatches(m.group(1)!)
+        .map(
+          (w) => w
+              .group(0)!
+              .toLowerCase()
+              .replaceAllMapped(_repeated, (r) => r.group(1)!),
+        )
+        .toList();
+    if (words.isEmpty || !words.every(rules.soundEffects.contains)) {
+      return m.group(0)!;
+    }
+    removed = true;
+    return _gap;
+  });
+  if (!removed) return t;
+  out = out
+      // «una ráfaga: ¡fuuu! La lucecita…» → «una ráfaga. La lucecita…»
+      .replaceAll(
+        RegExp('\\s*:\\s*$_gap\\s*(?=[«“"¡¿]*\\p{Lu}|\$)', unicode: true),
+        '. ',
+      )
+      .replaceAll(RegExp('\\s*:\\s*$_gap'), '')
+      .replaceAll(RegExp('\\s*$_gap\\s*(?=[,;])'), '')
+      .replaceAll(_gap, ' ');
+  out = out
+      .replaceAll(RegExp(r'\s+'), ' ')
+      .replaceAllMapped(RegExp(r'\s+([,.;:!?])'), (m) => m.group(1)!)
+      .replaceAll(RegExp(r',\s*,'), ',')
+      .replaceAllMapped(RegExp(r'([.!?])\s*[,;]'), (m) => m.group(1)!)
+      .replaceAll(RegExp(r'\.\s*\.'), '.')
+      .trim();
+  // Si el efecto abría la frase («¡Beee!», dijo la cabrita), lo que queda empieza en minúscula (y tras una coma).
+  final lead = RegExp(r'^[,;]\s*').firstMatch(out);
+  if (lead != null) out = out.substring(lead.end);
+  final opened = RegExp('^[«“"¡]').hasMatch(t.trimLeft());
+  if ((lead != null || opened) && out.isNotEmpty) {
+    out = out[0].toUpperCase() + out.substring(1);
+  }
+  return out;
+}
+
 /// Pasa [text] a lo que debe decir la voz. Reglas, en este orden:
+/// 0. quita los efectos de sonido entre signos de exclamación («¡Cric!», «¡Beee!»: la voz no los imita; el texto
+///    debe seguir teniendo sentido sin ellos, lo comprueba [voiceIssues]);
 /// 1. quita emojis y símbolos que no se pronuncian;
 /// 2. reduce cualquier letra repetida 3 o más veces a una sola («fiuuu» → «fiu»);
 /// 3. quita las comillas «» y “” (y arregla el signo que quedaba pegado: `!».` → `!`);
@@ -71,7 +140,8 @@ final RegExp _digits = RegExp(r'\d+(?:[.,]\d+)?');
 /// 7. deja un solo punto en vez de los suspensivos;
 /// 8. parte con un punto las frases de más de [VoiceRules.maxSentenceWords] palabras.
 String normalizeForVoice(String text, {VoiceRules rules = spanishVoiceRules}) {
-  var t = text;
+  // 0
+  var t = _dropSoundEffects(text, rules);
   // 1
   t = t.replaceAll(_emoji, ' ');
   t = t.replaceAll('&', ' y ').replaceAll('%', ' por ciento ');
@@ -179,6 +249,13 @@ List<String> voiceIssues(String voiceText, {int maxSentenceWords = 20}) {
   }
   if (_allCaps.hasMatch(voiceText)) issues.add('mayúsculas de énfasis');
   if (RegExp(r'\.{2,}|…').hasMatch(voiceText)) issues.add('puntos suspensivos');
+  // Un efecto de sonido que se quitó y dejó la frase cortada («El agua hacía.», «cayó con un,», «estaba el.»)
+  if (RegExp(
+    r'(?:^|[\s,;])(?:(?:hacía|hacían|hizo|hicieron|haciendo|con un|con una|el)\s*(?:[,;.!?]|$))',
+    caseSensitive: false,
+  ).hasMatch(voiceText)) {
+    issues.add('frase cortada (¿un efecto de sonido sin verbo?)');
+  }
   if (RegExp(r'[!?][.,;:]').hasMatch(voiceText)) {
     issues.add('signo pegado a otro signo');
   }

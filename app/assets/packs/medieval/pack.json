@@ -3,7 +3,7 @@
     "schema": 2,
     "id": "medieval",
     "name": "Reino de la Luna (prueba)",
-    "version": "0.15.0",
+    "version": "0.15.1",
     "license": "Contenido original, todos los derechos reservados al autor del proyecto",
     "language": "es",
     "age_band": "4-7",
@@ -1402,7 +1402,7 @@
             },
             {
               "id": "b",
-              "text": "{hero} sintió la mano {helper.del} {helper} en el hombro. Respiró hondo. Pensó en el pobre Tomás. Y dio un paso al frente. «{hero.jura} Fui yo», dijo, tan alto que lo oyó toda la plaza. «Tiré de la cuerda sin permiso y la rompí. Me dio miedo decirlo. Perdón, Tomás.» Entre {hero} y {helper} sacaron los pedazos del saco y los dejaron en el suelo, ¡clong! «Y le di {villain.mia} a {villain} para que callara.» Los vecinos se quedaron mudos. Al fondo, {villain} intentó esconderse, pero ya todos lo miraban.",
+              "text": "{hero} sintió la mano {helper.del} {helper} en el hombro. Respiró hondo. Pensó en el pobre Tomás. Y dio un paso al frente. «{hero.jura} Fui yo», dijo, tan alto que lo oyó toda la plaza. «Tiré de la cuerda sin permiso y la rompí. Me dio miedo decirlo. Perdón, Tomás.» Entre {hero} y {helper} sacaron los pedazos del saco y los dejaron en el suelo: ¡clong! «Y le di {villain.mia} a {villain} para que callara.» Los vecinos se quedaron mudos. Al fondo, {villain} intentó esconderse, pero ya todos lo miraban.",
               "scene": {
                 "time": "dia",
                 "bg": "plaza",
@@ -3739,7 +3739,7 @@
           "variants": [
             {
               "id": "a",
-              "text": "De pronto llegó una ráfaga: ¡fuuu! La lucecita se apagó. Oscuridad entera, como cuando uno cierra los ojos dentro de un armario. {hero} golpeó el pedernal, una vez, otra: con tanto viento no prendía ni una chispa. Tanteó un tronco, rugoso y blando de musgo, y tiró una vez de la cuerda. Muy lejos, un tirón pequeño contestó. Entonces sonó un «¡beee!» chiquitito, hacia el roble viejo. Arriba, entre dos nubes, quedaba una rendija de cielo. {hero} pensó en Lía, sola, y {helper.truco}. Tenía que seguir. Pero ¿cómo?",
+              "text": "De pronto llegó una ráfaga: ¡fuuu! La lucecita se apagó. Oscuridad entera, como cuando uno cierra los ojos dentro de un armario. {hero} golpeó el pedernal, una vez, otra: con tanto viento no prendía ni una chispa. Tanteó un tronco, rugoso y blando de musgo, y tiró una vez de la cuerda. Muy lejos, un tirón pequeño contestó. Entonces se oyó un balido chiquitito hacia el roble viejo: «¡beee!». Arriba, entre dos nubes, quedaba una rendija de cielo. {hero} pensó en Lía, sola, y {helper.truco}. Tenía que seguir. Pero ¿cómo?",
               "scene": {
                 "time": "noche",
                 "light": "dark",
@@ -3773,7 +3773,7 @@
             },
             {
               "id": "b",
-              "text": "Una ráfaga: ¡fuuu! La lucecita se apagó, y la oscuridad lo cubrió todo, como cuando uno cierra los ojos dentro de un armario. {hero} golpeó el pedernal, una vez, otra, pero el viento se llevaba cada chispa. Se agarró a un tronco, blando de musgo, y tiró una vez de la cuerda. Muy lejos, un tirón pequeño contestó: «Aquí estoy». Entonces, hacia el roble viejo, sonó un «¡beee!» chiquitito. Arriba, entre dos nubes, quedaba una rendija de cielo. {hero} pensó en Lía, sola en el bosque. {hero} {helper.truco} y apretó los dientes. Tenía que seguir. Pero ¿cómo?",
+              "text": "Una ráfaga: ¡fuuu! La lucecita se apagó, y la oscuridad lo cubrió todo, como cuando uno cierra los ojos dentro de un armario. {hero} golpeó el pedernal, una vez, otra, pero el viento se llevaba cada chispa. Se agarró a un tronco, blando de musgo, y tiró una vez de la cuerda. Muy lejos, un tirón pequeño contestó: «Aquí estoy». Entonces, hacia el roble viejo, se oyó un balido chiquitito: «¡beee!». Arriba, entre dos nubes, quedaba una rendija de cielo. {hero} pensó en Lía, sola en el bosque. {hero} {helper.truco} y apretó los dientes. Tenía que seguir. Pero ¿cómo?",
               "scene": {
                 "time": "noche",
                 "light": "dark",
@@ -3807,7 +3807,7 @@
             },
             {
               "id": "c",
-              "text": "{hero} subió despacio, sujetando la lucecita con las dos manos. Entonces llegó una ráfaga, ¡fuuu!, y la llama se encogió, se encogió… y se apagó. Oscuridad total. {hero} golpeó el pedernal, una vez, otra, pero el viento se llevaba las chispas como si fueran migas. Se agarró a un tronco de musgo y se quedó muy quiet{hero.o}, escuchando. Y de pronto, hacia el roble viejo, sonó un «¡beee!» chiquitito. Arriba, entre dos nubes, quedaba una rendija de cielo. {hero} se secó los ojos con la manga. Tenía que seguir. Pero ¿cómo?",
+              "text": "{hero} subió despacio, sujetando la lucecita con las dos manos. Entonces llegó una ráfaga, ¡fuuu!, y la llama se encogió, se encogió… y se apagó. Oscuridad total. {hero} golpeó el pedernal, una vez, otra, pero el viento se llevaba las chispas como si fueran migas. Se agarró a un tronco de musgo y se quedó muy quiet{hero.o}, escuchando. Y de pronto, hacia el roble viejo, se oyó un balido chiquitito: «¡beee!». Arriba, entre dos nubes, quedaba una rendija de cielo. {hero} se secó los ojos con la manga. Tenía que seguir. Pero ¿cómo?",
               "scene": {
                 "time": "noche",
                 "light": "dark",
@@ -3847,13 +3847,13 @@
             "options": [
               {
                 "id": "oido",
-                "label": "Seguir el beee",
+                "label": "Seguir el balido",
                 "icon": {
                   "glyph": "hearing"
                 },
                 "says": {
-                  "llegada": "El «beee» sonó ya muy cerca, y las manos de {hero} toparon con una corteza enorme: el roble viejo.",
-                  "recuerdo": "una cabrita que dice beee"
+                  "llegada": "El balido sonó ya muy cerca, y las manos de {hero} toparon con una corteza enorme: el roble viejo.",
+                  "recuerdo": "una cabrita que bala"
                 }
               },
               {
@@ -3920,7 +3920,7 @@
                 ],
                 "light": "dark"
               },
-              "text": "{hero} cerró los ojos, que total no servían de nada, y abrió las orejas. El viento hacía ¡fuuu!, las hojas hacían ¡suish!, y debajo de todo, chiquitito y terco, estaba el «¡beee!». Cada vez que el viento se llevaba el sonido, {hero} se paraba a esperar que volviera. «Voy», susurraba. Y así, de beee en beee, con las manos por delante, fue avanzando entre los árboles."
+              "text": "{hero} cerró los ojos, que total no servían de nada, y abrió las orejas. El viento silbaba ¡fuuu!, las hojas susurraban ¡suish!, y debajo de todo, chiquitito y terco, estaba el balido: «¡beee!». Cada vez que el viento se llevaba el sonido, {hero} se paraba a esperar que volviera. «Voy», susurraba. Y así, de balido en balido, con las manos por delante, fue avanzando entre los árboles."
             },
             {
               "id": "oido_b",
@@ -3958,7 +3958,7 @@
                 ],
                 "light": "dark"
               },
-              "text": "Primero {hero} no oyó nada, solo su propio corazón: ¡pum, pum, pum! Entonces contuvo la respiración. Allí estaba, hacia el roble viejo: «¡Beee!». {hero} dio tres pasos hacia el sonido. Silencio. Se quedó quiet{hero.o} y esperó, y el «beee» volvió a llamar, un poquito más cerca. «Ya voy», susurró. Era como seguir un hilo de sonido en la oscuridad, y el hilo no se rompió."
+              "text": "Primero {hero} no oyó nada, solo su propio corazón: ¡pum, pum, pum! Entonces contuvo la respiración. Allí estaba el balido, hacia el roble viejo: «¡Beee!». {hero} dio tres pasos hacia el sonido. Silencio. Se quedó quiet{hero.o} y esperó, y el balido volvió a llamar, un poquito más cerca. «Ya voy», susurró. Era como seguir un hilo de sonido en la oscuridad, y el hilo no se rompió."
             },
             {
               "id": "tacto_a",
@@ -4108,7 +4108,7 @@
                   "lia"
                 ]
               },
-              "text": "{hero} apoyó la espalda en un tronco y respiró: dentro, uno, dos; fuera, uno, dos. El corazón, ¡pum, pum!, fue bajando el ruido, como un tambor que se va a dormir. Los ojos se acostumbraron. Vio el contorno de las ramas y, más lejos, la sombra gorda del roble viejo. Entonces la luna se asomó entre dos nubes y le puso a cada hoja un borde de plata. «Un paso», dijo {hero}. «Y otro.»"
+              "text": "{hero} apoyó la espalda en un tronco y respiró: dentro, uno, dos; fuera, uno, dos. El corazón fue bajando el ruido, ¡pum, pum!, como un tambor que se va a dormir. Los ojos se acostumbraron. Vio el contorno de las ramas y, más lejos, la sombra gorda del roble viejo. Entonces la luna se asomó entre dos nubes y le puso a cada hoja un borde de plata. «Un paso», dijo {hero}. «Y otro.»"
             }
           ]
         },
@@ -4334,7 +4334,7 @@
           "variants": [
             {
               "id": "a",
-              "text": "{villain} gruñó, pero la voz le temblaba más que a {hero}. «Si subes…» «Subo», dijo {hero}. «{hero.jura} Subo despacito.» Trepó hasta {item.el}, cerró tras de sí la puertecita de cristal y, donde no llegaba el viento, golpeó el pedernal: una chispa, otra chispa... [[¡Flup!|¡Pof!|¡Fluuup!]] {item.El} se encendió y el bosque entero se llenó de luz dorada. Con la luz en los ojos, {villain} soltó {villain.botin2}, que cayó con un ¡Clinc!, y salió corriendo.",
+              "text": "{villain} gruñó, pero la voz le temblaba más que a {hero}. «Si subes…» «Subo», dijo {hero}. «{hero.jura} Subo despacito.» Trepó hasta {item.el}, cerró tras de sí la puertecita de cristal y, donde no llegaba el viento, golpeó el pedernal: una chispa, otra chispa... [[¡Flup!|¡Pof!|¡Fluuup!]] {item.El} se encendió y el bosque entero se llenó de luz dorada. Con la luz en los ojos, {villain} soltó {villain.botin2}, que cayó al suelo, ¡Clinc!, y salió corriendo.",
               "scene": {
                 "time": "noche",
                 "bg": "bosque",
@@ -4385,7 +4385,7 @@
             },
             {
               "id": "b",
-              "text": "{villain} gruñó, pero la voz le temblaba más que a {hero}. «Si subes…» «Subo», dijo {hero}. «{hero.jura} Subo despacito.» Trepó por el tronco con las manos frías. Cerró tras de sí la puertecita de cristal y, donde no llegaba el viento, golpeó el pedernal sobre la mecha: una chispa, otra chispa... [[¡Flup!|¡Pof!|¡Fluuup!]] {item.El} se encendió y una luz dorada inundó el bosque. Con la luz en los ojos, {villain} soltó {villain.botin2}, que cayó con un ¡Clinc!, y salió corriendo sin mirar atrás.",
+              "text": "{villain} gruñó, pero la voz le temblaba más que a {hero}. «Si subes…» «Subo», dijo {hero}. «{hero.jura} Subo despacito.» Trepó por el tronco con las manos frías. Cerró tras de sí la puertecita de cristal y, donde no llegaba el viento, golpeó el pedernal sobre la mecha: una chispa, otra chispa... [[¡Flup!|¡Pof!|¡Fluuup!]] {item.El} se encendió y una luz dorada inundó el bosque. Con la luz en los ojos, {villain} soltó {villain.botin2}, que cayó al suelo, ¡Clinc!, y salió corriendo sin mirar atrás.",
               "scene": {
                 "time": "noche",
                 "bg": "bosque",
@@ -4441,7 +4441,7 @@
           "variants": [
             {
               "id": "a",
-              "text": "Gracias a la luz, a lo lejos se oyó un «¡Beee!». Era la cabrita, y detrás venía Lía, corriendo hacia la luz. «¿Tuviste miedo?», preguntó Lía. «Todo el rato», confesó {hero}. «Las rodillas me hacían cosquillas.» «A mí también», dijo Lía. «Por eso le canté a la cabrita.» {hero} tiró una vez de la cuerda: «Aquí estoy». {helper} llegó corriendo, con los brazos abiertos. {helper.orgullo} Al pie del roble se veía {villain.botin2}. «Mañana se lo devolveremos a su dueño, y {villain} pedirá perdón», dijo el viejo farolero, cojeando.",
+              "text": "Gracias a la luz, a lo lejos se oyó un balido: «¡Beee!». Era la cabrita, y detrás venía Lía, corriendo hacia la luz. «¿Tuviste miedo?», preguntó Lía. «Todo el rato», confesó {hero}. «Las rodillas me hacían cosquillas.» «A mí también», dijo Lía. «Por eso le canté a la cabrita.» {hero} tiró una vez de la cuerda: «Aquí estoy». {helper} llegó corriendo, con los brazos abiertos. {helper.orgullo} Al pie del roble se veía {villain.botin2}. «Mañana se lo devolveremos a su dueño, y {villain} pedirá perdón», dijo el viejo farolero, cojeando.",
               "scene": {
                 "time": "noche",
                 "bg": "bosque",
@@ -4505,7 +4505,7 @@
             },
             {
               "id": "b",
-              "text": "Entonces, a lo lejos, se oyó un «¡Beee!». Era la cabrita, y detrás venía Lía, corriendo hacia la luz. «¿Tuviste miedo?», preguntó Lía. «Todo el rato», confesó {hero}. «Yo también», dijo Lía. «Por eso le canté a la cabrita.» {hero} tiró una vez de la cuerda: «Aquí estoy». {helper} llegó corriendo. {helper.orgullo} Al pie del roble se veía {villain.botin2}. «Mañana se lo devolveremos a su dueño, y {villain} pedirá perdón», dijo el viejo farolero, cojeando.",
+              "text": "Entonces, a lo lejos, se oyó un balido: «¡Beee!». Era la cabrita, y detrás venía Lía, corriendo hacia la luz. «¿Tuviste miedo?», preguntó Lía. «Todo el rato», confesó {hero}. «Yo también», dijo Lía. «Por eso le canté a la cabrita.» {hero} tiró una vez de la cuerda: «Aquí estoy». {helper} llegó corriendo. {helper.orgullo} Al pie del roble se veía {villain.botin2}. «Mañana se lo devolveremos a su dueño, y {villain} pedirá perdón», dijo el viejo farolero, cojeando.",
               "scene": {
                 "time": "noche",
                 "bg": "bosque",
@@ -4806,7 +4806,7 @@
             },
             {
               "id": "b",
-              "text": "Junto al pozo, entre dos piedras, algo hizo ¡tilín! {hero} se agachó y sacó {item.un} de cuero, pesada y fría. Dentro había tres monedas de plata. Tres, justo las que le faltaban para comprar la cometa. {hero} miró a un lado y a otro. No había nadie. «¿De quién será?», preguntó al pozo. «…será… será…», contestó el eco.",
+              "text": "Junto al pozo, entre dos piedras, algo tintineó: ¡tilín! {hero} se agachó y sacó {item.un} de cuero, pesada y fría. Dentro había tres monedas de plata. Tres, justo las que le faltaban para comprar la cometa. {hero} miró a un lado y a otro. No había nadie. «¿De quién será?», preguntó al pozo. «…será… será…», contestó el eco.",
               "scene": {
                 "bg": "plaza",
                 "mood": "mystery",
@@ -4935,7 +4935,7 @@
           "variants": [
             {
               "id": "a",
-              "text": "Aquella noche, {hero} escondió {item.el} debajo de la almohada. Pero cada vez que se movía, ¡tilín! Se dio la vuelta: tilín. Se tapó con la manta: tilín, tilín. La luna entraba por la ventana y las monedas brillaban como ojos. {hero} cerró los suyos con fuerza, pero el sueño no llegaba, porque la bolsa pesaba y pesaba. Y por la ventana, desde el pozo, parecía llegar el eco: «…será… será…».",
+              "text": "Aquella noche, {hero} escondió {item.el} debajo de la almohada. Pero cada vez que se movía, las monedas sonaban: ¡tilín! Se dio la vuelta: tilín. Se tapó con la manta: tilín, tilín. La luna entraba por la ventana y las monedas brillaban como ojos. {hero} cerró los suyos con fuerza, pero el sueño no llegaba, porque la bolsa pesaba y pesaba. Y por la ventana, desde el pozo, parecía llegar el eco: «…será… será…».",
               "scene": {
                 "time": "noche",
                 "unseen": [
@@ -6692,7 +6692,7 @@
             },
             {
               "id": "b",
-              "text": "Tomás, el viejo campanero, llevaba [[tres|cuatro]] días tosiendo. «Solo lo curaría {item.el}», decían los vecinos, «la que crece al otro lado del río». Pero para llegar había que cruzar el puente de madera, el que hacía ¡cric, cric! con cada soplo de viento. Nadie quería ir, porque el puente parecía a punto de romperse. {hero} oyó la campana, que sonaba apagada. «Iré yo», dijo, aunque le temblaba la voz.",
+              "text": "Tomás, el viejo campanero, llevaba [[tres|cuatro]] días tosiendo. «Solo lo curaría {item.el}», decían los vecinos, «la que crece al otro lado del río». Pero para llegar había que cruzar el puente de madera, el que crujía ¡cric, cric! con cada soplo de viento. Nadie quería ir, porque el puente parecía a punto de romperse. {hero} oyó la campana, que sonaba apagada. «Iré yo», dijo, aunque le temblaba la voz.",
               "scene": {
                 "bg": "rio",
                 "mood": "tension",
@@ -6718,7 +6718,7 @@
           "variants": [
             {
               "id": "a",
-              "text": "[[Al caer la tarde, {hero} llegó al río.|{hero} llegó al río cuando el sol ya se escondía.]] El agua hacía ¡shhh!, y el puente de madera hacía ¡cric, cric! Eran cuarenta tablones, y {hero} los contó dos veces con el dedo. [[Debajo, el agua corría oscura y rápida.|Debajo, el río se arrastraba negro y veloz.]] {hero} puso un pie en el primero. ¡Cric! Lo retiró de golpe. «No puedo», dijo en voz baja. El corazón le hacía ¡pum, pum, pum!",
+              "text": "[[Al caer la tarde, {hero} llegó al río.|{hero} llegó al río cuando el sol ya se escondía.]] El agua susurraba ¡shhh!, y el puente de madera crujía ¡cric, cric! Eran cuarenta tablones, y {hero} los contó dos veces con el dedo. [[Debajo, el agua corría oscura y rápida.|Debajo, el río se arrastraba negro y veloz.]] {hero} puso un pie en el primero. ¡Cric! Lo retiró de golpe. «No puedo», dijo en voz baja. El corazón le latía ¡pum, pum, pum!",
               "scene": {
                 "time": "atardecer",
                 "bg": "rio",
@@ -6735,7 +6735,7 @@
             },
             {
               "id": "b",
-              "text": "{hero} se plantó delante del puente. [[Cuarenta tablones, viejos y torcidos.|Cuarenta tablones, grises y gastados.]] El viento los hacía crujir: ¡cric, cric, cric! Debajo corría el río, negro y veloz. {hero} adelantó un pie, y el tablón gimió. Lo retiró. «No puedo», susurró. Le temblaban las rodillas, y el corazón hacía ¡pum, pum, pum!",
+              "text": "{hero} se plantó delante del puente. [[Cuarenta tablones, viejos y torcidos.|Cuarenta tablones, grises y gastados.]] El viento los hacía crujir: ¡cric, cric, cric! Debajo corría el río, negro y veloz. {hero} adelantó un pie, y el tablón gimió. Lo retiró. «No puedo», susurró. Le temblaban las rodillas, y el corazón latía ¡pum, pum, pum!",
               "scene": {
                 "time": "atardecer",
                 "bg": "rio",
@@ -6951,7 +6951,7 @@
           "variants": [
             {
               "id": "zaf",
-              "text": "{hero} respiró hondo. «Tengo miedo», susurró, «pero {hero.paso}». Puso el pie en el primer tablón. ¡Cric! Esta vez no lo retiró. «Uno», contó en voz alta. Desde la orilla, {helper} le hizo un gesto con la mano. El río hizo ¡shhh!, pero {hero} ya iba por el segundo: «Dos».",
+              "text": "{hero} respiró hondo. «Tengo miedo», susurró, «pero {hero.paso}». Puso el pie en el primer tablón. ¡Cric! Esta vez no lo retiró. «Uno», contó en voz alta. Desde la orilla, {helper} le hizo un gesto con la mano. El río susurró ¡shhh!, pero {hero} ya iba por el segundo: «Dos».",
               "scene": {
                 "time": "atardecer",
                 "bg": "rio",
@@ -6983,7 +6983,7 @@
             },
             {
               "id": "bon",
-              "text": "{hero} respiró hondo. «Tengo miedo», susurró, «pero {hero.paso}». Puso el pie en el primer tablón. ¡Cric! Y empezó a tararear tres notas, siempre las mismas: la, la, la. Desde la orilla, {helper} le hizo un gesto con la mano. El río hizo ¡shhh!, pero la voz de {hero} iba delante.",
+              "text": "{hero} respiró hondo. «Tengo miedo», susurró, «pero {hero.paso}». Puso el pie en el primer tablón. ¡Cric! Y empezó a tararear tres notas, siempre las mismas: la, la, la. Desde la orilla, {helper} le hizo un gesto con la mano. El río susurró ¡shhh!, pero la voz de {hero} iba delante.",
               "scene": {
                 "time": "atardecer",
                 "bg": "rio",
@@ -7015,7 +7015,7 @@
             },
             {
               "id": "mar",
-              "text": "{hero} respiró hondo. «Tengo miedo», susurró, «pero {hero.paso}». Puso el pie en el primer tablón. ¡Cric! No miró el agua. Miró solo el tablón siguiente, y luego el siguiente. Desde la orilla, {helper} le hizo un gesto con la mano. El río hizo ¡shhh!, pero {hero} no lo escuchó.",
+              "text": "{hero} respiró hondo. «Tengo miedo», susurró, «pero {hero.paso}». Puso el pie en el primer tablón. ¡Cric! No miró el agua. Miró solo el tablón siguiente, y luego el siguiente. Desde la orilla, {helper} le hizo un gesto con la mano. El río susurró ¡shhh!, pero {hero} no lo escuchó.",
               "scene": {
                 "time": "atardecer",
                 "bg": "rio",
@@ -7047,7 +7047,7 @@
             },
             {
               "id": "ald",
-              "text": "{hero} respiró hondo. «Tengo miedo», susurró, «pero {hero.paso}». Puso el pie en el primer tablón. ¡Cric! «Botas, un paso», murmuró {hero}. «Botas, otro paso.» Desde la orilla, {helper} le hizo un gesto con la mano. El río hizo ¡shhh!, pero las botas hicieron más caso que las rodillas.",
+              "text": "{hero} respiró hondo. «Tengo miedo», susurró, «pero {hero.paso}». Puso el pie en el primer tablón. ¡Cric! «Botas, un paso», murmuró {hero}. «Botas, otro paso.» Desde la orilla, {helper} le hizo un gesto con la mano. El río susurró ¡shhh!, pero las botas hicieron más caso que las rodillas.",
               "scene": {
                 "time": "atardecer",
                 "bg": "rio",
@@ -7257,7 +7257,7 @@
             },
             {
               "id": "bon",
-              "text": "Volver fue peor, porque ahora sabía lo que había debajo. Pero la luna se había puesto justo encima del río, y los tablones brillaban como un camino de plata. {hero} tarareó las tres notas de {helper}, siempre las mismas. Su voz iba delante, y {hero}, detrás. El puente hacía ¡cric, cric! a cada paso, como si dijera: «Sigue, sigue». En el tablón cuarenta, {hero} saltó a la orilla, y {helper} le dio un abrazo.",
+              "text": "Volver fue peor, porque ahora sabía lo que había debajo. Pero la luna se había puesto justo encima del río, y los tablones brillaban como un camino de plata. {hero} tarareó las tres notas de {helper}, siempre las mismas. Su voz iba delante, y {hero}, detrás. El puente crujía ¡cric, cric! a cada paso, como si dijera: «Sigue, sigue». En el tablón cuarenta, {hero} saltó a la orilla, y {helper} le dio un abrazo.",
               "scene": {
                 "time": "noche",
                 "bg": "rio",
@@ -7289,7 +7289,7 @@
             },
             {
               "id": "mar",
-              "text": "Volver fue peor, porque ahora sabía lo que había debajo. Pero la luna se había puesto justo encima del río, y los tablones brillaban como un camino de plata. {hero} miró el tablón siguiente, y luego el siguiente, como le había dicho {helper}. El puente hacía ¡cric, cric! a cada paso, como si dijera: «Sigue, sigue». En el tablón cuarenta, {hero} saltó a la orilla, y {helper} le dio un abrazo.",
+              "text": "Volver fue peor, porque ahora sabía lo que había debajo. Pero la luna se había puesto justo encima del río, y los tablones brillaban como un camino de plata. {hero} miró el tablón siguiente, y luego el siguiente, como le había dicho {helper}. El puente crujía ¡cric, cric! a cada paso, como si dijera: «Sigue, sigue». En el tablón cuarenta, {hero} saltó a la orilla, y {helper} le dio un abrazo.",
               "scene": {
                 "time": "noche",
                 "bg": "rio",
@@ -7321,7 +7321,7 @@
             },
             {
               "id": "ald",
-              "text": "Volver fue peor, porque ahora sabía lo que había debajo. Pero la luna se había puesto justo encima del río, y los tablones brillaban como un camino de plata. {hero} le habló a las botas: «Botas, un paso. Botas, otro paso». El puente hacía ¡cric, cric! a cada paso, como si dijera: «Sigue, sigue». En el tablón cuarenta, {hero} saltó a la orilla, y {helper} le dio un abrazo.",
+              "text": "Volver fue peor, porque ahora sabía lo que había debajo. Pero la luna se había puesto justo encima del río, y los tablones brillaban como un camino de plata. {hero} le habló a las botas: «Botas, un paso. Botas, otro paso». El puente crujía ¡cric, cric! a cada paso, como si dijera: «Sigue, sigue». En el tablón cuarenta, {hero} saltó a la orilla, y {helper} le dio un abrazo.",
               "scene": {
                 "time": "noche",
                 "bg": "rio",
@@ -7577,7 +7577,7 @@
           "variants": [
             {
               "id": "cabrita_beee",
-              "text": "De pronto se oyó: ¡beee! Era {cabra.un} chiquitita. Miraba el pan con sus ojos grandes, porque también tenía hambre. «¡Beee!», dijo la cabrita, y le sonó la barriguita.",
+              "text": "De pronto se oyó un balido: ¡beee! Era {cabra.un} chiquitita. Miraba el pan con sus ojos grandes, porque también tenía hambre. La cabrita baló, «¡beee!», y le sonó la barriguita.",
               "scene": {
                 "bg": "plaza",
                 "mood": "hope",
@@ -7640,7 +7640,7 @@
           "variants": [
             {
               "id": "cabrita_comer",
-              "text": "La cabrita comió su mitad: ñam, ñam. {hero} comió la suya: ñam, ñam. ¡Qué rico estaba! La cabrita dio un salto de alegría, porque ya no tenía hambre. «¡Beee, beee!»",
+              "text": "La cabrita comió su mitad: ñam, ñam. {hero} comió la suya: ñam, ñam. ¡Qué rico estaba! La cabrita dio un salto de alegría, porque ya no tenía hambre. Y baló feliz: «¡Beee, beee!»",
               "scene": {
                 "bg": "plaza",
                 "mood": "joy",
@@ -8497,7 +8497,7 @@
           "variants": [
             {
               "id": "linterna_teo_arreglo",
-              "text": "Teo miró la linterna. Luego miró a {hero}. «Gracias por contármelo», dijo Teo. «Mira, solo se había soltado un tornillito.» Teo dio dos vueltas, y ¡clic!, la luz volvió. «Lo importante es que me lo has dicho.»",
+              "text": "Teo miró la linterna. Luego miró a {hero}. «Gracias por contármelo», dijo Teo. «Mira, solo se había soltado un tornillito.» Teo dio dos vueltas, y la luz volvió: ¡clic! «Lo importante es que me lo has dicho.»",
               "scene": {
                 "bg": "plaza",
                 "mood": "joy",
@@ -8962,7 +8962,7 @@
           "variants": [
             {
               "id": "campana_mediodia_campana",
-              "text": "En lo alto de la torre había una campana grande y dorada. Cada mediodía sonaba: ¡din, don! Y todos en la aldea sabían que era hora de comer.",
+              "text": "En lo alto de la torre había una campana grande y dorada. Cada mediodía sonaba la campana: ¡din, don! Y todos en la aldea sabían que era hora de comer.",
               "scene": {
                 "bg": "torre",
                 "mood": "calm",
@@ -9610,7 +9610,7 @@
           "variants": [
             {
               "id": "sombras_crujido",
-              "text": "De pronto, ¡crac! La madera de la cama crujió. {hero} contuvo la respiración. ¡Crac, otra vez! Era solo la cama, que se estiraba como un gato después de la siesta, pero {hero} todavía no lo sabía.",
+              "text": "De pronto, un ruido: ¡crac! La madera de la cama crujió. {hero} contuvo la respiración. Otra vez el ruido: ¡crac! Era solo la cama, que se estiraba como un gato después de la siesta, pero {hero} todavía no lo sabía.",
               "scene": {
                 "bg": "cuarto",
                 "mood": "tension",
