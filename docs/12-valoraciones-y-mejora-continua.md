@@ -149,6 +149,10 @@ se combina entre versiones para fragmentos cuyo texto no cambió.
 - **Muchas comparaciones.** Con cientos de fragmentos, algunos salen «malos» por azar: por eso el umbral doble (efecto y z) y la
   revisión humana. Informar siempre con el número de apariciones.
 - **Niño vs. adulto.** Responde un adulto «por» el niño; refleja su percepción.
+- **Preguntas al niño (v0.6.0).** La receta puede llevar `choices: [{id: "premisa.elección.opción", auto}]` (solo códigos; ver
+  [20 §5](20-caminos-elegibles.md)). **Entre ramas ya no elige el azar sino el niño**, así que la nota de cada rama no es comparable con la
+  de las otras (quizá elige «esperar» el niño que ya estaba tranquilo): `option` entra en el análisis como efecto propio, las variantes
+  *dentro* de una rama siguen siendo comparables y la diferencia entre ramas solo se declara con las filas `auto: true` (aleatorias por semilla).
 - **Manipulación.** Un actor malicioso podría enviar notas falsas (§8).
 
 ## 8. Seguridad y abuso (cuando exista el backend)

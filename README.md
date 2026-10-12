@@ -37,7 +37,7 @@ mientras avanza y puede proyectarse como **holograma** con una pirámide transpa
 | [docs/17-interfaz-para-ninos.md](docs/17-interfaz-para-ninos.md) | Interfaz para niños: splash, inicio, paquetes (los que llegarán, en gris), Mis cuentos, compartir y temporizador para dormir |
 | [docs/18-voz-edades-y-wizard.md](docs/18-voz-edades-y-wizard.md) | Voz (bug de adelantar, `texto_voz`), perfiles de edad, wizard de primer uso y Ajustes; lo diferido y por qué |
 | [docs/19-nombres-y-dominios.md](docs/19-nombres-y-dominios.md) | Nombres posibles del juego con su disponibilidad de dominio (.com, .app, .net, .org) y lo que falta comprobar (marca, tiendas) |
-| [docs/20-caminos-elegibles.md](docs/20-caminos-elegibles.md) | Valoración y diseño técnico de «el niño decide»: una pregunta por cuento, tres ramas que vuelven al mismo desenlace, plan por fases y riesgos (sueño, privacidad) |
+| [docs/20-caminos-elegibles.md](docs/20-caminos-elegibles.md) | Valoración, diseño técnico y estado de «el niño decide»: una pregunta por cuento, tres ramas que vuelven al mismo desenlace, plan por fases y riesgos (sueño, privacidad). Fase 0 construida en v0.6.0 |
 | [docs/11-pipeline-de-arte-por-codigo.md](docs/11-pipeline-de-arte-por-codigo.md) | Arte generado por código (sin presupuesto ni herramientas de pago), pack medieval, 3D y límites |
 
 ## Estructura del repositorio
@@ -118,5 +118,5 @@ teléfono, sonido de fondo y un **modo holograma** (prisma sobre la pantalla; gu
   reproducibles en CI.
 
 **Lo que falta:** probar en teléfonos reales y con familias; elegir el nombre definitivo (se cambia en un solo sitio con
-`tools/rename_app.py`); más contenido; el servidor de catálogo y las compras; y los caminos elegibles ([docs/20](docs/20-caminos-elegibles.md),
-solo diseño). El estado historia por historia está en [docs/07-backlog.md](docs/07-backlog.md) y la hoja de ruta en [docs/02-roadmap.md](docs/02-roadmap.md).
+`tools/rename_app.py`); más contenido; el servidor de catálogo y las compras; y más caminos elegibles ([docs/20](docs/20-caminos-elegibles.md): hay una primera pregunta al niño en «La linterna apagada»; falta
+probarla de noche con familias). El estado historia por historia está en [docs/07-backlog.md](docs/07-backlog.md) y la hoja de ruta en [docs/02-roadmap.md](docs/02-roadmap.md).

@@ -52,6 +52,7 @@ class ChildProfile {
     this.voice,
     this.speed = ReadingSpeed.normal,
     this.heroGender,
+    this.asksQuestions = true,
   });
 
   factory ChildProfile.fromJson(Map<String, Object?> j) => ChildProfile(
@@ -71,6 +72,7 @@ class ChildProfile {
           'f' => 'f',
           _ => null,
         },
+        asksQuestions: j['preguntas'] != false,
       );
 
   final String id;
@@ -81,6 +83,9 @@ class ChildProfile {
 
   /// `m` o `f`: el protagonista de los cuentos es un niño o una niña. `null` = lo decide la semilla.
   final String? heroGender;
+
+  /// Si en los cuentos con camino elegible se le pregunta al niño (por defecto sí). Apagado: elige la app.
+  final bool asksQuestions;
 
   /// Id del perfil de edad (`2-3`, `4-5`, `6-8`, `9-12`).
   final String age;
@@ -97,8 +102,10 @@ class ChildProfile {
     Object? voice = _keep,
     ReadingSpeed? speed,
     Object? heroGender = _keep,
+    bool? asksQuestions,
   }) =>
       ChildProfile(
+        asksQuestions: asksQuestions ?? this.asksQuestions,
         id: id,
         name: name ?? this.name,
         age: age ?? this.age,
@@ -119,6 +126,7 @@ class ChildProfile {
         'voz_idioma': voice?.locale,
         'velocidad': speed.name,
         'genero': heroGender,
+        if (!asksQuestions) 'preguntas': false,
       };
 
   /// Nombre listo para el cuento (recortado y sin símbolos), o `null` si no hay.
@@ -230,9 +238,11 @@ class AppSettings extends ChangeNotifier {
     ReadingSpeed? speed,
     String? name,
     Object? heroGender = ChildProfile._keep,
+    bool? asksQuestions,
   }) =>
       updateProfile(
         _active,
+        asksQuestions: asksQuestions,
         age: age,
         language: language,
         voice: voice,
@@ -250,6 +260,7 @@ class AppSettings extends ChangeNotifier {
     ReadingSpeed? speed,
     String? name,
     Object? heroGender = ChildProfile._keep,
+    bool? asksQuestions,
   }) {
     if (index < 0 || index >= _profiles.length) return Future.value();
     _profiles = [..._profiles]..[index] = _profiles[index].copyWith(
@@ -259,6 +270,7 @@ class AppSettings extends ChangeNotifier {
         speed: speed,
         name: name,
         heroGender: heroGender,
+        asksQuestions: asksQuestions,
       );
     notifyListeners();
     return _save();

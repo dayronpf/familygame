@@ -435,6 +435,131 @@ class Variant {
   final double weight;
 }
 
+/// Iconos que puede llevar una opción: nombres de Material Icons (lista cerrada; la app los dibuja). Nunca
+/// emojis: cambian de aspecto por teléfono y la voz los borra, así que no pueden ser la única pista.
+const Set<String> choiceGlyphs = {
+  'hearing',
+  'touch_app',
+  'hourglass_bottom',
+  'visibility',
+  'pets',
+  'air',
+  'spa',
+  'search',
+  'forest',
+  'self_improvement',
+  'explore',
+  'volume_up',
+  'lightbulb',
+  'waving_hand',
+  'directions_walk',
+  'music_note',
+  'nightlight_round',
+  'favorite',
+};
+
+/// Capacidades opcionales de un pack que este motor entiende (`pack.features`).
+const Set<String> supportedFeatures = {'choice@1'};
+
+/// Una de las 2–3 opciones de una pregunta al niño.
+class ChoiceOption {
+  const ChoiceOption({
+    required this.id,
+    required this.label,
+    required this.glyph,
+    this.adds = const [],
+    this.says = const {},
+  });
+
+  /// Elegir esta opción añade la etiqueta `idElección:id` (más [adds]) al estado.
+  final String id;
+
+  /// Lo que se ve y se dice en la tarjeta (corto, sin puntuación).
+  final String label;
+  final String glyph;
+  final List<String> adds;
+
+  /// Frases que las escenas siguientes usan como `{idElección.clave}`.
+  final Map<String, String> says;
+}
+
+/// Una pregunta al niño al final de una escena: «¿cómo sigue {hero} en la oscuridad?».
+class Choice {
+  const Choice({
+    required this.id,
+    required this.ask,
+    required this.options,
+    this.talk,
+    this.ages = const [],
+  });
+
+  final String id;
+
+  /// La pregunta, con tokens; se lee en voz alta.
+  final String ask;
+
+  /// Para el adulto: qué preguntarle al niño. Solo se ve en la pantalla de texto.
+  final String? talk;
+
+  /// Perfiles de edad en los que se pregunta (vacío = 6-8 y 9-12). En el resto la app elige sola.
+  final List<String> ages;
+  final List<ChoiceOption> options;
+
+  static const List<String> defaultAges = ['6-8', '9-12'];
+
+  bool asksAt(String? age) =>
+      age != null && (ages.isEmpty ? defaultAges : ages).contains(age);
+
+  ChoiceOption? optionById(String id) {
+    for (final o in options) {
+      if (o.id == id) return o;
+    }
+    return null;
+  }
+
+  static Choice fromJson(Map<String, Object?> j, String where) {
+    final id = _str(j, 'id', where);
+    final w = '$where, elección "$id"';
+    final options = <ChoiceOption>[];
+    for (final o in _objList(j, 'options')) {
+      final oid = _str(o, 'id', w);
+      final ow = '$w, opción "$oid"';
+      final icon = o['icon'];
+      if (icon is! Map<String, Object?> || icon['glyph'] is! String) {
+        throw PackFormatException(
+          '$ow: "icon" debe ser {"glyph": "nombre de Material Icons"}',
+        );
+      }
+      final says = o['says'];
+      if (says != null &&
+          (says is! Map || !says.values.every((v) => v is String))) {
+        throw PackFormatException('$ow: "says" debe ser un objeto de textos');
+      }
+      options.add(
+        ChoiceOption(
+          id: oid,
+          label: _str(o, 'label', ow),
+          glyph: icon['glyph']! as String,
+          adds: _strList(o, 'adds', ow),
+          says: says == null
+              ? const {}
+              : {
+                  for (final e in (says as Map).entries)
+                    e.key as String: e.value as String,
+                },
+        ),
+      );
+    }
+    return Choice(
+      id: id,
+      ask: _str(j, 'ask', w),
+      talk: j['talk'] is String ? j['talk']! as String : null,
+      ages: _strList(j, 'ages', w),
+      options: options,
+    );
+  }
+}
+
 /// Una escena de la premisa, con sus variantes.
 class Beat {
   const Beat({
@@ -442,7 +567,11 @@ class Beat {
     required this.variants,
     required this.introduces,
     required this.moves,
+    this.choice,
   });
+
+  /// Si lleva pregunta, se cuenta primero la escena y después se pregunta.
+  final Choice? choice;
 
   final String id;
   final List<Variant> variants;
@@ -519,6 +648,13 @@ class Premise {
           variants: variants,
           introduces: _strList(b, 'introduces', bw),
           moves: b['moves'] == true,
+          choice: b['choice'] == null
+              ? null
+              : b['choice'] is Map<String, Object?>
+                  ? Choice.fromJson(b['choice']! as Map<String, Object?>, bw)
+                  : throw PackFormatException(
+                      '$bw: "choice" debe ser un objeto',
+                    ),
         ),
       );
     }
@@ -602,7 +738,11 @@ class Pack {
     required this.fragments,
     this.props = const [],
     this.premises = const [],
+    this.features = const [],
   });
+
+  /// Capacidades que el pack declara necesitar (`choice@1`: preguntas al niño).
+  final List<String> features;
 
   /// Esquemas de pack que entiende este motor: 1 (fragmentos por etapa) y 2 (premisas).
   static const Set<int> supportedSchemas = {1, 2};
@@ -618,7 +758,16 @@ class Pack {
         'esquema de pack no soportado: $schema (este motor entiende $supportedSchemas)',
       );
     }
+    final features = _strList(meta, 'features', 'pack');
+    for (final f in features) {
+      if (!supportedFeatures.contains(f)) {
+        throw PackFormatException(
+          'el pack necesita «$f», que este motor no entiende (entiende $supportedFeatures)',
+        );
+      }
+    }
     return Pack(
+      features: features,
       id: _str(meta, 'id', 'pack'),
       name: _str(meta, 'name', 'pack'),
       version: _str(meta, 'version', 'pack'),
@@ -683,11 +832,71 @@ class StoryScene {
     required this.fragmentId,
     required this.text,
     required this.directives,
+    this.choice,
+    this.pickedOption,
   });
 
   final String fragmentId;
   final String text;
   final Map<String, Object?> directives;
+
+  /// La pregunta que sigue a esta escena (ya con los nombres puestos), si la tiene.
+  final StoryChoice? choice;
+
+  /// Opción elegida en [choice] (`null` mientras la pregunta está sin responder).
+  final String? pickedOption;
+}
+
+/// Una opción lista para enseñar.
+class StoryOption {
+  const StoryOption({
+    required this.id,
+    required this.label,
+    required this.glyph,
+  });
+
+  final String id, label, glyph;
+}
+
+/// Una pregunta al niño con los tokens ya resueltos.
+class StoryChoice {
+  const StoryChoice({
+    required this.id,
+    required this.ask,
+    required this.options,
+    this.talk,
+  });
+
+  final String id, ask;
+  final String? talk;
+  final List<StoryOption> options;
+
+  StoryOption? optionById(String id) {
+    for (final o in options) {
+      if (o.id == id) return o;
+    }
+    return null;
+  }
+
+  /// Lo que la voz dice: la pregunta y cada opción, una frase corta por opción.
+  String get spoken => '$ask ${options.map((o) => '${o.label}.').join(' ')}';
+}
+
+/// Una elección ya hecha. En la receta viaja solo [id] (`premisa.elección.opción`) y [auto].
+class ChosenOption {
+  const ChosenOption({
+    required this.premiseId,
+    required this.choiceId,
+    required this.optionId,
+    required this.auto,
+  });
+
+  final String premiseId, choiceId, optionId;
+
+  /// `true` si la eligió la app (por espera, ajuste de la familia o temporizador); `false` si tocó el niño.
+  final bool auto;
+
+  String get id => '$premiseId.$choiceId.$optionId';
 }
 
 class Story {
@@ -699,7 +908,11 @@ class Story {
     required this.recipe,
     this.title,
     String? moralText,
+    this.choices = const [],
   }) : moralText = moralText ?? '';
+
+  /// Elecciones hechas en este cuento, en orden.
+  final List<ChosenOption> choices;
 
   final int seed;
 

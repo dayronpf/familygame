@@ -77,7 +77,7 @@ Visión, plan, arquitectura, reglas de contenido y derechos; prototipo del calde
 
 ### Post-1.0 (cadencia «tren de contenido»)
 - Un pack premium cada 4–6 semanas, **publicado desde el panel sin nueva versión de app**.
-- Compositor de personajes por piezas en el panel; segundo idioma; caminos elegibles ([20](20-caminos-elegibles.md)). (Ya hechos: cuentos con el nombre del niño y modo solo audio.)
+- Compositor de personajes por piezas en el panel; segundo idioma; caminos elegibles en más cuentos ([20](20-caminos-elegibles.md)). (Ya hechos: cuentos con el nombre del niño, modo solo audio y la primera pregunta al niño en `linterna`.)
 - Cuenta opcional de adulto para compartir compras entre dispositivos.
 - IA solo como ayuda de borradores para autores y para escribir generadores de arte; nunca generación libre sin revisión humana.
 

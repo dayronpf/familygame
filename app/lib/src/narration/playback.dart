@@ -1,6 +1,7 @@
 import 'dart:async';
 
-import 'package:caldero_engine/caldero_engine.dart' show normalizeForVoice;
+import 'package:caldero_engine/caldero_engine.dart'
+    show StoryChoice, normalizeForVoice;
 import 'package:flutter/foundation.dart';
 
 import '../art/story_stage.dart';
@@ -8,11 +9,30 @@ import 'narrator.dart';
 
 /// Una escena para reproducir: su texto (que se narra y, en el modo cine, se muestra) y su dibujo.
 class PlayScene {
-  PlayScene({required this.text, required this.setup, this.isMoral = false})
-      : sentences = splitSentences(text);
+  PlayScene({
+    required this.text,
+    required this.setup,
+    this.isMoral = false,
+    this.choice,
+    this.pickedOption,
+  }) : sentences = splitSentences(text);
 
   final String text;
   final StageSetup? setup;
+
+  /// La pregunta que sigue a esta escena y la opción elegida (`null` = aún sin responder).
+  final StoryChoice? choice;
+  final String? pickedOption;
+
+  bool get needsAnswer => choice != null && pickedOption == null;
+
+  PlayScene answered(String optionId) => PlayScene(
+        text: text,
+        setup: setup,
+        isMoral: isMoral,
+        choice: choice,
+        pickedOption: optionId,
+      );
 
   /// La última «escena» es la enseñanza dicha en voz alta.
   final bool isMoral;
@@ -23,16 +43,60 @@ class PlayScene {
 /// pausar, saltar y volver. Es lo que mueve el modo cine y el modo holograma.
 class StoryPlayback extends ChangeNotifier {
   StoryPlayback({
-    required this.scenes,
+    required List<PlayScene> scenes,
     required this.narrator,
     this.title,
     this.gap = const Duration(milliseconds: 700),
     this.narrate = true,
-  });
+    this.resolve,
+    this.firstWait = const Duration(seconds: 20),
+    this.secondWait = const Duration(seconds: 15),
+  }) : scenes = List.of(scenes);
 
+  /// Las escenas; crece cuando el niño responde una pregunta (el resto del cuento depende de su respuesta).
   final List<PlayScene> scenes;
   final Narrator narrator;
   final String? title;
+
+  /// Sigue el cuento con la opción elegida (`null` = que elija la app) y devuelve **todas** las escenas que
+  /// vienen después de la pregunta (incluida la enseñanza final). Sin él, no se pregunta nada.
+  final Future<List<PlayScene>> Function(String? optionId)? resolve;
+
+  /// Cuánto se espera una respuesta antes de repetir las opciones, y cuánto más antes de elegir por el niño.
+  final Duration firstWait, secondWait;
+
+  /// `false` (temporizador de sueño armado) = no se hace ninguna pausa: se elige sola, sin avisar.
+  bool asks = true;
+
+  StoryChoice? _asking;
+  int? _speakingOption;
+  Completer<String?>? _answer;
+  Timer? _askTimer;
+
+  /// La pregunta que espera respuesta ahora (las tarjetas se ven mientras no sea `null`).
+  StoryChoice? get asking => _asking;
+
+  /// Posición de la opción que la voz está diciendo ahora (para iluminarla).
+  int? get speakingOption => _speakingOption;
+
+  /// «Elige por nosotros»: la app contesta por su cuenta.
+  void chooseForMe() {
+    final a = _answer;
+    if (a != null && !a.isCompleted) {
+      a.complete(_autoPick);
+      narrator.stop();
+    }
+  }
+
+  /// El niño (o el adulto) toca una opción.
+  void choose(String optionId) {
+    final a = _answer;
+    if (a != null && !a.isCompleted) {
+      a.complete(optionId);
+      narrator
+          .stop(); // si la voz estaba nombrando las opciones, se calla en el acto
+    }
+  }
 
   /// Respiro entre escenas (deja ver el cambio de dibujo).
   final Duration gap;
@@ -79,6 +143,7 @@ class StoryPlayback extends ChangeNotifier {
     _playing = false;
     _run++;
     _cancelBreath();
+    _cancelAsk();
     notifyListeners();
     await narrator.stop();
   }
@@ -100,6 +165,7 @@ class StoryPlayback extends ChangeNotifier {
     final token = ++_jump;
     _run++;
     _cancelBreath();
+    _cancelAsk();
     _scene = i.clamp(0, scenes.length - 1);
     _sentence = 0;
     _finished = false;
@@ -134,6 +200,73 @@ class StoryPlayback extends ChangeNotifier {
     return c.future;
   }
 
+  void _cancelAsk() {
+    _askTimer?.cancel();
+    final a = _answer;
+    if (a != null && !a.isCompleted) a.complete(null);
+    if (_asking != null) {
+      _asking = null;
+      _speakingOption = null;
+    }
+  }
+
+  /// Espera [d] o hasta que haya respuesta.
+  Future<void> _waitAnswer(Duration d) {
+    final a = _answer!;
+    final c = Completer<void>();
+    _askTimer = Timer(d, () {
+      if (!c.isCompleted) c.complete();
+    });
+    a.future.whenComplete(() {
+      _askTimer?.cancel();
+      if (!c.isCompleted) c.complete();
+    });
+    return c.future;
+  }
+
+  /// Hace la pregunta: la voz dice la pregunta y las opciones (iluminando cada tarjeta), espera, repite las
+  /// opciones y, si nadie contesta, elige la app («Esta vez elijo yo»). Devuelve la opción o `null` si se
+  /// canceló (pausa, salto, cierre). Con [asks] apagado no hay pausa ni aviso: elige la app en el acto.
+  Future<String?> _ask(int run, StoryChoice q) async {
+    if (!asks) return _autoPick;
+    final a = _answer = Completer<String?>();
+    _asking = q;
+    _speakingOption = null;
+    notifyListeners();
+
+    bool open() => !a.isCompleted && _alive(run);
+
+    Future<void> readOptions() async {
+      for (var i = 0; i < q.options.length && open(); i++) {
+        _speakingOption = i;
+        notifyListeners();
+        await _say(q.options[i].label);
+      }
+      _speakingOption = null;
+      if (open()) notifyListeners();
+    }
+
+    await _say(q.ask);
+    if (open()) await readOptions();
+    if (open()) await _waitAnswer(firstWait);
+    if (open()) {
+      await readOptions(); // repite solo las opciones
+      if (open()) await _waitAnswer(secondWait);
+    }
+    if (open()) {
+      await _say('Esta vez elijo yo.');
+      if (open()) a.complete(_autoPick);
+    }
+    final answer = await a.future;
+    _asking = null;
+    _speakingOption = null;
+    if (_alive(run)) notifyListeners();
+    return answer;
+  }
+
+  /// Marca de «elige la app» al resolver: el reproductor no conoce las opciones, las conoce quien resuelve.
+  static const String? _autoPick = null;
+
   void _cancelBreath() {
     _gapTimer?.cancel();
     final c = _gapDone;
@@ -159,6 +292,18 @@ class StoryPlayback extends ChangeNotifier {
         _sentence++;
       }
       if (!_alive(run)) return;
+      if (resolve != null && sc.needsAnswer) {
+        final q = sc.choice!;
+        final picked = await _ask(run, q);
+        if (!_alive(run)) return;
+        final rest = await resolve!(picked);
+        if (!_alive(run)) return;
+        scenes
+          ..[_scene] = sc.answered(picked ?? '')
+          ..removeRange(_scene + 1, scenes.length)
+          ..addAll(rest);
+        notifyListeners();
+      }
       if (_scene == scenes.length - 1) break;
       await _breathe();
       if (!_alive(run)) return;
@@ -179,6 +324,7 @@ class StoryPlayback extends ChangeNotifier {
     _disposed = true;
     _run++;
     _cancelBreath();
+    _cancelAsk();
     narrator.stop();
     super.dispose();
   }

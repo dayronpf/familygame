@@ -22,7 +22,17 @@ class StoryOptions {
     this.age,
     this.heroName,
     this.heroGender,
+    this.choices = const [],
+    this.interactive = true,
   });
+
+  /// Opciones ya elegidas (ids de opción), en orden de aparición. Las que falten las elige el motor con una
+  /// semilla aparte, así que [StoryEngine.generate] siempre devuelve un cuento completo y determinista.
+  final List<String> choices;
+
+  /// `false` = no preguntar nunca (perfil 2–3, ajuste «nunca», temporizador de sueño, cuento guardado): lo que
+  /// falte se elige solo. Con `true`, [StoryEngine.begin] se detiene en la primera pregunta sin responder.
+  final bool interactive;
 
   /// Misma semilla + mismo pack + mismas opciones ⇒ mismo cuento.
   final int seed;
@@ -47,7 +57,24 @@ class StoryEngine {
 
   final Pack pack;
 
-  Story generate(StoryOptions options) {
+  /// Opción que elige la app cuando no pregunta o el niño no contesta. Usa una secuencia aleatoria **aparte** de la
+  /// del cuento (semilla + nº de elección): elegir solo no cambia nada de lo contado antes ni de las variantes
+  /// que salgan después.
+  String _autoChoice(StoryChoice c, int seed, int index) {
+    final r = Mulberry32((seed + 0x9E3779B9 * (index + 1)) & 0xFFFFFFFF);
+    return c.options[r.nextInt(c.options.length)].id;
+  }
+
+  /// Un cuento completo. Si el cuento tiene preguntas y no se dieron todas las [StoryOptions.choices], las que
+  /// falten se eligen solas (y la receta lo marca con `auto`).
+  Story generate(StoryOptions options) => begin(options).toStory();
+
+  /// Empieza un cuento: se detiene en la primera pregunta sin responder (solo si [StoryOptions.interactive]).
+  StoryRun begin(StoryOptions options) => _begin(options, [
+        for (final c in options.choices) _Pick(c, auto: false),
+      ]);
+
+  StoryRun _begin(StoryOptions options, List<_Pick> picks) {
     final rng = Mulberry32(options.seed);
 
     final Moral moral;
@@ -69,11 +96,15 @@ class StoryEngine {
     if (byAge.isNotEmpty) premises = byAge;
     if (premises.isNotEmpty) {
       return _generateFromPremise(
+        this,
+        options,
+        picks,
         pack,
         options.seed,
         moral,
         _pickWeighted(premises, (p) => p.weight, rng),
         rng,
+        age: age,
         moralText: moral.textFor(age),
         heroName: normalizeChildName(options.heroName),
         heroGender: options.heroGender,
@@ -100,32 +131,104 @@ class StoryEngine {
         ),
       );
     }
-    return Story(
-      seed: options.seed,
-      moral: moral,
-      cast: cast,
-      scenes: scenes,
-      recipe: StoryRecipe(
-        packId: pack.id,
-        packVersion: pack.version,
-        engineVersion: engineVersion,
+    return StoryRun._(
+      Story(
         seed: options.seed,
-        valueId: moral.id,
-        cast: {for (final e in cast.entries) e.key: e.value.id},
-        fragmentIds: [for (final s in scenes) s.fragmentId],
+        moral: moral,
+        cast: cast,
+        scenes: scenes,
+        recipe: StoryRecipe(
+          packId: pack.id,
+          packVersion: pack.version,
+          engineVersion: engineVersion,
+          seed: options.seed,
+          valueId: moral.id,
+          cast: {for (final e in cast.entries) e.key: e.value.id},
+          fragmentIds: [for (final s in scenes) s.fragmentId],
+        ),
       ),
+      null,
+      this,
+      options,
+      picks,
     );
   }
 }
 
+class _Pick {
+  const _Pick(this.optionId, {required this.auto});
+
+  final String optionId;
+  final bool auto;
+}
+
+/// Un cuento a medias: lo ya contado y, si toca, la pregunta pendiente. Inmutable.
+///
+/// No guarda estado: [choose] vuelve a generar el cuento desde la semilla con una elección más. Las escenas
+/// anteriores a la pregunta no dependen de la respuesta, así que salen idénticas.
+class StoryRun {
+  StoryRun._(
+    this.story,
+    this.pending,
+    this._engine,
+    this._options,
+    this._picks,
+  );
+
+  /// Lo contado hasta ahora. Completo si [pending] es `null`.
+  final Story story;
+
+  /// La pregunta sin responder (la última escena de [story] la lleva).
+  final StoryChoice? pending;
+  final StoryEngine _engine;
+  final StoryOptions _options;
+  final List<_Pick> _picks;
+
+  bool get isComplete => pending == null;
+
+  /// Sigue el cuento con la opción [optionId]. [auto] marca que la eligió la app y no el niño.
+  StoryRun choose(String optionId, {bool auto = false}) {
+    final p = pending;
+    if (p == null) {
+      throw StateError('el cuento no tiene ninguna pregunta pendiente');
+    }
+    if (p.optionById(optionId) == null) {
+      throw ArgumentError.value(
+        optionId,
+        'optionId',
+        'no es una opción de «${p.id}»',
+      );
+    }
+    return _engine._begin(_options, [..._picks, _Pick(optionId, auto: auto)]);
+  }
+
+  /// El cuento completo; si falta alguna elección, se hacen solas.
+  Story toStory() {
+    var run = this;
+    while (!run.isComplete) {
+      // Misma opción que habría salido con `interactive: false`
+      run = run.choose(run.autoOption, auto: true);
+    }
+    return run.story;
+  }
+
+  /// La opción que elegiría la app por su cuenta (la misma que saldría con `interactive: false`).
+  String get autoOption =>
+      _engine._autoChoice(pending!, _options.seed, _picks.length);
+}
+
 /// Cuenta una [premise]: elige el reparto que cumple sus requisitos y, escena a escena, una
 /// variante compatible con él y con lo ya contado.
-Story _generateFromPremise(
+StoryRun _generateFromPremise(
+  StoryEngine engine,
+  StoryOptions options,
+  List<_Pick> picks,
   Pack pack,
   int seed,
   Moral moral,
   Premise premise,
   Mulberry32 rng, {
+  String? age,
   String? moralText,
   String? heroName,
   String? heroGender,
@@ -146,6 +249,10 @@ Story _generateFromPremise(
     return options[(start + k) % options.length];
   }
 
+  final chosen = <ChosenOption>[];
+  final says = <String, String>{};
+  StoryChoice? pending;
+
   for (final beat in premise.beats) {
     final candidates = beat.variants
         .where((v) => v.weight > 0 && state.containsAll(v.requires))
@@ -157,37 +264,108 @@ Story _generateFromPremise(
     }
     final variant = _pickWeighted(candidates, (v) => v.weight, rng);
     state.addAll(variant.adds);
+    final text = renderTemplate(
+      variant.text,
+      cast,
+      choose: choose,
+      alt: rng.nextInt,
+      says: says,
+    );
+    final question = beat.choice;
+    if (question == null) {
+      scenes.add(
+        StoryScene(
+          fragmentId: variant.id,
+          text: text,
+          directives: variant.scene,
+        ),
+      );
+      continue;
+    }
+
+    // Una pregunta: se cuenta la escena y luego se elige. La elección **no consume** `rng` (la automática usa una
+    // secuencia propia), así que las escenas siguientes no cambian por haber preguntado o no.
+    final rendered = _renderChoice(question, cast);
+    final index = chosen.length;
+    String? optionId;
+    var auto = false;
+    if (index < picks.length) {
+      optionId = picks[index].optionId;
+      auto = picks[index].auto;
+      if (question.optionById(optionId) == null) {
+        throw StoryGenerationException(
+          'la opción «$optionId» no existe en ${premise.id}.${question.id}',
+        );
+      }
+    } else if (options.interactive && question.asksAt(age)) {
+      pending = rendered;
+    } else {
+      optionId = engine._autoChoice(rendered, seed, index);
+      auto = true;
+    }
     scenes.add(
       StoryScene(
         fragmentId: variant.id,
-        text: renderTemplate(
-          variant.text,
-          cast,
-          choose: choose,
-          alt: rng.nextInt,
-        ),
+        text: text,
         directives: variant.scene,
+        choice: rendered,
+        pickedOption: optionId,
+      ),
+    );
+    if (optionId == null) break; // espera la respuesta del niño
+    final option = question.optionById(optionId)!;
+    state
+      ..add('${question.id}:${option.id}')
+      ..addAll(option.adds);
+    for (final e in option.says.entries) {
+      says['${question.id}.${e.key}'] = renderTemplate(e.value, cast);
+    }
+    chosen.add(
+      ChosenOption(
+        premiseId: premise.id,
+        choiceId: question.id,
+        optionId: option.id,
+        auto: auto,
       ),
     );
   }
-  return Story(
-    seed: seed,
-    moral: moral,
-    cast: cast,
-    scenes: scenes,
-    title: renderTemplate(premise.title, cast),
-    moralText: moralText,
-    recipe: StoryRecipe(
-      packId: pack.id,
-      packVersion: pack.version,
-      engineVersion: engineVersion,
+  return StoryRun._(
+    Story(
       seed: seed,
-      valueId: moral.id,
-      cast: {for (final e in cast.entries) e.key: e.value.id},
-      fragmentIds: [for (final s in scenes) s.fragmentId],
+      moral: moral,
+      cast: cast,
+      scenes: scenes,
+      title: renderTemplate(premise.title, cast),
+      moralText: moralText,
+      choices: chosen,
+      recipe: StoryRecipe(
+        packId: pack.id,
+        packVersion: pack.version,
+        engineVersion: engineVersion,
+        seed: seed,
+        valueId: moral.id,
+        cast: {for (final e in cast.entries) e.key: e.value.id},
+        fragmentIds: [for (final s in scenes) s.fragmentId],
+        choices: [for (final c in chosen) RecipeChoice(c.id, auto: c.auto)],
+      ),
     ),
+    pending,
+    engine,
+    options,
+    picks,
   );
 }
+
+/// La pregunta con los nombres puestos.
+StoryChoice _renderChoice(Choice c, Map<String, Entity> cast) => StoryChoice(
+      id: c.id,
+      ask: renderTemplate(c.ask, cast),
+      talk: c.talk == null ? null : renderTemplate(c.talk!, cast),
+      options: [
+        for (final o in c.options)
+          StoryOption(id: o.id, label: o.label, glyph: o.glyph),
+      ],
+    );
 
 /// Entidades del pack que pueden ocupar una ranura.
 List<Entity> castCandidates(Pack pack, CastSpec spec) {

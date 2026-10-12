@@ -46,6 +46,15 @@
         },
         "age_band": {
           "type": "string"
+        },
+        "features": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "choice@1"
+            ]
+          },
+          "uniqueItems": true
         }
       }
     },
@@ -453,6 +462,9 @@
                 },
                 "moves": {
                   "type": "boolean"
+                },
+                "choice": {
+                  "$ref": "#/$defs/choice"
                 }
               }
             }
@@ -485,6 +497,116 @@
         "m",
         "f"
       ]
+    },
+    "choiceOption": {
+      "type": "object",
+      "required": [
+        "id",
+        "label",
+        "icon"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 28,
+          "pattern": "^[^.!?¿¡«»]+$"
+        },
+        "icon": {
+          "type": "object",
+          "required": [
+            "glyph"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "glyph": {
+              "enum": [
+                "hearing",
+                "touch_app",
+                "hourglass_bottom",
+                "visibility",
+                "pets",
+                "air",
+                "spa",
+                "search",
+                "forest",
+                "self_improvement",
+                "explore",
+                "volume_up",
+                "lightbulb",
+                "waving_hand",
+                "directions_walk",
+                "music_note",
+                "nightlight_round",
+                "favorite"
+              ]
+            }
+          }
+        },
+        "adds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*(:[a-z][a-z0-9_]*)?$"
+          }
+        },
+        "says": {
+          "type": "object",
+          "propertyNames": {
+            "$ref": "#/$defs/id"
+          },
+          "additionalProperties": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "choice": {
+      "type": "object",
+      "required": [
+        "id",
+        "ask",
+        "options"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "ask": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "talk": {
+          "type": "string",
+          "maxLength": 100
+        },
+        "ages": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "4-5",
+              "6-8",
+              "9-12"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "options": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 3,
+          "items": {
+            "$ref": "#/$defs/choiceOption"
+          }
+        }
+      }
     }
   }
 }

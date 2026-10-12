@@ -58,6 +58,26 @@ class ContractTests(unittest.TestCase):
         doc["reasons"] = REASONS
         self.assertEqual(errors("RatingEvent", doc), [])
 
+    def test_la_receta_puede_llevar_las_elecciones_del_niño(self):
+        doc = copy.deepcopy(EXAMPLE)
+        doc["recipe"]["choices"] = [{"id": "linterna.camino.oido", "auto": False}]
+        self.assertEqual(errors("RatingEvent", doc), [])
+        # y es opcional: las versiones anteriores de la app siguen siendo válidas
+        self.assertNotIn("choices", EXAMPLE["recipe"])
+
+    def test_elecciones_invalidas(self):
+        cases = {
+            "con la etiqueta": [{"id": "linterna.camino.oido", "auto": False, "label": "Seguir el beee"}],
+            "id con texto": [{"id": "Seguir el beee", "auto": False}],
+            "sin auto": [{"id": "linterna.camino.oido"}],
+            "auto no booleano": [{"id": "linterna.camino.oido", "auto": "no"}],
+            "demasiadas": [{"id": "a.b.c", "auto": False}] * 3,
+        }
+        for name, value in cases.items():
+            doc = copy.deepcopy(EXAMPLE)
+            doc["recipe"]["choices"] = value
+            self.assertTrue(errors("RatingEvent", doc), f"debería rechazar: {name}")
+
     def test_un_lote_de_ejemplos_cumple_el_contrato(self):
         self.assertEqual(errors("FeedbackBatch", {"events": [EXAMPLE] * 50}), [])
 

@@ -149,12 +149,13 @@ dentro de la app, el cliente avanzó primero.
 5. **Audio con la pantalla bloqueada:** hecho en Android (servicio en primer plano con notificación de medios, v0.5.2);
    falta probarlo en teléfonos reales, sobre todo los que matan apps en segundo plano (Xiaomi, Huawei…), y en iOS (modo
    de fondo `audio` puesto, sin probar).
-6. **Caminos elegibles** (el niño decide): diseño hecho en [20](20-caminos-elegibles.md); sin construir.
+6. **Caminos elegibles** (el niño decide): **Fase 0 hecha** (v0.6.0: una pregunta en `linterna`, texto y cine; ver [20](20-caminos-elegibles.md)).
+   Falta probarla de noche con familias y medir antes de generalizar (más premisas, iconos con arte, holograma, «Leemos juntos»).
 7. Lo que depende de licencias o cuentas: léxico por edad, voz neuronal, segundo idioma, iOS (TestFlight).
 
 ## Ideas para después (Could)
 
-Caminos elegibles ([20](20-caminos-elegibles.md)) · segundo idioma · sonidos para dormir · más tamaños de pirámide ·
+Más caminos elegibles (Fase 1 de [20](20-caminos-elegibles.md)) · segundo idioma · sonidos para dormir · más tamaños de pirámide ·
 logros suaves sin presión · compartir una semilla («el cuento de hoy») · modo cuentacuentos para abuelos a distancia (solo si se resuelve privacidad) ·
 recordatorio a la hora de dormir.
-(Hechos y ya fuera de esta lista: cuento con el nombre del niño, modo solo audio, varios niños, lectura compartida.)
+(Hechos y ya fuera de esta lista: cuento con el nombre del niño, modo solo audio, varios niños, lectura compartida, audio con la pantalla bloqueada, primera pregunta al niño.)

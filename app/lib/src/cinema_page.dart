@@ -10,6 +10,8 @@ import 'hologram_page.dart';
 import 'narration/narrator.dart';
 import 'narration/playback.dart';
 import 'player_support.dart';
+import 'story_flow.dart';
+import 'ui/choice_cards.dart';
 import 'ui/screen_dimmer.dart';
 import 'ui/sleep_timer.dart';
 
@@ -27,7 +29,11 @@ class CinemaPage extends StatefulWidget {
     this.animate = true,
     this.dimmer,
     this.background,
+    this.flow,
   });
+
+  /// El cuento con sus preguntas. Sin él, el cuento es el de [story] y no se pregunta nada.
+  final StoryFlow? flow;
 
   final Story story;
   final StageArt art;
@@ -70,13 +76,42 @@ class _CinemaPageState extends State<CinemaPage>
     )..start(playing: playing);
   }
 
+  Story get _story => widget.flow?.story ?? widget.story;
+
+  /// Dibujos de las escenas del cuento. Con preguntas el cuento crece, así que se calculan aquí.
+  List<StageSetup?> _setupsFor(Story story) => widget.flow == null
+      ? widget.setups
+      : [
+          for (final s in story.scenes)
+            stageFor(widget.art, story.cast, s.directives),
+        ];
+
+  /// El niño contestó (o eligió la app): el resto del cuento depende de la respuesta.
+  Future<List<PlayScene>> _resolve(String? optionId) async {
+    final flow = widget.flow!;
+    final asked = _playback.scene;
+    optionId == null ? flow.chooseForMe() : flow.choose(optionId);
+    final all = playScenes(
+      flow.story,
+      _setupsFor(flow.story),
+      complete: flow.isComplete,
+    );
+    return all.sublist(asked + 1);
+  }
+
   @override
   void initState() {
     super.initState();
+    final flow = widget.flow;
     _playback = StoryPlayback(
-      scenes: playScenes(widget.story, widget.setups),
+      scenes: playScenes(
+        _story,
+        _setupsFor(_story),
+        complete: flow?.isComplete ?? true,
+      ),
       narrator: widget.narrator ?? narratorFor(context),
       title: widget.story.title,
+      resolve: flow == null ? null : _resolve,
     )..addListener(() => mounted ? setState(() {}) : null);
     enterShowMode(immersive: false);
     _openBackground(playing: widget.autoStart);
@@ -116,7 +151,7 @@ class _CinemaPageState extends State<CinemaPage>
     await _bg?.close(); // el holograma abre el suyo
     await nav.push(MaterialPageRoute<void>(
       builder: (_) => HologramPage(
-        story: widget.story,
+        story: widget.flow?.finish() ?? widget.story,
         art: widget.art,
         setups: widget.setups,
         narrator: widget.narrator,
@@ -203,6 +238,8 @@ class _CinemaPageState extends State<CinemaPage>
                         onExpire: _sleep,
                         onFade: _fade.apply,
                         onCancel: _fade.reset,
+                        // Quien arma la lunita quiere dormir: no se hacen preguntas
+                        onArmed: (armed) => pb.asks = !armed,
                       ),
                       IconButton(
                         icon: const Icon(Icons.view_in_ar),
@@ -237,13 +274,21 @@ class _CinemaPageState extends State<CinemaPage>
                     ),
                   ),
                 Expanded(
-                  child: SingleChildScrollView(
-                    padding: const EdgeInsets.fromLTRB(24, 14, 24, 8),
-                    child: Text.rich(
-                      _subtitle(sc, base, scheme.primary),
-                      key: const ValueKey('subtitle'),
-                    ),
-                  ),
+                  child: pb.asking != null
+                      ? _Question(
+                          key: const ValueKey('question'),
+                          choice: pb.asking!,
+                          lit: pb.speakingOption,
+                          onChoose: pb.choose,
+                          onForMe: pb.chooseForMe,
+                        )
+                      : SingleChildScrollView(
+                          padding: const EdgeInsets.fromLTRB(24, 14, 24, 8),
+                          child: Text.rich(
+                            _subtitle(sc, base, scheme.primary),
+                            key: const ValueKey('subtitle'),
+                          ),
+                        ),
                 ),
                 if (pb.finished)
                   Padding(
@@ -335,6 +380,50 @@ class _CinemaPageState extends State<CinemaPage>
                 ),
               ],
             ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/// La pregunta al niño con sus tarjetas (en lugar de los subtítulos mientras se espera la respuesta).
+class _Question extends StatelessWidget {
+  const _Question({
+    super.key,
+    required this.choice,
+    required this.lit,
+    required this.onChoose,
+    required this.onForMe,
+  });
+
+  final StoryChoice choice;
+  final int? lit;
+  final void Function(String optionId) onChoose;
+  final VoidCallback onForMe;
+
+  @override
+  Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
+    return SingleChildScrollView(
+      padding: const EdgeInsets.fromLTRB(24, 10, 24, 8),
+      child: Column(
+        children: [
+          Text(
+            choice.ask,
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                  color: scheme.primary,
+                  height: 1.4,
+                ),
+          ),
+          const SizedBox(height: 14),
+          ChoiceCards(choice: choice, highlighted: lit, onChoose: onChoose),
+          const SizedBox(height: 6),
+          TextButton(
+            key: const Key('choice-for-me'),
+            onPressed: onForMe,
+            child: const Text('Elige por nosotros'),
           ),
         ],
       ),

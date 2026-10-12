@@ -3,10 +3,13 @@
     "schema": 2,
     "id": "medieval",
     "name": "Reino de la Luna (prueba)",
-    "version": "0.14.0",
+    "version": "0.15.0",
     "license": "Contenido original, todos los derechos reservados al autor del proyecto",
     "language": "es",
-    "age_band": "4-7"
+    "age_band": "4-7",
+    "features": [
+      "choice@1"
+    ]
   },
   "characters": [
     {
@@ -3736,7 +3739,7 @@
           "variants": [
             {
               "id": "a",
-              "text": "De pronto llegó una ráfaga: ¡fuuu! La lucecita se apagó. Oscuridad entera, como cuando uno cierra los ojos dentro de un armario. {hero} golpeó el pedernal, una vez, otra: con tanto viento no prendía ni una chispa. Tanteó un tronco, rugoso y blando de musgo, y tiró una vez de la cuerda. Muy lejos, un tirón pequeño contestó. Entonces sonó un «¡beee!» chiquitito, hacia el roble viejo. {hero} pensó en Lía, sola, y {helper.truco}. Dio un paso. Luego otro. Siguió hacia el beee.",
+              "text": "De pronto llegó una ráfaga: ¡fuuu! La lucecita se apagó. Oscuridad entera, como cuando uno cierra los ojos dentro de un armario. {hero} golpeó el pedernal, una vez, otra: con tanto viento no prendía ni una chispa. Tanteó un tronco, rugoso y blando de musgo, y tiró una vez de la cuerda. Muy lejos, un tirón pequeño contestó. Entonces sonó un «¡beee!» chiquitito, hacia el roble viejo. Arriba, entre dos nubes, quedaba una rendija de cielo. {hero} pensó en Lía, sola, y {helper.truco}. Tenía que seguir. Pero ¿cómo?",
               "scene": {
                 "time": "noche",
                 "light": "dark",
@@ -3770,7 +3773,7 @@
             },
             {
               "id": "b",
-              "text": "Una ráfaga: ¡fuuu! La lucecita se apagó, y la oscuridad lo cubrió todo, como cuando uno cierra los ojos dentro de un armario. {hero} golpeó el pedernal, una vez, otra, pero el viento se llevaba cada chispa. Se agarró a un tronco y tiró una vez de la cuerda. Muy lejos, un tirón pequeño contestó: «Aquí estoy». Entonces, hacia el roble viejo, sonó un «¡beee!» chiquitito. {hero} pensó en Lía, sola en el bosque. {hero} {helper.truco}, apretó los dientes y dio un paso. Luego otro: hacia el beee.",
+              "text": "Una ráfaga: ¡fuuu! La lucecita se apagó, y la oscuridad lo cubrió todo, como cuando uno cierra los ojos dentro de un armario. {hero} golpeó el pedernal, una vez, otra, pero el viento se llevaba cada chispa. Se agarró a un tronco, blando de musgo, y tiró una vez de la cuerda. Muy lejos, un tirón pequeño contestó: «Aquí estoy». Entonces, hacia el roble viejo, sonó un «¡beee!» chiquitito. Arriba, entre dos nubes, quedaba una rendija de cielo. {hero} pensó en Lía, sola en el bosque. {hero} {helper.truco} y apretó los dientes. Tenía que seguir. Pero ¿cómo?",
               "scene": {
                 "time": "noche",
                 "light": "dark",
@@ -3804,7 +3807,7 @@
             },
             {
               "id": "c",
-              "text": "{hero} subió despacio, sujetando la lucecita con las dos manos. Entonces llegó una ráfaga, ¡fuuu!, y la llama se encogió, se encogió… y se apagó. Oscuridad total. {hero} golpeó el pedernal, una vez, otra, pero el viento se llevaba las chispas como si fueran migas. Se quedó muy quiet{hero.o}, escuchando. Y de pronto, hacia el roble viejo, sonó un «¡beee!» chiquitito. {hero} se secó los ojos con la manga y dio un paso. Luego otro.",
+              "text": "{hero} subió despacio, sujetando la lucecita con las dos manos. Entonces llegó una ráfaga, ¡fuuu!, y la llama se encogió, se encogió… y se apagó. Oscuridad total. {hero} golpeó el pedernal, una vez, otra, pero el viento se llevaba las chispas como si fueran migas. Se agarró a un tronco de musgo y se quedó muy quiet{hero.o}, escuchando. Y de pronto, hacia el roble viejo, sonó un «¡beee!» chiquitito. Arriba, entre dos nubes, quedaba una rendija de cielo. {hero} se secó los ojos con la manga. Tenía que seguir. Pero ¿cómo?",
               "scene": {
                 "time": "noche",
                 "light": "dark",
@@ -3836,6 +3839,277 @@
                 ]
               }
             }
+          ],
+          "choice": {
+            "id": "camino",
+            "ask": "¿Cómo sigue {hero} en la oscuridad?",
+            "talk": "Pregúntale: ¿cuál de las tres cosas harías tú, y por qué?",
+            "options": [
+              {
+                "id": "oido",
+                "label": "Seguir el beee",
+                "icon": {
+                  "glyph": "hearing"
+                },
+                "says": {
+                  "llegada": "El «beee» sonó ya muy cerca, y las manos de {hero} toparon con una corteza enorme: el roble viejo.",
+                  "recuerdo": "una cabrita que dice beee"
+                }
+              },
+              {
+                "id": "tacto",
+                "label": "Ir de tronco en tronco",
+                "icon": {
+                  "glyph": "touch_app"
+                },
+                "says": {
+                  "llegada": "El último tronco era tan ancho que {hero} no podía abrazarlo entero: era el roble viejo.",
+                  "recuerdo": "troncos de musgo blandito para agarrarse"
+                }
+              },
+              {
+                "id": "luna",
+                "label": "Esperar y respirar",
+                "icon": {
+                  "glyph": "hourglass_bottom"
+                },
+                "says": {
+                  "llegada": "Siguiendo el camino de plata, {hero} llegó al pie del roble viejo.",
+                  "recuerdo": "una luna que siempre sale, aunque tarde"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "id": "en_la_oscuridad",
+          "variants": [
+            {
+              "id": "oido_a",
+              "requires": [
+                "camino:oido"
+              ],
+              "adds": [
+                "dio_el_paso"
+              ],
+              "scene": {
+                "time": "noche",
+                "bg": "bosque",
+                "mood": "mystery",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "think",
+                    "x": 0.4
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "roble",
+                    "x": 0.85,
+                    "scale": 1.5
+                  }
+                ],
+                "rope": {
+                  "from": "hero",
+                  "to": "left",
+                  "sag": 12
+                },
+                "offstage": [
+                  "lia"
+                ],
+                "light": "dark"
+              },
+              "text": "{hero} cerró los ojos, que total no servían de nada, y abrió las orejas. El viento hacía ¡fuuu!, las hojas hacían ¡suish!, y debajo de todo, chiquitito y terco, estaba el «¡beee!». Cada vez que el viento se llevaba el sonido, {hero} se paraba a esperar que volviera. «Voy», susurraba. Y así, de beee en beee, con las manos por delante, fue avanzando entre los árboles."
+            },
+            {
+              "id": "oido_b",
+              "requires": [
+                "camino:oido"
+              ],
+              "adds": [
+                "dio_el_paso"
+              ],
+              "scene": {
+                "time": "noche",
+                "bg": "bosque",
+                "mood": "mystery",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "think",
+                    "x": 0.45
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "roble",
+                    "x": 0.85,
+                    "scale": 1.5
+                  }
+                ],
+                "rope": {
+                  "from": "hero",
+                  "to": "left",
+                  "sag": 12
+                },
+                "offstage": [
+                  "lia"
+                ],
+                "light": "dark"
+              },
+              "text": "Primero {hero} no oyó nada, solo su propio corazón: ¡pum, pum, pum! Entonces contuvo la respiración. Allí estaba, hacia el roble viejo: «¡Beee!». {hero} dio tres pasos hacia el sonido. Silencio. Se quedó quiet{hero.o} y esperó, y el «beee» volvió a llamar, un poquito más cerca. «Ya voy», susurró. Era como seguir un hilo de sonido en la oscuridad, y el hilo no se rompió."
+            },
+            {
+              "id": "tacto_a",
+              "requires": [
+                "camino:tacto"
+              ],
+              "adds": [
+                "dio_el_paso"
+              ],
+              "scene": {
+                "time": "noche",
+                "bg": "bosque",
+                "mood": "mystery",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "sneak",
+                    "x": 0.5
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "roble",
+                    "x": 0.85,
+                    "scale": 1.5
+                  }
+                ],
+                "rope": {
+                  "from": "hero",
+                  "to": "left",
+                  "sag": 12
+                },
+                "offstage": [
+                  "lia"
+                ],
+                "light": "dark"
+              },
+              "text": "{hero} estiró la mano y encontró un tronco, fresco y blando de musgo. Entonces fue de tronco en tronco, como quien sube una escalera a oscuras: este, rugoso como un gato viejo; aquel, liso como una cuchara; otro, con la corteza en gajos como un abrigo grande. La cuerda se arrastraba detrás con un susurro. Con la palma sobre la corteza, {hero} se sintió acompañad{hero.o} por los árboles."
+            },
+            {
+              "id": "tacto_b",
+              "requires": [
+                "camino:tacto"
+              ],
+              "adds": [
+                "dio_el_paso"
+              ],
+              "scene": {
+                "time": "noche",
+                "bg": "bosque",
+                "mood": "mystery",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "sneak",
+                    "x": 0.45
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "roble",
+                    "x": 0.85,
+                    "scale": 1.5
+                  }
+                ],
+                "rope": {
+                  "from": "hero",
+                  "to": "left",
+                  "sag": 12
+                },
+                "offstage": [
+                  "lia"
+                ],
+                "light": "dark"
+              },
+              "text": "A {hero} le costaba creer que un bosque tan oscuro tuviera tantas cosas que tocar. Palpó una piedra fría y redonda, una hoja grande como un plato y un hongo blandito como un cojín. Siempre dejaba una mano en el último tronco antes de soltarla para buscar el siguiente. «Tronco, tronco, tronco», iba diciendo, muy bajito. Los dedos sabían el camino mejor que los ojos."
+            },
+            {
+              "id": "luna_a",
+              "requires": [
+                "camino:luna"
+              ],
+              "adds": [
+                "dio_el_paso"
+              ],
+              "scene": {
+                "time": "noche",
+                "bg": "bosque",
+                "mood": "hope",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "idle",
+                    "x": 0.4
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "roble",
+                    "x": 0.85,
+                    "scale": 1.5
+                  }
+                ],
+                "rope": {
+                  "from": "hero",
+                  "to": "left",
+                  "sag": 12
+                },
+                "offstage": [
+                  "lia"
+                ]
+              },
+              "text": "{hero} respiró hondo y no hizo nada. Solo esperó. Contó hasta diez, despacito: uno, dos, tres… Poco a poco, la oscuridad dejó de ser una pared y se volvió un montón de cosas grises: troncos, ramas, un caminito pálido. Entonces el viento empujó las nubes, y por la rendija asomó la luna. El sendero se encendió de plata hasta el roble viejo. «Estaba aquí todo el tiempo», pensó {hero}. Dio un paso. Luego otro."
+            },
+            {
+              "id": "luna_b",
+              "requires": [
+                "camino:luna"
+              ],
+              "adds": [
+                "dio_el_paso"
+              ],
+              "scene": {
+                "time": "noche",
+                "bg": "bosque",
+                "mood": "hope",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "idle",
+                    "x": 0.45
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "roble",
+                    "x": 0.85,
+                    "scale": 1.5
+                  }
+                ],
+                "rope": {
+                  "from": "hero",
+                  "to": "left",
+                  "sag": 12
+                },
+                "offstage": [
+                  "lia"
+                ]
+              },
+              "text": "{hero} apoyó la espalda en un tronco y respiró: dentro, uno, dos; fuera, uno, dos. El corazón, ¡pum, pum!, fue bajando el ruido, como un tambor que se va a dormir. Los ojos se acostumbraron. Vio el contorno de las ramas y, más lejos, la sombra gorda del roble viejo. Entonces la luna se asomó entre dos nubes y le puso a cada hoja un borde de plata. «Un paso», dijo {hero}. «Y otro.»"
+            }
           ]
         },
         {
@@ -3843,7 +4117,7 @@
           "variants": [
             {
               "id": "cod",
-              "text": "Al llegar al roble viejo, algo se movió en el hueco del tronco. «¡Atrás!», gruñó una voz. Era {villain.el} {villain}, que había aprovechado el viento para esconder allí {villain.botin}. No quería que ninguna luz lo descubriera. «¡Vuelve a casa!», amenazó entre dientes. {hero} no veía nada, pero tenía clarísimo lo que quería. «Lía necesita la luz, porque está perdida», dijo. «No me voy.»",
+              "text": "{camino.llegada} Algo se movió en el hueco del tronco. «¡Atrás!», gruñó una voz. Era {villain.el} {villain}, que había aprovechado el viento para esconder allí {villain.botin}. No quería que ninguna luz lo descubriera. «¡Vuelve a casa!», amenazó entre dientes. {hero} no veía nada, pero tenía clarísimo lo que quería. «Lía necesita la luz, porque está perdida», dijo. «No me voy.»",
               "scene": {
                 "time": "noche",
                 "bg": "bosque",
@@ -3896,7 +4170,7 @@
             },
             {
               "id": "som",
-              "text": "En el roble viejo, algo se movió. «¡Atrás!», siseó una voz desde el hueco del tronco. Era {villain.el} {villain}, que había aprovechado el viento para esconder allí {villain.botin}. No quería que ninguna luz lo descubriera. «Shhh… Vuelve a casa», amenazó. A {hero} se le encogió el estómago, pero contestó: «Lía necesita la luz, porque está perdida. No me voy».",
+              "text": "{camino.llegada} Algo se movió. «¡Atrás!», siseó una voz desde el hueco del tronco. Era {villain.el} {villain}, que había aprovechado el viento para esconder allí {villain.botin}. No quería que ninguna luz lo descubriera. «Shhh… Vuelve a casa», amenazó. A {hero} se le encogió el estómago, pero contestó: «Lía necesita la luz, porque está perdida. No me voy».",
               "scene": {
                 "time": "noche",
                 "bg": "bosque",
@@ -3949,7 +4223,7 @@
             },
             {
               "id": "cod_b",
-              "text": "Al pie del roble viejo, alguien carraspeó dentro del tronco. «¡Eh! ¡Quien sea, que se vaya!», dijo una voz. {villain.El} {villain} asomó la cabeza, con {villain.botin} escondido a la espalda. Se le notaba tanto que {hero} casi se rio. «Lía necesita la luz», dijo {hero}, con las rodillas temblando. «Y la luz está arriba.» «¡Arriba no sube nadie!», gruñó {villain}.",
+              "text": "{camino.llegada} Alguien carraspeó dentro del tronco. «¡Eh! ¡Quien sea, que se vaya!», dijo una voz. {villain.El} {villain} asomó la cabeza, con {villain.botin} escondido a la espalda. Se le notaba tanto que {hero} casi se rio. «Lía necesita la luz», dijo {hero}, con las rodillas temblando. «Y la luz está arriba.» «¡Arriba no sube nadie!», gruñó {villain}.",
               "scene": {
                 "time": "noche",
                 "bg": "bosque",
@@ -4002,7 +4276,7 @@
             },
             {
               "id": "som_b",
-              "text": "Algo se movió en el hueco del roble viejo, y una voz susurró: «Shhh… por aquí no se puede pasar». {villain.El} {villain} salió de entre las raíces, con {villain.botin} bien abrazado. A {hero} se le encogió el estómago. «Lía está perdida», dijo, «y la luz está arriba». {villain} no contestó. Solo se agarró más fuerte a lo que llevaba.",
+              "text": "{camino.llegada} Algo se movió en el hueco del tronco, y una voz susurró: «Shhh… por aquí no se puede pasar». {villain.El} {villain} salió de entre las raíces, con {villain.botin} bien abrazado. A {hero} se le encogió el estómago. «Lía está perdida», dijo, «y la luz está arriba». {villain} no contestó. Solo se agarró más fuerte a lo que llevaba.",
               "scene": {
                 "time": "noche",
                 "bg": "bosque",
@@ -4104,7 +4378,10 @@
                 "offstage": [
                   "farolero"
                 ]
-              }
+              },
+              "requires": [
+                "dio_el_paso"
+              ]
             },
             {
               "id": "b",
@@ -4152,7 +4429,10 @@
                 "offstage": [
                   "farolero"
                 ]
-              }
+              },
+              "requires": [
+                "dio_el_paso"
+              ]
             }
           ]
         },
@@ -4294,7 +4574,7 @@
           "variants": [
             {
               "id": "a",
-              "text": "Volvieron todos juntos a {pueblo.el}. Los vecinos aplaudieron al ver brillar otra vez la linterna. «Mañana la enciendes tú, y yo te sujeto la escalera», le dijo el viejo farolero a {hero}, con un guiño. Aquella noche, {hero} dejó la cortina abierta. La oscuridad seguía allí, pero ya la conocía: tenía un búho de ojos amarillos, ramas que bailan y una cabrita que dice beee. A {hero} le pareció casi simpática. Y se quedó dormid{hero.o} mirando la luz.",
+              "text": "Volvieron todos juntos a {pueblo.el}. Los vecinos aplaudieron al ver brillar otra vez la linterna. «Mañana la enciendes tú, y yo te sujeto la escalera», le dijo el viejo farolero a {hero}, con un guiño. Aquella noche, {hero} dejó la cortina abierta. La oscuridad seguía allí, pero ya la conocía: tenía un búho de ojos amarillos, ramas que bailan y {camino.recuerdo}. A {hero} le pareció casi simpática. Y se quedó dormid{hero.o} mirando la luz.",
               "scene": {
                 "time": "noche",
                 "bg": "cuarto",
@@ -4339,7 +4619,7 @@
             },
             {
               "id": "b",
-              "text": "Todos regresaron juntos a {pueblo.el}. Los vecinos aplaudieron al ver la linterna brillar otra vez. «Mañana la enciendes tú, y yo te sujeto la escalera», le dijo el viejo farolero a {hero}, con un guiño. Aquella noche, {hero} dejó la cortina abierta. La oscuridad seguía allí, pero ya no le parecía tan grande: ahora conocía a su búho de ojos amarillos y a sus ramas que bailan. Y se quedó dormid{hero.o} mirando la luz.",
+              "text": "Todos regresaron juntos a {pueblo.el}. Los vecinos aplaudieron al ver la linterna brillar otra vez. «Mañana la enciendes tú, y yo te sujeto la escalera», le dijo el viejo farolero a {hero}, con un guiño. Aquella noche, {hero} dejó la cortina abierta. La oscuridad seguía allí, pero ya no le parecía tan grande: ahora conocía a su búho de ojos amarillos y a sus ramas que bailan, y sabía que allí había {camino.recuerdo}. Y se quedó dormid{hero.o} mirando la luz.",
               "scene": {
                 "time": "noche",
                 "bg": "cuarto",
@@ -4372,10 +4652,14 @@
                   }
                 ],
                 "offstage": [
-                  "villain",
                   "aldeana",
+                  "cabrita",
                   "farolero",
-                  "rosa"
+                  "rosa",
+                  "villain"
+                ],
+                "unseen": [
+                  "cabrita"
                 ]
               }
             }

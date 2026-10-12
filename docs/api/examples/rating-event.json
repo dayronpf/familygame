@@ -7,7 +7,7 @@
   "recipe": {
     "packId": "medieval",
     "packVersion": "1.0.0",
-    "engine": "0.2.0",
+    "engine": "0.3.0",
     "seed": 482913,
     "value": "honestidad",
     "cast": {

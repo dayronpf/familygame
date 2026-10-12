@@ -149,6 +149,26 @@ components:
             type: string
             maxLength: 100
             pattern: '^[a-z][a-z0-9_]*(\.[a-z][a-z0-9_]*){0,2}$'
+        choices:
+          type: array
+          description: |
+            Opcional (omitido si el cuento no tuvo preguntas). Opciones elegidas en las preguntas del cuento, en orden.
+            Solo códigos fijos del pack: nunca la etiqueta, la pregunta ni el texto. `auto` es `true` si eligió la app
+            (por espera, ajuste de la familia o temporizador de sueño) y `false` si tocó el niño. El servidor comprueba
+            que la opción exista en esa versión del pack (como hace con los fragmentos).
+          maxItems: 2
+          items:
+            type: object
+            additionalProperties: false
+            required: [id, auto]
+            properties:
+              id:
+                type: string
+                maxLength: 100
+                description: '`premisa.elección.opción` (p. ej. `linterna.camino.oido`).'
+                pattern: '^[a-z][a-z0-9_]*(\.[a-z][a-z0-9_]*){2}$'
+              auto:
+                type: boolean
     FeedbackResult:
       type: object
       required: [accepted]

@@ -171,6 +171,39 @@ void main() {
       expect(settings.child.heroGender, isNull);
     });
 
+    testWidgets('«Preguntas en el cuento» se apaga y se guarda por niño',
+        (tester) async {
+      final store = MemorySettingsStore();
+      final settings = AppSettings(store);
+      await settings.completeWizard();
+      await settings.updateChild(age: '6-8');
+      await openApp(tester, settings);
+      await tester.tap(find.byKey(const Key('open-settings')));
+      await tester.pumpAndSettle();
+      final q =
+          tester.widget<Text>(find.byKey(const Key('gate-question'))).data!;
+      final m = RegExp(r'(\d) × (\d)').firstMatch(q)!;
+      await tester.enterText(find.byKey(const Key('gate-answer')),
+          '${int.parse(m.group(1)!) * int.parse(m.group(2)!)}');
+      await tester.tap(find.byKey(const Key('gate-ok')));
+      await tester.pumpAndSettle();
+
+      await tester.scrollUntilVisible(
+        find.byKey(const Key('setting-questions')),
+        200,
+        scrollable: find.byType(Scrollable).first,
+      );
+      expect(settings.child.asksQuestions, isTrue);
+      await tester.tap(find.byKey(const Key('setting-questions')));
+      await tester.pumpAndSettle();
+      expect(settings.child.asksQuestions, isFalse);
+      expect(find.textContaining('la app elige el camino'), findsOneWidget);
+
+      final again = AppSettings(store);
+      await again.load();
+      expect(again.child.asksQuestions, isFalse);
+    });
+
     test('el perfil sin nombre ni género sigue igual y lee ajustes antiguos',
         () {
       expect(const ChildProfile().heroName, isNull);

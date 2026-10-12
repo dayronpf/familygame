@@ -106,25 +106,31 @@ class _HomePageState extends State<HomePage> {
     final heroGender = replay != null ? replay.heroGender : child?.heroGender;
     final childId = replay?.childId ?? child?.id;
     final engine = StoryEngine(pack);
+    // Al contar uno guardado se usan las elecciones que se hicieron y no se pregunta; si no, se pregunta salvo
+    // que la familia lo haya apagado para este niño.
+    final asks = replay == null && (child?.asksQuestions ?? true);
     // Cada «otro cuento» usa una semilla nueva; el primero, la pedida (o la del reloj).
     var first = true;
-    Story next() {
+    StoryRun next() {
       final s = first && seed != null ? seed : widget.seedProvider();
       first = false;
-      return engine.generate(StoryOptions(
+      return engine.begin(StoryOptions(
         seed: s,
         valueId: option,
         age: age,
         heroName: heroName,
         heroGender: heroGender,
+        choices: replay?.choices ?? const [],
+        interactive: asks,
       ));
     }
 
-    final story = next();
+    final run = next();
     Navigator.of(context).push(
       MaterialPageRoute<void>(
         builder: (_) => StoryPage(
-          story: story,
+          story: run.story,
+          run: run,
           feedback: widget.feedback,
           shelf: widget.shelf,
           option: option,
@@ -134,7 +140,8 @@ class _HomePageState extends State<HomePage> {
           childId: childId,
           art: _art,
           animate: widget.animateArt,
-          onAnother: next,
+          onAnother: () => next().toStory(),
+          onAnotherRun: next,
         ),
       ),
     );

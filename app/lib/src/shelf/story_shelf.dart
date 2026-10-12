@@ -20,6 +20,7 @@ class ShelfEntry {
     this.heroName,
     this.heroGender,
     this.childId,
+    this.choices = const [],
   });
 
   factory ShelfEntry.fromStory(
@@ -44,6 +45,7 @@ class ShelfEntry {
       heroName: heroName,
       heroGender: heroGender,
       childId: childId,
+      choices: [for (final c in story.choices) c.optionId],
     );
   }
 
@@ -60,6 +62,10 @@ class ShelfEntry {
         heroName: j['heroName'] as String?,
         heroGender: j['heroGender'] as String?,
         childId: j['childId'] as String?,
+        choices: [
+          for (final c in (j['choices'] as List<Object?>? ?? const []))
+            c as String,
+        ],
       );
 
   /// Semilla del cuento y enseñanza que se eligió al crearlo (`null` = «Sorpréndeme»).
@@ -81,6 +87,10 @@ class ShelfEntry {
   /// De qué niño es (los estantes anteriores a los perfiles no lo tienen: se ven con todos).
   final String? childId;
 
+  /// Ids de las opciones que se eligieron en las preguntas del cuento, en orden. Al contarlo otra vez se usan
+  /// las mismas y no se pregunta (el cuento sale igual). Solo vive en el teléfono.
+  final List<String> choices;
+
   /// Identifica el cuento (misma semilla, misma elección y mismo protagonista = mismo cuento).
   String get key =>
       '$packId:$seed:${option ?? '*'}:${age ?? ''}:${heroGender ?? ''}:${heroName ?? ''}:${childId ?? ''}';
@@ -98,6 +108,7 @@ class ShelfEntry {
         if (heroName != null) 'heroName': heroName,
         if (heroGender != null) 'heroGender': heroGender,
         if (childId != null) 'childId': childId,
+        if (choices.isNotEmpty) 'choices': choices,
       };
 }
 

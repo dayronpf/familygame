@@ -277,6 +277,8 @@ int _checkPremise(
   final beatIds = <String>{};
   final variantIds = <String>{};
   final addedBefore = <String>{};
+  final choicesBefore =
+      <String, Choice>{}; // preguntas ya hechas al llegar a la escena
   for (final beat in premise.beats) {
     if (!beatIds.add(beat.id)) {
       problems.add('$pid: escena duplicada "${beat.id}"');
@@ -292,7 +294,15 @@ int _checkPremise(
       if (!variantIds.add(v.id)) problems.add('variante duplicada: ${v.id}');
       for (final r in v.requires) {
         final fromCast = RegExp(r'^(\w+):').firstMatch(r)?.group(1);
-        if (fromCast != null) {
+        final asked = fromCast == null ? null : choicesBefore[fromCast];
+        if (asked != null) {
+          final option = r.substring(fromCast!.length + 1);
+          if (asked.optionById(option) == null) {
+            problems.add(
+              '${v.id}: requiere «$r» pero «$fromCast» no tiene la opción "$option"',
+            );
+          }
+        } else if (fromCast != null) {
           if (!slotKinds.containsKey(fromCast)) {
             problems
                 .add('${v.id}: requiere «$r» pero no hay ranura "$fromCast"');
@@ -331,7 +341,37 @@ int _checkPremise(
       }
     }
     addedBefore.addAll(addedHere);
+    final asking = beat.choice;
+    if (asking != null) {
+      _checkChoice(
+        pack,
+        premise,
+        beat,
+        asking,
+        slotKinds,
+        choicesBefore,
+        problems,
+      );
+      choicesBefore[asking.id] = asking;
+      for (final o in asking.options) {
+        addedBefore
+          ..add('${asking.id}:${o.id}')
+          ..addAll(o.adds);
+      }
+    }
   }
+  if (premise.beats.any((b) => b.choice != null) &&
+      !pack.features.contains('choice@1')) {
+    problems.add(
+      '$pid: tiene preguntas y el pack no declara "features": ["choice@1"]',
+    );
+  }
+  final choiceIds = {
+    for (final b in premise.beats)
+      if (b.choice != null) b.choice!.id,
+  };
+  final usesChoiceTokens =
+      RegExp('\\{(${choiceIds.isEmpty ? '(?!)' : choiceIds.join('|')})\\.');
 
   // --- todos los repartos posibles: cada variante debe renderizar bien con cada uno
   final casts = _allCasts(pack, premise);
@@ -349,8 +389,12 @@ int _checkPremise(
     for (final beat in premise.beats) {
       for (final v in beat.variants) {
         // Las variantes que exigen otro reparto no se aplican a este.
-        final castReqs = v.requires.where((r) => r.contains(':'));
+        final castReqs = v.requires.where(
+          (r) => premise.cast.containsKey(r.split(':').first),
+        );
         if (!castReqs.every(state.contains)) continue;
+        // Las que usan lo que dijo una opción se prueban en cada camino (`_checkChoicePaths`)
+        if (usesChoiceTokens.hasMatch(v.text)) continue;
         // Cada forma de cada atributo con varias opciones debe dar un texto correcto.
         final forms = cast.values
             .whereType<Character>()
@@ -381,8 +425,13 @@ int _checkPremise(
     }
   }
 
+  if (choiceIds.isNotEmpty) {
+    renders += _checkChoicePaths(pack, premise, casts, problems);
+  }
+
   // --- cuentos generados: reglas de hilo
   final engine = StoryEngine(pack);
+  final seenOptions = <String>{};
   for (final moral in pack.morals.where((m) => premise.fitsValue(m.id))) {
     for (var seed = 0; seed < seeds * 8; seed++) {
       final Story story;
@@ -396,7 +445,200 @@ int _checkPremise(
         break;
       }
       if (!story.recipe.fragmentIds.first.startsWith('$pid.')) continue;
+      seenOptions.addAll(story.choices.map((c) => c.id));
       _checkStory(premise, story, problems);
+    }
+  }
+  for (final b in premise.beats) {
+    for (final o in b.choice?.options ?? const <ChoiceOption>[]) {
+      if (!seenOptions.contains('$pid.${b.choice!.id}.${o.id}')) {
+        problems.add(
+          '$pid: la opción «${b.choice!.id}:${o.id}» no salió en ningún cuento de prueba',
+        );
+      }
+    }
+  }
+  return renders;
+}
+
+final RegExp _choiceLabelPunctuation = RegExp(r'[.!?¿¡«»,;:]');
+
+/// Reglas de una pregunta al niño ([Choice]) dentro de su premisa (docs/20 §3.4).
+void _checkChoice(
+  Pack pack,
+  Premise premise,
+  Beat beat,
+  Choice choice,
+  Map<String, String> slotKinds,
+  Map<String, Choice> before,
+  Set<String> problems,
+) {
+  final where = '${premise.id}.${beat.id} (pregunta «${choice.id}»)';
+  void add(String msg) => problems.add('$where: $msg');
+
+  if (slotKinds.containsKey(choice.id)) {
+    add('el id coincide con una ranura del reparto');
+  }
+  if (before.containsKey(choice.id)) add('el id está repetido');
+  final profiles = choice.ages.isEmpty ? Choice.defaultAges : choice.ages;
+  for (final a in profiles) {
+    if (a == '2-3') add('no se pregunta a los de 2–3 años');
+    if (!const ['4-5', '6-8', '9-12'].contains(a)) add('edad «$a» desconocida');
+    if (a == '4-5' && choice.options.length > 2) {
+      add('a los de 4–5 años se les dan 2 opciones, no ${choice.options.length}');
+    }
+    if (choice.ages.isNotEmpty && !premise.fitsAge(a)) {
+      add('pregunta a $a pero el cuento no es para esa edad');
+    }
+  }
+  if (choice.options.length < 2 || choice.options.length > 3) {
+    add('lleva ${choice.options.length} opciones (deben ser 2 o 3)');
+  }
+  final maxQuestions = profiles.every((a) => a == '9-12') ? 2 : 1;
+  final total = premise.beats.where((b) => b.choice != null).length;
+  if (total > maxQuestions) {
+    add('el cuento tiene $total preguntas (máximo $maxQuestions para su edad)');
+  }
+  if (choice.ask.length > 120) add('la pregunta pasa de 120 caracteres');
+  if ((choice.talk ?? '').length > 100) add('«talk» pasa de 100 caracteres');
+  final ids = <String>{};
+  final sayKeys = <Set<String>>[];
+  for (final o in choice.options) {
+    if (!ids.add(o.id)) add('opción repetida «${o.id}»');
+    if (o.label.length > 28) add('«${o.label}» pasa de 28 caracteres');
+    if (_choiceLabelPunctuation.hasMatch(o.label)) {
+      add('«${o.label}» lleva puntuación (se lee tal cual)');
+    }
+    if (!choiceGlyphs.contains(o.glyph)) {
+      add('«${o.label}»: icono «${o.glyph}» fuera de la lista cerrada');
+    }
+    sayKeys.add(o.says.keys.toSet());
+  }
+  for (final k in sayKeys) {
+    if (k.length != sayKeys.first.length || !k.containsAll(sayKeys.first)) {
+      add('las opciones no definen las mismas claves de "says"');
+      break;
+    }
+  }
+
+  // Posición: ni al principio ni al final, y entre el 30 % y el 60 % del texto
+  final at = premise.beats.indexOf(beat);
+  if (at == 0) add('no puede estar en la primera escena');
+  if (at >= premise.beats.length - 3) {
+    add('debe quedar al menos tres escenas antes del final (descenso al cierre)');
+  }
+  double avg(Beat b) =>
+      b.variants.fold<int>(0, (n, v) => n + _words(v.text)) / b.variants.length;
+  final totalWords = premise.beats.fold<double>(0, (n, b) => n + avg(b));
+  var upTo = 0.0;
+  for (var i = 0; i <= at; i++) {
+    upTo += avg(premise.beats[i]);
+  }
+  final share = upTo / totalWords;
+  if (share < 0.3 || share > 0.6) {
+    add('la pregunta cae al ${(share * 100).round()} % del texto (debe estar entre el 30 % y el 60 %)');
+  }
+
+  // Equilibrio: las ramas pesan parecido (±20 % de la media)
+  final weights = <String, double>{};
+  for (final o in choice.options) {
+    final tag = '${choice.id}:${o.id}';
+    final vs = [
+      for (final b in premise.beats)
+        for (final v in b.variants)
+          if (v.requires.contains(tag)) v,
+    ];
+    if (vs.isEmpty) {
+      add('ninguna variante pide «$tag»: la opción no cambia nada');
+      continue;
+    }
+    weights[o.id] = vs.fold<int>(0, (n, v) => n + _words(v.text)) / vs.length +
+        o.says.values.fold<int>(0, (n, t) => n + _words(t));
+  }
+  if (weights.length > 1) {
+    final mean =
+        weights.values.fold<double>(0, (a, b) => a + b) / weights.length;
+    for (final e in weights.entries) {
+      if ((e.value - mean).abs() > mean * 0.2) {
+        add('la rama «${e.key}» pesa ${e.value.round()} palabras y la media es ${mean.round()} (±20 %)');
+      }
+    }
+  }
+}
+
+/// Todas las rutas de una premisa con preguntas, sin enumerar los cuentos: para cada reparto y cada
+/// combinación de opciones se recorre el estado escena a escena (con todas las variantes elegibles) y se
+/// comprueba que siempre haya alguna variante y que los textos que usan lo que dijo la opción se rendericen.
+int _checkChoicePaths(
+  Pack pack,
+  Premise premise,
+  List<Map<String, Entity>> casts,
+  Set<String> problems,
+) {
+  final pid = premise.id;
+  final questions = [
+    for (final b in premise.beats)
+      if (b.choice != null) b.choice!,
+  ];
+  var routes = <List<ChoiceOption>>[[]];
+  for (final q in questions) {
+    routes = [
+      for (final r in routes)
+        for (final o in q.options) [...r, o],
+    ];
+  }
+  var renders = 0;
+  for (final cast in casts) {
+    for (final route in routes) {
+      final label =
+          '${cast.entries.map((e) => '${e.key}=${e.value.id}').join(' ')} · '
+          '${route.map((o) => o.id).join('/')}';
+      var states = <Set<String>>[castState(cast, premise)];
+      final says = <String, String>{};
+      var picked = 0;
+      for (final beat in premise.beats) {
+        final next = <String>{};
+        final nextStates = <Set<String>>[];
+        for (final state in states) {
+          final candidates = beat.variants
+              .where((v) => v.weight > 0 && state.containsAll(v.requires))
+              .toList();
+          if (candidates.isEmpty) {
+            problems.add(
+              '$pid.${beat.id}: sin variante elegible en la ruta $label (¿falta alguna etiqueta del camino?)',
+            );
+            continue;
+          }
+          for (final v in candidates) {
+            renders++;
+            try {
+              final out = renderTemplate(v.text, cast, says: says);
+              if (out.contains('{') || out.contains('  ')) {
+                problems.add('${v.id}: texto sospechoso en la ruta $label');
+              }
+            } on TemplateException catch (e) {
+              problems.add('${v.id}: ${e.message} (ruta $label)');
+            }
+            final s = {...state, ...v.adds};
+            if (next.add((s.toList()..sort()).join(','))) nextStates.add(s);
+          }
+        }
+        states =
+            nextStates.length > 2000 ? nextStates.sublist(0, 2000) : nextStates;
+        final q = beat.choice;
+        if (q != null) {
+          final o = route[picked++];
+          for (final s in states) {
+            s
+              ..add('${q.id}:${o.id}')
+              ..addAll(o.adds);
+          }
+          for (final e in o.says.entries) {
+            says['${q.id}.${e.key}'] = renderTemplate(e.value, cast);
+          }
+        }
+        if (states.isEmpty) break;
+      }
     }
   }
   return renders;

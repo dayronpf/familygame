@@ -33,20 +33,33 @@ Ambience ambienceFor(BuildContext context) {
 bool musicOn(BuildContext context) =>
     SettingsScope.maybeOf(context)?.music ?? true;
 
-/// Escenas a reproducir: las del cuento y, al final, la enseñanza dicha en voz alta.
-/// Una escena sin dibujo conserva el de la anterior para que la pantalla no se quede vacía.
-List<PlayScene> playScenes(Story story, List<StageSetup?> setups) {
+/// Escenas a reproducir: las del cuento y, al final, la enseñanza dicha en voz alta (solo si el cuento está
+/// completo: con una pregunta sin responder termina en la pregunta). Una escena sin dibujo conserva el de la
+/// anterior para que la pantalla no se quede vacía.
+List<PlayScene> playScenes(
+  Story story,
+  List<StageSetup?> setups, {
+  bool complete = true,
+}) {
   StageSetup? last;
   final out = <PlayScene>[];
   for (var i = 0; i < story.scenes.length; i++) {
     final s = i < setups.length ? setups[i] : null;
     last = s ?? last;
-    out.add(PlayScene(text: story.scenes[i].text, setup: last));
-  }
-  out.add(PlayScene(
-      text: 'La enseñanza de hoy: ${story.moralLine}',
+    final sc = story.scenes[i];
+    out.add(PlayScene(
+      text: sc.text,
       setup: last,
-      isMoral: true));
+      choice: sc.choice,
+      pickedOption: sc.pickedOption,
+    ));
+  }
+  if (complete) {
+    out.add(PlayScene(
+        text: 'La enseñanza de hoy: ${story.moralLine}',
+        setup: last,
+        isMoral: true));
+  }
   return out;
 }
 

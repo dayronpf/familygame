@@ -155,3 +155,15 @@ contacto con la imagen, los datos de la escena y el texto, y **lectores independ
   decirlo no se detecta: de eso se encargan los lectores que miran las imágenes.
 * Las luces de cada lugar están generadas por código a partir de un fondo base: son coherentes, no obras de ilustrador.
 * El copo de nieve «titila» (las animaciones ambientales solo admiten opacidad y giro); no cae.
+
+## 8. Cuentos con preguntas (v0.6.0)
+
+Con caminos elegibles ([20](20-caminos-elegibles.md)) una escena puede tener variantes que cambian según lo que el niño eligió
+(`requires: ["camino:oido"]`) y frases que dependen de la opción (`{camino.llegada}`). Las reglas de este documento valen para **todas
+las rutas**: el validador recorre cada reparto × cada combinación de opciones (`_checkChoicePaths`) y renderiza cada variante con las
+frases de esa ruta, y los cuentos de prueba (`seeds × 8`) salen con las tres opciones al azar, así que `_checkStage`/`_checkSetting`
+revisan también lo que dicen las frases de enlace. Dos consecuencias para quien escriba contenido:
+
+* Si una frase de una opción nombra algo (p. ej. «una cabrita que dice beee»), **todas las escenas donde puede salir** deben dibujarlo
+  o declararlo `offstage`/`unseen` (el eco del cierre lo hace en sus dos variantes).
+* Una rama que no añade la etiqueta que exige un beat posterior (el «ancla» de la enseñanza) deja al cuento sin variante: el pack se rechaza.

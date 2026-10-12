@@ -19,6 +19,7 @@ class SleepTimerButton extends StatefulWidget {
     this.color = Colors.white,
     this.iconSize,
     this.onPicked,
+    this.onArmed,
     this.minutesToDuration = _minutes,
   });
 
@@ -34,6 +35,10 @@ class SleepTimerButton extends StatefulWidget {
 
   /// Se llama al elegir (o quitar) el temporizador; la pantalla del holograma lo usa para mantener los controles.
   final VoidCallback? onPicked;
+
+  /// Se llama con `true` al armar el temporizador y con `false` al quitarlo: mientras está armado el cuento no
+  /// hace preguntas al niño (quien arma la lunita quiere que se duerma).
+  final ValueChanged<bool>? onArmed;
 
   /// Cómo se convierten los minutos elegidos en tiempo (las pruebas lo acortan).
   final Duration Function(int minutes) minutesToDuration;
@@ -68,6 +73,7 @@ class _SleepTimerButtonState extends State<SleepTimerButton> {
     }
     setState(() => _minutes = minutes);
     widget.onPicked?.call();
+    widget.onArmed?.call(minutes != null);
     if (minutes == null) return;
     final total = widget.minutesToDuration(minutes);
     final fade =

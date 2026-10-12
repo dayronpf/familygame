@@ -12,6 +12,8 @@ import 'feedback/feedback_service.dart';
 import 'feedback/rating_card.dart';
 import 'shared_reading_page.dart';
 import 'shelf/story_shelf.dart';
+import 'story_flow.dart';
+import 'ui/choice_cards.dart';
 import 'ui/palette.dart';
 
 /// Nombre corto de un cuento para recordarlo («Honestidad · Nilo»). Solo se guarda en el teléfono.
@@ -29,6 +31,8 @@ class StoryPage extends StatefulWidget {
     required this.onAnother,
     required this.feedback,
     required this.shelf,
+    this.run,
+    this.onAnotherRun,
     this.option,
     this.age,
     this.heroName,
@@ -45,6 +49,13 @@ class StoryPage extends StatefulWidget {
   final Ambience Function()? ambience;
 
   final Story story;
+
+  /// El cuento con sus preguntas al niño (puede estar a medias). Sin él, [story] es un cuento entero y no se
+  /// pregunta nada.
+  final StoryRun? run;
+
+  /// Otro cuento con preguntas (si no se da, se usa [onAnother]).
+  final StoryRun Function()? onAnotherRun;
 
   /// Con qué se generó este cuento (para guardarlo en «Mis cuentos» y contarlo igual otra vez).
   final String? age;
@@ -74,7 +85,9 @@ class StoryPage extends StatefulWidget {
 
 class _StoryPageState extends State<StoryPage>
     with SingleTickerProviderStateMixin {
-  late Story _story = widget.story;
+  late Story _plain = widget.story;
+  StoryFlow? _flow;
+  Story get _story => _flow?.story ?? _plain;
   final ValueNotifier<double> _clock = ValueNotifier(0);
   Ticker? _ticker;
   StageArt? _stageArt;
@@ -87,6 +100,9 @@ class _StoryPageState extends State<StoryPage>
   @override
   void initState() {
     super.initState();
+    if (widget.run != null) {
+      _flow = StoryFlow(widget.run!)..addListener(_onFlow);
+    }
     if (widget.animate) {
       _ticker = createTicker((e) => _clock.value = e.inMicroseconds / 1e6)
         ..start();
@@ -110,6 +126,13 @@ class _StoryPageState extends State<StoryPage>
     if (mounted) setState(() {});
   }
 
+  /// El niño contestó una pregunta: aparece el resto del cuento y se guarda lo que eligió.
+  void _onFlow() {
+    if (!mounted) return;
+    setState(() => _computeSetups());
+    _remember();
+  }
+
   ShelfEntry get _entry => ShelfEntry.fromStory(
         _story,
         option: widget.option,
@@ -118,6 +141,8 @@ class _StoryPageState extends State<StoryPage>
         heroGender: widget.heroGender,
         childId: widget.childId,
       );
+
+  bool get _complete => _flow?.isComplete ?? true;
 
   /// Anota el cuento en «Mis cuentos» (los últimos que se contaron).
   void _remember() => widget.shelf.addRecent(_entry);
@@ -147,7 +172,7 @@ class _StoryPageState extends State<StoryPage>
     final ambience = widget.ambience?.call();
     final page = hologram
         ? HologramPage(
-            story: _story,
+            story: _flow?.finish() ?? _story,
             art: art,
             setups: _setups,
             narrator: narrator,
@@ -155,6 +180,7 @@ class _StoryPageState extends State<StoryPage>
           )
         : CinemaPage(
             story: _story,
+            flow: _flow,
             art: art,
             setups: _setups,
             narrator: narrator,
@@ -168,7 +194,7 @@ class _StoryPageState extends State<StoryPage>
   void _openAudioOnly() {
     Navigator.of(context).push(MaterialPageRoute<void>(
       builder: (_) => AudioOnlyPage(
-        story: _story,
+        story: _flow?.finish() ?? _story,
         narrator: widget.narrator?.call(),
         ambience: widget.ambience?.call(),
       ),
@@ -179,7 +205,7 @@ class _StoryPageState extends State<StoryPage>
   void _openSharedReading() {
     Navigator.of(context).push(MaterialPageRoute<void>(
       builder: (_) => SharedReadingPage(
-        story: _story,
+        story: _flow?.finish() ?? _story,
         art: _stageArt,
         setups: _setups,
         narrator: widget.narrator?.call(),
@@ -208,6 +234,8 @@ class _StoryPageState extends State<StoryPage>
   @override
   void dispose() {
     widget.shelf.removeListener(_onShelf);
+    _flow?.removeListener(_onFlow);
+    _flow?.dispose();
     _ticker?.dispose();
     _clock.dispose();
     _rememberIfUnanswered();
@@ -225,13 +253,90 @@ class _StoryPageState extends State<StoryPage>
           _ratingId, const []); // por si se quedaron a mitad del segundo paso
     }
     setState(() {
-      _story = widget.onAnother();
+      if (widget.onAnotherRun != null) {
+        _flow?.removeListener(_onFlow);
+        _flow?.dispose();
+        _flow = StoryFlow(widget.onAnotherRun!())..addListener(_onFlow);
+      } else {
+        _plain = widget.onAnother();
+      }
       _computeSetups();
       _reachedEnd = false;
       _answered = false;
       _ratingId = null;
     });
     _remember();
+  }
+
+  /// La pregunta de una escena: con los dos o tres caminos si está sin responder (el adulto manda, sin esperas) y,
+  /// ya respondida, una línea con lo que se eligió.
+  Widget _question(StoryScene scene) {
+    final text = Theme.of(context).textTheme;
+    final scheme = Theme.of(context).colorScheme;
+    final q = scene.choice!;
+    final picked = scene.pickedOption;
+    if (picked != null) {
+      return Padding(
+        padding: const EdgeInsets.only(bottom: 20),
+        child: Row(
+          key: const Key('choice-picked'),
+          children: [
+            Icon(
+              choiceIcons[q.optionById(picked)?.glyph] ?? Icons.check_circle,
+              size: 20,
+              color: scheme.primary,
+            ),
+            const SizedBox(width: 8),
+            Expanded(
+              child: Text(
+                'Elegisteis: ${q.optionById(picked)?.label ?? ''}',
+                style: text.bodyLarge!.copyWith(
+                  fontStyle: FontStyle.italic,
+                  color: scheme.primary,
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
+    }
+    return Card(
+      key: const Key('choice-block'),
+      color: scheme.surfaceContainerHighest,
+      margin: const EdgeInsets.only(bottom: 20),
+      child: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          children: [
+            Text(
+              q.ask,
+              textAlign: TextAlign.center,
+              style: text.titleLarge!.copyWith(color: scheme.primary),
+            ),
+            if (q.talk != null) ...[
+              const SizedBox(height: 6),
+              Text(
+                q.talk!,
+                textAlign: TextAlign.center,
+                style: text.bodySmall,
+              ),
+            ],
+            const SizedBox(height: 16),
+            ChoiceCards(
+              choice: q,
+              dark: false,
+              onChoose: (id) => _flow?.choose(id),
+            ),
+            const SizedBox(height: 8),
+            TextButton(
+              key: const Key('choice-for-me'),
+              onPressed: () => _flow?.chooseForMe(),
+              child: const Text('Elige por nosotros'),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 
   @override
@@ -320,27 +425,29 @@ class _StoryPageState extends State<StoryPage>
               ],
               Text(_story.scenes[i].text, style: body),
               const SizedBox(height: 20),
+              if (_story.scenes[i].choice != null) _question(_story.scenes[i]),
             ],
             const SizedBox(height: 8),
-            Card(
-              color: scheme.surfaceContainerHighest,
-              child: Padding(
-                padding: const EdgeInsets.all(20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Enseñanza',
-                      style: text.labelLarge!.copyWith(color: scheme.primary),
-                    ),
-                    const SizedBox(height: 8),
-                    Text(_story.moralLine, style: body),
-                  ],
+            if (_complete)
+              Card(
+                color: scheme.surfaceContainerHighest,
+                child: Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Enseñanza',
+                        style: text.labelLarge!.copyWith(color: scheme.primary),
+                      ),
+                      const SizedBox(height: 8),
+                      Text(_story.moralLine, style: body),
+                    ],
+                  ),
                 ),
               ),
-            ),
             const SizedBox(height: 16),
-            if (_askRating == true)
+            if (_askRating == true && _complete)
               RatingCard(
                 key: ValueKey(
                     'rating-${_story.recipe.seed}-${_story.recipe.valueId}'),

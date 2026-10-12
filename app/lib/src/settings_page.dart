@@ -275,6 +275,20 @@ class _SettingsPageState extends State<SettingsPage> {
                 .copyWith(color: Theme.of(context).colorScheme.primary),
           ),
         ),
+      if (child.age == '6-8' || child.age == '9-12')
+        SwitchListTile(
+          key: const Key('setting-questions'),
+          contentPadding: EdgeInsets.zero,
+          title: Text('Preguntas en el cuento', style: text.bodyLarge),
+          subtitle: Text(
+            child.asksQuestions
+                ? 'En algunos cuentos el niño elige cómo sigue, entre 2 o 3 caminos. Si no contesta, elige la app.'
+                : 'Apagado: la app elige el camino y el cuento no se detiene.',
+            style: text.bodySmall,
+          ),
+          value: child.asksQuestions,
+          onChanged: (v) => settings.updateChild(asksQuestions: v),
+        ),
       const SizedBox(height: 16),
       Text('Velocidad de lectura', style: text.bodyLarge),
       const SizedBox(height: 8),

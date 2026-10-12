@@ -62,12 +62,14 @@ typedef AltPicker = int Function(int n);
 typedef AttrChooser = String Function(String key, List<String> options);
 
 /// Sustituye los tokens de [template] con el [cast] dado. Si un atributo del personaje tiene varias
-/// formas, [choose] decide cuál (sin él, la primera).
+/// formas, [choose] decide cuál (sin él, la primera). [says] son las frases de las opciones ya elegidas
+/// (`elección.clave` → texto ya renderizado).
 String renderTemplate(
   String template,
   Map<String, Entity> cast, {
   AttrChooser? choose,
   AltPicker? alt,
+  Map<String, String> says = const {},
 }) {
   final chosen = template.replaceAllMapped(_alts, (m) {
     final options = m.group(1)!.split('|');
@@ -77,6 +79,9 @@ String renderTemplate(
   return chosen.replaceAllMapped(_token, (m) {
     final role = m.group(1)!;
     final attr = m.group(2);
+    // `{camino.llegada}`: una frase de la opción que el niño eligió (no es una ranura del reparto)
+    final said = attr == null ? null : says['$role.$attr'];
+    if (said != null) return said;
     final entity = cast[role];
     if (entity == null) {
       throw TemplateException(
