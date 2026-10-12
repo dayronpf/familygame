@@ -87,9 +87,9 @@ void main() {
         }
 
         walk(rig.root);
-        // Un personaje tiene decenas de formas; un objeto (campana, pan…), al menos unas pocas.
-        final minShapes = rig.type == 'humanoid' ? 30 : 3;
-        expect(shapes, greaterThan(minShapes), reason: rig.id);
+        // Un personaje tiene decenas de formas; un objeto (campana, pan, ráfaga de tres rayas…), al menos tres.
+        final minShapes = rig.type == 'humanoid' ? 31 : 3;
+        expect(shapes, greaterThanOrEqualTo(minShapes), reason: rig.id);
       }
     });
 
