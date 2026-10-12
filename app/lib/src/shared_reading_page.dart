@@ -7,6 +7,8 @@ import 'art/story_stage.dart';
 import 'narration/narrator.dart';
 import 'narration/playback.dart';
 import 'player_support.dart';
+import 'story_flow.dart';
+import 'ui/choice_cards.dart';
 import 'ui/palette.dart';
 
 /// «Leemos juntos»: el adulto lee en voz alta (o lo leen entre todos) mientras el niño mira el dibujo. Texto grande en
@@ -23,7 +25,11 @@ class SharedReadingPage extends StatefulWidget {
     this.narrator,
     this.animate = true,
     this.turns = false,
+    this.flow,
   });
+
+  /// El cuento con sus preguntas; sin él, el cuento es [story] y no se pregunta nada.
+  final StoryFlow? flow;
 
   final Story story;
   final StageArt? art;
@@ -41,7 +47,13 @@ class SharedReadingPage extends StatefulWidget {
 class _SharedReadingPageState extends State<SharedReadingPage>
     with SingleTickerProviderStateMixin {
   late final StageClock _clock = StageClock(this);
-  late final List<PlayScene> _scenes = playScenes(widget.story, widget.setups);
+  late final List<PlayScene> _scenes = widget.flow == null
+      ? playScenes(widget.story, widget.setups)
+      : playScenes(
+          widget.flow!.story,
+          flowSetups(widget.art, widget.flow!.story),
+          complete: widget.flow!.isComplete,
+        );
   late final Narrator _narrator = widget.narrator ?? narratorFor(context);
   final PageController _pages = PageController();
   late bool _turns = widget.turns;
@@ -112,6 +124,16 @@ class _SharedReadingPageState extends State<SharedReadingPage>
       if (voice.isNotEmpty) await _narrator.speak(voice);
       if (!mounted || token != _token) return;
     }
+    if (sc.needsAnswer) {
+      // la voz también hace la pregunta y nombra las opciones
+      final q = sc.choice!;
+      await _narrator.speak(normalizeForVoice(q.ask));
+      for (final o in q.options) {
+        if (!mounted || token != _token) return;
+        await _narrator.speak(normalizeForVoice(o.label));
+      }
+      if (!mounted || token != _token) return;
+    }
     setState(() {
       _reading = false;
       _sentence = -1;
@@ -121,6 +143,22 @@ class _SharedReadingPageState extends State<SharedReadingPage>
       if (!mounted || token != _token) return;
       _go(page + 1);
     }
+  }
+
+  /// Contestaron la pregunta de esta página (o «Elige por nosotros»): el resto del cuento depende de la respuesta.
+  Future<void> _answer(String? optionId) async {
+    final flow = widget.flow!;
+    final asked = _page;
+    await _stopReading();
+    final rest = continueFlow(flow, widget.art, asked, optionId);
+    if (!mounted) return;
+    setState(() {
+      _scenes
+        ..[asked] =
+            _scenes[asked].answered(flow.story.scenes[asked].pickedOption ?? '')
+        ..removeRange(asked + 1, _scenes.length)
+        ..addAll(rest);
+    });
   }
 
   void _startTurn() {
@@ -147,6 +185,37 @@ class _SharedReadingPageState extends State<SharedReadingPage>
     _stopReading().then((_) {
       if (mounted) _startTurn();
     });
+  }
+
+  /// La pregunta: el adulto la lee y el niño toca una tarjeta; después queda la línea «Elegisteis…».
+  Widget _question(PlayScene sc, TextTheme text) {
+    final q = sc.choice!;
+    if (!sc.needsAnswer) {
+      final label = q.optionById(sc.pickedOption!)?.label ?? '';
+      return Text(
+        'Elegisteis: $label',
+        key: const Key('choice-picked'),
+        style: text.titleMedium!
+            .copyWith(color: Palette.amber, fontStyle: FontStyle.italic),
+      );
+    }
+    return Column(
+      key: const Key('choice-block'),
+      children: [
+        Text(
+          q.ask,
+          textAlign: TextAlign.center,
+          style: text.titleLarge!.copyWith(color: Palette.amber),
+        ),
+        const SizedBox(height: 14),
+        ChoiceCards(choice: q, onChoose: _answer, art: widget.art),
+        TextButton(
+          key: const Key('choice-for-me'),
+          onPressed: () => _answer(null),
+          child: const Text('Elige por nosotros'),
+        ),
+      ],
+    );
   }
 
   Widget _pageBody(int i, TextTheme text) {
@@ -202,6 +271,10 @@ class _SharedReadingPageState extends State<SharedReadingPage>
             ]),
             key: ValueKey('shared-text-$i'),
           ),
+          if (sc.choice != null) ...[
+            const SizedBox(height: 18),
+            _question(sc, text),
+          ],
           if (_turns) ...[
             const SizedBox(height: 18),
             _TurnBanner(
@@ -308,7 +381,9 @@ class _SharedReadingPageState extends State<SharedReadingPage>
                       ],
                     ),
                   ),
-                  if (_page >= last)
+                  if (_scenes[_page].needsAnswer)
+                    const SizedBox(width: 48)
+                  else if (_page >= last)
                     FilledButton.icon(
                       key: const Key('shared-done'),
                       onPressed: () => Navigator.pop(context),

@@ -85,25 +85,12 @@ class _CinemaPageState extends State<CinemaPage>
   Story get _story => widget.flow?.story ?? widget.story;
 
   /// Dibujos de las escenas del cuento. Con preguntas el cuento crece, así que se calculan aquí.
-  List<StageSetup?> _setupsFor(Story story) => widget.flow == null
-      ? widget.setups
-      : [
-          for (final s in story.scenes)
-            stageFor(widget.art, story.cast, s.directives),
-        ];
+  List<StageSetup?> _setupsFor(Story story) =>
+      widget.flow == null ? widget.setups : flowSetups(widget.art, story);
 
   /// El niño contestó (o eligió la app): el resto del cuento depende de la respuesta.
-  Future<List<PlayScene>> _resolve(String? optionId) async {
-    final flow = widget.flow!;
-    final asked = _playback.scene;
-    optionId == null ? flow.chooseForMe() : flow.choose(optionId);
-    final all = playScenes(
-      flow.story,
-      _setupsFor(flow.story),
-      complete: flow.isComplete,
-    );
-    return all.sublist(asked + 1);
-  }
+  Future<List<PlayScene>> _resolve(String? optionId) async =>
+      continueFlow(widget.flow!, widget.art, _playback.scene, optionId);
 
   @override
   void initState() {
@@ -285,6 +272,7 @@ class _CinemaPageState extends State<CinemaPage>
                   child: pb.asking != null
                       ? _Question(
                           key: const ValueKey('question'),
+                          art: widget.art,
                           choice: pb.asking!,
                           lit: pb.speakingOption,
                           onChoose: pb.choose,
@@ -399,12 +387,14 @@ class _CinemaPageState extends State<CinemaPage>
 class _Question extends StatelessWidget {
   const _Question({
     super.key,
+    required this.art,
     required this.choice,
     required this.lit,
     required this.onChoose,
     required this.onForMe,
   });
 
+  final StageArt? art;
   final StoryChoice choice;
   final int? lit;
   final void Function(String optionId) onChoose;
@@ -426,7 +416,12 @@ class _Question extends StatelessWidget {
                 ),
           ),
           const SizedBox(height: 14),
-          ChoiceCards(choice: choice, highlighted: lit, onChoose: onChoose),
+          ChoiceCards(
+            choice: choice,
+            highlighted: lit,
+            onChoose: onChoose,
+            art: art,
+          ),
           const SizedBox(height: 6),
           TextButton(
             key: const Key('choice-for-me'),

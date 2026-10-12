@@ -13,6 +13,8 @@ import 'audio/sfx.dart';
 import 'narration/narrator.dart';
 import 'narration/playback.dart';
 import 'player_support.dart';
+import 'story_flow.dart';
+import 'ui/choice_cards.dart';
 import 'ui/screen_dimmer.dart';
 import 'ui/sleep_timer.dart';
 
@@ -32,7 +34,11 @@ class HologramPage extends StatefulWidget {
     this.dimmer,
     this.background,
     this.sfx,
+    this.flow,
   });
+
+  /// El cuento con sus preguntas; sin él, el cuento es [story] y no se pregunta nada.
+  final StoryFlow? flow;
 
   final Story story;
   final StageArt art;
@@ -79,11 +85,21 @@ class _HologramPageState extends State<HologramPage>
   @override
   void initState() {
     super.initState();
+    final flow = widget.flow;
     _playback = StoryPlayback(
-      scenes: playScenes(widget.story, widget.setups),
+      scenes: flow == null
+          ? playScenes(widget.story, widget.setups)
+          : playScenes(
+              flow.story,
+              flowSetups(widget.art, flow.story),
+              complete: flow.isComplete,
+            ),
       narrator: widget.narrator ?? narratorFor(context),
       title: widget.story.title,
       sfx: _sfx,
+      resolve: flow == null
+          ? null
+          : (o) async => continueFlow(flow, widget.art, _playback.scene, o),
     )..addListener(_onPlayback);
     _onPlayback();
     _loadLayout();
@@ -226,90 +242,161 @@ class _HologramPageState extends State<HologramPage>
                       size: Size.infinite,
                     ),
             ),
-            Positioned(
-              left: 0,
-              right: 0,
-              bottom: 0,
-              child: SafeArea(
-                child: IgnorePointer(
-                  ignoring: !_controls,
-                  child: AnimatedOpacity(
-                    opacity: _controls ? 1 : 0,
-                    duration: const Duration(milliseconds: 300),
-                    child: Container(
-                      color: const Color(0xCC000000),
-                      padding: const EdgeInsets.symmetric(vertical: 4),
-                      child: Wrap(
-                        alignment: WrapAlignment.center,
-                        children: [
-                          if (pb.finished)
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 12, vertical: 4),
-                              child: FilledButton.icon(
-                                key: const Key('finished-back'),
-                                onPressed: () => Navigator.pop(context),
-                                icon: const Icon(Icons.arrow_back),
-                                label: const Text('Volver'),
+            if (pb.asking != null)
+              Positioned(
+                left: 0,
+                right: 0,
+                bottom: 0,
+                child: _HoloQuestion(
+                  key: const ValueKey('question'),
+                  art: widget.art,
+                  choice: pb.asking!,
+                  lit: pb.speakingOption,
+                  onChoose: pb.choose,
+                  onForMe: pb.chooseForMe,
+                ),
+              )
+            else
+              Positioned(
+                left: 0,
+                right: 0,
+                bottom: 0,
+                child: SafeArea(
+                  child: IgnorePointer(
+                    ignoring: !_controls,
+                    child: AnimatedOpacity(
+                      opacity: _controls ? 1 : 0,
+                      duration: const Duration(milliseconds: 300),
+                      child: Container(
+                        color: const Color(0xCC000000),
+                        padding: const EdgeInsets.symmetric(vertical: 4),
+                        child: Wrap(
+                          alignment: WrapAlignment.center,
+                          children: [
+                            if (pb.finished)
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12, vertical: 4),
+                                child: FilledButton.icon(
+                                  key: const Key('finished-back'),
+                                  onPressed: () => Navigator.pop(context),
+                                  icon: const Icon(Icons.arrow_back),
+                                  label: const Text('Volver'),
+                                ),
                               ),
+                            _icon(Icons.close, 'Salir',
+                                () => Navigator.pop(context)),
+                            SleepTimerButton(
+                              color: const Color(0xFF9EEBFF),
+                              iconSize: 30,
+                              onPicked: _scheduleHide,
+                              onFade: _fade.apply,
+                              onCancel: _fade.reset,
+                              onExpire: _fade.finish,
                             ),
-                          _icon(Icons.close, 'Salir',
-                              () => Navigator.pop(context)),
-                          SleepTimerButton(
-                            color: const Color(0xFF9EEBFF),
-                            iconSize: 30,
-                            onPicked: _scheduleHide,
-                            onFade: _fade.apply,
-                            onCancel: _fade.reset,
-                            onExpire: _fade.finish,
-                          ),
-                          _icon(Icons.skip_previous, 'Escena anterior',
-                              pb.previous),
-                          _icon(pb.playing ? Icons.pause : Icons.play_arrow,
-                              pb.playing ? 'Pausa' : 'Continuar', () {
-                            _fade.reset();
-                            pb.toggle();
-                          }),
-                          _icon(Icons.skip_next, 'Escena siguiente', pb.next),
-                          _icon(_hearVoice ? Icons.volume_up : Icons.volume_off,
-                              'Voz', () {
-                            setState(() {
-                              _hearVoice = !_hearVoice;
-                              pb.narrate = _hearVoice;
-                            });
-                          }, on: _hearVoice),
-                          _icon(
-                              Icons.remove,
-                              'Prisma más pequeño',
-                              () => _setLayout(_layout.copyWith(
-                                  gap: (_layout.gap - 0.03).clamp(
-                                      HologramLayout.minGap,
-                                      HologramLayout.maxGap)))),
-                          _icon(
-                              Icons.add,
-                              'Prisma más grande',
-                              () => _setLayout(_layout.copyWith(
-                                  gap: (_layout.gap + 0.03).clamp(
-                                      HologramLayout.minGap,
-                                      HologramLayout.maxGap)))),
-                          _icon(
-                              Icons.swap_vert,
-                              'Pies hacia dentro o fuera',
-                              () => _setLayout(_layout.copyWith(
-                                  feetInward: !_layout.feetInward))),
-                          _icon(
-                              Icons.flip,
-                              'Reflejar izquierda y derecha',
-                              () => _setLayout(
-                                  _layout.copyWith(mirror: !_layout.mirror))),
-                        ],
+                            _icon(Icons.skip_previous, 'Escena anterior',
+                                pb.previous),
+                            _icon(pb.playing ? Icons.pause : Icons.play_arrow,
+                                pb.playing ? 'Pausa' : 'Continuar', () {
+                              _fade.reset();
+                              pb.toggle();
+                            }),
+                            _icon(Icons.skip_next, 'Escena siguiente', pb.next),
+                            _icon(
+                                _hearVoice ? Icons.volume_up : Icons.volume_off,
+                                'Voz', () {
+                              setState(() {
+                                _hearVoice = !_hearVoice;
+                                pb.narrate = _hearVoice;
+                              });
+                            }, on: _hearVoice),
+                            _icon(
+                                Icons.remove,
+                                'Prisma más pequeño',
+                                () => _setLayout(_layout.copyWith(
+                                    gap: (_layout.gap - 0.03).clamp(
+                                        HologramLayout.minGap,
+                                        HologramLayout.maxGap)))),
+                            _icon(
+                                Icons.add,
+                                'Prisma más grande',
+                                () => _setLayout(_layout.copyWith(
+                                    gap: (_layout.gap + 0.03).clamp(
+                                        HologramLayout.minGap,
+                                        HologramLayout.maxGap)))),
+                            _icon(
+                                Icons.swap_vert,
+                                'Pies hacia dentro o fuera',
+                                () => _setLayout(_layout.copyWith(
+                                    feetInward: !_layout.feetInward))),
+                            _icon(
+                                Icons.flip,
+                                'Reflejar izquierda y derecha',
+                                () => _setLayout(
+                                    _layout.copyWith(mirror: !_layout.mirror))),
+                          ],
+                        ),
                       ),
                     ),
                   ),
                 ),
               ),
-            ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+/// La pregunta en el holograma: el prisma ocupa el centro de la pantalla, así que las tarjetas van abajo, sobre
+/// un fondo negro (no se reflejan en el prisma).
+class _HoloQuestion extends StatelessWidget {
+  const _HoloQuestion({
+    super.key,
+    required this.art,
+    required this.choice,
+    required this.lit,
+    required this.onChoose,
+    required this.onForMe,
+  });
+
+  final StageArt? art;
+  final StoryChoice choice;
+  final int? lit;
+  final void Function(String optionId) onChoose;
+  final VoidCallback onForMe;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.black,
+      child: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(16, 10, 16, 6),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                choice.ask,
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                      color: const Color(0xFF9EEBFF),
+                    ),
+              ),
+              const SizedBox(height: 10),
+              ChoiceCards(
+                choice: choice,
+                highlighted: lit,
+                onChoose: onChoose,
+                art: art,
+              ),
+              TextButton(
+                key: const Key('choice-for-me'),
+                onPressed: onForMe,
+                child: const Text('Elige por nosotros'),
+              ),
+            ],
+          ),
         ),
       ),
     );

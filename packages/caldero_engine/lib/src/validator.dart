@@ -514,6 +514,10 @@ void _checkChoice(
     }
     sayKeys.add(o.says.keys.toSet());
   }
+  final drawn = choice.options.where((o) => o.art != null).length;
+  if (drawn != 0 && drawn != choice.options.length) {
+    add('o todas las opciones llevan dibujo propio (icon.art) o ninguna');
+  }
   for (final k in sayKeys) {
     if (k.length != sayKeys.first.length || !k.containsAll(sayKeys.first)) {
       add('las opciones no definen las mismas claves de "says"');

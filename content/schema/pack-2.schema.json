@@ -544,6 +544,10 @@
                 "nightlight_round",
                 "favorite"
               ]
+            },
+            "art": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_]*$"
             }
           }
         },

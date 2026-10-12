@@ -76,7 +76,13 @@
   "medieval/rigs/pedernal.json",
   "medieval/rigs/vela.json",
   "medieval/rigs/saco.json",
-  "medieval/rigs/cofre.json"
+  "medieval/rigs/cofre.json",
+  "medieval/rigs/icono_ojo.json",
+  "medieval/rigs/icono_oreja.json",
+  "medieval/rigs/icono_mano.json",
+  "medieval/rigs/icono_luna.json",
+  "medieval/rigs/icono_horizonte.json",
+  "medieval/rigs/icono_aire.json"
  ],
  "scenes": [
   "medieval/scenes/castle_night.json",

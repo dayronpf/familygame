@@ -277,6 +277,29 @@ void main() {
       expect(text, contains('mismas claves'));
     });
 
+    test(
+        'el dibujo de la tarjeta: se lee, llega a la opción y va en todas o en '
+        'ninguna', () {
+      final run = engine.begin(
+        StoryOptions(seed: seed, valueId: 'valentia', age: '6-8'),
+      );
+      expect(
+        run.pending!.options.map((o) => o.art),
+        ['icono_oreja', 'icono_mano', 'icono_luna'],
+      );
+
+      final j = packJson();
+      final q =
+          beat(linterna(j), 'se_apaga')['choice']! as Map<String, Object?>;
+      final options =
+          (q['options']! as List<Object?>).cast<Map<String, Object?>>();
+      (options[1]['icon']! as Map<String, Object?>).remove('art');
+      expect(problemsOf(j).join('\n'), contains('todas las opciones llevan'));
+
+      (options[1]['icon']! as Map<String, Object?>)['art'] = 'Icono Mano';
+      expect(() => Pack.fromJson(j), throwsA(isA<PackFormatException>()));
+    });
+
     test('no se pregunta en la primera escena ni en las tres últimas', () {
       final j = packJson();
       final p = linterna(j);

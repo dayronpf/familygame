@@ -1,12 +1,12 @@
 # 20 · Caminos elegibles: que el niño decida dentro del cuento
 
-> ## Estado (v0.6.0): la Fase 0 está hecha
+> ## Estado (v0.7.1): la Fase 0 está hecha y media Fase 1
 >
 > Lo que sigue es el **diseño** y sigue siendo la referencia. Lo construido hasta ahora, y en qué se aparta del diseño:
 >
 > | Pieza | Dónde | Notas |
 > |---|---|---|
-> | `choice` en el beat, `features: ["choice@1"]` y esquema JSON | `content/schema/pack-2.schema.json`, `Choice`/`ChoiceOption` en `models.dart` | Solo iconos **de Material Icons** (lista cerrada `choiceGlyphs`); los iconos con dibujo del arte (`art`) quedan para la Fase 1 |
+> | `choice` en el beat, `features: ["choice@1"]` y esquema JSON | `content/schema/pack-2.schema.json`, `Choice`/`ChoiceOption` en `models.dart` | `icon.glyph` (Material Icons, lista cerrada `choiceGlyphs`) es obligatorio y hace de repuesto; `icon.art` (id de un dibujo del arte) es opcional y debe ir **en todas las opciones de la pregunta o en ninguna** (regla del validador). Que el id exista lo comprueba un test de la app. Dibujos nuevos de `tools/art/props.py`: `icono_ojo`, `icono_oreja`, `icono_mano`, `icono_luna`, `icono_horizonte`, `icono_aire` (planos y de colores: valen sobre fondo claro y oscuro) |
 > | `StoryEngine.begin` → `StoryRun` (`choose`, `autoOption`, `toStory`), `StoryOptions.choices/interactive` | `engine.dart` | La elección **no consume** el generador: la automática usa `Mulberry32(seed + 0x9E3779B9·(i+1))`. `engineVersion` 0.3.0. Comprobado: 5 546 cuentos de las demás premisas salen **idénticos** a los del motor 0.2.0 |
 > | `ChosenOption`, `StoryScene.choice/pickedOption`, `recipe.choices` (`[{id, auto}]`, solo si hubo pregunta) | `models.dart`, `recipe.dart` | OpenAPI y `tools/feedback/test_contract.py` ya lo aceptan (opcional, `maxItems: 2`) |
 > | Validador: reglas de la pregunta (id, 2–3 opciones, etiqueta ≤ 28 sin puntuación, glifo, posición 30–60 %, no en la 1.ª ni en las 3 últimas, claves de `says`, equilibrio ±20 %) y **`_checkChoicePaths`** | `validator.dart` | Recorre cada reparto × cada ruta con **todas** las variantes elegibles de cada escena (no enumera cuentos). El «ancla» de la enseñanza se comprueba así: si una rama no añade `dio_el_paso`, el clímax queda sin variante y el pack se rechaza. Además cada opción debe salir en algún cuento de prueba |
@@ -14,11 +14,13 @@
 > | `StoryFlow` (el cuento a medias compartido por texto y cine) y `StoryPlayback` con `asking`, `resolve`, `firstWait` 20 s / `secondWait` 15 s | `app/lib/src/story_flow.dart`, `narration/playback.dart` | La voz dice la pregunta y cada opción (la tarjeta se ilumina), repite las opciones a los 20 s y a los 15 s más dice «Esta vez elijo yo.» y elige la app. Pausar, saltar o cerrar cancelan **sin elegir**: al seguir, se vuelve a preguntar |
 > | Pantalla de texto: bloque con la pregunta, las tarjetas, la nota `talk` para el adulto y «Elige por nosotros» (sin esperas); al responder queda «Elegisteis: …» y aparece el resto | `story_page.dart`, `ui/choice_cards.dart` | La enseñanza y la ficha de valoración solo salen con el cuento completo |
 > | Cine: las tarjetas (≥ 104 dp, icono de 48 dp, `Semantics` «Opción 1 de 3: …») sustituyen a los subtítulos mientras se pregunta | `cinema_page.dart` | **Temporizador de sueño armado ⇒ no se pregunta** (`SleepTimerButton.onArmed`) |
-> | Holograma, solo audio y «Leemos juntos» **eligen solos** (`StoryFlow.finish`) | `story_page.dart` | «Leemos juntos» podría preguntar (es el sitio natural para un adulto): Fase 1 |
+> | **Holograma**: la pregunta sale en un panel negro abajo (el prisma ocupa el centro) con las tarjetas y «Elige por nosotros»; **«Leemos juntos»**: la última página es la pregunta (el adulto la lee, el niño toca; con turnos la voz también la dice) y no hay «Siguiente» hasta contestar. **Solo audio** sigue eligiendo solo (`StoryFlow.finish`) | `hologram_page.dart`, `shared_reading_page.dart`, `player_support.dart` (`continueFlow`) | El holograma con prisma real **sigue sin probarse**: las tarjetas van fuera de la zona del prisma, pero no se ha visto con uno |
 > | Ajuste por niño «Preguntas en el cuento» (6–8 y 9–12; por defecto encendido) y `ShelfEntry.choices` (un cuento guardado se cuenta igual, sin preguntar) | `settings_page.dart`, `app_settings.dart`, `shelf/story_shelf.dart` | Solo dos estados: «Preguntar» y «que elija la app» (silencioso). El «Nunca» del diseño se fundió con él |
 > | Pruebas | `packages/caldero_engine/test/choice_test.dart`, `app/test/choices_test.dart`, `hero_name_test.dart`, `tools/feedback/test_contract.py` | |
 >
-> **Falta (Fase 1+):** probar de noche con 5–10 familias y medir (§6); iconos con arte; holograma con tarjetas; «Leemos juntos» con pregunta; `choice_ids` en el servidor y el análisis con `option` y las filas `auto` (§5); más premisas con elección; versión de 2 opciones para 4–5.
+> **Contenido con elección (pack 0.16.2):** `linterna` (6–8, 3 opciones), `puente` «El puente que crujía» (6–8, 3: *agarrarse a la cuerda* / *respirar hondo* / *mirar al frente*) y `sombras` «Las sombras del cuarto» (**4–5, 2 opciones**: *asomar un ojo* / *encender la vela*; la rama es corta y concreta). Todas con dibujo propio en las tarjetas.
+>
+> **Falta (Fase 1+):** probar de noche con 5–10 familias y medir (§6); `choice_ids` en el servidor y el análisis con `option` y las filas `auto` (§5); preguntas en cuentos de 9–12 (hasta 2); probar el holograma con un prisma real.
 
 > **Idea del dueño del producto:** en ciertos momentos la historia se detiene, se le hace una pregunta al niño y elige uno de 3 caminos.
 > **Veredicto corto:** sí, pero **poco y con forma de diamante**: una sola pregunta por cuento (solo perfiles 6–8 y 9–12 al principio),

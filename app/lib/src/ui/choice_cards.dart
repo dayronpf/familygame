@@ -1,6 +1,9 @@
 import 'package:caldero_engine/caldero_engine.dart';
 import 'package:flutter/material.dart';
 
+import '../art/rig_renderer.dart';
+import '../art/story_stage.dart';
+
 /// Nombres de Material Icons que pueden llevar las opciones (la lista cerrada está en el motor: `choiceGlyphs`).
 const Map<String, IconData> choiceIcons = {
   'hearing': Icons.hearing,
@@ -32,6 +35,7 @@ class ChoiceCards extends StatelessWidget {
     required this.onChoose,
     this.highlighted,
     this.dark = true,
+    this.art,
   });
 
   final StoryChoice choice;
@@ -42,6 +46,9 @@ class ChoiceCards extends StatelessWidget {
 
   /// Sobre fondo oscuro (cine, holograma) o claro (pantalla de texto).
   final bool dark;
+
+  /// El arte del pack: con él, las opciones que tienen dibujo propio lo enseñan (si no, el icono).
+  final StageArt? art;
 
   @override
   Widget build(BuildContext context) {
@@ -61,6 +68,7 @@ class ChoiceCards extends StatelessWidget {
             child: _Card(
               key: Key('choice-${choice.options[i].id}'),
               option: choice.options[i],
+              rig: art?.rigs[choice.options[i].art ?? ''],
               lit: highlighted == i,
               color: fg,
               accent: scheme.primary,
@@ -77,6 +85,7 @@ class _Card extends StatelessWidget {
   const _Card({
     super.key,
     required this.option,
+    required this.rig,
     required this.lit,
     required this.color,
     required this.accent,
@@ -85,6 +94,9 @@ class _Card extends StatelessWidget {
   });
 
   final StoryOption option;
+
+  /// El dibujo de la opción, si lo tiene y está en el arte.
+  final CompiledRig? rig;
   final bool lit;
   final Color color, accent;
   final bool dark;
@@ -113,11 +125,14 @@ class _Card extends StatelessWidget {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Icon(
-                    choiceIcons[option.glyph] ?? Icons.circle_outlined,
-                    size: 48,
-                    color: lit ? accent : color,
-                  ),
+                  if (rig != null)
+                    RigIcon(rig: rig!, size: 56, glow: lit ? accent : null)
+                  else
+                    Icon(
+                      choiceIcons[option.glyph] ?? Icons.circle_outlined,
+                      size: 48,
+                      color: lit ? accent : color,
+                    ),
                   const SizedBox(height: 8),
                   Text(
                     option.label,
@@ -135,4 +150,55 @@ class _Card extends StatelessWidget {
       ),
     );
   }
+}
+
+/// Un dibujo del arte (un objeto, un pictograma) en reposo, ajustado a un cuadrado de [size].
+class RigIcon extends StatelessWidget {
+  const RigIcon({super.key, required this.rig, required this.size, this.glow});
+
+  final CompiledRig rig;
+  final double size;
+
+  /// Resplandor tras el dibujo (la opción que se está nombrando).
+  final Color? glow;
+
+  @override
+  Widget build(BuildContext context) {
+    return ExcludeSemantics(
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          boxShadow: glow == null
+              ? null
+              : [
+                  BoxShadow(color: glow!.withValues(alpha: 0.5), blurRadius: 14)
+                ],
+        ),
+        child:
+            CustomPaint(size: Size.square(size), painter: _RigIconPainter(rig)),
+      ),
+    );
+  }
+}
+
+class _RigIconPainter extends CustomPainter {
+  _RigIconPainter(this.rig);
+
+  final CompiledRig rig;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final vb = rig.rig.viewBox;
+    final k = size.width / (vb[2] > vb[3] ? vb[2] : vb[3]);
+    canvas
+      ..translate(
+        (size.width - vb[2] * k) / 2 - vb[0] * k,
+        (size.height - vb[3] * k) / 2 - vb[1] * k,
+      )
+      ..scale(k, k);
+    rig.paintRest(canvas);
+  }
+
+  @override
+  bool shouldRepaint(_RigIconPainter old) => old.rig != rig;
 }

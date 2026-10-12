@@ -3887,7 +3887,8 @@
                 "id": "oido",
                 "label": "Seguir el balido",
                 "icon": {
-                  "glyph": "hearing"
+                  "glyph": "hearing",
+                  "art": "icono_oreja"
                 },
                 "says": {
                   "llegada": "El balido sonó ya muy cerca, y las manos de {hero} toparon con una corteza enorme: el roble viejo.",
@@ -3898,7 +3899,8 @@
                 "id": "tacto",
                 "label": "Ir de tronco en tronco",
                 "icon": {
-                  "glyph": "touch_app"
+                  "glyph": "touch_app",
+                  "art": "icono_mano"
                 },
                 "says": {
                   "llegada": "El último tronco era tan ancho que {hero} no podía abrazarlo entero: era el roble viejo.",
@@ -3909,7 +3911,8 @@
                 "id": "luna",
                 "label": "Esperar y respirar",
                 "icon": {
-                  "glyph": "hourglass_bottom"
+                  "glyph": "hourglass_bottom",
+                  "art": "icono_luna"
                 },
                 "says": {
                   "llegada": "Siguiendo el camino de plata, {hero} llegó al pie del roble viejo.",
@@ -7146,7 +7149,8 @@
                 "id": "cuerda",
                 "label": "Agarrarse a la cuerda",
                 "icon": {
-                  "glyph": "touch_app"
+                  "glyph": "touch_app",
+                  "art": "cuerda_rollo"
                 },
                 "says": {
                   "recuerdo": "la cuerda que nunca se soltó"
@@ -7156,7 +7160,8 @@
                 "id": "aire",
                 "label": "Respirar hondo",
                 "icon": {
-                  "glyph": "spa"
+                  "glyph": "spa",
+                  "art": "icono_aire"
                 },
                 "says": {
                   "recuerdo": "el aire que entra y sale, despacito"
@@ -7166,7 +7171,8 @@
                 "id": "vista",
                 "label": "Mirar al frente",
                 "icon": {
-                  "glyph": "visibility"
+                  "glyph": "visibility",
+                  "art": "icono_horizonte"
                 },
                 "says": {
                   "recuerdo": "una estrellita brillando al otro lado"
@@ -9980,7 +9986,8 @@
                 "id": "ojo",
                 "label": "Asomar un ojo",
                 "icon": {
-                  "glyph": "visibility"
+                  "glyph": "visibility",
+                  "art": "icono_ojo"
                 },
                 "says": {
                   "recuerdo": "se rio bajito"
@@ -9990,7 +9997,8 @@
                 "id": "vela",
                 "label": "Encender la vela",
                 "icon": {
-                  "glyph": "lightbulb"
+                  "glyph": "lightbulb",
+                  "art": "vela"
                 },
                 "says": {
                   "recuerdo": "sopló la vela"
@@ -10462,5 +10470,6 @@
         }
       ]
     }
-  ]
+  ],
+  "version": "0.16.2"
 }

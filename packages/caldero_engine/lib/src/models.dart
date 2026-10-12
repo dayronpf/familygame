@@ -461,12 +461,15 @@ const Set<String> choiceGlyphs = {
 /// Capacidades opcionales de un pack que este motor entiende (`pack.features`).
 const Set<String> supportedFeatures = {'choice@1'};
 
+final RegExp _artId = RegExp(r'^[a-z][a-z0-9_]*$');
+
 /// Una de las 2–3 opciones de una pregunta al niño.
 class ChoiceOption {
   const ChoiceOption({
     required this.id,
     required this.label,
     required this.glyph,
+    this.art,
     this.adds = const [],
     this.says = const {},
   });
@@ -477,6 +480,10 @@ class ChoiceOption {
   /// Lo que se ve y se dice en la tarjeta (corto, sin puntuación).
   final String label;
   final String glyph;
+
+  /// Dibujo propio de la tarjeta (id de un rig del arte del pack). [glyph] es el icono de repuesto si ese dibujo
+  /// no está.
+  final String? art;
   final List<String> adds;
 
   /// Frases que las escenas siguientes usan como `{idElección.clave}`.
@@ -527,7 +534,13 @@ class Choice {
       final icon = o['icon'];
       if (icon is! Map<String, Object?> || icon['glyph'] is! String) {
         throw PackFormatException(
-          '$ow: "icon" debe ser {"glyph": "nombre de Material Icons"}',
+          '$ow: "icon" debe ser {"glyph": "nombre de Material Icons"} (y, si se quiere, "art": id de un dibujo)',
+        );
+      }
+      final art = icon['art'];
+      if (art != null && (art is! String || !_artId.hasMatch(art))) {
+        throw PackFormatException(
+          '$ow: icon.art debe ser el id de un dibujo (minúsculas, cifras y «_»)',
         );
       }
       final says = o['says'];
@@ -540,6 +553,7 @@ class Choice {
           id: oid,
           label: _str(o, 'label', ow),
           glyph: icon['glyph']! as String,
+          art: art as String?,
           adds: _strList(o, 'adds', ow),
           says: says == null
               ? const {}
@@ -853,9 +867,13 @@ class StoryOption {
     required this.id,
     required this.label,
     required this.glyph,
+    this.art,
   });
 
   final String id, label, glyph;
+
+  /// Dibujo propio de la tarjeta, si lo tiene (si no, se usa [glyph]).
+  final String? art;
 }
 
 /// Una pregunta al niño con los tokens ya resueltos.

@@ -7,6 +7,8 @@ import 'package:caldero_app/src/audio/ambience.dart';
 import 'package:caldero_app/src/audio/background_audio.dart';
 import 'package:caldero_app/src/cinema_page.dart';
 import 'package:caldero_app/src/feedback/feedback_service.dart';
+import 'package:caldero_app/src/hologram_page.dart';
+import 'package:caldero_app/src/shared_reading_page.dart';
 import 'package:caldero_app/src/feedback/feedback_store.dart';
 import 'package:caldero_app/src/narration/narrator.dart';
 import 'package:caldero_app/src/narration/playback.dart';
@@ -428,6 +430,165 @@ void main() {
       );
       await tester.pumpWidget(const SizedBox());
       await tester.pump(const Duration(seconds: 10));
+    });
+  });
+
+  group('holograma', () {
+    testWidgets('la pregunta sale abajo con las tarjetas y el cuento sigue',
+        (tester) async {
+      tester.view
+        ..physicalSize = const Size(412, 915)
+        ..devicePixelRatio = 1;
+      addTearDown(tester.view.reset);
+      final art = StageArt(await tester.runAsync(
+        () => loadArtLibrary(FileBundle()),
+      ) as ArtLibrary);
+      final flow = StoryFlow(_pendingRun());
+      final voice = _Voice();
+      await tester.pumpWidget(MaterialApp(
+        home: HologramPage(
+          story: flow.story,
+          flow: flow,
+          art: art,
+          setups: const [],
+          narrator: voice,
+          ambience: _Music(),
+          dimmer: _Screen(),
+          background: NoBackgroundAudio(),
+        ),
+      ));
+      for (var i = 0;
+          i < 400 && find.byKey(const ValueKey('question')).evaluate().isEmpty;
+          i++) {
+        await tester.pump(const Duration(milliseconds: 100));
+      }
+      expect(find.byKey(const ValueKey('question')), findsOneWidget);
+      expect(flow.isComplete, isFalse);
+      expect(voice.said.last, isNotEmpty);
+
+      await tester.tap(find.byKey(const Key('choice-tacto')));
+      await tester.pump();
+      expect(flow.isComplete, isTrue);
+      expect(flow.story.choices.single.optionId, 'tacto');
+      expect(find.byKey(const ValueKey('question')), findsNothing);
+      for (var i = 0;
+          i < 600 && find.byKey(const Key('finished-back')).evaluate().isEmpty;
+          i++) {
+        await tester.pump(const Duration(milliseconds: 200));
+      }
+      expect(find.byKey(const Key('finished-back')), findsOneWidget);
+      await tester.pumpWidget(const SizedBox());
+      await tester.pump(const Duration(seconds: 10));
+    });
+  });
+
+  group('Leemos juntos', () {
+    testWidgets(
+        'la última página es la pregunta; al elegir aparece lo que sigue',
+        (tester) async {
+      tester.view
+        ..physicalSize = const Size(412, 915)
+        ..devicePixelRatio = 1;
+      addTearDown(tester.view.reset);
+      final flow = StoryFlow(_pendingRun());
+      await tester.pumpWidget(MaterialApp(
+        home: SharedReadingPage(
+          story: flow.story,
+          flow: flow,
+          narrator: _Voice(),
+          animate: false,
+        ),
+      ));
+      await tester.pump();
+      final pages = flow.story.scenes.length;
+      for (var i = 0; i < pages - 1; i++) {
+        await tester.tap(find.byKey(const Key('shared-next')));
+        await tester.pumpAndSettle();
+      }
+      // en la pregunta no hay «Siguiente» ni «Terminar» hasta contestar
+      expect(find.byKey(const Key('choice-block')), findsOneWidget);
+      expect(find.byKey(const Key('shared-next')), findsNothing);
+      expect(find.byKey(const Key('shared-done')), findsNothing);
+
+      await tester.ensureVisible(find.byKey(const Key('choice-luna')));
+      await tester.tap(find.byKey(const Key('choice-luna')));
+      await tester.pumpAndSettle();
+      expect(flow.isComplete, isTrue);
+      expect(flow.story.choices.single.optionId, 'luna');
+      expect(find.byKey(const Key('choice-picked')), findsOneWidget);
+      expect(find.textContaining('Elegisteis'), findsOneWidget);
+      // sigue el cuento por el camino elegido, hasta la enseñanza
+      var guard = 0;
+      while (find.byKey(const Key('shared-next')).evaluate().isNotEmpty &&
+          guard++ < 20) {
+        await tester.tap(find.byKey(const Key('shared-next')));
+        await tester.pumpAndSettle();
+      }
+      expect(find.byKey(const Key('shared-done')), findsOneWidget);
+      expect(find.text('Enseñanza'), findsOneWidget);
+    });
+
+    testWidgets('«Elige por nosotros» contesta la app', (tester) async {
+      tester.view
+        ..physicalSize = const Size(412, 915)
+        ..devicePixelRatio = 1;
+      addTearDown(tester.view.reset);
+      final flow = StoryFlow(_pendingRun());
+      await tester.pumpWidget(MaterialApp(
+        home: SharedReadingPage(
+          story: flow.story,
+          flow: flow,
+          narrator: _Voice(),
+          animate: false,
+        ),
+      ));
+      await tester.pump();
+      for (var i = 0; i < flow.story.scenes.length - 1; i++) {
+        await tester.tap(find.byKey(const Key('shared-next')));
+        await tester.pumpAndSettle();
+      }
+      await tester.ensureVisible(find.byKey(const Key('choice-for-me')));
+      await tester.tap(find.byKey(const Key('choice-for-me')));
+      await tester.pumpAndSettle();
+      expect(flow.isComplete, isTrue);
+      expect(flow.story.choices.single.auto, isTrue);
+      expect(find.byKey(const Key('choice-picked')), findsOneWidget);
+    });
+  });
+
+  group('dibujos en las tarjetas', () {
+    test('todo dibujo que pide el pack existe en el arte de la app', () {
+      for (final p in _pack().premises) {
+        for (final b in p.beats) {
+          for (final o in b.choice?.options ?? const <ChoiceOption>[]) {
+            if (o.art != null) {
+              expect(
+                  File('assets/art/medieval/rigs/${o.art}.json').existsSync(),
+                  isTrue,
+                  reason: '${p.id}/${o.id}: falta el dibujo «${o.art}»');
+            }
+          }
+        }
+      }
+    });
+
+    testWidgets('con arte la tarjeta enseña el dibujo; sin él, el icono',
+        (tester) async {
+      final art = StageArt(await tester.runAsync(
+        () => loadArtLibrary(FileBundle()),
+      ) as ArtLibrary);
+      final q = _pendingRun().pending!;
+      Future<void> show(StageArt? a) => tester.pumpWidget(MaterialApp(
+            home: Scaffold(
+              body: ChoiceCards(choice: q, onChoose: (_) {}, art: a),
+            ),
+          ));
+      await show(art);
+      expect(find.byType(RigIcon), findsNWidgets(3));
+      expect(find.byIcon(Icons.hearing), findsNothing);
+      await show(null);
+      expect(find.byType(RigIcon), findsNothing);
+      expect(find.byIcon(Icons.hearing), findsOneWidget);
     });
   });
 

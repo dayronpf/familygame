@@ -363,7 +363,12 @@ StoryChoice _renderChoice(Choice c, Map<String, Entity> cast) => StoryChoice(
       talk: c.talk == null ? null : renderTemplate(c.talk!, cast),
       options: [
         for (final o in c.options)
-          StoryOption(id: o.id, label: o.label, glyph: o.glyph),
+          StoryOption(
+            id: o.id,
+            label: o.label,
+            glyph: o.glyph,
+            art: o.art,
+          ),
       ],
     );
 

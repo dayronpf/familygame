@@ -1,1 +1,1 @@
-Cambiar este archivo (y subirlo) compila un APK de prueba. Ultima peticion: v0.7.1 con efectos de sonido reales, privacidad y borrar datos, preguntas nuevas en Las sombras del cuarto y El puente que crujia, y retoques de arte (vapor, viento, luna, puente, capa, lengua, cabrita).
+Cambiar este archivo (y subirlo) compila un APK de prueba. Ultima peticion: v0.7.2 con preguntas tambien en el holograma y en Leemos juntos, y tarjetas con dibujo propio (oreja, mano, luna, ojo, vela, cuerda, aire, horizonte).

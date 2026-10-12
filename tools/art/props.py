@@ -601,5 +601,67 @@ def cofre():
     return rig("cofre", "Cofre", [-70, -110, 140, 120], {}, node("root", (0, 0), shapes=shapes))
 
 
+# ------------------------------------------------- iconos de las tarjetas de elección
+# Pictogramas planos y de colores (se ven igual sobre fondo claro y oscuro). Origen: base, centrado; caben en 100×100.
+ICON_VIEW = [-60, -110, 120, 120]
+
+
+def _icon(id_, name, shapes):
+    return rig(id_, name, ICON_VIEW, {}, node("root", (0, 0), shapes=shapes))
+
+
+def icono_ojo():
+    """Un ojo abierto (asomar, mirar)."""
+    return _icon("icono_ojo", "Icono: ojo", [
+        S("M-54,-56 C-32,-94 32,-94 54,-56 C32,-18 -32,-18 -54,-56 Z", "#f6f1e4", "#3a2f4a", 4),
+        S(ell(0, -56, 23, 23), "#4aa3a0", "#2a5f66", 3), S(ell(0, -56, 11, 11), "#1b2a33", None, 0),
+        S(ell(-7, -64, 5, 5), "#ffffff", None, 0),
+        S("M-40,-86 L-46,-98 M-14,-92 L-16,-106 M14,-92 L16,-106 M40,-86 L46,-98", None, "#3a2f4a", 4)])
+
+
+def icono_oreja():
+    """Una oreja con dos ondas de sonido (escuchar, seguir un ruido)."""
+    return _icon("icono_oreja", "Icono: oreja", [
+        S("M4,-100 C42,-100 54,-62 38,-40 C28,-26 32,-12 16,-8 C0,-4 -10,-14 -8,-28 C-6,-40 -28,-44 -32,-64 "
+          "C-34,-84 -14,-100 4,-100 Z", "#f0b890", "#7a4a2a", 4),
+        S("M6,-84 C26,-82 32,-62 20,-50 C12,-42 10,-34 10,-26", None, "#c98860", 4),
+        S("M-44,-78 C-54,-66 -54,-48 -44,-36", None, "#4aa3a0", 4), S("M-56,-88 C-70,-70 -70,-44 -56,-26", None, "#4aa3a0", 4)])
+
+
+def icono_mano():
+    """Una mano abierta con ondas al tocar (tantear, tocar)."""
+    return _icon("icono_mano", "Icono: mano", [
+        S(rrect(-28, -94, 13, 46, 6), "#f0b890", "#7a4a2a", 3), S(rrect(-13, -102, 13, 54, 6), "#f0b890", "#7a4a2a", 3),
+        S(rrect(2, -100, 13, 52, 6), "#f0b890", "#7a4a2a", 3), S(rrect(17, -90, 12, 42, 6), "#f0b890", "#7a4a2a", 3),
+        S("M-26,-50 C-48,-54 -56,-38 -42,-26 C-34,-20 -26,-26 -24,-30 Z", "#f0b890", "#7a4a2a", 3),
+        S(rrect(-28, -62, 58, 50, 20), "#f0b890", "#7a4a2a", 3),
+        S("M-10,-34 C0,-26 12,-28 18,-36", None, "#c98860", 3)])
+
+
+def icono_luna():
+    """Media luna con estrellitas (esperar, dormir)."""
+    return _icon("icono_luna", "Icono: luna", [
+        S("M10,-100 A46,46 0 1 0 46,-30 A36,36 0 1 1 10,-100 Z", "#f6e27a", "#b8962a", 4),
+        S(poly([(40, -92), (43, -83), (52, -80), (43, -77), (40, -68), (37, -77), (28, -80), (37, -83)]), "#fff6c0", "#b8962a", 2),
+        S(poly([(48, -58), (50, -52), (56, -50), (50, -48), (48, -42), (46, -48), (40, -50), (46, -52)]), "#fff6c0", "#b8962a", 2)])
+
+
+def icono_horizonte():
+    """Un sol asomando tras unas lomas (mirar al frente)."""
+    rays = "M0,-104 L0,-90 M-34,-92 L-26,-82 M34,-92 L26,-82 M-48,-66 L-36,-62 M48,-66 L36,-62"
+    return _icon("icono_horizonte", "Icono: horizonte", [
+        S(rays, None, "#e8a526", 4), S(ell(0, -52, 26, 26), "#f4c542", "#b8800a", 4),
+        S("M-56,-26 C-34,-52 -12,-32 2,-38 C22,-46 40,-28 56,-26 L56,-6 L-56,-6 Z", "#6aa84f", "#2f5a24", 4),
+        S("M-56,-14 C-30,-22 20,-8 56,-16", None, "#4a8a3a", 3)])
+
+
+def icono_aire():
+    """Rayas de aire que se curvan (respirar hondo)."""
+    return _icon("icono_aire", "Icono: aire", [
+        S("M-54,-76 C-30,-90 0,-68 28,-80 C46,-88 58,-76 54,-64 C50,-58 40,-62 40,-70", None, "#4aa3a0", 7),
+        S("M-62,-50 C-34,-64 -4,-40 32,-54 C54,-62 66,-46 60,-34 C54,-28 44,-34 46,-42", None, "#6cc0bc", 7),
+        S("M-44,-24 C-22,-34 2,-16 24,-26 C36,-32 42,-24 38,-16", None, "#4aa3a0", 7)])
+
+
 def build_all():
-    return [campana(), campana_rota(), linterna(), linterna_apagada(), olla(), pan(), trozos_de_pan(), buho(), cabrita(), bolsa(), cometa(), girasol(), semillas(), semillas_dos(), mesa(), manta(), taza(), taza_leche(), taza_volcada(), mariposa(), escalones(), capa(), sombra_gigante(), cuenco(), cuenco_vacio(), rafaga(), regadera(), cinta(), girasol_seco(), campana_colgada(), cuerda_rollo(), roble(), puerta_cabana(), maceta(), maceta_brote(), piedras(), hierba(), pedernal(), vela(), saco(), cofre()]
+    return [campana(), campana_rota(), linterna(), linterna_apagada(), olla(), pan(), trozos_de_pan(), buho(), cabrita(), bolsa(), cometa(), girasol(), semillas(), semillas_dos(), mesa(), manta(), taza(), taza_leche(), taza_volcada(), mariposa(), escalones(), capa(), sombra_gigante(), cuenco(), cuenco_vacio(), rafaga(), regadera(), cinta(), girasol_seco(), campana_colgada(), cuerda_rollo(), roble(), puerta_cabana(), maceta(), maceta_brote(), piedras(), hierba(), pedernal(), vela(), saco(), cofre(), icono_ojo(), icono_oreja(), icono_mano(), icono_luna(), icono_horizonte(), icono_aire()]

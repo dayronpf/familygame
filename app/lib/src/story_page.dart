@@ -175,7 +175,8 @@ class _StoryPageState extends State<StoryPage>
     final ambience = widget.ambience?.call();
     final page = hologram
         ? HologramPage(
-            story: _flow?.finish() ?? _story,
+            story: _story,
+            flow: _flow,
             art: art,
             setups: _setups,
             narrator: narrator,
@@ -211,7 +212,8 @@ class _StoryPageState extends State<StoryPage>
   void _openSharedReading() {
     Navigator.of(context).push(MaterialPageRoute<void>(
       builder: (_) => SharedReadingPage(
-        story: _flow?.finish() ?? _story,
+        story: _story,
+        flow: _flow,
         art: _stageArt,
         setups: _setups,
         narrator: widget.narrator?.call(),
@@ -331,6 +333,7 @@ class _StoryPageState extends State<StoryPage>
             ChoiceCards(
               choice: q,
               dark: false,
+              art: _stageArt,
               onChoose: (id) => _flow?.choose(id),
             ),
             const SizedBox(height: 8),

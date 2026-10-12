@@ -10,6 +10,7 @@ import 'audio/sfx.dart';
 import 'narration/narrator.dart';
 import 'narration/playback.dart';
 import 'settings/app_settings.dart';
+import 'story_flow.dart';
 import 'ui/screen_dimmer.dart';
 
 /// Cómo se crean la voz y el sonido de fondo (las pruebas ponen versiones mudas).
@@ -68,6 +69,30 @@ List<PlayScene> playScenes(
         isMoral: true));
   }
   return out;
+}
+
+/// Los dibujos de lo contado hasta ahora (con preguntas el cuento crece, así que se calculan al vuelo).
+List<StageSetup?> flowSetups(StageArt? art, Story story) => art == null
+    ? const []
+    : [
+        for (final s in story.scenes) stageFor(art, story.cast, s.directives),
+      ];
+
+/// El niño contestó (o eligió la app) la pregunta de la escena [asked]: responde en el [flow] y devuelve **todas**
+/// las escenas que vienen después (hasta la enseñanza si el cuento ya está completo).
+List<PlayScene> continueFlow(
+  StoryFlow flow,
+  StageArt? art,
+  int asked,
+  String? optionId,
+) {
+  optionId == null ? flow.chooseForMe() : flow.choose(optionId);
+  final all = playScenes(
+    flow.story,
+    flowSetups(art, flow.story),
+    complete: flow.isComplete,
+  );
+  return all.sublist(asked + 1);
 }
 
 /// Reloj de animación (segundos) que se detiene con «reducir movimiento».
