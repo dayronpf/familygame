@@ -6,7 +6,8 @@ import 'package:caldero_engine/caldero_engine.dart';
 /// Genera un corpus de cuentos legibles (Markdown) para revisión editorial, con las directivas de
 /// escena (fondo, personajes en pantalla, ánimo) para poder juzgar también texto ↔ ilustración.
 ///
-/// Uso: `dart run caldero_engine:sample_stories <pack.json> <carpeta> [por_enseñanza=12]`
+/// Uso: `dart run caldero_engine:sample_stories <pack.json> <carpeta> [por_enseñanza=12] [edad]`
+/// (con `edad` —`2-3`, `4-5`, `6-8` o `9-12`— solo salen cuentos de esa edad y, en el texto, la enseñanza se dice como en la app)
 ///
 /// Elige cuentos variados: repartos distintos primero y, después, otras combinaciones de variantes.
 void main(List<String> args) {
@@ -21,6 +22,7 @@ void main(List<String> args) {
   );
   final out = Directory(args[1])..createSync(recursive: true);
   final perMoral = args.length > 2 ? int.parse(args[2]) : 12;
+  final age = args.length > 3 ? args[3] : null;
   final engine = StoryEngine(pack);
   final index = StringBuffer('# Corpus de cuentos\n\n');
 
@@ -31,7 +33,14 @@ void main(List<String> args) {
     for (var seed = 1; seed < 20000 && chosen.length < perMoral; seed++) {
       final Story s;
       try {
-        s = engine.generate(StoryOptions(seed: seed, valueId: moral.id));
+        s = engine.generate(
+          StoryOptions(
+            seed: seed,
+            valueId: moral.id,
+            age: age,
+            interactive: false,
+          ),
+        );
       } on StoryGenerationException {
         break;
       }
@@ -85,7 +94,7 @@ void main(List<String> args) {
           ..writeln();
         words += RegExp(r'[\wáéíóúüñÁÉÍÓÚÜÑ]+').allMatches(sc.text).length;
       }
-      b.writeln('**Enseñanza:** ${s.moral.text}  \n*(≈ $words palabras)*');
+      b.writeln('**Enseñanza:** ${s.moralLine}  \n*(≈ $words palabras)*');
       final name = '${s.moral.id}-${s.seed.toString().padLeft(5, '0')}.md';
       File('${out.path}/$name').writeAsStringSync(b.toString());
       index.writeln(
