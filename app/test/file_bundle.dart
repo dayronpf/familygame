@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/services.dart';
@@ -23,4 +24,23 @@ class FileBundle extends AssetBundle {
     Future<T> Function(String value) parser,
   ) async =>
       parser(await loadString(key));
+}
+
+/// El mismo arte y el mismo pack, pero sin los cuentos de una edad (para probar lo que pasa cuando un pack no los
+/// tiene todavía).
+class FileBundleWithoutAge extends FileBundle {
+  FileBundleWithoutAge(this.age);
+
+  final String age;
+
+  @override
+  Future<String> loadString(String key, {bool cache = true}) async {
+    final text = await super.loadString(key, cache: cache);
+    if (!key.endsWith('packs/medieval/pack.json')) return text;
+    final json = jsonDecode(text) as Map<String, Object?>;
+    (json['premises']! as List).removeWhere(
+      (p) => ((p as Map)['ages'] as List).contains(age),
+    );
+    return jsonEncode(json);
+  }
 }

@@ -82,7 +82,9 @@
   "medieval/rigs/icono_mano.json",
   "medieval/rigs/icono_luna.json",
   "medieval/rigs/icono_horizonte.json",
-  "medieval/rigs/icono_aire.json"
+  "medieval/rigs/icono_aire.json",
+  "medieval/rigs/torre_baja.json",
+  "medieval/rigs/torre_final.json"
  ],
  "scenes": [
   "medieval/scenes/castle_night.json",

@@ -57,11 +57,12 @@ void main() {
     AppSettings? settings,
     FakeVoices? voices,
     bool wizard = true,
+    AssetBundle? bundle,
   }) async {
     phone(tester);
     final s = settings ?? AppSettings(MemorySettingsStore());
     await tester.pumpWidget(CalderoApp(
-      bundle: _bundle,
+      bundle: bundle ?? _bundle,
       feedback: _feedback(),
       settings: s,
       voices: (voices ?? FakeVoices()).services,
@@ -256,7 +257,7 @@ void main() {
 
     testWidgets('elegir una edad sin cuentos lo explica con honestidad',
         (tester) async {
-      await openApp(tester);
+      await openApp(tester, bundle: FileBundleWithoutAge('9-12'));
       await next(tester);
       await next(tester);
       await tester.tap(find.byKey(const Key('age-9-12')));
@@ -361,7 +362,12 @@ void main() {
         (tester) async {
       final settings = AppSettings(MemorySettingsStore());
       await settings.completeWizard();
-      await openApp(tester, settings: settings, wizard: false);
+      await openApp(
+        tester,
+        settings: settings,
+        wizard: false,
+        bundle: FileBundleWithoutAge('9-12'),
+      );
       await openSettings(tester);
 
       expect(find.text('Cuentos y voz'), findsOneWidget);

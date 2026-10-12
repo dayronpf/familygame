@@ -975,7 +975,11 @@ final List<(RegExp, String, Set<String>)> _objectWords = [
     {'cuenco', 'cuenco_vacio'}
   ),
   (RegExp(r'\bcabrita\b', caseSensitive: false), 'cabrita', {'cabrita'}),
-  (RegExp(r'\bpiedras\b', caseSensitive: false), 'piedras', {'piedras'}),
+  (
+    RegExp(r'\bpiedras\b', caseSensitive: false),
+    'piedras',
+    {'piedras', 'torre_baja', 'torre_final'}
+  ),
   (
     RegExp(r'\bcampana\b', caseSensitive: false),
     'campana',

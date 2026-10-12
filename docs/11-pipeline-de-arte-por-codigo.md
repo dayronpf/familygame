@@ -145,7 +145,7 @@ Nombre provisional: **«Reino de la Luna»** (tema medieval amable, coherente co
 **Lugares (~15):** castillo ✔, molino ✔, aldea, camino real, bosque encantado, puente del río, torre del mago, mercado, campo de
 torneo, cueva del dragón, granja, biblioteca del castillo, colina de las luciérnagas ✔, lago, taberna del pueblo.
 
-**Enseñanzas (6):** honestidad, generosidad, valentía + **humildad, perseverancia, amistad** (se escriben nuevas junto a los fragmentos).
+**Enseñanzas (6):** honestidad, generosidad, valentía + **humildad, perseverancia, amistad** (✔ añadidas en el pack 0.18, con cuentos para las cuatro edades).
 
 **Contenido que falta escribir:** hoy el pack `medieval` (`content/packs/medieval/`) tiene **3 premisas** completas (≈ 565 palabras cada una,
 9–10 escenas) con los 6 personajes dibujados, 5 lugares y 3 enseñanzas; el objetivo es **≥ 3 premisas por enseñanza** y las

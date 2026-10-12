@@ -549,6 +549,28 @@ def piedras():
     return rig("piedras", "Piedras del río", [-150, -40, 300, 80], {}, node("root", (0, 0), shapes=shapes))
 
 
+def _stack(id_, name, sizes):
+    """Torre de piedras planas apiladas, la de abajo la más grande. Origen: base, centrada."""
+    shapes, y = [], 0
+    for i, rx in enumerate(sizes):
+        h = 11 if i < len(sizes) - 1 else 10
+        dx = (-3, 4, -2, 3, -1)[i % 5]
+        shade_ = ("#8a8f9a", "#9aa0ab", "#7d838f", "#a3a9b4", "#8f95a0")[i % 5]
+        shapes += [S(ell(dx, y - h, rx, h + 2), shade_, "#3a3f4a", 2.5), S(ell(dx - rx * 0.2, y - h - 4, rx * 0.55, 4), "#c4cad4", None, 0, 0.7)]
+        y -= h * 1.7
+    return rig(id_, name, [-60, -110, 120, 120], {}, node("root", (0, 0), shapes=shapes))
+
+
+def torre_baja():
+    """Tres piedras apiladas (la torre a medio hacer)."""
+    return _stack("torre_baja", "Torre de piedras baja", [34, 26, 18])
+
+
+def torre_final():
+    """Cinco piedras apiladas, de grande a pequeña (la torre bien hecha)."""
+    return _stack("torre_final", "Torre de piedras", [44, 36, 28, 21, 14])
+
+
 # ---------------------------------------------------------------- hierba
 GRASS = {"leaf": "#9fd8e8", "leaf2": "#cfeff5", "halo": "#bfe8ff"}
 
@@ -664,4 +686,4 @@ def icono_aire():
 
 
 def build_all():
-    return [campana(), campana_rota(), linterna(), linterna_apagada(), olla(), pan(), trozos_de_pan(), buho(), cabrita(), bolsa(), cometa(), girasol(), semillas(), semillas_dos(), mesa(), manta(), taza(), taza_leche(), taza_volcada(), mariposa(), escalones(), capa(), sombra_gigante(), cuenco(), cuenco_vacio(), rafaga(), regadera(), cinta(), girasol_seco(), campana_colgada(), cuerda_rollo(), roble(), puerta_cabana(), maceta(), maceta_brote(), piedras(), hierba(), pedernal(), vela(), saco(), cofre(), icono_ojo(), icono_oreja(), icono_mano(), icono_luna(), icono_horizonte(), icono_aire()]
+    return [campana(), campana_rota(), linterna(), linterna_apagada(), olla(), pan(), trozos_de_pan(), buho(), cabrita(), bolsa(), cometa(), girasol(), semillas(), semillas_dos(), mesa(), manta(), taza(), taza_leche(), taza_volcada(), mariposa(), escalones(), capa(), sombra_gigante(), cuenco(), cuenco_vacio(), rafaga(), regadera(), cinta(), girasol_seco(), campana_colgada(), cuerda_rollo(), roble(), puerta_cabana(), maceta(), maceta_brote(), piedras(), hierba(), pedernal(), vela(), saco(), cofre(), icono_ojo(), icono_oreja(), icono_mano(), icono_luna(), icono_horizonte(), icono_aire(), torre_baja(), torre_final()]

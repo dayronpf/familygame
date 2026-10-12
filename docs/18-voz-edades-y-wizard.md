@@ -79,11 +79,14 @@ familias por grupo):
 
   | Edad | Cuentos | Palabras | Oración media | Oración más larga |
   |---|---|---|---|---|
-  | 2–3 | `cabrita`, `piedras`, `taza` | 175–190 | 6,5–7,4 | ≤ 17 |
-  | 4–5 | `linterna_teo`, `manta_lia`, `campana_mediodia`, `panecillo`, `sombras`, `sopa` | 296–353 | 7,5–9,4 | ≤ 20 |
-  | 6–8 | `campana`, `olla`, `linterna`, `pozo`, `girasol`, `puente` | 580–930 | 8,3–11,9 | ≤ 32 |
+  | 2–3 | `cabrita`, `piedras`, `taza`, `ayudita`, `otra_vez`, `regar_juntos` | 175–205 | 4,5–7,4 | ≤ 17 |
+  | 4–5 | `linterna_teo`, `manta_lia`, `campana_mediodia`, `panecillo`, `sombras`, `sopa`, `cuenco_yo_solo`, `torre_de_piedras`, `cinta_de_lia` | 296–400 | 7,5–9,4 | ≤ 20 |
+  | 6–8 | `campana`, `olla`, `linterna`, `pozo`, `girasol`, `puente`, `roble_atrapado`, `escalera_torre`, `amigo_nuevo` | 580–1 020 | 8,3–11,9 | ≤ 32 |
+  | 9–12 | `eco_colina`, `huerto_seco`, `faro_lago`, `aprendiz_sabelotodo`, `cometa_norte`, `dos_faroles` | 1 360–1 720 | 10–20 | — |
 
-  Cada edad tiene al menos un cuento por enseñanza (honestidad, generosidad, valentía) y una prueba lo exige.
+  Cada edad tiene al menos un cuento por enseñanza (honestidad, generosidad, valentía, humildad, perseverancia y amistad) y una prueba
+  lo exige. Los cuentos nuevos (pack 0.18) se escribieron con la guía [23](23-guia-de-autoria.md) y solo los ha revisado el validador y
+  una mirada a las ilustraciones: falta la prueba con lectores ([24](24-prueba-editorial-con-lectores.md)).
 * **Reglas del validador por edad** (`_checkAge`, además de las de siempre): palabras del perfil con un margen del 15 %, oración media y
   oración máxima (el doble de la típica), **sin villano** en 2–5, vocabulario (2–3 sin «miedo», «oscuro», «llorar», «perdido»…; 4–5 sin
   monstruos ni peligro de verdad) y el último párrafo **nunca termina en pregunta** (para dormir se cierra en calma).

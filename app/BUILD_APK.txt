@@ -1,1 +1,1 @@
-Cambiar este archivo (y subirlo) compila un APK de prueba. Ultima peticion: v0.7.2 con preguntas tambien en el holograma y en Leemos juntos, y tarjetas con dibujo propio (oreja, mano, luna, ojo, vela, cuerda, aire, horizonte).
+Cambiar este archivo (y subirlo) compila un APK de prueba. Ultima peticion: v0.8.0 con 15 cuentos nuevos (9-12 anos y mas de 2-3, 4-5 y 6-8), tres ensenanzas nuevas (humildad, perseverancia, amistad) y tres lugares nuevos (colina, huerto, lago).

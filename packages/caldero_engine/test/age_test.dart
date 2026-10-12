@@ -64,7 +64,7 @@ void main() {
     test('todos los cuentos posibles encajan en el perfil que declaran', () {
       final seen = <String>{};
       final bad = <String>[];
-      for (final age in ['2-3', '4-5', '6-8']) {
+      for (final age in ['2-3', '4-5', '6-8', '9-12']) {
         final profile = AgeProfile.byId(age)!;
         for (var seed = 1; seed <= 1500; seed++) {
           final s = engine.generate(StoryOptions(seed: seed, age: age));
@@ -84,10 +84,11 @@ void main() {
       expect(bad, isEmpty, reason: bad.take(5).join('\n'));
     });
 
-    test('hay cuentos para 2–3, 4–5 y 6–8, cada uno con las tres enseñanzas',
+    test('hay cuentos para las cuatro edades, cada una con las seis enseñanzas',
         () {
-      expect(pack.agesWithStories, {'2-3', '4-5', '6-8'});
-      for (final age in ['2-3', '4-5', '6-8']) {
+      expect(pack.agesWithStories, {'2-3', '4-5', '6-8', '9-12'});
+      expect(pack.morals, hasLength(6));
+      for (final age in ['2-3', '4-5', '6-8', '9-12']) {
         for (final m in pack.morals) {
           expect(
             pack.premises
@@ -121,7 +122,7 @@ void main() {
 
     test('con la edad pedida solo salen cuentos de esa edad', () {
       for (var seed = 1; seed <= 120; seed++) {
-        for (final age in ['2-3', '4-5', '6-8']) {
+        for (final age in ['2-3', '4-5', '6-8', '9-12']) {
           final s = engine.generate(StoryOptions(seed: seed, age: age));
           final id = s.scenes.first.fragmentId.split('.').first;
           expect(pack.premises.firstWhere((p) => p.id == id).ages, [age]);
@@ -133,7 +134,12 @@ void main() {
       expect(pack.resolveAge('6-8'), '6-8');
       expect(pack.resolveAge('2-3'), '2-3');
       expect(pack.resolveAge('4-5'), '4-5');
-      expect(pack.resolveAge('9-12'), '6-8');
+      expect(pack.resolveAge('9-12'), '9-12');
+      // un pack sin cuentos de 9–12 usa el perfil más cercano
+      final j = packJson();
+      (j['premises']! as List)
+          .removeWhere((p) => (p as Map)['ages'].toString().contains('9-12'));
+      expect(Pack.fromJson(j).resolveAge('9-12'), '6-8');
       expect(pack.resolveAge(null), isNull);
       expect(pack.resolveAge('raro'), isNull);
     });

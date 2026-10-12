@@ -100,6 +100,8 @@ void main() {
         (tester) async {
       await openApp(tester);
       await tester.scrollUntilVisible(find.byKey(const Key('guide-card')), 200);
+      await tester.ensureVisible(find.byKey(const Key('guide-card')));
+      await tester.pumpAndSettle();
       await tester.tap(find.byKey(const Key('guide-card')));
       await tester.pumpAndSettle();
       expect(find.byKey(const Key('guide-download')), findsOneWidget);
