@@ -1,1 +1,1 @@
-Cambiar este archivo (y subirlo) compila un APK de prueba. Ultima peticion: v0.8.1 con las correcciones de la revision editorial de los cuentos de 2-3 y 4-5 anos (concordancia, linterna en vez de vela, cierres para dormir, ensenanzas dichas una vez).
+Cambiar este archivo (y subirlo) compila un APK de prueba. Ultima peticion: v0.8.2, los Ajustes para adultos se abren aunque lo guardado en el telefono no se pueda leer (antes se quedaban cargando).

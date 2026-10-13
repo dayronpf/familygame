@@ -140,8 +140,14 @@ class _SettingsPageState extends State<SettingsPage> {
   }
 
   Future<void> _refresh() async {
-    final e = await widget.feedback.enabled;
-    final q = await widget.feedback.queuedCount();
+    // Si lo guardado en el teléfono no se puede leer, los ajustes se abren igual (con los valores de fábrica):
+    // antes se quedaban cargando para siempre.
+    var e = true;
+    var q = 0;
+    try {
+      e = await widget.feedback.enabled;
+      q = await widget.feedback.queuedCount();
+    } catch (_) {}
     if (!mounted) return;
     setState(() {
       _enabled = e;
@@ -165,7 +171,8 @@ class _SettingsPageState extends State<SettingsPage> {
     final settings = SettingsScope.watch(context);
     if (settings == null) return const [];
     final child = settings.child;
-    final profile = AgeProfile.byId(child.age)!;
+    final profile =
+        AgeProfile.byId(child.age) ?? AgeProfile.byId(AgeProfile.defaultId)!;
     final hasStories = widget.agesWithStories.contains(child.age);
     return [
       ListTile(
