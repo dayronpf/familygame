@@ -1,7 +1,19 @@
+import java.io.FileInputStream
+import java.util.Properties
+
 plugins {
     id("com.android.application")
     // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id("dev.flutter.flutter-gradle-plugin")
+}
+
+// Llave de RELEASE (la que publica en las tiendas): solo existe si hay `android/key.properties` (lo escribe el workflow
+// «Android (release firmado)» a partir de secretos, o el dueño en su Mac). Sin él se firma con la llave de prueba.
+val keystoreProperties = Properties()
+val keystorePropertiesFile = rootProject.file("key.properties")
+val hasReleaseKey = keystorePropertiesFile.exists()
+if (hasReleaseKey) {
+    keystoreProperties.load(FileInputStream(keystorePropertiesFile))
 }
 
 android {
@@ -40,11 +52,19 @@ android {
             keyAlias = "caldero-debug"
             keyPassword = "caldero-debug"
         }
+        if (hasReleaseKey) {
+            create("calderoRelease") {
+                storeFile = file(keystoreProperties.getProperty("storeFile"))
+                storePassword = keystoreProperties.getProperty("storePassword")
+                keyAlias = keystoreProperties.getProperty("keyAlias")
+                keyPassword = keystoreProperties.getProperty("keyPassword")
+            }
+        }
     }
 
     buildTypes {
         release {
-            signingConfig = signingConfigs.getByName("calderoTest")
+            signingConfig = signingConfigs.getByName(if (hasReleaseKey) "calderoRelease" else "calderoTest")
         }
         debug {
             signingConfig = signingConfigs.getByName("calderoTest")

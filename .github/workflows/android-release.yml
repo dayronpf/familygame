@@ -1,0 +1,84 @@
+name: Android (release firmado)
+
+# Compila el paquete para Google Play (.aab) y el APK, FIRMADOS con la llave de release del dueño. Solo a mano.
+# Hace falta guardar, una vez, estos secretos del repositorio (Settings → Secrets and variables → Actions):
+#   ANDROID_KEYSTORE_BASE64   el archivo .jks en base64   (base64 -w0 release.jks)
+#   ANDROID_KEYSTORE_PASSWORD contraseña del almacén
+#   ANDROID_KEY_ALIAS         alias de la llave
+#   ANDROID_KEY_PASSWORD      contraseña de la llave
+# La llave NUNCA debe estar en el repositorio ni pasar por un agente. Se crea con:
+#   keytool -genkeypair -v -keystore release.jks -alias caldero -keyalg RSA -keysize 2048 -validity 10000
+# Y se guarda una copia de seguridad: si se pierde, no se puede actualizar la app en Play (salvo con la firma de Play App Signing).
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  FLUTTER_VERSION: '3.47.6'
+
+jobs:
+  release:
+    name: Compilar .aab y APK firmados
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    defaults:
+      run:
+        working-directory: app
+    steps:
+      - uses: actions/checkout@v4
+      - name: Comprobar que están los secretos
+        env:
+          KS: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          PW: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          AL: ${{ secrets.ANDROID_KEY_ALIAS }}
+          KP: ${{ secrets.ANDROID_KEY_PASSWORD }}
+        run: |
+          for v in KS PW AL KP; do
+            if [ -z "${!v}" ]; then echo "::error::Falta un secreto de la llave de release (ver la cabecera de este workflow)"; exit 1; fi
+          done
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          cache: true
+      - run: flutter pub get
+      - name: Pruebas
+        run: flutter test
+      - name: Poner la llave de release
+        env:
+          KS: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          PW: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          AL: ${{ secrets.ANDROID_KEY_ALIAS }}
+          KP: ${{ secrets.ANDROID_KEY_PASSWORD }}
+        run: |
+          echo "$KS" | base64 -d > android/app/release.jks
+          {
+            echo "storeFile=release.jks"
+            echo "storePassword=$PW"
+            echo "keyAlias=$AL"
+            echo "keyPassword=$KP"
+          } > android/key.properties
+      - name: App Bundle (Google Play) y APK
+        run: |
+          for intento in 1 2 3; do
+            if flutter build appbundle --release && flutter build apk --release; then exit 0; fi
+            echo "::warning::falló la compilación (intento $intento de 3), posible descarga corrupta del NDK"
+            sleep 10
+          done
+          exit 1
+      - name: Quitar la llave del disco
+        if: always()
+        run: rm -f android/app/release.jks android/key.properties
+      - uses: actions/upload-artifact@v4
+        with:
+          name: caldero-release-firmado
+          path: |
+            app/build/app/outputs/bundle/release/app-release.aab
+            app/build/app/outputs/flutter-apk/app-release.apk
+          retention-days: 7
+          if-no-files-found: error

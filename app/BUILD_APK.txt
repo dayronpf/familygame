@@ -1,1 +1,1 @@
-Cambiar este archivo (y subirlo) compila un APK de prueba. Ultima peticion: v0.8.3 otra vez (fallo de descarga del NDK; ahora la compilacion reintenta).
+Cambiar este archivo (y subirlo) compila un APK de prueba. Ultima peticion: comprobar que la firma de release (key.properties opcional) no rompe la compilacion de prueba.
