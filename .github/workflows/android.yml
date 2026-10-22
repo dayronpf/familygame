@@ -41,7 +41,16 @@ jobs:
       - name: Pruebas antes de compilar
         run: flutter test
       - name: APK release (un solo archivo para cualquier teléfono)
-        run: flutter build apk --release
+        # La descarga del NDK de Android desde los servidores de Google falla a veces («Error on ZipFile unknown archive»,
+        # sdkmanager sale con 1). No es un fallo del código: se borra el NDK a medias y se reintenta hasta 3 veces.
+        run: |
+          for intento in 1 2 3; do
+            if flutter build apk --release; then exit 0; fi
+            echo "::warning::La compilación falló (intento $intento de 3); se limpia el NDK y se reintenta"
+            rm -rf "${ANDROID_SDK_ROOT:-/usr/local/lib/android/sdk}"/ndk/*.tmp "${ANDROID_SDK_ROOT:-/usr/local/lib/android/sdk}"/ndk/28.* 2>/dev/null || true
+            sleep 10
+          done
+          exit 1
       - name: Resumen
         run: |
           ls -lh build/app/outputs/flutter-apk/
