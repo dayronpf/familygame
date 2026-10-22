@@ -1,0 +1,38 @@
+name: Web legal (GitHub Pages)
+
+# Publica la política de privacidad y los términos de uso como web estática (las tiendas piden una dirección pública).
+# Requiere UNA VEZ que el dueño del repositorio active Pages: Settings → Pages → Source: «GitHub Actions».
+# Se ejecuta a mano o cuando cambian los textos legales o la marca (app/lib/src/brand.dart) en la rama principal.
+on:
+  workflow_dispatch:
+  push:
+    branches: ['main', 'master']
+    paths: ['content/legal/**', 'app/lib/src/brand.dart', 'tools/legal/**']
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python3 tools/legal/build_site.py site
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+      - id: deployment
+        uses: actions/deploy-pages@v4

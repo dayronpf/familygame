@@ -22,6 +22,7 @@ import 'file_bundle.dart';
 /// Herramienta de revisión, no una prueba: guarda capturas de las pantallas (splash, inicio, paquetes, mis cuentos,
 /// cuento) en el tamaño de un teléfono, con letra real, para revisarlas a ojo. Se salta si no se pide.
 ///   UI_OUT=/tmp/ui flutter test test/ui_shots_manual_test.dart
+/// `UI_SCALE=3` las saca a 1236×2676 px (tamaño de las fichas de las tiendas; por defecto 1×). Ver `tools/store/README.md`.
 void main() {
   final out = Platform.environment['UI_OUT'];
 
@@ -54,7 +55,10 @@ void main() {
       await tester.runAsync(() async {
         final b = boundary.currentContext!.findRenderObject()!
             as RenderRepaintBoundary;
-        final image = await b.toImage(pixelRatio: 1.0);
+        final image = await b.toImage(
+          pixelRatio:
+              double.tryParse(Platform.environment['UI_SCALE'] ?? '') ?? 1.0,
+        );
         final data = await image.toByteData(format: ui.ImageByteFormat.png);
         File('$out/$name.png').writeAsBytesSync(data!.buffer.asUint8List());
       });
@@ -122,7 +126,10 @@ void main() {
       await tester.runAsync(() async {
         final b = boundary.currentContext!.findRenderObject()!
             as RenderRepaintBoundary;
-        final image = await b.toImage(pixelRatio: 1.0);
+        final image = await b.toImage(
+          pixelRatio:
+              double.tryParse(Platform.environment['UI_SCALE'] ?? '') ?? 1.0,
+        );
         final data = await image.toByteData(format: ui.ImageByteFormat.png);
         File('$out/$name.png').writeAsBytesSync(data!.buffer.asUint8List());
       });
@@ -184,7 +191,10 @@ void main() {
     await tester.runAsync(() async {
       final b =
           boundary.currentContext!.findRenderObject()! as RenderRepaintBoundary;
-      final image = await b.toImage(pixelRatio: 1.0);
+      final image = await b.toImage(
+        pixelRatio:
+            double.tryParse(Platform.environment['UI_SCALE'] ?? '') ?? 1.0,
+      );
       final data = await image.toByteData(format: ui.ImageByteFormat.png);
       File('$out/14_guia.png').writeAsBytesSync(data!.buffer.asUint8List());
     });

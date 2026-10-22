@@ -23,6 +23,8 @@ jobs:
       - run: pip install jsonschema
       - name: Esquema JSON de los packs
         run: python3 tools/validate_schema.py content/packs/*/pack.json
+      - name: La web legal se genera (política y términos)
+        run: python3 tools/legal/build_site.py "$RUNNER_TEMP/site"
       - name: Lint del prototipo (referencia)
         run: python3 tools/prototype/caldero.py --pack content/packs/demo --lint
       - name: Assets de la app sincronizados con content/
