@@ -1,0 +1,1 @@
+Cambiar este archivo (y subirlo) lanza la prueba de la app en un emulador Android en GitHub.
