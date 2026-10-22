@@ -1,0 +1,1 @@
+Cambiar este archivo (y subirlo) compila la app para iPhone en GitHub (sin firmar). Ultima peticion: v0.8.2.

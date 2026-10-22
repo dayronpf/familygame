@@ -1,0 +1,53 @@
+name: iOS (compilación de prueba)
+
+# Compila la app para iPhone en una máquina macOS de GitHub (el contenedor donde trabaja el agente es Linux y no tiene Xcode).
+# Se ejecuta SOLO: a mano (Actions → «iOS (compilación de prueba)» → Run workflow) o cuando cambia el marcador
+# app/BUILD_IOS.txt en la rama de trabajo.
+#
+# SIN FIRMAR: `flutter build ios --no-codesign` demuestra que el proyecto compila con Xcode y deja `Runner.app`
+# (para el simulador no sirve: es de dispositivo). Para instalarlo en un iPhone o subirlo a TestFlight hace falta firmarlo
+# con la cuenta de Apple Developer del dueño: ver docs/25-compilar-para-iphone.md. Los certificados NO están en el repo.
+on:
+  workflow_dispatch:
+  push:
+    branches: ['claude/**']
+    paths: ['app/BUILD_IOS.txt']
+
+permissions:
+  contents: read
+
+env:
+  FLUTTER_VERSION: '3.47.6'
+
+jobs:
+  ios:
+    name: Compilar iOS (sin firmar)
+    runs-on: macos-latest
+    timeout-minutes: 45
+    defaults:
+      run:
+        working-directory: app
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          cache: true
+      - run: flutter pub get
+      - name: Versión de Xcode
+        run: xcodebuild -version
+      - name: iOS release sin firmar
+        run: flutter build ios --release --no-codesign
+      - name: Empaquetar Runner.app
+        run: |
+          cd build/ios/iphoneos
+          ls -lh
+          zip -qry Runner-sin-firmar.zip Runner.app
+          echo "### iOS compilado (sin firmar)" >> "$GITHUB_STEP_SUMMARY"
+          echo "Tamaño: $(du -h Runner-sin-firmar.zip | cut -f1)" >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: caldero-de-cuentos-ios-sin-firmar
+          path: app/build/ios/iphoneos/Runner-sin-firmar.zip
+          retention-days: 14
+          if-no-files-found: error

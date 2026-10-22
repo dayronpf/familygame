@@ -37,6 +37,7 @@ mientras avanza y puede proyectarse como **holograma** con una pirámide transpa
 | [docs/17-interfaz-para-ninos.md](docs/17-interfaz-para-ninos.md) | Interfaz para niños: splash, inicio, paquetes (los que llegarán, en gris), Mis cuentos, compartir y temporizador para dormir |
 | [docs/18-voz-edades-y-wizard.md](docs/18-voz-edades-y-wizard.md) | Voz (bug de adelantar, `texto_voz`), perfiles de edad, wizard de primer uso y Ajustes; lo diferido y por qué |
 | [docs/19-nombres-y-dominios.md](docs/19-nombres-y-dominios.md) | Nombres posibles del juego con su disponibilidad de dominio (.com, .app, .net, .org) y lo que falta comprobar (marca, tiendas) |
+| [docs/25-compilar-para-iphone.md](docs/25-compilar-para-iphone.md) | Cómo compilar e instalar en iPhone (en tu Mac o en GitHub sin firmar), y qué probar en iOS |
 | [docs/24-prueba-editorial-con-lectores.md](docs/24-prueba-editorial-con-lectores.md) | Protocolo para probar los cuentos pequeños con adultos y niños de verdad (hojas imprimibles con `reader_sheets`, umbrales y qué se corrige) |
 | [docs/23-guia-de-autoria.md](docs/23-guia-de-autoria.md) | Guía para escribir premisas nuevas: flujo de validación, lo que se puede dibujar, reglas por edad y estilo |
 | [docs/22-privacidad-y-tiendas.md](docs/22-privacidad-y-tiendas.md) | Qué datos guarda y envía la app, política de privacidad y términos (dentro de la app), «Ver mis datos»/«Borrar», y la lista de comprobación para las tiendas (Families Policy, etiqueta de privacidad) |
