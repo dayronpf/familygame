@@ -1,1 +1,1 @@
-Cambiar este archivo (y subirlo) compila un APK de prueba. Ultima peticion: v0.8.2, los Ajustes para adultos se abren aunque lo guardado en el telefono no se pueda leer (antes se quedaban cargando).
+Cambiar este archivo (y subirlo) compila un APK de prueba. Ultima peticion: v0.8.2 otra vez (la compilacion anterior fallo por una descarga corrupta del NDK): Ajustes para adultos se abren aunque lo guardado en el telefono no se pueda leer.
