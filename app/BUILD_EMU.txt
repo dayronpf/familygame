@@ -1,1 +1,1 @@
-Cambiar este archivo (y subirlo) lanza la prueba de la app en un emulador Android en GitHub.
+Cambiar este archivo (y subirlo) lanza la prueba de la app en un emulador Android en GitHub. (2.ª ejecucion: reintenta el toque de Saltar.)

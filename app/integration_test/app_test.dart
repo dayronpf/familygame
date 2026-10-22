@@ -43,9 +43,20 @@ void main() {
     await waitFor(tester, find.byKey(const Key('wizard-skip')));
     await shot('01-asistente');
 
-    // «Saltar» deja los valores por defecto y entra al inicio
-    await tester.tap(find.byKey(const Key('wizard-skip')));
-    await waitFor(tester, find.text('Crear cuento'));
+    // «Saltar» deja los valores por defecto y entra al inicio. La bienvenida animada puede tapar un rato el asistente:
+    // se reintenta el toque hasta que aparece el inicio.
+    final home = find.text('Crear cuento');
+    final end = DateTime.now().add(const Duration(seconds: 60));
+    while (home.evaluate().isEmpty && DateTime.now().isBefore(end)) {
+      final skip = find.byKey(const Key('wizard-skip'));
+      if (skip.evaluate().isNotEmpty) {
+        await tester.tap(skip, warnIfMissed: false);
+      }
+      for (var i = 0; i < 8; i++) {
+        await tester.pump(const Duration(milliseconds: 250));
+      }
+    }
+    await waitFor(tester, home, timeout: const Duration(seconds: 5));
     await shot('02-inicio');
 
     // Ajustes de adultos: pregunta de multiplicar → pantalla de ajustes (no debe quedarse cargando)
