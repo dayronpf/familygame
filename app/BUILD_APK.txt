@@ -1,1 +1,1 @@
-Cambiar este archivo (y subirlo) compila un APK de prueba. Ultima peticion: v0.8.2 otra vez (la compilacion anterior fallo por una descarga corrupta del NDK): Ajustes para adultos se abren aunque lo guardado en el telefono no se pueda leer.
+Cambiar este archivo (y subirlo) compila un APK de prueba. Ultima peticion: v0.8.3 con variantes nuevas en las 9 premisas antiguas de 2-3 y 4-5 anos (ya no se cuentan identicas cada noche), icono propio de la app y Ajustes que abren aunque lo guardado no se pueda leer.
