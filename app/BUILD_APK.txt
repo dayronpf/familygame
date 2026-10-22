@@ -1,1 +1,1 @@
-Cambiar este archivo (y subirlo) compila un APK de prueba. Ultima peticion: comprobar que la firma de release (key.properties opcional) no rompe la compilacion de prueba.
+Cambiar este archivo (y subirlo) compila un APK de prueba. Ultima peticion: v0.9.0 con preguntas al nino en dos cuentos de 9-12 anos (La luz del lago y La cometa del viento del norte) y firma de release opcional.
