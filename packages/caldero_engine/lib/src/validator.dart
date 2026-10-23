@@ -1008,7 +1008,11 @@ final List<(RegExp, String, Set<String>)> _objectWords = [
   ),
   (RegExp(r'\bcabrita\b', caseSensitive: false), 'cabrita', {'cabrita'}),
   // Mar de las Estrellas
-  (RegExp(r'\bmapas?\b', caseSensitive: false), 'mapa', {'mapa', 'mapa_roto'}),
+  (
+    RegExp(r'\bmapas?\b', caseSensitive: false),
+    'mapa',
+    {'mapa', 'mapa_roto', 'mapa_estelar'}
+  ),
   (RegExp(r'\bcatalejos?\b', caseSensitive: false), 'catalejo', {'catalejo'}),
   (RegExp(r'\bbrújulas?\b', caseSensitive: false), 'brújula', {'brujula'}),
   (RegExp(r'\bcaracolas?\b', caseSensitive: false), 'caracola', {'caracola'}),
