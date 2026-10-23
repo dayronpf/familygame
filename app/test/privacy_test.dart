@@ -64,7 +64,8 @@ void main() {
           reason: 'mientras no haya servidor, nada sale del teléfono');
     });
 
-    testWidgets('la pantalla enseña el texto (y avisa si faltan el titular o el correo)',
+    testWidgets(
+        'la pantalla enseña el texto (y avisa si faltan el titular o el correo)',
         (tester) async {
       phone(tester);
       await tester.pumpWidget(MaterialApp(
