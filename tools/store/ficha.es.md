@@ -20,7 +20,7 @@ sin compras, sin cuentas, nada sale del teléfono). Si cambia algo de eso, hay q
 
 ## Palabras clave (App Store) — 100 caracteres, separadas por comas, sin espacios
 
-> cuentos,dormir,niños,infantil,valores,piratas,castillos,audio,nana,noche,sirena,aventura,familia
+> cuentos,dormir,niños,infantil,valores,piratas,castillos,espacio,cohetes,audio,nana,noche,familia
 
 ## Descripción completa — hasta 4000 caracteres
 
@@ -28,10 +28,11 @@ sin compras, sin cuentas, nada sale del teléfono). Si cambia algo de eso, hay q
 >
 > Caldero de Cuentos mezcla personajes, lugares y aventuras para crear un cuento distinto cada vez que lo abres. Tú eliges la enseñanza de esta noche —honestidad, generosidad, valentía, humildad, perseverancia o amistad— y el caldero hace el resto. Si escribes el nombre de tu hijo o tu hija, será el protagonista del cuento.
 >
-> DOS MUNDOS PARA SOÑAR
+> TRES MUNDOS PARA SOÑAR
 >
 > • Reino de la Luna: castillos, magos, campanas rotas, linternas apagadas y semillas que se convierten en soles.
-> • Mar de las Estrellas (¡nuevo!): piratas buenos que navegan siguiendo las estrellas, mapas del tesoro, un faro en la niebla, una sirena que canta nanas y un pulpo travieso que solo quería jugar. Aquí los piratas no roban: exploran, ayudan a quien naufraga y cumplen su palabra.
+> • Mar de las Estrellas: piratas buenos que navegan siguiendo las estrellas, mapas del tesoro, un faro en la niebla, una sirena que canta nanas y un pulpo travieso que solo quería jugar. Aquí los piratas no roban: exploran, ayudan a quien naufraga y cumplen su palabra.
+> • Aldea de las Nubes (¡nuevo!): un pueblito que flota sobre las nubes, cohetes que van a la luna, una estación espacial y planetas de cristal y de jardines. Con un robot amable que hace preguntas raras, una astrónoma que sabe historias de cada estrella y un alien travieso de tres ojos que solo quería amigos. Cuentos para descubrir que la oscuridad está llena de luces.
 >
 > PENSADO PARA CADA EDAD
 >
@@ -41,7 +42,7 @@ sin compras, sin cuentas, nada sale del teléfono). Si cambia algo de eso, hay q
 >
 > • Una voz lee el cuento, a la velocidad de su edad.
 > • Ilustraciones animadas en cada escena: los personajes caminan, saludan, nadan y bostezan.
-> • Sonido de fondo suave (el mar suena a olas) y efectos que aparecen en su sitio: el crujido de un puente, el chapoteo de una ola.
+> • Sonido de fondo suave (el mar suena a olas; el espacio, a estrellas que titilan) y efectos que aparecen en su sitio: el crujido de un puente, el chapoteo de una ola.
 > • Modo cine, modo solo audio y temporizador de sueño que baja el volumen poco a poco.
 > • «Leemos juntos»: para leerlo en voz alta con tu hijo, página a página.
 >
@@ -58,10 +59,9 @@ sin compras, sin cuentas, nada sale del teléfono). Si cambia algo de eso, hay q
 >
 > Dulces sueños, y buen viaje.
 
-## Novedades de esta versión (0.10.0) — hasta 4000 / 500 caracteres
+## Novedades de esta versión (0.11.0) — hasta 4000 / 500 caracteres
 
-> ¡Nuevo mundo: el Mar de las Estrellas! 30 cuentos de piratas buenos, una sirena, un faro y un pulpo travieso, para todas las edades, con ilustraciones y sonido de olas.
-> Además: si escribes el nombre de tu hijo, el cuento le habla siempre en su género; la portada saluda con su protagonista; y la pregunta para adultos avisa cuando la respuesta no es correcta.
+> ¡Nuevo mundo: la Aldea de las Nubes! 30 cuentos de cohetes, planetas y estrellas para todas las edades, con un robot amable, un perrito astronauta y un alien travieso de tres ojos. Ilustraciones propias, sonido de estrellas y cuentos para perder el miedo a la oscuridad.
 
 ## Categoría
 

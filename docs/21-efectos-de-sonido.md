@@ -61,7 +61,10 @@ Cada paquete puede tener su fondo (`packAmbience` en `app/lib/src/audio/ambience
 eligen el del paquete del cuento (`ambienceFor(context, packId:)`), no el del paquete abierto. El **Mar de las Estrellas** suena
 a olas que rompen despacio, madera de barco que cruje y alguna gaviota lejana, sobre el colchón de nana del de siempre, más bajo
 (`tools/audio/make_ambient_mar.py`, sintetizado, CC0; 48 s en bucle, ≈ −14 dB de media como el otro). Va en **AAC (`.m4a`)**, porque
-iOS no reproduce Ogg.
+iOS no reproduce Ogg. La **Aldea de las Nubes** suena a un zumbido grave de nave tranquila, aire de nubes que va y viene y estrellas
+que titilan con campanitas pentatónicas, sobre el mismo colchón (`tools/audio/make_ambient_cosmos.py`, sintetizado, CC0, 48 s,
+≈ −15 dB, también en AAC). Sus onomatopeyas reutilizan sonidos: ¡Brrrum! (`thump`), ¡Boing! (`hop`), ¡Clac! (`click`),
+¡Glup! (`plop`) y ¡Zas! (`wind`).
 
 ## Pendiente
 

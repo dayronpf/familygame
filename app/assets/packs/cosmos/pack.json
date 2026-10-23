@@ -2,8 +2,8 @@
   "pack": {
     "schema": 2,
     "id": "cosmos",
-    "name": "Aldea de las Nubes (en construcción)",
-    "version": "0.1.0",
+    "name": "Aldea de las Nubes",
+    "version": "1.0.0",
     "license": "Contenido original, todos los derechos reservados al autor del proyecto",
     "language": "es",
     "age_band": "2-12",

@@ -23,9 +23,12 @@ class SilentAmbience implements Ambience {
   Future<void> dispose() async {}
 }
 
-/// Sonido de fondo propio de cada paquete (los que no tienen, el de siempre). El del mar va en AAC (`.m4a`), que
-/// suena también en iOS.
-const Map<String, String> packAmbience = {'mar': 'audio/ambient_mar.m4a'};
+/// Sonido de fondo propio de cada paquete (los que no tienen, el de siempre). Los del mar y de la Aldea de las Nubes
+/// van en AAC (`.m4a`), que suena también en iOS.
+const Map<String, String> packAmbience = {
+  'mar': 'audio/ambient_mar.m4a',
+  'cosmos': 'audio/ambient_cosmos.m4a',
+};
 
 /// El sonido de fondo del paquete [packId] (o el de siempre).
 String ambienceAsset(String? packId) =>

@@ -158,6 +158,19 @@ void main() {
         show('Una gota cayó, ¡plic!, y dio un salto.'),
         ['Una gota cayó,', '<drop>', 'y dio un salto.'],
       );
+      // Los de la Aldea de las Nubes: el cohete que despega, el salto lunar, la compuerta
+      expect(
+        show('El cohete rugió, ¡brrrum!, y subió.'),
+        ['El cohete rugió,', '<thump>', 'y subió.'],
+      );
+      expect(
+        show('Dio un saltito, y ¡boing!, subió.'),
+        ['Dio un saltito, y', '<hop>', 'subió.'],
+      );
+      expect(
+        show('Entonces, ¡clac!, se apagó.'),
+        ['Entonces,', '<click>', 'se apagó.'],
+      );
       expect(
         show('Se oyó un balido: «¡beee!».'),
         ['Se oyó un balido.', '<bleat>'],

@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../share.dart';
@@ -61,7 +60,7 @@ class PackInfo {
   bool get available => status == PackStatus.available;
 }
 
-/// Catálogo que ve la familia. Se pueden abrir el Reino de la Luna y el Mar de las Estrellas; los demás se ven en
+/// Catálogo que ve la familia. Se pueden abrir el Reino de la Luna, el Mar de las Estrellas y la Aldea de las Nubes; los demás se ven en
 /// gris (próximamente: serán de pago). El contenido real de cada paquete vive en `content/packs/<id>`.
 const List<PackInfo> packCatalog = [
   PackInfo(
@@ -108,12 +107,11 @@ const List<PackInfo> packCatalog = [
     name: 'Aldea de las Nubes',
     tagline: 'Cohetes y planetas',
     description:
-        'Un viaje entre estrellas con robots amables y un perrito astronauta. Cuentos para soñar despacio y '
-        'perder el miedo a la oscuridad.',
+        'Un pueblito sobre las nubes, cohetes a la luna, un robot amable, un perrito astronauta y un alien travieso '
+        'que solo quería amigos. Treinta cuentos para soñar despacio y perder el miedo a la oscuridad, para todas las edades.',
     icon: Icons.rocket_launch_outlined,
     colors: [Color(0xFFE05A8B), Color(0xFF7A2A6A)],
-    // En construcción (docs/27): solo se abre en las compilaciones de desarrollo hasta que esté completo
-    status: kDebugMode ? PackStatus.available : PackStatus.soon,
+    status: PackStatus.available,
     cover: PackCover(
       place: 'aldea',
       heroM: 'orion',

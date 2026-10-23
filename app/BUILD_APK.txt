@@ -1,1 +1,1 @@
-Cambiar este archivo (y subirlo) compila un APK de prueba. Ultima peticion: v0.10.0 con el pack Mar de las Estrellas (30 cuentos de piratas buenos, arte y sonido de olas), el genero del protagonista ligado al nombre del nino y la pregunta para adultos que avisa al fallar.
+Cambiar este archivo (y subirlo) compila un APK de prueba. Ultima peticion: v0.11.0 con el pack Aldea de las Nubes (30 cuentos de cohetes, planetas, un robot amable y un alien travieso, con arte propio y sonido de estrellas).

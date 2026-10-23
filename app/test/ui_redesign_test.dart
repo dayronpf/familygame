@@ -7,7 +7,6 @@ import 'package:caldero_app/src/packs/pack_catalog.dart';
 import 'package:caldero_app/src/share.dart';
 import 'package:caldero_app/src/shelf/story_shelf.dart';
 import 'package:caldero_app/src/ui/sleep_timer.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -160,11 +159,11 @@ void main() {
       await tester.pumpAndSettle();
       expect(find.text('Reino de la Luna'), findsOneWidget);
       // El Reino de la Luna y el Mar de las Estrellas son de la familia (y la Aldea de las Nubes, en desarrollo)
-      expect(find.text('Tuyo'), findsNWidgets(kDebugMode ? 3 : 2));
+      expect(find.text('Tuyo'), findsNWidgets(3));
       final soon = packCatalog.where((p) => !p.available).toList();
       expect(soon.length, greaterThanOrEqualTo(2));
       expect(packCatalog.where((p) => p.available).map((p) => p.id),
-          kDebugMode ? ['medieval', 'mar', 'cosmos'] : ['medieval', 'mar']);
+          ['medieval', 'mar', 'cosmos']);
       // El abierto lleva su marca
       expect(find.byKey(const Key('pack-open-medieval')), findsOneWidget);
       // Cada paquete que llega más adelante se dibuja con el filtro de grises (más abajo, tras los de la familia)

@@ -35,11 +35,13 @@ void main() {
     expect(b.packId, 'medieval');
   });
 
-  test('cada paquete suena a lo suyo: el mar, a olas (y el archivo existe)',
+  test(
+      'cada paquete suena a lo suyo: el mar, a olas; la aldea, a estrellas (y el archivo existe)',
       () {
     expect(ambienceAsset('medieval'), 'audio/ambient.ogg');
     expect(ambienceAsset(null), 'audio/ambient.ogg');
     expect(ambienceAsset('mar'), 'audio/ambient_mar.m4a');
+    expect(ambienceAsset('cosmos'), 'audio/ambient_cosmos.m4a');
     for (final path in {...packAmbience.values, 'audio/ambient.ogg'}) {
       expect(File('assets/$path').existsSync(), isTrue, reason: path);
     }
