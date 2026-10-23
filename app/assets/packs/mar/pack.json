@@ -2,8 +2,8 @@
   "pack": {
     "schema": 2,
     "id": "mar",
-    "name": "Mar de las Estrellas (en construcción)",
-    "version": "0.5.0",
+    "name": "Mar de las Estrellas",
+    "version": "1.0.0",
     "license": "Contenido original, todos los derechos reservados al autor del proyecto",
     "language": "es",
     "age_band": "2-12",

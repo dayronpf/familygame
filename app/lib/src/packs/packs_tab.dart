@@ -62,8 +62,7 @@ class PacksTab extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 4),
-        Text(
-            'Nuevos mundos de cuentos, para cuando termines con el Reino de la Luna.',
+        Text('Nuevos mundos de cuentos, para cuando termines con los tuyos.',
             style: text.bodyMedium!.copyWith(color: Palette.mutedText)),
         const SizedBox(height: 12),
         LayoutBuilder(
