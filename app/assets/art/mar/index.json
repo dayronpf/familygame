@@ -33,9 +33,55 @@
   "mar/rigs/bruno_pijama.json",
   "mar/rigs/vega_pijama.json",
   "mar/rigs/loro.json",
-  "mar/rigs/tortuga.json"
+  "mar/rigs/tortuga.json",
+  "mar/rigs/caracola.json",
+  "mar/rigs/mapa.json",
+  "mar/rigs/mapa_roto.json",
+  "mar/rigs/cofre.json",
+  "mar/rigs/cofre_abierto.json",
+  "mar/rigs/catalejo.json",
+  "mar/rigs/brujula.json",
+  "mar/rigs/botella_mensaje.json",
+  "mar/rigs/farol_barco.json",
+  "mar/rigs/farol_barco_apagado.json",
+  "mar/rigs/perla.json",
+  "mar/rigs/llave.json",
+  "mar/rigs/galleta_barco.json",
+  "mar/rigs/monedas.json",
+  "mar/rigs/ancla.json",
+  "mar/rigs/estrella_mar.json"
  ],
- "scenes": [],
+ "scenes": [
+  "mar/scenes/arrecife.json",
+  "mar/scenes/arrecife__noche.json",
+  "mar/scenes/bodega.json",
+  "mar/scenes/camarote.json",
+  "mar/scenes/camarote__dia.json",
+  "mar/scenes/cofa.json",
+  "mar/scenes/cofa__atardecer.json",
+  "mar/scenes/cofa__noche.json",
+  "mar/scenes/cubierta.json",
+  "mar/scenes/cubierta__atardecer.json",
+  "mar/scenes/cubierta__noche.json",
+  "mar/scenes/cueva_tesoro.json",
+  "mar/scenes/faro.json",
+  "mar/scenes/faro__atardecer.json",
+  "mar/scenes/faro__noche.json",
+  "mar/scenes/laguna.json",
+  "mar/scenes/laguna__noche.json",
+  "mar/scenes/mar_abierto.json",
+  "mar/scenes/mar_abierto__atardecer.json",
+  "mar/scenes/mar_abierto__noche.json",
+  "mar/scenes/playa.json",
+  "mar/scenes/playa__atardecer.json",
+  "mar/scenes/playa__noche.json",
+  "mar/scenes/puerto.json",
+  "mar/scenes/puerto__amanecer.json",
+  "mar/scenes/puerto__atardecer.json",
+  "mar/scenes/puerto__noche.json",
+  "mar/scenes/selva.json",
+  "mar/scenes/selva__atardecer.json"
+ ],
  "clips": "clips/humanoid.json",
  "extraClips": [
   "clips/props.json"
@@ -57,5 +103,188 @@
   "nina_puerto_miedo": 0.68,
   "loro": 0.9,
   "tortuga": 1.1
+ },
+ "places": {
+  "playa": {
+   "scene": "playa",
+   "view": [
+    0,
+    0,
+    640,
+    480
+   ],
+   "floor": 410,
+   "scale": 0.6,
+   "looks": {
+    "dia": "playa",
+    "atardecer": "playa__atardecer",
+    "noche": "playa__noche"
+   }
+  },
+  "puerto": {
+   "scene": "puerto",
+   "view": [
+    0,
+    0,
+    640,
+    480
+   ],
+   "floor": 410,
+   "scale": 0.6,
+   "looks": {
+    "dia": "puerto",
+    "amanecer": "puerto__amanecer",
+    "atardecer": "puerto__atardecer",
+    "noche": "puerto__noche"
+   }
+  },
+  "cubierta": {
+   "scene": "cubierta",
+   "view": [
+    0,
+    0,
+    640,
+    480
+   ],
+   "floor": 410,
+   "scale": 0.6,
+   "looks": {
+    "dia": "cubierta",
+    "atardecer": "cubierta__atardecer",
+    "noche": "cubierta__noche"
+   }
+  },
+  "mar_abierto": {
+   "scene": "mar_abierto",
+   "view": [
+    0,
+    0,
+    640,
+    480
+   ],
+   "floor": 410,
+   "scale": 0.6,
+   "looks": {
+    "dia": "mar_abierto",
+    "atardecer": "mar_abierto__atardecer",
+    "noche": "mar_abierto__noche"
+   }
+  },
+  "cofa": {
+   "scene": "cofa",
+   "view": [
+    0,
+    0,
+    640,
+    480
+   ],
+   "floor": 410,
+   "scale": 0.6,
+   "looks": {
+    "dia": "cofa",
+    "atardecer": "cofa__atardecer",
+    "noche": "cofa__noche"
+   }
+  },
+  "faro": {
+   "scene": "faro",
+   "view": [
+    0,
+    0,
+    640,
+    480
+   ],
+   "floor": 410,
+   "scale": 0.6,
+   "looks": {
+    "dia": "faro",
+    "atardecer": "faro__atardecer",
+    "noche": "faro__noche"
+   }
+  },
+  "laguna": {
+   "scene": "laguna",
+   "view": [
+    0,
+    0,
+    640,
+    480
+   ],
+   "floor": 410,
+   "scale": 0.6,
+   "looks": {
+    "dia": "laguna",
+    "noche": "laguna__noche"
+   }
+  },
+  "selva": {
+   "scene": "selva",
+   "view": [
+    0,
+    0,
+    640,
+    480
+   ],
+   "floor": 410,
+   "scale": 0.6,
+   "looks": {
+    "dia": "selva",
+    "atardecer": "selva__atardecer"
+   }
+  },
+  "arrecife": {
+   "scene": "arrecife",
+   "view": [
+    0,
+    0,
+    640,
+    480
+   ],
+   "floor": 410,
+   "scale": 0.6,
+   "looks": {
+    "dia": "arrecife",
+    "noche": "arrecife__noche"
+   }
+  },
+  "cueva_tesoro": {
+   "scene": "cueva_tesoro",
+   "view": [
+    0,
+    0,
+    640,
+    480
+   ],
+   "floor": 410,
+   "scale": 0.6,
+   "looks": {}
+  },
+  "bodega": {
+   "scene": "bodega",
+   "view": [
+    0,
+    0,
+    640,
+    480
+   ],
+   "floor": 410,
+   "scale": 0.6,
+   "looks": {}
+  },
+  "camarote": {
+   "scene": "camarote",
+   "view": [
+    0,
+    0,
+    640,
+    480
+   ],
+   "floor": 410,
+   "scale": 0.6,
+   "looks": {
+    "noche": "camarote",
+    "dia": "camarote__dia"
+   }
+  }
  }
 }

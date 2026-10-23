@@ -1007,6 +1007,13 @@ final List<(RegExp, String, Set<String>)> _objectWords = [
     {'cuenco', 'cuenco_vacio'}
   ),
   (RegExp(r'\bcabrita\b', caseSensitive: false), 'cabrita', {'cabrita'}),
+  // Mar de las Estrellas
+  (RegExp(r'\bmapas?\b', caseSensitive: false), 'mapa', {'mapa', 'mapa_roto'}),
+  (RegExp(r'\bcatalejos?\b', caseSensitive: false), 'catalejo', {'catalejo'}),
+  (RegExp(r'\bbrújulas?\b', caseSensitive: false), 'brújula', {'brujula'}),
+  (RegExp(r'\bcaracolas?\b', caseSensitive: false), 'caracola', {'caracola'}),
+  (RegExp(r'\bperlas?\b', caseSensitive: false), 'perla', {'perla'}),
+  (RegExp(r'\bbotellas?\b', caseSensitive: false), 'botella', {'botella_mensaje'}),
   (
     RegExp(r'\bpiedras\b', caseSensitive: false),
     'piedras',

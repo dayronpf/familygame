@@ -1,8 +1,13 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:caldero_app/src/art/art_library.dart';
+import 'package:caldero_app/src/art/story_stage.dart';
+import 'package:caldero_engine/caldero_engine.dart';
 import 'package:caldero_rig/caldero_rig.dart';
 import 'package:flutter_test/flutter_test.dart';
+
+import 'file_bundle.dart';
 
 /// Arte del Mar de las Estrellas (docs/26, fase 3): lo genera `tools/art/mar_kit.py` en `art/mar/`.
 void main() {
@@ -89,5 +94,80 @@ void main() {
           'legFF',
           'legBF'
         }));
+  });
+
+  test('todos los trazos de dibujos y fondos se leen con el lector de la app',
+      () {
+    void walk(Object? node, String where) {
+      if (node is Map) {
+        final d = node['d'];
+        if (d is String) {
+          expect(() => parseSvgPath(d), returnsNormally, reason: '$where: $d');
+        }
+        for (final v in node.values) {
+          walk(v, where);
+        }
+      } else if (node is List) {
+        for (final v in node) {
+          walk(v, where);
+        }
+      }
+    }
+
+    for (final sub in ['rigs', 'scenes']) {
+      for (final f
+          in Directory('../art/mar/$sub').listSync().whereType<File>()) {
+        walk(jsonDecode(f.readAsStringSync()), f.path);
+      }
+    }
+  });
+
+  group('fondos, objetos y gestos (fase 4)', () {
+    late StageArt art;
+    late Pack mar;
+    setUpAll(() async {
+      art = StageArt(await loadArtLibrary(FileBundle(), pack: 'mar'));
+      mar = Pack.fromJson(pack);
+    });
+
+    test('cada lugar tiene su fondo y cada hora del pack, su luz', () {
+      for (final p in mar.places) {
+        final place = art.library.places[p.id];
+        expect(place, isNotNull, reason: 'sin fondo para ${p.id}');
+        expect(art.sceneFor(p.id), isNotNull, reason: p.id);
+        for (final t in p.times ?? const <String>[]) {
+          expect(place!.looks, contains(t), reason: '${p.id}: sin «$t»');
+          expect(art.sceneFor(p.id, time: t), isNotNull);
+        }
+      }
+    });
+
+    test('cada objeto del pack tiene dibujo y los gestos del mar existen', () {
+      for (final p in mar.props) {
+        expect(art.rigs, contains(p.id), reason: 'sin dibujo para ${p.id}');
+      }
+      for (final c in ['row', 'spyglass', 'steer', 'swim']) {
+        expect(art.library.clips.clips, contains(c));
+      }
+      expect(art.library.propClips, contains('bob'));
+    });
+
+    test('cualquier cuento del pack dibuja todas sus escenas', () {
+      final engine = StoryEngine(mar);
+      for (final g in ['m', 'f']) {
+        for (var seed = 1; seed <= 40; seed++) {
+          final story =
+              engine.generate(StoryOptions(seed: seed, heroGender: g));
+          for (final s in story.scenes) {
+            final setup = stageFor(art, story.cast, s.directives);
+            expect(setup, isNotNull, reason: 'seed $seed ${s.fragmentId}');
+            if (s.directives['focus'] is! Map) {
+              expect(setup!.actors.length, stageEntries(s.directives).length,
+                  reason: 'seed $seed ${s.fragmentId}');
+            }
+          }
+        }
+      }
+    });
   });
 }

@@ -201,6 +201,10 @@ def sheet(rigs):
     main = [r for r in rigs if r.get("rig") == "humanoid" and "_" not in r["id"]] + \
            [by["nino_puerto"], by["nina_puerto"], by["loro"], by["tortuga"]]
     cells = [(r, "idle", 0.0) for r in main]
+    cells += [(by[p], "glow" if p == "farol_barco" else "shimmer" if p in ("perla", "cofre_abierto") else "idle", 0.3)
+              for p in ("caracola", "mapa", "mapa_roto", "cofre", "cofre_abierto", "catalejo", "brujula", "botella_mensaje",
+                        "farol_barco", "farol_barco_apagado", "perla", "llave", "galleta_barco", "monedas", "ancla", "estrella_mar")]
+    cells += [(by["estela"], "spyglass", 1.0), (by["bruno"], "steer", 0.7), (by["vega"], "row", 0.4), (by["nacar"], "swim", 0.3)]
     cells += [(by["bruno"], "wave", 0.9), (by["vega"], "cheer", 0.6), (by["estela"], "point", 0.8),
               (by["nacar"], "walk", 0.2), (by["nacar"], "sit", 0.6), (by["remolino"], "wave", 0.9),
               (by["mostacho"], "surprised", 0.6), (by["bruno_miedo"], "scared", 0.06), (by["vega_pijama"], "yawn", 0.8),
@@ -234,7 +238,8 @@ def main():
     (OUT / "rigs").mkdir(parents=True, exist_ok=True)
     (OUT / "preview").mkdir(parents=True, exist_ok=True)
     cast = load_cast()
-    rigs = [build(c) for c in cast] + [loro(), tortuga()]
+    import mar_props  # objetos de la trama (mapa, cofre, farol…)
+    rigs = [build(c) for c in cast] + [loro(), tortuga()] + mar_props.build_all()
     for r in rigs:
         (OUT / "rigs" / f'{r["id"]}.json').write_text(json.dumps(r, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
     (OUT / "preview" / "sheet.svg").write_text(sheet(rigs), encoding="utf-8")

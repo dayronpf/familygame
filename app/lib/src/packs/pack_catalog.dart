@@ -14,9 +14,13 @@ class PackCover {
     required this.heroM,
     required this.heroF,
     required this.helper,
+    this.view = const Rect.fromLTWH(0, 330, 600, 350),
   });
 
   final String place;
+
+  /// Recorte del fondo que se ve en la portada (cada pack tiene fondos de distinto alto).
+  final Rect view;
 
   /// Héroe si el niño es un niño ([heroM]) y si es una niña o no se sabe ([heroF]).
   final String heroM, heroF;
@@ -87,6 +91,7 @@ const List<PackInfo> packCatalog = [
       heroM: 'bruno',
       heroF: 'vega',
       helper: 'estela',
+      view: Rect.fromLTWH(0, 90, 640, 374),
     ),
   ),
   PackInfo(
@@ -200,7 +205,8 @@ class PackCard extends StatelessWidget {
                     const Icon(Icons.check, size: 16, color: Palette.amberDark),
                     const SizedBox(width: 4),
                     Text('Abierto',
-                        style: text.labelLarge!.copyWith(color: Palette.amberDark)),
+                        style: text.labelLarge!
+                            .copyWith(color: Palette.amberDark)),
                   ],
                 ),
               ),

@@ -71,7 +71,7 @@ class _HeroBannerState extends State<HeroBanner>
     final art = widget.art;
     final setup = art == null
         ? null
-        : bannerSetup(art, widget.pack, const Rect.fromLTWH(0, 330, 600, 350),
+        : bannerSetup(art, widget.pack, widget.cover.view,
             heroGender: widget.heroGender, cover: widget.cover);
     final text = Theme.of(context).textTheme;
     return AspectRatio(
@@ -192,7 +192,7 @@ StageSetup? bannerSetup(
 /// proporción en cada teléfono.
 Widget packCover(StageArt? art, Pack pack,
     {PackCover cover = PackCover.medieval}) {
-  const view = Rect.fromLTWH(0, 330, 600, 350);
+  final view = cover.view;
   final setup = art == null ? null : bannerSetup(art, pack, view, cover: cover);
   if (setup == null) return const SizedBox.shrink();
   return SizedBox.expand(
