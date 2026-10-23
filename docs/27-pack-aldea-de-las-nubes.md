@@ -53,6 +53,6 @@ Desde allí, los niños viajan a la luna, a planetas de cristal y de jardines, y
 | Fase | Estado |
 |---|---|
 | 1. Personajes | ✅ `tools/art/cosmos_kit.py` → `art/cosmos/` (25 dibujos, 193 KB): Orión y Lira con casco de burbuja y traje espacial, la comandante Aurora, el robot Tornillo y el alien Zumbo (con el **esqueleto humano**: les sirven todos los gestos), la Abuela Osa, el Barón Brillo con chistera, Pip, Nube, el panadero y la cartera; variantes de miedo y pijama; el perrito Chispa con los huesos de la cabrita. |
-| 2. Fondos, objetos y gestos | ☐ |
-| 3. Cuentos | ☐ |
+| 2. Fondos, objetos y gestos | ✅ `tools/art/cosmos_scenes.py` (12 lugares, 19 escenas, 198 KB: los de la Tierra con sus horas; los del espacio, siempre de noche de estrellas) y `tools/art/cosmos_props.py` (10 objetos). Gestos nuevos para todos los packs: `float` (sin gravedad) y `moonhop` (salto lunar). |
+| 3. Cuentos | 🟡 **2–3 años (6):** *La estrellita perdida* (amistad), *El globo de Nube* (honestidad), *Las piedras de la luna* (generosidad), *La luz de la noche* (valentía: perder el miedo a la oscuridad), *El cohete que no volaba* (humildad), *La semilla de luz* (perseverancia). Faltan 9 de 4–5, 9 de 6–8 y 6 de 9–12. El pack solo se abre en desarrollo (`kDebugMode`). |
 | 4. Sonido, catálogo y versión | ☐ |

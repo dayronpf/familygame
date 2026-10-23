@@ -35,6 +35,7 @@ flutter:
     - assets/packs/demo/
     - assets/packs/medieval/
     - assets/packs/mar/
+    - assets/packs/cosmos/
     # Política de privacidad y términos de uso (los sincroniza tools/sync_assets.sh desde content/legal/).
     - assets/legal/
     # Guía en PDF (la genera tools/guide/make_holograma_pdf.py)
@@ -48,6 +49,7 @@ flutter:
     - assets/art/mar/scenes/
     - assets/art/cosmos/index.json
     - assets/art/cosmos/rigs/
+    - assets/art/cosmos/scenes/
     - assets/art/clips/
     # Sonido de fondo sintetizado por tools/audio/make_ambient.py.
     - assets/audio/

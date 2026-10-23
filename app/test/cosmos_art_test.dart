@@ -1,8 +1,13 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:caldero_app/src/art/art_library.dart';
+import 'package:caldero_app/src/art/story_stage.dart';
+import 'package:caldero_engine/caldero_engine.dart';
 import 'package:caldero_rig/caldero_rig.dart';
 import 'package:flutter_test/flutter_test.dart';
+
+import 'file_bundle.dart';
 
 /// Arte de la Aldea de las Nubes (docs/27): lo genera `tools/art/cosmos_kit.py` en `art/cosmos/`.
 void main() {
@@ -64,8 +69,36 @@ void main() {
       }
     }
 
-    for (final f in dir.listSync().whereType<File>()) {
+    for (final f in [
+      ...dir.listSync().whereType<File>(),
+      ...Directory('../art/cosmos/scenes').listSync().whereType<File>(),
+    ]) {
       walk(jsonDecode(f.readAsStringSync()), f.path);
     }
+  });
+
+  test(
+      'cada lugar del pack tiene fondo, cada hora su luz y cada objeto su dibujo; los gestos del espacio existen',
+      () async {
+    final art = StageArt(await loadArtLibrary(FileBundle(), pack: 'cosmos'));
+    final pack = Pack.fromJson(
+        jsonDecode(File('../content/packs/cosmos/pack.json').readAsStringSync())
+            as Map<String, Object?>);
+    for (final p in pack.places) {
+      final place = art.library.places[p.id];
+      expect(place, isNotNull, reason: 'sin fondo para ${p.id}');
+      expect(art.sceneFor(p.id), isNotNull, reason: p.id);
+      for (final t in p.times ?? const <String>[]) {
+        expect(place!.looks, contains(t), reason: '${p.id}: sin «$t»');
+        expect(art.sceneFor(p.id, time: t), isNotNull);
+      }
+    }
+    for (final p in pack.props) {
+      expect(art.rigs, contains(p.id), reason: 'sin dibujo para ${p.id}');
+    }
+    for (final c in pack.characters) {
+      expect(art.rigs, contains(c.id), reason: 'sin dibujo para ${c.id}');
+    }
+    expect(art.library.clips.clips.keys, containsAll(['float', 'moonhop']));
   });
 }

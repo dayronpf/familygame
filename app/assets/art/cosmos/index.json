@@ -28,9 +28,39 @@
   "cosmos/rigs/cartera_miedo.json",
   "cosmos/rigs/orion_pijama.json",
   "cosmos/rigs/lira_pijama.json",
-  "cosmos/rigs/chispa.json"
+  "cosmos/rigs/chispa.json",
+  "cosmos/rigs/telescopio.json",
+  "cosmos/rigs/estrella_caida.json",
+  "cosmos/rigs/cohete_juguete.json",
+  "cosmos/rigs/casco.json",
+  "cosmos/rigs/mapa_estelar.json",
+  "cosmos/rigs/piedra_lunar.json",
+  "cosmos/rigs/flor_cristal.json",
+  "cosmos/rigs/llave_inglesa.json",
+  "cosmos/rigs/globo.json",
+  "cosmos/rigs/semilla_luz.json"
  ],
- "scenes": [],
+ "scenes": [
+  "cosmos/scenes/aldea.json",
+  "cosmos/scenes/aldea__atardecer.json",
+  "cosmos/scenes/aldea__noche.json",
+  "cosmos/scenes/anillos.json",
+  "cosmos/scenes/cabina.json",
+  "cosmos/scenes/dormitorio.json",
+  "cosmos/scenes/dormitorio__dia.json",
+  "cosmos/scenes/espacio.json",
+  "cosmos/scenes/estacion.json",
+  "cosmos/scenes/luna.json",
+  "cosmos/scenes/observatorio.json",
+  "cosmos/scenes/observatorio__atardecer.json",
+  "cosmos/scenes/planeta_cristal.json",
+  "cosmos/scenes/planeta_jardin.json",
+  "cosmos/scenes/planeta_jardin__noche.json",
+  "cosmos/scenes/plataforma.json",
+  "cosmos/scenes/plataforma__atardecer.json",
+  "cosmos/scenes/plataforma__noche.json",
+  "cosmos/scenes/taller.json"
+ ],
  "clips": "clips/humanoid.json",
  "extraClips": [
   "clips/props.json"
@@ -47,5 +77,168 @@
   "panadero_miedo": 1.0,
   "cartera_miedo": 0.98,
   "chispa": 1.0
+ },
+ "places": {
+  "aldea": {
+   "scene": "aldea",
+   "view": [
+    0,
+    0,
+    640,
+    480
+   ],
+   "floor": 410,
+   "scale": 0.6,
+   "looks": {
+    "dia": "aldea",
+    "atardecer": "aldea__atardecer",
+    "noche": "aldea__noche"
+   }
+  },
+  "observatorio": {
+   "scene": "observatorio",
+   "view": [
+    0,
+    0,
+    640,
+    480
+   ],
+   "floor": 410,
+   "scale": 0.6,
+   "looks": {
+    "noche": "observatorio",
+    "atardecer": "observatorio__atardecer"
+   }
+  },
+  "plataforma": {
+   "scene": "plataforma",
+   "view": [
+    0,
+    0,
+    640,
+    480
+   ],
+   "floor": 410,
+   "scale": 0.6,
+   "looks": {
+    "dia": "plataforma",
+    "atardecer": "plataforma__atardecer",
+    "noche": "plataforma__noche"
+   }
+  },
+  "cabina": {
+   "scene": "cabina",
+   "view": [
+    0,
+    0,
+    640,
+    480
+   ],
+   "floor": 410,
+   "scale": 0.6,
+   "looks": {}
+  },
+  "luna": {
+   "scene": "luna",
+   "view": [
+    0,
+    0,
+    640,
+    480
+   ],
+   "floor": 410,
+   "scale": 0.6,
+   "looks": {}
+  },
+  "planeta_cristal": {
+   "scene": "planeta_cristal",
+   "view": [
+    0,
+    0,
+    640,
+    480
+   ],
+   "floor": 410,
+   "scale": 0.6,
+   "looks": {}
+  },
+  "planeta_jardin": {
+   "scene": "planeta_jardin",
+   "view": [
+    0,
+    0,
+    640,
+    480
+   ],
+   "floor": 410,
+   "scale": 0.6,
+   "looks": {
+    "dia": "planeta_jardin",
+    "noche": "planeta_jardin__noche"
+   }
+  },
+  "anillos": {
+   "scene": "anillos",
+   "view": [
+    0,
+    0,
+    640,
+    480
+   ],
+   "floor": 410,
+   "scale": 0.6,
+   "looks": {}
+  },
+  "estacion": {
+   "scene": "estacion",
+   "view": [
+    0,
+    0,
+    640,
+    480
+   ],
+   "floor": 410,
+   "scale": 0.6,
+   "looks": {}
+  },
+  "taller": {
+   "scene": "taller",
+   "view": [
+    0,
+    0,
+    640,
+    480
+   ],
+   "floor": 410,
+   "scale": 0.6,
+   "looks": {}
+  },
+  "dormitorio": {
+   "scene": "dormitorio",
+   "view": [
+    0,
+    0,
+    640,
+    480
+   ],
+   "floor": 410,
+   "scale": 0.6,
+   "looks": {
+    "noche": "dormitorio",
+    "dia": "dormitorio__dia"
+   }
+  },
+  "espacio": {
+   "scene": "espacio",
+   "view": [
+    0,
+    0,
+    640,
+    480
+   ],
+   "floor": 410,
+   "scale": 0.6,
+   "looks": {}
+  }
  }
 }

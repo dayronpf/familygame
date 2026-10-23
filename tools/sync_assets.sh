@@ -5,7 +5,7 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
-PACKS=(demo medieval mar)  # packs de contenido embebidos en la app (mar: en construcción, docs/26)
+PACKS=(demo medieval mar cosmos)  # packs de contenido embebidos en la app (cosmos: en construcción, docs/27)
 check=false; [[ "${1:-}" == "--check" ]] && check=true
 
 fail() { echo "$1 desincronizado (ejecuta tools/sync_assets.sh)"; exit 1; }
@@ -35,6 +35,7 @@ if $check; then
   diff art/mar/index.json "$dst/mar/index.json" >/dev/null || fail "$dst/mar/index.json"
   # Aldea de las Nubes (en construcción, docs/27)
   diff -r art/cosmos/rigs "$dst/cosmos/rigs" >/dev/null || fail "$dst/cosmos/rigs"
+  diff -r art/cosmos/scenes "$dst/cosmos/scenes" >/dev/null || fail "$dst/cosmos/scenes"
   diff art/cosmos/index.json "$dst/cosmos/index.json" >/dev/null || fail "$dst/cosmos/index.json"
 else
   rm -rf "$dst"; mkdir -p "$dst/medieval"
@@ -45,7 +46,7 @@ else
   cp -r art/mar/rigs art/mar/scenes "$dst/mar/"
   cp art/mar/index.json "$dst/mar/"
   mkdir -p "$dst/cosmos"
-  cp -r art/cosmos/rigs "$dst/cosmos/"
+  cp -r art/cosmos/rigs art/cosmos/scenes "$dst/cosmos/"
   cp art/cosmos/index.json "$dst/cosmos/"
 fi
 echo "assets OK"

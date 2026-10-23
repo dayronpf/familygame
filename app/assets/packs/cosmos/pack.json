@@ -1,0 +1,1886 @@
+{
+  "pack": {
+    "schema": 2,
+    "id": "cosmos",
+    "name": "Aldea de las Nubes (en construcción)",
+    "version": "0.1.0",
+    "license": "Contenido original, todos los derechos reservados al autor del proyecto",
+    "language": "es",
+    "age_band": "2-12",
+    "features": [
+      "choice@1"
+    ]
+  },
+  "characters": [
+    {
+      "id": "orion",
+      "given": "Orión",
+      "noun": "cadete",
+      "gender": "m",
+      "roles": [
+        "hero",
+        "helper"
+      ],
+      "alignment": "positive",
+      "trait": {
+        "m": "curioso",
+        "f": "curiosa"
+      },
+      "tags": [
+        "young",
+        "cadet"
+      ],
+      "attrs": {
+        "gesto": [
+          "se ajustó el casco con las dos manos",
+          "se rascó la nariz a través del cristal",
+          "dio un saltito en el sitio"
+        ],
+        "miedo": "se le empañó el casco",
+        "voz": [
+          "con voz clarita",
+          "a media voz",
+          "bajito"
+        ]
+      }
+    },
+    {
+      "id": "lira",
+      "given": "Lira",
+      "noun": "cadete",
+      "gender": "f",
+      "roles": [
+        "hero",
+        "helper"
+      ],
+      "alignment": "positive",
+      "trait": {
+        "m": "valiente",
+        "f": "valiente"
+      },
+      "tags": [
+        "young",
+        "cadet"
+      ],
+      "attrs": {
+        "gesto": [
+          "se colocó bien las trenzas dentro del casco",
+          "pulsó un botón imaginario en el aire",
+          "se ajustó el cinturón del traje"
+        ],
+        "miedo": "se le empañó el casco",
+        "voz": [
+          "con voz clarita",
+          "a media voz",
+          "bajito"
+        ]
+      }
+    },
+    {
+      "id": "aurora",
+      "given": "Aurora",
+      "noun": "comandante",
+      "gender": "f",
+      "roles": [
+        "helper"
+      ],
+      "alignment": "positive",
+      "trait": {
+        "m": "paciente",
+        "f": "paciente"
+      },
+      "tags": [
+        "wise",
+        "kind"
+      ],
+      "attrs": {
+        "gesto": [
+          "sonrió con los ojos",
+          "se cruzó de brazos, pensativa",
+          "señaló una estrella"
+        ],
+        "voz": [
+          "con su voz tranquila",
+          "con una risa suave",
+          "despacio"
+        ]
+      }
+    },
+    {
+      "id": "tornillo",
+      "given": "Tornillo",
+      "noun": "robot",
+      "gender": "m",
+      "roles": [
+        "helper"
+      ],
+      "alignment": "positive",
+      "trait": {
+        "m": "amable",
+        "f": "amable"
+      },
+      "tags": [
+        "robot",
+        "kind"
+      ],
+      "attrs": {
+        "gesto": [
+          "hizo girar su antena",
+          "parpadeó con sus ojos de pantalla",
+          "se rascó la cabeza con un clic"
+        ],
+        "voz": [
+          "con su voz de robot",
+          "pitando bajito",
+          "con un zumbido alegre"
+        ]
+      }
+    },
+    {
+      "id": "osa",
+      "given": "Abuela Osa",
+      "noun": "astrónoma",
+      "gender": "f",
+      "roles": [
+        "helper"
+      ],
+      "alignment": "positive",
+      "trait": {
+        "m": "sabio",
+        "f": "sabia"
+      },
+      "tags": [
+        "wise",
+        "old"
+      ],
+      "attrs": {
+        "gesto": [
+          "se subió las gafas",
+          "señaló el cielo con el dedo",
+          "se rio bajito"
+        ],
+        "voz": [
+          "con su voz de cuento",
+          "despacito",
+          "con un guiño"
+        ]
+      }
+    },
+    {
+      "id": "brillo",
+      "given": "Brillo",
+      "noun": "barón",
+      "gender": "m",
+      "roles": [
+        "villain"
+      ],
+      "alignment": "negative",
+      "trait": {
+        "m": "presumido",
+        "f": "presumida"
+      },
+      "tags": [
+        "greedy"
+      ],
+      "attrs": {
+        "gesto": [
+          "se ajustó la chistera",
+          "se atusó la perilla",
+          "sacó brillo a un botón"
+        ],
+        "voz": [
+          "con voz estirada",
+          "refunfuñando",
+          "con una vocecita aguda"
+        ],
+        "reacciona": "se quedó con la chistera torcida, sin saber qué decir",
+        "guarida": "su torre de cristal"
+      }
+    },
+    {
+      "id": "zumbo",
+      "given": "Zumbo",
+      "noun": "alien",
+      "gender": "m",
+      "roles": [
+        "villain"
+      ],
+      "alignment": "negative",
+      "trait": {
+        "m": "travieso",
+        "f": "traviesa"
+      },
+      "tags": [
+        "tricky"
+      ],
+      "attrs": {
+        "gesto": [
+          "movió sus tres ojos a la vez",
+          "hizo girar sus antenas",
+          "dio una vuelta en el aire"
+        ],
+        "voz": [
+          "con voz de zumbido",
+          "con una risita",
+          "muy deprisa"
+        ],
+        "reacciona": "se puso verde oscuro, de vergüenza",
+        "guarida": "su platillo pequeñito"
+      }
+    }
+  ],
+  "places": [
+    {
+      "id": "aldea",
+      "noun": "aldea de las nubes",
+      "gender": "f",
+      "mood": "calm",
+      "tags": [
+        "settlement"
+      ],
+      "seasons": [],
+      "features": [],
+      "times": [
+        "dia",
+        "atardecer",
+        "noche"
+      ]
+    },
+    {
+      "id": "observatorio",
+      "noun": "observatorio",
+      "gender": "m",
+      "mood": "calm",
+      "tags": [
+        "high"
+      ],
+      "seasons": [],
+      "features": [
+        "telescopio"
+      ],
+      "times": [
+        "atardecer",
+        "noche"
+      ]
+    },
+    {
+      "id": "plataforma",
+      "noun": "plataforma de los cohetes",
+      "gender": "f",
+      "mood": "calm",
+      "tags": [
+        "launch"
+      ],
+      "seasons": [],
+      "features": [],
+      "times": [
+        "dia",
+        "atardecer",
+        "noche"
+      ]
+    },
+    {
+      "id": "cabina",
+      "noun": "cabina del cohete",
+      "gender": "f",
+      "mood": "calm",
+      "tags": [
+        "ship"
+      ],
+      "seasons": [],
+      "features": [
+        "ventana"
+      ]
+    },
+    {
+      "id": "luna",
+      "noun": "luna",
+      "gender": "f",
+      "mood": "calm",
+      "tags": [
+        "space"
+      ],
+      "seasons": [],
+      "features": []
+    },
+    {
+      "id": "planeta_cristal",
+      "noun": "planeta de cristal",
+      "gender": "m",
+      "mood": "mystery",
+      "tags": [
+        "space",
+        "planet"
+      ],
+      "seasons": [],
+      "features": []
+    },
+    {
+      "id": "planeta_jardin",
+      "noun": "planeta jardín",
+      "gender": "m",
+      "mood": "calm",
+      "tags": [
+        "planet"
+      ],
+      "seasons": [],
+      "features": [],
+      "times": [
+        "dia",
+        "noche"
+      ]
+    },
+    {
+      "id": "anillos",
+      "noun": "anillo de asteroides",
+      "gender": "m",
+      "mood": "calm",
+      "tags": [
+        "space"
+      ],
+      "seasons": [],
+      "features": []
+    },
+    {
+      "id": "estacion",
+      "noun": "estación espacial",
+      "gender": "f",
+      "mood": "calm",
+      "tags": [
+        "ship"
+      ],
+      "seasons": [],
+      "features": [
+        "ventana"
+      ]
+    },
+    {
+      "id": "taller",
+      "noun": "taller de Tornillo",
+      "gender": "m",
+      "mood": "calm",
+      "tags": [
+        "home"
+      ],
+      "seasons": [],
+      "features": [
+        "ventana",
+        "mesa"
+      ]
+    },
+    {
+      "id": "dormitorio",
+      "noun": "dormitorio",
+      "gender": "m",
+      "mood": "calm",
+      "tags": [
+        "home"
+      ],
+      "seasons": [],
+      "features": [
+        "ventana",
+        "cama"
+      ],
+      "times": [
+        "dia",
+        "noche"
+      ]
+    },
+    {
+      "id": "espacio",
+      "noun": "espacio",
+      "gender": "m",
+      "mood": "calm",
+      "tags": [
+        "space"
+      ],
+      "seasons": [],
+      "features": []
+    }
+  ],
+  "props": [
+    {
+      "id": "telescopio",
+      "noun": "telescopio",
+      "gender": "m",
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "id": "estrella_caida",
+      "noun": "estrellita",
+      "gender": "f",
+      "tags": [
+        "light"
+      ]
+    },
+    {
+      "id": "cohete_juguete",
+      "noun": "cohete de juguete",
+      "gender": "m",
+      "tags": [
+        "toy"
+      ]
+    },
+    {
+      "id": "casco",
+      "noun": "casco",
+      "gender": "m",
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "id": "mapa_estelar",
+      "noun": "mapa de estrellas",
+      "gender": "m",
+      "tags": [
+        "map"
+      ]
+    },
+    {
+      "id": "piedra_lunar",
+      "noun": "piedra lunar",
+      "gender": "f",
+      "tags": [
+        "treasure"
+      ]
+    },
+    {
+      "id": "flor_cristal",
+      "noun": "flor de cristal",
+      "gender": "f",
+      "tags": [
+        "plant"
+      ]
+    },
+    {
+      "id": "llave_inglesa",
+      "noun": "llave inglesa",
+      "gender": "f",
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "id": "globo",
+      "noun": "globo",
+      "gender": "m",
+      "tags": [
+        "toy"
+      ]
+    },
+    {
+      "id": "semilla_luz",
+      "noun": "semilla de luz",
+      "gender": "f",
+      "tags": [
+        "plant",
+        "light"
+      ]
+    }
+  ],
+  "morals": [
+    {
+      "id": "honestidad",
+      "name": "Honestidad",
+      "text": "Un secreto pesa más que la verdad, aunque la verdad dé miedo.",
+      "simple": {
+        "2-3": "Decir la verdad hace el corazón ligero.",
+        "4-5": "Cuando decimos la verdad, el corazón se siente ligero."
+      }
+    },
+    {
+      "id": "generosidad",
+      "name": "Generosidad",
+      "text": "Cuando compartimos lo poco que tenemos, la alegría crece para todos.",
+      "simple": {
+        "2-3": "Compartir es bonito.",
+        "4-5": "Si compartimos, hay alegría para todos."
+      }
+    },
+    {
+      "id": "valentia",
+      "name": "Valentía",
+      "text": "Ser valiente no es no tener miedo, sino dar el primer paso a pesar de él.",
+      "simple": {
+        "2-3": "Con un pasito pequeño se empieza.",
+        "4-5": "Un paso pequeñito, y luego otro, y llegamos lejos."
+      }
+    },
+    {
+      "id": "humildad",
+      "name": "Humildad",
+      "text": "Presumir no hace más grande a nadie; pedir ayuda y reconocer un error, sí.",
+      "simple": {
+        "2-3": "Pedir ayuda está bien.",
+        "4-5": "Pedir ayuda también es de grandes."
+      }
+    },
+    {
+      "id": "perseverancia",
+      "name": "Perseverancia",
+      "text": "Lo que parece imposible se consigue con un intento más, y otro, y otro.",
+      "simple": {
+        "2-3": "Otra vez, otra vez, y lo logramos.",
+        "4-5": "Si lo intentamos otra vez, y pensamos un poquito, lo conseguimos."
+      }
+    },
+    {
+      "id": "amistad",
+      "name": "Amistad",
+      "text": "Un amigo de verdad está a tu lado cuando lo necesitas y se alegra de cómo eres.",
+      "simple": {
+        "2-3": "Los amigos se cuidan.",
+        "4-5": "Los buenos amigos nos ayudan cuando estamos tristes."
+      }
+    }
+  ],
+  "premises": [
+    {
+      "id": "cohete_ayuda",
+      "value": "humildad",
+      "title": "El cohete que no volaba",
+      "ages": [
+        "2-3"
+      ],
+      "npcs": {},
+      "cast": {
+        "hero": {
+          "kind": "character",
+          "roles": [
+            "hero"
+          ]
+        },
+        "helper": {
+          "kind": "character",
+          "ids": [
+            "tornillo"
+          ]
+        },
+        "taller": {
+          "kind": "place",
+          "ids": [
+            "taller"
+          ]
+        },
+        "aldea": {
+          "kind": "place",
+          "ids": [
+            "aldea"
+          ]
+        },
+        "dormitorio": {
+          "kind": "place",
+          "ids": [
+            "dormitorio"
+          ]
+        },
+        "item": {
+          "kind": "prop",
+          "ids": [
+            "cohete_juguete"
+          ]
+        }
+      },
+      "beats": [
+        {
+          "id": "cohete",
+          "variants": [
+            {
+              "id": "cohete_ayuda_cohete_a",
+              "text": "{hero} tenía {item.un}, blanco y rojo. Quería que volara. «Yo sé hacerlo», dijo {hero}, muy segur{hero.o}.",
+              "scene": {
+                "bg": "taller",
+                "mood": "calm",
+                "focus": {
+                  "prop": "cohete_juguete",
+                  "x": 0.5,
+                  "fill": 0.55
+                }
+              }
+            }
+          ],
+          "introduces": [
+            "item"
+          ]
+        },
+        {
+          "id": "no",
+          "variants": [
+            {
+              "id": "cohete_ayuda_no_a",
+              "text": "{hero} lo lanzó: ¡zas! Pero el {item.noun} cayó: ¡plof!, porque le faltaba algo. Lo lanzó otra vez. ¡Plof! El cohete no volaba nada de nada.",
+              "scene": {
+                "bg": "taller",
+                "mood": "sad",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "surprised",
+                    "x": 0.36
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "cohete_juguete",
+                    "x": 0.62,
+                    "scale": 0.8
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "pide",
+          "variants": [
+            {
+              "id": "cohete_ayuda_pide_a",
+              "text": "Allí estaba {helper}, el robot, arreglando cosas. {hero} lo miró un poquito. «¿Me ayudas?», preguntó {hero}.",
+              "scene": {
+                "bg": "taller",
+                "mood": "hope",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "talk",
+                    "x": 0.34
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "think",
+                    "x": 0.64
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "cohete_juguete",
+                    "near": "hero",
+                    "dx": 0.07,
+                    "lift": 50,
+                    "scale": 0.7
+                  }
+                ]
+              },
+              "adds": [
+                "pidio_ayuda"
+              ]
+            }
+          ],
+          "introduces": [
+            "helper"
+          ]
+        },
+        {
+          "id": "arregla",
+          "variants": [
+            {
+              "id": "cohete_ayuda_arregla_a",
+              "text": "{helper} sacó su llave pequeñita. Clic, clic, clac. Le puso una hélice nueva al cohete. «Ahora sí», pitó {helper}.",
+              "scene": {
+                "bg": "taller",
+                "mood": "joy",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "wonder",
+                    "x": 0.34
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "talk",
+                    "x": 0.64
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "llave_inglesa",
+                    "near": "helper",
+                    "dx": -0.07,
+                    "lift": 55,
+                    "scale": 0.6
+                  }
+                ]
+              },
+              "requires": [
+                "pidio_ayuda"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "vuela",
+          "variants": [
+            {
+              "id": "cohete_ayuda_vuela_a",
+              "text": "Salieron a la aldea. {hero} lanzó el cohete. ¡Fiuuu! Voló alto, alto, entre las nubes. «¡Gracias, {helper}!», dijo {hero}, porque juntos era más fácil.",
+              "scene": {
+                "bg": "aldea",
+                "mood": "triumph",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "cheer",
+                    "x": 0.34
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "clap",
+                    "x": 0.64
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "cohete_juguete",
+                    "x": 0.5,
+                    "clip": "bob",
+                    "lift": 200
+                  }
+                ]
+              }
+            }
+          ],
+          "moves": true
+        },
+        {
+          "id": "noche",
+          "variants": [
+            {
+              "id": "cohete_ayuda_noche_a",
+              "text": "Por la noche, el {item.noun} dormía en la mesita. {hero} lo miró y sonrió, porque ahora volaba. Pedir ayuda había sido fácil. Y se durmió.",
+              "scene": {
+                "bg": "dormitorio",
+                "mood": "sleep",
+                "time": "noche",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "yawn",
+                    "x": 0.42
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "cohete_juguete",
+                    "x": 0.72,
+                    "scale": 0.6
+                  }
+                ],
+                "unseen": [
+                  "mesa"
+                ]
+              }
+            }
+          ],
+          "moves": true
+        }
+      ]
+    },
+    {
+      "id": "estrellita_perdida",
+      "value": "amistad",
+      "title": "La estrellita perdida",
+      "ages": [
+        "2-3"
+      ],
+      "npcs": {
+        "chispa": [
+          "Chispa"
+        ]
+      },
+      "cast": {
+        "hero": {
+          "kind": "character",
+          "roles": [
+            "hero"
+          ]
+        },
+        "aldea": {
+          "kind": "place",
+          "ids": [
+            "aldea"
+          ]
+        },
+        "dormitorio": {
+          "kind": "place",
+          "ids": [
+            "dormitorio"
+          ]
+        },
+        "item": {
+          "kind": "prop",
+          "ids": [
+            "estrella_caida"
+          ]
+        }
+      },
+      "beats": [
+        {
+          "id": "cae",
+          "variants": [
+            {
+              "id": "estrellita_perdida_cae_a",
+              "text": "Una noche, algo cayó del cielo: ¡plin! {hero} corrió a mirar. Entre las nubes había {item.un}. Era pequeña, amarilla y brillaba mucho.",
+              "scene": {
+                "bg": "aldea",
+                "mood": "mystery",
+                "time": "noche",
+                "focus": {
+                  "prop": "estrella_caida",
+                  "x": 0.5,
+                  "fill": 0.55
+                }
+              }
+            }
+          ],
+          "introduces": [
+            "item"
+          ]
+        },
+        {
+          "id": "triste",
+          "variants": [
+            {
+              "id": "estrellita_perdida_triste_a",
+              "text": "La estrellita estaba triste. Quería volver al cielo con sus amigas. Pero sola no podía subir. «¿Te ayudo?», dijo {hero}.",
+              "scene": {
+                "bg": "aldea",
+                "mood": "sad",
+                "time": "noche",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "talk",
+                    "x": 0.36
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "estrella_caida",
+                    "x": 0.62,
+                    "clip": "shimmer",
+                    "scale": 0.8
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "chispa",
+          "variants": [
+            {
+              "id": "estrellita_perdida_chispa_a",
+              "text": "Chispa, el perrito, vino corriendo: guau, guau. Movía la cola, porque quería ayudar también. Así que {hero}, Chispa y la estrellita fueron juntos al globo grande de la aldea.",
+              "scene": {
+                "bg": "aldea",
+                "mood": "hope",
+                "time": "noche",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "walk",
+                    "x": 0.3
+                  },
+                  {
+                    "rig": "chispa",
+                    "clip": "goat_walk",
+                    "x": 0.62
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "estrella_caida",
+                    "clip": "shimmer",
+                    "near": "hero",
+                    "dx": 0.07,
+                    "lift": 60,
+                    "scale": 0.6
+                  }
+                ]
+              },
+              "adds": [
+                "ayudo"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "sube",
+          "variants": [
+            {
+              "id": "estrellita_perdida_sube_a",
+              "text": "{hero} ató la estrellita a un globo. Uno, dos y tres: ¡arriba! El globo subió, subió, subió. Chispa ladraba de alegría. Y la estrellita volvió al cielo, con sus amigas.",
+              "scene": {
+                "bg": "aldea",
+                "mood": "triumph",
+                "time": "noche",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "wave",
+                    "x": 0.36
+                  },
+                  {
+                    "rig": "chispa",
+                    "clip": "goat_hop",
+                    "x": 0.66
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "globo",
+                    "x": 0.5,
+                    "clip": "bob",
+                    "lift": 160
+                  }
+                ]
+              },
+              "requires": [
+                "ayudo"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "brilla",
+          "variants": [
+            {
+              "id": "estrellita_perdida_brilla_a",
+              "text": "Desde arriba, la estrellita brilló más que nunca. Parpadeaba así: hola, hola. «¡Gracias!», parecía decir. Chispa movía la cola, porque los amigos se ayudan.",
+              "scene": {
+                "bg": "aldea",
+                "mood": "joy",
+                "time": "noche",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "wonder",
+                    "x": 0.36
+                  },
+                  {
+                    "rig": "chispa",
+                    "clip": "goat_idle",
+                    "x": 0.66
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "cama",
+          "variants": [
+            {
+              "id": "estrellita_perdida_cama_a",
+              "text": "{hero} se fue a dormir. Desde allí se veía la estrellita, brillando solo para {hero}. {hero} le dijo buenas noches. Y cerró los ojos.",
+              "scene": {
+                "bg": "dormitorio",
+                "mood": "sleep",
+                "time": "noche",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "yawn",
+                    "x": 0.5
+                  }
+                ]
+              }
+            }
+          ],
+          "moves": true
+        }
+      ]
+    },
+    {
+      "id": "globo_nube",
+      "value": "honestidad",
+      "title": "El globo de Nube",
+      "ages": [
+        "2-3"
+      ],
+      "npcs": {
+        "nube": [
+          "Nube"
+        ]
+      },
+      "cast": {
+        "hero": {
+          "kind": "character",
+          "roles": [
+            "hero"
+          ]
+        },
+        "aldea": {
+          "kind": "place",
+          "ids": [
+            "aldea"
+          ]
+        },
+        "item": {
+          "kind": "prop",
+          "ids": [
+            "globo"
+          ]
+        }
+      },
+      "beats": [
+        {
+          "id": "globo",
+          "variants": [
+            {
+              "id": "globo_nube_globo_a",
+              "text": "Nube tenía {item.un} rojo, grande y redondo. Se lo dejó a {hero} un ratito. «Agárralo fuerte», dijo Nube.",
+              "scene": {
+                "bg": "aldea",
+                "mood": "calm",
+                "time": "dia",
+                "focus": {
+                  "prop": "globo",
+                  "x": 0.5,
+                  "fill": 0.55
+                }
+              }
+            }
+          ],
+          "introduces": [
+            "item"
+          ]
+        },
+        {
+          "id": "vuela",
+          "variants": [
+            {
+              "id": "globo_nube_vuela_a",
+              "text": "{hero} jugaba con el globo, salta que salta. Pero se le escapó la cuerda, porque saltaba mucho. ¡Fiuuu! El globo voló alto, alto, hasta las nubes.",
+              "scene": {
+                "bg": "aldea",
+                "mood": "tension",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "surprised",
+                    "x": 0.36
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "globo",
+                    "x": 0.62,
+                    "clip": "bob",
+                    "lift": 200
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "barriga",
+          "variants": [
+            {
+              "id": "globo_nube_barriga_a",
+              "text": "Nube volvió y miró por todas partes. «¿Y mi globo?», preguntó. A {hero} le hacía cosquillas la barriga, porque era un secreto.",
+              "scene": {
+                "bg": "aldea",
+                "mood": "sad",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "sad",
+                    "x": 0.32
+                  },
+                  {
+                    "rig": "nube",
+                    "clip": "think",
+                    "x": 0.64
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "verdad",
+          "variants": [
+            {
+              "id": "globo_nube_verdad_a",
+              "text": "{hero} respiró hondo. «Se me escapó», dijo {hero}. «Lo siento mucho, Nube.» Nube puso la cara un poco triste. Pero luego sonrió.",
+              "scene": {
+                "bg": "aldea",
+                "mood": "hope",
+                "time": "noche",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "talk",
+                    "x": 0.32
+                  },
+                  {
+                    "rig": "nube",
+                    "clip": "idle",
+                    "x": 0.64
+                  }
+                ]
+              },
+              "adds": [
+                "dijo_verdad"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mira",
+          "variants": [
+            {
+              "id": "globo_nube_mira_a",
+              "text": "«Mira», dijo Nube, y señaló el cielo. El globo bailaba con las nubes. «Es un globo del cielo», se rio Nube, porque la verdad siempre es mejor.",
+              "scene": {
+                "bg": "aldea",
+                "mood": "joy",
+                "time": "atardecer",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "laugh",
+                    "x": 0.32
+                  },
+                  {
+                    "rig": "nube",
+                    "clip": "point",
+                    "x": 0.64
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "globo",
+                    "x": 0.5,
+                    "clip": "bob",
+                    "lift": 220
+                  }
+                ]
+              },
+              "requires": [
+                "dijo_verdad"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "noche",
+          "variants": [
+            {
+              "id": "globo_nube_noche_a",
+              "text": "Por la noche, la barriga de {hero} ya no hacía cosquillas. Estaba tranquilita y calentita. {hero} bostezó: ¡aaah! Y se durmió.",
+              "scene": {
+                "bg": "aldea",
+                "mood": "sleep",
+                "time": "noche",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "yawn",
+                    "x": 0.42
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "noche_oscura",
+      "value": "valentia",
+      "title": "La luz de la noche",
+      "ages": [
+        "2-3"
+      ],
+      "npcs": {},
+      "cast": {
+        "hero": {
+          "kind": "character",
+          "roles": [
+            "hero"
+          ]
+        },
+        "helper": {
+          "kind": "character",
+          "ids": [
+            "tornillo"
+          ]
+        },
+        "dormitorio": {
+          "kind": "place",
+          "ids": [
+            "dormitorio"
+          ]
+        },
+        "observatorio": {
+          "kind": "place",
+          "ids": [
+            "observatorio"
+          ]
+        }
+      },
+      "beats": [
+        {
+          "id": "apaga",
+          "variants": [
+            {
+              "id": "noche_oscura_apaga_a",
+              "text": "Era hora de dormir, y la luz se apagó: clic. {hero} abrió mucho los ojos. Todo se puso muy negro. {hero} se tapó con la manta hasta la nariz.",
+              "scene": {
+                "bg": "dormitorio",
+                "mood": "mystery",
+                "time": "noche",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "hide",
+                    "x": 0.42
+                  }
+                ],
+                "unseen": [
+                  "manta"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "tornillo",
+          "variants": [
+            {
+              "id": "noche_oscura_tornillo_a",
+              "text": "Entonces se oyó un pitido: pi, pi. Era {helper}, el robot. Sus ojos de pantalla brillaban verdes. «¿Vamos a ver la noche?», le preguntó {helper} a {hero}.",
+              "scene": {
+                "bg": "dormitorio",
+                "mood": "calm",
+                "time": "noche",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "surprised",
+                    "x": 0.34
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "wave",
+                    "x": 0.64
+                  }
+                ]
+              }
+            }
+          ],
+          "introduces": [
+            "helper"
+          ]
+        },
+        {
+          "id": "paso",
+          "variants": [
+            {
+              "id": "noche_oscura_paso_a",
+              "text": "{hero} no quería salir de la manta. Pero {helper} le dio la mano, fría y suave. «Un pasito», dijo {helper}. Y {hero} dio un pasito, y otro.",
+              "scene": {
+                "bg": "dormitorio",
+                "mood": "hope",
+                "time": "noche",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "walk",
+                    "x": 0.36
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "offer",
+                    "x": 0.62
+                  }
+                ],
+                "unseen": [
+                  "manta"
+                ]
+              },
+              "adds": [
+                "dio_el_paso"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cielo",
+          "variants": [
+            {
+              "id": "noche_oscura_cielo_a",
+              "text": "Subieron al observatorio. Y arriba… ¡oh! {hero} y {helper} vieron el cielo lleno de estrellas. Una, dos, tres, ¡muchísimas! Brillaban como lucecitas, porque la noche no es negra: está llena de luz.",
+              "scene": {
+                "bg": "observatorio",
+                "mood": "triumph",
+                "time": "noche",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "wonder",
+                    "x": 0.36
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "point",
+                    "x": 0.64
+                  }
+                ]
+              },
+              "requires": [
+                "dio_el_paso"
+              ]
+            }
+          ],
+          "moves": true
+        },
+        {
+          "id": "cuenta",
+          "variants": [
+            {
+              "id": "noche_oscura_cuenta_a",
+              "text": "{hero} y {helper} contaron estrellas. Una para mamá, una para papá, una para la abuela. {helper} pitaba bajito: pi, pi, pi.",
+              "scene": {
+                "bg": "observatorio",
+                "mood": "joy",
+                "time": "noche",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "point",
+                    "x": 0.36
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "talk",
+                    "x": 0.64
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "duerme",
+          "variants": [
+            {
+              "id": "noche_oscura_duerme_a",
+              "text": "Al volver a dormir, {helper} se quedó a su lado. La noche era una manta de estrellas, porque {hero} ya la había visto. {hero} cerró los ojos, despacito, y se durmió.",
+              "scene": {
+                "bg": "dormitorio",
+                "mood": "sleep",
+                "time": "noche",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "sleep",
+                    "x": 0.42
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "idle",
+                    "x": 0.7
+                  }
+                ],
+                "unseen": [
+                  "manta"
+                ]
+              }
+            }
+          ],
+          "moves": true
+        }
+      ]
+    },
+    {
+      "id": "semilla_luz",
+      "value": "perseverancia",
+      "title": "La semilla de luz",
+      "ages": [
+        "2-3"
+      ],
+      "npcs": {},
+      "cast": {
+        "hero": {
+          "kind": "character",
+          "roles": [
+            "hero"
+          ]
+        },
+        "helper": {
+          "kind": "character",
+          "ids": [
+            "osa"
+          ]
+        },
+        "planeta_jardin": {
+          "kind": "place",
+          "ids": [
+            "planeta_jardin"
+          ]
+        },
+        "item": {
+          "kind": "prop",
+          "ids": [
+            "semilla_luz"
+          ]
+        }
+      },
+      "beats": [
+        {
+          "id": "regalo",
+          "variants": [
+            {
+              "id": "semilla_luz_regalo_a",
+              "text": "La {helper} le dio a {hero} {item.un}. Era amarilla y brillaba un poquito. «Si la cuidas, crece una flor», dijo la {helper}.",
+              "scene": {
+                "bg": "planeta_jardin",
+                "mood": "calm",
+                "time": "dia",
+                "focus": {
+                  "prop": "semilla_luz",
+                  "x": 0.5,
+                  "fill": 0.55
+                }
+              }
+            }
+          ],
+          "introduces": [
+            "item",
+            "helper"
+          ]
+        },
+        {
+          "id": "agua",
+          "variants": [
+            {
+              "id": "semilla_luz_agua_a",
+              "text": "{hero} le dio agua: glu, glu. Esperó, porque crecer tarda. No salió nada. Al día siguiente le dio más agua: glu, glu. Esperó. Nada todavía.",
+              "scene": {
+                "bg": "planeta_jardin",
+                "mood": "mystery",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "offer",
+                    "x": 0.4
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "semilla_luz",
+                    "x": 0.62,
+                    "clip": "shimmer",
+                    "scale": 0.8
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "otra",
+          "variants": [
+            {
+              "id": "semilla_luz_otra_a",
+              "text": "{hero} quería parar, porque no veía nada. Pero la {helper} le dijo: «Otra vez, poquito a poco». Y {hero} le dio agua otra vez, y le cantó una canción.",
+              "scene": {
+                "bg": "planeta_jardin",
+                "mood": "hope",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "talk",
+                    "x": 0.34
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "talk",
+                    "x": 0.64
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "semilla_luz",
+                    "x": 0.5,
+                    "clip": "shimmer",
+                    "scale": 0.8
+                  }
+                ]
+              },
+              "adds": [
+                "lo_intento"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "brote",
+          "variants": [
+            {
+              "id": "semilla_luz_brote_a",
+              "text": "Y una mañana… ¡un brote! La {helper} aplaudió. Crecía y crecía, porque {hero} había cuidado la {item.noun} cada día.",
+              "scene": {
+                "bg": "planeta_jardin",
+                "mood": "triumph",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "cheer",
+                    "x": 0.34
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "clap",
+                    "x": 0.64
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "flor_cristal",
+                    "x": 0.5,
+                    "clip": "shimmer",
+                    "scale": 0.8
+                  }
+                ]
+              },
+              "requires": [
+                "lo_intento"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "flor",
+          "variants": [
+            {
+              "id": "semilla_luz_flor_a",
+              "text": "Al final salió una flor de luz. Brillaba como una lamparita. {hero} y la {helper} la miraban, muy content{hero.o}s.",
+              "scene": {
+                "bg": "planeta_jardin",
+                "mood": "joy",
+                "time": "noche",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "wonder",
+                    "x": 0.34
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "idle",
+                    "x": 0.64
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "flor_cristal",
+                    "x": 0.5,
+                    "clip": "shimmer",
+                    "scale": 0.8
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "duerme",
+          "variants": [
+            {
+              "id": "semilla_luz_duerme_a",
+              "text": "Esa noche, la flor alumbró el jardín con su luz suave. {hero} se acurrucó a su lado, cerró los ojos y se durmió.",
+              "scene": {
+                "bg": "planeta_jardin",
+                "mood": "sleep",
+                "time": "noche",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "sleep",
+                    "x": 0.42
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "flor_cristal",
+                    "x": 0.66,
+                    "clip": "shimmer",
+                    "scale": 0.8
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "piedras_luna",
+      "value": "generosidad",
+      "title": "Las piedras de la luna",
+      "ages": [
+        "2-3"
+      ],
+      "npcs": {
+        "pip": [
+          "Pip"
+        ],
+        "nube": [
+          "Nube"
+        ],
+        "chispa": [
+          "Chispa"
+        ]
+      },
+      "cast": {
+        "hero": {
+          "kind": "character",
+          "roles": [
+            "hero"
+          ]
+        },
+        "luna": {
+          "kind": "place",
+          "ids": [
+            "luna"
+          ]
+        },
+        "aldea": {
+          "kind": "place",
+          "ids": [
+            "aldea"
+          ]
+        },
+        "dormitorio": {
+          "kind": "place",
+          "ids": [
+            "dormitorio"
+          ]
+        },
+        "item": {
+          "kind": "prop",
+          "ids": [
+            "piedra_lunar"
+          ]
+        }
+      },
+      "beats": [
+        {
+          "id": "luna",
+          "variants": [
+            {
+              "id": "piedras_luna_luna_a",
+              "text": "En la luna, {hero} saltaba muy alto: ¡boing, boing! Allí todo pesa poquito. Y en el suelo encontró {item.un}, gris y redonda.",
+              "scene": {
+                "bg": "luna",
+                "mood": "joy",
+                "focus": {
+                  "prop": "piedra_lunar",
+                  "x": 0.5,
+                  "fill": 0.55
+                }
+              }
+            }
+          ],
+          "introduces": [
+            "item"
+          ]
+        },
+        {
+          "id": "mas",
+          "variants": [
+            {
+              "id": "piedras_luna_mas_a",
+              "text": "Encontró otra {item.noun}, y otra, y otra más. ¡Cuatro! {hero} las guardó en la mochila. Una, dos, tres y cuatro.",
+              "scene": {
+                "bg": "luna",
+                "mood": "joy",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "moonhop",
+                    "x": 0.4
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "piedra_lunar",
+                    "x": 0.66,
+                    "scale": 0.7
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "vuelta",
+          "variants": [
+            {
+              "id": "piedras_luna_vuelta_a",
+              "text": "De vuelta en la aldea, Pip y Nube corrieron a ver a {hero}. «¿Qué traes?», preguntaron, porque {hero} venía muy content{hero.o}.",
+              "scene": {
+                "bg": "aldea",
+                "mood": "calm",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "idle",
+                    "x": 0.28
+                  },
+                  {
+                    "rig": "pip",
+                    "clip": "wave",
+                    "x": 0.54
+                  },
+                  {
+                    "rig": "nube",
+                    "clip": "wave",
+                    "x": 0.78
+                  }
+                ]
+              }
+            }
+          ],
+          "moves": true
+        },
+        {
+          "id": "reparte",
+          "variants": [
+            {
+              "id": "piedras_luna_reparte_a",
+              "text": "{hero} abrió la mochila. «Una para Pip, una para Nube, una para Chispa y una para mí», dijo {hero}. Así cada uno tenía su piedrecita.",
+              "scene": {
+                "bg": "aldea",
+                "mood": "hope",
+                "time": "noche",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "offer",
+                    "x": 0.24
+                  },
+                  {
+                    "rig": "pip",
+                    "clip": "cheer",
+                    "x": 0.46
+                  },
+                  {
+                    "rig": "nube",
+                    "clip": "cheer",
+                    "x": 0.66
+                  },
+                  {
+                    "rig": "chispa",
+                    "clip": "goat_hop",
+                    "x": 0.86
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "piedra_lunar",
+                    "near": "hero",
+                    "dx": 0.07,
+                    "lift": 55,
+                    "scale": 0.6
+                  }
+                ]
+              },
+              "adds": [
+                "compartio"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "juegan",
+          "variants": [
+            {
+              "id": "piedras_luna_juegan_a",
+              "text": "Pusieron sus cuatro tesoros de la luna en fila. Pip y Nube se rieron: ja, ja, ja. Era más divertido con amigos, porque las cosas bonitas se comparten.",
+              "scene": {
+                "bg": "aldea",
+                "mood": "joy",
+                "time": "noche",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "laugh",
+                    "x": 0.28
+                  },
+                  {
+                    "rig": "pip",
+                    "clip": "laugh",
+                    "x": 0.52
+                  },
+                  {
+                    "rig": "nube",
+                    "clip": "laugh",
+                    "x": 0.76
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "piedra_lunar",
+                    "x": 0.5,
+                    "scale": 0.6
+                  }
+                ]
+              },
+              "requires": [
+                "compartio"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "duerme",
+          "variants": [
+            {
+              "id": "piedras_luna_duerme_a",
+              "text": "Esa noche, {hero} puso su {item.noun} al lado de la almohada. Por la ventana se asomaba la luna de verdad, grande y blanca, porque quería verla también. {hero} la saludó, y se durmió.",
+              "scene": {
+                "bg": "dormitorio",
+                "mood": "sleep",
+                "time": "noche",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "yawn",
+                    "x": 0.42
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "piedra_lunar",
+                    "x": 0.7,
+                    "scale": 0.5
+                  }
+                ],
+                "unseen": [
+                  "almohada"
+                ]
+              }
+            }
+          ],
+          "moves": true
+        }
+      ]
+    }
+  ]
+}

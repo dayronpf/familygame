@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../share.dart';
@@ -111,6 +112,15 @@ const List<PackInfo> packCatalog = [
         'perder el miedo a la oscuridad.',
     icon: Icons.rocket_launch_outlined,
     colors: [Color(0xFFE05A8B), Color(0xFF7A2A6A)],
+    // En construcción (docs/27): solo se abre en las compilaciones de desarrollo hasta que esté completo
+    status: kDebugMode ? PackStatus.available : PackStatus.soon,
+    cover: PackCover(
+      place: 'aldea',
+      heroM: 'orion',
+      heroF: 'lira',
+      helper: 'tornillo',
+      view: Rect.fromLTWH(0, 90, 640, 374),
+    ),
   ),
   PackInfo(
     id: 'granja',
