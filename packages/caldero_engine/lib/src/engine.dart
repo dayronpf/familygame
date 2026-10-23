@@ -79,7 +79,9 @@ class StoryEngine {
 
     final Moral moral;
     if (options.valueId == null) {
-      moral = rng.choice(pack.morals);
+      // «Sorpréndeme»: solo entre las enseñanzas que tienen cuentos (en un pack completo, todas)
+      final told = pack.moralsWithStories;
+      moral = rng.choice(told.isEmpty ? pack.morals : told);
     } else {
       moral = pack.moralById(options.valueId!) ??
           (throw StoryGenerationException(

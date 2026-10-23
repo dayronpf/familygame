@@ -8,6 +8,7 @@ import 'feedback/feedback_store.dart';
 import 'feedback/rating_card.dart';
 import 'guide/holograma_guide.dart';
 import 'pack_loader.dart';
+import 'packs/pack_catalog.dart';
 import 'packs/packs_tab.dart';
 import 'seed.dart';
 import 'settings/app_settings.dart';
@@ -48,10 +49,15 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  late final Future<Pack> _pack = loadPack(widget.bundle);
+  /// Packs y dibujos ya leídos, por id de paquete: cada uno se carga una vez y se comparte con todos sus cuentos.
+  final Map<String, Future<Pack>> _packs = {};
+  final Map<String, Future<StageArt?>> _arts = {};
 
-  /// Dibujos de los cuentos; se carga una vez y se comparte con todos los cuentos.
-  late final Future<StageArt?> _art = loadStageArt(widget.bundle);
+  Future<Pack> _packFor(String id) =>
+      _packs[id] ??= loadPack(widget.bundle, path: packPath(id));
+
+  Future<StageArt?> _artFor(String id) =>
+      _arts[id] ??= loadStageArt(widget.bundle, pack: id);
 
   /// `null` = «Sorpréndeme» (el caldero elige).
   String? _selectedMoral;
@@ -160,7 +166,7 @@ class _HomePageState extends State<HomePage> {
           heroName: heroName,
           heroGender: heroGender,
           childId: childId,
-          art: _art,
+          art: _artFor(pack.id),
           animate: widget.animateArt,
           onAnother: () => next().toStory(),
           onAnotherRun: next,
@@ -168,6 +174,27 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
+
+  /// Vuelve a contar un cuento guardado con su propio paquete (puede no ser el que está abierto).
+  Future<void> _replay(ShelfEntry e) async {
+    final Pack pack;
+    try {
+      pack = await _packFor(e.packId);
+    } catch (_) {
+      return; // un paquete que ya no está en la app
+    }
+    if (!mounted) return;
+    await _openStory(pack, seed: e.seed, option: e.option, replay: e);
+  }
+
+  /// La portada dibujada de la tarjeta de un paquete (vacía mientras carga o si aún no tiene arte).
+  Widget _coverFor(PackInfo info) => FutureBuilder<(Pack, StageArt?)>(
+        future: Future.wait([_packFor(info.id), _artFor(info.id)])
+            .then((r) => (r[0] as Pack, r[1] as StageArt?)),
+        builder: (context, snap) => snap.data == null
+            ? const SizedBox.shrink()
+            : packCover(snap.data!.$2, snap.data!.$1, cover: info.cover),
+      );
 
   Future<void> _openSettings(Set<String> agesWithStories) async {
     if (!await askAdult(context) || !mounted) return;
@@ -236,7 +263,7 @@ class _HomePageState extends State<HomePage> {
         child: SafeArea(
           bottom: false,
           child: FutureBuilder<Pack>(
-            future: _pack,
+            future: _packFor(settings?.packId ?? defaultPackId),
             builder: (context, snapshot) {
               if (snapshot.hasError) {
                 return Center(
@@ -264,19 +291,17 @@ class _HomePageState extends State<HomePage> {
                   Expanded(
                     child: switch (_tab) {
                       0 => _homeTab(pack),
-                      1 => FutureBuilder<StageArt?>(
-                          future: _art,
-                          builder: (context, art) => PacksTab(
-                            onOpenPack: (_) => setState(() => _tab = 0),
-                            coverFor: (p) => p.id == 'medieval'
-                                ? castleCover(art.data, pack)
-                                : null,
-                          ),
+                      1 => PacksTab(
+                          onOpenPack: (p) {
+                            settings?.setPack(p.id);
+                            setState(() => _tab = 0);
+                          },
+                          coverFor: _coverFor,
+                          openId: pack.id,
                         ),
                       _ => MyStoriesTab(
                           shelf: widget.shelf,
-                          onOpen: (e) => _openStory(pack,
-                              seed: e.seed, option: e.option, replay: e),
+                          onOpen: _replay,
                         ),
                     },
                   ),
@@ -322,10 +347,11 @@ class _HomePageState extends State<HomePage> {
             padding: const EdgeInsets.fromLTRB(20, 4, 20, 16),
             children: [
               FutureBuilder<StageArt?>(
-                future: _art,
+                future: _artFor(pack.id),
                 builder: (context, art) => HeroBanner(
                   art: art.data,
                   pack: pack,
+                  cover: packInfo(pack.id).cover,
                   greeting: SettingsScope.maybeOf(context)?.child.heroName ==
                           null
                       ? '¡Hola! ¿Qué cuento\nquieres esta noche?'
@@ -421,6 +447,11 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _moralGrid(Pack pack) {
+    // Al cambiar de paquete, una enseñanza elegida que aquí no tiene cuentos vuelve a «Sorpréndeme»
+    if (_selectedMoral != null &&
+        !pack.moralsWithStories.any((m) => m.id == _selectedMoral)) {
+      _selectedMoral = null;
+    }
     final tiles = <Widget>[
       MoralTile(
         name: 'Sorpréndeme',
@@ -428,7 +459,7 @@ class _HomePageState extends State<HomePage> {
         selected: _selectedMoral == null,
         onTap: () => setState(() => _selectedMoral = null),
       ),
-      for (final moral in pack.morals)
+      for (final moral in pack.moralsWithStories)
         MoralTile(
           name: moral.name,
           style: MoralStyle.of(moral.id),

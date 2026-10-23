@@ -34,6 +34,7 @@ flutter:
     # Copias de content/packs/*; las sincroniza tools/sync_assets.sh y las verifica CI.
     - assets/packs/demo/
     - assets/packs/medieval/
+    - assets/packs/mar/
     # Política de privacidad y términos de uso (los sincroniza tools/sync_assets.sh desde content/legal/).
     - assets/legal/
     # Guía en PDF (la genera tools/guide/make_holograma_pdf.py)

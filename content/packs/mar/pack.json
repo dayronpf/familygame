@@ -1,0 +1,864 @@
+{
+  "pack": {
+    "schema": 2,
+    "id": "mar",
+    "name": "Mar de las Estrellas (en construcción)",
+    "version": "0.1.0",
+    "license": "Contenido original, todos los derechos reservados al autor del proyecto",
+    "language": "es",
+    "age_band": "2-12",
+    "features": [
+      "choice@1"
+    ]
+  },
+  "characters": [
+    {
+      "id": "bruno",
+      "given": "Bruno",
+      "noun": "grumete",
+      "gender": "m",
+      "roles": [
+        "hero",
+        "helper"
+      ],
+      "alignment": "positive",
+      "trait": {
+        "m": "curioso",
+        "f": "curiosa"
+      },
+      "tags": [
+        "young",
+        "sailor"
+      ],
+      "attrs": {
+        "rasgo": "que quería aprender a leer las estrellas",
+        "jura": "¡Por mi pañuelo!",
+        "paso": "una brazada más, y otra brazada",
+        "gesto": [
+          "se ajustó el pañuelo rojo de la cabeza",
+          "se rascó la nariz salada",
+          "se arremangó la camisa de rayas"
+        ],
+        "miedo": [
+          "se le pusieron los pelos de punta bajo el pañuelo",
+          "le temblaron las rodillas como dos gelatinas",
+          "se le encogieron los dedos de los pies descalzos"
+        ],
+        "voz": [
+          "con voz clarita",
+          "a media voz",
+          "mirándose los pies descalzos"
+        ],
+        "consuelo": "compartió con ella su galleta de barco",
+        "regalo": "una conchita con un agujerito, para colgarla del cuello"
+      }
+    },
+    {
+      "id": "vega",
+      "given": "Vega",
+      "noun": "grumete",
+      "gender": "f",
+      "roles": [
+        "hero",
+        "helper"
+      ],
+      "alignment": "positive",
+      "trait": {
+        "m": "valiente",
+        "f": "valiente"
+      },
+      "tags": [
+        "young",
+        "sailor"
+      ],
+      "attrs": {
+        "rasgo": "que siempre subía la primera a la cofa",
+        "jura": "¡Por mis trenzas!",
+        "paso": "un nudo más, y otro nudo",
+        "gesto": [
+          "se echó las trenzas a la espalda",
+          "se colocó bien el pañuelo azul",
+          "se sacudió la arena de las rodillas"
+        ],
+        "miedo": [
+          "se le erizaron las trenzas como dos antenas",
+          "le temblaron las rodillas como dos gelatinas",
+          "se le encogieron los dedos de los pies descalzos"
+        ],
+        "voz": [
+          "con voz clarita",
+          "a media voz",
+          "mirándose los pies descalzos"
+        ],
+        "consuelo": "compartió con ella su galleta de barco",
+        "regalo": "una conchita con un agujerito, para colgarla del cuello"
+      }
+    },
+    {
+      "id": "estela",
+      "given": "Estela",
+      "noun": "capitana",
+      "gender": "f",
+      "roles": [
+        "helper"
+      ],
+      "alignment": "positive",
+      "trait": {
+        "m": "justo",
+        "f": "justa"
+      },
+      "tags": [
+        "wise",
+        "kind",
+        "captain"
+      ],
+      "attrs": {
+        "gesto": [
+          "se colocó el sombrero de tres picos",
+          "se apoyó en el timón y sonrió",
+          "miró el horizonte con el catalejo"
+        ],
+        "miedo": "se le torció el sombrero",
+        "voz": [
+          "con su voz de capitana, firme y cálida",
+          "con una carcajada que olía a sal",
+          "despacio, como quien lee un mapa"
+        ],
+        "idea": "«En mi barco, el tesoro se cuenta entre todos, o no se cuenta.»",
+        "consuelo": "le hizo sitio a su lado junto al timón",
+        "regalo": "su farol de barco, ya encendido"
+      }
+    },
+    {
+      "id": "faro",
+      "given": "Abuelo Faro",
+      "noun": "farero",
+      "gender": "m",
+      "roles": [
+        "helper"
+      ],
+      "alignment": "positive",
+      "trait": {
+        "m": "sabio",
+        "f": "sabia"
+      },
+      "tags": [
+        "wise",
+        "old"
+      ],
+      "attrs": {
+        "gesto": [
+          "se acarició la barba blanca, que olía a algas",
+          "se limpió las gafas con la punta de la camisa",
+          "señaló una estrella con el dedo"
+        ],
+        "miedo": "se le empañaron las gafas",
+        "voz": [
+          "con su voz lenta de olas",
+          "con un guiño",
+          "despacito"
+        ],
+        "idea": "«Las estrellas no se pierden nunca: solo hay que saber mirarlas.»",
+        "consuelo": "puso a calentar un cazo de leche con miel",
+        "regalo": "un mapa de estrellas dibujado a mano"
+      }
+    },
+    {
+      "id": "nacar",
+      "given": "Nácar",
+      "noun": "sirena",
+      "gender": "f",
+      "roles": [
+        "helper"
+      ],
+      "alignment": "positive",
+      "trait": {
+        "m": "cantarín",
+        "f": "cantarina"
+      },
+      "tags": [
+        "wise",
+        "sea",
+        "magic"
+      ],
+      "attrs": {
+        "gesto": [
+          "agitó la cola y salpicó estrellitas de agua",
+          "se peinó el pelo verde con una espina de pez",
+          "tarareó una canción muy bajito"
+        ],
+        "miedo": "se le escondió la cola debajo de una roca",
+        "voz": [
+          "con voz de ola pequeña",
+          "cantando un poquito",
+          "con un susurro de espuma"
+        ],
+        "idea": "«Escucha el mar: siempre dice por dónde se vuelve a casa.»",
+        "consuelo": "le cantó la nana del arrecife",
+        "regalo": "una perla del tamaño de un guisante"
+      }
+    },
+    {
+      "id": "mostacho",
+      "given": "Mostacho",
+      "noun": "capitán",
+      "gender": "m",
+      "roles": [
+        "villain"
+      ],
+      "alignment": "negative",
+      "trait": {
+        "m": "gruñón",
+        "f": "gruñona"
+      },
+      "tags": [
+        "greedy",
+        "captain"
+      ],
+      "attrs": {
+        "gesto": [
+          "se retorció el bigote",
+          "hizo sonar las monedas del bolsillo",
+          "resopló como una ballena"
+        ],
+        "voz": [
+          "con voz de trueno chiquito",
+          "refunfuñando",
+          "con una vocecita que no le pegaba nada"
+        ],
+        "reacciona": "se quedó con el bigote quieto, sin saber qué decir",
+        "guarida": "su barco de velas remendadas"
+      }
+    },
+    {
+      "id": "remolino",
+      "given": "Remolino",
+      "noun": "pulpo",
+      "gender": "m",
+      "roles": [
+        "villain"
+      ],
+      "alignment": "negative",
+      "trait": {
+        "m": "travieso",
+        "f": "traviesa"
+      },
+      "tags": [
+        "tricky",
+        "sea"
+      ],
+      "attrs": {
+        "gesto": [
+          "enredó sus ocho brazos en un nudo",
+          "cambió de color, de rojo a morado",
+          "echó una nubecita de tinta"
+        ],
+        "voz": [
+          "con voz de burbuja",
+          "con una risita de agua",
+          "haciendo pompas"
+        ],
+        "reacciona": "se puso de color rosa, de pura vergüenza",
+        "guarida": "su cueva de rocas del arrecife"
+      }
+    }
+  ],
+  "places": [
+    {
+      "id": "cubierta",
+      "noun": "cubierta de La Gaviota",
+      "gender": "f",
+      "mood": "calm",
+      "tags": [
+        "ship"
+      ],
+      "seasons": [],
+      "features": [],
+      "times": [
+        "dia",
+        "atardecer",
+        "noche"
+      ]
+    },
+    {
+      "id": "camarote",
+      "noun": "camarote",
+      "gender": "m",
+      "mood": "calm",
+      "tags": [
+        "ship",
+        "home"
+      ],
+      "seasons": [],
+      "features": [],
+      "times": [
+        "dia",
+        "noche"
+      ]
+    },
+    {
+      "id": "bodega",
+      "noun": "bodega del barco",
+      "gender": "f",
+      "mood": "calm",
+      "tags": [
+        "ship"
+      ],
+      "seasons": [],
+      "features": []
+    },
+    {
+      "id": "cofa",
+      "noun": "cofa del mástil",
+      "gender": "f",
+      "mood": "calm",
+      "tags": [
+        "ship",
+        "high"
+      ],
+      "seasons": [],
+      "features": [],
+      "times": [
+        "dia",
+        "atardecer",
+        "noche"
+      ]
+    },
+    {
+      "id": "puerto",
+      "noun": "puerto",
+      "gender": "m",
+      "mood": "calm",
+      "tags": [
+        "settlement"
+      ],
+      "seasons": [],
+      "features": [],
+      "times": [
+        "dia",
+        "amanecer",
+        "atardecer",
+        "noche"
+      ]
+    },
+    {
+      "id": "playa",
+      "noun": "playa de la Isla Quieta",
+      "gender": "f",
+      "mood": "calm",
+      "tags": [
+        "island",
+        "shore"
+      ],
+      "seasons": [],
+      "features": [],
+      "times": [
+        "dia",
+        "atardecer",
+        "noche"
+      ]
+    },
+    {
+      "id": "selva",
+      "noun": "selva de la isla",
+      "gender": "f",
+      "mood": "calm",
+      "tags": [
+        "island",
+        "forest"
+      ],
+      "seasons": [],
+      "features": [],
+      "times": [
+        "dia",
+        "atardecer"
+      ]
+    },
+    {
+      "id": "cueva_tesoro",
+      "noun": "cueva del tesoro",
+      "gender": "f",
+      "mood": "mystery",
+      "tags": [
+        "island",
+        "cave"
+      ],
+      "seasons": [],
+      "features": []
+    },
+    {
+      "id": "arrecife",
+      "noun": "arrecife",
+      "gender": "m",
+      "mood": "calm",
+      "tags": [
+        "sea",
+        "underwater"
+      ],
+      "seasons": [],
+      "features": [],
+      "times": [
+        "dia",
+        "noche"
+      ]
+    },
+    {
+      "id": "faro",
+      "noun": "faro",
+      "gender": "m",
+      "mood": "calm",
+      "tags": [
+        "shore",
+        "high"
+      ],
+      "seasons": [],
+      "features": [],
+      "times": [
+        "dia",
+        "atardecer",
+        "noche"
+      ]
+    },
+    {
+      "id": "laguna",
+      "noun": "laguna de las sirenas",
+      "gender": "f",
+      "mood": "calm",
+      "tags": [
+        "sea",
+        "shore"
+      ],
+      "seasons": [],
+      "features": [],
+      "times": [
+        "dia",
+        "noche"
+      ]
+    },
+    {
+      "id": "mar_abierto",
+      "noun": "mar abierto",
+      "gender": "m",
+      "mood": "calm",
+      "tags": [
+        "sea"
+      ],
+      "seasons": [],
+      "features": [],
+      "times": [
+        "dia",
+        "atardecer",
+        "noche"
+      ]
+    }
+  ],
+  "props": [
+    {
+      "id": "caracola",
+      "noun": "caracola",
+      "gender": "f",
+      "tags": [
+        "sea",
+        "music"
+      ]
+    },
+    {
+      "id": "mapa",
+      "noun": "mapa",
+      "gender": "m",
+      "tags": [
+        "map"
+      ]
+    },
+    {
+      "id": "cofre",
+      "noun": "cofre",
+      "gender": "m",
+      "tags": [
+        "treasure"
+      ]
+    },
+    {
+      "id": "catalejo",
+      "noun": "catalejo",
+      "gender": "m",
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "id": "brujula",
+      "noun": "brújula",
+      "gender": "f",
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "id": "botella_mensaje",
+      "noun": "botella con un mensaje",
+      "gender": "f",
+      "tags": [
+        "message"
+      ]
+    },
+    {
+      "id": "farol_barco",
+      "noun": "farol",
+      "gender": "m",
+      "tags": [
+        "light"
+      ]
+    },
+    {
+      "id": "perla",
+      "noun": "perla",
+      "gender": "f",
+      "tags": [
+        "treasure",
+        "sea"
+      ]
+    },
+    {
+      "id": "llave",
+      "noun": "llave",
+      "gender": "f",
+      "tags": [
+        "tool"
+      ]
+    },
+    {
+      "id": "galleta_barco",
+      "noun": "galleta de barco",
+      "gender": "f",
+      "tags": [
+        "food"
+      ]
+    }
+  ],
+  "morals": [
+    {
+      "id": "honestidad",
+      "name": "Honestidad",
+      "text": "Un secreto pesa más que la verdad, aunque la verdad dé miedo.",
+      "simple": {
+        "2-3": "Decir la verdad hace el corazón ligero.",
+        "4-5": "Cuando decimos la verdad, el corazón se siente ligero."
+      }
+    },
+    {
+      "id": "generosidad",
+      "name": "Generosidad",
+      "text": "Cuando compartimos lo poco que tenemos, la alegría crece para todos.",
+      "simple": {
+        "2-3": "Compartir es bonito.",
+        "4-5": "Si compartimos, hay alegría para todos."
+      }
+    },
+    {
+      "id": "valentia",
+      "name": "Valentía",
+      "text": "Ser valiente no es no tener miedo, sino dar el primer paso a pesar de él.",
+      "simple": {
+        "2-3": "Con un pasito pequeño se empieza.",
+        "4-5": "Un paso pequeñito, y luego otro, y llegamos lejos."
+      }
+    },
+    {
+      "id": "humildad",
+      "name": "Humildad",
+      "text": "Presumir no hace más grande a nadie; pedir ayuda y reconocer un error, sí.",
+      "simple": {
+        "2-3": "Pedir ayuda está bien.",
+        "4-5": "Pedir ayuda también es de grandes."
+      }
+    },
+    {
+      "id": "perseverancia",
+      "name": "Perseverancia",
+      "text": "Lo que parece imposible se consigue con un intento más, y otro, y otro.",
+      "simple": {
+        "2-3": "Otra vez, otra vez, y lo logramos.",
+        "4-5": "Si lo intentamos otra vez, y pensamos un poquito, lo conseguimos."
+      }
+    },
+    {
+      "id": "amistad",
+      "name": "Amistad",
+      "text": "Un amigo de verdad está a tu lado cuando lo necesitas y se alegra de cómo eres.",
+      "simple": {
+        "2-3": "Los amigos se cuidan.",
+        "4-5": "Los buenos amigos nos ayudan cuando estamos tristes."
+      }
+    }
+  ],
+  "premises": [
+    {
+      "id": "caracola_nacar",
+      "value": "amistad",
+      "title": "La caracola de Nácar",
+      "ages": [
+        "2-3"
+      ],
+      "npcs": {},
+      "cast": {
+        "hero": {
+          "kind": "character",
+          "roles": [
+            "hero"
+          ]
+        },
+        "helper": {
+          "kind": "character",
+          "ids": [
+            "nacar"
+          ]
+        },
+        "playa": {
+          "kind": "place",
+          "ids": [
+            "playa"
+          ]
+        },
+        "item": {
+          "kind": "prop",
+          "ids": [
+            "caracola"
+          ]
+        }
+      },
+      "beats": [
+        {
+          "id": "caracola",
+          "variants": [
+            {
+              "id": "caracola_nacar_caracola_a",
+              "text": "{hero} paseaba por la playa, descalz{hero.o} y content{hero.o}. En la arena había {item.un} rosa, grande y brillante. {hero} se la acercó a la oreja. «Shhh, shhh», cantaba el mar dentro de la caracola.",
+              "scene": {
+                "bg": "playa",
+                "mood": "calm",
+                "time": "dia",
+                "focus": {
+                  "prop": "caracola",
+                  "x": 0.5,
+                  "fill": 0.5
+                }
+              }
+            },
+            {
+              "id": "caracola_nacar_caracola_b",
+              "text": "Por la mañana, {hero} corría por la playa. ¡Plaf, plaf!, hacían sus pies en la arena mojada. De pronto, vio {item.un} rosa y brillante. Se la puso en la oreja. «Shhh, shhh», cantaba el mar dentro de la caracola.",
+              "scene": {
+                "bg": "playa",
+                "mood": "calm",
+                "time": "dia",
+                "focus": {
+                  "prop": "caracola",
+                  "x": 0.5,
+                  "fill": 0.5
+                }
+              }
+            }
+          ],
+          "introduces": [
+            "item"
+          ]
+        },
+        {
+          "id": "sirena",
+          "variants": [
+            {
+              "id": "caracola_nacar_sirena_a",
+              "text": "Entonces, en una roca, asomó {helper}, la sirena. Tenía la cola verde y el pelo lleno de conchitas. Estaba triste, porque no encontraba su caracola. «Sin mi caracola no puedo cantar la nana del mar», le dijo a {hero}.",
+              "scene": {
+                "bg": "playa",
+                "mood": "sad",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "surprised",
+                    "x": 0.32
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "sad",
+                    "x": 0.62
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "caracola",
+                    "near": "hero",
+                    "dx": 0.06,
+                    "lift": 40
+                  }
+                ]
+              }
+            },
+            {
+              "id": "caracola_nacar_sirena_b",
+              "text": "Detrás de una roca se oyó un suspiro. Era {helper}, la sirena, con la cola verde y el pelo lleno de conchitas. Buscaba y buscaba en la arena, porque no encontraba su caracola. «Sin mi caracola no puedo cantar la nana del mar», le dijo a {hero}.",
+              "scene": {
+                "bg": "playa",
+                "mood": "sad",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "surprised",
+                    "x": 0.32
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "sad",
+                    "x": 0.62
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "caracola",
+                    "near": "hero",
+                    "dx": 0.06,
+                    "lift": 40
+                  }
+                ]
+              }
+            }
+          ],
+          "introduces": [
+            "helper"
+          ]
+        },
+        {
+          "id": "devuelve",
+          "variants": [
+            {
+              "id": "caracola_nacar_devuelve_a",
+              "text": "{hero} miró la caracola. Era muy bonita, y cantaba tan bien… Pero era de {helper}. Así que {hero} se acercó a la roca y se la dio. «Toma. Es tuya», dijo {hero}. {helper} sonrió con toda la cara.",
+              "scene": {
+                "bg": "playa",
+                "mood": "hope",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "offer",
+                    "x": 0.32
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "surprised",
+                    "x": 0.62
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "caracola",
+                    "near": "hero",
+                    "dx": 0.08,
+                    "lift": 50
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "nana",
+          "variants": [
+            {
+              "id": "caracola_nacar_nana_a",
+              "text": "{helper} sopló la caracola: uuuh, uuuh. Las olas se pusieron a bailar, chof, chof. Los cangrejos sacaron la cabeza de la arena. Hasta las gaviotas se callaron para escuchar. {hero} escuchaba también, con la boca abierta, porque la nana del mar era muy bonita.",
+              "scene": {
+                "bg": "playa",
+                "mood": "joy",
+                "time": "atardecer",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "wonder",
+                    "x": 0.32
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "talk",
+                    "x": 0.62
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "caracola",
+                    "near": "helper",
+                    "dx": -0.06,
+                    "lift": 60
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "amigos",
+          "variants": [
+            {
+              "id": "caracola_nacar_amigos_a",
+              "text": "Después, {hero} y {helper} jugaron junt{hero.o}s en la orilla. {helper} salpicaba con la cola, y {hero} se reía, ja, ja. Ahora eran amig{hero.o}s, porque los amigos se cuidan.",
+              "scene": {
+                "bg": "playa",
+                "mood": "joy",
+                "time": "atardecer",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "laugh",
+                    "x": 0.32
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "laugh",
+                    "x": 0.62
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "noche",
+          "variants": [
+            {
+              "id": "caracola_nacar_noche_a",
+              "text": "Cuando salió la luna, {helper} cantó la nana del mar solo para {hero}. Uuuh, uuuh, hacía la caracola, despacito. {hero} bostezó y se acurrucó en la arena tibia. Cerró los ojos, con el mar cantando bajito.",
+              "scene": {
+                "bg": "playa",
+                "mood": "sleep",
+                "time": "noche",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "yawn",
+                    "x": 0.32
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "talk",
+                    "x": 0.62
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "caracola",
+                    "near": "helper",
+                    "dx": -0.06,
+                    "lift": 60
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

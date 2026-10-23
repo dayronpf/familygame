@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 
 import '../art/scene_painter.dart';
 import '../art/story_stage.dart';
+import '../packs/pack_catalog.dart';
 import 'palette.dart';
 
-/// Portada del inicio: el castillo del Reino de la Luna de noche, con el héroe y Zafiro, vivos (parpadean, respiran
-/// y saludan). El héroe es Aldo si el niño es un niño y Mara si no (que «¡Hola, Dayron!» no salude una niña). Si el arte no carga, un degradado de noche con la luna. Encima va el saludo.
+/// Portada del inicio: el lugar del paquete de noche (el castillo del Reino de la Luna…), con su héroe y su ayudante,
+/// vivos (parpadean, respiran y saludan). El héroe sigue al niño: en el medieval, Aldo si es un niño y Mara si no
+/// (que «¡Hola, Dayron!» no salude una niña). Si el arte no carga, un degradado de noche con la luna. Encima va el saludo.
 class HeroBanner extends StatefulWidget {
   const HeroBanner({
     super.key,
@@ -14,6 +16,7 @@ class HeroBanner extends StatefulWidget {
     required this.pack,
     required this.greeting,
     this.heroGender,
+    this.cover = PackCover.medieval,
     this.animate = true,
   });
 
@@ -23,6 +26,9 @@ class HeroBanner extends StatefulWidget {
 
   /// `m`/`f` del niño (o `null`): elige quién saluda en la portada.
   final String? heroGender;
+
+  /// Quién sale en la portada del paquete abierto.
+  final PackCover cover;
   final bool animate;
 
   @override
@@ -66,7 +72,7 @@ class _HeroBannerState extends State<HeroBanner>
     final setup = art == null
         ? null
         : bannerSetup(art, widget.pack, const Rect.fromLTWH(0, 330, 600, 350),
-            heroGender: widget.heroGender);
+            heroGender: widget.heroGender, cover: widget.cover);
     final text = Theme.of(context).textTheme;
     return AspectRatio(
       aspectRatio: 600 / 350,
@@ -135,13 +141,14 @@ class _HeroBannerState extends State<HeroBanner>
   }
 }
 
-/// La escena de portada: el castillo de noche con el héroe (Aldo con [heroGender] `m`, si no Mara) y Zafiro,
-/// recortada a [view] (o `null` si falta algo).
+/// La escena de portada de [cover] (en el medieval, el castillo de noche con Aldo o Mara según [heroGender] y Zafiro),
+/// recortada a [view] (o `null` si falta algo, como el arte de un paquete que aún no tiene dibujos).
 StageSetup? bannerSetup(
   StageArt art,
   Pack pack,
   Rect view, {
   String? heroGender,
+  PackCover cover = PackCover.medieval,
 }) {
   Character? by(String id) {
     for (final c in pack.characters) {
@@ -152,13 +159,13 @@ StageSetup? bannerSetup(
 
   Place? place;
   for (final p in pack.places) {
-    if (p.id == 'castillo') place = p;
+    if (p.id == cover.place) place = p;
   }
-  final hero = by(heroGender == 'm' ? 'aldo' : 'mara'), zafiro = by('zafiro');
-  if (place == null || hero == null || zafiro == null) return null;
+  final hero = by(cover.heroFor(heroGender)), helper = by(cover.helper);
+  if (place == null || hero == null || helper == null) return null;
   final base = stageFor(
     art,
-    {'lugar': place, 'hero': hero, 'helper': zafiro},
+    {'lugar': place, 'hero': hero, 'helper': helper},
     {
       'bg': 'lugar',
       'time': 'noche',
@@ -180,12 +187,13 @@ StageSetup? bannerSetup(
   );
 }
 
-/// La portada pequeña de un paquete (el castillo, quieto), para las tarjetas. Siempre **cubre** toda la tarjeta
+/// La portada pequeña de un paquete (su lugar, quieto: en el medieval, el castillo), para las tarjetas. Siempre **cubre** toda la tarjeta
 /// (recorta lo que sobre, como una foto de portada) para que no asome nada de lo que hay detrás, sea cual sea su
 /// proporción en cada teléfono.
-Widget castleCover(StageArt? art, Pack pack) {
+Widget packCover(StageArt? art, Pack pack,
+    {PackCover cover = PackCover.medieval}) {
   const view = Rect.fromLTWH(0, 330, 600, 350);
-  final setup = art == null ? null : bannerSetup(art, pack, view);
+  final setup = art == null ? null : bannerSetup(art, pack, view, cover: cover);
   if (setup == null) return const SizedBox.shrink();
   return SizedBox.expand(
     child: FittedBox(

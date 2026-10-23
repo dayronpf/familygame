@@ -79,6 +79,14 @@ Cada fase termina con las pruebas y el validador en verde, una comprobación en 
 6. **Sonido y cierre.** Olas, gaviotas y crujido de madera; el pack pasa a «disponible» en el catálogo; textos de la tienda;
    nueva versión.
 
+## 5 bis. Estado
+
+| Fase | Estado |
+|---|---|
+| 1. Revisión gramatical | ✅ Seis frases corregidas en el medieval (pack 0.19.1); el validador rechaza plurales de pareja en masculino («{hero} y Lía … juntos») y títulos pegados al héroe («{hero}, el rey»). Ver [14](14-rubrica-editorial.md). |
+| 2. Varios packs en la app | ✅ El pack abierto se guarda en Ajustes (`paquete`); pack y arte se cargan por `id`; «Paquetes» marca el abierto; la portada sale de `PackCover`; un cuento guardado se cuenta con su pack; solo se ofrecen las enseñanzas con cuentos (también «Sorpréndeme»). `content/packs/mar` tiene los personajes, lugares y objetos de este plan y un cuento de prueba (*La caracola de Nácar*, 2–3, amistad), aún sin arte. **Solo se abre en compilaciones de desarrollo** (`kDebugMode`). |
+| 3–6 | ☐ |
+
 ## 6. Riesgos
 
 * **Arte nuevo de esqueleto** (sirena y pulpo): los gestos actuales suponen piernas. Puede bastar con una cola que se ondula y un

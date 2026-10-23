@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../share.dart';
@@ -5,6 +6,31 @@ import '../ui/palette.dart';
 
 /// Si el paquete se puede abrir ya o llegará más adelante.
 enum PackStatus { available, soon }
+
+/// Quién sale en la portada del paquete (el inicio y su tarjeta): el lugar, el héroe según el niño y un ayudante.
+class PackCover {
+  const PackCover({
+    required this.place,
+    required this.heroM,
+    required this.heroF,
+    required this.helper,
+  });
+
+  final String place;
+
+  /// Héroe si el niño es un niño ([heroM]) y si es una niña o no se sabe ([heroF]).
+  final String heroM, heroF;
+  final String helper;
+
+  static const medieval = PackCover(
+    place: 'castillo',
+    heroM: 'aldo',
+    heroF: 'mara',
+    helper: 'zafiro',
+  );
+
+  String heroFor(String? gender) => gender == 'm' ? heroM : heroF;
+}
 
 /// Un paquete de cuentos de la tienda: su portada, su tema y su estado.
 class PackInfo {
@@ -16,6 +42,7 @@ class PackInfo {
     required this.icon,
     required this.colors,
     this.status = PackStatus.soon,
+    this.cover = PackCover.medieval,
   });
 
   final String id;
@@ -25,12 +52,13 @@ class PackInfo {
   final IconData icon;
   final List<Color> colors;
   final PackStatus status;
+  final PackCover cover;
 
   bool get available => status == PackStatus.available;
 }
 
-/// Catálogo que ve la familia. Hoy solo el Reino de la Luna se puede abrir; los demás se ven en gris
-/// (próximamente: serán de pago). El contenido real de cada paquete vive en `content/packs/<id>`.
+/// Catálogo que ve la familia. Hoy solo el Reino de la Luna se puede abrir (y el Mar de las Estrellas en
+/// desarrollo); los demás se ven en gris (próximamente: serán de pago). El contenido real de cada paquete vive en `content/packs/<id>`.
 const List<PackInfo> packCatalog = [
   PackInfo(
     id: 'medieval',
@@ -52,6 +80,14 @@ const List<PackInfo> packCatalog = [
         'aprender a compartir el botín.',
     icon: Icons.sailing_outlined,
     colors: [Color(0xFF2FA7C9), Color(0xFF1B5E8C)],
+    // En construcción (docs/26): solo se abre en las compilaciones de desarrollo hasta que esté completo
+    status: kDebugMode ? PackStatus.available : PackStatus.soon,
+    cover: PackCover(
+      place: 'cubierta',
+      heroM: 'bruno',
+      heroF: 'vega',
+      helper: 'estela',
+    ),
   ),
   PackInfo(
     id: 'bosque',
@@ -100,12 +136,16 @@ class PackCard extends StatelessWidget {
     required this.pack,
     required this.onTap,
     this.cover,
+    this.open = false,
     this.width = 168,
     this.height = 210,
   });
 
   final PackInfo pack;
   final VoidCallback onTap;
+
+  /// Es el paquete abierto en el inicio (lleva la marca «Abierto»).
+  final bool open;
 
   /// Ilustración opcional que sustituye al icono (el castillo dibujado por la app).
   final Widget? cover;
@@ -129,16 +169,42 @@ class PackCard extends StatelessWidget {
       ),
       child: Stack(
         children: [
+          // El icono queda debajo: se ve mientras carga la portada o si el paquete aún no tiene dibujos
           Positioned.fill(
-            child: cover != null
-                ? ClipRRect(
-                    borderRadius: BorderRadius.circular(26), child: cover)
-                : Align(
-                    alignment: const Alignment(0, -0.35),
-                    child: Icon(pack.icon,
-                        size: 74, color: Colors.white.withValues(alpha: 0.92)),
-                  ),
+            child: Align(
+              alignment: const Alignment(0, -0.35),
+              child: Icon(pack.icon,
+                  size: 74, color: Colors.white.withValues(alpha: 0.92)),
+            ),
           ),
+          if (cover != null)
+            Positioned.fill(
+              child: ClipRRect(
+                  borderRadius: BorderRadius.circular(26), child: cover),
+            ),
+          if (open)
+            Positioned(
+              top: 12,
+              right: 12,
+              child: Container(
+                key: Key('pack-open-${pack.id}'),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                decoration: BoxDecoration(
+                  color: Palette.amber,
+                  borderRadius: BorderRadius.circular(14),
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Icon(Icons.check, size: 16, color: Palette.amberDark),
+                    const SizedBox(width: 4),
+                    Text('Abierto',
+                        style: text.labelLarge!.copyWith(color: Palette.amberDark)),
+                  ],
+                ),
+              ),
+            ),
           Positioned(
             left: 0,
             right: 0,
@@ -357,3 +423,7 @@ Future<void> showSoonSheet(BuildContext context, PackInfo pack) {
     },
   );
 }
+
+/// El paquete del catálogo con [id] (o el medieval si no existe).
+PackInfo packInfo(String id) =>
+    packCatalog.firstWhere((p) => p.id == id, orElse: () => packCatalog.first);

@@ -7,6 +7,7 @@ import 'package:caldero_app/src/packs/pack_catalog.dart';
 import 'package:caldero_app/src/share.dart';
 import 'package:caldero_app/src/shelf/story_shelf.dart';
 import 'package:caldero_app/src/ui/sleep_timer.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -158,12 +159,16 @@ void main() {
       await tester.tap(find.text('Paquetes'));
       await tester.pumpAndSettle();
       expect(find.text('Reino de la Luna'), findsOneWidget);
-      expect(find.text('Tuyo'), findsOneWidget);
+      // El Mar de las Estrellas está en construcción: solo se abre en desarrollo (las pruebas lo son)
+      expect(find.text('Tuyo'), findsNWidgets(kDebugMode ? 2 : 1));
       final soon = packCatalog.where((p) => !p.available).toList();
       expect(soon.length, greaterThanOrEqualTo(3));
-      // Solo hay un paquete disponible
-      expect(
-          packCatalog.where((p) => p.available).map((p) => p.id), ['medieval']);
+      expect(packCatalog.where((p) => p.available).map((p) => p.id),
+          kDebugMode ? ['medieval', 'mar'] : ['medieval']);
+      expect(packInfo('mar').status,
+          kDebugMode ? PackStatus.available : PackStatus.soon);
+      // El abierto lleva su marca
+      expect(find.byKey(const Key('pack-open-medieval')), findsOneWidget);
       // Cada paquete que llega más adelante se dibuja con el filtro de grises
       expect(find.byType(ColorFiltered), findsAtLeastNWidgets(3));
       expect(find.text('Pronto'), findsAtLeastNWidgets(2));

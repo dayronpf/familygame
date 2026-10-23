@@ -168,6 +168,20 @@ void main() {
     });
   });
 
+  test(
+      '«Sorpréndeme» solo elige enseñanzas con cuentos (un pack en construcción no las tiene todas)',
+      () {
+    final json = basePack();
+    (json['morals']! as List)
+        .add({'id': 'm2', 'name': 'Otra', 'text': 'Texto.'});
+    final pack = load(json);
+    expect(pack.moralsWithStories.map((m) => m.id), ['m1']);
+    final engine = StoryEngine(pack);
+    for (var seed = 1; seed <= 40; seed++) {
+      expect(engine.generate(StoryOptions(seed: seed)).recipe.valueId, 'm1');
+    }
+  });
+
   group('motor de premisas', () {
     test('es determinista y renderiza título y cuento', () {
       final engine = StoryEngine(load(basePack()));

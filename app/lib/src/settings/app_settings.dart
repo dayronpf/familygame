@@ -6,6 +6,7 @@ import 'package:flutter/widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../narration/narrator.dart';
+import '../pack_loader.dart';
 import '../ui/voice_services.dart';
 
 /// Un idioma de la app. Cada idioma es una versión propia de los cuentos (no una traducción leída por otra voz),
@@ -189,6 +190,7 @@ class AppSettings extends ChangeNotifier {
   bool _music = true;
   bool _effects = true;
   double _musicVolume = 0.22;
+  String _packId = defaultPackId;
   bool _loaded = false;
 
   /// Si el idioma del sistema no está entre los disponibles (el wizard avisa).
@@ -207,6 +209,9 @@ class AppSettings extends ChangeNotifier {
   /// Volumen del sonido de fondo (0–1); bajito para que mande la voz.
   double get musicVolume => _musicVolume;
 
+  /// Paquete de cuentos abierto en el inicio (`content/packs/<id>`).
+  String get packId => _packId;
+
   Future<void> load() async {
     if (_loaded) return;
     _loaded = true;
@@ -219,6 +224,7 @@ class AppSettings extends ChangeNotifier {
         _effects = j['efectos'] != false;
         _musicVolume =
             ((j['volumen_musica'] as num?) ?? 0.22).toDouble().clamp(0.0, 1.0);
+        _packId = (j['paquete'] as String?) ?? defaultPackId;
         final list = [
           for (final p in (j['perfiles'] as List<Object?>? ?? const []))
             ChildProfile.fromJson(p! as Map<String, Object?>),
@@ -345,6 +351,7 @@ class AppSettings extends ChangeNotifier {
         'musica': _music,
         'efectos': _effects,
         'volumen_musica': _musicVolume,
+        'paquete': _packId,
         'activo': _active,
         'perfiles': [for (final p in _profiles) p.toJson()],
       };
@@ -357,6 +364,15 @@ class AppSettings extends ChangeNotifier {
     _music = true;
     _effects = true;
     _musicVolume = 0.22;
+    _packId = defaultPackId;
+    notifyListeners();
+    return _save();
+  }
+
+  /// Abre otro paquete en el inicio (vale desde el siguiente cuento).
+  Future<void> setPack(String id) {
+    if (id == _packId) return Future.value();
+    _packId = id;
     notifyListeners();
     return _save();
   }
@@ -399,6 +415,7 @@ class AppSettings extends ChangeNotifier {
         'musica': _music,
         if (!_effects) 'efectos': false,
         'volumen_musica': _musicVolume,
+        if (_packId != defaultPackId) 'paquete': _packId,
         'activo': _active,
         'perfiles': [for (final p in _profiles) p.toJson()],
       }));

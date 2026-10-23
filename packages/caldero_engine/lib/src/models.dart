@@ -836,6 +836,14 @@ class Pack {
     return null;
   }
 
+  /// Enseñanzas que tienen algún cuento en este pack (un pack en construcción puede no tenerlas todas). Un pack
+  /// solo de fragmentos (esquema 1) las cuenta todas.
+  List<Moral> get moralsWithStories => premises.isEmpty
+      ? morals
+      : morals
+          .where((m) => premises.any((p) => p.fitsValue(m.id)))
+          .toList(growable: false);
+
   List<Character> withRole(String role) =>
       characters.where((c) => c.roles.contains(role)).toList(growable: false);
 }

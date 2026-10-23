@@ -5,7 +5,7 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
-PACKS=(demo medieval)  # packs de contenido embebidos en la app
+PACKS=(demo medieval mar)  # packs de contenido embebidos en la app (mar: en construcción, docs/26)
 check=false; [[ "${1:-}" == "--check" ]] && check=true
 
 fail() { echo "$1 desincronizado (ejecuta tools/sync_assets.sh)"; exit 1; }
