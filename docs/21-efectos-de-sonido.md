@@ -24,14 +24,14 @@ nuevo se añade a `soundEffects` y su archivo a `app/assets/audio/sfx/` (una pru
 |---|---|---|
 | `bleat` | ¡Beee! | grabación CC0 (OpenGameArt, AntumDeluge, «Sheep Baa») |
 | `creak` | ¡Cric! | grabación CC0 (Kenney, «RPG Audio») |
-| `crack` | ¡Crac! ¡Cras! | grabación CC0 (Kenney, «Impact Sounds») |
+| `crack` | ¡Crac! ¡Cras! ¡Ras! ¡Fraaas! | grabación CC0 (Kenney, «Impact Sounds») |
 | `coins` | ¡Tilín! | grabación CC0 (Kenney, «RPG Audio») |
 | `clang` · `clink` | ¡Clang! ¡Clong! · ¡Cling! ¡Clinc! | grabaciones CC0 (Kenney, «Impact Sounds») |
 | `bell` | ¡Din! ¡Don! | grabación CC0 (Kenney, «Impact Sounds») |
 | `click` | ¡Clic! | grabación CC0 (Kenney, «RPG Audio») |
-| `drop` | ¡Plin! | grabación CC0 (Kenney, «Interface Sounds») |
-| `wind` | ¡Fuuu! ¡Fiuuu! ¡Fuuush! ¡Suish! | sintetizado |
-| `hiss` | ¡Shhh! ¡Chis! ¡Pst! | sintetizado |
+| `drop` | ¡Plin! ¡Plic! | grabación CC0 (Kenney, «Interface Sounds») |
+| `wind` | ¡Fuuu! ¡Fiuuu! ¡Fuuush! ¡Suish! ¡Fffum! ¡Fuuum! | sintetizado |
+| `hiss` | ¡Shhh! ¡Chis! ¡Pst! ¡Fsss! | sintetizado |
 | `splash` | ¡Plaf! | sintetizado |
 | `plop` | ¡Plof! ¡Flup! ¡Pof! | sintetizado |
 | `thump` | ¡Pum! | sintetizado |
@@ -55,7 +55,18 @@ nuevo se añade a `soundEffects` y su archivo a `app/assets/audio/sfx/` (una pru
 
 `python3 tools/audio/build_sfx.py` (necesita ffmpeg y numpy) regenera los 18 archivos a partir de `sfx_src/` y de la síntesis.
 
+## Sonido de fondo por paquete
+
+Cada paquete puede tener su fondo (`packAmbience` en `app/lib/src/audio/ambience.dart`); el cine, el holograma y el solo audio
+eligen el del paquete del cuento (`ambienceFor(context, packId:)`), no el del paquete abierto. El **Mar de las Estrellas** suena
+a olas que rompen despacio, madera de barco que cruje y alguna gaviota lejana, sobre el colchón de nana del de siempre, más bajo
+(`tools/audio/make_ambient_mar.py`, sintetizado, CC0; 48 s en bucle, ≈ −14 dB de media como el otro). Va en **AAC (`.m4a`)**, porque
+iOS no reproduce Ogg.
+
 ## Pendiente
+
+* **iOS y Ogg:** `ambient.ogg` y los 18 efectos `.ogg` probablemente no suenan en iPhone (AVPlayer no lee Ogg Vorbis). Habría que
+  pasarlos a AAC como el fondo del mar y comprobarlo en un teléfono.
 
 * **Los sonidos no se han oído en un teléfono**: se comprobaron por volumen y duración, no a oído. Habrá que revisar que el balido,
   el crujido y los sintetizados («viento», «gruñido», «búho») suenan bien y que no tapan la voz.

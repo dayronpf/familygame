@@ -71,6 +71,11 @@ const Map<String, String> _esSoundEffects = {
   'plof': 'plop', 'flup': 'plop', 'pof': 'plop',
   'plin': 'drop',
   'crac': 'crack', 'cras': 'crack',
+  'ras': 'crack',
+  'fras': 'crack', // un papel o una vela que se rasgan (Mar de las Estrellas)
+  'fs': 'hiss', // una cuerda que se suelta
+  'fum': 'wind', // la llama que prende, la vela que se hincha
+  'plic': 'drop', // una gota en la cueva
   'hop': 'hop',
   'pum': 'thump',
   'uh': 'hoot',

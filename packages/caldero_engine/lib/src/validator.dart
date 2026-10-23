@@ -1013,7 +1013,11 @@ final List<(RegExp, String, Set<String>)> _objectWords = [
   (RegExp(r'\bbrújulas?\b', caseSensitive: false), 'brújula', {'brujula'}),
   (RegExp(r'\bcaracolas?\b', caseSensitive: false), 'caracola', {'caracola'}),
   (RegExp(r'\bperlas?\b', caseSensitive: false), 'perla', {'perla'}),
-  (RegExp(r'\bbotellas?\b', caseSensitive: false), 'botella', {'botella_mensaje'}),
+  (
+    RegExp(r'\bbotellas?\b', caseSensitive: false),
+    'botella',
+    {'botella_mensaje'}
+  ),
   (
     RegExp(r'\bpiedras\b', caseSensitive: false),
     'piedras',

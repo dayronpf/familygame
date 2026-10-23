@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:caldero_app/src/app.dart';
+import 'package:caldero_app/src/audio/ambience.dart';
 import 'package:caldero_app/src/feedback/feedback_service.dart';
 import 'package:caldero_app/src/feedback/feedback_store.dart';
 import 'package:caldero_app/src/home_page.dart';
@@ -30,6 +33,16 @@ void main() {
     expect(b.exportJson()['paquete'], 'mar');
     await b.resetAll();
     expect(b.packId, 'medieval');
+  });
+
+  test('cada paquete suena a lo suyo: el mar, a olas (y el archivo existe)',
+      () {
+    expect(ambienceAsset('medieval'), 'audio/ambient.ogg');
+    expect(ambienceAsset(null), 'audio/ambient.ogg');
+    expect(ambienceAsset('mar'), 'audio/ambient_mar.m4a');
+    for (final path in {...packAmbience.values, 'audio/ambient.ogg'}) {
+      expect(File('assets/$path').existsSync(), isTrue, reason: path);
+    }
   });
 
   group('varios paquetes', () {

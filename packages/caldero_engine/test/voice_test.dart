@@ -144,6 +144,14 @@ void main() {
         show('El viento la levantó, ¡fiuuu!, y subió.'),
         ['El viento la levantó,', '<wind>', 'y subió.'],
       );
+      // Los del Mar de las Estrellas: la vela que se rasga, la cuerda que se suelta, la llama que prende, la gota
+      expect(show('La vela se rasgó, ¡fraaas!, de arriba abajo.'),
+          ['La vela se rasgó,', '<crack>', 'de arriba abajo.']);
+      expect(show('¡Fsss!, se soltó.'), ['<hiss>', 'se soltó.']);
+      expect(show('¡Fffum! La luz se encendió.'),
+          ['<wind>', 'La luz se encendió.']);
+      expect(show('Una gota cayó, ¡plic!, y dio un salto.'),
+          ['Una gota cayó,', '<drop>', 'y dio un salto.']);
       expect(
         show('Se oyó un balido: «¡beee!».'),
         ['Se oyó un balido.', '<bleat>'],

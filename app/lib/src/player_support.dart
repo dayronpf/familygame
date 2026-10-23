@@ -26,10 +26,13 @@ Narrator narratorFor(BuildContext context) => SettingsScope.voicesOf(context)
     .storyNarrator(SettingsScope.maybeOf(context)?.child.voiceConfig ??
         const VoiceConfig());
 
-Ambience ambienceFor(BuildContext context) {
+/// El sonido de fondo según los ajustes y el paquete del cuento [packId] (el mar suena a olas).
+Ambience ambienceFor(BuildContext context, {String? packId}) {
   final s = SettingsScope.maybeOf(context);
   if (s == null) return defaultAmbience();
-  return s.music ? AssetAmbience(volume: s.musicVolume) : SilentAmbience();
+  return s.music
+      ? AssetAmbience(volume: s.musicVolume, asset: ambienceAsset(packId))
+      : SilentAmbience();
 }
 
 /// Los efectos de sonido según los ajustes (sin ajustes, como en las pruebas, no suenan).
