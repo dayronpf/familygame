@@ -26,7 +26,7 @@ def main():
         for cname, clip in clips.items():
             for t in TIMES:
                 p = anim.sample_pose(rigs[rid], clip, t)
-                poses.append({"rig": rid, "clip": cname, "t": t, "pose": {k: round(v, 6) for k, v in sorted(p.items())}})
+                poses.append({"rig": rid, "clip": cname, "t": t, "pose": {k: round(v, 6) + 0.0 for k, v in sorted(p.items())}})
     animated = []
     for layer in scene["layers"]:
         walk(layer, animated)
@@ -34,7 +34,7 @@ def main():
     for nd in animated[:12]:
         for a in nd["anim"]:
             for t in (0.0, 0.4, 1.3, 2.9, 7.7):
-                ambient.append({"node": nd["id"], "prop": a["prop"], "t": t, "value": round(anim.sample_ambient(a, t), 6)})
+                ambient.append({"node": nd["id"], "prop": a["prop"], "t": t, "value": round(anim.sample_ambient(a, t), 6) + 0.0})
     out = kit.OUT.parent / "fixtures" / "animation_samples.json"
     out.write_text(json.dumps({"poses": poses, "ambient": ambient}, separators=(",", ":")), encoding="utf-8")
     print(f"{len(poses)} poses y {len(ambient)} valores ambientales → {out.name} ({out.stat().st_size / 1024:.0f} KB)")

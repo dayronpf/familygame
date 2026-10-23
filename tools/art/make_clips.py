@@ -12,7 +12,8 @@ OUT = Path(__file__).resolve().parent.parent.parent / "art" / "clips" / "humanoi
 
 
 def r(v):
-    return round(v, 3)
+    # + 0.0 convierte -0.0 en 0.0: según el sistema, el redondeo del coseno da uno u otro y el CI vería diferencias
+    return round(v, 3) + 0.0
 
 
 def sine(dur, amp, phase=0.0, n=8):
@@ -399,6 +400,22 @@ SEA_CLIPS = {
         "mouth.sx": hold(1.4, 1.2)}),
 }
 CLIPS.update(SEA_CLIPS)
+
+# Gestos de la Aldea de las Nubes (docs/27): flotar sin gravedad y saltar en la luna
+SPACE_CLIPS = {
+    # flotar: sube un palmo y se mece despacio, con las piernas recogidas
+    "float": dict(dur=4.0, loop=True, tracks={
+        "root.dy": keys((0, -40), (2.0, -52), (4.0, -40)), "root": sine(4.0, 4), "torso": sine(4.0, 2, 0.2),
+        "legL": keys((0, 10), (2.0, 18), (4.0, 10)), "legR": keys((0, -6), (2.0, 4), (4.0, -6)),
+        "head": sine(4.0, -3), "eyes.sy": blink(4.0, 0.6), "mouth.sx": hold(4.0, 1.2)}),
+    # salto lunar: se agacha, sube muy alto y cae despacio
+    "moonhop": dict(dur=2.4, loop=True, tracks={
+        "root.dy": keys((0, 0), (0.3, 6), (1.2, -90), (2.1, 0), (2.4, 0)),
+        "legL": keys((0, 0), (0.3, 12), (1.2, -10), (2.1, 6), (2.4, 0)), "legR": keys((0, 0), (0.3, -12), (1.2, 10), (2.1, -6), (2.4, 0)),
+        "legL.sy": keys((0, 1), (0.3, 0.85), (0.6, 1), (2.4, 1)), "legR.sy": keys((0, 1), (0.3, 0.85), (0.6, 1), (2.4, 1)),
+        "eyes.sy": hold(2.4, 1.15), "mouth.sx": hold(2.4, 1.3)}),
+}
+CLIPS.update(SPACE_CLIPS)
 CLIPS["spyglass"]["tracks"]["itemR"] = hold(3.0, 72)  # el catalejo apunta hacia fuera, no hacia arriba
 
 N = None
@@ -430,6 +447,8 @@ ARM_POSES = {
     "row": lambda d: arms(d, [(0, (-30, -100), (30, -100)), (0.8, (-20, -128), (20, -128)), (d, (-30, -100), (30, -100))]),
     "spyglass": lambda d: arms(d, [(0, N, N), (0.4, (-44, -100), (18, -186)), (2.6, (-44, -100), (18, -186)), (d, N, N)]),
     "steer": lambda d: arms(d, WHEEL),
+    "float": lambda d: arms(d, [(0, (-60, -150), (60, -150)), (2.0, (-64, -160), (64, -160)), (d, (-60, -150), (60, -150))]),
+    "moonhop": lambda d: arms(d, [(0, N, N), (0.3, (-40, -110), (40, -110)), (1.2, (-60, -186), (60, -186)), (2.1, (-50, -150), (50, -150)), (d, N, N)]),
     "swim": lambda d: arms(d, [(0, (-40, -190), (40, -110)), (0.35, (-56, -150), (52, -170)), (0.7, (-40, -110), (40, -190)),
                                (1.05, (-52, -170), (56, -150)), (d, (-40, -190), (40, -110))]),
 }
