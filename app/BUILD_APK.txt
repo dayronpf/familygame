@@ -1,1 +1,1 @@
-Cambiar este archivo (y subirlo) compila un APK de prueba. Ultima peticion: v0.9.0 con preguntas al nino en dos cuentos de 9-12 anos (La luz del lago y La cometa del viento del norte) y firma de release opcional.
+Cambiar este archivo (y subirlo) compila un APK de prueba. Ultima peticion: v0.10.0 con el pack Mar de las Estrellas (30 cuentos de piratas buenos, arte y sonido de olas), el genero del protagonista ligado al nombre del nino y la pregunta para adultos que avisa al fallar.

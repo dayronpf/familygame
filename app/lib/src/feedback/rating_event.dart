@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:caldero_engine/caldero_engine.dart';
 
 /// Versión de la app que se informa junto a la valoración (la verifica una prueba contra el pubspec).
-const String appVersion = '0.9.0';
+const String appVersion = '0.10.0';
 
 /// Versión del formato del evento (`schema` en el JSON).
 const int ratingSchema = 1;
