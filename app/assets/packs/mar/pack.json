@@ -3,7 +3,7 @@
     "schema": 2,
     "id": "mar",
     "name": "Mar de las Estrellas (en construcción)",
-    "version": "0.3.0",
+    "version": "0.4.0",
     "license": "Contenido original, todos los derechos reservados al autor del proyecto",
     "language": "es",
     "age_band": "2-12",
@@ -4105,6 +4105,2688 @@
               }
             }
           ]
+        }
+      ]
+    },
+    {
+      "id": "catalejo_rajado",
+      "value": "honestidad",
+      "title": "El catalejo rajado",
+      "ages": [
+        "6-8"
+      ],
+      "npcs": {},
+      "cast": {
+        "hero": {
+          "kind": "character",
+          "roles": [
+            "hero"
+          ]
+        },
+        "helper": {
+          "kind": "character",
+          "ids": [
+            "estela"
+          ]
+        },
+        "villain": {
+          "kind": "character",
+          "ids": [
+            "remolino"
+          ]
+        },
+        "cubierta": {
+          "kind": "place",
+          "ids": [
+            "cubierta"
+          ]
+        },
+        "bodega": {
+          "kind": "place",
+          "ids": [
+            "bodega"
+          ]
+        },
+        "arrecife": {
+          "kind": "place",
+          "ids": [
+            "arrecife"
+          ]
+        },
+        "item": {
+          "kind": "prop",
+          "ids": [
+            "catalejo"
+          ]
+        }
+      },
+      "beats": [
+        {
+          "id": "gancho",
+          "variants": [
+            {
+              "id": "catalejo_rajado_gancho_a",
+              "text": "Junto al timón de la Gaviota colgaba {item.un} de latón, el más bonito de todos los mares. Era de la capitana {helper}, y con ese catalejo había descubierto tres islas y una ballena blanca. «Cuando quieras mirar, me lo pides», le decía siempre a {hero}. Y {hero} siempre lo pedía, porque era la norma del barco.",
+              "scene": {
+                "bg": "cubierta",
+                "mood": "calm",
+                "time": "dia",
+                "focus": {
+                  "prop": "catalejo",
+                  "x": 0.5,
+                  "fill": 0.55
+                }
+              }
+            }
+          ],
+          "introduces": [
+            "item",
+            "helper"
+          ]
+        },
+        {
+          "id": "coge",
+          "variants": [
+            {
+              "id": "catalejo_rajado_coge_a",
+              "text": "Pero aquella tarde la capitana dormía la siesta, y {hero} tenía muchísimas ganas de jugar a los exploradores. Miró a un lado, miró al otro y descolgó el {item.noun} sin pedir permiso. «Solo un ratito», se dijo, y bajó corriendo a la bodega, donde los barriles parecían montañas.",
+              "scene": {
+                "bg": "cubierta",
+                "mood": "mystery",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "sneak",
+                    "x": 0.4
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "catalejo",
+                    "near": "hero",
+                    "dx": 0.08,
+                    "lift": 60,
+                    "scale": 0.7
+                  }
+                ],
+                "offstage": [
+                  "helper"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "crac",
+          "variants": [
+            {
+              "id": "catalejo_rajado_crac_a",
+              "text": "En la bodega, {hero} trepó a un barril para otear el horizonte imaginario. Entonces el barco dio un bandazo, porque una ola grande lo empujó de lado, y el {item.noun} se le escurrió de las manos. Rodó por el suelo, chocó contra una caja y se quedó inmóvil, con el cristal rajado de lado a lado. A {hero} se le encogió el estómago.",
+              "scene": {
+                "bg": "bodega",
+                "mood": "tension",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "surprised",
+                    "x": 0.4
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "catalejo",
+                    "x": 0.62,
+                    "scale": 0.7
+                  }
+                ]
+              }
+            }
+          ],
+          "moves": true
+        },
+        {
+          "id": "culpa",
+          "variants": [
+            {
+              "id": "catalejo_rajado_culpa_a",
+              "text": "Sin decir nada, {hero} volvió a colgar el {item.noun} junto al timón y se escondió detrás del mástil. Al rato, la capitana {helper} lo descolgó para mirar las nubes, y vio la raja. Los marineros se acercaron enseguida. «¡Ha sido el pulpo Remolino!», dijo uno. «Siempre anda escondiendo y rompiendo cosas.» En la borda, Remolino abrió mucho los ojos.",
+              "scene": {
+                "bg": "cubierta",
+                "mood": "sad",
+                "time": "atardecer",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "hide",
+                    "x": 0.2
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "think",
+                    "x": 0.5
+                  },
+                  {
+                    "who": "villain",
+                    "clip": "surprised",
+                    "x": 0.8
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "catalejo",
+                    "near": "helper",
+                    "dx": -0.07,
+                    "lift": 60,
+                    "scale": 0.7
+                  }
+                ]
+              }
+            }
+          ],
+          "introduces": [
+            "villain"
+          ],
+          "moves": true
+        },
+        {
+          "id": "rosa",
+          "variants": [
+            {
+              "id": "catalejo_rajado_rosa_a",
+              "text": "«¡Yo no he sido!», protestó Remolino, y se puso de color rosa, de pura vergüenza. Pero nadie le creía, porque otras veces sí había escondido sombreros y lazos. Los marineros le pidieron que se marchara del barco, y la capitana {helper} no sabía qué pensar. {hero} lo veía todo desde el mástil, y cada palabra le pesaba como una piedra en el bolsillo.",
+              "scene": {
+                "bg": "cubierta",
+                "mood": "sad",
+                "time": "atardecer",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "sad",
+                    "x": 0.2
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "no",
+                    "x": 0.5
+                  },
+                  {
+                    "who": "villain",
+                    "clip": "sad",
+                    "x": 0.8
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "verdad",
+          "variants": [
+            {
+              "id": "catalejo_rajado_verdad_a",
+              "text": "Entonces {hero} salió de detrás del mástil, con las mejillas ardiendo. «Ha sido culpa mía», dijo. «Cogí el {item.noun} sin pedirlo, se me cayó en la bodega y se rajó. Remolino no ha hecho nada.» Se hizo un silencio tan grande que solo se oían las gaviotas. La capitana {helper} bajó despacio el {item.noun} rajado. A {hero} le temblaban las rodillas, pero ya no tenía la piedra en el bolsillo.",
+              "scene": {
+                "bg": "cubierta",
+                "mood": "hope",
+                "time": "atardecer",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "talk",
+                    "x": 0.3
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "think",
+                    "x": 0.55
+                  },
+                  {
+                    "who": "villain",
+                    "clip": "surprised",
+                    "x": 0.8
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "catalejo",
+                    "near": "helper",
+                    "dx": -0.07,
+                    "lift": 60,
+                    "scale": 0.7
+                  }
+                ]
+              },
+              "adds": [
+                "dijo_verdad"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "perdon",
+          "variants": [
+            {
+              "id": "catalejo_rajado_perdon_a",
+              "text": "La capitana {helper} se agachó a la altura de {hero}. «Un catalejo se arregla», dijo despacio. «Pero que alguien cargue con una culpa que no es suya, eso cuesta mucho más de arreglar. Gracias por decir la verdad.» Luego miró a Remolino. «Y a ti te debemos una disculpa.» Remolino se puso de un color nuevo, entre naranja y dorado, que nadie le había visto nunca.",
+              "scene": {
+                "bg": "cubierta",
+                "mood": "joy",
+                "time": "atardecer",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "sad",
+                    "x": 0.3
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "talk",
+                    "x": 0.55
+                  },
+                  {
+                    "who": "villain",
+                    "clip": "laugh",
+                    "x": 0.8
+                  }
+                ]
+              },
+              "requires": [
+                "dijo_verdad"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cristal",
+          "variants": [
+            {
+              "id": "catalejo_rajado_cristal_a",
+              "text": "Al día siguiente, Remolino bajó con {hero} al arrecife. «Conozco un sitio donde el mar pule los cristales», le dijo. Entre las algas encontraron un trozo de vidrio redondo y transparente, suave como un caramelo. Con ese cristal, la capitana arregló el {item.noun} aquella misma tarde, y quedó tan bien que se veían las estrellas más pequeñas.",
+              "scene": {
+                "bg": "arrecife",
+                "mood": "joy",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "swim",
+                    "x": 0.36
+                  },
+                  {
+                    "who": "villain",
+                    "clip": "swim",
+                    "x": 0.66
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "catalejo",
+                    "x": 0.5,
+                    "scale": 0.6
+                  }
+                ]
+              }
+            }
+          ],
+          "moves": true
+        },
+        {
+          "id": "noche",
+          "variants": [
+            {
+              "id": "catalejo_rajado_noche_a",
+              "text": "Aquella noche, la capitana {helper} prestó el {item.noun} a {hero} para mirar la luna. Remolino se había quedado a dormir en un cubo de agua junto al timón. {hero} miraba el cielo, tranquilamente, y pensaba que la verdad, aunque cueste, deja el corazón ligero como una vela al viento.",
+              "scene": {
+                "bg": "cubierta",
+                "mood": "sleep",
+                "time": "noche",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "spyglass",
+                    "x": 0.3
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "idle",
+                    "x": 0.56
+                  },
+                  {
+                    "who": "villain",
+                    "clip": "sleep",
+                    "x": 0.8
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "catalejo",
+                    "near": "hero",
+                    "dx": 0.06,
+                    "lift": 95,
+                    "scale": 0.7
+                  }
+                ]
+              }
+            }
+          ],
+          "moves": true
+        }
+      ]
+    },
+    {
+      "id": "tesoro_compartido",
+      "value": "generosidad",
+      "title": "El tesoro de la Isla Quieta",
+      "ages": [
+        "6-8"
+      ],
+      "npcs": {},
+      "cast": {
+        "hero": {
+          "kind": "character",
+          "roles": [
+            "hero"
+          ]
+        },
+        "helper": {
+          "kind": "character",
+          "ids": [
+            "estela"
+          ]
+        },
+        "villain": {
+          "kind": "character",
+          "ids": [
+            "mostacho"
+          ]
+        },
+        "playa": {
+          "kind": "place",
+          "ids": [
+            "playa"
+          ]
+        },
+        "selva": {
+          "kind": "place",
+          "ids": [
+            "selva"
+          ]
+        },
+        "cueva": {
+          "kind": "place",
+          "ids": [
+            "cueva_tesoro"
+          ]
+        },
+        "puerto": {
+          "kind": "place",
+          "ids": [
+            "puerto"
+          ]
+        },
+        "item": {
+          "kind": "prop",
+          "ids": [
+            "cofre"
+          ]
+        }
+      },
+      "beats": [
+        {
+          "id": "mapa",
+          "variants": [
+            {
+              "id": "tesoro_compartido_mapa_a",
+              "text": "La capitana {helper} desenrolló un mapa sobre la arena de la playa. Una cruz roja marcaba una cueva en el centro de la Isla Quieta. «Dicen que allí hay un tesoro», contó. «Lo escondió hace cien años una tripulación que se fue a vivir a las estrellas.» {hero} sintió un cosquilleo de aventura desde los pies hasta las orejas.",
+              "scene": {
+                "bg": "playa",
+                "mood": "calm",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "wonder",
+                    "x": 0.34
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "talk",
+                    "x": 0.64
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "mapa",
+                    "x": 0.5,
+                    "scale": 0.7
+                  }
+                ]
+              }
+            }
+          ],
+          "introduces": [
+            "helper"
+          ]
+        },
+        {
+          "id": "selva",
+          "variants": [
+            {
+              "id": "tesoro_compartido_selva_a",
+              "text": "{hero} y la capitana {helper} cruzaron la selva siguiendo el mapa, apartando lianas y saltando raíces. Los pájaros chillaban en lo alto, y una vez un mono les robó un plátano y se rio desde una rama. {hero} iba delante, contando los pasos que decía el mapa: cien hacia la palmera torcida, cincuenta hacia la roca con forma de sombrero.",
+              "scene": {
+                "bg": "selva",
+                "mood": "hope",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "walk",
+                    "x": 0.34
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "walk",
+                    "x": 0.62
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "mapa",
+                    "near": "hero",
+                    "dx": 0.08,
+                    "lift": 60,
+                    "scale": 0.6
+                  }
+                ]
+              }
+            }
+          ],
+          "moves": true
+        },
+        {
+          "id": "cofre",
+          "variants": [
+            {
+              "id": "tesoro_compartido_cofre_a",
+              "text": "La cueva brillaba con charcos de luz verde. Y en el fondo, medio enterrado en la arena, estaba {item.un} de madera con herrajes dorados. Tardaron un buen rato en abrirlo, porque la cerradura estaba llena de óxido. Cuando por fin cedió, la tapa chirrió como una puerta vieja.",
+              "scene": {
+                "bg": "cueva",
+                "mood": "mystery",
+                "focus": {
+                  "prop": "cofre",
+                  "x": 0.5,
+                  "fill": 0.55
+                }
+              }
+            }
+          ],
+          "introduces": [
+            "item"
+          ],
+          "moves": true
+        },
+        {
+          "id": "dentro",
+          "variants": [
+            {
+              "id": "tesoro_compartido_dentro_a",
+              "text": "Dentro había monedas de oro, sí, pero también herramientas de carpintero y una carta. La capitana {helper} la leyó en voz alta. La carta decía: «Para quien lo encuentre: este tesoro sirve para empezar algo nuevo. Úsalo bien». {hero} y {helper} se miraron. Pensaron en el puerto, donde las barcas de los pescadores tenían agujeros y la escuela no tenía tejado.",
+              "scene": {
+                "bg": "cueva",
+                "mood": "joy",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "wonder",
+                    "x": 0.34
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "think",
+                    "x": 0.64
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "cofre_abierto",
+                    "x": 0.5,
+                    "clip": "shimmer",
+                    "scale": 0.9
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "mostacho",
+          "variants": [
+            {
+              "id": "tesoro_compartido_mostacho_a",
+              "text": "De pronto, una voz de trueno chiquito retumbó en la entrada de la cueva. «¡Ese tesoro es mío!» Era {villain.el} {villain}, con su sombrero de tres picos y su bigote enroscado. «Llevo diez años buscándolo», refunfuñó. «Lo quiero todo para mí, para llenar mi barco de oro.» La capitana {helper} dio un paso al frente. Los marineros del pirata asomaban detrás, flacos y con cara de no haber comido bien en semanas.",
+              "scene": {
+                "bg": "cueva",
+                "mood": "tension",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "surprised",
+                    "x": 0.24
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "think",
+                    "x": 0.5
+                  },
+                  {
+                    "who": "villain",
+                    "clip": "no",
+                    "x": 0.8
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "cofre_abierto",
+                    "x": 0.5,
+                    "scale": 0.8
+                  }
+                ]
+              }
+            }
+          ],
+          "introduces": [
+            "villain"
+          ]
+        },
+        {
+          "id": "ofrece",
+          "variants": [
+            {
+              "id": "tesoro_compartido_ofrece_a",
+              "text": "{hero} miró a los marineros de {villain}, y luego miró el {item.noun}. Entonces tuvo una idea. «Hay tesoro para todos», dijo. «Para arreglar las barcas del puerto, para el tejado de la escuela… y para que tus marineros coman caliente.» Y le tendió a {villain} un buen puñado de monedas. La capitana {helper} asintió, orgullosa. {villain} se quedó con la boca abierta, porque nadie le había regalado nunca nada.",
+              "scene": {
+                "bg": "cueva",
+                "mood": "hope",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "offer",
+                    "x": 0.3
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "idle",
+                    "x": 0.54
+                  },
+                  {
+                    "who": "villain",
+                    "clip": "surprised",
+                    "x": 0.8
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "monedas",
+                    "near": "hero",
+                    "dx": 0.09,
+                    "lift": 40,
+                    "scale": 0.6
+                  }
+                ]
+              },
+              "adds": [
+                "compartio"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "puerto",
+          "variants": [
+            {
+              "id": "tesoro_compartido_puerto_a",
+              "text": "Una semana después, el puerto era una fiesta. Había banderines de colores colgados entre las casas, y los niños corrían por el muelle con cometas. Las barcas tenían tablas nuevas, la escuela tenía tejado rojo y los marineros de {villain} ayudaban a clavar los últimos clavos. La capitana {helper} pintaba la puerta de la escuela, y el propio {villain} servía sopa a todo el mundo, con el delantal torcido. «Compartir es raro», le dijo a {hero}, retorciéndose el bigote. «Pero se te queda un gusto muy bueno en la boca.»",
+              "scene": {
+                "bg": "puerto",
+                "mood": "joy",
+                "time": "atardecer",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "laugh",
+                    "x": 0.28
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "clap",
+                    "x": 0.52
+                  },
+                  {
+                    "who": "villain",
+                    "clip": "laugh",
+                    "x": 0.78
+                  }
+                ]
+              },
+              "requires": [
+                "compartio"
+              ]
+            }
+          ],
+          "moves": true
+        },
+        {
+          "id": "estrellas",
+          "variants": [
+            {
+              "id": "tesoro_compartido_estrellas_a",
+              "text": "Cuando salieron las estrellas, {hero} se sentó en el muelle con la capitana {helper}. «Me pregunto si la tripulación de las estrellas nos está viendo», dijo. La capitana señaló una estrella que parpadeaba. «Seguro que sí. Y está feliz, porque el tesoro sirvió para empezar algo nuevo.» {hero} bostezó y apoyó la cabeza en su hombro.",
+              "scene": {
+                "bg": "puerto",
+                "mood": "sleep",
+                "time": "noche",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "yawn",
+                    "x": 0.36
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "idle",
+                    "x": 0.62
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "faro_apagado",
+      "value": "valentia",
+      "title": "La noche que se apagó el faro",
+      "ages": [
+        "6-8"
+      ],
+      "npcs": {
+        "ola": [
+          "Ola"
+        ]
+      },
+      "cast": {
+        "hero": {
+          "kind": "character",
+          "roles": [
+            "hero"
+          ]
+        },
+        "helper": {
+          "kind": "character",
+          "ids": [
+            "abuelo"
+          ]
+        },
+        "faro": {
+          "kind": "place",
+          "ids": [
+            "faro"
+          ]
+        },
+        "puerto": {
+          "kind": "place",
+          "ids": [
+            "puerto"
+          ]
+        },
+        "item": {
+          "kind": "prop",
+          "ids": [
+            "farol_barco"
+          ]
+        }
+      },
+      "beats": [
+        {
+          "id": "resfriado",
+          "variants": [
+            {
+              "id": "faro_apagado_resfriado_a",
+              "text": "Aquella semana, el {helper} cogió un resfriado tremendo. Estornudaba tan fuerte que las gaviotas salían volando. «Tienes que quedarte en reposo», le dijo {hero}, que había ido a cuidarlo con una sopa caliente. «Pero ¿quién encenderá el faro esta noche?», se preocupó el abuelo. «Las barcas de los pescadores vuelven tarde, y hay niebla.»",
+              "scene": {
+                "bg": "faro",
+                "mood": "calm",
+                "time": "atardecer",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "offer",
+                    "x": 0.34
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "sad",
+                    "x": 0.64
+                  }
+                ]
+              }
+            }
+          ],
+          "introduces": [
+            "helper"
+          ]
+        },
+        {
+          "id": "apaga",
+          "variants": [
+            {
+              "id": "faro_apagado_apaga_a",
+              "text": "Cuando el sol se puso, la niebla subió del mar como una sábana gris. Y entonces pasó lo que el abuelo temía: la gran lámpara del faro parpadeó dos veces y se apagó. El mar quedó oscuro. A lo lejos, entre la niebla, se oía la bocina de una barca que buscaba el camino de vuelta, porque sin la luz del faro nadie sabe dónde están las rocas.",
+              "scene": {
+                "bg": "faro",
+                "mood": "tension",
+                "time": "noche",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "surprised",
+                    "x": 0.42
+                  }
+                ],
+                "offstage": [
+                  "helper"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "farol",
+          "variants": [
+            {
+              "id": "faro_apagado_farol_a",
+              "text": "El {helper} le dio a {hero} {item.un} pequeño, encendido. «Hay que subir los ciento veinte escalones y encender la lámpara con esta llama», dijo con la voz ronca. «Yo no puedo, me tiemblan las piernas. ¿Te atreves?» A {hero} también le temblaban las piernas. Arriba estaba muy oscuro, y los escalones crujían.",
+              "scene": {
+                "bg": "faro",
+                "mood": "tension",
+                "time": "noche",
+                "focus": {
+                  "prop": "farol_barco",
+                  "x": 0.5,
+                  "fill": 0.55
+                }
+              }
+            }
+          ],
+          "introduces": [
+            "item"
+          ]
+        },
+        {
+          "id": "puerta",
+          "variants": [
+            {
+              "id": "faro_apagado_puerta_a",
+              "text": "{hero} se quedó un momento delante de la puerta de la escalera. Dentro, todo estaba negro como la tinta de un pulpo. «¿Y si me equivoco de escalón?», preguntó. El {helper} sonrió desde su sillón, envuelto en tres bufandas. «Cuando yo era pequeño y me daba miedo subir, cantaba», le dijo. «La canción de los farolillos. La oscuridad no soporta las canciones.» Y empezó a tararear, con su voz ronca, una melodía lenta y bonita, la misma que su madre le cantaba cuando las noches de niebla no le dejaban dormir. {hero} la repitió bajito. Y luego un poco más alto, porque cantando el miedo parecía más pequeño.",
+              "scene": {
+                "bg": "faro",
+                "mood": "hope",
+                "time": "noche",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "think",
+                    "x": 0.34
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "talk",
+                    "x": 0.64
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "farol_barco",
+                    "clip": "glow",
+                    "near": "hero",
+                    "dx": 0.07,
+                    "lift": 55,
+                    "scale": 0.6
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "escalones",
+          "variants": [
+            {
+              "id": "faro_apagado_escalones_a",
+              "text": "Pero {hero} pensó en los pescadores perdidos en la niebla, y apretó el asa del {item.noun}. Empezó a subir. Diez escalones, veinte, treinta. Las sombras bailaban en la pared, alargadas como gigantes, pero eran solo sombras. Cuarenta, cincuenta. El viento silbaba por las ventanas. {hero} contaba en voz alta para hacerse compañía.",
+              "scene": {
+                "bg": "faro",
+                "mood": "tension",
+                "time": "noche",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "climb",
+                    "x": 0.45
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "farol_barco",
+                    "clip": "glow",
+                    "near": "hero",
+                    "dx": 0.07,
+                    "lift": 55,
+                    "scale": 0.6
+                  }
+                ]
+              },
+              "adds": [
+                "dio_el_paso"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "lampara",
+          "variants": [
+            {
+              "id": "faro_apagado_lampara_a",
+              "text": "Ciento veinte. Arriba, la lámpara esperaba, enorme y fría. {hero} abrió la portezuela, acercó la llama del {item.noun} a la mecha y sopló suavemente, como le había enseñado el abuelo. ¡Fffum! La luz se encendió, giró sobre sí misma y lanzó un rayo dorado a través de la niebla.",
+              "scene": {
+                "bg": "faro",
+                "mood": "triumph",
+                "time": "noche",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "cheer",
+                    "x": 0.4
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "farol_barco",
+                    "clip": "glow",
+                    "near": "hero",
+                    "dx": 0.07,
+                    "lift": 55,
+                    "scale": 0.6
+                  }
+                ]
+              },
+              "requires": [
+                "dio_el_paso"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "barcas",
+          "variants": [
+            {
+              "id": "faro_apagado_barcas_a",
+              "text": "Desde lo alto, {hero} vio cómo, una a una, las lucecitas de las barcas cambiaban de rumbo y se acercaban al puerto. La última era la de Ola, la pescadora, que agitaba los brazos desde la proa. Abajo, en el muelle, la gente aplaudía y gritaba el nombre de {hero}.",
+              "scene": {
+                "bg": "puerto",
+                "mood": "joy",
+                "time": "noche",
+                "stage": [
+                  {
+                    "rig": "ola",
+                    "clip": "wave",
+                    "x": 0.42
+                  },
+                  {
+                    "who": "hero",
+                    "clip": "wave",
+                    "x": 0.7
+                  }
+                ]
+              }
+            }
+          ],
+          "moves": true
+        },
+        {
+          "id": "cama",
+          "variants": [
+            {
+              "id": "faro_apagado_cama_a",
+              "text": "Cuando bajó, el {helper} le esperaba con una manta y una sonrisa enorme. «Seguro que tenías miedo», le dijo. «Muchísimo», confesó {hero}. «Pues eso es ser valiente», dijo el abuelo. «Subir con miedo.» {hero} le contó cómo las sombras parecían gigantes y cómo, al final, solo eran sombras. El abuelo escuchó cada palabra, asintiendo despacio. Y {hero} se quedó dormid{hero.o} allí mismo, en el sillón, mientras la luz del faro giraba y giraba sobre el mar.",
+              "scene": {
+                "bg": "faro",
+                "mood": "sleep",
+                "time": "noche",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "sleep",
+                    "x": 0.36
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "idle",
+                    "x": 0.64
+                  }
+                ],
+                "unseen": [
+                  "manta"
+                ]
+              }
+            }
+          ],
+          "moves": true
+        }
+      ]
+    },
+    {
+      "id": "marea_baja",
+      "value": "humildad",
+      "title": "Yo me sé el camino",
+      "ages": [
+        "6-8"
+      ],
+      "npcs": {
+        "nino_puerto": [
+          "Leo"
+        ]
+      },
+      "cast": {
+        "hero": {
+          "kind": "character",
+          "roles": [
+            "hero"
+          ]
+        },
+        "helper": {
+          "kind": "character",
+          "ids": [
+            "nacar"
+          ]
+        },
+        "playa": {
+          "kind": "place",
+          "ids": [
+            "playa"
+          ]
+        },
+        "laguna": {
+          "kind": "place",
+          "ids": [
+            "laguna"
+          ]
+        }
+      },
+      "beats": [
+        {
+          "id": "presume",
+          "variants": [
+            {
+              "id": "marea_baja_presume_a",
+              "text": "{hero} se conocía la Isla Quieta mejor que nadie, o eso decía siempre. «Me sé todos los atajos», le contó a Leo, el grumete nuevo, mientras paseaban por la playa. «Por la laguna se llega antes al barco. Sígueme y verás.» Leo dudó un poco, porque el sol ya bajaba, pero le siguió.",
+              "scene": {
+                "bg": "playa",
+                "mood": "calm",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "proud",
+                    "x": 0.34
+                  },
+                  {
+                    "rig": "nino_puerto",
+                    "clip": "think",
+                    "x": 0.64
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "marea",
+          "variants": [
+            {
+              "id": "marea_baja_marea_a",
+              "text": "Al principio todo fue bien. Saltaban de roca en roca por la orilla de la laguna, riéndose de las salpicaduras. Pero la marea estaba subiendo, y el agua iba tapando las rocas una a una. De pronto, {hero} y Leo se encontraron en una roca grande, con agua por todas partes. El camino de vuelta había desaparecido.",
+              "scene": {
+                "bg": "laguna",
+                "mood": "tension",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "surprised",
+                    "x": 0.34
+                  },
+                  {
+                    "rig": "nino_puerto",
+                    "clip": "scared",
+                    "x": 0.62
+                  }
+                ]
+              }
+            }
+          ],
+          "moves": true
+        },
+        {
+          "id": "excusas",
+          "variants": [
+            {
+              "id": "marea_baja_excusas_a",
+              "text": "«No pasa nada», dijo {hero}, aunque el corazón le iba muy deprisa. «Seguro que por allí hay otro atajo.» Pero no lo había. Leo se abrazaba las rodillas y miraba el agua, que seguía subiendo despacito. {hero} sabía que se había equivocado, pero le costaba decirlo, porque había presumido muchísimo. Le daba vergüenza que Leo pensara que no sabía nada.",
+              "scene": {
+                "bg": "laguna",
+                "mood": "sad",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "think",
+                    "x": 0.34
+                  },
+                  {
+                    "rig": "nino_puerto",
+                    "clip": "sit_sad",
+                    "x": 0.62
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "admite",
+          "variants": [
+            {
+              "id": "marea_baja_admite_a",
+              "text": "Al fin, {hero} se sentó junto a Leo. «Me he equivocado», dijo. «No conocía este camino. Presumí demasiado, y lo siento.» Leo levantó la cabeza y sonrió un poquito. «Gracias por decirlo», contestó. «Yo tampoco lo sabía. Ahora pensemos juntos.» Y en cuanto dejaron de fingir, las ideas empezaron a llegar.",
+              "scene": {
+                "bg": "laguna",
+                "mood": "hope",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "sit",
+                    "x": 0.34
+                  },
+                  {
+                    "rig": "nino_puerto",
+                    "clip": "sit",
+                    "x": 0.62
+                  }
+                ]
+              },
+              "adds": [
+                "pidio_ayuda"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "pide",
+          "variants": [
+            {
+              "id": "marea_baja_pide_a",
+              "text": "«¡Nácar!», llamó {hero} con todas sus fuerzas. «¡Nácar, necesitamos ayuda!» Al momento, una cola verde salpicó entre los nenúfares. La sirena asomó la cabeza, con los ojos muy abiertos. «¿Qué hacéis ahí arriba?», preguntó. «Presumí de saberme el camino y la marea nos atrapó a Leo y a mí», confesó {hero}. Nácar no se rio. Solo dijo: «Pedir ayuda es de listos de verdad».",
+              "scene": {
+                "bg": "laguna",
+                "mood": "hope",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "wave",
+                    "x": 0.24
+                  },
+                  {
+                    "rig": "nino_puerto",
+                    "clip": "idle",
+                    "x": 0.46
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "talk",
+                    "x": 0.76
+                  }
+                ]
+              },
+              "requires": [
+                "pidio_ayuda"
+              ]
+            }
+          ],
+          "introduces": [
+            "helper"
+          ]
+        },
+        {
+          "id": "rescate",
+          "variants": [
+            {
+              "id": "marea_baja_rescate_a",
+              "text": "{helper} conocía cada piedra de la laguna, incluso las que estaban bajo el agua. «Pisad donde yo os diga», explicó. Y así, piedra a piedra, siguiendo su voz, {hero} y Leo cruzaron hasta la playa. El agua les llegaba por las rodillas, pero no se cayeron ni una vez.",
+              "scene": {
+                "bg": "laguna",
+                "mood": "triumph",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "walk",
+                    "x": 0.3
+                  },
+                  {
+                    "rig": "nino_puerto",
+                    "clip": "walk",
+                    "x": 0.5
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "point",
+                    "x": 0.78
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "mareas",
+          "variants": [
+            {
+              "id": "marea_baja_mareas_a",
+              "text": "Ya en la arena, {helper} les explicó el secreto de la laguna. «El mar respira», dijo. «Dos veces al día sube la marea, y dos veces baja. Cuando la luna está gorda, sube todavía más.» {hero} escuchaba con atención, sin interrumpir, porque se había dado cuenta de que había muchísimas cosas que no sabía. Leo hacía preguntas, y {helper} las contestaba todas, salpicando con la cola de vez en cuando. «Mañana os enseño a leer las mareas en las conchas de la orilla», prometió la sirena. Les contó también que los cangrejos saben cuándo sube el agua, y que por eso corren a esconderse un rato antes. Luego se zambulló con un chapuzón que los dejó empapados de risa.",
+              "scene": {
+                "bg": "laguna",
+                "mood": "calm",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "sit",
+                    "x": 0.3
+                  },
+                  {
+                    "rig": "nino_puerto",
+                    "clip": "sit",
+                    "x": 0.5
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "talk",
+                    "x": 0.78
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "atardecer",
+          "variants": [
+            {
+              "id": "marea_baja_atardecer_a",
+              "text": "En la playa, el sol se hundía naranja en el mar. «La próxima vez», dijo {hero}, «preguntaremos antes de buscar atajos». Leo se rio. {helper} los despidió agitando la cola. Más tarde, ya en su hamaca, {hero} pensó que admitir un error le había hecho sentir más grande, no más pequeño. Y se durmió con ese pensamiento calentito.",
+              "scene": {
+                "bg": "playa",
+                "mood": "sleep",
+                "time": "atardecer",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "yawn",
+                    "x": 0.36
+                  },
+                  {
+                    "rig": "nino_puerto",
+                    "clip": "wave",
+                    "x": 0.62
+                  }
+                ],
+                "offstage": [
+                  "helper"
+                ]
+              }
+            }
+          ],
+          "moves": true
+        }
+      ]
+    },
+    {
+      "id": "vela_rota",
+      "value": "perseverancia",
+      "title": "La vela remendada",
+      "ages": [
+        "6-8"
+      ],
+      "npcs": {
+        "cazo": [
+          "Tío Cazo"
+        ]
+      },
+      "cast": {
+        "hero": {
+          "kind": "character",
+          "roles": [
+            "hero"
+          ]
+        },
+        "helper": {
+          "kind": "character",
+          "ids": [
+            "estela"
+          ]
+        },
+        "mar_abierto": {
+          "kind": "place",
+          "ids": [
+            "mar_abierto"
+          ]
+        },
+        "cubierta": {
+          "kind": "place",
+          "ids": [
+            "cubierta"
+          ]
+        },
+        "camarote": {
+          "kind": "place",
+          "ids": [
+            "camarote"
+          ]
+        }
+      },
+      "beats": [
+        {
+          "id": "rafaga",
+          "variants": [
+            {
+              "id": "vela_rota_rafaga_a",
+              "text": "Navegaban hacia la Isla de las Conchas cuando una ráfaga de viento sacudió el barco. ¡Fraaas! La vela grande se rasgó de arriba abajo, con un ruido de sábana vieja. El barco perdió velocidad y empezó a balancearse sin rumbo. La capitana {helper} miró el desgarrón y suspiró. «Habrá que coserla antes de que vuelva a soplar fuerte.»",
+              "scene": {
+                "bg": "mar_abierto",
+                "mood": "tension",
+                "time": "atardecer",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "surprised",
+                    "x": 0.34
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "think",
+                    "x": 0.64
+                  }
+                ]
+              }
+            }
+          ],
+          "introduces": [
+            "helper"
+          ]
+        },
+        {
+          "id": "aguja",
+          "variants": [
+            {
+              "id": "vela_rota_aguja_a",
+              "text": "Tío Cazo, el cocinero, sacó una aguja enorme, gruesa como un dedo, y un ovillo de hilo encerado. «Yo quiero ayudar», dijo {hero}. Tío Cazo le enseñó la puntada: la aguja entra, da la vuelta y sale. Parecía fácil. Pero la lona era dura como una tabla, y la aguja no quería atravesarla.",
+              "scene": {
+                "bg": "cubierta",
+                "mood": "calm",
+                "time": "atardecer",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "talk",
+                    "x": 0.34
+                  },
+                  {
+                    "rig": "cazo",
+                    "clip": "offer",
+                    "x": 0.64
+                  }
+                ]
+              }
+            }
+          ],
+          "moves": true
+        },
+        {
+          "id": "intentos",
+          "variants": [
+            {
+              "id": "vela_rota_intentos_a",
+              "text": "{hero} empujó la aguja, y se le dobló la muñeca. Lo intentó otra vez, y el hilo se enredó en un nudo gordo. A la tercera, se pinchó el dedo, ¡ay! «No me sale», le dijo a Tío Cazo, y se le humedecieron los ojos. Tenía ganas de dejarlo y marcharse a jugar con el loro Pimienta.",
+              "scene": {
+                "bg": "cubierta",
+                "mood": "sad",
+                "time": "atardecer",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "sad",
+                    "x": 0.34
+                  },
+                  {
+                    "rig": "cazo",
+                    "clip": "think",
+                    "x": 0.64
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "dedal",
+          "variants": [
+            {
+              "id": "vela_rota_dedal_a",
+              "text": "Tío Cazo se sentó a su lado. «Cuando aprendí a coser, rompí siete agujas», le contó. «Y la octava me salió torcida.» Luego le dio un dedal de metal para proteger el dedo. «Empuja con esto, despacito, y respira.» {hero} se secó los ojos, se puso el dedal y volvió a intentarlo, porque la vela era de todos.",
+              "scene": {
+                "bg": "cubierta",
+                "mood": "hope",
+                "time": "noche",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "think",
+                    "x": 0.34
+                  },
+                  {
+                    "rig": "cazo",
+                    "clip": "talk",
+                    "x": 0.64
+                  }
+                ]
+              },
+              "adds": [
+                "lo_intento"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "puntadas",
+          "variants": [
+            {
+              "id": "vela_rota_puntadas_a",
+              "text": "Una puntada. La aguja entró, dio la vuelta y salió. Otra puntada, y otra más. Algunas quedaban torcidas, y {hero} las deshacía y las volvía a hacer. Las estrellas fueron saliendo una a una, y {hero} seguía cosiendo, con la lengua fuera de tanto concentrarse. A su lado, Tío Cazo se había quedado roncando. Al final de la noche, el desgarrón estaba cerrado con una fila de puntadas pequeñitas.",
+              "scene": {
+                "bg": "cubierta",
+                "mood": "hope",
+                "time": "noche",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "think",
+                    "x": 0.36
+                  },
+                  {
+                    "rig": "cazo",
+                    "clip": "sleep",
+                    "x": 0.66
+                  }
+                ]
+              },
+              "requires": [
+                "lo_intento"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "estrellas",
+          "variants": [
+            {
+              "id": "vela_rota_estrellas_a",
+              "text": "A medianoche, la capitana {helper} subió a cubierta con una taza de chocolate caliente. Vio a {hero} todavía cosiendo, y a Tío Cazo roncando sobre un rollo de cuerda. «¿Sigues aquí?», preguntó en voz baja. «Me quedan veinte puntadas», contestó {hero}, sin levantar la vista. La capitana no le dijo que lo dejara. Se sentó a su lado y le sujetó la lona tirante, para que la aguja entrara mejor. Juntas, la aguja y la paciencia fueron cerrando el último trozo del desgarrón, mientras la luna cruzaba el cielo. A veces la capitana le contaba historias de otras velas que había cosido, en otros barcos y otros mares, y {hero} se reía bajito para no despertar a nadie.",
+              "scene": {
+                "bg": "cubierta",
+                "mood": "hope",
+                "time": "noche",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "think",
+                    "x": 0.3
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "idle",
+                    "x": 0.54
+                  },
+                  {
+                    "rig": "cazo",
+                    "clip": "sleep",
+                    "x": 0.8
+                  }
+                ],
+                "unseen": [
+                  "taza"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "iza",
+          "variants": [
+            {
+              "id": "vela_rota_iza_a",
+              "text": "Por la mañana, los marineros izaron la vela remendada. El viento la hinchó, ¡fuuum!, y aguantó. Ni una puntada se soltó. La capitana {helper} pasó la mano por la costura. «Esto lo ha cosido alguien que no se rinde», dijo, y le guiñó un ojo a {hero}. Tío Cazo aplaudió con las dos manos llenas de harina.",
+              "scene": {
+                "bg": "cubierta",
+                "mood": "triumph",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "cheer",
+                    "x": 0.28
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "clap",
+                    "x": 0.52
+                  },
+                  {
+                    "rig": "cazo",
+                    "clip": "clap",
+                    "x": 0.78
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "duerme",
+          "variants": [
+            {
+              "id": "vela_rota_duerme_a",
+              "text": "Esa noche, {hero} se tumbó en su hamaca con el dedo un poco dolorido y el corazón en paz. Por el ojo de buey se veía la vela, blanca bajo la luna, con su costura como una cicatriz de aventura. {hero} contó las puntadas hasta que se le cerraron los ojos.",
+              "scene": {
+                "bg": "camarote",
+                "mood": "sleep",
+                "time": "noche",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "sleep",
+                    "x": 0.42
+                  }
+                ]
+              }
+            }
+          ],
+          "moves": true
+        }
+      ]
+    },
+    {
+      "id": "remolino_juega",
+      "value": "amistad",
+      "title": "Las travesuras de Remolino",
+      "ages": [
+        "6-8"
+      ],
+      "npcs": {
+        "loro": [
+          "Pimienta"
+        ]
+      },
+      "cast": {
+        "hero": {
+          "kind": "character",
+          "roles": [
+            "hero"
+          ]
+        },
+        "villain": {
+          "kind": "character",
+          "ids": [
+            "remolino"
+          ]
+        },
+        "cubierta": {
+          "kind": "place",
+          "ids": [
+            "cubierta"
+          ]
+        },
+        "arrecife": {
+          "kind": "place",
+          "ids": [
+            "arrecife"
+          ]
+        },
+        "laguna": {
+          "kind": "place",
+          "ids": [
+            "laguna"
+          ]
+        }
+      },
+      "beats": [
+        {
+          "id": "travesuras",
+          "variants": [
+            {
+              "id": "remolino_juega_travesuras_a",
+              "text": "Desde hacía una semana, en la Gaviota pasaban cosas raras. Los sombreros aparecían colgados del mástil, las cuerdas se ataban solas en lazos imposibles y el loro Pimienta aparecía por la mañana con un calcetín en la cabeza. Los marineros refunfuñaban, y Pimienta repetía sin parar: «¡Travesura, travesura!».",
+              "scene": {
+                "bg": "cubierta",
+                "mood": "mystery",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "think",
+                    "x": 0.34
+                  },
+                  {
+                    "rig": "loro",
+                    "clip": "hoot",
+                    "x": 0.66
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "pilla",
+          "variants": [
+            {
+              "id": "remolino_juega_pilla_a",
+              "text": "Una noche, {hero} se escondió detrás de un barril para descubrir al culpable. Al rato, un brazo morado salió del agua, luego otro, y luego seis más. Era {villain.el} {villain}. Con mucho cuidado, empezó a atar los cordones de las botas de un marinero que roncaba. {hero} salió de su escondite. «¡Te pillé!»",
+              "scene": {
+                "bg": "cubierta",
+                "mood": "tension",
+                "time": "noche",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "point",
+                    "x": 0.34
+                  },
+                  {
+                    "who": "villain",
+                    "clip": "surprised",
+                    "x": 0.66
+                  }
+                ]
+              }
+            }
+          ],
+          "introduces": [
+            "villain"
+          ]
+        },
+        {
+          "id": "por_que",
+          "variants": [
+            {
+              "id": "remolino_juega_por_que_a",
+              "text": "{villain} se puso de color rosa, de pura vergüenza, y soltó una nubecita de tinta. Ya iba a escaparse, pero {hero} le preguntó: «¿Por qué haces tantas travesuras?». El pulpo se quedó un momento pensativo, con los ocho brazos enredados. «Porque nadie juega conmigo», dijo al fin. «En el arrecife todos dicen que soy demasiado raro.»",
+              "scene": {
+                "bg": "cubierta",
+                "mood": "sad",
+                "time": "noche",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "think",
+                    "x": 0.34
+                  },
+                  {
+                    "who": "villain",
+                    "clip": "sad",
+                    "x": 0.66
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "invita",
+          "variants": [
+            {
+              "id": "remolino_juega_invita_a",
+              "text": "A {hero} se le encogió el corazón. Se acordó de una vez que nadie quería jugar con {hero} en el puerto, y de lo largo que se le hizo aquel día. «Yo juego contigo», dijo. «Pero sin atar botas. ¿Qué te gusta hacer?» A {villain} se le iluminaron los ojos, porque nadie se lo había preguntado nunca.",
+              "scene": {
+                "bg": "cubierta",
+                "mood": "hope",
+                "time": "noche",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "offer",
+                    "x": 0.34
+                  },
+                  {
+                    "who": "villain",
+                    "clip": "surprised",
+                    "x": 0.66
+                  }
+                ]
+              },
+              "adds": [
+                "se_acerco"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "arrecife",
+          "variants": [
+            {
+              "id": "remolino_juega_arrecife_a",
+              "text": "Al día siguiente, {villain} le enseñó a {hero} su arrecife. Sabía cambiar de color para parecer una roca, una esponja o un coral. Jugaron al escondite entre las algas, y {hero} no lo encontró ni una sola vez, aunque buscó por todas partes. Luego {villain} le enseñó a hacer burbujas con forma de anillo, y {hero} se rio tanto que tragó agua.",
+              "scene": {
+                "bg": "arrecife",
+                "mood": "joy",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "swim",
+                    "x": 0.36
+                  },
+                  {
+                    "who": "villain",
+                    "clip": "laugh",
+                    "x": 0.66
+                  }
+                ]
+              },
+              "requires": [
+                "se_acerco"
+              ]
+            }
+          ],
+          "moves": true
+        },
+        {
+          "id": "barco_hundido",
+          "variants": [
+            {
+              "id": "remolino_juega_barco_hundido_a",
+              "text": "Después, {villain} le llevó a un lugar secreto: un barco antiguo, hundido hacía muchísimos años, cubierto de corales de colores. Los peces entraban y salían por las ventanas como si fuera su casa. «Aquí vengo cuando estoy triste», le contó el pulpo. «Nunca se lo había enseñado a nadie.» {hero} se sintió importante, porque compartir un secreto es un regalo muy grande. Se quedaron un rato mirando a una tortuga vieja que dormía en el timón del barco hundido. Remolino le contó que había encontrado aquel barco siendo muy pequeño, cuando todavía no sabía cambiar de color, y que desde entonces lo cuidaba quitándole las algas de las ventanas. Y cuando subieron a respirar, ya no eran solo dos que jugaban juntos: eran amigos.",
+              "scene": {
+                "bg": "arrecife",
+                "mood": "mystery",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "swim",
+                    "x": 0.36
+                  },
+                  {
+                    "who": "villain",
+                    "clip": "talk",
+                    "x": 0.66
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "deshace",
+          "variants": [
+            {
+              "id": "remolino_juega_deshace_a",
+              "text": "Esa tarde, {villain} subió al barco y, con sus ocho brazos, desató todos los lazos imposibles en un momento. Devolvió los sombreros y le quitó el calcetín a Pimienta. Luego pidió perdón a los marineros, uno por uno. Los marineros se miraron, se rieron y le invitaron a merendar galletas de Tío Cazo.",
+              "scene": {
+                "bg": "cubierta",
+                "mood": "joy",
+                "time": "atardecer",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "laugh",
+                    "x": 0.3
+                  },
+                  {
+                    "who": "villain",
+                    "clip": "offer",
+                    "x": 0.56
+                  },
+                  {
+                    "rig": "loro",
+                    "clip": "flutter",
+                    "x": 0.82
+                  }
+                ]
+              }
+            }
+          ],
+          "moves": true
+        },
+        {
+          "id": "laguna",
+          "variants": [
+            {
+              "id": "remolino_juega_laguna_a",
+              "text": "Desde entonces, cada tarde, {hero} y {villain} jugaban en la laguna. Y por la noche, el pulpo se quedaba un rato en la borda, contando historias del fondo del mar hasta que a {hero} se le cerraban los ojos. Ya no hacía travesuras, porque ya no le hacía falta llamar la atención de nadie: había encontrado una amistad de verdad.",
+              "scene": {
+                "bg": "laguna",
+                "mood": "sleep",
+                "time": "noche",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "yawn",
+                    "x": 0.36
+                  },
+                  {
+                    "who": "villain",
+                    "clip": "talk",
+                    "x": 0.66
+                  }
+                ]
+              }
+            }
+          ],
+          "moves": true
+        }
+      ]
+    },
+    {
+      "id": "cueva_ecos",
+      "value": "valentia",
+      "title": "La cueva de los ecos",
+      "ages": [
+        "6-8"
+      ],
+      "npcs": {
+        "loro": [
+          "Pimienta"
+        ]
+      },
+      "cast": {
+        "hero": {
+          "kind": "character",
+          "roles": [
+            "hero"
+          ]
+        },
+        "selva": {
+          "kind": "place",
+          "ids": [
+            "selva"
+          ]
+        },
+        "cueva": {
+          "kind": "place",
+          "ids": [
+            "cueva_tesoro"
+          ]
+        },
+        "playa": {
+          "kind": "place",
+          "ids": [
+            "playa"
+          ]
+        },
+        "item": {
+          "kind": "prop",
+          "ids": [
+            "farol_barco"
+          ]
+        }
+      },
+      "beats": [
+        {
+          "id": "pimienta",
+          "variants": [
+            {
+              "id": "cueva_ecos_pimienta_a",
+              "text": "Pimienta, el loro, se había escapado por la selva, persiguiendo un olor a mango maduro. {hero} lo buscó entre las lianas, llamándolo por su nombre. Al fin oyó su voz, muy lejos: «¡Socorro, socorro!». Venía de una cueva oscura, al pie de la montaña. La boca de la cueva parecía una enorme sonrisa sin dientes.",
+              "scene": {
+                "bg": "selva",
+                "mood": "tension",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "surprised",
+                    "x": 0.42
+                  }
+                ],
+                "offstage": [
+                  "loro"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "farol",
+          "variants": [
+            {
+              "id": "cueva_ecos_farol_a",
+              "text": "{hero} llevaba en la mochila {item.un} pequeño, el de las excursiones. Lo encendió con manos temblorosas. La llama era chiquita, pero valiente. «Bueno», se dijo {hero}, «si la llama no tiene miedo de la oscuridad, yo tampoco voy a tenerlo… mucho.»",
+              "scene": {
+                "bg": "selva",
+                "mood": "tension",
+                "time": "atardecer",
+                "focus": {
+                  "prop": "farol_barco",
+                  "x": 0.5,
+                  "fill": 0.55
+                }
+              }
+            }
+          ],
+          "introduces": [
+            "item"
+          ]
+        },
+        {
+          "id": "ecos",
+          "variants": [
+            {
+              "id": "cueva_ecos_ecos_a",
+              "text": "Dentro de la cueva, cada paso sonaba tres veces: cloc, cloc, cloc. «¿Pimienta?», llamó {hero}. Y la cueva contestó con voces raras: «…mienta… mienta…». A {hero} se le erizó la piel de los brazos. Pero recordó lo que decía el Abuelo Faro: los ecos son la cueva jugando a repetir. Así que siguió adelante, con el {item.noun} bien alto.",
+              "scene": {
+                "bg": "cueva",
+                "mood": "tension",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "sneak",
+                    "x": 0.42
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "farol_barco",
+                    "clip": "glow",
+                    "near": "hero",
+                    "dx": 0.07,
+                    "lift": 55,
+                    "scale": 0.6
+                  }
+                ],
+                "offstage": [
+                  "loro"
+                ]
+              },
+              "adds": [
+                "dio_el_paso"
+              ]
+            }
+          ],
+          "moves": true
+        },
+        {
+          "id": "sombras",
+          "variants": [
+            {
+              "id": "cueva_ecos_sombras_a",
+              "text": "Más adentro, las sombras se estiraban por las paredes como dedos larguísimos. Una gota cayó del techo, ¡plic!, y {hero} dio un salto. Luego vio unos ojos brillantes en la oscuridad. El corazón le dio un brinco… pero eran solo dos charcos que reflejaban la llama. {hero} se rio bajito, y la cueva se rio con {hero}: ja, ja, ja.",
+              "scene": {
+                "bg": "cueva",
+                "mood": "mystery",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "laugh",
+                    "x": 0.42
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "farol_barco",
+                    "clip": "glow",
+                    "near": "hero",
+                    "dx": 0.07,
+                    "lift": 55,
+                    "scale": 0.6
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "tuneles",
+          "variants": [
+            {
+              "id": "cueva_ecos_tuneles_a",
+              "text": "Un poco más allá, la cueva se partía en dos túneles. Uno subía y olía a humedad; el otro bajaba y sonaba a agua corriendo. {hero} no sabía cuál elegir, y por un momento pensó en darse la vuelta. Pero entonces cerró los ojos y escuchó con mucha atención, como hacen los marineros en la niebla. Muy bajito, desde el túnel de arriba, llegó un aleteo y un «¡socorro!» chiquitito. «Por aquí», se dijo {hero}, y empezó a subir agarrándose a las rocas, porque el suelo resbalaba. El {item.noun} se balanceaba en su mano, y su luz dibujaba estrellas en el techo.",
+              "scene": {
+                "bg": "cueva",
+                "mood": "hope",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "climb",
+                    "x": 0.42
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "farol_barco",
+                    "clip": "glow",
+                    "near": "hero",
+                    "dx": 0.07,
+                    "lift": 55,
+                    "scale": 0.6
+                  }
+                ],
+                "offstage": [
+                  "loro"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "encuentra",
+          "variants": [
+            {
+              "id": "cueva_ecos_encuentra_a",
+              "text": "Al fondo, en una repisa de roca, estaba Pimienta, con una pata enredada en una raíz. «¡Socorro!», repetía, despeinado y temblando. {hero} dejó el {item.noun} en el suelo, se subió a una piedra y desenredó la pata con mucho cuidado. Pimienta saltó a su hombro y le dio un picotazo suave en la oreja, que era su manera de dar las gracias. Luego se esponjó todas las plumas, se sacudió el polvo de la cueva y empezó a contar, con su vocecita ronca, toda la aventura del mango, la raíz y los ecos que se reían.",
+              "scene": {
+                "bg": "cueva",
+                "mood": "joy",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "hug",
+                    "x": 0.38
+                  },
+                  {
+                    "rig": "loro",
+                    "clip": "flutter",
+                    "x": 0.62
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "farol_barco",
+                    "x": 0.2,
+                    "clip": "glow",
+                    "scale": 0.6
+                  }
+                ]
+              },
+              "requires": [
+                "dio_el_paso"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "sale",
+          "variants": [
+            {
+              "id": "cueva_ecos_sale_a",
+              "text": "Salieron juntos de la cueva, y el sol del atardecer les pareció más bonito que nunca. Pimienta no paraba de repetir: «¡Valiente, valiente!». Y aunque a {hero} todavía le temblaban un poquito las piernas, sonreía, porque había entrado en la oscuridad sin dejar de tener miedo, y había salido con su amigo.",
+              "scene": {
+                "bg": "playa",
+                "mood": "joy",
+                "time": "atardecer",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "cheer",
+                    "x": 0.38
+                  },
+                  {
+                    "rig": "loro",
+                    "clip": "flutter",
+                    "x": 0.62
+                  }
+                ]
+              }
+            }
+          ],
+          "moves": true
+        },
+        {
+          "id": "noche",
+          "variants": [
+            {
+              "id": "cueva_ecos_noche_a",
+              "text": "Esa noche, Pimienta durmió en el respaldo de la hamaca de {hero}, con la cabeza bajo el ala. El {item.noun} seguía encendido en la mesilla, con su llama chiquita y valiente. {hero} lo miró un rato. Luego lo apagó de un soplo, porque ya no lo necesitaba, y se durmió.",
+              "scene": {
+                "bg": "playa",
+                "mood": "sleep",
+                "time": "noche",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "sleep",
+                    "x": 0.36
+                  },
+                  {
+                    "rig": "loro",
+                    "clip": "hoot",
+                    "x": 0.62
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "farol_barco",
+                    "x": 0.82,
+                    "clip": "glow",
+                    "scale": 0.6
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pelea_leo",
+      "value": "amistad",
+      "title": "La pelea del catalejo",
+      "ages": [
+        "6-8"
+      ],
+      "npcs": {
+        "nino_puerto": [
+          "Leo"
+        ]
+      },
+      "cast": {
+        "hero": {
+          "kind": "character",
+          "roles": [
+            "hero"
+          ]
+        },
+        "helper": {
+          "kind": "character",
+          "ids": [
+            "estela"
+          ]
+        },
+        "cofa": {
+          "kind": "place",
+          "ids": [
+            "cofa"
+          ]
+        },
+        "cubierta": {
+          "kind": "place",
+          "ids": [
+            "cubierta"
+          ]
+        },
+        "mar_abierto": {
+          "kind": "place",
+          "ids": [
+            "mar_abierto"
+          ]
+        },
+        "item": {
+          "kind": "prop",
+          "ids": [
+            "catalejo"
+          ]
+        }
+      },
+      "beats": [
+        {
+          "id": "turno",
+          "variants": [
+            {
+              "id": "pelea_leo_turno_a",
+              "text": "La capitana {helper} había prometido un premio a quien viera primero la Isla de las Conchas: una tarde entera al timón. {hero} y Leo subieron corriendo a la cofa, pero allí arriba solo había {item.un}. «¡Es mi turno!», dijo {hero}. «¡No, es el mío!», dijo Leo. Y los dos tiraron a la vez.",
+              "scene": {
+                "bg": "cofa",
+                "mood": "tension",
+                "time": "dia",
+                "focus": {
+                  "prop": "catalejo",
+                  "x": 0.5,
+                  "fill": 0.55
+                }
+              }
+            }
+          ],
+          "introduces": [
+            "item",
+            "helper"
+          ]
+        },
+        {
+          "id": "enfado",
+          "variants": [
+            {
+              "id": "pelea_leo_enfado_a",
+              "text": "Al final, {hero} le arrancó el {item.noun} de las manos. Leo se puso rojo de rabia. «¡No sabes compartir!», gritó, y bajó por la escalera de cuerda sin mirar atrás. {hero} se quedó arriba con el {item.noun}, pero ya no tenía ganas de mirar nada. La isla podía esperar, y el premio también.",
+              "scene": {
+                "bg": "cofa",
+                "mood": "sad",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "sad",
+                    "x": 0.4
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "catalejo",
+                    "near": "hero",
+                    "dx": 0.07,
+                    "lift": 60,
+                    "scale": 0.7
+                  }
+                ],
+                "offstage": [
+                  "nino_puerto"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "silencio",
+          "variants": [
+            {
+              "id": "pelea_leo_silencio_a",
+              "text": "Durante dos días, {hero} y Leo no se hablaron. Comían cada uno en un rincón y fingían no verse en la cubierta. Pero el barco era pequeño, y la tristeza era grande. {hero} echaba de menos las risas de Leo, sus dibujos de peces y sus historias de Bigotes, su perro.",
+              "scene": {
+                "bg": "cubierta",
+                "mood": "sad",
+                "time": "atardecer",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "sit_sad",
+                    "x": 0.3
+                  },
+                  {
+                    "rig": "nino_puerto",
+                    "clip": "sit_sad",
+                    "x": 0.74
+                  }
+                ]
+              }
+            }
+          ],
+          "moves": true
+        },
+        {
+          "id": "dibujo",
+          "variants": [
+            {
+              "id": "pelea_leo_dibujo_a",
+              "text": "La segunda noche, {hero} no podía dormir y subió a la cubierta. La luna lo pintaba todo de plata. Junto al mástil había un papel arrugado. {hero} lo desdobló: era un dibujo de Leo. Dos grumetes en la cofa, mirando juntos el horizonte, y encima, con letras torcidas: «Amigos del mar». A {hero} le dio un vuelco el corazón, porque entendió que Leo también lo estaba pasando mal. Dobló el dibujo con cuidado y se lo guardó en el bolsillo. Se quedó un rato mirando el mar, que hacía ruido de olas cansadas contra el casco, y pensó en todas las cosas que había hecho con Leo desde que llegó: los escondites de la bodega, las carreras, los peces dibujados. Ya sabía lo que tenía que hacer, aunque todavía no sabía cómo.",
+              "scene": {
+                "bg": "cubierta",
+                "mood": "sad",
+                "time": "noche",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "sad",
+                    "x": 0.42
+                  }
+                ],
+                "offstage": [
+                  "nino_puerto"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "tormenta",
+          "variants": [
+            {
+              "id": "pelea_leo_tormenta_a",
+              "text": "Al tercer día, el cielo se puso gris y empezó a soplar un viento fuerte. «¡Todos a las cuerdas!», ordenó la capitana {helper}. Una cuerda se soltó y empezó a azotar el aire. {hero} intentó sujetarla, pero era demasiado fuerte. Entonces unas manos agarraron la cuerda junto a las suyas. Eran las de Leo.",
+              "scene": {
+                "bg": "mar_abierto",
+                "mood": "tension",
+                "time": "atardecer",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "climb",
+                    "x": 0.3
+                  },
+                  {
+                    "rig": "nino_puerto",
+                    "clip": "climb",
+                    "x": 0.54
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "point",
+                    "x": 0.8
+                  }
+                ]
+              }
+            }
+          ],
+          "moves": true
+        },
+        {
+          "id": "juntos",
+          "variants": [
+            {
+              "id": "pelea_leo_juntos_a",
+              "text": "Tiraron con todas sus fuerzas, a la de tres, y ataron la cuerda al mástil con el nudo del conejo. La vela dejó de sacudirse. Empapados y sin aliento, {hero} y Leo se miraron. Y sin decir nada, se echaron a reír. «Perdóname por lo del catalejo», dijo {hero}. «No supe compartir.» «Y yo te grité», dijo Leo. «Perdóname tú también.»",
+              "scene": {
+                "bg": "mar_abierto",
+                "mood": "hope",
+                "time": "atardecer",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "laugh",
+                    "x": 0.34
+                  },
+                  {
+                    "rig": "nino_puerto",
+                    "clip": "laugh",
+                    "x": 0.62
+                  }
+                ]
+              },
+              "adds": [
+                "se_acerco"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "isla",
+          "variants": [
+            {
+              "id": "pelea_leo_isla_a",
+              "text": "Cuando pasó el viento, subieron juntos a la cofa. Esta vez, {hero} le dio el {item.noun} a Leo primero. Leo miró, sonrió y se lo devolvió. Y {hero} vio, allá lejos, una línea dorada. «¡Tierra a la vista!», gritaron a la vez. La capitana {helper} se rio desde abajo: «Pues el premio será para los dos».",
+              "scene": {
+                "bg": "cofa",
+                "mood": "joy",
+                "time": "atardecer",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "spyglass",
+                    "x": 0.34
+                  },
+                  {
+                    "rig": "nino_puerto",
+                    "clip": "cheer",
+                    "x": 0.62
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "catalejo",
+                    "near": "hero",
+                    "dx": 0.06,
+                    "lift": 95,
+                    "scale": 0.7
+                  }
+                ],
+                "offstage": [
+                  "helper"
+                ]
+              },
+              "requires": [
+                "se_acerco"
+              ]
+            }
+          ],
+          "moves": true
+        },
+        {
+          "id": "timon",
+          "variants": [
+            {
+              "id": "pelea_leo_timon_a",
+              "text": "Al día siguiente pasaron la tarde al timón, cada uno con una mano en la rueda. Y por la noche, en sus hamacas, Leo dibujó un pez con dos sonrisas. «Somos nosotros», dijo. {hero} se durmió pensando que una amistad, como una cuerda, se hace más fuerte cuando se ata de nuevo.",
+              "scene": {
+                "bg": "cubierta",
+                "mood": "sleep",
+                "time": "noche",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "steer",
+                    "x": 0.34
+                  },
+                  {
+                    "rig": "nino_puerto",
+                    "clip": "steer",
+                    "x": 0.6
+                  }
+                ]
+              }
+            }
+          ],
+          "moves": true
+        }
+      ]
+    },
+    {
+      "id": "sopa_mostacho",
+      "value": "generosidad",
+      "title": "Sopa para el capitán Mostacho",
+      "ages": [
+        "6-8"
+      ],
+      "npcs": {
+        "cazo": [
+          "Tío Cazo"
+        ]
+      },
+      "cast": {
+        "hero": {
+          "kind": "character",
+          "roles": [
+            "hero"
+          ]
+        },
+        "villain": {
+          "kind": "character",
+          "ids": [
+            "mostacho"
+          ]
+        },
+        "cubierta": {
+          "kind": "place",
+          "ids": [
+            "cubierta"
+          ]
+        },
+        "mar_abierto": {
+          "kind": "place",
+          "ids": [
+            "mar_abierto"
+          ]
+        },
+        "camarote": {
+          "kind": "place",
+          "ids": [
+            "camarote"
+          ]
+        }
+      },
+      "beats": [
+        {
+          "id": "despensa",
+          "variants": [
+            {
+              "id": "sopa_mostacho_despensa_a",
+              "text": "Tras una semana de travesía, a bordo de la Gaviota quedaba poca comida: un saco de patatas, unas zanahorias y el último tarro de miel. Tío Cazo hacía milagros con eso, y su sopa olía tan bien que hasta las gaviotas se posaban en la borda a esperar. {hero} le ayudaba a pelar patatas, cantando canciones de marineros.",
+              "scene": {
+                "bg": "cubierta",
+                "mood": "calm",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "eat",
+                    "x": 0.34
+                  },
+                  {
+                    "rig": "cazo",
+                    "clip": "talk",
+                    "x": 0.64
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "barco",
+          "variants": [
+            {
+              "id": "sopa_mostacho_barco_a",
+              "text": "Una mañana, apareció en el horizonte un barco con las velas llenas de remiendos. Era el barco {villain.del} {villain}, el pirata más gruñón de todos los mares. Su barco iba despacio, muy despacio, y nadie se movía en la cubierta. «Seguro que quiere robarnos la comida», refunfuñó un marinero. «¡Escondamos el saco de patatas!»",
+              "scene": {
+                "bg": "mar_abierto",
+                "mood": "tension",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "spyglass",
+                    "x": 0.34
+                  },
+                  {
+                    "who": "villain",
+                    "clip": "sad",
+                    "x": 0.7
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "catalejo",
+                    "near": "hero",
+                    "dx": 0.06,
+                    "lift": 95,
+                    "scale": 0.7
+                  }
+                ]
+              }
+            }
+          ],
+          "introduces": [
+            "villain"
+          ],
+          "moves": true
+        },
+        {
+          "id": "hambre",
+          "variants": [
+            {
+              "id": "sopa_mostacho_hambre_a",
+              "text": "Pero {hero} miró por el catalejo y vio otra cosa. Los marineros de {villain} estaban sentados en el suelo, flacos y callados. Y el propio {villain} se apoyaba en el timón con cara de cansancio. No parecían piratas peligrosos. Parecían piratas con mucha hambre, porque una tormenta les había roto las redes y llevaban días sin pescar nada.",
+              "scene": {
+                "bg": "mar_abierto",
+                "mood": "sad",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "spyglass",
+                    "x": 0.34
+                  },
+                  {
+                    "who": "villain",
+                    "clip": "sad",
+                    "x": 0.7
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "catalejo",
+                    "near": "hero",
+                    "dx": 0.06,
+                    "lift": 95,
+                    "scale": 0.7
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "propone",
+          "variants": [
+            {
+              "id": "sopa_mostacho_propone_a",
+              "text": "{hero} bajó corriendo a la cocina. «Tío Cazo, tienen hambre», dijo. «Podemos compartir la sopa.» Tío Cazo se rascó el bigote. «Es lo último que tenemos», dijo. «Si la compartimos, nos tocará menos.» {hero} pensó un momento. «Menos, pero no nada», contestó. «Y ellos no tienen nada.» Tío Cazo sonrió y cogió el cucharón más grande.",
+              "scene": {
+                "bg": "cubierta",
+                "mood": "hope",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "talk",
+                    "x": 0.34
+                  },
+                  {
+                    "rig": "cazo",
+                    "clip": "think",
+                    "x": 0.64
+                  }
+                ]
+              },
+              "adds": [
+                "compartio"
+              ]
+            }
+          ],
+          "moves": true
+        },
+        {
+          "id": "sirve",
+          "variants": [
+            {
+              "id": "sopa_mostacho_sirve_a",
+              "text": "Acercaron los dos barcos y tendieron una tabla entre ellos. {hero} cruzó con la sopa humeante en una cacerola, con cuidado de no derramar ni una gota. {villain} se quedó mirando la sopa con el bigote temblando. «¿Por qué me ayudas?», preguntó con voz ronca. «Siempre os he gritado y os he perseguido.» «Porque tienes hambre», dijo {hero}. «Y eso es lo que importa ahora.»",
+              "scene": {
+                "bg": "cubierta",
+                "mood": "joy",
+                "time": "atardecer",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "offer",
+                    "x": 0.34
+                  },
+                  {
+                    "who": "villain",
+                    "clip": "surprised",
+                    "x": 0.66
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "galleta_barco",
+                    "near": "hero",
+                    "dx": 0.07,
+                    "lift": 55,
+                    "scale": 0.6
+                  }
+                ]
+              },
+              "requires": [
+                "compartio"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cuentan",
+          "variants": [
+            {
+              "id": "sopa_mostacho_cuentan_a",
+              "text": "Los marineros de {villain} comieron en silencio, rebañando los cuencos hasta dejarlos brillantes. Cuando terminaron, el más joven contó lo que había pasado: una tormenta les había roto las redes y el mástil pequeño, y desde entonces no habían pescado ni una sardina. «Por eso estamos tan flacos», dijo, y se rio por primera vez en días. Tío Cazo, que había cruzado detrás de {hero}, le dio una palmada en la espalda. «Mañana os ayudamos a coser las redes», prometió. {villain} se retorció el bigote y miró al suelo, porque no sabía cómo dar las gracias.",
+              "scene": {
+                "bg": "cubierta",
+                "mood": "hope",
+                "time": "atardecer",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "sit",
+                    "x": 0.28
+                  },
+                  {
+                    "rig": "cazo",
+                    "clip": "talk",
+                    "x": 0.52
+                  },
+                  {
+                    "who": "villain",
+                    "clip": "sad",
+                    "x": 0.78
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "cambia",
+          "variants": [
+            {
+              "id": "sopa_mostacho_cambia_a",
+              "text": "{villain} probó la sopa y cerró los ojos. Luego, sin decir nada, se quitó el sombrero de tres picos. Era la primera vez que alguien lo veía sin sombrero. «Mi tripulación y yo os debemos una», dijo. Y al día siguiente, cuando pescaron un banco entero de sardinas, lo primero que hizo {villain} fue mandar la mitad a la Gaviota, con una nota que decía: «Gracias, grumete».",
+              "scene": {
+                "bg": "cubierta",
+                "mood": "joy",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "cheer",
+                    "x": 0.34
+                  },
+                  {
+                    "who": "villain",
+                    "clip": "bow",
+                    "x": 0.66
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "noche",
+          "variants": [
+            {
+              "id": "sopa_mostacho_noche_a",
+              "text": "Esa noche, en las dos cubiertas, se cenaron sardinas a la brasa bajo las estrellas. Los marineros cantaban, y hasta {villain} se atrevió con una canción, aunque desafinaba como una gaviota con tos. {hero} se rio tanto que le dolió la barriga, y Tío Cazo tuvo que sentarse en un barril para no caerse de la risa. Las dos tripulaciones, que antes se perseguían por todos los mares, aplaudieron juntas la canción más desafinada de la historia. Más tarde, en su hamaca, pensó que la sopa compartida había sido la más rica de su vida.",
+              "scene": {
+                "bg": "camarote",
+                "mood": "sleep",
+                "time": "noche",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "sleep",
+                    "x": 0.42
+                  }
+                ],
+                "offstage": [
+                  "villain",
+                  "cazo"
+                ]
+              }
+            }
+          ],
+          "moves": true
         }
       ]
     }

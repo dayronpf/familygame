@@ -152,18 +152,29 @@ void main() {
       expect(art.library.propClips, contains('bob'));
     });
 
-    test('cualquier cuento del pack dibuja todas sus escenas', () {
-      final engine = StoryEngine(mar);
-      for (final g in ['m', 'f']) {
-        for (var seed = 1; seed <= 40; seed++) {
-          final story =
-              engine.generate(StoryOptions(seed: seed, heroGender: g));
-          for (final s in story.scenes) {
-            final setup = stageFor(art, story.cast, s.directives);
-            expect(setup, isNotNull, reason: 'seed $seed ${s.fragmentId}');
-            if (s.directives['focus'] is! Map) {
-              expect(setup!.actors.length, stageEntries(s.directives).length,
-                  reason: 'seed $seed ${s.fragmentId}');
+    test('cada cuento del pack dibuja todas sus escenas, con niño y con niña',
+        () {
+      for (final premise in mar.premises) {
+        // Un pack con solo ese cuento: así se prueban todos, no los que toque el azar
+        final solo = Pack.fromJson({
+          ...pack,
+          'premises': [
+            for (final q in pack['premises']! as List)
+              if ((q as Map)['id'] == premise.id) q,
+          ],
+        });
+        final engine = StoryEngine(solo);
+        for (final g in ['m', 'f']) {
+          for (var seed = 1; seed <= 6; seed++) {
+            final story =
+                engine.generate(StoryOptions(seed: seed, heroGender: g));
+            for (final s in story.scenes) {
+              final setup = stageFor(art, story.cast, s.directives);
+              expect(setup, isNotNull, reason: '${s.fragmentId} ($g, $seed)');
+              if (s.directives['focus'] is! Map) {
+                expect(setup!.actors.length, stageEntries(s.directives).length,
+                    reason: '${s.fragmentId} ($g, $seed)');
+              }
             }
           }
         }
