@@ -12,8 +12,8 @@ const String appTagline = 'Cuentos para soñar';
 /// Quién publica la app y cómo contactarle: salen en la política de privacidad y los términos de uso que se leen en
 /// Ajustes. **Hay que rellenarlos antes de publicar** (ver `docs/22`); `legalPending` avisa a la familia mientras no
 /// estén.
-const String legalOwner = '[titular pendiente de definir]';
-const String contactEmail = '[correo de contacto pendiente]';
+const String legalOwner = 'TuVendor';
+const String contactEmail = 'ventas@tuvendor.com';
 
 /// Fecha de la última revisión de los textos legales.
 const String legalDate = '12 de octubre de 2026';
