@@ -159,3 +159,13 @@ campana 49 %, linterna 54 %, puente 56 %. Heroína y héroe salen casi igual de 
 **Pendiente para después de probar con familias:** escuchar la voz sintética real («tilín», «Flup», «ñam», pausas en «…»),
 probar un lote con Mara de protagonista, protocolo de preguntas de comprensión y dónde se distrae el niño, revisar las
 ilustraciones con el texto, y más variantes por escena (puente 56 %, linterna 54 %).
+
+### Revisión de concordancia con el nombre del niño (pack 0.19.1)
+
+Con el nombre del niño de protagonista, el género lo elige la familia y ya no lo decide el reparto. Se generaron los 30 cuentos
+(cuatro edades × seis enseñanzas × 25 semillas) como «Lucía» y como «Dayron», y se revisaron las frases que lo nombran.
+
+| Defecto | Corrección |
+|---|---|
+| «¡Soy {hero}, el rey de las nubes!» con niña | «¡Soy {hero} y vivo en las nubes!»; el validador rechaza `{hero}, el rey/la capitana…` |
+| Pareja de heroína y compañera en masculino: «Lía y {hero} … juntos y calentitos», «fueron juntos … alcanzarlos», «{hero} y la cabrita … juntitos», «{hero} y la abuela, solos», «Subieron juntos … Lía delante y {hero} detrás» | `junt{hero.o}s`, `calentit{hero.o}s`, `alcanzarl{hero.o}s`, `juntit{hero.o}s`, `sol{hero.o}s`; el validador rechaza esos plurales literales cuando la frase pone al héroe en pareja |

@@ -158,17 +158,20 @@ void main() {
       await tester.tap(find.text('Paquetes'));
       await tester.pumpAndSettle();
       expect(find.text('Reino de la Luna'), findsOneWidget);
-      expect(find.text('Tuyo'), findsOneWidget);
+      // El Reino de la Luna y el Mar de las Estrellas son de la familia (y la Aldea de las Nubes, en desarrollo)
+      expect(find.text('Tuyo'), findsNWidgets(3));
       final soon = packCatalog.where((p) => !p.available).toList();
-      expect(soon.length, greaterThanOrEqualTo(3));
-      // Solo hay un paquete disponible
-      expect(
-          packCatalog.where((p) => p.available).map((p) => p.id), ['medieval']);
-      // Cada paquete que llega más adelante se dibuja con el filtro de grises
-      expect(find.byType(ColorFiltered), findsAtLeastNWidgets(3));
-      expect(find.text('Pronto'), findsAtLeastNWidgets(2));
-      expect(
-          find.byKey(const Key('share-card')), findsNothing); // aún más abajo
+      expect(soon.length, greaterThanOrEqualTo(2));
+      expect(packCatalog.where((p) => p.available).map((p) => p.id),
+          ['medieval', 'mar', 'cosmos']);
+      // El abierto lleva su marca
+      expect(find.byKey(const Key('pack-open-medieval')), findsOneWidget);
+      // Cada paquete que llega más adelante se dibuja con el filtro de grises (más abajo, tras los de la familia)
+      await tester.scrollUntilVisible(find.text(soon.first.name), 300,
+          scrollable: find.byType(Scrollable).first);
+      await tester.pumpAndSettle();
+      expect(find.byType(ColorFiltered), findsAtLeastNWidgets(soon.length));
+      expect(find.text('Pronto'), findsAtLeastNWidgets(soon.length));
       await tester.scrollUntilVisible(find.byKey(const Key('share-card')), 300);
       expect(find.byKey(const Key('share-card')), findsOneWidget);
     });
@@ -188,6 +191,9 @@ void main() {
       await tester.tap(find.text('Paquetes'));
       await tester.pumpAndSettle();
       final first = packCatalog.firstWhere((p) => !p.available);
+      await tester.scrollUntilVisible(find.text(first.name), 200,
+          scrollable: find.byType(Scrollable).first);
+      await tester.pumpAndSettle();
       await tester.tap(find.text(first.name));
       await tester.pumpAndSettle();
       expect(find.textContaining('Próximamente.'), findsOneWidget);

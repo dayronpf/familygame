@@ -33,7 +33,19 @@ class _AdultGateDialogState extends State<_AdultGateDialog> {
     super.dispose();
   }
 
+  bool _wrong = false;
+
   bool get _correct => _controller.text.trim() == '${_a * _b}';
+
+  /// Si falla, la puerta sigue abierta y lo dice: cerrarse en silencio parecía que Ajustes no cargaba.
+  void _submit() {
+    if (_correct) {
+      Navigator.pop(context, true);
+      return;
+    }
+    setState(() => _wrong = true);
+    _controller.clear();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,15 +55,25 @@ class _AdultGateDialogState extends State<_AdultGateDialog> {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('¿Cuánto es $_a × $_b?', key: const Key('gate-question')),
+          // «por» y no «×»: el signo se leía como una suma (9 × 7 → 16)
+          Text('¿Cuánto es $_a por $_b?', key: const Key('gate-question')),
           const SizedBox(height: 12),
           TextField(
             key: const Key('gate-answer'),
             controller: _controller,
             autofocus: true,
             keyboardType: TextInputType.number,
-            decoration: const InputDecoration(border: OutlineInputBorder()),
-            onSubmitted: (_) => Navigator.pop(context, _correct),
+            decoration: InputDecoration(
+              border: const OutlineInputBorder(),
+              errorText: _wrong
+                  ? 'Esa no es. Es una multiplicación: $_a por $_b.'
+                  : null,
+              errorMaxLines: 3,
+            ),
+            onChanged: (_) {
+              if (_wrong) setState(() => _wrong = false);
+            },
+            onSubmitted: (_) => _submit(),
           ),
         ],
       ),
@@ -62,7 +84,7 @@ class _AdultGateDialogState extends State<_AdultGateDialog> {
         ),
         FilledButton(
           key: const Key('gate-ok'),
-          onPressed: () => Navigator.pop(context, _correct),
+          onPressed: _submit,
           child: const Text('Entrar'),
         ),
       ],

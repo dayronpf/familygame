@@ -134,7 +134,7 @@ void main() {
       await tester.pumpAndSettle();
       final q =
           tester.widget<Text>(find.byKey(const Key('gate-question'))).data!;
-      final m = RegExp(r'(\d) × (\d)').firstMatch(q)!;
+      final m = RegExp(r'(\d) por (\d)').firstMatch(q)!;
       await tester.enterText(find.byKey(const Key('gate-answer')),
           '${int.parse(m.group(1)!) * int.parse(m.group(2)!)}');
       await tester.tap(find.byKey(const Key('gate-ok')));
@@ -162,7 +162,18 @@ void main() {
       expect(again.child.heroName, 'Lucía');
       expect(again.child.heroGender, 'f');
 
-      // «Al azar» vuelve a dejar que decida el cuento
+      // Con nombre no hay «Al azar»: el cuento no puede decidir si Lucía es niño o niña
+      expect(
+        find.descendant(
+          of: find.byKey(const Key('setting-gender')),
+          matching: find.text('Al azar'),
+        ),
+        findsNothing,
+      );
+
+      // Sin nombre, «Al azar» vuelve a dejar que decida el cuento
+      await tester.enterText(find.byKey(const Key('setting-name')), '');
+      await tester.pumpAndSettle();
       await tester.tap(find.descendant(
         of: find.byKey(const Key('setting-gender')),
         matching: find.text('Al azar'),
@@ -182,7 +193,7 @@ void main() {
       await tester.pumpAndSettle();
       final q =
           tester.widget<Text>(find.byKey(const Key('gate-question'))).data!;
-      final m = RegExp(r'(\d) × (\d)').firstMatch(q)!;
+      final m = RegExp(r'(\d) por (\d)').firstMatch(q)!;
       await tester.enterText(find.byKey(const Key('gate-answer')),
           '${int.parse(m.group(1)!) * int.parse(m.group(2)!)}');
       await tester.tap(find.byKey(const Key('gate-ok')));

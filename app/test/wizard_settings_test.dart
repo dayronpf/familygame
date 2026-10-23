@@ -210,8 +210,18 @@ void main() {
       await next(tester); // edad → nombre
 
       expect(find.text('¿Cómo se llama el niño?'), findsOneWidget);
+      // Sin nombre el cuento puede decidir; con nombre hay que elegir niño o niña antes de seguir
+      expect(find.byKey(const Key('gender-any')), findsOneWidget);
       await tester.enterText(
           find.byKey(const Key('wizard-name')), '  Valentina ');
+      await tester.pumpAndSettle();
+      expect(find.byKey(const Key('gender-any')), findsNothing);
+      expect(find.byKey(const Key('gender-needed')), findsOneWidget);
+      expect(
+          tester
+              .widget<FilledButton>(find.byKey(const Key('wizard-next')))
+              .onPressed,
+          isNull);
       await tester.tap(find.byKey(const Key('gender-f')));
       await tester.pumpAndSettle();
       await next(tester); // nombre → resumen
@@ -351,7 +361,7 @@ void main() {
       await tester.pumpAndSettle();
       final q =
           tester.widget<Text>(find.byKey(const Key('gate-question'))).data!;
-      final m = RegExp(r'(\d) × (\d)').firstMatch(q)!;
+      final m = RegExp(r'(\d) por (\d)').firstMatch(q)!;
       await tester.enterText(find.byKey(const Key('gate-answer')),
           '${int.parse(m.group(1)!) * int.parse(m.group(2)!)}');
       await tester.tap(find.byKey(const Key('gate-ok')));

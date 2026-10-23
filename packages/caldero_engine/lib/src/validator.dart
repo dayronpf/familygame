@@ -175,7 +175,9 @@ final RegExp causalConnectors = RegExp(
 final RegExp _fixedGender = RegExp(
   r'(?<!corazón\s)\b(?:quiet|dormid|tranquil|liger|helad|cansad|asustad|sorprendid|content|preocupad|confundid)(?:o|a)\b'
   r'|\b(?:yo|entró|siguió|quedó|iba|estaba|fue|llegó|subió|ir|irse|iría|quedarse|cruz\w+)\s+sol(?:o|a)\b'
-  r'|(?<![\wáéíóúüñ])(?:él|ella)(?![\wáéíóúüñ])',
+  r'|(?<![\wáéíóúüñ])(?:él|ella)(?![\wáéíóúüñ])'
+  // «{hero}, el rey de las nubes»: un título u oficio con género pegado al héroe
+  r'|\{hero\},\s+(?:el|la|un|una)\s+(?:rey|reina|príncipe|princesa|campeón|campeona|niño|niña|chico|chica|dueño|dueña|amigo|amiga|capitán|capitana|grumete|grumeta|pirata|marinero|marinera)\b',
 );
 
 /// Mínimo y máximo de palabras de un cuento de [premise]: los de su perfil de edad con un margen (el reparto de cada
@@ -273,6 +275,16 @@ int _checkPremise(
   final slotKinds = {for (final e in premise.cast.entries) e.key: e.value.kind};
   if (slotKinds['hero'] != 'character') {
     problems.add('$pid: falta la ranura «hero» (personaje)');
+  } else {
+    // El niño elige si protagoniza un niño o una niña: el héroe se reparte primero y admite los dos
+    if (premise.cast.keys.first != 'hero') {
+      problems.add('$pid: «hero» debe ser la primera ranura del reparto');
+    }
+    for (final g in ['m', 'f']) {
+      if (!heroCanBe(pack, premise, g)) {
+        problems.add('$pid: «hero» no admite un héroe de género $g');
+      }
+    }
   }
   final beatIds = <String>{};
   final variantIds = <String>{};
@@ -757,12 +769,32 @@ void _checkStory(Premise premise, Story story, Set<String> problems) {
   }
 }
 
+/// El héroe y alguien más, nombrados como pareja: «{hero} y Lía», «la abuela y {hero}», «{hero} y {helper}».
+final RegExp _heroPair = RegExp(
+  r'\{hero\}\s+y\s+(?:[A-ZÁÉÍÓÚÑ][\wáéíóúüñ]+|(?:el|la|su)\s+[\wáéíóúüñ]+|\{\w+\})'
+  r'|(?:[A-ZÁÉÍÓÚÑ][\wáéíóúüñ]+|(?:el|la|su)\s+[\wáéíóúüñ]+|\{\w+\})\s+y\s+\{hero\}',
+);
+
+/// Plurales con género que concuerdan con esa pareja: con una heroína y una niña son «juntas», no «juntos».
+final RegExp _pairPlural = RegExp(
+  r'\b(?:junt|juntit|calentit|sol|solit|cansad|dormid|abrazad|sentad|content|tumbad|acurrucad|empapad|agotad)(?:o|a)s\b',
+);
+
 /// Género fijo en el texto literal de la plantilla: si se refiere al héroe, debe usar `{hero.o}`.
 void _checkFixedGender(Variant v, Set<String> problems) {
   for (final m in _fixedGender.allMatches(v.text)) {
     problems.add(
       '${v.id}: género fijo «${m.group(0)}»: si se refiere al héroe usa {hero.o} '
       '(«quiet{hero.o}»); si no, reescribe',
+    );
+  }
+  for (final sentence in v.text.split(RegExp(r'(?<=[.!?»])\s+'))) {
+    if (!_heroPair.hasMatch(sentence)) continue;
+    final m = _pairPlural.firstMatch(sentence);
+    if (m == null) continue;
+    problems.add(
+      '${v.id}: «${m.group(0)}» con el héroe en pareja: con una heroína y una compañera sería '
+      'femenino; usa junt{hero.o}s, sol{hero.o}s… (o reescribe si la pareja es siempre mixta)',
     );
   }
 }
@@ -975,6 +1007,21 @@ final List<(RegExp, String, Set<String>)> _objectWords = [
     {'cuenco', 'cuenco_vacio'}
   ),
   (RegExp(r'\bcabrita\b', caseSensitive: false), 'cabrita', {'cabrita'}),
+  // Mar de las Estrellas
+  (
+    RegExp(r'\bmapas?\b', caseSensitive: false),
+    'mapa',
+    {'mapa', 'mapa_roto', 'mapa_estelar'}
+  ),
+  (RegExp(r'\bcatalejos?\b', caseSensitive: false), 'catalejo', {'catalejo'}),
+  (RegExp(r'\bbrújulas?\b', caseSensitive: false), 'brújula', {'brujula'}),
+  (RegExp(r'\bcaracolas?\b', caseSensitive: false), 'caracola', {'caracola'}),
+  (RegExp(r'\bperlas?\b', caseSensitive: false), 'perla', {'perla'}),
+  (
+    RegExp(r'\bbotellas?\b', caseSensitive: false),
+    'botella',
+    {'botella_mensaje'}
+  ),
   (
     RegExp(r'\bpiedras\b', caseSensitive: false),
     'piedras',

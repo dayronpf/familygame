@@ -12,7 +12,8 @@ OUT = Path(__file__).resolve().parent.parent.parent / "art" / "clips" / "humanoi
 
 
 def r(v):
-    return round(v, 3)
+    # + 0.0 convierte -0.0 en 0.0: según el sistema, el redondeo del coseno da uno u otro y el CI vería diferencias
+    return round(v, 3) + 0.0
 
 
 def sine(dur, amp, phase=0.0, n=8):
@@ -377,7 +378,50 @@ NEW_CLIPS = {
 }
 CLIPS.update(NEW_CLIPS)
 
+# Gestos del Mar de las Estrellas (docs/26): remar, mirar por el catalejo, llevar el timón y nadar
+SEA_CLIPS = {
+    # remar: el cuerpo se echa atrás al tirar del remo y vuelve
+    "row": dict(dur=1.6, loop=True, tracks={
+        "torso": keys((0, 3), (0.8, -4), (1.6, 3)), "head": keys((0, -2), (0.8, 2), (1.6, -2)),
+        "root.dy": keys((0, 0), (0.8, -2), (1.6, 0)), "eyes.sy": blink(1.6, 0.5)}),
+    # catalejo: la mano al ojo, la otra en la cintura, y mira a lo lejos
+    "spyglass": dict(dur=3.0, loop=True, tracks={
+        "head": keys((0, 0), (0.4, -4), (2.6, -4), (3.0, 0)), "torso": sine(3.0, 0.8),
+        "eyes.dx": keys((0, 0), (0.6, 4), (1.6, 4), (2.2, -2), (3.0, 0)), "eyes.sy": keys((0, 1), (0.4, 0.75), (2.6, 0.75), (3.0, 1)),
+        "browL.dy": hold(3.0, 2), "browR.dy": hold(3.0, -3)}),
+    # timón: las dos manos giran sobre una rueda delante del pecho
+    "steer": dict(dur=4.0, loop=True, tracks={
+        "torso": sine(4.0, 2), "head": sine(4.0, -2, 0.1), "root.dy": keys((0, 0), (2.0, -1.5), (4.0, 0)),
+        "eyes.dx": sine(4.0, 3, 0.25), "mouth.sx": hold(4.0, 1.15)}),
+    # nadar: brazadas alternas por encima de la cabeza, las piernas (o la cola) baten y el cuerpo sube y baja
+    "swim": dict(dur=1.4, loop=True, tracks={
+        "legL": sine(0.7, 14), "legR": sine(0.7, -14), "torso": sine(1.4, 3), "head": sine(1.4, -2),
+        "root.dy": keys((0, 0), (0.35, -6), (0.7, 0), (1.05, -6), (1.4, 0)), "eyes.sy": blink(1.4, 0.5),
+        "mouth.sx": hold(1.4, 1.2)}),
+}
+CLIPS.update(SEA_CLIPS)
+
+# Gestos de la Aldea de las Nubes (docs/27): flotar sin gravedad y saltar en la luna
+SPACE_CLIPS = {
+    # flotar: sube un palmo y se mece despacio, con las piernas recogidas
+    "float": dict(dur=4.0, loop=True, tracks={
+        "root.dy": keys((0, -40), (2.0, -52), (4.0, -40)), "root": sine(4.0, 4), "torso": sine(4.0, 2, 0.2),
+        "legL": keys((0, 10), (2.0, 18), (4.0, 10)), "legR": keys((0, -6), (2.0, 4), (4.0, -6)),
+        "head": sine(4.0, -3), "eyes.sy": blink(4.0, 0.6), "mouth.sx": hold(4.0, 1.2)}),
+    # salto lunar: se agacha, sube muy alto y cae despacio
+    "moonhop": dict(dur=2.4, loop=True, tracks={
+        "root.dy": keys((0, 0), (0.3, 6), (1.2, -90), (2.1, 0), (2.4, 0)),
+        "legL": keys((0, 0), (0.3, 12), (1.2, -10), (2.1, 6), (2.4, 0)), "legR": keys((0, 0), (0.3, -12), (1.2, 10), (2.1, -6), (2.4, 0)),
+        "legL.sy": keys((0, 1), (0.3, 0.85), (0.6, 1), (2.4, 1)), "legR.sy": keys((0, 1), (0.3, 0.85), (0.6, 1), (2.4, 1)),
+        "eyes.sy": hold(2.4, 1.15), "mouth.sx": hold(2.4, 1.3)}),
+}
+CLIPS.update(SPACE_CLIPS)
+CLIPS["spyglass"]["tracks"]["itemR"] = hold(3.0, 72)  # el catalejo apunta hacia fuera, no hacia arriba
+
 N = None
+# Las manos sobre el timón: cada una recorre la rueda (radio 24, centro delante del pecho), una enfrente de la otra
+WHEEL = [(0.5 * i, (-24 * math.cos(2 * math.pi * i / 8), -118 + 24 * math.sin(2 * math.pi * i / 8)),
+          (24 * math.cos(2 * math.pi * i / 8), -118 - 24 * math.sin(2 * math.pi * i / 8))) for i in range(9)]
 ARM_POSES = {
     "wave": lambda d: arms(d, [(0, N, N), (0.3, N, (56, -184)), (0.6, N, (68, -174)), (0.9, N, (56, -184)),
                                (1.2, N, (68, -174)), (1.5, N, (56, -184)), (d, N, N)]),
@@ -400,6 +444,13 @@ ARM_POSES = {
     "blow": lambda d: arms(d, [(0, N, N), (0.4, (-14, -118), (14, -118)), (1.8, (-14, -118), (14, -118)), (d, N, N)]),
     "hug": lambda d: arms(d, [(0, N, N), (0.4, (-16, -122), (16, -122)), (1.6, (-16, -122), (16, -122)), (d, N, N)]),
     "wonder": lambda d: arms(d, [(0, N, N), (0.4, (-58, -150), (58, -150)), (2.0, (-58, -150), (58, -150)), (d, N, N)]),
+    "row": lambda d: arms(d, [(0, (-30, -100), (30, -100)), (0.8, (-20, -128), (20, -128)), (d, (-30, -100), (30, -100))]),
+    "spyglass": lambda d: arms(d, [(0, N, N), (0.4, (-44, -100), (18, -186)), (2.6, (-44, -100), (18, -186)), (d, N, N)]),
+    "steer": lambda d: arms(d, WHEEL),
+    "float": lambda d: arms(d, [(0, (-60, -150), (60, -150)), (2.0, (-64, -160), (64, -160)), (d, (-60, -150), (60, -150))]),
+    "moonhop": lambda d: arms(d, [(0, N, N), (0.3, (-40, -110), (40, -110)), (1.2, (-60, -186), (60, -186)), (2.1, (-50, -150), (50, -150)), (d, N, N)]),
+    "swim": lambda d: arms(d, [(0, (-40, -190), (40, -110)), (0.35, (-56, -150), (52, -170)), (0.7, (-40, -110), (40, -190)),
+                               (1.05, (-52, -170), (56, -150)), (d, (-40, -190), (40, -110))]),
 }
 # (el arma de la mano derecha se aparta de la cara: se inclina hacia fuera)
 for _name, _deg in {"eat": 55, "think": 55, "yawn": 55, "hide": 50, "surprised": 45, "scared": 45, "blow": 40}.items():
@@ -482,6 +533,8 @@ PROP_CLIPS = {
         "legBF": keys((0, 0), (0.15, -8), (0.4, -30), (0.65, -6), (1.0, 0)),
         "head": keys((0, 0), (0.15, 6), (0.4, -10), (0.65, 4), (1.0, 0)), "tail": sine(0.5, 20),
         "eyes.sy": blink(1.0, 0.4)}),
+    # flota: sube, baja y se ladea despacio (una botella en el agua, un barco de juguete)
+    "bob": dict(dur=3.0, loop=True, tracks={"root.dy": sine(3.0, 5), "root": sine(3.0, 6, 0.2)}),
     "hoot": dict(dur=3.4, loop=True, tracks={
         "eyes.sy": blink(3.4, 0.55),
         "root.sy": keys((0, 1), (0.5, 1.04), (1.0, 1), (3.4, 1)),

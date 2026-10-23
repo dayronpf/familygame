@@ -84,6 +84,31 @@ void main() {
       }
     });
 
+    test(
+        'con nombre, el héroe es siempre del género pedido (todas las edades y enseñanzas)',
+        () {
+      for (final age in ['2-3', '4-5', '6-8', '9-12']) {
+        for (final moral in pack.morals) {
+          for (var seed = 1; seed <= 40; seed++) {
+            for (final g in ['m', 'f']) {
+              final s = engine.generate(
+                StoryOptions(
+                  seed: seed,
+                  age: age,
+                  valueId: moral.id,
+                  heroName: 'Dayron',
+                  heroGender: g,
+                ),
+              );
+              final hero = s.cast['hero']! as Character;
+              expect(hero.gender.name, g, reason: '$age ${moral.id} $seed');
+              expect(hero.given, 'Dayron');
+            }
+          }
+        }
+      }
+    });
+
     test('sin nombre ni género todo sigue igual (misma semilla, mismo cuento)',
         () {
       final a = engine.generate(const StoryOptions(seed: 9, age: '4-5'));

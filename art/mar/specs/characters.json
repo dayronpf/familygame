@@ -1,0 +1,303 @@
+{
+ "format": "caldero-character-specs",
+ "version": 1,
+ "rig": "humanoid",
+ "characters": [
+  {
+   "id": "bruno",
+   "name": "Bruno · grumete curioso",
+   "outfit": "stripes",
+   "hat": "kerchief",
+   "hair": "short",
+   "brows": "kind",
+   "mouth": "smile",
+   "palette": {
+    "skin": "#e2a87e",
+    "hair": "#4a2c1a",
+    "primary": "#2c4a8c",
+    "secondary": "#ffffff",
+    "belt": "#c9a46a",
+    "gold": "#f4c542",
+    "pants": "#6a8fc0",
+    "boots": "#e2a87e",
+    "hat": "#e04a4a",
+    "accent": "#ffffff"
+   }
+  },
+  {
+   "id": "vega",
+   "name": "Vega · grumeta valiente",
+   "outfit": "stripes",
+   "hat": "kerchief",
+   "hair": "pigtails",
+   "brows": "determined",
+   "mouth": "smirk",
+   "palette": {
+    "skin": "#c98e63",
+    "hair": "#2a1a14",
+    "primary": "#d04a4a",
+    "secondary": "#ffffff",
+    "belt": "#c9a46a",
+    "gold": "#f4c542",
+    "pants": "#3a4a7a",
+    "boots": "#c98e63",
+    "hat": "#2f86d6",
+    "accent": "#ffffff"
+   }
+  },
+  {
+   "id": "estela",
+   "name": "Capitana Estela",
+   "outfit": "captain",
+   "hat": "tricorne",
+   "hair": "braid",
+   "earring": true,
+   "brows": "kind",
+   "mouth": "smile",
+   "hold_r": "spyglass",
+   "rest": {
+    "armL": 9,
+    "armR": -14
+   },
+   "palette": {
+    "skin": "#f3c9a8",
+    "hair": "#b04a2a",
+    "primary": "#2a5aa0",
+    "secondary": "#ffffff",
+    "lapel": "#f4e3b0",
+    "belt": "#7a4a28",
+    "gold": "#f4c542",
+    "pants": "#2a2a3a",
+    "boots": "#3a2a1a",
+    "hat": "#3a2a5a",
+    "accent": "#f4c542"
+   }
+  },
+  {
+   "id": "abuelo",
+   "name": "Abuelo Faro · farero",
+   "outfit": "sweater",
+   "hat": "cap",
+   "hair": "none",
+   "beard": true,
+   "glasses": true,
+   "brows": "kind",
+   "mouth": "smile",
+   "palette": {
+    "skin": "#f0c4a0",
+    "hair": "#e8e8f0",
+    "beard": "#f1f1f6",
+    "frame": "#3a3a4a",
+    "primary": "#d8cfb4",
+    "secondary": "#3a5a8a",
+    "pants": "#3a3a5a",
+    "boots": "#3a2a1a",
+    "hat": "#2a3a5a",
+    "glow": "#ffd76a",
+    "metal": "#4a4a56",
+    "belt": "#7a4a28",
+    "gold": "#f4c542"
+   }
+  },
+  {
+   "id": "mostacho",
+   "name": "Capitán Mostacho",
+   "outfit": "captain",
+   "hat": "tricorne",
+   "hair": "short",
+   "mustache": true,
+   "brows": "grumpy",
+   "mouth": "frown",
+   "scale": 1.08,
+   "palette": {
+    "skin": "#e8b08a",
+    "hair": "#2a1a14",
+    "beard": "#2a1a14",
+    "primary": "#9a2a3a",
+    "secondary": "#f3ead6",
+    "lapel": "#f4c542",
+    "belt": "#4a2a18",
+    "gold": "#f4c542",
+    "pants": "#2a2a3a",
+    "boots": "#2a1a12",
+    "hat": "#2a1a1a",
+    "sack": "#c9a46a",
+    "accent": "#f4c542"
+   },
+   "pouch": true
+  },
+  {
+   "id": "nacar",
+   "name": "Nácar · sirena del arrecife",
+   "body": "mermaid",
+   "outfit": "shell",
+   "hair": "long",
+   "brows": "kind",
+   "mouth": "smile",
+   "palette": {
+    "skin": "#f3c9a8",
+    "hair": "#2fae94",
+    "primary": "#2f9a7e",
+    "secondary": "#7fe0d0",
+    "accent": "#ff8ab0",
+    "tail": "#3fb8a8",
+    "fin": "#8fe8dc",
+    "pants": "#3fb8a8",
+    "boots": "#3fb8a8",
+    "belt": "#2f9a7e",
+    "gold": "#f4c542"
+   }
+  },
+  {
+   "id": "remolino",
+   "name": "Remolino · pulpo travieso",
+   "body": "octopus",
+   "outfit": "none",
+   "hair": "none",
+   "brows": "worried",
+   "mouth": "smirk",
+   "size": 0.9,
+   "palette": {
+    "skin": "#b0508e",
+    "primary": "#b0508e",
+    "body": "#b0508e",
+    "spots": "#d886bc",
+    "hair": "#b0508e",
+    "pants": "#b0508e",
+    "boots": "#b0508e",
+    "belt": "#b0508e",
+    "gold": "#f4c542"
+   }
+  },
+  {
+   "id": "cazo",
+   "name": "Tío Cazo · cocinero",
+   "outfit": "stripes",
+   "hat": "baker",
+   "hair": "short",
+   "mustache": true,
+   "apron": true,
+   "brows": "kind",
+   "mouth": "smile",
+   "scale": 1.12,
+   "size": 1.0,
+   "palette": {
+    "skin": "#e8b08a",
+    "hair": "#8a8a90",
+    "beard": "#6a4a2a",
+    "primary": "#c04a4a",
+    "secondary": "#ffffff",
+    "apron": "#f6f1e4",
+    "belt": "#c9a46a",
+    "gold": "#f4c542",
+    "pants": "#3a3a4a",
+    "boots": "#3a2a1a",
+    "hat": "#ffffff"
+   }
+  },
+  {
+   "id": "ola",
+   "name": "Ola · pescadora",
+   "outfit": "sweater",
+   "hat": "straw",
+   "hair": "braid",
+   "brows": "kind",
+   "mouth": "smile",
+   "size": 1.0,
+   "palette": {
+    "skin": "#9a6744",
+    "hair": "#1a1210",
+    "primary": "#4a8ac0",
+    "secondary": "#efe4c8",
+    "pants": "#3a4a5a",
+    "boots": "#f4c542",
+    "hat": "#e8c87a",
+    "accent": "#3a6ab0",
+    "belt": "#7a4a28",
+    "gold": "#f4c542"
+   }
+  },
+  {
+   "id": "marinero",
+   "name": "Marinero",
+   "outfit": "stripes",
+   "hat": "cap",
+   "hair": "short",
+   "brows": "kind",
+   "mouth": "smile",
+   "size": 0.98,
+   "palette": {
+    "skin": "#e2a87e",
+    "hair": "#3a2418",
+    "primary": "#2a3a6a",
+    "secondary": "#ffffff",
+    "belt": "#c9a46a",
+    "gold": "#f4c542",
+    "pants": "#e8e0cc",
+    "boots": "#3a2a1a",
+    "hat": "#2a3a6a"
+   }
+  },
+  {
+   "id": "marinera",
+   "name": "Marinera",
+   "outfit": "stripes",
+   "hat": "kerchief",
+   "hair": "braid",
+   "brows": "kind",
+   "mouth": "smile",
+   "size": 0.98,
+   "palette": {
+    "skin": "#f3c9a8",
+    "hair": "#c87a2a",
+    "primary": "#2a8a7a",
+    "secondary": "#ffffff",
+    "belt": "#c9a46a",
+    "gold": "#f4c542",
+    "pants": "#3a4a5a",
+    "boots": "#3a2a1a",
+    "hat": "#e8b84a",
+    "accent": "#ffffff"
+   }
+  },
+  {
+   "id": "nino_puerto",
+   "name": "Niño del puerto",
+   "outfit": "stripes",
+   "hair": "short",
+   "brows": "kind",
+   "mouth": "smile",
+   "size": 0.7,
+   "palette": {
+    "skin": "#9a6744",
+    "hair": "#1a1210",
+    "primary": "#e08a3a",
+    "secondary": "#ffffff",
+    "belt": "#c9a46a",
+    "gold": "#f4c542",
+    "pants": "#5a7ab0",
+    "boots": "#9a6744"
+   }
+  },
+  {
+   "id": "nina_puerto",
+   "name": "Niña del puerto",
+   "outfit": "stripes",
+   "hair": "pigtails",
+   "brows": "kind",
+   "mouth": "smile",
+   "size": 0.68,
+   "palette": {
+    "skin": "#f3c9a8",
+    "hair": "#d8a040",
+    "primary": "#8a5ac0",
+    "secondary": "#ffffff",
+    "belt": "#c9a46a",
+    "gold": "#f4c542",
+    "pants": "#3a7a6a",
+    "boots": "#f3c9a8",
+    "accent": "#e84a5f"
+   }
+  }
+ ]
+}

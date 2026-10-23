@@ -8,13 +8,21 @@ import '../brand.dart';
 /// Pestaña «Paquetes»: los que ya son suyos, a color; los que llegarán, en gris; y una invitación a
 /// recomendar la app a un amigo.
 class PacksTab extends StatelessWidget {
-  const PacksTab({super.key, required this.onOpenPack, this.coverFor});
+  const PacksTab({
+    super.key,
+    required this.onOpenPack,
+    this.coverFor,
+    this.openId,
+  });
 
   /// Se toca un paquete disponible.
   final void Function(PackInfo pack) onOpenPack;
 
   /// Ilustración opcional de un paquete (el castillo dibujado por la app).
   final Widget? Function(PackInfo pack)? coverFor;
+
+  /// Paquete abierto en el inicio.
+  final String? openId;
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +42,7 @@ class PacksTab extends StatelessWidget {
                 PackCard(
                   pack: p,
                   cover: coverFor?.call(p),
+                  open: p.id == openId,
                   width: c.maxWidth,
                   height: 190,
                   onTap: () => onOpenPack(p),
@@ -53,8 +62,7 @@ class PacksTab extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 4),
-        Text(
-            'Nuevos mundos de cuentos, para cuando termines con el Reino de la Luna.',
+        Text('Nuevos mundos de cuentos, para cuando termines con los tuyos.',
             style: text.bodyMedium!.copyWith(color: Palette.mutedText)),
         const SizedBox(height: 12),
         LayoutBuilder(

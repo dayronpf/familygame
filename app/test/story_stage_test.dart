@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:caldero_app/src/art/art_library.dart';
 import 'package:caldero_app/src/art/scene_painter.dart';
 import 'package:caldero_app/src/art/story_stage.dart';
+import 'package:caldero_app/src/ui/hero_banner.dart';
 import 'package:caldero_engine/caldero_engine.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -656,5 +657,17 @@ void main() {
       expect(fear.itemUpright, isFalse);
       expect(base.itemUpright, isTrue);
     });
+  });
+
+  test('la portada saluda con Aldo si el niño es un niño y con Mara si no', () {
+    const view = Rect.fromLTWH(0, 330, 600, 350);
+    final boy = bannerSetup(art, pack, view, heroGender: 'm');
+    final girl = bannerSetup(art, pack, view, heroGender: 'f');
+    final any = bannerSetup(art, pack, view);
+    expect(boy, isNotNull,
+        reason: 'Aldo tiene que poder saludar en la portada');
+    expect(girl, isNotNull);
+    expect(boy!.actors.first.rig, isNot(same(girl!.actors.first.rig)));
+    expect(any!.actors.first.rig, same(girl.actors.first.rig));
   });
 }

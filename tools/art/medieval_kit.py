@@ -101,6 +101,12 @@ def head_parts(s):
             sh.append(S(ell(sx * 53, -176, 13, 17), "$hair"))
             sh.append(S(ell(sx * 53, -158, 8, 9), "$hair"))
             sh.append(S(ell(sx * 51, -190, 6, 5), "$accent", None))
+    if s.get("hair") == "long":  # melena hasta los hombros (la sirena)
+        for sx in (-1, 1):
+            sh.append(S(f"M{n(sx * 40)},-222 C{n(sx * 66)},-196 {n(sx * 66)},-140 {n(sx * 56)},-108 "
+                        f"C{n(sx * 48)},-100 {n(sx * 40)},-104 {n(sx * 38)},-112 C{n(sx * 46)},-140 {n(sx * 44)},-176 {n(sx * 30)},-206 Z",
+                        "$hair"))
+        sh.append(S(ell(-50, -118, 6, 5), "$accent", None))
     if s.get("hair") == "braid":
         for cy, r in [(-168, 9), (-148, 8.5), (-129, 8), (-112, 7)]:
             sh.append(S(ell(-47, cy, r, r), "$hair"))
@@ -114,7 +120,7 @@ def head_parts(s):
     sh.append(S(ell(27, -176, 7.5, 4.8), "#ff7a8a", None, 0, 0.45))
     sh.append(S(ell(0, -180, 3.6, 3), mix(s["palette"]["skin"], "#a0522d", 0.35), None, 0))
     # --- pelo
-    if s.get("hair") in ("short", "braid", "pigtails"):
+    if s.get("hair") in ("short", "braid", "pigtails", "long"):
         sh.append(S("M-45,-188 C-50,-238 50,-238 45,-188 C38,-208 22,-215 0,-213 C-22,-215 -38,-208 -45,-188 Z", "$hair"))
     # --- antifaz del bandido
     if hat == "hood":
@@ -152,6 +158,17 @@ def head_parts(s):
         sh.append(S("M-9,-160 L9,-160 L0,-136 Z", "$beard"))
         sh.append(S("M-14,-170 Q-8,-175 -2,-170 Q-8,-166 -14,-170 Z", "$beard"))
         sh.append(S("M14,-170 Q8,-175 2,-170 Q8,-166 14,-170 Z", "$beard"))
+    if s.get("mustache"):  # bigotazo con las puntas enroscadas (el capitán gruñón)
+        for sx in (-1, 1):
+            sh.append(S(f"M0,-174 C{n(sx * 14)},-182 {n(sx * 30)},-178 {n(sx * 38)},-170 "
+                        f"C{n(sx * 46)},-164 {n(sx * 52)},-172 {n(sx * 48)},-180 C{n(sx * 58)},-170 {n(sx * 50)},-156 {n(sx * 36)},-160 "
+                        f"C{n(sx * 24)},-163 {n(sx * 10)},-166 0,-168 Z", "$beard"))
+    if s.get("glasses"):  # gafas redondas (el farero)
+        for sx in (-16, 16):
+            sh.append(S(ell(sx, -188, 12, 11), "#ffffff", "$frame", 2.6, 0.18))
+        sh.append(S("M-4,-189 Q0,-193 4,-189", None, "$frame", 2.6))
+    if s.get("earring"):
+        sh.append(S(ell(-45, -172, 4, 4), None, "$gold", 2.2))
     # --- sombrero
     if hat == "helmet":
         sh.append(S("M-47,-203 C-52,-256 52,-256 47,-203 Z", "$metal"))
@@ -200,6 +217,21 @@ def head_parts(s):
         sh.append(S("M-37,-216 C-36,-256 36,-256 37,-216 Z", "$hat"))
         sh.append(S(rrect(-37, -228, 74, 10, 3), "$accent"))
         sh.append(shade("M12,-253 C32,-246 38,-230 37,-216 L18,-216 C24,-230 22,-244 12,-253 Z"))
+    elif hat == "tricorne":  # sombrero de tres picos de capitán (con la estrella del Mar de las Estrellas)
+        sh.append(S("M-74,-208 C-58,-216 -40,-262 0,-264 C40,-262 58,-216 74,-208 C46,-222 -46,-222 -74,-208 Z", "$hat"))
+        sh.append(S("M-74,-208 C-46,-222 46,-222 74,-208 C50,-212 -50,-212 -74,-208 Z", "$gold", None))
+        sh.append(shade("M10,-262 C40,-258 56,-220 74,-208 C56,-214 40,-216 26,-218 C30,-234 24,-250 10,-262 Z"))
+        sh.append(S(star(0, -238, 11, 5), "$gold", None))
+    elif hat == "tophat":  # chistera de coleccionista (el Barón Brillo)
+        sh.append(S(ell(0, -224, 62, 12), "$hat"))
+        sh.append(S(rrect(-38, -300, 76, 78, 6), "$hat"))
+        sh.append(S(rrect(-38, -246, 76, 12, 2), "$accent"))
+        sh.append(S(star(22, -240, 7, 3), "$gold", None))
+        sh.append(shade("M14,-300 L38,-300 L38,-224 L22,-224 Z"))
+    elif hat == "bubble":  # casco de astronauta: burbuja de cristal con aro (va por encima de la cara)
+        sh.append(S(ell(0, -196, 64, 62), "#d8f4ff", "#9ac0d8", 3, 0.22))
+        sh.append(shine("M-44,-222 C-36,-246 -14,-256 6,-256 C-14,-246 -30,-234 -38,-212 Z"))
+        sh.append(S(rrect(-30, -152, 60, 10, 5), "$metal", None))
     elif hat == "beret":
         sh.append(S("M-52,-214 C-46,-254 40,-262 60,-234 C58,-214 -30,-204 -52,-214 Z", "$hat"))
         sh.append(S("M54,-238 C86,-266 104,-252 114,-228 C98,-246 82,-242 56,-228 Z", "$gold"))
@@ -264,9 +296,41 @@ def torso_shapes(s):
                S("M-14,-150 L0,-134 L14,-150 Z", "$secondary"),
                S(rrect(-36, -104, 72, 11, 3), "$belt"), S(rrect(-6, -107, 12, 17, 3), "$gold"),
                S("M-36,-96 L36,-96 L44,-68 Q0,-56 -44,-68 Z", "$primary")]
+    elif k == "spacesuit":  # traje espacial acolchado con panel de botones en el pecho
+        sh += [S(rrect(-38, -150, 76, 86, 24), "$primary"), shade(rrect(14, -148, 22, 82, 14)),
+               S(rrect(-16, -136, 32, 22, 5), "$secondary"),
+               S(ell(-8, -125, 3.5, 3.5), "#ff6a6a", None), S(ell(0, -125, 3.5, 3.5), "#7aff9a", None), S(ell(8, -125, 3.5, 3.5), "#7ad0ff", None),
+               S(rrect(-38, -104, 72, 10, 4), "$belt"), S(rrect(-7, -106, 14, 14, 4), "$gold"),
+               S(star(-24, -142, 5, 2.2), "$gold", None)]
+    elif k == "stripes":  # camiseta de rayas de grumete, con cinturón de cuerda
+        sh += [S(rrect(-36, -150, 72, 84, 22), "$secondary")]
+        for y in (-140, -124, -108, -92, -76):
+            sh.append(S(rrect(-36, y, 72, 7, 2), "$primary", None))
+        sh += [shade(rrect(12, -148, 22, 80, 14)),
+               S(rrect(-36, -104, 72, 8, 4), "$belt"), S(ell(-14, -100, 6, 5), "$belt")]
+    elif k == "captain":  # casaca larga con solapas y botones dorados
+        sh += [S("M-38,-150 L38,-150 L46,-50 Q0,-38 -46,-50 Z", "$primary"),
+               shade("M14,-148 L38,-150 L46,-50 Q30,-44 22,-44 C24,-80 20,-120 14,-148 Z"),
+               S("M-14,-150 L0,-112 L14,-150 Z", "$secondary"),
+               S("M-20,-150 L-4,-110 L-14,-108 L-30,-146 Z", "$lapel"), S("M20,-150 L4,-110 L14,-108 L30,-146 Z", "$lapel"),
+               S(rrect(-38, -100, 76, 10, 3), "$belt"), S(rrect(-7, -103, 14, 16, 3), "$gold")]
+        for y in (-128, -116, -82, -70):
+            sh += [S(ell(-24, y, 3.2, 3.2), "$gold"), S(ell(24, y, 3.2, 3.2), "$gold")]
+    elif k == "sweater":  # jersey gordo de lana con cuello vuelto
+        sh += [S(rrect(-38, -150, 76, 86, 22), "$primary"), shade(rrect(14, -148, 22, 82, 14))]
+        for x in (-24, -12, 0, 12, 24):
+            sh.append(S(f"M{x},-136 L{x},-74", None, mix(s["palette"]["primary"], DARK, 0.25), 2))
+        sh += [S(rrect(-30, -156, 60, 16, 8), "$secondary"), S(rrect(-38, -76, 76, 10, 5), "$secondary")]
+    elif k == "shell":  # la sirena: piel, un top de algas y una caracola de broche
+        sh += [S(rrect(-34, -150, 68, 70, 22), "$skin"), shade(rrect(12, -148, 20, 64, 12)),
+               S(rrect(-34, -138, 68, 22, 10), "$primary"),
+               S("M-6,-132 L6,-132 L10,-118 Q0,-112 -10,-118 Z", "$accent")]
     elif k == "bandit":
         sh += [S(rrect(-36, -150, 72, 84, 22), "$primary"), shade(rrect(12, -148, 22, 80, 14)),
                S(rrect(-36, -104, 72, 11, 3), "$belt"), S(rrect(-6, -107, 12, 17, 3), "$secondary")]
+    if s.get("pouch"):  # bolsa de monedas colgada del cinturón (no tapa la cara al llevarse las manos a ella)
+        sh += [S(ell(30, -82, 12, 14), "$sack"), S(rrect(25, -98, 10, 6, 2), "$gold"),
+               shade(ell(35, -78, 6, 10))]
     if s.get("apron"):
         sh += [S("M-26,-136 L26,-136 L34,-64 Q0,-54 -34,-64 Z", "$apron"),
                S(poly([(-26, -136), (-18, -150), (-12, -136)]), "$apron"),
@@ -328,6 +392,19 @@ def arm_shapes(side, s):
     elif item == "bow":
         sh += [S("M-36,-176 Q-78,-104 -36,-30", None, "$wood", 6),
                S("M-36,-176 L-36,-30", None, "#f3e6c8", 1.6)]
+        sh.append(S(ell(sx, -94, 10, 10), "$skin"))
+    elif item == "spyglass":  # catalejo de latón, apoyado en el antebrazo
+        sh += [S(f"M{n(sx - 6)},-96 L{n(sx - 4)},-150 L{n(sx + 4)},-150 L{n(sx + 6)},-96 Z", "$gold"),
+               S(rrect(sx - 7, -132, 14, 6, 2), mix(s["palette"]["gold"], DARK, 0.35)),
+               S(rrect(sx - 5.5, -156, 11, 8, 3), mix(s["palette"]["gold"], DARK, 0.35)),
+               shine(rrect(sx - 3, -146, 2.5, 40, 1))]
+        sh.append(S(ell(sx, -94, 10, 10), "$skin"))
+    elif item == "lantern":  # farol de barco colgando de la mano, encendido
+        sh += [S(f"M{n(sx)},-92 L{n(sx)},-80", None, DARK, 2.5),
+               S(rrect(sx - 13, -80, 26, 32, 6), "$glow", None, 0, 0.9),
+               S(rrect(sx - 13, -80, 26, 32, 6), None, "$metal", 3),
+               S(ell(sx, -64, 6, 9), "#fff6c8", None, 0, 0.9),
+               S(rrect(sx - 16, -84, 32, 6, 3), "$metal"), S(rrect(sx - 16, -50, 32, 6, 3), "$metal")]
         sh.append(S(ell(sx, -94, 10, 10), "$skin"))
     elif item == "sack":
         sh += [S(ell(sx + 8, -66, 20, 23), "$sack"), S("M%s,-90 L%s,-86 L%s,-88 Z" % (n(sx - 4), n(sx + 4), n(sx + 12)), "$sack"),

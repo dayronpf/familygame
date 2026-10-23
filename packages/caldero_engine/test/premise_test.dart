@@ -136,6 +136,52 @@ List<String> problemsOf(Map<String, Object?> json) =>
     validatePack(load(json), coverageSeeds: 3).problems;
 
 void main() {
+  group('género del protagonista', () {
+    test('con el nombre del niño el héroe nunca cambia de género', () {
+      // En basePack el único héroe es Ana: un niño con nombre no puede ser ella («Dayron… yo sola»)
+      final engine = StoryEngine(load(basePack()));
+      expect(
+        () => engine.generate(
+          const StoryOptions(seed: 1, heroName: 'Dayron', heroGender: 'm'),
+        ),
+        throwsA(isA<StoryGenerationException>()),
+      );
+      // Sin nombre se sigue contando con el héroe que haya
+      final s = engine.generate(const StoryOptions(seed: 1, heroGender: 'm'));
+      expect((s.cast['hero']! as Character).given, 'Ana');
+    });
+
+    test(
+        'el validador exige un héroe que pueda ser niño o niña y que vaya primero',
+        () {
+      expect(problemsOf(basePack()).join('\n'),
+          contains('p: «hero» no admite un héroe de género m'));
+      final cast = (basePack()['premises']! as List).first['cast']
+          as Map<String, Object?>;
+      final reordered = {
+        for (final e in cast.entries.where((e) => e.key != 'hero'))
+          e.key: e.value,
+        'hero': cast['hero'],
+      };
+      expect(problemsOf(basePack(cast: reordered)).join('\n'),
+          contains('p: «hero» debe ser la primera ranura del reparto'));
+    });
+  });
+
+  test(
+      '«Sorpréndeme» solo elige enseñanzas con cuentos (un pack en construcción no las tiene todas)',
+      () {
+    final json = basePack();
+    (json['morals']! as List)
+        .add({'id': 'm2', 'name': 'Otra', 'text': 'Texto.'});
+    final pack = load(json);
+    expect(pack.moralsWithStories.map((m) => m.id), ['m1']);
+    final engine = StoryEngine(pack);
+    for (var seed = 1; seed <= 40; seed++) {
+      expect(engine.generate(StoryOptions(seed: seed)).recipe.valueId, 'm1');
+    }
+  });
+
   group('motor de premisas', () {
     test('es determinista y renderiza título y cuento', () {
       final engine = StoryEngine(load(basePack()));
@@ -972,7 +1018,7 @@ void main() {
   });
 
   test(
-      'el validador detecta el género fijo («quieto», «yo solo», «ir solo», «él»)',
+      'el validador detecta el género fijo («quieto», «yo solo», «ir solo», «él», «juntos» en pareja)',
       () {
     Map<String, Object?> v(String id, String text) => {
           'id': id,
@@ -990,6 +1036,15 @@ void main() {
           v('mal4', '{hero} sí iba a ir, pero no iba a ir solo con {item.un}.'),
           v('mal5', 'Entre él y {hero} dejaron {item.un}.'),
           v('mal6', 'Tú no cruzas solo con {item.un}, {hero}.'),
+          v('mal7',
+              '«¡Soy {hero}, el rey de las nubes!», gritó con {item.un}.'),
+          v('mal8', '{hero} y Lía se sentaron muy juntos con {item.un}.'),
+          v('mal9', 'Bajo {item.el}, la abuela y {hero} estaban calentitos.'),
+          v('bien3',
+              '{hero} y Lía fueron junt{hero.o}s con {item.un}. Comieron juntos, y {hero} repitió.'),
+          // las rodillas «solas» no son la pareja, aunque detrás venga «y {hero}»
+          v('bien4',
+              'Las rodillas se doblaron solas y {hero} se sentó con {item.un}.'),
           v('bien',
               '{hero} se quedó quiet{hero.o} y sol{hero.o} con {item.un}. Solo quería dormir.'),
           // «corazón ligero»: el adjetivo concuerda con «corazón», no con el héroe
@@ -1003,6 +1058,11 @@ void main() {
     expect(p, contains('mal4: género fijo «ir solo»'));
     expect(p, contains('mal5: género fijo «él»'));
     expect(p, contains('mal6: género fijo «cruzas solo»'));
+    expect(p, contains('mal7: género fijo «{hero}, el rey»'));
+    expect(p, contains('mal8: «juntos» con el héroe en pareja'));
+    expect(p, contains('mal9: «calentitos» con el héroe en pareja'));
+    expect(p, isNot(contains('bien3:')));
+    expect(p, isNot(contains('bien4:')));
     expect(p, isNot(contains('bien: género fijo')));
     expect(p, isNot(contains('bien2: género fijo')));
   });

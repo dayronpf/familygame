@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:caldero_app/src/brand.dart';
 import 'package:caldero_app/src/app.dart';
 import 'package:caldero_app/src/feedback/feedback_service.dart';
 import 'package:caldero_app/src/feedback/feedback_store.dart';
@@ -403,7 +402,7 @@ void main() {
         {required bool correct}) async {
       final q =
           tester.widget<Text>(find.byKey(const Key('gate-question'))).data!;
-      final m = RegExp(r'(\d) × (\d)').firstMatch(q)!;
+      final m = RegExp(r'(\d) por (\d)').firstMatch(q)!;
       final answer =
           int.parse(m.group(1)!) * int.parse(m.group(2)!) + (correct ? 0 : 1);
       await tester.enterText(find.byKey(const Key('gate-answer')), '$answer');
@@ -418,7 +417,11 @@ void main() {
       expect(find.text('Solo para adultos'), findsOneWidget);
       await answerGate(tester, correct: false);
       expect(find.text('Ajustes para adultos'), findsNothing);
-      expect(find.text(appName), findsOneWidget);
+      // La puerta no se cierra en silencio: avisa y deja probar otra vez
+      expect(find.text('Solo para adultos'), findsOneWidget);
+      expect(find.textContaining('Es una multiplicación'), findsOneWidget);
+      await answerGate(tester, correct: true);
+      expect(find.text('Ajustes para adultos'), findsOneWidget);
     });
 
     testWidgets('muestra con transparencia qué se envía y un ejemplo exacto',

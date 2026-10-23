@@ -65,7 +65,8 @@ class _HologramPageState extends State<HologramPage>
   late final StageClock _clock = StageClock(this);
   late final StoryPlayback _playback;
   late final Sfx _sfx = widget.sfx ?? sfxFor(context);
-  late final Ambience _ambience = widget.ambience ?? ambienceFor(context);
+  late final Ambience _ambience = widget.ambience ??
+      ambienceFor(context, packId: widget.story.recipe.packId);
   late final SleepFade _fade = SleepFade(
     playback: _playback,
     ambience: _ambience,

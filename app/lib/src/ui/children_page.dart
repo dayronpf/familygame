@@ -277,6 +277,10 @@ class _ChildDialogState extends State<_ChildDialog> {
   late String _age = widget.initial.age;
   late String? _gender = widget.initial.gender;
 
+  bool get _named => normalizeChildName(_name.text) != null;
+
+  bool get _missingGender => _named && _gender == null;
+
   @override
   void dispose() {
     _name.dispose();
@@ -302,6 +306,7 @@ class _ChildDialogState extends State<_ChildDialog> {
                 labelText: 'Nombre (opcional)',
                 counterText: '',
               ),
+              onChanged: (_) => setState(() {}),
             ),
             const SizedBox(height: 14),
             Text('Edad', style: text.labelLarge),
@@ -336,14 +341,25 @@ class _ChildDialogState extends State<_ChildDialog> {
                   selected: _gender == 'f',
                   onSelected: (_) => setState(() => _gender = 'f'),
                 ),
-                ChoiceChip(
-                  key: const Key('child-gender-any'),
-                  label: const Text('Al azar'),
-                  selected: _gender == null,
-                  onSelected: (_) => setState(() => _gender = null),
-                ),
+                // Con su nombre el cuento no puede elegir al azar (el dibujo y el «solo/sola» le seguirían)
+                if (!_named)
+                  ChoiceChip(
+                    key: const Key('child-gender-any'),
+                    label: const Text('Al azar'),
+                    selected: _gender == null,
+                    onSelected: (_) => setState(() => _gender = null),
+                  ),
               ],
             ),
+            if (_missingGender)
+              Padding(
+                padding: const EdgeInsets.only(top: 6),
+                child: Text(
+                  'Con su nombre, elige niño o niña.',
+                  key: const Key('child-gender-needed'),
+                  style: text.bodySmall,
+                ),
+              ),
           ],
         ),
       ),
@@ -355,14 +371,16 @@ class _ChildDialogState extends State<_ChildDialog> {
         ),
         FilledButton(
           key: const Key('child-save'),
-          onPressed: () => Navigator.pop(
-            context,
-            ChildDraft(
-              name: normalizeChildName(_name.text) ?? '',
-              age: _age,
-              gender: _gender,
-            ),
-          ),
+          onPressed: _missingGender
+              ? null
+              : () => Navigator.pop(
+                    context,
+                    ChildDraft(
+                      name: normalizeChildName(_name.text) ?? '',
+                      age: _age,
+                      gender: _gender,
+                    ),
+                  ),
           child: const Text('Guardar'),
         ),
       ],

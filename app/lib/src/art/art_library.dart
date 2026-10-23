@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:caldero_rig/caldero_rig.dart';
 import 'package:flutter/services.dart';
 
+import '../pack_loader.dart';
+
 /// Cómo se muestra un lugar del pack: qué escena lo dibuja, qué parte de ella se ve, dónde pisan
 /// los personajes y a qué tamaño. Viene de `places` en `index.json`.
 class PlaceArt {
@@ -89,10 +91,10 @@ const String artRoot = 'assets/art/';
 Future<Map<String, Object?>> _json(AssetBundle bundle, String path) async =>
     jsonDecode(await bundle.loadString(path)) as Map<String, Object?>;
 
-/// Lee `assets/art/medieval/index.json` y todo lo que referencia.
+/// Lee `assets/art/<pack>/index.json` y todo lo que referencia.
 Future<ArtLibrary> loadArtLibrary(
   AssetBundle bundle, {
-  String pack = 'medieval',
+  String pack = defaultPackId,
 }) async {
   final index = await _json(bundle, '$artRoot$pack/index.json');
   final rigs = <String, Rig>{};

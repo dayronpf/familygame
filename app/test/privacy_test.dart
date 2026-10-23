@@ -64,7 +64,7 @@ void main() {
           reason: 'mientras no haya servidor, nada sale del teléfono');
     });
 
-    testWidgets('la pantalla enseña el texto y avisa de que es de prueba',
+    testWidgets('la pantalla enseña el texto (y avisa si faltan el titular o el correo)',
         (tester) async {
       phone(tester);
       await tester.pumpWidget(MaterialApp(
@@ -76,7 +76,8 @@ void main() {
       ));
       await tester.pumpAndSettle();
       expect(find.text('Política de privacidad de $appName'), findsOneWidget);
-      expect(find.byKey(const Key('legal-pending')), findsOneWidget);
+      expect(find.byKey(const Key('legal-pending')),
+          legalPending ? findsOneWidget : findsNothing);
       expect(find.textContaining('En pocas palabras'), findsOneWidget);
     });
   });
@@ -107,7 +108,7 @@ void main() {
       await tester.pumpAndSettle();
       final q =
           tester.widget<Text>(find.byKey(const Key('gate-question'))).data!;
-      final m = RegExp(r'(\d) × (\d)').firstMatch(q)!;
+      final m = RegExp(r'(\d) por (\d)').firstMatch(q)!;
       await tester.enterText(find.byKey(const Key('gate-answer')),
           '${int.parse(m.group(1)!) * int.parse(m.group(2)!)}');
       await tester.tap(find.byKey(const Key('gate-ok')));

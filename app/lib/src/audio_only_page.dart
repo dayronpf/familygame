@@ -52,7 +52,8 @@ class AudioOnlyPage extends StatefulWidget {
 class _AudioOnlyPageState extends State<AudioOnlyPage> {
   late final StoryPlayback _playback;
   late final Sfx _sfx = widget.sfx ?? sfxFor(context);
-  late final Ambience _ambience = widget.ambience ?? ambienceFor(context);
+  late final Ambience _ambience = widget.ambience ??
+      ambienceFor(context, packId: widget.story.recipe.packId);
   late final ScreenDimmer _screen = widget.dimmer ?? SystemDimmer();
 
   /// El fundido del temporizador solo baja la voz y la música: la pantalla ya está al mínimo.

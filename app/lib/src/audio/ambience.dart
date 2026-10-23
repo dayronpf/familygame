@@ -23,11 +23,25 @@ class SilentAmbience implements Ambience {
   Future<void> dispose() async {}
 }
 
-/// Reproduce `assets/audio/ambient.ogg` en bucle y bajito para que la voz mande.
+/// Sonido de fondo propio de cada paquete (los que no tienen, el de siempre). Los del mar y de la Aldea de las Nubes
+/// van en AAC (`.m4a`), que suena también en iOS.
+const Map<String, String> packAmbience = {
+  'mar': 'audio/ambient_mar.m4a',
+  'cosmos': 'audio/ambient_cosmos.m4a',
+};
+
+/// El sonido de fondo del paquete [packId] (o el de siempre).
+String ambienceAsset(String? packId) =>
+    packAmbience[packId] ?? 'audio/ambient.ogg';
+
+/// Reproduce [asset] (por defecto `assets/audio/ambient.ogg`) en bucle y bajito para que la voz mande.
 class AssetAmbience implements Ambience {
-  AssetAmbience({this.volume = 0.22});
+  AssetAmbience({this.volume = 0.22, this.asset = 'audio/ambient.ogg'});
 
   final double volume;
+
+  /// Ruta dentro de `assets/` (ver [ambienceAsset]).
+  final String asset;
   AudioPlayer? _player;
   double _level = 1.0;
 
@@ -37,7 +51,7 @@ class AssetAmbience implements Ambience {
       final p = _player ??= AudioPlayer();
       await p.setReleaseMode(ReleaseMode.loop);
       await p.setVolume(volume * _level);
-      await p.play(AssetSource('audio/ambient.ogg'));
+      await p.play(AssetSource(asset));
     } catch (e) {
       debugPrint('Sin sonido de fondo: $e');
     }

@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:caldero_rig/caldero_rig.dart';
 import 'package:flutter/material.dart' hide Clip;
 
+import '../pack_loader.dart';
 import 'art_library.dart';
 import 'rig_renderer.dart';
 import 'scene_painter.dart';
@@ -405,10 +406,11 @@ List<ActorInstance> withEntrance(StageSetup setup, StageArt? art, double t0) {
   ];
 }
 
-/// Carga el arte del pack; si falta o está roto devuelve `null` (el cuento se lee igual, sin dibujos).
-Future<StageArt?> loadStageArt(AssetBundle bundle) async {
+/// Carga el arte del pack [pack]; si falta o está roto devuelve `null` (el cuento se lee igual, sin dibujos).
+Future<StageArt?> loadStageArt(AssetBundle bundle,
+    {String pack = defaultPackId}) async {
   try {
-    return StageArt(await loadArtLibrary(bundle));
+    return StageArt(await loadArtLibrary(bundle, pack: pack));
   } catch (e) {
     debugPrint('Sin arte para los cuentos: $e');
     return null;

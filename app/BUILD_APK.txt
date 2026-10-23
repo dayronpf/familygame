@@ -1,1 +1,1 @@
-Cambiar este archivo (y subirlo) compila un APK de prueba. Ultima peticion: v0.9.1 con la musica de fondo unos 9 dB mas baja y campanitas mas espaciadas.
+Cambiar este archivo (y subirlo) compila un APK de prueba. Ultima peticion: v0.11.1 con la musica de fondo de los tres paquetes unos 9-10 dB mas baja (la de las nubes ya no suena a olas).
