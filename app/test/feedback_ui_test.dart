@@ -402,7 +402,7 @@ void main() {
         {required bool correct}) async {
       final q =
           tester.widget<Text>(find.byKey(const Key('gate-question'))).data!;
-      final m = RegExp(r'(\d) × (\d)').firstMatch(q)!;
+      final m = RegExp(r'(\d) por (\d)').firstMatch(q)!;
       final answer =
           int.parse(m.group(1)!) * int.parse(m.group(2)!) + (correct ? 0 : 1);
       await tester.enterText(find.byKey(const Key('gate-answer')), '$answer');
@@ -419,7 +419,7 @@ void main() {
       expect(find.text('Ajustes para adultos'), findsNothing);
       // La puerta no se cierra en silencio: avisa y deja probar otra vez
       expect(find.text('Solo para adultos'), findsOneWidget);
-      expect(find.text('Esa no es. Prueba otra vez.'), findsOneWidget);
+      expect(find.textContaining('Es una multiplicación'), findsOneWidget);
       await answerGate(tester, correct: true);
       expect(find.text('Ajustes para adultos'), findsOneWidget);
     });

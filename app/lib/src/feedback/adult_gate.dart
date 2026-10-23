@@ -55,7 +55,8 @@ class _AdultGateDialogState extends State<_AdultGateDialog> {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('¿Cuánto es $_a × $_b?', key: const Key('gate-question')),
+          // «por» y no «×»: el signo se leía como una suma (9 × 7 → 16)
+          Text('¿Cuánto es $_a por $_b?', key: const Key('gate-question')),
           const SizedBox(height: 12),
           TextField(
             key: const Key('gate-answer'),
@@ -64,7 +65,10 @@ class _AdultGateDialogState extends State<_AdultGateDialog> {
             keyboardType: TextInputType.number,
             decoration: InputDecoration(
               border: const OutlineInputBorder(),
-              errorText: _wrong ? 'Esa no es. Prueba otra vez.' : null,
+              errorText: _wrong
+                  ? 'Esa no es. Es una multiplicación: $_a por $_b.'
+                  : null,
+              errorMaxLines: 3,
             ),
             onChanged: (_) {
               if (_wrong) setState(() => _wrong = false);
