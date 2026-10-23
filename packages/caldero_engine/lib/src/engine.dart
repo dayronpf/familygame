@@ -90,6 +90,20 @@ class StoryEngine {
     var premises = pack.premises
         .where((p) => p.fitsValue(moral.id))
         .toList(growable: false);
+    final heroName = normalizeChildName(options.heroName);
+    final heroGender = options.heroGender;
+    if (heroGender != null) {
+      // Con el nombre del niño el héroe no puede cambiar de género («Lucía estaba contento»): mejor otro cuento
+      final byGender = premises
+          .where((p) => heroCanBe(pack, p, heroGender))
+          .toList(growable: false);
+      if (byGender.isEmpty && heroName != null && premises.isNotEmpty) {
+        throw StoryGenerationException(
+          'ningún cuento de «${moral.id}» tiene héroe de género $heroGender',
+        );
+      }
+      if (byGender.isNotEmpty) premises = byGender;
+    }
     final age = pack.resolveAge(options.age);
     final byAge = premises.where((p) => p.fitsAge(age)).toList(growable: false);
     // Si ninguno de esta enseñanza sirve a esa edad, mejor uno que ninguno
@@ -106,14 +120,14 @@ class StoryEngine {
         rng,
         age: age,
         moralText: moral.textFor(age),
-        heroName: normalizeChildName(options.heroName),
-        heroGender: options.heroGender,
+        heroName: heroName,
+        heroGender: heroGender,
       );
     }
 
     final cast = _personalize(
-      castStory(pack, rng),
-      normalizeChildName(options.heroName),
+      castStory(pack, rng, heroGender: heroGender, strict: heroName != null),
+      heroName,
     );
     final state = <String>{};
     final used = <String>{};
@@ -424,6 +438,11 @@ Map<String, Entity> castPremise(
       final byGender = candidates
           .where((e) => e.gender.name == heroGender)
           .toList(growable: false);
+      if (byGender.isEmpty && heroName != null) {
+        throw StoryGenerationException(
+          'premisa ${premise.id}: ningún héroe de género $heroGender',
+        );
+      }
       if (byGender.isNotEmpty) candidates = byGender;
     }
     if (slot.key != 'hero' && heroName != null) {
@@ -476,9 +495,34 @@ T _pickWeighted<T>(List<T> pool, double Function(T) weight, Mulberry32 rng) {
   return pool.last;
 }
 
+/// `true` si la ranura «hero» de [premise] admite un héroe de género [gender] (`m`/`f`).
+bool heroCanBe(Pack pack, Premise premise, String gender) {
+  final spec = premise.cast['hero'];
+  return spec != null &&
+      castCandidates(pack, spec).any((e) => e.gender.name == gender);
+}
+
 /// Elige héroe, ayudante, villano y dos lugares distintos.
-Map<String, Entity> castStory(Pack pack, Mulberry32 rng) {
-  final heroes = pack.withRole('hero');
+///
+/// [heroGender] limita el héroe a ese género; si no hay ninguno, con [strict] falla y sin él elige cualquiera.
+Map<String, Entity> castStory(
+  Pack pack,
+  Mulberry32 rng, {
+  String? heroGender,
+  bool strict = false,
+}) {
+  var heroes = pack.withRole('hero');
+  if (heroGender != null) {
+    final byGender = heroes
+        .where((c) => c.gender.name == heroGender)
+        .toList(growable: false);
+    if (byGender.isEmpty && strict) {
+      throw StoryGenerationException(
+        'el pack no tiene héroe de género $heroGender',
+      );
+    }
+    if (byGender.isNotEmpty) heroes = byGender;
+  }
   final helpers = pack.withRole('helper');
   final villains = pack.withRole('villain');
   if (heroes.isEmpty || villains.isEmpty) {

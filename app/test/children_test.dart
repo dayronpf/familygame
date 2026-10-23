@@ -214,7 +214,12 @@ void main() {
       await tester.tap(find.text('Editar'));
       await tester.pumpAndSettle();
       await tester.enterText(find.byKey(const Key('child-name')), 'Anita');
+      await tester.pump();
+      // Con nombre no se puede guardar «al azar»: hay que elegir niño o niña
+      expect(find.byKey(const Key('child-gender-any')), findsNothing);
+      expect(find.byKey(const Key('child-gender-needed')), findsOneWidget);
       await tester.tap(find.byKey(const Key('child-gender-f')));
+      await tester.pump();
       await tester.tap(find.byKey(const Key('child-save')));
       await tester.pumpAndSettle();
       expect(settings.profiles[0].heroName, 'Anita');
@@ -304,6 +309,11 @@ void main() {
       final settings = await openHome(tester, names: ['Ana', 'Beto']);
       await tester.tap(find.text('Crear cuento'));
       await tester.pumpAndSettle();
+      // Beto se guardó sin género: se pregunta una vez y se recuerda
+      expect(find.text('¿Beto es un niño o una niña?'), findsOneWidget);
+      await tester.tap(find.byKey(const Key('ask-gender-m')));
+      await tester.pumpAndSettle();
+      expect(settings.child.heroGender, 'm');
       await tester.scrollUntilVisible(find.textContaining('Beto'), 300);
       expect(find.textContaining('Beto'), findsWidgets);
       expect(settings.child.heroName, 'Beto');

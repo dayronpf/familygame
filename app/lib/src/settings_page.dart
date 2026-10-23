@@ -247,17 +247,33 @@ class _SettingsPageState extends State<SettingsPage> {
         onChanged: (v) => settings.updateChild(name: v.trim()),
       ),
       const SizedBox(height: 10),
+      // Con su nombre el cuento no puede elegir al azar (el dibujo y el «solo/sola» le seguirían)
       SegmentedButton<String?>(
         key: const Key('setting-gender'),
         showSelectedIcon: false,
-        segments: const [
-          ButtonSegment(value: 'm', label: Text('Niño')),
-          ButtonSegment(value: 'f', label: Text('Niña')),
-          ButtonSegment(value: null, label: Text('Al azar')),
+        emptySelectionAllowed: true,
+        segments: [
+          const ButtonSegment(value: 'm', label: Text('Niño')),
+          const ButtonSegment(value: 'f', label: Text('Niña')),
+          if (child.heroName == null)
+            const ButtonSegment(value: null, label: Text('Al azar')),
         ],
-        selected: {child.heroGender},
-        onSelectionChanged: (v) => settings.updateChild(heroGender: v.first),
+        selected: child.heroName != null && child.heroGender == null
+            ? const {}
+            : {child.heroGender},
+        onSelectionChanged: (v) {
+          if (v.isNotEmpty) settings.updateChild(heroGender: v.first);
+        },
       ),
+      if (child.heroName != null && child.heroGender == null)
+        Padding(
+          padding: const EdgeInsets.only(top: 6),
+          child: Text(
+            'Elige niño o niña para que el cuento hable bien de ${child.heroName}.',
+            key: const Key('setting-gender-needed'),
+            style: text.bodySmall,
+          ),
+        ),
       const SizedBox(height: 16),
       Text('Edad del niño', style: text.bodyLarge),
       const SizedBox(height: 8),

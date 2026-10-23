@@ -273,6 +273,16 @@ int _checkPremise(
   final slotKinds = {for (final e in premise.cast.entries) e.key: e.value.kind};
   if (slotKinds['hero'] != 'character') {
     problems.add('$pid: falta la ranura «hero» (personaje)');
+  } else {
+    // El niño elige si protagoniza un niño o una niña: el héroe se reparte primero y admite los dos
+    if (premise.cast.keys.first != 'hero') {
+      problems.add('$pid: «hero» debe ser la primera ranura del reparto');
+    }
+    for (final g in ['m', 'f']) {
+      if (!heroCanBe(pack, premise, g)) {
+        problems.add('$pid: «hero» no admite un héroe de género $g');
+      }
+    }
   }
   final beatIds = <String>{};
   final variantIds = <String>{};

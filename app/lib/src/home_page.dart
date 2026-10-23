@@ -18,6 +18,7 @@ import 'shelf/story_shelf.dart';
 import 'story_page.dart';
 import 'ui/children_page.dart';
 import 'ui/hero_banner.dart';
+import 'ui/hero_gender_dialog.dart';
 import 'ui/moral_style.dart';
 import 'ui/moral_tile.dart';
 import 'ui/night_background.dart';
@@ -88,7 +89,28 @@ class _HomePageState extends State<HomePage> {
 
   /// Cuenta un cuento. Sin [replay] se usan los ajustes de ahora (edad, nombre y género del niño); al volver a
   /// contar uno guardado se usan los que tenía, para que salga el mismo.
-  void _openStory(
+  ///
+  /// Un niño guardado con nombre pero sin género (de antes de que fuera obligatorio) se pregunta una vez.
+  Future<void> _openStory(
+    Pack pack, {
+    required int? seed,
+    required String? option,
+    ShelfEntry? replay,
+  }) async {
+    final settings = SettingsScope.maybeOf(context);
+    final child = settings?.child;
+    if (replay == null &&
+        child?.heroName != null &&
+        child?.heroGender == null) {
+      final gender = await askHeroGender(context, child!.heroName!);
+      if (gender == null || !mounted) return;
+      await settings!.updateChild(heroGender: gender);
+      if (!mounted) return;
+    }
+    _tell(pack, seed: seed, option: option, replay: replay);
+  }
+
+  void _tell(
     Pack pack, {
     required int? seed,
     required String? option,

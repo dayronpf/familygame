@@ -136,6 +136,38 @@ List<String> problemsOf(Map<String, Object?> json) =>
     validatePack(load(json), coverageSeeds: 3).problems;
 
 void main() {
+  group('género del protagonista', () {
+    test('con el nombre del niño el héroe nunca cambia de género', () {
+      // En basePack el único héroe es Ana: un niño con nombre no puede ser ella («Dayron… yo sola»)
+      final engine = StoryEngine(load(basePack()));
+      expect(
+        () => engine.generate(
+          const StoryOptions(seed: 1, heroName: 'Dayron', heroGender: 'm'),
+        ),
+        throwsA(isA<StoryGenerationException>()),
+      );
+      // Sin nombre se sigue contando con el héroe que haya
+      final s = engine.generate(const StoryOptions(seed: 1, heroGender: 'm'));
+      expect((s.cast['hero']! as Character).given, 'Ana');
+    });
+
+    test(
+        'el validador exige un héroe que pueda ser niño o niña y que vaya primero',
+        () {
+      expect(problemsOf(basePack()).join('\n'),
+          contains('p: «hero» no admite un héroe de género m'));
+      final cast = (basePack()['premises']! as List).first['cast']
+          as Map<String, Object?>;
+      final reordered = {
+        for (final e in cast.entries.where((e) => e.key != 'hero'))
+          e.key: e.value,
+        'hero': cast['hero'],
+      };
+      expect(problemsOf(basePack(cast: reordered)).join('\n'),
+          contains('p: «hero» debe ser la primera ranura del reparto'));
+    });
+  });
+
   group('motor de premisas', () {
     test('es determinista y renderiza título y cuento', () {
       final engine = StoryEngine(load(basePack()));

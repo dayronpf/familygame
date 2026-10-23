@@ -63,6 +63,10 @@ class _WizardPageState extends State<WizardPage> {
 
   void _go(int step) => setState(() => _step = step);
 
+  /// En el paso del nombre: hay nombre pero falta decir si es niño o niña.
+  bool get _missingGender =>
+      _step == 3 && _gender == null && normalizeChildName(_name.text) != null;
+
   @override
   Widget build(BuildContext context) {
     final text = Theme.of(context).textTheme;
@@ -254,12 +258,23 @@ class _WizardPageState extends State<WizardPage> {
                 selected: _gender == 'f',
                 onTap: () => setState(() => _gender = 'f'),
               ),
-              _ChoiceCard(
-                key: const Key('gender-any'),
-                title: 'Que decida el cuento',
-                selected: _gender == null,
-                onTap: () => setState(() => _gender = null),
-              ),
+              // Con su nombre el cuento no puede decidir: «Dayron» no puede salir dibujado como niña ni decir «sola»
+              if (normalizeChildName(_name.text) == null)
+                _ChoiceCard(
+                  key: const Key('gender-any'),
+                  title: 'Que decida el cuento',
+                  selected: _gender == null,
+                  onTap: () => setState(() => _gender = null),
+                )
+              else if (_gender == null)
+                Padding(
+                  padding: const EdgeInsets.only(top: 6),
+                  child: Text(
+                    'Elige si es un niño o una niña para que el cuento hable bien de su protagonista.',
+                    key: const Key('gender-needed'),
+                    style: text.bodyMedium!.copyWith(color: Palette.amber),
+                  ),
+                ),
             ],
           ),
         );
@@ -376,7 +391,7 @@ class _WizardPageState extends State<WizardPage> {
                   width: double.infinity,
                   child: FilledButton(
                     key: const Key('wizard-next'),
-                    onPressed: () => _go(_step + 1),
+                    onPressed: _missingGender ? null : () => _go(_step + 1),
                     style: FilledButton.styleFrom(
                       minimumSize: const Size.fromHeight(56),
                     ),

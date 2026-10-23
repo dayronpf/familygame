@@ -162,7 +162,18 @@ void main() {
       expect(again.child.heroName, 'Lucía');
       expect(again.child.heroGender, 'f');
 
-      // «Al azar» vuelve a dejar que decida el cuento
+      // Con nombre no hay «Al azar»: el cuento no puede decidir si Lucía es niño o niña
+      expect(
+        find.descendant(
+          of: find.byKey(const Key('setting-gender')),
+          matching: find.text('Al azar'),
+        ),
+        findsNothing,
+      );
+
+      // Sin nombre, «Al azar» vuelve a dejar que decida el cuento
+      await tester.enterText(find.byKey(const Key('setting-name')), '');
+      await tester.pumpAndSettle();
       await tester.tap(find.descendant(
         of: find.byKey(const Key('setting-gender')),
         matching: find.text('Al azar'),
