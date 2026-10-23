@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Sonido de fondo del modo cuento/holograma, sintetizado desde cero (sin muestras de terceros).
 
-Un colchón de acordes suaves (La menor – Fa – Do – Sol) con campanitas de nana que caen despacio.
+Un colchón de acordes suaves (La menor – Fa – Do – Sol) con campanitas de nana muy espaciadas y bajitas.
 Dura 48 s y empalma consigo mismo sin salto (todo el material es periódico en 48 s). Uso:
     python3 tools/audio/make_ambient.py app/assets/audio/ambient.ogg
 Licencia: original del proyecto; no deriva de ninguna grabación.
@@ -57,15 +57,18 @@ while pos < DUR - 3:
     env = np.exp(-tt * 1.6)
     note = (np.sin(2 * np.pi * f * tt) + 0.35 * np.sin(2 * np.pi * 2.01 * f * tt)) * env * 0.5
     bells[n0:n0 + L] += note[: max(0, min(L, N - n0))]
-    pos += rng.uniform(1.8, 3.4)
+    pos += rng.uniform(3.5, 6.0)
 # eco
 echo = np.zeros(N)
 d = int(0.45 * SR)
 echo[d:] += 0.35 * bells[:-d]
 bells = bells + echo
 
-mix = sig * 0.9 + bells * 0.22
-mix /= np.max(np.abs(mix)) * 1.15
+mix = sig * 0.9 + bells * 0.12
+# Nivel de fondo: ~-10 dBFS de pico (~-25 dB de media). Antes iba a -1 dB y, junto a la voz del sistema (más baja
+# que un reproductor de archivos), tapaba el cuento; con el volumen de Ajustes (0,22) queda unos 17 dB bajo la voz.
+mix /= np.max(np.abs(mix))
+mix *= 10 ** (-10 / 20)
 pcm = (mix * 32767).astype("<i2").tobytes()
 
 out = sys.argv[1] if len(sys.argv) > 1 else "ambient.ogg"

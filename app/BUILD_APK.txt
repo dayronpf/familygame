@@ -1,1 +1,1 @@
-Cambiar este archivo (y subirlo) compila un APK de prueba. Ultima peticion: v0.9.0 con preguntas al nino en dos cuentos de 9-12 anos (La luz del lago y La cometa del viento del norte) y firma de release opcional.
+Cambiar este archivo (y subirlo) compila un APK de prueba. Ultima peticion: v0.9.1 con la musica de fondo unos 9 dB mas baja y campanitas mas espaciadas.

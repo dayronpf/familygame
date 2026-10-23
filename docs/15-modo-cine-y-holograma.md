@@ -62,7 +62,8 @@ Consejos: habitación en penumbra, brillo al máximo, móvil apoyado plano; el m
   humana o neural por pack (decisión de producto, ADR futuro).
 - **Fondo:** `app/assets/audio/ambient.ogg`, 48 s en bucle, **sintetizado desde cero** con
   `tools/audio/make_ambient.py` (acordes La menor–Fa–Do–Sol + campanitas pentatónicas). No usa muestras ni música
-  de terceros: sin riesgo de derechos (registrado en `ASSETS_LICENSES.md`).
+  de terceros: sin riesgo de derechos (registrado en `ASSETS_LICENSES.md`). Es **una sola pista para todos los cuentos** (no hay música por
+  paquete). Nivel: pico −10 dBFS (media ≈ −24 dB); con el volumen de Ajustes por defecto (0,22) queda ~17 dB bajo la voz del sistema.
 - Se narra el título, cada escena y, al final, «La enseñanza de hoy: …».
 
 ## Límites conocidos
