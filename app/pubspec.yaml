@@ -46,6 +46,8 @@ flutter:
     - assets/art/mar/index.json
     - assets/art/mar/rigs/
     - assets/art/mar/scenes/
+    - assets/art/cosmos/index.json
+    - assets/art/cosmos/rigs/
     - assets/art/clips/
     # Sonido de fondo sintetizado por tools/audio/make_ambient.py.
     - assets/audio/

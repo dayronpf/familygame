@@ -222,6 +222,16 @@ def head_parts(s):
         sh.append(S("M-74,-208 C-46,-222 46,-222 74,-208 C50,-212 -50,-212 -74,-208 Z", "$gold", None))
         sh.append(shade("M10,-262 C40,-258 56,-220 74,-208 C56,-214 40,-216 26,-218 C30,-234 24,-250 10,-262 Z"))
         sh.append(S(star(0, -238, 11, 5), "$gold", None))
+    elif hat == "tophat":  # chistera de coleccionista (el Barón Brillo)
+        sh.append(S(ell(0, -224, 62, 12), "$hat"))
+        sh.append(S(rrect(-38, -300, 76, 78, 6), "$hat"))
+        sh.append(S(rrect(-38, -246, 76, 12, 2), "$accent"))
+        sh.append(S(star(22, -240, 7, 3), "$gold", None))
+        sh.append(shade("M14,-300 L38,-300 L38,-224 L22,-224 Z"))
+    elif hat == "bubble":  # casco de astronauta: burbuja de cristal con aro (va por encima de la cara)
+        sh.append(S(ell(0, -196, 64, 62), "#d8f4ff", "#9ac0d8", 3, 0.22))
+        sh.append(shine("M-44,-222 C-36,-246 -14,-256 6,-256 C-14,-246 -30,-234 -38,-212 Z"))
+        sh.append(S(rrect(-30, -152, 60, 10, 5), "$metal", None))
     elif hat == "beret":
         sh.append(S("M-52,-214 C-46,-254 40,-262 60,-234 C58,-214 -30,-204 -52,-214 Z", "$hat"))
         sh.append(S("M54,-238 C86,-266 104,-252 114,-228 C98,-246 82,-242 56,-228 Z", "$gold"))
@@ -286,6 +296,12 @@ def torso_shapes(s):
                S("M-14,-150 L0,-134 L14,-150 Z", "$secondary"),
                S(rrect(-36, -104, 72, 11, 3), "$belt"), S(rrect(-6, -107, 12, 17, 3), "$gold"),
                S("M-36,-96 L36,-96 L44,-68 Q0,-56 -44,-68 Z", "$primary")]
+    elif k == "spacesuit":  # traje espacial acolchado con panel de botones en el pecho
+        sh += [S(rrect(-38, -150, 76, 86, 24), "$primary"), shade(rrect(14, -148, 22, 82, 14)),
+               S(rrect(-16, -136, 32, 22, 5), "$secondary"),
+               S(ell(-8, -125, 3.5, 3.5), "#ff6a6a", None), S(ell(0, -125, 3.5, 3.5), "#7aff9a", None), S(ell(8, -125, 3.5, 3.5), "#7ad0ff", None),
+               S(rrect(-38, -104, 72, 10, 4), "$belt"), S(rrect(-7, -106, 14, 14, 4), "$gold"),
+               S(star(-24, -142, 5, 2.2), "$gold", None)]
     elif k == "stripes":  # camiseta de rayas de grumete, con cinturón de cuerda
         sh += [S(rrect(-36, -150, 72, 84, 22), "$secondary")]
         for y in (-140, -124, -108, -92, -76):

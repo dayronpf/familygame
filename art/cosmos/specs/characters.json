@@ -1,0 +1,255 @@
+{
+ "format": "caldero-character-specs",
+ "version": 1,
+ "rig": "humanoid",
+ "characters": [
+  {
+   "id": "orion",
+   "name": "Orión · cadete",
+   "outfit": "spacesuit",
+   "hat": "bubble",
+   "hair": "short",
+   "brows": "kind",
+   "mouth": "smile",
+   "palette": {
+    "skin": "#e2a87e",
+    "hair": "#3a2418",
+    "primary": "#f0f2f8",
+    "secondary": "#3a5ab0",
+    "belt": "#4a5a8a",
+    "gold": "#f4c542",
+    "metal": "#9aa8c0",
+    "pants": "#f0f2f8",
+    "boots": "#3a5ab0",
+    "accent": "#f4c542"
+   }
+  },
+  {
+   "id": "lira",
+   "name": "Lira · cadete",
+   "outfit": "spacesuit",
+   "hat": "bubble",
+   "hair": "pigtails",
+   "brows": "determined",
+   "mouth": "smirk",
+   "palette": {
+    "skin": "#c98e63",
+    "hair": "#2a1a14",
+    "primary": "#ffd0e4",
+    "secondary": "#7a4ab0",
+    "belt": "#7a4ab0",
+    "gold": "#f4c542",
+    "metal": "#9aa8c0",
+    "pants": "#ffd0e4",
+    "boots": "#7a4ab0",
+    "accent": "#f4c542"
+   }
+  },
+  {
+   "id": "aurora",
+   "name": "Comandante Aurora",
+   "outfit": "spacesuit",
+   "hair": "braid",
+   "earring": true,
+   "brows": "kind",
+   "mouth": "smile",
+   "rest": {
+    "armL": 9,
+    "armR": -9
+   },
+   "palette": {
+    "skin": "#f3c9a8",
+    "hair": "#e8e8f0",
+    "primary": "#ff9a4a",
+    "secondary": "#2a3a6a",
+    "belt": "#2a3a6a",
+    "gold": "#f4c542",
+    "metal": "#9aa8c0",
+    "pants": "#ff9a4a",
+    "boots": "#2a3a6a",
+    "accent": "#7ad0ff"
+   }
+  },
+  {
+   "id": "tornillo",
+   "name": "Tornillo · robot amable",
+   "body": "robot",
+   "outfit": "tunic",
+   "hair": "none",
+   "brows": "kind",
+   "mouth": "smile",
+   "palette": {
+    "skin": "#bcc8dc",
+    "hair": "#bcc8dc",
+    "primary": "#bcc8dc",
+    "secondary": "#5a6a8a",
+    "metal": "#8a98b0",
+    "screen": "#2a3a5a",
+    "glow": "#7affd8",
+    "belt": "#5a6a8a",
+    "gold": "#f4c542",
+    "pants": "#8a98b0",
+    "boots": "#5a6a8a",
+    "accent": "#f4c542"
+   }
+  },
+  {
+   "id": "osa",
+   "name": "Abuela Osa · astrónoma",
+   "outfit": "sweater",
+   "hat": "kerchief",
+   "hair": "braid",
+   "glasses": true,
+   "brows": "kind",
+   "mouth": "smile",
+   "palette": {
+    "skin": "#9a6744",
+    "hair": "#e8e8f0",
+    "primary": "#3a4a8a",
+    "secondary": "#f4c542",
+    "frame": "#2a2a3a",
+    "pants": "#2a2a4a",
+    "boots": "#3a2a1a",
+    "hat": "#7a4ab0",
+    "accent": "#f4c542",
+    "belt": "#7a4a28",
+    "gold": "#f4c542"
+   }
+  },
+  {
+   "id": "brillo",
+   "name": "Barón Brillo",
+   "outfit": "captain",
+   "hat": "tophat",
+   "hair": "short",
+   "goatee": true,
+   "brows": "grumpy",
+   "mouth": "smirk",
+   "pouch": true,
+   "scale": 1.05,
+   "palette": {
+    "skin": "#f0c4a0",
+    "hair": "#5a3a6a",
+    "beard": "#5a3a6a",
+    "primary": "#5a2a8a",
+    "secondary": "#f3ead6",
+    "lapel": "#c0c8e0",
+    "belt": "#2a1a3a",
+    "gold": "#f4c542",
+    "pants": "#2a2a3a",
+    "boots": "#1a1a2a",
+    "hat": "#2a1a3a",
+    "sack": "#c0c8e0",
+    "accent": "#c0c8e0"
+   }
+  },
+  {
+   "id": "zumbo",
+   "name": "Zumbo · alien travieso",
+   "body": "alien",
+   "outfit": "tunic",
+   "hair": "none",
+   "brows": "kind",
+   "mouth": "smirk",
+   "size": 0.8,
+   "palette": {
+    "skin": "#7ad86a",
+    "hair": "#7ad86a",
+    "primary": "#ff8a3a",
+    "secondary": "#ffd84a",
+    "belt": "#ff8a3a",
+    "gold": "#f4c542",
+    "pants": "#7ad86a",
+    "boots": "#4aa83a",
+    "spots": "#4aa83a",
+    "accent": "#f4c542"
+   }
+  },
+  {
+   "id": "pip",
+   "name": "Pip · niño de la aldea",
+   "outfit": "tunic",
+   "hair": "short",
+   "brows": "kind",
+   "mouth": "smile",
+   "size": 0.7,
+   "palette": {
+    "skin": "#f3c9a8",
+    "hair": "#c87a2a",
+    "primary": "#4ab0d8",
+    "secondary": "#ffffff",
+    "belt": "#2a5a7a",
+    "gold": "#f4c542",
+    "pants": "#2a3a5a",
+    "boots": "#3a2a1a",
+    "accent": "#f4c542"
+   }
+  },
+  {
+   "id": "nube",
+   "name": "Nube · niña de la aldea",
+   "outfit": "tunic",
+   "hair": "pigtails",
+   "brows": "kind",
+   "mouth": "smile",
+   "size": 0.68,
+   "palette": {
+    "skin": "#9a6744",
+    "hair": "#1a1210",
+    "primary": "#ff8ab0",
+    "secondary": "#ffffff",
+    "belt": "#a04a6a",
+    "gold": "#f4c542",
+    "pants": "#5a4a8a",
+    "boots": "#3a2a1a",
+    "accent": "#7ad0ff"
+   }
+  },
+  {
+   "id": "panadero",
+   "name": "Panadero de la aldea",
+   "outfit": "tunic",
+   "hat": "baker",
+   "hair": "short",
+   "apron": true,
+   "brows": "kind",
+   "mouth": "smile",
+   "size": 1.0,
+   "palette": {
+    "skin": "#e8b08a",
+    "hair": "#5a3a2a",
+    "primary": "#7ad0ff",
+    "secondary": "#ffffff",
+    "apron": "#f6f1e4",
+    "belt": "#7a4a28",
+    "gold": "#f4c542",
+    "pants": "#3a3a4a",
+    "boots": "#3a2a1a",
+    "hat": "#ffffff",
+    "accent": "#f4c542"
+   }
+  },
+  {
+   "id": "cartera",
+   "name": "Cartera de la aldea",
+   "outfit": "tunic",
+   "hat": "cap",
+   "hair": "braid",
+   "brows": "kind",
+   "mouth": "smile",
+   "size": 0.98,
+   "palette": {
+    "skin": "#c98e63",
+    "hair": "#2a1a14",
+    "primary": "#4a6ab0",
+    "secondary": "#f4c542",
+    "belt": "#7a4a28",
+    "gold": "#f4c542",
+    "pants": "#2a3a5a",
+    "boots": "#3a2a1a",
+    "hat": "#4a6ab0",
+    "accent": "#f4c542"
+   }
+  }
+ ]
+}

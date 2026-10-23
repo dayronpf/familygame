@@ -33,6 +33,9 @@ if $check; then
   diff -r art/mar/rigs "$dst/mar/rigs" >/dev/null || fail "$dst/mar/rigs"
   diff -r art/mar/scenes "$dst/mar/scenes" >/dev/null || fail "$dst/mar/scenes"
   diff art/mar/index.json "$dst/mar/index.json" >/dev/null || fail "$dst/mar/index.json"
+  # Aldea de las Nubes (en construcción, docs/27)
+  diff -r art/cosmos/rigs "$dst/cosmos/rigs" >/dev/null || fail "$dst/cosmos/rigs"
+  diff art/cosmos/index.json "$dst/cosmos/index.json" >/dev/null || fail "$dst/cosmos/index.json"
 else
   rm -rf "$dst"; mkdir -p "$dst/medieval"
   cp -r art/medieval/rigs art/medieval/scenes "$dst/medieval/"
@@ -41,5 +44,8 @@ else
   mkdir -p "$dst/mar"
   cp -r art/mar/rigs art/mar/scenes "$dst/mar/"
   cp art/mar/index.json "$dst/mar/"
+  mkdir -p "$dst/cosmos"
+  cp -r art/cosmos/rigs "$dst/cosmos/"
+  cp art/cosmos/index.json "$dst/cosmos/"
 fi
 echo "assets OK"

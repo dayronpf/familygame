@@ -1,0 +1,51 @@
+{
+ "format": "caldero-art-index",
+ "version": 1,
+ "pack": "cosmos",
+ "rig": "humanoid",
+ "rigs": [
+  "cosmos/rigs/orion.json",
+  "cosmos/rigs/lira.json",
+  "cosmos/rigs/aurora.json",
+  "cosmos/rigs/tornillo.json",
+  "cosmos/rigs/osa.json",
+  "cosmos/rigs/brillo.json",
+  "cosmos/rigs/zumbo.json",
+  "cosmos/rigs/pip.json",
+  "cosmos/rigs/nube.json",
+  "cosmos/rigs/panadero.json",
+  "cosmos/rigs/cartera.json",
+  "cosmos/rigs/orion_miedo.json",
+  "cosmos/rigs/lira_miedo.json",
+  "cosmos/rigs/aurora_miedo.json",
+  "cosmos/rigs/tornillo_miedo.json",
+  "cosmos/rigs/osa_miedo.json",
+  "cosmos/rigs/brillo_miedo.json",
+  "cosmos/rigs/zumbo_miedo.json",
+  "cosmos/rigs/pip_miedo.json",
+  "cosmos/rigs/nube_miedo.json",
+  "cosmos/rigs/panadero_miedo.json",
+  "cosmos/rigs/cartera_miedo.json",
+  "cosmos/rigs/orion_pijama.json",
+  "cosmos/rigs/lira_pijama.json",
+  "cosmos/rigs/chispa.json"
+ ],
+ "scenes": [],
+ "clips": "clips/humanoid.json",
+ "extraClips": [
+  "clips/props.json"
+ ],
+ "sizes": {
+  "zumbo": 0.8,
+  "pip": 0.7,
+  "nube": 0.68,
+  "panadero": 1.0,
+  "cartera": 0.98,
+  "zumbo_miedo": 0.8,
+  "pip_miedo": 0.7,
+  "nube_miedo": 0.68,
+  "panadero_miedo": 1.0,
+  "cartera_miedo": 0.98,
+  "chispa": 1.0
+ }
+}
