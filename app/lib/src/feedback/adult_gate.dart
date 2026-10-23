@@ -33,7 +33,19 @@ class _AdultGateDialogState extends State<_AdultGateDialog> {
     super.dispose();
   }
 
+  bool _wrong = false;
+
   bool get _correct => _controller.text.trim() == '${_a * _b}';
+
+  /// Si falla, la puerta sigue abierta y lo dice: cerrarse en silencio parecía que Ajustes no cargaba.
+  void _submit() {
+    if (_correct) {
+      Navigator.pop(context, true);
+      return;
+    }
+    setState(() => _wrong = true);
+    _controller.clear();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,8 +62,14 @@ class _AdultGateDialogState extends State<_AdultGateDialog> {
             controller: _controller,
             autofocus: true,
             keyboardType: TextInputType.number,
-            decoration: const InputDecoration(border: OutlineInputBorder()),
-            onSubmitted: (_) => Navigator.pop(context, _correct),
+            decoration: InputDecoration(
+              border: const OutlineInputBorder(),
+              errorText: _wrong ? 'Esa no es. Prueba otra vez.' : null,
+            ),
+            onChanged: (_) {
+              if (_wrong) setState(() => _wrong = false);
+            },
+            onSubmitted: (_) => _submit(),
           ),
         ],
       ),
@@ -62,7 +80,7 @@ class _AdultGateDialogState extends State<_AdultGateDialog> {
         ),
         FilledButton(
           key: const Key('gate-ok'),
-          onPressed: () => Navigator.pop(context, _correct),
+          onPressed: _submit,
           child: const Text('Entrar'),
         ),
       ],

@@ -5,20 +5,24 @@ import '../art/scene_painter.dart';
 import '../art/story_stage.dart';
 import 'palette.dart';
 
-/// Portada del inicio: el castillo del Reino de la Luna de noche, con Mara y Zafiro, vivos (parpadean, respiran
-/// y saludan). Si el arte no carga, un degradado de noche con la luna. Encima va el saludo.
+/// Portada del inicio: el castillo del Reino de la Luna de noche, con el héroe y Zafiro, vivos (parpadean, respiran
+/// y saludan). El héroe es Aldo si el niño es un niño y Mara si no (que «¡Hola, Dayron!» no salude una niña). Si el arte no carga, un degradado de noche con la luna. Encima va el saludo.
 class HeroBanner extends StatefulWidget {
   const HeroBanner({
     super.key,
     required this.art,
     required this.pack,
     required this.greeting,
+    this.heroGender,
     this.animate = true,
   });
 
   final StageArt? art;
   final Pack pack;
   final String greeting;
+
+  /// `m`/`f` del niño (o `null`): elige quién saluda en la portada.
+  final String? heroGender;
   final bool animate;
 
   @override
@@ -61,7 +65,8 @@ class _HeroBannerState extends State<HeroBanner>
     final art = widget.art;
     final setup = art == null
         ? null
-        : bannerSetup(art, widget.pack, const Rect.fromLTWH(0, 330, 600, 350));
+        : bannerSetup(art, widget.pack, const Rect.fromLTWH(0, 330, 600, 350),
+            heroGender: widget.heroGender);
     final text = Theme.of(context).textTheme;
     return AspectRatio(
       aspectRatio: 600 / 350,
@@ -130,8 +135,14 @@ class _HeroBannerState extends State<HeroBanner>
   }
 }
 
-/// La escena de portada: el castillo de noche con Mara y Zafiro, recortada a [view] (o `null` si falta algo).
-StageSetup? bannerSetup(StageArt art, Pack pack, Rect view) {
+/// La escena de portada: el castillo de noche con el héroe (Aldo con [heroGender] `m`, si no Mara) y Zafiro,
+/// recortada a [view] (o `null` si falta algo).
+StageSetup? bannerSetup(
+  StageArt art,
+  Pack pack,
+  Rect view, {
+  String? heroGender,
+}) {
   Character? by(String id) {
     for (final c in pack.characters) {
       if (c.id == id) return c;
@@ -143,11 +154,11 @@ StageSetup? bannerSetup(StageArt art, Pack pack, Rect view) {
   for (final p in pack.places) {
     if (p.id == 'castillo') place = p;
   }
-  final mara = by('mara'), zafiro = by('zafiro');
-  if (place == null || mara == null || zafiro == null) return null;
+  final hero = by(heroGender == 'm' ? 'aldo' : 'mara'), zafiro = by('zafiro');
+  if (place == null || hero == null || zafiro == null) return null;
   final base = stageFor(
     art,
-    {'lugar': place, 'hero': mara, 'helper': zafiro},
+    {'lugar': place, 'hero': hero, 'helper': zafiro},
     {
       'bg': 'lugar',
       'time': 'noche',

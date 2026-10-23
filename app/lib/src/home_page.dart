@@ -330,6 +330,7 @@ class _HomePageState extends State<HomePage> {
                           null
                       ? '¡Hola! ¿Qué cuento\nquieres esta noche?'
                       : '¡Hola, ${SettingsScope.maybeOf(context)!.child.heroName}!\n¿Qué cuento quieres?',
+                  heroGender: SettingsScope.maybeOf(context)?.child.heroGender,
                   animate: widget.animateArt,
                 ),
               ),
