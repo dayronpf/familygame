@@ -76,8 +76,11 @@ void main() {
 
       await tester.tap(find.text('Crear cuento'));
       await tester.pumpAndSettle();
-      expect(find.text('La caracola de Nácar'), findsWidgets);
-      expect(shelf.recent.first.packId, 'mar');
+      // Un cuento de amistad del Mar de las Estrellas
+      final told = shelf.recent.first;
+      expect(told.packId, 'mar');
+      expect(told.moralId, 'amistad');
+      expect(find.text(told.title), findsWidgets);
       await tester.pageBack();
       await tester.pumpAndSettle();
 
@@ -86,10 +89,11 @@ void main() {
       expect(settingsOf(tester).packId, 'medieval');
       await tester.tap(find.text('Mis cuentos'));
       await tester.pumpAndSettle();
-      await tester.tap(find.text('La caracola de Nácar').first);
+      await tester.tap(find.text(told.title).first);
       await tester.pumpAndSettle();
-      expect(find.textContaining('Nácar'), findsWidgets);
+      expect(find.text(told.title), findsWidgets);
       expect(shelf.recent.first.packId, 'mar');
+      expect(shelf.recent.first.key, told.key);
     });
 
     testWidgets('en «Paquetes» el abierto lleva su marca', (tester) async {

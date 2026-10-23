@@ -3,7 +3,7 @@
     "schema": 2,
     "id": "mar",
     "name": "Mar de las Estrellas (en construcción)",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "license": "Contenido original, todos los derechos reservados al autor del proyecto",
     "language": "es",
     "age_band": "2-12",
@@ -130,7 +130,7 @@
       }
     },
     {
-      "id": "faro",
+      "id": "abuelo",
       "given": "Abuelo Faro",
       "noun": "farero",
       "gender": "m",
@@ -1971,6 +1971,2136 @@
                     "clip": "goat_idle",
                     "x": 0.76
                   }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mapa_roto",
+      "value": "honestidad",
+      "title": "El mapa del Abuelo Faro",
+      "ages": [
+        "4-5"
+      ],
+      "npcs": {},
+      "cast": {
+        "hero": {
+          "kind": "character",
+          "roles": [
+            "hero"
+          ]
+        },
+        "helper": {
+          "kind": "character",
+          "ids": [
+            "abuelo"
+          ]
+        },
+        "faro": {
+          "kind": "place",
+          "ids": [
+            "faro"
+          ]
+        },
+        "item": {
+          "kind": "prop",
+          "ids": [
+            "mapa"
+          ]
+        }
+      },
+      "beats": [
+        {
+          "id": "visita",
+          "variants": [
+            {
+              "id": "mapa_roto_visita_a",
+              "text": "Aquella mañana, {hero} subió al faro a visitar al {helper}. El {helper} tenía la barba blanca y olía a sal. Siempre contaba historias del mar, y a {hero} le encantaba escucharlas. «Hoy te voy a enseñar mi tesoro», dijo el {helper}, guiñando un ojo.",
+              "scene": {
+                "bg": "faro",
+                "mood": "calm",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "wave",
+                    "x": 0.34
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "talk",
+                    "x": 0.62
+                  }
+                ]
+              }
+            }
+          ],
+          "introduces": [
+            "helper"
+          ]
+        },
+        {
+          "id": "tesoro",
+          "variants": [
+            {
+              "id": "mapa_roto_tesoro_a",
+              "text": "Su tesoro era {item.un} viejísimo, dibujado a mano. Tenía islas, ballenas y estrellas. «Lo dibujó mi abuela, cuando era farera», contó. «Con este {item.noun} nunca se pierde nadie.» {hero} lo miró con los ojos muy abiertos.",
+              "scene": {
+                "bg": "faro",
+                "mood": "mystery",
+                "time": "dia",
+                "focus": {
+                  "prop": "mapa",
+                  "x": 0.5,
+                  "fill": 0.55
+                }
+              }
+            }
+          ],
+          "introduces": [
+            "item"
+          ]
+        },
+        {
+          "id": "ras",
+          "variants": [
+            {
+              "id": "mapa_roto_ras_a",
+              "text": "Entonces el {helper} subió a limpiar la lámpara del faro. {hero} quiso ver el {item.noun} mejor y lo desenrolló del todo. Pero sopló una ráfaga de viento, y el papel se dobló. ¡Ras! Se rompió una esquina. A {hero} se le hizo un nudo en la barriga.",
+              "scene": {
+                "bg": "faro",
+                "mood": "tension",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "surprised",
+                    "x": 0.42
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "mapa_roto",
+                    "near": "hero",
+                    "dx": 0.09,
+                    "lift": 70,
+                    "scale": 0.8
+                  }
+                ],
+                "offstage": [
+                  "helper"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "esconde",
+          "variants": [
+            {
+              "id": "mapa_roto_esconde_a",
+              "text": "{hero} escondió el {item.noun} detrás de la espalda. Tenía miedo de que el {helper} se pusiera triste. Cuando el {helper} bajó, preguntó: «¿Dónde está mi {item.noun}?». {hero} no dijo nada, y el nudo de la barriga se hizo más grande.",
+              "scene": {
+                "bg": "faro",
+                "mood": "sad",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "hide",
+                    "x": 0.34
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "think",
+                    "x": 0.64
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "mapa_roto",
+                    "x": 0.22,
+                    "scale": 0.7
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "verdad",
+          "variants": [
+            {
+              "id": "mapa_roto_verdad_a",
+              "text": "Así que {hero} respiró hondo y sacó el {item.noun}. «Se me ha roto», dijo bajito. «Lo desenrollé, sopló el viento y ¡ras! Lo siento mucho.» El {helper} miró la esquina rota con calma, porque era un hombre paciente. Luego miró a {hero}, y sonrió despacio.",
+              "scene": {
+                "bg": "faro",
+                "mood": "hope",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "offer",
+                    "x": 0.36
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "think",
+                    "x": 0.64
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "mapa_roto",
+                    "near": "hero",
+                    "dx": 0.09,
+                    "lift": 70,
+                    "scale": 0.8
+                  }
+                ]
+              },
+              "adds": [
+                "dijo_verdad"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "arreglo",
+          "variants": [
+            {
+              "id": "mapa_roto_arreglo_a",
+              "text": "«Gracias por decirme la verdad», dijo el {helper}. «Los mapas se arreglan. Los secretos, no tanto.» Juntaron los trozos con engrudo, porque el engrudo pega muy bien el papel. Ahora el {item.noun} tenía una cicatriz, como los marineros viejos.",
+              "scene": {
+                "bg": "faro",
+                "mood": "joy",
+                "time": "atardecer",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "cheer",
+                    "x": 0.36
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "laugh",
+                    "x": 0.64
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "mapa",
+                    "x": 0.5,
+                    "scale": 0.8
+                  }
+                ]
+              },
+              "requires": [
+                "dijo_verdad"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "luz",
+          "variants": [
+            {
+              "id": "mapa_roto_luz_a",
+              "text": "Al caer la noche, la luz del faro empezó a girar sobre el mar. {hero} se sentó junto al {helper} y se le cerraron los ojos. El nudo de la barriga se había ido. Solo quedaba un calorcito suave, porque ya no había secretos.",
+              "scene": {
+                "bg": "faro",
+                "mood": "sleep",
+                "time": "noche",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "yawn",
+                    "x": 0.38
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "idle",
+                    "x": 0.64
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "perla_marina",
+      "value": "generosidad",
+      "title": "La perla de Nácar",
+      "ages": [
+        "4-5"
+      ],
+      "npcs": {
+        "nina_puerto": [
+          "Marina"
+        ]
+      },
+      "cast": {
+        "hero": {
+          "kind": "character",
+          "roles": [
+            "hero"
+          ]
+        },
+        "helper": {
+          "kind": "character",
+          "ids": [
+            "nacar"
+          ]
+        },
+        "laguna": {
+          "kind": "place",
+          "ids": [
+            "laguna"
+          ]
+        },
+        "puerto": {
+          "kind": "place",
+          "ids": [
+            "puerto"
+          ]
+        },
+        "item": {
+          "kind": "prop",
+          "ids": [
+            "perla"
+          ]
+        }
+      },
+      "beats": [
+        {
+          "id": "regalo",
+          "variants": [
+            {
+              "id": "perla_marina_regalo_a",
+              "text": "En la laguna vivía {helper}, la sirena. Era amiga de {hero}, y cada tarde se contaban cosas del mar. Ese día, {helper} sacó algo del agua. «Es para ti», dijo, y abrió la mano.",
+              "scene": {
+                "bg": "laguna",
+                "mood": "calm",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "wave",
+                    "x": 0.34
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "offer",
+                    "x": 0.64
+                  }
+                ]
+              }
+            }
+          ],
+          "introduces": [
+            "helper"
+          ]
+        },
+        {
+          "id": "perla",
+          "variants": [
+            {
+              "id": "perla_marina_perla_a",
+              "text": "Era {item.un} redonda y brillante, del color de la nata. «La encontré dentro de una concha», contó {helper}. {hero} la guardó en el bolsillo, con mucho cuidado. ¡Era el regalo más bonito del mundo!",
+              "scene": {
+                "bg": "laguna",
+                "mood": "joy",
+                "time": "dia",
+                "focus": {
+                  "prop": "perla",
+                  "x": 0.5,
+                  "fill": 0.55
+                }
+              }
+            }
+          ],
+          "introduces": [
+            "item"
+          ]
+        },
+        {
+          "id": "marina",
+          "variants": [
+            {
+              "id": "perla_marina_marina_a",
+              "text": "De vuelta en el puerto, {hero} vio a Marina sentada en el muelle. Marina hacía un collar de conchas para su abuela, que cumplía años. Pero estaba triste, porque le faltaba la pieza del centro. «Sin el centro, el collar se ve vacío», suspiró Marina.",
+              "scene": {
+                "bg": "puerto",
+                "mood": "sad",
+                "time": "atardecer",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "idle",
+                    "x": 0.34
+                  },
+                  {
+                    "rig": "nina_puerto",
+                    "clip": "sit_sad",
+                    "x": 0.62
+                  }
+                ]
+              }
+            }
+          ],
+          "moves": true
+        },
+        {
+          "id": "piensa",
+          "variants": [
+            {
+              "id": "perla_marina_piensa_a",
+              "text": "{hero} tocó la perla en el bolsillo. Era su regalo, y le gustaba muchísimo. Pero pensó en la abuela de Marina, y en su cumpleaños. Pensó también en lo triste que estaba Marina.",
+              "scene": {
+                "bg": "puerto",
+                "mood": "mystery",
+                "time": "atardecer",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "think",
+                    "x": 0.34
+                  },
+                  {
+                    "rig": "nina_puerto",
+                    "clip": "sit_sad",
+                    "x": 0.62
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "perla",
+                    "near": "hero",
+                    "dx": 0.07,
+                    "lift": 60,
+                    "scale": 0.6
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "da",
+          "variants": [
+            {
+              "id": "perla_marina_da_a",
+              "text": "Así que {hero} sacó la perla y se la dio. «Para el centro del collar», dijo {hero}. Marina abrió mucho la boca. «¿De verdad?» La perla quedó perfecta, en medio de todas las conchas. ¡Ahora el collar brillaba como una estrella!",
+              "scene": {
+                "bg": "puerto",
+                "mood": "joy",
+                "time": "atardecer",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "offer",
+                    "x": 0.34
+                  },
+                  {
+                    "rig": "nina_puerto",
+                    "clip": "cheer",
+                    "x": 0.62
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "perla",
+                    "x": 0.48,
+                    "scale": 0.6
+                  }
+                ]
+              },
+              "adds": [
+                "compartio"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "abuela",
+          "variants": [
+            {
+              "id": "perla_marina_abuela_a",
+              "text": "Al día siguiente, la abuela de Marina se puso el collar y se rio de alegría. Marina le dio a {hero} un abrazo enorme, porque eso es lo que hacen los buenos amigos. Y {hero} sintió un calorcito en el pecho, más brillante que cualquier perla.",
+              "scene": {
+                "bg": "puerto",
+                "mood": "joy",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "hug",
+                    "x": 0.4
+                  },
+                  {
+                    "rig": "nina_puerto",
+                    "clip": "hug",
+                    "x": 0.58
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "perla",
+                    "x": 0.75,
+                    "scale": 0.5
+                  }
+                ]
+              },
+              "requires": [
+                "compartio"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "nana",
+          "variants": [
+            {
+              "id": "perla_marina_nana_a",
+              "text": "Esa noche, desde la laguna, {helper} cantó su nana más bonita. El agua brillaba bajo la luna. {hero} la escuchaba con los ojos cerrados, muy cerquita del agua. Y se durmió sonriendo.",
+              "scene": {
+                "bg": "laguna",
+                "mood": "sleep",
+                "time": "noche",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "sleep",
+                    "x": 0.36
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "talk",
+                    "x": 0.64
+                  }
+                ]
+              }
+            }
+          ],
+          "moves": true
+        }
+      ]
+    },
+    {
+      "id": "bajo_agua",
+      "value": "valentia",
+      "title": "Los ojos bajo el agua",
+      "ages": [
+        "4-5"
+      ],
+      "npcs": {},
+      "cast": {
+        "hero": {
+          "kind": "character",
+          "roles": [
+            "hero"
+          ]
+        },
+        "helper": {
+          "kind": "character",
+          "ids": [
+            "nacar"
+          ]
+        },
+        "laguna": {
+          "kind": "place",
+          "ids": [
+            "laguna"
+          ]
+        },
+        "arrecife": {
+          "kind": "place",
+          "ids": [
+            "arrecife"
+          ]
+        }
+      },
+      "beats": [
+        {
+          "id": "orilla",
+          "variants": [
+            {
+              "id": "bajo_agua_orilla_a",
+              "text": "{hero} sabía chapotear en la orilla, pero nunca había metido la cabeza bajo el agua. Cada vez que lo intentaba, cerraba los ojos muy fuerte y salía corriendo. El agua le hacía cosquillas en la nariz. «Bajo el agua no se ve nada», decía, porque nunca había mirado. Y se sentaba en la arena a mirar las olas.",
+              "scene": {
+                "bg": "laguna",
+                "mood": "calm",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "no",
+                    "x": 0.4
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "sirena",
+          "variants": [
+            {
+              "id": "bajo_agua_sirena_a",
+              "text": "Un día, {helper} asomó la cabeza entre los nenúfares. «Abajo hay un jardín», le contó. «Tiene peces de colores y estrellas que no brillan, pero son preciosas.» {hero} quería verlo. Pero le daba miedo, y se lo dijo a {helper}.",
+              "scene": {
+                "bg": "laguna",
+                "mood": "mystery",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "think",
+                    "x": 0.34
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "talk",
+                    "x": 0.66
+                  }
+                ]
+              }
+            }
+          ],
+          "introduces": [
+            "helper"
+          ]
+        },
+        {
+          "id": "truco",
+          "variants": [
+            {
+              "id": "bajo_agua_truco_a",
+              "text": "«El miedo está bien», dijo {helper}. «Vamos a hacerlo poquito a poco, para que el miedo se vaya cansando.» Primero, {hero} metió la barbilla. Luego, la nariz. Luego, la cara entera, uno, dos, tres, ¡fuera! «¡Lo hice!», gritó {hero}, salpicando.",
+              "scene": {
+                "bg": "laguna",
+                "mood": "hope",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "swim",
+                    "x": 0.38
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "cheer",
+                    "x": 0.66
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "abre",
+          "variants": [
+            {
+              "id": "bajo_agua_abre_a",
+              "text": "«Ahora, la última vez, abre los ojos», dijo {helper}. A {hero} le temblaba un poco la barriga. Pero respiró hondo, dio la mano a {helper} y se sumergió. Contó hasta tres, y abrió los ojos despacito.",
+              "scene": {
+                "bg": "laguna",
+                "mood": "tension",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "swim",
+                    "x": 0.4
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "swim",
+                    "x": 0.62
+                  }
+                ]
+              },
+              "adds": [
+                "dio_el_paso"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "jardin",
+          "variants": [
+            {
+              "id": "bajo_agua_jardin_a",
+              "text": "¡Allí estaba el jardín! Había algas que bailaban, peces amarillos y una estrella de mar naranja. La luz del sol bajaba en rayos, como cintas doradas. {helper} nadaba a su lado y le señalaba cada pez. {hero} sonrió con burbujas, porque era lo más bonito que había visto nunca.",
+              "scene": {
+                "bg": "arrecife",
+                "mood": "joy",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "swim",
+                    "x": 0.36
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "swim",
+                    "x": 0.62
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "estrella_mar",
+                    "x": 0.5,
+                    "scale": 0.7
+                  }
+                ]
+              },
+              "requires": [
+                "dio_el_paso"
+              ]
+            }
+          ],
+          "moves": true
+        },
+        {
+          "id": "toalla",
+          "variants": [
+            {
+              "id": "bajo_agua_toalla_a",
+              "text": "Al salir, {hero} se envolvió en la toalla, temblando de alegría. «Mañana quiero volver», dijo. {helper} se rio y salpicó con la cola. «Mañana te enseño las tortugas», prometió.",
+              "scene": {
+                "bg": "laguna",
+                "mood": "joy",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "laugh",
+                    "x": 0.38
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "laugh",
+                    "x": 0.64
+                  }
+                ]
+              }
+            }
+          ],
+          "moves": true
+        },
+        {
+          "id": "sueno",
+          "variants": [
+            {
+              "id": "bajo_agua_sueno_a",
+              "text": "Esa noche, {hero} soñó con algas que bailaban y peces que saludaban. En el sueño, nadaba con los ojos bien abiertos. Y no tenía nada de miedo.",
+              "scene": {
+                "bg": "laguna",
+                "mood": "sleep",
+                "time": "noche",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "sleep",
+                    "x": 0.42
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mejor_nudo",
+      "value": "humildad",
+      "title": "El mejor nudo del barco",
+      "ages": [
+        "4-5"
+      ],
+      "npcs": {
+        "marinero": [
+          "el marinero",
+          "los marineros",
+          "marinero"
+        ]
+      },
+      "cast": {
+        "hero": {
+          "kind": "character",
+          "roles": [
+            "hero"
+          ]
+        },
+        "helper": {
+          "kind": "character",
+          "ids": [
+            "estela"
+          ]
+        },
+        "cubierta": {
+          "kind": "place",
+          "ids": [
+            "cubierta"
+          ]
+        }
+      },
+      "beats": [
+        {
+          "id": "presume",
+          "variants": [
+            {
+              "id": "mejor_nudo_presume_a",
+              "text": "En el barco, todos sabían que {hero} hacía nudos. Nudos de lazo, nudos de ocho y nudos de zapato. «Soy la mejor persona haciendo nudos de todo el barco», decía {hero}, muy estirad{hero.o}. Los marineros se reían por lo bajo, porque nadie lo sabe todo.",
+              "scene": {
+                "bg": "cubierta",
+                "mood": "calm",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "proud",
+                    "x": 0.36
+                  },
+                  {
+                    "rig": "marinero",
+                    "clip": "laugh",
+                    "x": 0.68
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "vela",
+          "variants": [
+            {
+              "id": "mejor_nudo_vela_a",
+              "text": "Una mañana, la capitana {helper} necesitó atar la vela grande. «¿Quién me ayuda?», preguntó. «¡Yo!», dijo {hero}. «Yo sé hacerlo sin ayuda de nadie.» Y antes de que nadie dijera nada, cogió la cuerda.",
+              "scene": {
+                "bg": "cubierta",
+                "mood": "hope",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "cheer",
+                    "x": 0.32
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "point",
+                    "x": 0.64
+                  }
+                ]
+              }
+            }
+          ],
+          "introduces": [
+            "helper"
+          ]
+        },
+        {
+          "id": "suelta",
+          "variants": [
+            {
+              "id": "mejor_nudo_suelta_a",
+              "text": "{hero} hizo un nudo de lazo. ¡Fsss!, se soltó. Hizo un nudo de ocho. ¡Fsss!, se soltó otra vez. La vela empezó a aletear con el viento, flap, flap. La capitana {helper} miraba sin decir nada, y {hero} se puso roj{hero.o} como un tomate.",
+              "scene": {
+                "bg": "cubierta",
+                "mood": "tension",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "surprised",
+                    "x": 0.38
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "think",
+                    "x": 0.66
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "pide",
+          "variants": [
+            {
+              "id": "mejor_nudo_pide_a",
+              "text": "Entonces vio al marinero, que llevaba muchos años en el mar. A {hero} le daba vergüenza. Pero la vela seguía aleteando, y la necesitaban para navegar. Así que se acercó y dijo: «No sé hacer este nudo. ¿Me enseñas?».",
+              "scene": {
+                "bg": "cubierta",
+                "mood": "hope",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "talk",
+                    "x": 0.36
+                  },
+                  {
+                    "rig": "marinero",
+                    "clip": "think",
+                    "x": 0.64
+                  }
+                ]
+              },
+              "adds": [
+                "pidio_ayuda"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "aprende",
+          "variants": [
+            {
+              "id": "mejor_nudo_aprende_a",
+              "text": "El marinero sonrió. «Este es el nudo de la vela. El conejo sale de la madriguera, da la vuelta al árbol y vuelve a entrar.» {hero} lo probó una vez, y dos, y a la tercera ¡aguantó! La vela dejó de aletear, porque el nudo era fuerte de verdad.",
+              "scene": {
+                "bg": "cubierta",
+                "mood": "joy",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "cheer",
+                    "x": 0.36
+                  },
+                  {
+                    "rig": "marinero",
+                    "clip": "clap",
+                    "x": 0.64
+                  }
+                ]
+              },
+              "requires": [
+                "pidio_ayuda"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "capitana",
+          "variants": [
+            {
+              "id": "mejor_nudo_capitana_a",
+              "text": "La capitana {helper} dio una palmada. «Los buenos marineros no lo saben todo», dijo. «Los buenos marineros preguntan.» {hero} se rio, y esta vez no presumió. Le dio las gracias al marinero.",
+              "scene": {
+                "bg": "cubierta",
+                "mood": "joy",
+                "time": "atardecer",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "laugh",
+                    "x": 0.34
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "clap",
+                    "x": 0.6
+                  },
+                  {
+                    "rig": "marinero",
+                    "clip": "wave",
+                    "x": 0.82
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "noche",
+          "variants": [
+            {
+              "id": "mejor_nudo_noche_a",
+              "text": "Por la noche, el barco se mecía bajo las estrellas. {hero} repasaba el nudo nuevo con los dedos, despacito: el conejo sale, da la vuelta, vuelve a entrar. Y antes de terminar, se quedó dormid{hero.o}.",
+              "scene": {
+                "bg": "cubierta",
+                "mood": "sleep",
+                "time": "noche",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "yawn",
+                    "x": 0.42
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "brujula_norte",
+      "value": "perseverancia",
+      "title": "La brújula y el camino",
+      "ages": [
+        "4-5"
+      ],
+      "npcs": {},
+      "cast": {
+        "hero": {
+          "kind": "character",
+          "roles": [
+            "hero"
+          ]
+        },
+        "helper": {
+          "kind": "character",
+          "ids": [
+            "abuelo"
+          ]
+        },
+        "playa": {
+          "kind": "place",
+          "ids": [
+            "playa"
+          ]
+        },
+        "selva": {
+          "kind": "place",
+          "ids": [
+            "selva"
+          ]
+        },
+        "faro": {
+          "kind": "place",
+          "ids": [
+            "faro"
+          ]
+        },
+        "item": {
+          "kind": "prop",
+          "ids": [
+            "brujula"
+          ]
+        }
+      },
+      "beats": [
+        {
+          "id": "regalo",
+          "variants": [
+            {
+              "id": "brujula_norte_regalo_a",
+              "text": "Un día, en la playa, el {helper} le regaló a {hero} {item.un}. «La aguja siempre señala el norte», le explicó. «Y el norte lleva a mi faro. Si te pierdes, sigue la aguja.» {hero} la apretó en la mano, muy content{hero.o}.",
+              "scene": {
+                "bg": "playa",
+                "mood": "calm",
+                "time": "dia",
+                "focus": {
+                  "prop": "brujula",
+                  "x": 0.5,
+                  "fill": 0.55
+                }
+              }
+            }
+          ],
+          "introduces": [
+            "item",
+            "helper"
+          ]
+        },
+        {
+          "id": "abuelo",
+          "variants": [
+            {
+              "id": "brujula_norte_abuelo_a",
+              "text": "«¿Me esperas en el faro?», preguntó {hero}. «Quiero llegar con la {item.noun}, sin ayuda.» El {helper} se rio y se marchó por la orilla. «Allí te espero, con un vaso de leche con miel.»",
+              "scene": {
+                "bg": "playa",
+                "mood": "hope",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "talk",
+                    "x": 0.34
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "wave",
+                    "x": 0.66
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "brujula",
+                    "near": "hero",
+                    "dx": 0.07,
+                    "lift": 60,
+                    "scale": 0.6
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "primera",
+          "variants": [
+            {
+              "id": "brujula_norte_primera_a",
+              "text": "{hero} miró la {item.noun}, pero se equivocó de lado, porque todavía no sabía leerla. Caminó y caminó, y llegó a las palmeras, no al faro. «¡Vaya!», dijo. Se sentó un momento, un poco enfadad{hero.o}.",
+              "scene": {
+                "bg": "playa",
+                "mood": "sad",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "sit_sad",
+                    "x": 0.42
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "brujula",
+                    "near": "hero",
+                    "dx": 0.07,
+                    "lift": 36,
+                    "scale": 0.6
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "segunda",
+          "variants": [
+            {
+              "id": "brujula_norte_segunda_a",
+              "text": "Pero se levantó y volvió a mirar. Esta vez giró hacia la selva. Las lianas le hacían cosquillas y los pájaros cantaban, pero tampoco había faro. «Otra vez no», suspiró {hero}.",
+              "scene": {
+                "bg": "selva",
+                "mood": "tension",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "walk",
+                    "x": 0.42
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "brujula",
+                    "near": "hero",
+                    "dx": 0.07,
+                    "lift": 60,
+                    "scale": 0.6
+                  }
+                ]
+              }
+            }
+          ],
+          "moves": true
+        },
+        {
+          "id": "piensa",
+          "variants": [
+            {
+              "id": "brujula_norte_piensa_a",
+              "text": "Entonces {hero} se paró a pensar. Dejó la {item.noun} sin moverla sobre la mano y esperó a que la aguja dejara de bailar. ¡Ahí estaba el norte! Así que {hero} giró los pies hasta que la aguja apuntó hacia delante.",
+              "scene": {
+                "bg": "selva",
+                "mood": "hope",
+                "time": "atardecer",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "think",
+                    "x": 0.42
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "brujula",
+                    "near": "hero",
+                    "dx": 0.07,
+                    "lift": 60,
+                    "scale": 0.6
+                  }
+                ]
+              },
+              "adds": [
+                "lo_intento"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "llega",
+          "variants": [
+            {
+              "id": "brujula_norte_llega_a",
+              "text": "Paso a paso, siguiendo la aguja, {hero} salió de la selva. Y allí, sobre las rocas, estaba el faro. El {helper} aplaudió desde la puerta, porque {hero} no se había rendido. «¡Lo conseguí a la tercera!», gritó {hero}.",
+              "scene": {
+                "bg": "faro",
+                "mood": "triumph",
+                "time": "atardecer",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "cheer",
+                    "x": 0.36
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "clap",
+                    "x": 0.66
+                  }
+                ]
+              },
+              "requires": [
+                "lo_intento"
+              ]
+            }
+          ],
+          "moves": true
+        },
+        {
+          "id": "leche",
+          "variants": [
+            {
+              "id": "brujula_norte_leche_a",
+              "text": "Con el vaso de leche con miel entre las manos, {hero} miró el mar oscuro. La luz del faro empezó a girar. «Mañana te enseño a buscar el norte en las estrellas», dijo el {helper}. Pero {hero} ya estaba bostezando.",
+              "scene": {
+                "bg": "faro",
+                "mood": "sleep",
+                "time": "noche",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "yawn",
+                    "x": 0.38
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "idle",
+                    "x": 0.64
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "carrera_calma",
+      "value": "amistad",
+      "title": "La carrera de la playa",
+      "ages": [
+        "4-5"
+      ],
+      "npcs": {
+        "nino_puerto": [
+          "Leo"
+        ],
+        "tortuga": [
+          "Calma"
+        ]
+      },
+      "cast": {
+        "hero": {
+          "kind": "character",
+          "roles": [
+            "hero"
+          ]
+        },
+        "playa": {
+          "kind": "place",
+          "ids": [
+            "playa"
+          ]
+        }
+      },
+      "beats": [
+        {
+          "id": "carrera",
+          "variants": [
+            {
+              "id": "carrera_calma_carrera_a",
+              "text": "En la playa, los niños del puerto organizaron una carrera hasta las palmeras. Leo quería ganar, y {hero} también. También quería correr Calma, la tortuga, que era amiga de todos. Calma se puso en la línea de salida, muy seria, con el cuello estirado. Todos se rieron, porque nunca habían visto a una tortuga en una carrera.",
+              "scene": {
+                "bg": "playa",
+                "mood": "joy",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "cheer",
+                    "x": 0.28
+                  },
+                  {
+                    "rig": "nino_puerto",
+                    "clip": "cheer",
+                    "x": 0.52
+                  },
+                  {
+                    "rig": "tortuga",
+                    "clip": "goat_idle",
+                    "x": 0.78
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "salida",
+          "variants": [
+            {
+              "id": "carrera_calma_salida_a",
+              "text": "«¡Preparados, listos, ya!» Leo salió disparado, y {hero} detrás, levantando arena. ¡Qué rápido corrían! Pero Calma iba despacito, despacito, porque las tortugas no saben correr.",
+              "scene": {
+                "bg": "playa",
+                "mood": "tension",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "run",
+                    "x": 0.42
+                  },
+                  {
+                    "rig": "nino_puerto",
+                    "clip": "run",
+                    "x": 0.66
+                  },
+                  {
+                    "rig": "tortuga",
+                    "clip": "goat_walk",
+                    "x": 0.16
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "mira",
+          "variants": [
+            {
+              "id": "carrera_calma_mira_a",
+              "text": "Casi en la meta, {hero} miró atrás. Calma estaba muy lejos, sola en medio de la playa. Tenía la cabeza agachada, porque nadie la esperaba. A {hero} se le encogió el corazón.",
+              "scene": {
+                "bg": "playa",
+                "mood": "sad",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "surprised",
+                    "x": 0.64
+                  },
+                  {
+                    "rig": "tortuga",
+                    "clip": "goat_idle",
+                    "x": 0.24
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "vuelve",
+          "variants": [
+            {
+              "id": "carrera_calma_vuelve_a",
+              "text": "Así que {hero} dio media vuelta y volvió con Calma. «Te acompaño», le dijo. «Una carrera es más bonita con amigos.» Calma levantó la cabeza, con sus ojitos brillantes. Y siguieron despacito, contando las conchas del camino: una blanca, una rosa, una con rayas.",
+              "scene": {
+                "bg": "playa",
+                "mood": "hope",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "walk",
+                    "x": 0.38
+                  },
+                  {
+                    "rig": "tortuga",
+                    "clip": "goat_walk",
+                    "x": 0.58
+                  }
+                ]
+              },
+              "adds": [
+                "acompano"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "leo",
+          "variants": [
+            {
+              "id": "carrera_calma_leo_a",
+              "text": "Leo llegó el primero a las palmeras. Pero al ver a {hero} con Calma, se rio y volvió también. «Yo también os acompaño», dijo. Y los tres llegaron a la meta a la vez, cantando una canción de piratas.",
+              "scene": {
+                "bg": "playa",
+                "mood": "joy",
+                "time": "atardecer",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "laugh",
+                    "x": 0.32
+                  },
+                  {
+                    "rig": "nino_puerto",
+                    "clip": "laugh",
+                    "x": 0.56
+                  },
+                  {
+                    "rig": "tortuga",
+                    "clip": "goat_idle",
+                    "x": 0.8
+                  }
+                ]
+              },
+              "requires": [
+                "acompano"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "atardecer",
+          "variants": [
+            {
+              "id": "carrera_calma_atardecer_a",
+              "text": "El sol se escondió en el mar, naranja como una mandarina. Calma estiró el cuello, feliz, y cerró los ojos sobre la arena tibia. Leo se sentó a un lado, y {hero} al otro. «La próxima carrera, la hacemos al paso de Calma», dijo Leo. Nadie había ganado, pero a nadie le importaba, porque se lo habían pasado de maravilla. Las olas hacían shhh, y las gaviotas se iban a dormir.",
+              "scene": {
+                "bg": "playa",
+                "mood": "sleep",
+                "time": "atardecer",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "sit",
+                    "x": 0.36
+                  },
+                  {
+                    "rig": "nino_puerto",
+                    "clip": "sit",
+                    "x": 0.56
+                  },
+                  {
+                    "rig": "tortuga",
+                    "clip": "goat_idle",
+                    "x": 0.78
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "timon_primera",
+      "value": "valentia",
+      "title": "La primera vez al timón",
+      "ages": [
+        "4-5"
+      ],
+      "npcs": {
+        "marinero": [
+          "marineros"
+        ],
+        "marinera": [
+          "marineros"
+        ]
+      },
+      "cast": {
+        "hero": {
+          "kind": "character",
+          "roles": [
+            "hero"
+          ]
+        },
+        "helper": {
+          "kind": "character",
+          "ids": [
+            "estela"
+          ]
+        },
+        "cubierta": {
+          "kind": "place",
+          "ids": [
+            "cubierta"
+          ]
+        },
+        "mar_abierto": {
+          "kind": "place",
+          "ids": [
+            "mar_abierto"
+          ]
+        }
+      },
+      "beats": [
+        {
+          "id": "propone",
+          "variants": [
+            {
+              "id": "timon_primera_propone_a",
+              "text": "La capitana {helper} llamó a {hero} junto al timón. «Hoy vas a llevar tú el barco hasta la Isla Quieta», dijo. {hero} miró el timón, tan grande, con sus ocho brazos de madera. Y sintió las rodillas como gelatina.",
+              "scene": {
+                "bg": "cubierta",
+                "mood": "calm",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "surprised",
+                    "x": 0.36
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "point",
+                    "x": 0.64
+                  }
+                ]
+              }
+            }
+          ],
+          "introduces": [
+            "helper"
+          ]
+        },
+        {
+          "id": "duda",
+          "variants": [
+            {
+              "id": "timon_primera_duda_a",
+              "text": "«¿Y si lo hago mal?», preguntó {hero}. «¿Y si el barco se va para otro lado?» La capitana {helper} se agachó a su lado. «Yo estaré aquí todo el rato», dijo. «Y si el barco se tuerce, lo enderezamos, porque para eso está el timón.»",
+              "scene": {
+                "bg": "cubierta",
+                "mood": "sad",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "think",
+                    "x": 0.38
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "talk",
+                    "x": 0.62
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "agarra",
+          "variants": [
+            {
+              "id": "timon_primera_agarra_a",
+              "text": "{hero} respiró hondo y puso las dos manos en el timón. Estaba frío y suave. {helper} le enseñó la isla, pequeña en el horizonte. «Mantén la proa mirando hacia allí», dijo.",
+              "scene": {
+                "bg": "cubierta",
+                "mood": "hope",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "steer",
+                    "x": 0.36
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "point",
+                    "x": 0.64
+                  }
+                ]
+              },
+              "adds": [
+                "dio_el_paso"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "rumbo",
+          "variants": [
+            {
+              "id": "timon_primera_rumbo_a",
+              "text": "El barco empezó a moverse. Una ola lo empujó hacia la izquierda, y {hero} giró el timón un poquito. ¡El barco obedeció! Otra ola, y otro giro. Las velas se hincharon con el viento, porque iban por buen camino. «¡Muy bien!», dijo {helper}, sin tocar el timón ni una vez.",
+              "scene": {
+                "bg": "mar_abierto",
+                "mood": "triumph",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "steer",
+                    "x": 0.36
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "cheer",
+                    "x": 0.64
+                  }
+                ]
+              },
+              "requires": [
+                "dio_el_paso"
+              ]
+            }
+          ],
+          "moves": true
+        },
+        {
+          "id": "isla",
+          "variants": [
+            {
+              "id": "timon_primera_isla_a",
+              "text": "Poco a poco, la isla se hizo grande. Ya se veían las palmeras y la arena blanca. «¡Tierra a la vista!», gritó {hero}, con las mejillas rojas de alegría. Los marineros aplaudieron desde la proa.",
+              "scene": {
+                "bg": "mar_abierto",
+                "mood": "joy",
+                "time": "atardecer",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "cheer",
+                    "x": 0.34
+                  },
+                  {
+                    "rig": "marinero",
+                    "clip": "clap",
+                    "x": 0.58
+                  },
+                  {
+                    "rig": "marinera",
+                    "clip": "clap",
+                    "x": 0.8
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "noche",
+          "variants": [
+            {
+              "id": "timon_primera_noche_a",
+              "text": "Esa noche, anclados frente a la isla, {hero} miraba las estrellas desde la cubierta. Todavía le hormigueaban las manos. «Las rodillas de gelatina se fueron», le dijo a {helper}. La capitana sonrió, porque ya lo sabía. Así que le dio las buenas noches y le contó que mañana irían a la playa de la isla. {hero} cerró los ojos y soñó con olas.",
+              "scene": {
+                "bg": "cubierta",
+                "mood": "sleep",
+                "time": "noche",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "yawn",
+                    "x": 0.38
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "idle",
+                    "x": 0.64
+                  }
+                ]
+              }
+            }
+          ],
+          "moves": true
+        }
+      ]
+    },
+    {
+      "id": "leo_nuevo",
+      "value": "amistad",
+      "title": "Un grumete nuevo",
+      "ages": [
+        "4-5"
+      ],
+      "npcs": {
+        "nino_puerto": [
+          "Leo"
+        ]
+      },
+      "cast": {
+        "hero": {
+          "kind": "character",
+          "roles": [
+            "hero"
+          ]
+        },
+        "cubierta": {
+          "kind": "place",
+          "ids": [
+            "cubierta"
+          ]
+        },
+        "bodega": {
+          "kind": "place",
+          "ids": [
+            "bodega"
+          ]
+        },
+        "camarote": {
+          "kind": "place",
+          "ids": [
+            "camarote"
+          ]
+        }
+      },
+      "beats": [
+        {
+          "id": "llega",
+          "variants": [
+            {
+              "id": "leo_nuevo_llega_a",
+              "text": "Una mañana subió al barco un grumete nuevo. Se llamaba Leo, y llevaba un saco enorme a la espalda. No hablaba con nadie, porque no conocía a nadie. Se quedó junto al mástil, sin moverse, mirándose los pies. Los marineros iban de aquí para allá, y nadie se fijaba en Leo.",
+              "scene": {
+                "bg": "cubierta",
+                "mood": "calm",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "idle",
+                    "x": 0.32
+                  },
+                  {
+                    "rig": "nino_puerto",
+                    "clip": "sad",
+                    "x": 0.62
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "piensa",
+          "variants": [
+            {
+              "id": "leo_nuevo_piensa_a",
+              "text": "{hero} se acordó de su primer día en el barco. Todo era enorme, y no conocía a nadie. Por eso supo cómo se sentía Leo: con un poquito de vergüenza y un poquito de pena.",
+              "scene": {
+                "bg": "cubierta",
+                "mood": "mystery",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "think",
+                    "x": 0.32
+                  },
+                  {
+                    "rig": "nino_puerto",
+                    "clip": "sad",
+                    "x": 0.62
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "saluda",
+          "variants": [
+            {
+              "id": "leo_nuevo_saluda_a",
+              "text": "Así que {hero} se acercó y le tendió la mano. «Hola, Leo. Soy {hero}. ¿Quieres que te enseñe el barco?» Leo levantó la cabeza. Tardó un poco, pero dijo que sí, y dejó el saco en el suelo. «¿Hay escondites?», preguntó. «Los mejores de todo el mar», contestó {hero}.",
+              "scene": {
+                "bg": "cubierta",
+                "mood": "hope",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "offer",
+                    "x": 0.36
+                  },
+                  {
+                    "rig": "nino_puerto",
+                    "clip": "idle",
+                    "x": 0.62
+                  }
+                ]
+              },
+              "adds": [
+                "se_acerco"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "bodega",
+          "variants": [
+            {
+              "id": "leo_nuevo_bodega_a",
+              "text": "Primero bajaron a la bodega. Había barriles de agua, sacos de harina y cajas con cuerdas. Olía a madera y a manzanas. {hero} le enseñó el escondite secreto, detrás del barril más gordo. Leo se rio por primera vez.",
+              "scene": {
+                "bg": "bodega",
+                "mood": "joy",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "point",
+                    "x": 0.36
+                  },
+                  {
+                    "rig": "nino_puerto",
+                    "clip": "laugh",
+                    "x": 0.62
+                  }
+                ]
+              },
+              "requires": [
+                "se_acerco"
+              ]
+            }
+          ],
+          "moves": true
+        },
+        {
+          "id": "cuenta",
+          "variants": [
+            {
+              "id": "leo_nuevo_cuenta_a",
+              "text": "Luego se sentaron en un barril y Leo le contó cosas. En su pueblo tenía un perro que se llamaba Bigotes. Le gustaba dibujar peces. Y nunca había visto una sirena. «Yo conozco una», dijo {hero}. Leo abrió los ojos como platos.",
+              "scene": {
+                "bg": "bodega",
+                "mood": "joy",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "talk",
+                    "x": 0.36
+                  },
+                  {
+                    "rig": "nino_puerto",
+                    "clip": "sit",
+                    "x": 0.62
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "noche",
+          "variants": [
+            {
+              "id": "leo_nuevo_noche_a",
+              "text": "Por la noche, colgaron las hamacas una al lado de la otra, para poder hablar bajito. «Mañana te presento a Nácar», susurró {hero}. «Mañana te dibujo un pez», susurró Leo. Y se durmieron con el barco meciéndose, como dos hermanos en una cuna.",
+              "scene": {
+                "bg": "camarote",
+                "mood": "sleep",
+                "time": "noche",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "sleep",
+                    "x": 0.36
+                  },
+                  {
+                    "rig": "nino_puerto",
+                    "clip": "sleep",
+                    "x": 0.62
+                  }
+                ]
+              }
+            }
+          ],
+          "moves": true
+        }
+      ]
+    },
+    {
+      "id": "farol_ola",
+      "value": "generosidad",
+      "title": "Un farol para Ola",
+      "ages": [
+        "4-5"
+      ],
+      "npcs": {
+        "ola": [
+          "Ola"
+        ]
+      },
+      "cast": {
+        "hero": {
+          "kind": "character",
+          "roles": [
+            "hero"
+          ]
+        },
+        "helper": {
+          "kind": "character",
+          "ids": [
+            "estela"
+          ]
+        },
+        "puerto": {
+          "kind": "place",
+          "ids": [
+            "puerto"
+          ]
+        },
+        "item": {
+          "kind": "prop",
+          "ids": [
+            "farol_barco"
+          ]
+        }
+      },
+      "beats": [
+        {
+          "id": "regalo",
+          "variants": [
+            {
+              "id": "farol_ola_regalo_a",
+              "text": "La capitana {helper} le regaló a {hero} {item.un} de barco, pequeño y de latón. «Es para que no tengas que caminar a oscuras por la cubierta», le dijo. {hero} lo llevaba a todas partes, colgado de la mano.",
+              "scene": {
+                "bg": "puerto",
+                "mood": "calm",
+                "time": "atardecer",
+                "focus": {
+                  "prop": "farol_barco",
+                  "x": 0.5,
+                  "fill": 0.55
+                }
+              }
+            }
+          ],
+          "introduces": [
+            "item",
+            "helper"
+          ]
+        },
+        {
+          "id": "puerto",
+          "variants": [
+            {
+              "id": "farol_ola_puerto_a",
+              "text": "Esa tarde, {hero} y la capitana {helper} bajaron al puerto. Allí estaba Ola, la pescadora, con su barca lista. Pero Ola tenía cara de preocupación. «Mi {item.noun} se ha roto», dijo. «Y esta noche tengo que salir a pescar.»",
+              "scene": {
+                "bg": "puerto",
+                "mood": "sad",
+                "time": "atardecer",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "idle",
+                    "x": 0.28
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "idle",
+                    "x": 0.5
+                  },
+                  {
+                    "rig": "ola",
+                    "clip": "sad",
+                    "x": 0.76
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "farol_barco_apagado",
+                    "x": 0.9,
+                    "scale": 0.7
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "problema",
+          "variants": [
+            {
+              "id": "farol_ola_problema_a",
+              "text": "«Sin luz, mi barca no encuentra el camino de vuelta», explicó Ola. «Y los otros barcos no me ven.» {hero} miró su {item.noun}. Le gustaba mucho. Era su primer regalo de capitana.",
+              "scene": {
+                "bg": "puerto",
+                "mood": "mystery",
+                "time": "atardecer",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "think",
+                    "x": 0.34
+                  },
+                  {
+                    "rig": "ola",
+                    "clip": "sad",
+                    "x": 0.66
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "farol_barco",
+                    "near": "hero",
+                    "dx": 0.08,
+                    "lift": 50,
+                    "scale": 0.7
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "da",
+          "variants": [
+            {
+              "id": "farol_ola_da_a",
+              "text": "Pero Ola lo necesitaba más. Así que {hero} se lo dio. «Llévate el mío», dijo. «Me lo devuelves mañana, cuando vuelvas.» Ola lo cogió con las dos manos. «Gracias, grumete», dijo, y se le iluminó la cara.",
+              "scene": {
+                "bg": "puerto",
+                "mood": "hope",
+                "time": "atardecer",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "offer",
+                    "x": 0.34
+                  },
+                  {
+                    "rig": "ola",
+                    "clip": "offer",
+                    "x": 0.64
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "farol_barco",
+                    "x": 0.5,
+                    "scale": 0.7
+                  }
+                ]
+              },
+              "adds": [
+                "compartio"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "luz",
+          "variants": [
+            {
+              "id": "farol_ola_luz_a",
+              "text": "Por la noche, desde el muelle, {hero} y la capitana miraban el mar. A lo lejos se veía una lucecita que se movía, despacio, sobre el agua. Era el {item.noun}, en la barca de Ola. «Mira», dijo {helper}. «Tu luz está trabajando.»",
+              "scene": {
+                "bg": "puerto",
+                "mood": "joy",
+                "time": "noche",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "point",
+                    "x": 0.36
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "idle",
+                    "x": 0.64
+                  }
+                ],
+                "offstage": [
+                  "ola"
+                ]
+              },
+              "requires": [
+                "compartio"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "vuelta",
+          "variants": [
+            {
+              "id": "farol_ola_vuelta_a",
+              "text": "Al amanecer, Ola volvió con la barca llena de peces. Le devolvió el {item.noun} a {hero} y le regaló el pez más brillante. «Tu luz me trajo a casa», dijo. {hero} sonrió, porque compartir le había calentado el corazón.",
+              "scene": {
+                "bg": "puerto",
+                "mood": "joy",
+                "time": "amanecer",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "cheer",
+                    "x": 0.34
+                  },
+                  {
+                    "rig": "ola",
+                    "clip": "offer",
+                    "x": 0.64
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "farol_barco",
+                    "near": "hero",
+                    "dx": 0.08,
+                    "lift": 50,
+                    "scale": 0.7
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "duerme",
+          "variants": [
+            {
+              "id": "farol_ola_duerme_a",
+              "text": "Esa noche, {hero} colgó el {item.noun} junto a su hamaca. La lucecita temblaba en la pared. {hero} pensó en Ola, en su barca y en el mar. Y se durmió mirando la llama, que parecía una estrella pequeñita.",
+              "scene": {
+                "bg": "puerto",
+                "mood": "sleep",
+                "time": "noche",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "yawn",
+                    "x": 0.4
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "farol_barco",
+                    "x": 0.6,
+                    "clip": "glow",
+                    "scale": 0.7
+                  }
+                ],
+                "offstage": [
+                  "ola"
                 ]
               }
             }
