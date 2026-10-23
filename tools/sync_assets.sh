@@ -29,10 +29,16 @@ if $check; then
   diff -r art/medieval/scenes "$dst/medieval/scenes" >/dev/null || fail "$dst/medieval/scenes"
   diff art/medieval/index.json "$dst/medieval/index.json" >/dev/null || fail "$dst/medieval/index.json"
   diff -r art/clips "$dst/clips" >/dev/null || fail "$dst/clips"
+  # Mar de las Estrellas (en construcción, docs/26): personajes; los fondos llegan en la fase 4
+  diff -r art/mar/rigs "$dst/mar/rigs" >/dev/null || fail "$dst/mar/rigs"
+  diff art/mar/index.json "$dst/mar/index.json" >/dev/null || fail "$dst/mar/index.json"
 else
   rm -rf "$dst"; mkdir -p "$dst/medieval"
   cp -r art/medieval/rigs art/medieval/scenes "$dst/medieval/"
   cp art/medieval/index.json "$dst/medieval/"
   cp -r art/clips "$dst/clips"
+  mkdir -p "$dst/mar"
+  cp -r art/mar/rigs "$dst/mar/"
+  cp art/mar/index.json "$dst/mar/"
 fi
 echo "assets OK"

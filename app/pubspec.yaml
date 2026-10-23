@@ -43,6 +43,8 @@ flutter:
     - assets/art/medieval/index.json
     - assets/art/medieval/rigs/
     - assets/art/medieval/scenes/
+    - assets/art/mar/index.json
+    - assets/art/mar/rigs/
     - assets/art/clips/
     # Sonido de fondo sintetizado por tools/audio/make_ambient.py.
     - assets/audio/

@@ -85,7 +85,8 @@ Cada fase termina con las pruebas y el validador en verde, una comprobación en 
 |---|---|
 | 1. Revisión gramatical | ✅ Seis frases corregidas en el medieval (pack 0.19.1); el validador rechaza plurales de pareja en masculino («{hero} y Lía … juntos») y títulos pegados al héroe («{hero}, el rey»). Ver [14](14-rubrica-editorial.md). |
 | 2. Varios packs en la app | ✅ El pack abierto se guarda en Ajustes (`paquete`); pack y arte se cargan por `id`; «Paquetes» marca el abierto; la portada sale de `PackCover`; un cuento guardado se cuenta con su pack; solo se ofrecen las enseñanzas con cuentos (también «Sorpréndeme»). `content/packs/mar` tiene los personajes, lugares y objetos de este plan y un cuento de prueba (*La caracola de Nácar*, 2–3, amistad), aún sin arte. **Solo se abre en compilaciones de desarrollo** (`kDebugMode`). |
-| 3–6 | ☐ |
+| 3. Arte de personajes | ✅ `tools/art/mar_kit.py` → `art/mar/` (30 dibujos, 312 KB): Bruno, Vega, la capitana Estela, el Abuelo Faro, el capitán Mostacho, Nácar, Remolino, el Tío Cazo, Ola, marinero, marinera y dos niños del puerto, cada uno con su variante de miedo (y pijama los protagonistas); el loro Pimienta y la tortuga Calma. Nácar y Remolino usan el **mismo esqueleto humano** (la cola y los tentáculos viven en los huesos de las piernas), así que todos los gestos les sirven sin código nuevo. Mostacho lleva las monedas en una bolsita del cinturón (con la mano tapaba la cara al sorprenderse). Hoja: `art/mar/preview/sheet.svg`. **En la app aún no se ven:** faltan los fondos (fase 4). |
+| 4–6 | ☐ |
 
 ## 6. Riesgos
 
