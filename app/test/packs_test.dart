@@ -68,9 +68,11 @@ void main() {
       await openPack(tester, 'Mar de las Estrellas');
       expect(settingsOf(tester).packId, 'mar');
       expect(find.text('¿Qué quieres aprender hoy?'), findsOneWidget);
-      // Solo se ofrecen las enseñanzas que ya tienen cuentos en este paquete
-      expect(find.text('Amistad'), findsOneWidget);
-      expect(find.text('Honestidad'), findsNothing);
+      // Se elige una enseñanza del paquete y sale su cuento
+      await tester.ensureVisible(find.text('Amistad'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Amistad'));
+      await tester.pump();
 
       await tester.tap(find.text('Crear cuento'));
       await tester.pumpAndSettle();

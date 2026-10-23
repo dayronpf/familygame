@@ -3,7 +3,7 @@
     "schema": 2,
     "id": "mar",
     "name": "Mar de las Estrellas (en construcción)",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "license": "Contenido original, todos los derechos reservados al autor del proyecto",
     "language": "es",
     "age_band": "2-12",
@@ -49,7 +49,7 @@
           "a media voz",
           "mirándose los pies descalzos"
         ],
-        "consuelo": "compartió con ella su galleta de barco",
+        "consuelo": "compartió su galleta de barco",
         "regalo": "una conchita con un agujerito, para colgarla del cuello"
       }
     },
@@ -90,7 +90,7 @@
           "a media voz",
           "mirándose los pies descalzos"
         ],
-        "consuelo": "compartió con ella su galleta de barco",
+        "consuelo": "compartió su galleta de barco",
         "regalo": "una conchita con un agujerito, para colgarla del cuello"
       }
     },
@@ -496,7 +496,7 @@
     },
     {
       "id": "botella_mensaje",
-      "noun": "botella con un mensaje",
+      "noun": "botella",
       "gender": "f",
       "tags": [
         "message"
@@ -529,7 +529,7 @@
     },
     {
       "id": "galleta_barco",
-      "noun": "galleta de barco",
+      "noun": "galleta",
       "gender": "f",
       "tags": [
         "food"
@@ -852,6 +852,1124 @@
                     "near": "helper",
                     "dx": -0.06,
                     "lift": 60
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "galleta_cazo",
+      "value": "honestidad",
+      "title": "La galleta de Tío Cazo",
+      "ages": [
+        "2-3"
+      ],
+      "npcs": {
+        "cazo": [
+          "Tío Cazo"
+        ]
+      },
+      "cast": {
+        "hero": {
+          "kind": "character",
+          "roles": [
+            "hero"
+          ]
+        },
+        "cubierta": {
+          "kind": "place",
+          "ids": [
+            "cubierta"
+          ]
+        },
+        "camarote": {
+          "kind": "place",
+          "ids": [
+            "camarote"
+          ]
+        },
+        "item": {
+          "kind": "prop",
+          "ids": [
+            "galleta_barco"
+          ]
+        }
+      },
+      "beats": [
+        {
+          "id": "olor",
+          "variants": [
+            {
+              "id": "galleta_cazo_olor_a",
+              "text": "En la cubierta olía a miel. Tío Cazo había hecho galletas de barco. La más grande era {item.el} de arriba, redonda y doradita. «Son para la merienda», dijo. {hero} se relamió: ñam.",
+              "scene": {
+                "bg": "cubierta",
+                "mood": "calm",
+                "time": "dia",
+                "focus": {
+                  "prop": "galleta_barco",
+                  "x": 0.5,
+                  "fill": 0.55
+                }
+              }
+            },
+            {
+              "id": "galleta_cazo_olor_b",
+              "text": "¡Qué olor tan rico había en la cubierta! Tío Cazo había hecho galletas de barco. Arriba del todo estaba {item.el} más doradita. «Son para la merienda», dijo Tío Cazo. A {hero} le sonaron las tripas.",
+              "scene": {
+                "bg": "cubierta",
+                "mood": "calm",
+                "time": "dia",
+                "focus": {
+                  "prop": "galleta_barco",
+                  "x": 0.5,
+                  "fill": 0.55
+                }
+              }
+            }
+          ],
+          "introduces": [
+            "item"
+          ]
+        },
+        {
+          "id": "bocado",
+          "variants": [
+            {
+              "id": "galleta_cazo_bocado_a",
+              "text": "Tío Cazo se fue a la cocina. {hero} miró el plato. {item.Un}, solo una… Y se la comió de un bocado. ¡Crac, crac! Quedaron migas en la camisa.",
+              "scene": {
+                "bg": "cubierta",
+                "mood": "mystery",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "eat",
+                    "x": 0.4
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "galleta_barco",
+                    "x": 0.62,
+                    "scale": 0.9
+                  }
+                ],
+                "offstage": [
+                  "cazo"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "cuenta",
+          "variants": [
+            {
+              "id": "galleta_cazo_cuenta_a",
+              "text": "Tío Cazo volvió y contó las galletas. «Una, dos, tres… ¡Falta una!» {hero} tenía la barriga rara, porque guardaba un secreto.",
+              "scene": {
+                "bg": "cubierta",
+                "mood": "sad",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "sad",
+                    "x": 0.32
+                  },
+                  {
+                    "rig": "cazo",
+                    "clip": "think",
+                    "x": 0.66
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "galleta_barco",
+                    "x": 0.5,
+                    "scale": 0.9
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "verdad",
+          "variants": [
+            {
+              "id": "galleta_cazo_verdad_a",
+              "text": "Así que {hero} se acercó despacito. «Fui yo», dijo {hero}. «Me la comí.» Tío Cazo se rascó el bigote y miró a {hero}.",
+              "scene": {
+                "bg": "cubierta",
+                "mood": "hope",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "talk",
+                    "x": 0.36
+                  },
+                  {
+                    "rig": "cazo",
+                    "clip": "think",
+                    "x": 0.66
+                  }
+                ]
+              },
+              "adds": [
+                "dijo_verdad"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "regalo",
+          "variants": [
+            {
+              "id": "galleta_cazo_regalo_a",
+              "text": "Tío Cazo sonrió. «Gracias por decir la verdad», dijo. Y le dio otra {item.noun} para la merienda, con todos. La barriga de {hero} ya no estaba rara.",
+              "scene": {
+                "bg": "cubierta",
+                "mood": "joy",
+                "time": "atardecer",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "cheer",
+                    "x": 0.36
+                  },
+                  {
+                    "rig": "cazo",
+                    "clip": "offer",
+                    "x": 0.66
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "galleta_barco",
+                    "near": "hero",
+                    "dx": 0.07,
+                    "lift": 60
+                  }
+                ]
+              },
+              "requires": [
+                "dijo_verdad"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "hamaca",
+          "variants": [
+            {
+              "id": "galleta_cazo_hamaca_a",
+              "text": "Por la noche, {hero} se metió en la hamaca. Se mecía despacito, porque el barco también se mecía. Y {hero} se durmió con sabor a miel.",
+              "scene": {
+                "bg": "camarote",
+                "mood": "sleep",
+                "time": "noche",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "yawn",
+                    "x": 0.5
+                  }
+                ]
+              }
+            },
+            {
+              "id": "galleta_cazo_hamaca_b",
+              "text": "Cuando salió la luna, {hero} se fue a la hamaca. El barco hacía ñec, ñec, porque las olas lo mecían. {hero} cerró los ojos, con sabor a miel.",
+              "scene": {
+                "bg": "camarote",
+                "mood": "sleep",
+                "time": "noche",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "yawn",
+                    "x": 0.5
+                  }
+                ]
+              }
+            }
+          ],
+          "moves": true
+        }
+      ]
+    },
+    {
+      "id": "cofa_paso",
+      "value": "valentia",
+      "title": "Arriba, en la cofa",
+      "ages": [
+        "2-3"
+      ],
+      "npcs": {},
+      "cast": {
+        "hero": {
+          "kind": "character",
+          "roles": [
+            "hero"
+          ]
+        },
+        "helper": {
+          "kind": "character",
+          "ids": [
+            "estela"
+          ]
+        },
+        "cubierta": {
+          "kind": "place",
+          "ids": [
+            "cubierta"
+          ]
+        },
+        "cofa": {
+          "kind": "place",
+          "ids": [
+            "cofa"
+          ]
+        },
+        "item": {
+          "kind": "prop",
+          "ids": [
+            "catalejo"
+          ]
+        }
+      },
+      "beats": [
+        {
+          "id": "mastil",
+          "variants": [
+            {
+              "id": "cofa_paso_mastil_a",
+              "text": "La capitana {helper} señaló el mástil. Arriba, muy arriba, estaba la cofa. «Desde allí se ve la isla», dijo {helper}. {hero} miró hacia arriba. ¡Qué alto!",
+              "scene": {
+                "bg": "cubierta",
+                "mood": "calm",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "wonder",
+                    "x": 0.32
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "point",
+                    "x": 0.6
+                  }
+                ]
+              }
+            }
+          ],
+          "introduces": [
+            "helper"
+          ]
+        },
+        {
+          "id": "pasito",
+          "variants": [
+            {
+              "id": "cofa_paso_pasito_a",
+              "text": "{hero} puso un pie en la escalera de cuerda. Las piernas hacían cosquillas, así que respiró hondo. «Un pasito», le dijo {helper}. «Un pasito», repitió {hero}. Y subió un pasito.",
+              "scene": {
+                "bg": "cubierta",
+                "mood": "tension",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "climb",
+                    "x": 0.4
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "idle",
+                    "x": 0.7
+                  }
+                ]
+              },
+              "adds": [
+                "subio"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "otro",
+          "variants": [
+            {
+              "id": "cofa_paso_otro_a",
+              "text": "Y otro pasito. Y otro más. El viento soplaba suave: fiu, fiu. {hero} no miraba abajo, porque miraba la cofa.",
+              "scene": {
+                "bg": "cubierta",
+                "mood": "hope",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "climb",
+                    "x": 0.45
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "arriba",
+          "variants": [
+            {
+              "id": "cofa_paso_arriba_a",
+              "text": "¡Arriba! {hero} llegó a la cofa. {helper} subió detrás, para que {hero} viera la isla. Y le dio {item.un} dorado.",
+              "scene": {
+                "bg": "cofa",
+                "mood": "triumph",
+                "time": "dia",
+                "focus": {
+                  "prop": "catalejo",
+                  "x": 0.5,
+                  "fill": 0.55
+                }
+              },
+              "requires": [
+                "subio"
+              ]
+            }
+          ],
+          "introduces": [
+            "item"
+          ],
+          "moves": true
+        },
+        {
+          "id": "isla",
+          "variants": [
+            {
+              "id": "cofa_paso_isla_a",
+              "text": "{hero} miró por el catalejo. ¡Allí estaba la isla, con sus palmeras! «La veo», dijo {hero}, con una sonrisa enorme. {helper} aplaudió, porque {hero} había subido paso a paso.",
+              "scene": {
+                "bg": "cofa",
+                "mood": "joy",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "spyglass",
+                    "x": 0.36
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "wave",
+                    "x": 0.66
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "catalejo",
+                    "near": "hero",
+                    "dx": 0.06,
+                    "lift": 95,
+                    "scale": 0.8
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "luna",
+          "variants": [
+            {
+              "id": "cofa_paso_luna_a",
+              "text": "Por la noche, ya en la cubierta, {hero} bostezó junto a {helper}. Arriba brillaba la luna, tan alta como la cofa. {hero} le dijo buenas noches. Y se durmió.",
+              "scene": {
+                "bg": "cubierta",
+                "mood": "sleep",
+                "time": "noche",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "yawn",
+                    "x": 0.4
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "idle",
+                    "x": 0.68
+                  }
+                ]
+              }
+            }
+          ],
+          "moves": true
+        }
+      ]
+    },
+    {
+      "id": "cofre_pesado",
+      "value": "humildad",
+      "title": "El cofre pesado",
+      "ages": [
+        "2-3"
+      ],
+      "npcs": {
+        "marinero": [
+          "marinero"
+        ],
+        "marinera": [
+          "marinera"
+        ]
+      },
+      "cast": {
+        "hero": {
+          "kind": "character",
+          "roles": [
+            "hero"
+          ]
+        },
+        "puerto": {
+          "kind": "place",
+          "ids": [
+            "puerto"
+          ]
+        },
+        "item": {
+          "kind": "prop",
+          "ids": [
+            "cofre"
+          ]
+        }
+      },
+      "beats": [
+        {
+          "id": "cofre",
+          "variants": [
+            {
+              "id": "cofre_pesado_cofre_a",
+              "text": "En el puerto había {item.un} grande, de madera. Tenía que llegar al barco, para que zarpara. {hero} dijo: «Yo puedo llevarlo».",
+              "scene": {
+                "bg": "puerto",
+                "mood": "calm",
+                "time": "dia",
+                "focus": {
+                  "prop": "cofre",
+                  "x": 0.5,
+                  "fill": 0.55
+                }
+              }
+            }
+          ],
+          "introduces": [
+            "item"
+          ]
+        },
+        {
+          "id": "empuja",
+          "variants": [
+            {
+              "id": "cofre_pesado_empuja_a",
+              "text": "{hero} empujó el cofre: ¡uf! No se movió. {hero} tiró del cofre: ¡uf, uf! No se movió nada de nada.",
+              "scene": {
+                "bg": "puerto",
+                "mood": "tension",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "surprised",
+                    "x": 0.36
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "cofre",
+                    "x": 0.6
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "sienta",
+          "variants": [
+            {
+              "id": "cofre_pesado_sienta_a",
+              "text": "{hero} se sentó en el muelle, con la cara roja. El cofre pesaba mucho, porque estaba lleno de mantas y de cuerdas. {hero} lo miró un ratito.",
+              "scene": {
+                "bg": "puerto",
+                "mood": "sad",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "sit_sad",
+                    "x": 0.36
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "cofre",
+                    "x": 0.62
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "ayuda",
+          "variants": [
+            {
+              "id": "cofre_pesado_ayuda_a",
+              "text": "Por el muelle pasaban un marinero y una marinera. Sin ayuda no podía, así que {hero} respiró hondo. «¿Me ayudáis?», preguntó {hero}. «¡Claro!», dijeron los dos.",
+              "scene": {
+                "bg": "puerto",
+                "mood": "hope",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "talk",
+                    "x": 0.3
+                  },
+                  {
+                    "rig": "marinero",
+                    "clip": "wave",
+                    "x": 0.58
+                  },
+                  {
+                    "rig": "marinera",
+                    "clip": "idle",
+                    "x": 0.8
+                  }
+                ]
+              },
+              "adds": [
+                "pidio_ayuda"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "juntos",
+          "variants": [
+            {
+              "id": "cofre_pesado_juntos_a",
+              "text": "Uno, dos y tres: ¡arriba! Entre los tres llevaron el cofre al barco. El marinero cantaba, la marinera silbaba y {hero} se reía. Así pesaba menos.",
+              "scene": {
+                "bg": "puerto",
+                "mood": "joy",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "cheer",
+                    "x": 0.3
+                  },
+                  {
+                    "rig": "marinero",
+                    "clip": "walk",
+                    "x": 0.56
+                  },
+                  {
+                    "rig": "marinera",
+                    "clip": "walk",
+                    "x": 0.78
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "cofre",
+                    "x": 0.67,
+                    "lift": 40
+                  }
+                ]
+              },
+              "requires": [
+                "pidio_ayuda"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "gaviotas",
+          "variants": [
+            {
+              "id": "cofre_pesado_gaviotas_a",
+              "text": "Al atardecer, {hero} se sentó a mirar el mar. Las gaviotas volaban despacio. Pedir ayuda había sido fácil. {hero} bostezó, y el mar dijo shhh.",
+              "scene": {
+                "bg": "puerto",
+                "mood": "sleep",
+                "time": "atardecer",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "sit",
+                    "x": 0.42
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "botella_corcho",
+      "value": "perseverancia",
+      "title": "La botella del mar",
+      "ages": [
+        "2-3"
+      ],
+      "npcs": {
+        "loro": [
+          "Pimienta"
+        ]
+      },
+      "cast": {
+        "hero": {
+          "kind": "character",
+          "roles": [
+            "hero"
+          ]
+        },
+        "playa": {
+          "kind": "place",
+          "ids": [
+            "playa"
+          ]
+        },
+        "camarote": {
+          "kind": "place",
+          "ids": [
+            "camarote"
+          ]
+        },
+        "item": {
+          "kind": "prop",
+          "ids": [
+            "botella_mensaje"
+          ]
+        }
+      },
+      "beats": [
+        {
+          "id": "ola",
+          "variants": [
+            {
+              "id": "botella_corcho_ola_a",
+              "text": "Una ola trajo {item.un} con un mensaje. Dentro había un papel enrollado. {hero} la sacó de la arena mojada. ¡Qué sorpresa!",
+              "scene": {
+                "bg": "playa",
+                "mood": "mystery",
+                "time": "dia",
+                "focus": {
+                  "prop": "botella_mensaje",
+                  "x": 0.5,
+                  "fill": 0.55
+                }
+              }
+            }
+          ],
+          "introduces": [
+            "item"
+          ]
+        },
+        {
+          "id": "tira",
+          "variants": [
+            {
+              "id": "botella_corcho_tira_a",
+              "text": "{hero} tiró del corcho. No salió. Tiró otra vez. ¡Nada! La {item.noun} estaba muy cerrada, porque el corcho era de barco.",
+              "scene": {
+                "bg": "playa",
+                "mood": "tension",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "think",
+                    "x": 0.4
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "botella_mensaje",
+                    "near": "hero",
+                    "dx": 0.08,
+                    "lift": 60,
+                    "scale": 0.8
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "loro",
+          "variants": [
+            {
+              "id": "botella_corcho_loro_a",
+              "text": "Pimienta, el loro, cantó desde la palmera: «¡Otra vez, otra vez!». Así que {hero} tiró otra vez. ¡Casi!",
+              "scene": {
+                "bg": "playa",
+                "mood": "hope",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "climb",
+                    "x": 0.36
+                  },
+                  {
+                    "rig": "loro",
+                    "clip": "hoot",
+                    "x": 0.68
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "botella_mensaje",
+                    "near": "hero",
+                    "dx": 0.08,
+                    "lift": 60,
+                    "scale": 0.8
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "plop",
+          "variants": [
+            {
+              "id": "botella_corcho_plop_a",
+              "text": "{hero} pensó un poquito. Tirar no servía, así que giró el corcho despacio, como una llave: ñiec, ñiec… ¡Plop! ¡Salió! Pimienta aplaudió con las alas.",
+              "scene": {
+                "bg": "playa",
+                "mood": "triumph",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "cheer",
+                    "x": 0.4
+                  },
+                  {
+                    "rig": "loro",
+                    "clip": "flutter",
+                    "x": 0.7
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "botella_mensaje",
+                    "x": 0.55,
+                    "scale": 0.8
+                  }
+                ]
+              },
+              "adds": [
+                "abrio"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "dibujo",
+          "variants": [
+            {
+              "id": "botella_corcho_dibujo_a",
+              "text": "Dentro había un dibujo: una sirena saludando y una estrella. Decía: «Buenas noches, grumete del mar». {hero} sonrió y saludó al mar, por si la sirena miraba.",
+              "scene": {
+                "bg": "playa",
+                "mood": "joy",
+                "time": "atardecer",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "wave",
+                    "x": 0.4
+                  }
+                ]
+              },
+              "requires": [
+                "abrio"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "almohada",
+          "variants": [
+            {
+              "id": "botella_corcho_almohada_a",
+              "text": "Esa noche, {hero} guardó el dibujo dentro de la {item.noun}, junto a la hamaca. Fuera, el mar hacía shhh, shhh. {hero} miró la {item.noun} una vez más. Y se durmió.",
+              "scene": {
+                "bg": "camarote",
+                "mood": "sleep",
+                "time": "noche",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "yawn",
+                    "x": 0.42
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "botella_mensaje",
+                    "x": 0.7,
+                    "scale": 0.8
+                  }
+                ]
+              }
+            }
+          ],
+          "moves": true
+        }
+      ]
+    },
+    {
+      "id": "galletas_todos",
+      "value": "generosidad",
+      "title": "Galletas para todos",
+      "ages": [
+        "2-3"
+      ],
+      "npcs": {
+        "loro": [
+          "Pimienta"
+        ],
+        "tortuga": [
+          "Calma"
+        ]
+      },
+      "cast": {
+        "hero": {
+          "kind": "character",
+          "roles": [
+            "hero"
+          ]
+        },
+        "playa": {
+          "kind": "place",
+          "ids": [
+            "playa"
+          ]
+        },
+        "item": {
+          "kind": "prop",
+          "ids": [
+            "galleta_barco"
+          ]
+        }
+      },
+      "beats": [
+        {
+          "id": "tres",
+          "variants": [
+            {
+              "id": "galletas_todos_tres_a",
+              "text": "{hero} llevaba tres galletas de barco a la playa. Una, dos y tres. Cada {item.noun} era grande y doradita, y olía a miel.",
+              "scene": {
+                "bg": "playa",
+                "mood": "calm",
+                "time": "dia",
+                "focus": {
+                  "prop": "galleta_barco",
+                  "x": 0.5,
+                  "fill": 0.55
+                }
+              }
+            },
+            {
+              "id": "galletas_todos_tres_b",
+              "text": "Esa mañana, {hero} fue a la playa con tres galletas de barco. Una, dos y tres. Cada {item.noun} era grande, recién hecha.",
+              "scene": {
+                "bg": "playa",
+                "mood": "calm",
+                "time": "dia",
+                "focus": {
+                  "prop": "galleta_barco",
+                  "x": 0.5,
+                  "fill": 0.55
+                }
+              }
+            }
+          ],
+          "introduces": [
+            "item"
+          ]
+        },
+        {
+          "id": "loro",
+          "variants": [
+            {
+              "id": "galletas_todos_loro_a",
+              "text": "Entonces llegó Pimienta, el loro, volando: flap, flap. Se posó en la arena. «¡Galleta, galleta!», cantó Pimienta.",
+              "scene": {
+                "bg": "playa",
+                "mood": "joy",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "wonder",
+                    "x": 0.36
+                  },
+                  {
+                    "rig": "loro",
+                    "clip": "flutter",
+                    "x": 0.66
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "una",
+          "variants": [
+            {
+              "id": "galletas_todos_una_a",
+              "text": "Pimienta tenía hambre, así que {hero} le dio {item.un}. «Una para ti», dijo {hero}. Pimienta se la comió de un picotazo. ¡Ñam!",
+              "scene": {
+                "bg": "playa",
+                "mood": "joy",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "offer",
+                    "x": 0.36
+                  },
+                  {
+                    "rig": "loro",
+                    "clip": "hoot",
+                    "x": 0.62
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "galleta_barco",
+                    "near": "hero",
+                    "dx": 0.07,
+                    "lift": 60
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "tortuga",
+          "variants": [
+            {
+              "id": "galletas_todos_tortuga_a",
+              "text": "Luego llegó Calma, la tortuga, despacito, despacito. Venía de muy lejos, porque las tortugas caminan poco a poco. {hero} le dio otra galleta. «Una para ti.»",
+              "scene": {
+                "bg": "playa",
+                "mood": "hope",
+                "time": "dia",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "offer",
+                    "x": 0.3
+                  },
+                  {
+                    "rig": "tortuga",
+                    "clip": "goat_walk",
+                    "x": 0.64
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "galleta_barco",
+                    "near": "hero",
+                    "dx": 0.07,
+                    "lift": 60
+                  }
+                ]
+              },
+              "adds": [
+                "compartio"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "trocitos",
+          "variants": [
+            {
+              "id": "galletas_todos_trocitos_a",
+              "text": "Ahora quedaba {item.un} para {hero}. {hero} la partió en tres trocitos. Uno para Pimienta, otro para Calma y el último, para {hero}. Ñam, ñam, ñam. ¡Sabía mejor así, porque era de todos!",
+              "scene": {
+                "bg": "playa",
+                "mood": "joy",
+                "time": "atardecer",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "eat",
+                    "x": 0.3
+                  },
+                  {
+                    "rig": "loro",
+                    "clip": "hoot",
+                    "x": 0.55
+                  },
+                  {
+                    "rig": "tortuga",
+                    "clip": "goat_idle",
+                    "x": 0.76
+                  }
+                ]
+              },
+              "requires": [
+                "compartio"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "sueno",
+          "variants": [
+            {
+              "id": "galletas_todos_sueno_a",
+              "text": "El sol se puso naranja sobre el mar. Pimienta se durmió en una palmera. Calma se durmió en la arena. Y {hero} cerró los ojos, con la barriga llena.",
+              "scene": {
+                "bg": "playa",
+                "mood": "sleep",
+                "time": "noche",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "sleep",
+                    "x": 0.3
+                  },
+                  {
+                    "rig": "loro",
+                    "clip": "hoot",
+                    "x": 0.55
+                  },
+                  {
+                    "rig": "tortuga",
+                    "clip": "goat_idle",
+                    "x": 0.76
                   }
                 ]
               }
