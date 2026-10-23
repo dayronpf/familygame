@@ -175,7 +175,9 @@ final RegExp causalConnectors = RegExp(
 final RegExp _fixedGender = RegExp(
   r'(?<!corazón\s)\b(?:quiet|dormid|tranquil|liger|helad|cansad|asustad|sorprendid|content|preocupad|confundid)(?:o|a)\b'
   r'|\b(?:yo|entró|siguió|quedó|iba|estaba|fue|llegó|subió|ir|irse|iría|quedarse|cruz\w+)\s+sol(?:o|a)\b'
-  r'|(?<![\wáéíóúüñ])(?:él|ella)(?![\wáéíóúüñ])',
+  r'|(?<![\wáéíóúüñ])(?:él|ella)(?![\wáéíóúüñ])'
+  // «{hero}, el rey de las nubes»: un título u oficio con género pegado al héroe
+  r'|\{hero\},\s+(?:el|la|un|una)\s+(?:rey|reina|príncipe|princesa|campeón|campeona|niño|niña|chico|chica|dueño|dueña|amigo|amiga|capitán|capitana|grumete|grumeta|pirata|marinero|marinera)\b',
 );
 
 /// Mínimo y máximo de palabras de un cuento de [premise]: los de su perfil de edad con un margen (el reparto de cada
@@ -767,12 +769,32 @@ void _checkStory(Premise premise, Story story, Set<String> problems) {
   }
 }
 
+/// El héroe y alguien más, nombrados como pareja: «{hero} y Lía», «la abuela y {hero}», «{hero} y {helper}».
+final RegExp _heroPair = RegExp(
+  r'\{hero\}\s+y\s+(?:[A-ZÁÉÍÓÚÑ][\wáéíóúüñ]+|(?:el|la|su)\s+[\wáéíóúüñ]+|\{\w+\})'
+  r'|(?:[A-ZÁÉÍÓÚÑ][\wáéíóúüñ]+|(?:el|la|su)\s+[\wáéíóúüñ]+|\{\w+\})\s+y\s+\{hero\}',
+);
+
+/// Plurales con género que concuerdan con esa pareja: con una heroína y una niña son «juntas», no «juntos».
+final RegExp _pairPlural = RegExp(
+  r'\b(?:junt|juntit|calentit|sol|solit|cansad|dormid|abrazad|sentad|content|tumbad|acurrucad|empapad|agotad)(?:o|a)s\b',
+);
+
 /// Género fijo en el texto literal de la plantilla: si se refiere al héroe, debe usar `{hero.o}`.
 void _checkFixedGender(Variant v, Set<String> problems) {
   for (final m in _fixedGender.allMatches(v.text)) {
     problems.add(
       '${v.id}: género fijo «${m.group(0)}»: si se refiere al héroe usa {hero.o} '
       '(«quiet{hero.o}»); si no, reescribe',
+    );
+  }
+  for (final sentence in v.text.split(RegExp(r'(?<=[.!?»])\s+'))) {
+    if (!_heroPair.hasMatch(sentence)) continue;
+    final m = _pairPlural.firstMatch(sentence);
+    if (m == null) continue;
+    problems.add(
+      '${v.id}: «${m.group(0)}» con el héroe en pareja: con una heroína y una compañera sería '
+      'femenino; usa junt{hero.o}s, sol{hero.o}s… (o reescribe si la pareja es siempre mixta)',
     );
   }
 }

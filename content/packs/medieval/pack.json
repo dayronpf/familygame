@@ -3,7 +3,7 @@
     "schema": 2,
     "id": "medieval",
     "name": "Reino de la Luna (prueba)",
-    "version": "0.19.0",
+    "version": "0.19.1",
     "license": "Contenido original, todos los derechos reservados al autor del proyecto",
     "language": "es",
     "age_band": "4-7",
@@ -10401,7 +10401,7 @@
             },
             {
               "id": "b",
-              "text": "Teo decía que la colina del roble tenía oídos, y {hero} estaba casi de acuerdo, porque cada vez que gritaba algo desde arriba la colina lo repetía entero, sin cambiar ni una sola letra. «¡Soy {hero}, el rey de las nubes!», gritó, y desde el otro lado llegó, un poco más flaquito: «…rey de las nubes…». Los dos se doblaron de la risa. Teo opinaba que el eco era el mejor amigo posible, porque contaba lo que le contabas, ni más ni menos. Mientras tanto la cometa de {hero} subía y subía sobre el roble, y la cuerda le cosquilleaba en los dedos como si el viento quisiera llevársela de paseo. Abajo, entre los molinos de la aldea, el humo subía derecho de las chimeneas, y todo el valle olía a hierba tibia.",
+              "text": "Teo decía que la colina del roble tenía oídos, y {hero} estaba casi de acuerdo, porque cada vez que gritaba algo desde arriba la colina lo repetía entero, sin cambiar ni una sola letra. «¡Soy {hero} y vivo en las nubes!», gritó, y desde el otro lado llegó, un poco más flaquito: «…en las nubes…». Los dos se doblaron de la risa. Teo opinaba que el eco era el mejor amigo posible, porque contaba lo que le contabas, ni más ni menos. Mientras tanto la cometa de {hero} subía y subía sobre el roble, y la cuerda le cosquilleaba en los dedos como si el viento quisiera llevársela de paseo. Abajo, entre los molinos de la aldea, el humo subía derecho de las chimeneas, y todo el valle olía a hierba tibia.",
               "scene": {
                 "time": "dia",
                 "bg": "colina",
@@ -11993,7 +11993,7 @@
           "variants": [
             {
               "id": "a",
-              "text": "La víspera de la gran cosecha, las golondrinas empezaron a volar bajo y el aire olió a polvo caliente. Por el oeste se levantó una pared de nubes del color de las ciruelas. {hero} sonrió al principio, porque llevaba semanas esperando aquello; pero el primer trueno no sonó a lluvia suave, sino a mueble arrastrado por una escalera. Venía granizo, de ese que pica las hojas y deja los huertos como coladores. Y {hero} y la abuela, solos, tenían cuatro manos para once filas. El viento se llevó un sombrero de paja, golpeó {item.el} contra la valla y la hizo sonar: ¡clang, clang! Y entonces a {hero} se le ocurrió algo.",
+              "text": "La víspera de la gran cosecha, las golondrinas empezaron a volar bajo y el aire olió a polvo caliente. Por el oeste se levantó una pared de nubes del color de las ciruelas. {hero} sonrió al principio, porque llevaba semanas esperando aquello; pero el primer trueno no sonó a lluvia suave, sino a mueble arrastrado por una escalera. Venía granizo, de ese que pica las hojas y deja los huertos como coladores. Y {hero} y la abuela, sol{hero.o}s, tenían cuatro manos para once filas. El viento se llevó un sombrero de paja, golpeó {item.el} contra la valla y la hizo sonar: ¡clang, clang! Y entonces a {hero} se le ocurrió algo.",
               "scene": {
                 "time": "atardecer",
                 "bg": "huerto",
@@ -13019,7 +13019,7 @@
           "variants": [
             {
               "id": "a",
-              "text": "Subieron juntos la escalera de caracol, Lía delante con la vela y {hero} detrás con {item.el} al hombro. Arriba, la campana esperaba en la penumbra, con su brazo de madera y su silencio enorme. {hero} ató el nudo del conejo despacio, diciéndose en voz baja la cancioncilla: sale, rodea, entra. Esta vez no hubo vueltas de más. Tiró suave, solo un poquito, para probar. «Dan», dijo la campana, redonda como una gota. El nudo ni se movió. {hero} miró a Lía, y Lía asintió. Entonces tiró de verdad, con todo el cuerpo, y la campana se echó a cantar: ¡dooon!, ¡dooon!, ¡dooon!, tan hondo que a {hero} le tembló el suelo bajo los pies y le cosquilleó hasta la punta de la nariz. La voz de bronce salió volando por encima de los tejados, de los molinos, de los huertos, y llegó muy lejos, hasta donde terminan los caminos.",
+              "text": "Subieron junt{hero.o}s la escalera de caracol, Lía delante con la vela y {hero} detrás con {item.el} al hombro. Arriba, la campana esperaba en la penumbra, con su brazo de madera y su silencio enorme. {hero} ató el nudo del conejo despacio, diciéndose en voz baja la cancioncilla: sale, rodea, entra. Esta vez no hubo vueltas de más. Tiró suave, solo un poquito, para probar. «Dan», dijo la campana, redonda como una gota. El nudo ni se movió. {hero} miró a Lía, y Lía asintió. Entonces tiró de verdad, con todo el cuerpo, y la campana se echó a cantar: ¡dooon!, ¡dooon!, ¡dooon!, tan hondo que a {hero} le tembló el suelo bajo los pies y le cosquilleó hasta la punta de la nariz. La voz de bronce salió volando por encima de los tejados, de los molinos, de los huertos, y llegó muy lejos, hasta donde terminan los caminos.",
               "scene": {
                 "bg": "torre",
                 "mood": "triumph",
@@ -17909,7 +17909,7 @@
             },
             {
               "id": "manta_lia_calor_c",
-              "text": "El frío se había ido. Bajo la manta, Lía y {hero} estaban muy juntos y calentitos. Un copo hizo cosquillas en la nariz de Lía: ¡achís! Y las risas salieron a la vez. Se reían porque la nieve parecía bailar.",
+              "text": "El frío se había ido. Bajo la manta, Lía y {hero} estaban muy junt{hero.o}s y calentit{hero.o}s. Un copo hizo cosquillas en la nariz de Lía: ¡achís! Y las risas salieron a la vez. Se reían porque la nieve parecía bailar.",
               "scene": {
                 "bg": "plaza",
                 "mood": "joy",
@@ -18118,7 +18118,7 @@
             },
             {
               "id": "manta_lia_cierre_b",
-              "text": "Al caer la tarde, dejó de nevar. {hero} y Lía fueron juntos hasta la casa de Lía, bajo la manta. El frío no pudo alcanzarlos. En la puerta, Lía abrazó fuerte a {hero}. «Gracias», dijo, y le devolvió la manta, porque era suya. Esa noche, {hero} se acostó con la manta hasta la barbilla. Dentro del pecho brillaba un solito calentito. Y {hero} se durmió.",
+              "text": "Al caer la tarde, dejó de nevar. {hero} y Lía fueron junt{hero.o}s hasta la casa de Lía, bajo la manta. El frío no pudo alcanzarl{hero.o}s. En la puerta, Lía abrazó fuerte a {hero}. «Gracias», dijo, y le devolvió la manta, porque era suya. Esa noche, {hero} se acostó con la manta hasta la barbilla. Dentro del pecho brillaba un solito calentito. Y {hero} se durmió.",
               "scene": {
                 "bg": "plaza",
                 "mood": "calm",
@@ -21217,7 +21217,7 @@
             },
             {
               "id": "cabrita_cierre_b",
-              "text": "{hero} y la cabrita se sentaron al sol, muy juntitos. Con la tripita llena, a {hero} se le cerraron los ojitos. La cabrita bajó la cabeza, y ya solo se oía su respiración suave. Todo quedó en calma, con una sonrisa.",
+              "text": "{hero} y la cabrita se sentaron al sol, muy juntit{hero.o}s. Con la tripita llena, a {hero} se le cerraron los ojitos. La cabrita bajó la cabeza, y ya solo se oía su respiración suave. Todo quedó en calma, con una sonrisa.",
               "scene": {
                 "bg": "plaza",
                 "mood": "calm",

@@ -1004,7 +1004,7 @@ void main() {
   });
 
   test(
-      'el validador detecta el género fijo («quieto», «yo solo», «ir solo», «él»)',
+      'el validador detecta el género fijo («quieto», «yo solo», «ir solo», «él», «juntos» en pareja)',
       () {
     Map<String, Object?> v(String id, String text) => {
           'id': id,
@@ -1022,6 +1022,15 @@ void main() {
           v('mal4', '{hero} sí iba a ir, pero no iba a ir solo con {item.un}.'),
           v('mal5', 'Entre él y {hero} dejaron {item.un}.'),
           v('mal6', 'Tú no cruzas solo con {item.un}, {hero}.'),
+          v('mal7',
+              '«¡Soy {hero}, el rey de las nubes!», gritó con {item.un}.'),
+          v('mal8', '{hero} y Lía se sentaron muy juntos con {item.un}.'),
+          v('mal9', 'Bajo {item.el}, la abuela y {hero} estaban calentitos.'),
+          v('bien3',
+              '{hero} y Lía fueron junt{hero.o}s con {item.un}. Comieron juntos, y {hero} repitió.'),
+          // las rodillas «solas» no son la pareja, aunque detrás venga «y {hero}»
+          v('bien4',
+              'Las rodillas se doblaron solas y {hero} se sentó con {item.un}.'),
           v('bien',
               '{hero} se quedó quiet{hero.o} y sol{hero.o} con {item.un}. Solo quería dormir.'),
           // «corazón ligero»: el adjetivo concuerda con «corazón», no con el héroe
@@ -1035,6 +1044,11 @@ void main() {
     expect(p, contains('mal4: género fijo «ir solo»'));
     expect(p, contains('mal5: género fijo «él»'));
     expect(p, contains('mal6: género fijo «cruzas solo»'));
+    expect(p, contains('mal7: género fijo «{hero}, el rey»'));
+    expect(p, contains('mal8: «juntos» con el héroe en pareja'));
+    expect(p, contains('mal9: «calentitos» con el héroe en pareja'));
+    expect(p, isNot(contains('bien3:')));
+    expect(p, isNot(contains('bien4:')));
     expect(p, isNot(contains('bien: género fijo')));
     expect(p, isNot(contains('bien2: género fijo')));
   });
