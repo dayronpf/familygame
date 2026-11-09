@@ -16,10 +16,14 @@ const String legalOwner = 'TuVendor';
 const String contactEmail = 'ventas@tuvendor.com';
 
 /// Fecha de la última revisión de los textos legales.
-const String legalDate = '12 de octubre de 2026';
+const String legalDate = '8 de noviembre de 2026';
 
 /// `false` mientras no exista el servidor de valoraciones: la política lo dice con claridad (nada sale del teléfono).
 const bool feedbackServerLive = false;
 
 bool get legalPending =>
     legalOwner.startsWith('[') || contactEmail.startsWith('[');
+
+/// Producto de suscripción en Google Play (un producto con dos planes base: `anual` y `mensual`). Es un
+/// identificador técnico de la tienda: **no cambia** aunque cambie el nombre de la app.
+const String subscriptionProductId = 'mininoches_premium';

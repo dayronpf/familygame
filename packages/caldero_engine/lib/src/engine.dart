@@ -25,7 +25,11 @@ class StoryOptions {
     this.choices = const [],
     this.interactive = true,
     this.premiseId,
+    this.excludedPremises = const {},
   });
+
+  /// Premisas que el caldero no debe elegir (las que se rechazaron en la revisión editorial del panel).
+  final Set<String> excludedPremises;
 
   /// Cuento concreto del catálogo (id de premisa). Con él, la enseñanza es la de la premisa y no se filtra por
   /// edad ni género: lo eligió la familia. `null` = el caldero elige entre los que encajan.
@@ -122,7 +126,10 @@ class StoryEngine {
     }
 
     var premises = pack.premises
-        .where((p) => p.fitsValue(moral.id))
+        .where(
+          (p) =>
+              p.fitsValue(moral.id) && !options.excludedPremises.contains(p.id),
+        )
         .toList(growable: false);
     final heroName = normalizeChildName(options.heroName);
     final heroGender = options.heroGender;

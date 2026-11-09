@@ -22,6 +22,8 @@ import 'settings/app_settings.dart';
 import 'settings_page.dart';
 import 'share.dart';
 import 'shelf/my_stories_tab.dart';
+import 'store/access.dart';
+import 'store/paywall_page.dart';
 import 'shelf/story_shelf.dart';
 import 'story_page.dart';
 import 'ui/children_page.dart';
@@ -113,6 +115,7 @@ class _HomePageState extends State<HomePage> {
 
   /// La ficha de un cuento del catálogo; desde ella se abre en el modo elegido.
   void _openCatalogStory(CatalogStory s) {
+    final access = AccessScope.read(context);
     final settings = SettingsScope.maybeOf(context);
     final previews = _previewsFor(settings);
     final preview = previews.of(s);
@@ -122,32 +125,76 @@ class _HomePageState extends State<HomePage> {
       heroGender: settings?.child.heroGender,
     );
     Navigator.of(context).push(MaterialPageRoute<void>(
-      builder: (_) => StoryDetailPage(
-        story: s,
-        preview: preview,
-        artFor: _artFor,
-        shelf: widget.shelf,
-        entry: preview == null
-            ? null
-            : ShelfEntry.fromStory(
-                preview,
-                option: opts.valueId,
-                premiseId: s.premise.id,
-                age: opts.age,
-                heroName: opts.heroName,
-                heroGender: opts.heroGender,
-                childId: settings?.child.id,
-              ),
-        onStart: (start) => _tell(
-          s.pack,
-          seed: s.seed,
-          option: opts.valueId,
-          premiseId: s.premise.id,
-          start: start,
-          catalog: opts,
+      builder: (detail) => ListenableBuilder(
+        listenable: access,
+        builder: (detail, _) => StoryDetailPage(
+          locked: !access.canRead(s.pack.id, s.premise.id),
+          onUnlock: () =>
+              openPaywall(detail, reason: '«${s.title}» es de la suscripción.'),
+          story: s,
+          preview: preview,
+          artFor: _artFor,
+          shelf: widget.shelf,
+          entry: preview == null
+              ? null
+              : ShelfEntry.fromStory(
+                  preview,
+                  option: opts.valueId,
+                  premiseId: s.premise.id,
+                  age: opts.age,
+                  heroName: opts.heroName,
+                  heroGender: opts.heroGender,
+                  childId: settings?.child.id,
+                ),
+          onStart: (start) => _tell(
+            s.pack,
+            seed: s.seed,
+            option: opts.valueId,
+            premiseId: s.premise.id,
+            start: start,
+            catalog: opts,
+          ),
         ),
       ),
     ));
+  }
+
+  /// «Crear cuento». Con la suscripción, el caldero crea uno nuevo; sin ella, se cuenta uno de los gratis (de la
+  /// enseñanza elegida si hay alguno), para que la familia pruebe la app de verdad.
+  Future<void> _create(Pack pack) async {
+    final access = AccessScope.read(context);
+    if (access.premium) {
+      return _openStory(pack, seed: null, option: _selectedMoral);
+    }
+    final child = SettingsScope.maybeOf(context)?.child;
+    final catalog = (await _catalogFuture())
+        .withAccess(hidden: access.hiddenStories)
+        .forChild(heroName: child?.heroName, heroGender: child?.heroGender);
+    if (!mounted) return;
+    final free = [
+      for (final s in catalog.stories)
+        if (access.isFree(s.pack.id, s.premise.id)) s,
+    ];
+    if (free.isEmpty) {
+      await openPaywall(context);
+      return;
+    }
+    final byMoral = [
+      for (final s in free)
+        if (s.moral?.id == _selectedMoral) s,
+    ];
+    final pool = byMoral.isNotEmpty ? byMoral : free;
+    final s = pool[widget.seedProvider().abs() % pool.length];
+    final opts = s.options(
+      childAge: child?.age,
+      heroName: child?.heroName,
+      heroGender: child?.heroGender,
+    );
+    _tell(s.pack,
+        seed: s.seed,
+        option: opts.valueId,
+        premiseId: s.premise.id,
+        catalog: opts);
   }
 
   /// Los paquetes (los suyos y los que vienen); al abrir uno, vuelve al inicio con ese paquete.
@@ -255,6 +302,11 @@ class _HomePageState extends State<HomePage> {
     final premise = replay != null ? replay.premiseId : premiseId;
     final childId = replay?.childId ?? child?.id;
     final engine = StoryEngine(pack);
+    final access = AccessScope.read(context);
+    final hidden = {
+      for (final r in access.hiddenStories)
+        if (r.startsWith('${pack.id}:')) r.substring(pack.id.length + 1),
+    };
     // Al contar uno guardado se usan las elecciones que se hicieron y no se pregunta; si no, se pregunta salvo
     // que la familia lo haya apagado para este niño.
     final asks = replay == null && (child?.asksQuestions ?? true);
@@ -273,6 +325,7 @@ class _HomePageState extends State<HomePage> {
         heroGender: heroGender,
         choices: replay?.choices ?? const [],
         interactive: asks,
+        excludedPremises: hidden,
       ));
     }
 
@@ -297,6 +350,7 @@ class _HomePageState extends State<HomePage> {
           animate: _animate,
           onAnother: () => next().toStory(),
           onAnotherRun: next,
+          canTellAnother: access.premium,
         ),
       ),
     );
@@ -304,6 +358,13 @@ class _HomePageState extends State<HomePage> {
 
   /// Vuelve a contar un cuento guardado con su propio paquete (puede no ser el que está abierto).
   Future<void> _replay(ShelfEntry e) async {
+    final access = AccessScope.read(context);
+    final premise = e.premiseId;
+    if (!access.premium &&
+        !(premise != null && access.isFree(e.packId, premise))) {
+      await openPaywall(context, reason: '«${e.title}» es de la suscripción.');
+      return;
+    }
     final Pack pack;
     try {
       pack = await _packFor(e.packId);
@@ -427,11 +488,21 @@ class _HomePageState extends State<HomePage> {
                               return const Center(
                                   child: CircularProgressIndicator());
                             }
+                            final access = AccessScope.of(context);
                             return ExploreTab(
-                              catalog: catalog.forChild(
-                                heroName: settings?.child.heroName,
-                                heroGender: settings?.child.heroGender,
-                              ),
+                              isLocked: (s) =>
+                                  !access.canRead(s.pack.id, s.premise.id),
+                              catalog: catalog
+                                  .withAccess(
+                                    hidden: access.hiddenStories,
+                                    free: access.premium
+                                        ? const {}
+                                        : access.freeStories,
+                                  )
+                                  .forChild(
+                                    heroName: settings?.child.heroName,
+                                    heroGender: settings?.child.heroGender,
+                                  ),
                               previews: _previewsFor(settings),
                               artFor: _artFor,
                               onOpen: _openCatalogStory,
@@ -549,8 +620,7 @@ class _HomePageState extends State<HomePage> {
                     padding: const EdgeInsets.only(top: 22),
                     child: _ContinueCard(
                       entry: last,
-                      onTap: () => _openStory(pack,
-                          seed: last.seed, option: last.option, replay: last),
+                      onTap: () => _replay(last),
                     ),
                   );
                 },
@@ -581,8 +651,7 @@ class _HomePageState extends State<HomePage> {
             width: double.infinity,
             height: 64,
             child: FilledButton.icon(
-              onPressed: () =>
-                  _openStory(pack, seed: null, option: _selectedMoral),
+              onPressed: () => _create(pack),
               style: FilledButton.styleFrom(
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(32)),
@@ -634,12 +703,21 @@ class _HomePageState extends State<HomePage> {
       builder: (context, snap) {
         final catalog = snap.data;
         if (catalog == null) return const SizedBox.shrink();
+        final access = AccessScope.of(context);
+        final visible = catalog.withAccess(hidden: access.hiddenStories);
+        // Sin la suscripción se recomiendan los cuentos gratis (para que la prueba sea de verdad)
+        final pool = access.premium
+            ? visible
+            : StoryCatalog([
+                for (final s in visible.stories)
+                  if (access.isFree(s.pack.id, s.premise.id)) s,
+              ]);
         return ListenableBuilder(
           listenable: widget.shelf,
           builder: (context, _) {
             final child = settings?.child;
             final picks = recommend(
-              catalog.forChild(
+              pool.forChild(
                   heroName: child?.heroName, heroGender: child?.heroGender),
               childAge: child?.age,
               childId: child?.id,
@@ -688,6 +766,10 @@ class _HomePageState extends State<HomePage> {
                         artFor: _artFor,
                         onTap: () => _openCatalogStory(s),
                       ),
+                  ],
+                  if (!access.premium) ...[
+                    const SizedBox(height: 14),
+                    _TrialCard(onTap: () => openPaywall(context)),
                   ],
                 ],
               ),
@@ -887,6 +969,57 @@ class _GuideCard extends StatelessWidget {
                         style: text.titleMedium!
                             .copyWith(fontWeight: FontWeight.w800)),
                     Text('Haz una pirámide con un adulto',
+                        style:
+                            text.bodySmall!.copyWith(color: Palette.mutedText)),
+                  ],
+                ),
+              ),
+              const Icon(Icons.chevron_right, color: Palette.amber),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/// Invitación a la prueba gratis (para el adulto: el muro de pago pide la pregunta de adultos).
+class _TrialCard extends StatelessWidget {
+  const _TrialCard({required this.onTap});
+
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final text = Theme.of(context).textTheme;
+    return Material(
+      key: const Key('trial-card'),
+      color: Palette.cardSoft,
+      borderRadius: BorderRadius.circular(24),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(24),
+        onTap: onTap,
+        child: Padding(
+          padding: const EdgeInsets.all(14),
+          child: Row(
+            children: [
+              Container(
+                width: 52,
+                height: 52,
+                decoration: const BoxDecoration(
+                    color: Palette.amber, shape: BoxShape.circle),
+                child: const Icon(Icons.lock_open, color: Color(0xFF3A2606)),
+              ),
+              const SizedBox(width: 14),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Todos los cuentos, 7 días gratis',
+                        style: text.titleMedium!
+                            .copyWith(fontWeight: FontWeight.w800)),
+                    Text(
+                        'Para el adulto: paquetes, cuentos nuevos cada noche y más',
                         style:
                             text.bodySmall!.copyWith(color: Palette.mutedText)),
                   ],

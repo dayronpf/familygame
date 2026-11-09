@@ -1,0 +1,201 @@
+openapi: 3.0.3
+info:
+  title: Mininoches — API de catálogo y compras
+  version: 1.0.0
+  description: |
+    Lo que la app pide al servidor además de las valoraciones (`feedback.openapi.yaml`).
+
+    Privacidad (docs/09 §7, docs/22): la app solo envía un **identificador de instalación aleatorio** (`installId`, UUID v4
+    que la app crea la primera vez y que no está ligado a ninguna cuenta ni dispositivo) y los datos de la compra que da la
+    tienda. Nunca el nombre ni la edad del niño.
+
+    Las tiendas son la fuente de verdad del dinero: el servidor **verifica** cada compra con la Google Play Developer API (y la
+    App Store Server API cuando se publique en iOS), guarda el resultado y devuelve un **derecho** (`Entitlement`) firmado
+    con Ed25519 y con caducidad. La app lo guarda para funcionar sin conexión.
+servers:
+  - url: https://api.mininoches.example
+paths:
+  /v1/catalog:
+    get:
+      summary: Qué cuentos son gratis, cuáles están ocultos y qué productos se venden
+      description: |
+        La app lo pide al abrir (máximo una vez al día). Si falla, usa lo que trae dentro (los 3 cuentos gratis por defecto
+        y todos los cuentos visibles). Responde con `ETag`; con `If-None-Match` igual responde 304.
+      operationId: getCatalog
+      responses:
+        '200':
+          description: Catálogo vigente
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Catalog' }
+        '304': { description: Sin cambios }
+  /v1/purchases/verify:
+    post:
+      summary: Verificar una compra con la tienda y obtener el derecho
+      operationId: verifyPurchase
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/PurchaseVerification' }
+      responses:
+        '200':
+          description: Compra válida (activa, en prueba o en periodo de gracia)
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Entitlement' }
+        '402':
+          description: La tienda dice que la compra no es válida o ya caducó
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        '422': { description: Cuerpo inválido }
+        '429': { description: Demasiadas peticiones }
+        '503': { description: No se pudo consultar a la tienda; la app reintenta más tarde }
+  /v1/redeem:
+    post:
+      summary: Canjear un código (regalos, socios, escuelas)
+      operationId: redeemCode
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [installId, code]
+              properties:
+                installId: { $ref: '#/components/schemas/InstallId' }
+                code: { type: string, pattern: '^[A-Z0-9-]{4,32}$' }
+      responses:
+        '200':
+          description: Código válido; devuelve el derecho (sumando días si ya había uno)
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Entitlement' }
+        '404':
+          description: Código desconocido
+          content: { application/json: { schema: { $ref: '#/components/schemas/Error' } } }
+        '409':
+          description: Código ya usado del todo, caducado o desactivado
+          content: { application/json: { schema: { $ref: '#/components/schemas/Error' } } }
+        '429': { description: Demasiados intentos (límite estricto contra adivinar códigos) }
+  /v1/entitlements:
+    get:
+      summary: Derecho vigente de una instalación (para «Restaurar» y para refrescar al abrir)
+      operationId: getEntitlement
+      parameters:
+        - in: query
+          name: installId
+          required: true
+          schema: { $ref: '#/components/schemas/InstallId' }
+      responses:
+        '200':
+          description: El derecho (con `premium = false` si no hay ninguno vigente)
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Entitlement' }
+  /v1/webhooks/google:
+    post:
+      summary: Notificaciones en tiempo real de Google Play (Pub/Sub push)
+      description: Protegido con `?token=` igual a `GOOGLE_RTDN_TOKEN`. El servidor vuelve a consultar la compra a Google.
+      operationId: googleRtdn
+      parameters:
+        - { in: query, name: token, required: true, schema: { type: string } }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: object
+                  properties:
+                    data: { type: string, description: 'JSON en base64 (DeveloperNotification)' }
+                    messageId: { type: string }
+                subscription: { type: string }
+      responses:
+        '204': { description: Procesado }
+        '403': { description: Token incorrecto }
+  /v1/webhooks/apple:
+    post:
+      summary: App Store Server Notifications v2 (se guarda; la verificación llega con la publicación en iOS)
+      operationId: appleNotification
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                signedPayload: { type: string }
+      responses:
+        '204': { description: Guardado }
+components:
+  schemas:
+    InstallId:
+      type: string
+      pattern: '^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$'
+    StoryRef:
+      type: string
+      description: '«paquete:premisa», p. ej. «medieval:sombras»'
+      pattern: '^[a-z0-9_]+:[a-z0-9_]+$'
+    Catalog:
+      type: object
+      required: [version, freeStories, hiddenStories, products]
+      properties:
+        version: { type: string, description: 'Cambia cada vez que el SuperAdmin publica cambios' }
+        freeStories:
+          type: array
+          items: { $ref: '#/components/schemas/StoryRef' }
+          description: Cuentos que se leen gratis y completos (por defecto 3, uno por paquete)
+        hiddenStories:
+          type: array
+          items: { $ref: '#/components/schemas/StoryRef' }
+          description: Cuentos que el SuperAdmin rechazó en la revisión; la app no los muestra ni los genera
+        products:
+          type: array
+          items:
+            type: object
+            required: [id, platform, period, trialDays]
+            properties:
+              id: { type: string, example: mininoches_premium }
+              platform: { type: string, enum: [android, ios] }
+              basePlan: { type: string, example: anual }
+              period: { type: string, enum: [P1M, P1Y] }
+              trialDays: { type: integer, example: 7 }
+    PurchaseVerification:
+      type: object
+      additionalProperties: false
+      required: [installId, platform, productId]
+      properties:
+        installId: { $ref: '#/components/schemas/InstallId' }
+        platform: { type: string, enum: [android, ios] }
+        productId: { type: string }
+        purchaseToken: { type: string, description: 'Android: el purchaseToken de Google Play' }
+        transactionId: { type: string, description: 'iOS: el transactionId (StoreKit 2)' }
+    Entitlement:
+      type: object
+      required: [installId, premium, source, signature]
+      properties:
+        installId: { $ref: '#/components/schemas/InstallId' }
+        premium: { type: boolean }
+        source: { type: string, enum: [google, apple, code, none] }
+        productId: { type: string, nullable: true }
+        expiresAt: { type: string, format: date-time, nullable: true }
+        trial: { type: boolean }
+        autoRenewing: { type: boolean }
+        issuedAt: { type: string, format: date-time }
+        signature:
+          type: string
+          description: >
+            Ed25519 (base64) sobre la cadena canónica
+            «installId|premium(0/1)|source|productId|expiresAt|issuedAt», con la clave privada del servidor
+            (`ENTITLEMENT_SIGNING_KEY`). La clave pública la conoce la app.
+    Error:
+      type: object
+      required: [error]
+      properties:
+        error: { type: string, enum: [invalid_purchase, expired, unknown_code, code_used, code_expired, store_unavailable] }
+        message: { type: string }

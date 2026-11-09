@@ -145,7 +145,7 @@ class CatalogCategory {
 
 /// Todos los cuentos de los paquetes abiertos, con búsqueda y categorías.
 class StoryCatalog {
-  StoryCatalog(this.stories);
+  StoryCatalog(this.stories, {this.free = const {}});
 
   /// Arma el catálogo con los paquetes ya cargados (en el orden de [packCatalog]).
   factory StoryCatalog.fromPacks(Map<String, Pack> packs) => StoryCatalog([
@@ -157,12 +157,23 @@ class StoryCatalog {
 
   final List<CatalogStory> stories;
 
+  /// Cuentos gratis («paquete:premisa»): salen en su propia categoría, la primera.
+  final Set<String> free;
+
   /// Solo los que le caben a este niño.
   StoryCatalog forChild({String? heroName, String? heroGender}) =>
       StoryCatalog([
         for (final s in stories)
           if (s.fitsChild(heroName: heroName, heroGender: heroGender)) s,
-      ]);
+      ], free: free);
+
+  /// Sin los cuentos rechazados en el panel, y con la lista de gratis (vacía si ya tiene la suscripción).
+  StoryCatalog withAccess(
+          {required Set<String> hidden, Set<String> free = const {}}) =>
+      StoryCatalog([
+        for (final s in stories)
+          if (!hidden.contains(s.key)) s,
+      ], free: free);
 
   /// Cuentos cuyo título, enseñanza o paquete contienen todas las palabras buscadas (sin importar tildes).
   List<CatalogStory> search(String query) {
@@ -189,6 +200,15 @@ class StoryCatalog {
   List<CatalogCategory> get categories {
     const ageEmoji = {'2-3': '🧸', '4-5': '🎈', '6-8': '🚲', '9-12': '🔭'};
     final out = <CatalogCategory>[
+      CatalogCategory(
+        id: 'free',
+        title: 'Cuentos gratis',
+        emoji: '🎁',
+        stories: [
+          for (final s in stories)
+            if (free.contains(s.key)) s,
+        ],
+      ),
       for (final a in AgeProfile.all)
         CatalogCategory(
           id: 'age:${a.id}',

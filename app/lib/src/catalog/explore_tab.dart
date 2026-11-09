@@ -14,7 +14,11 @@ class ExploreTab extends StatefulWidget {
     required this.artFor,
     required this.onOpen,
     required this.onPacks,
+    this.isLocked,
   });
+
+  /// Si un cuento es de la suscripción (y aún no la tienen).
+  final bool Function(CatalogStory story)? isLocked;
 
   final StoryCatalog catalog;
   final CatalogPreviews previews;
@@ -38,6 +42,7 @@ class _ExploreTabState extends State<ExploreTab> {
   }
 
   Widget _row(CatalogStory s) => StoryRow(
+        locked: widget.isLocked?.call(s) ?? false,
         story: s,
         preview: widget.previews.of(s),
         artFor: widget.artFor,
@@ -101,6 +106,7 @@ class _ExploreTabState extends State<ExploreTab> {
                 itemBuilder: (context, i) => SizedBox(
                   width: 210,
                   child: StoryCard(
+                    locked: widget.isLocked?.call(newest[i]) ?? false,
                     story: newest[i],
                     preview: widget.previews.of(newest[i]),
                     artFor: widget.artFor,
@@ -135,6 +141,7 @@ class _ExploreTabState extends State<ExploreTab> {
               ),
               onTap: () => Navigator.of(context).push(MaterialPageRoute<void>(
                 builder: (_) => CategoryPage(
+                  isLocked: widget.isLocked,
                   category: c,
                   previews: widget.previews,
                   artFor: widget.artFor,
@@ -163,8 +170,10 @@ class CategoryPage extends StatelessWidget {
     required this.previews,
     required this.artFor,
     required this.onOpen,
+    this.isLocked,
   });
 
+  final bool Function(CatalogStory story)? isLocked;
   final CatalogCategory category;
   final CatalogPreviews previews;
   final ArtFor artFor;
@@ -183,6 +192,7 @@ class CategoryPage extends StatelessWidget {
           itemBuilder: (context, i) {
             final s = category.stories[i];
             return StoryRow(
+              locked: isLocked?.call(s) ?? false,
               story: s,
               preview: previews.of(s),
               artFor: artFor,

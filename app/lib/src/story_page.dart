@@ -54,7 +54,11 @@ class StoryPage extends StatefulWidget {
     this.start = StoryStart.reader,
     this.progress,
     this.packId,
+    this.canTellAnother = true,
   });
+
+  /// Si «Contar otro cuento» puede crear uno nuevo (sin suscripción, solo hay los gratis: el botón lleva a verlos).
+  final bool canTellAnother;
 
   /// Progreso del niño: se anota cada cuento terminado (y se celebran los premios nuevos).
   final ReadingProgress? progress;
@@ -535,11 +539,19 @@ class _StoryPageState extends State<StoryPage>
                 onSkip: () => _answered = true,
               ),
             const SizedBox(height: 24),
-            OutlinedButton.icon(
-              onPressed: _another,
-              icon: const Icon(Icons.refresh),
-              label: const Text('Contar otro cuento'),
-            ),
+            if (widget.canTellAnother)
+              OutlinedButton.icon(
+                onPressed: _another,
+                icon: const Icon(Icons.refresh),
+                label: const Text('Contar otro cuento'),
+              )
+            else
+              OutlinedButton.icon(
+                key: const Key('more-stories'),
+                onPressed: () => Navigator.of(context).maybePop(),
+                icon: const Icon(Icons.auto_stories),
+                label: const Text('Ver más cuentos'),
+              ),
           ],
         ),
       ),

@@ -20,7 +20,13 @@ class StoryDetailPage extends StatelessWidget {
     required this.shelf,
     required this.onStart,
     this.entry,
+    this.locked = false,
+    this.onUnlock,
   });
+
+  /// Cuento de la suscripción sin tenerla: se ve el principio y, en vez de Leer/Escuchar, «Desbloquear».
+  final bool locked;
+  final VoidCallback? onUnlock;
 
   final CatalogStory story;
   final Story? preview;
@@ -127,16 +133,41 @@ class StoryDetailPage extends StatelessWidget {
                         style: text.headlineMedium!
                             .copyWith(fontWeight: FontWeight.w800)),
                     const SizedBox(height: 18),
-                    _ReadListenButtons(onStart: onStart),
-                    const SizedBox(height: 10),
-                    Center(
-                      child: TextButton.icon(
-                        key: const Key('detail-together'),
-                        onPressed: () => onStart(StoryStart.together),
-                        icon: const Icon(Icons.menu_book),
-                        label: const Text('Leemos juntos (letra grande)'),
+                    if (locked) ...[
+                      SizedBox(
+                        width: double.infinity,
+                        height: 60,
+                        child: FilledButton.icon(
+                          key: const Key('detail-unlock'),
+                          onPressed: onUnlock,
+                          style: FilledButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30)),
+                            textStyle: text.titleLarge!
+                                .copyWith(fontWeight: FontWeight.w800),
+                          ),
+                          icon: const Icon(Icons.lock_open),
+                          label: const Text('Desbloquear'),
+                        ),
                       ),
-                    ),
+                      const SizedBox(height: 8),
+                      Text(
+                          'Este cuento es de la suscripción. Aquí abajo puedes leer cómo empieza.',
+                          textAlign: TextAlign.center,
+                          style: text.bodyMedium!
+                              .copyWith(color: Palette.mutedText)),
+                    ] else ...[
+                      _ReadListenButtons(onStart: onStart),
+                      const SizedBox(height: 10),
+                      Center(
+                        child: TextButton.icon(
+                          key: const Key('detail-together'),
+                          onPressed: () => onStart(StoryStart.together),
+                          icon: const Icon(Icons.menu_book),
+                          label: const Text('Leemos juntos (letra grande)'),
+                        ),
+                      ),
+                    ],
                     const SizedBox(height: 8),
                     const Divider(color: Palette.cardSoft),
                     const SizedBox(height: 8),

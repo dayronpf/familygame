@@ -124,7 +124,9 @@ void main() {
     await tester.pump(const Duration(milliseconds: 600));
     await shot('11_inicio_recomendado');
     final card = find.byType(StoryCard).first;
-    await tester.tap(card);
+    await tester.ensureVisible(card);
+    await tester.pump(const Duration(milliseconds: 300));
+    await tester.tap(card, warnIfMissed: false);
     for (var i = 0; i < 4; i++) {
       await tester.pump(const Duration(milliseconds: 200));
     }

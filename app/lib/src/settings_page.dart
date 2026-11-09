@@ -9,6 +9,8 @@ import 'settings/app_settings.dart';
 import 'notifications/bedtime_reminder.dart';
 import 'progress/reading_progress.dart';
 import 'shelf/story_shelf.dart';
+import 'store/access.dart';
+import 'store/paywall_page.dart';
 import 'ui/children_page.dart';
 import 'guide/holograma_guide.dart';
 import 'share.dart';
@@ -455,11 +457,13 @@ class _SettingsPageState extends State<SettingsPage> {
 
   Future<Map<String, Object?>> _myData() async {
     final settings = SettingsScope.maybeOf(context);
+    final access = AccessScope.read(context);
     return {
       if (settings != null) 'ajustes': settings.exportJson(),
       if (widget.shelf != null) 'mis_cuentos': widget.shelf!.exportJson(),
       if (widget.progress != null) 'progreso': widget.progress!.exportJson(),
       'valoraciones': await widget.feedback.exportJson(),
+      'suscripcion': access.exportJson(),
     };
   }
 
@@ -467,6 +471,65 @@ class _SettingsPageState extends State<SettingsPage> {
     Navigator.of(context).push(MaterialPageRoute<void>(
       builder: (_) => MyDataPage(load: _myData),
     ));
+  }
+
+  /// Suscripción: en qué estado está, ver los planes (restaurar y canjear código van dentro) y, solo en las
+  /// compilaciones de prueba, el modo desarrollador que abre todo sin pagar.
+  Widget _subscription(BuildContext context) {
+    final text = Theme.of(context).textTheme;
+    final access = AccessScope.of(context);
+    final e = access.entitlement;
+    String status;
+    if (access.devAvailable && access.devUnlock) {
+      status = 'Modo desarrollador: todo abierto sin pagar.';
+    } else if (e.activeAt(DateTime.now())) {
+      final until = e.expiresAt == null
+          ? ''
+          : ' hasta el ${e.expiresAt!.toLocal().toIso8601String().substring(0, 10)}';
+      status = switch (e.source) {
+        'code' => 'Activa con un código$until.',
+        _ => e.trial ? 'Prueba gratis$until.' : 'Suscripción activa$until.',
+      };
+    } else {
+      status = 'Sin suscripción: ${access.freeStories.length} cuentos gratis.';
+    }
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text('Suscripción', style: text.titleMedium),
+        const SizedBox(height: 4),
+        Text(status, key: const Key('subscription-status')),
+        const SizedBox(height: 8),
+        Wrap(
+          spacing: 8,
+          children: [
+            FilledButton.tonalIcon(
+              key: const Key('settings-plans'),
+              onPressed: () =>
+                  Navigator.of(context).push(MaterialPageRoute<bool>(
+                fullscreenDialog: true,
+                builder: (_) => const PaywallPage(),
+              )),
+              icon: const Icon(Icons.workspace_premium),
+              label: Text(access.premium ? 'Planes y códigos' : 'Ver planes'),
+            ),
+          ],
+        ),
+        if (access.devAvailable) ...[
+          const SizedBox(height: 8),
+          SwitchListTile(
+            key: const Key('dev-unlock'),
+            contentPadding: EdgeInsets.zero,
+            secondary: const Icon(Icons.developer_mode),
+            title: const Text('Modo desarrollador'),
+            subtitle: const Text(
+                'Abre todos los cuentos sin pagar. Solo existe en las versiones de prueba, no en la de la tienda.'),
+            value: access.devUnlock,
+            onChanged: access.setDevUnlock,
+          ),
+        ],
+      ],
+    );
   }
 
   /// Borra todo lo guardado en el teléfono (con confirmación) y vuelve al inicio, donde el asistente de
@@ -500,6 +563,7 @@ class _SettingsPageState extends State<SettingsPage> {
     await settings?.resetAll();
     await widget.shelf?.clearAll();
     await widget.progress?.clearAll();
+    if (mounted) await AccessScope.read(context).clearAll();
     await widget.feedback.clearAll();
     if (!mounted) return;
     nav.popUntil((r) => r.isFirst);
@@ -517,6 +581,8 @@ class _SettingsPageState extends State<SettingsPage> {
             : ListView(
                 padding: const EdgeInsets.all(16),
                 children: [
+                  _subscription(context),
+                  const Divider(height: 32),
                   ..._storySettings(context),
                   const Divider(height: 32),
                   SwitchListTile(

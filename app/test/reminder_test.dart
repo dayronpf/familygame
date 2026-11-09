@@ -24,6 +24,9 @@ class _FakeReminder implements BedtimeReminder {
 
   @override
   Future<void> cancel() async => cancels++;
+
+  @override
+  Future<bool> trialEnding(DateTime at) async => false;
 }
 
 void main() {

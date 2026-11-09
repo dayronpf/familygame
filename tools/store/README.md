@@ -9,7 +9,7 @@
   ```
 
   La herramienta `app/test/ui_shots_manual_test.dart` dibuja las pantallas reales de la app (con sus textos y dibujos) sin necesitar
-  un teléfono. Copia a `art/store/phone/` las que quieras (`03_home`, `07_story`, `09_mis_cuentos`, `05_packs`, `12_wizard_edad`).
+  un teléfono. Copia a `art/store/phone/` las que quieras. Las de hoy (8-nov-2026): `0-bienvenida` (02_splash_b), `1-inicio` (03_home), `2-cuento` (07_story), `3-mis-cuentos` (09_mis_cuentos), `4-explorar` (05_explore), `5-edad` (12_wizard_edad) y `6-premios` (10_premios). Añade `FLUTTER_FONTS=<flutter>/bin/cache/artifacts/material_fonts` si Flutter no está en `/opt/flutter-sdk`.
   Son capturas de **widgets**, no del dispositivo: antes de publicar conviene sustituirlas por capturas reales de un iPhone y de un Android.
 * **Textos legales públicos:** `python3 tools/legal/build_site.py site` y `.github/workflows/pages.yml` (GitHub Pages).
 * Faltan (dependen de decisiones del dueño): el nombre definitivo, el titular y el correo de contacto (`app/lib/src/brand.dart`),

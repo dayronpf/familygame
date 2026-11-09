@@ -12,6 +12,9 @@ abstract class BedtimeReminder {
   Future<bool> schedule(TimeOfDay time);
 
   Future<void> cancel();
+
+  /// Aviso único de que la prueba gratis está por terminar (lo promete el muro de pago).
+  Future<bool> trialEnding(DateTime at) async => false;
 }
 
 /// El de verdad, con las notificaciones locales del teléfono.
@@ -94,6 +97,29 @@ class LocalBedtimeReminder implements BedtimeReminder {
   Future<void> cancel() async {
     await _init();
     await _plugin.cancel(id: _id);
+  }
+
+  @override
+  Future<bool> trialEnding(DateTime at) async {
+    await _init();
+    if (!await _askPermission()) return false;
+    await _plugin.zonedSchedule(
+      id: _id + 1,
+      title: 'Tu prueba gratis termina pronto',
+      body:
+          'En dos días empieza la suscripción. Si no la quieres, cancélala en Google Play.',
+      scheduledDate: tz.TZDateTime.from(at, tz.local),
+      notificationDetails: const NotificationDetails(
+        android: AndroidNotificationDetails(
+          'suscripcion',
+          'Suscripción',
+          channelDescription: 'Avisos sobre la prueba gratis',
+        ),
+        iOS: DarwinNotificationDetails(),
+      ),
+      androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,
+    );
+    return true;
   }
 }
 

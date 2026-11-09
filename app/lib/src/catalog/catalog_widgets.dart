@@ -152,6 +152,23 @@ class StoryFacts extends StatelessWidget {
   }
 }
 
+/// Candado pequeño de los cuentos de la suscripción.
+class LockBadge extends StatelessWidget {
+  const LockBadge({super.key, this.size = 30});
+
+  final double size;
+
+  @override
+  Widget build(BuildContext context) => Container(
+        width: size,
+        height: size,
+        decoration:
+            const BoxDecoration(color: Palette.amber, shape: BoxShape.circle),
+        child:
+            Icon(Icons.lock, size: size * 0.55, color: const Color(0xFF3A2606)),
+      );
+}
+
 /// Tarjeta grande: ilustración arriba y, debajo, título, enseñanza y datos (Recomendado, Novedades).
 class StoryCard extends StatelessWidget {
   const StoryCard({
@@ -161,7 +178,11 @@ class StoryCard extends StatelessWidget {
     required this.artFor,
     required this.onTap,
     this.coverHeight = 190,
+    this.locked = false,
   });
+
+  /// Cuento de la suscripción (sin ella): candado en la esquina.
+  final bool locked;
 
   final CatalogStory story;
   final Story? preview;
@@ -182,6 +203,7 @@ class StoryCard extends StatelessWidget {
         StoryCover(story: story, preview: preview, artFor: artFor),
         if (story.isNew)
           const Positioned(top: 12, right: 12, child: NewBadge()),
+        if (locked) const Positioned(top: 12, left: 12, child: LockBadge()),
       ],
     );
     return Material(
@@ -237,12 +259,14 @@ class StoryRow extends StatelessWidget {
     required this.preview,
     required this.artFor,
     required this.onTap,
+    this.locked = false,
   });
 
   final CatalogStory story;
   final Story? preview;
   final ArtFor artFor;
   final VoidCallback onTap;
+  final bool locked;
 
   @override
   Widget build(BuildContext context) {
@@ -275,6 +299,9 @@ class StoryRow extends StatelessWidget {
                               color: Color(0xFFE5566B), shape: BoxShape.circle),
                         ),
                       ),
+                    if (locked)
+                      const Positioned(
+                          right: 6, bottom: 6, child: LockBadge(size: 24)),
                   ],
                 ),
               ),

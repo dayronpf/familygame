@@ -9,6 +9,9 @@ import 'pack_loader.dart';
 import 'seed.dart';
 import 'settings/app_settings.dart';
 import 'progress/reading_progress.dart';
+import 'store/access.dart';
+import 'store/paywall_page.dart';
+import 'store/purchases.dart';
 import 'shelf/story_shelf.dart';
 import 'theme.dart';
 import 'ui/splash_page.dart';
@@ -25,6 +28,8 @@ class CalderoApp extends StatefulWidget {
     this.animateArt = true,
     this.shelf,
     this.progress,
+    this.access,
+    this.purchases,
     this.settings,
     this.voices = const VoiceServices(),
     this.showWizard = false,
@@ -45,6 +50,12 @@ class CalderoApp extends StatefulWidget {
 
   /// Progreso y premios de cada niño; por defecto en memoria (la app real pasa el que se guarda en el teléfono).
   final ReadingProgress? progress;
+
+  /// Quién puede leer qué (cuentos gratis, suscripción, modo desarrollador). Por defecto todo abierto (pruebas).
+  final AccessService? access;
+
+  /// Compras con la tienda (la app real pasa la de Google Play; las pruebas, ninguna o una de mentira).
+  final PurchaseGateway? purchases;
 
   /// Ajustes de la familia; por defecto unos en memoria (la app real pasa los que se guardan en el teléfono).
   final AppSettings? settings;
@@ -68,6 +79,7 @@ class _CalderoAppState extends State<CalderoApp> {
   late final StoryShelf _shelf = widget.shelf ?? StoryShelf(MemoryShelfStore());
   late final ReadingProgress _progress =
       widget.progress ?? ReadingProgress(MemoryShelfStore());
+  late final AccessService _access = widget.access ?? AccessService.open();
   late final AppSettings _settings =
       widget.settings ?? AppSettings(MemorySettingsStore());
   late bool _wizard = widget.showWizard && !_settings.wizardDone;
@@ -83,6 +95,7 @@ class _CalderoAppState extends State<CalderoApp> {
   @override
   void initState() {
     super.initState();
+    _access.load().then((_) => _access.refresh());
     _settings.addListener(_showWizardAgain);
   }
 
@@ -125,12 +138,19 @@ class _CalderoAppState extends State<CalderoApp> {
       builder: (context, child) => SettingsScope(
         settings: _settings,
         voices: widget.voices,
-        child: widget.animateArt
-            ? child!
-            : MediaQuery(
-                data: MediaQuery.of(context).copyWith(disableAnimations: true),
-                child: child!,
-              ),
+        child: AccessScope(
+          access: _access,
+          child: PurchasesScope(
+            purchases: widget.purchases,
+            child: widget.animateArt
+                ? child!
+                : MediaQuery(
+                    data: MediaQuery.of(context)
+                        .copyWith(disableAnimations: true),
+                    child: child!,
+                  ),
+          ),
+        ),
       ),
       home: Stack(
         children: [

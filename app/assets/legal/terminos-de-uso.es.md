@@ -8,7 +8,15 @@
 Una app de cuentos originales para antes de dormir, con una enseñanza, narrados por la voz del teléfono y con dibujos animados. Los cuentos se arman combinando partes escritas por el equipo del proyecto; cada cuento es distinto.
 
 ## 2. Para quién
-Para que los **adultos** cuenten cuentos a niños. Los ajustes, las valoraciones y las compras (si algún día las hay) son cosa de adultos.
+Para que los **adultos** cuenten cuentos a niños. Los ajustes, las valoraciones y las compras son cosa de adultos.
+
+## 2 bis. Cuentos gratis y suscripción
+- **Gratis:** tres cuentos completos, con todas las funciones, para probar la app sin pagar.
+- **Suscripción** (anual o mensual): abre todos los cuentos y paquetes, los que se publiquen mientras esté activa y crear cuentos nuevos cada noche. Se paga con la cuenta de la tienda (Google Play o App Store) al precio que se muestra antes de comprar.
+- **Prueba gratis:** cuando la tienda la ofrece (por ejemplo, 7 días), no se cobra nada durante la prueba; la app avisa antes de que termine. Si no se cancela, empieza la suscripción.
+- **Renovación y cancelación:** la suscripción se renueva sola al final de cada periodo, salvo que se cancele en la tienda al menos 24 horas antes. Se cancela en Google Play › Pagos y suscripciones (o en los ajustes de la cuenta de Apple); el acceso sigue hasta que termine el periodo pagado.
+- **Reembolsos:** los gestiona la tienda según sus normas.
+- **Códigos:** algunos códigos de regalo abren la app por un tiempo; no se pueden cambiar por dinero.
 
 ## 3. Uso permitido
 Puede usar la app para uso personal y familiar. No puede copiar, vender o redistribuir los cuentos, los dibujos ni el código fuera de lo que permita la licencia, ni intentar romper la protección de la app.
