@@ -29,7 +29,11 @@ class AudioOnlyPage extends StatefulWidget {
     this.background,
     this.sfx,
     this.autoStart = true,
+    this.onFinished,
   });
+
+  /// El cuento sonó hasta el final (se llama una vez).
+  final VoidCallback? onFinished;
 
   final Story story;
   final Narrator? narrator;
@@ -51,6 +55,7 @@ class AudioOnlyPage extends StatefulWidget {
 
 class _AudioOnlyPageState extends State<AudioOnlyPage> {
   late final StoryPlayback _playback;
+  bool _finishedOnce = false;
   late final Sfx _sfx = widget.sfx ?? sfxFor(context);
   late final Ambience _ambience = widget.ambience ??
       ambienceFor(context, packId: widget.story.recipe.packId);
@@ -78,6 +83,10 @@ class _AudioOnlyPageState extends State<AudioOnlyPage> {
     )..addListener(() {
         if (!mounted) return;
         // Al terminar los controles se quedan a la vista (con el botón «Volver»)
+        if (_playback.finished && !_finishedOnce) {
+          _finishedOnce = true;
+          widget.onFinished?.call();
+        }
         setState(() => _controls = _controls || _playback.finished);
       });
     _hearMusic = musicOn(context);

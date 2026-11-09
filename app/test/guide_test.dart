@@ -99,7 +99,8 @@ void main() {
     testWidgets('el inicio tiene la tarjeta que lleva a la guía',
         (tester) async {
       await openApp(tester);
-      await tester.scrollUntilVisible(find.byKey(const Key('guide-card')), 200);
+      await tester.scrollUntilVisible(find.byKey(const Key('guide-card')), 200,
+          scrollable: find.byType(Scrollable).first);
       await tester.ensureVisible(find.byKey(const Key('guide-card')));
       await tester.pumpAndSettle();
       await tester.tap(find.byKey(const Key('guide-card')));

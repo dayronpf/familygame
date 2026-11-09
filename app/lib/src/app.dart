@@ -8,6 +8,7 @@ import 'home_page.dart';
 import 'pack_loader.dart';
 import 'seed.dart';
 import 'settings/app_settings.dart';
+import 'progress/reading_progress.dart';
 import 'shelf/story_shelf.dart';
 import 'theme.dart';
 import 'ui/splash_page.dart';
@@ -23,6 +24,7 @@ class CalderoApp extends StatefulWidget {
     this.seedProvider = timeSeed,
     this.animateArt = true,
     this.shelf,
+    this.progress,
     this.settings,
     this.voices = const VoiceServices(),
     this.showWizard = false,
@@ -40,6 +42,9 @@ class CalderoApp extends StatefulWidget {
 
   /// «Mis cuentos»; por defecto uno en memoria (la app real pasa el que se guarda en el teléfono).
   final StoryShelf? shelf;
+
+  /// Progreso y premios de cada niño; por defecto en memoria (la app real pasa el que se guarda en el teléfono).
+  final ReadingProgress? progress;
 
   /// Ajustes de la familia; por defecto unos en memoria (la app real pasa los que se guardan en el teléfono).
   final AppSettings? settings;
@@ -61,6 +66,8 @@ class CalderoApp extends StatefulWidget {
 class _CalderoAppState extends State<CalderoApp> {
   late final AssetBundle _bundle = widget.bundle ?? rootBundle;
   late final StoryShelf _shelf = widget.shelf ?? StoryShelf(MemoryShelfStore());
+  late final ReadingProgress _progress =
+      widget.progress ?? ReadingProgress(MemoryShelfStore());
   late final AppSettings _settings =
       widget.settings ?? AppSettings(MemorySettingsStore());
   late bool _wizard = widget.showWizard && !_settings.wizardDone;
@@ -90,6 +97,7 @@ class _CalderoAppState extends State<CalderoApp> {
       ? Future.wait<void>([
           loadStageArt(_bundle).then((_) {}),
           _shelf.load(),
+          _progress.load(),
         ])
       : Future<void>.value();
 
@@ -136,6 +144,7 @@ class _CalderoAppState extends State<CalderoApp> {
                     seedProvider: widget.seedProvider,
                     feedback: widget.feedback,
                     shelf: _shelf,
+                    progress: _progress,
                     animateArt: widget.animateArt,
                   ),
           ),

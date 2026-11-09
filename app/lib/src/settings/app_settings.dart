@@ -191,7 +191,19 @@ class AppSettings extends ChangeNotifier {
   bool _effects = true;
   double _musicVolume = 0.22;
   String _packId = defaultPackId;
+  bool _animatedArt = true;
+  bool _celebrateAwards = true;
+  List<String> _dismissedNews = const [];
   bool _loaded = false;
+
+  /// Ilustraciones animadas (con `false`, cada escena se queda quieta: ahorra batería y calma a algunos niños).
+  bool get animatedArt => _animatedArt;
+
+  /// Celebrar un premio nuevo al terminar el cuento (con `false`, el premio se guarda en silencio).
+  bool get celebrateAwards => _celebrateAwards;
+
+  /// Avisos del inicio que la familia ya cerró.
+  List<String> get dismissedNews => _dismissedNews;
 
   /// Si el idioma del sistema no está entre los disponibles (el wizard avisa).
   bool get systemLanguageUnavailable =>
@@ -225,6 +237,12 @@ class AppSettings extends ChangeNotifier {
         _musicVolume =
             ((j['volumen_musica'] as num?) ?? 0.22).toDouble().clamp(0.0, 1.0);
         _packId = (j['paquete'] as String?) ?? defaultPackId;
+        _animatedArt = j['ilustraciones_animadas'] != false;
+        _celebrateAwards = j['celebrar_premios'] != false;
+        _dismissedNews = [
+          for (final n in (j['avisos_cerrados'] as List<Object?>? ?? const []))
+            n! as String,
+        ];
         final list = [
           for (final p in (j['perfiles'] as List<Object?>? ?? const []))
             ChildProfile.fromJson(p! as Map<String, Object?>),
@@ -352,6 +370,9 @@ class AppSettings extends ChangeNotifier {
         'efectos': _effects,
         'volumen_musica': _musicVolume,
         'paquete': _packId,
+        'ilustraciones_animadas': _animatedArt,
+        'celebrar_premios': _celebrateAwards,
+        'avisos_cerrados': _dismissedNews,
         'activo': _active,
         'perfiles': [for (final p in _profiles) p.toJson()],
       };
@@ -365,6 +386,29 @@ class AppSettings extends ChangeNotifier {
     _effects = true;
     _musicVolume = 0.22;
     _packId = defaultPackId;
+    _animatedArt = true;
+    _celebrateAwards = true;
+    _dismissedNews = const [];
+    notifyListeners();
+    return _save();
+  }
+
+  Future<void> setAnimatedArt(bool on) {
+    _animatedArt = on;
+    notifyListeners();
+    return _save();
+  }
+
+  Future<void> setCelebrateAwards(bool on) {
+    _celebrateAwards = on;
+    notifyListeners();
+    return _save();
+  }
+
+  /// Cierra un aviso del inicio para siempre.
+  Future<void> dismissNews(String id) {
+    if (_dismissedNews.contains(id)) return Future.value();
+    _dismissedNews = [..._dismissedNews, id];
     notifyListeners();
     return _save();
   }
@@ -416,6 +460,9 @@ class AppSettings extends ChangeNotifier {
         if (!_effects) 'efectos': false,
         'volumen_musica': _musicVolume,
         if (_packId != defaultPackId) 'paquete': _packId,
+        if (!_animatedArt) 'ilustraciones_animadas': false,
+        if (!_celebrateAwards) 'celebrar_premios': false,
+        if (_dismissedNews.isNotEmpty) 'avisos_cerrados': _dismissedNews,
         'activo': _active,
         'perfiles': [for (final p in _profiles) p.toJson()],
       }));

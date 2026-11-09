@@ -7,6 +7,7 @@ import 'src/app.dart';
 import 'src/feedback/feedback_service.dart';
 import 'src/feedback/feedback_store.dart';
 import 'src/feedback/feedback_transport.dart';
+import 'src/progress/reading_progress.dart';
 import 'src/settings/app_settings.dart';
 import 'src/shelf/story_shelf.dart';
 
@@ -30,6 +31,7 @@ Future<void> main() async {
     settings: settings,
     showWizard: true,
     shelf: StoryShelf(PrefsShelfStore(prefs)),
+    progress: ReadingProgress(PrefsProgressStore(prefs)),
     showSplash: true,
   ));
 }

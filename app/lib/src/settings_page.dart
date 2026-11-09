@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'feedback/feedback_service.dart';
 import 'feedback/rating_event.dart';
 import 'settings/app_settings.dart';
+import 'progress/reading_progress.dart';
 import 'shelf/story_shelf.dart';
 import 'ui/children_page.dart';
 import 'guide/holograma_guide.dart';
@@ -23,6 +24,7 @@ class SettingsPage extends StatefulWidget {
     required this.feedback,
     this.bundle,
     this.shelf,
+    this.progress,
     this.agesWithStories = const {'6-8'},
   });
 
@@ -30,6 +32,7 @@ class SettingsPage extends StatefulWidget {
 
   /// El estante de cuentos (para borrar los de un niño al quitarlo).
   final StoryShelf? shelf;
+  final ReadingProgress? progress;
 
   /// Para abrir el Taller de personajes (herramienta de prueba).
   final AssetBundle? bundle;
@@ -187,8 +190,10 @@ class _SettingsPageState extends State<SettingsPage> {
         trailing: const Icon(Icons.chevron_right),
         onTap: () => Navigator.of(context).push(
           MaterialPageRoute<void>(
-            builder: (_) =>
-                ChildrenPage(settings: settings, shelf: widget.shelf),
+            builder: (_) => ChildrenPage(
+                settings: settings,
+                shelf: widget.shelf,
+                progress: widget.progress),
           ),
         ),
       ),
@@ -360,6 +365,24 @@ class _SettingsPageState extends State<SettingsPage> {
         value: settings.effects,
         onChanged: settings.setEffects,
       ),
+      SwitchListTile(
+        key: const Key('setting-animated-art'),
+        contentPadding: EdgeInsets.zero,
+        title: const Text('Ilustraciones animadas'),
+        subtitle: const Text(
+            'Si lo apagas, cada escena se queda quieta: gasta menos batería y es más tranquilo.'),
+        value: settings.animatedArt,
+        onChanged: settings.setAnimatedArt,
+      ),
+      SwitchListTile(
+        key: const Key('setting-celebrate'),
+        contentPadding: EdgeInsets.zero,
+        title: const Text('Celebrar los premios'),
+        subtitle: const Text(
+            'Al terminar un cuento que da un premio nuevo, una pequeña celebración. Apagado, el premio se guarda en silencio.'),
+        value: settings.celebrateAwards,
+        onChanged: settings.setCelebrateAwards,
+      ),
       ListTile(
         key: const Key('setting-downloads'),
         contentPadding: EdgeInsets.zero,
@@ -382,6 +405,7 @@ class _SettingsPageState extends State<SettingsPage> {
     return {
       if (settings != null) 'ajustes': settings.exportJson(),
       if (widget.shelf != null) 'mis_cuentos': widget.shelf!.exportJson(),
+      if (widget.progress != null) 'progreso': widget.progress!.exportJson(),
       'valoraciones': await widget.feedback.exportJson(),
     };
   }
@@ -421,6 +445,7 @@ class _SettingsPageState extends State<SettingsPage> {
     final nav = Navigator.of(context);
     await settings?.resetAll();
     await widget.shelf?.clearAll();
+    await widget.progress?.clearAll();
     await widget.feedback.clearAll();
     if (!mounted) return;
     nav.popUntil((r) => r.isFirst);

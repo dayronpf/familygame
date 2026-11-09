@@ -260,3 +260,37 @@ const _packEmoji = {
   'bosque': '🌲',
   'granja': '🐔',
 };
+
+/// Cuentos recomendados para un niño, el primero es «el cuento de esta noche». Sirven a su edad, no se contaron
+/// hace poco y, si se puede, enseñan algo distinto de lo último. El orden cambia cada día pero es el mismo todo el
+/// día (no salta al volver al inicio).
+List<CatalogStory> recommend(
+  StoryCatalog catalog, {
+  String? childAge,
+  String? childId,
+  required String day,
+  List<({String? premiseId, String packId, String moralId})> recent = const [],
+  int count = 3,
+}) {
+  final told = {
+    for (final r in recent)
+      if (r.premiseId != null) '${r.packId}:${r.premiseId}',
+  };
+  final lastMorals = {for (final r in recent.take(3)) r.moralId};
+  final byAge = [
+    for (final s in catalog.stories)
+      if (s.premise.fitsAge(childAge)) s,
+  ];
+  final pool = byAge.isEmpty ? catalog.stories : byAge;
+  int score(CatalogStory s) =>
+      (told.contains(s.key) ? 4 : 0) +
+      (s.moral != null && lastMorals.contains(s.moral!.id) ? 2 : 0) -
+      (s.isNew ? 1 : 0);
+  final salt = stableSeed('$day:${childId ?? ''}');
+  final ranked = [...pool]..sort((a, b) {
+      final c = score(a).compareTo(score(b));
+      if (c != 0) return c;
+      return (stableSeed(a.key) ^ salt).compareTo(stableSeed(b.key) ^ salt);
+    });
+  return ranked.take(count).toList(growable: false);
+}

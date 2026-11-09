@@ -26,7 +26,11 @@ class SharedReadingPage extends StatefulWidget {
     this.animate = true,
     this.turns = false,
     this.flow,
+    this.onFinished,
   });
+
+  /// Tocaron «Terminar» en la última página.
+  final VoidCallback? onFinished;
 
   /// El cuento con sus preguntas; sin él, el cuento es [story] y no se pregunta nada.
   final StoryFlow? flow;
@@ -386,7 +390,10 @@ class _SharedReadingPageState extends State<SharedReadingPage>
                   else if (_page >= last)
                     FilledButton.icon(
                       key: const Key('shared-done'),
-                      onPressed: () => Navigator.pop(context),
+                      onPressed: () {
+                        widget.onFinished?.call();
+                        Navigator.pop(context);
+                      },
                       icon: const Icon(Icons.check),
                       label: const Text('Terminar'),
                     )

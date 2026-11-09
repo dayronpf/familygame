@@ -11,6 +11,9 @@ import 'feedback/feedback_service.dart';
 import 'feedback/feedback_store.dart';
 import 'feedback/rating_card.dart';
 import 'guide/holograma_guide.dart';
+import 'home/news.dart';
+import 'progress/progress_tab.dart';
+import 'progress/reading_progress.dart';
 import 'pack_loader.dart';
 import 'packs/pack_catalog.dart';
 import 'packs/packs_tab.dart';
@@ -39,8 +42,12 @@ class HomePage extends StatefulWidget {
     required this.seedProvider,
     required this.feedback,
     required this.shelf,
+    this.progress,
     this.animateArt = true,
   });
+
+  /// Progreso y premios (por defecto, en memoria).
+  final ReadingProgress? progress;
 
   final bool animateArt;
   final AssetBundle bundle;
@@ -65,6 +72,14 @@ class _HomePageState extends State<HomePage> {
 
   /// `null` = «Sorpréndeme» (el caldero elige).
   String? _selectedMoral;
+
+  late final ReadingProgress _progress =
+      widget.progress ?? ReadingProgress(MemoryShelfStore());
+
+  /// Dibujos animados: los de la app (las pruebas los paran) y el ajuste de la familia.
+  bool get _animate =>
+      widget.animateArt &&
+      (SettingsScope.maybeOf(context)?.animatedArt ?? true);
 
   /// Catálogo de los paquetes abiertos (se arma una vez) y vistas previas del niño activo.
   Future<StoryCatalog>? _catalog;
@@ -156,7 +171,7 @@ class _HomePageState extends State<HomePage> {
     ));
   }
 
-  /// 0 = Inicio, 1 = Explorar, 2 = Mis cuentos.
+  /// 0 = Inicio, 1 = Explorar, 2 = Mis cuentos, 3 = Premios.
   int _tab = 0;
 
   /// Cuento leído hasta el final que aún no valoraron (se pregunta con calma, no en plena noche).
@@ -170,6 +185,7 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     widget.shelf.load();
+    _progress.load();
     widget.feedback.flush(); // envía lo que haya esperando; nunca bloquea
     widget.feedback.pendingChanges.addListener(_refreshPending);
     _refreshPending();
@@ -268,6 +284,8 @@ class _HomePageState extends State<HomePage> {
           run: run,
           feedback: widget.feedback,
           shelf: widget.shelf,
+          progress: _progress,
+          packId: pack.id,
           option: option,
           premiseId: premise,
           start: start,
@@ -276,7 +294,7 @@ class _HomePageState extends State<HomePage> {
           heroGender: heroGender,
           childId: childId,
           art: _artFor(pack.id),
-          animate: widget.animateArt,
+          animate: _animate,
           onAnother: () => next().toStory(),
           onAnotherRun: next,
         ),
@@ -313,6 +331,7 @@ class _HomePageState extends State<HomePage> {
           feedback: widget.feedback,
           bundle: widget.bundle,
           shelf: widget.shelf,
+          progress: _progress,
           agesWithStories: agesWithStories,
         ),
       ),
@@ -420,9 +439,14 @@ class _HomePageState extends State<HomePage> {
                             );
                           },
                         ),
-                      _ => MyStoriesTab(
+                      2 => MyStoriesTab(
                           shelf: widget.shelf,
                           onOpen: _replay,
+                        ),
+                      _ => ProgressTab(
+                          progress: _progress,
+                          childId: settings?.child.id,
+                          childName: settings?.child.heroName,
                         ),
                     },
                   ),
@@ -453,6 +477,11 @@ class _HomePageState extends State<HomePage> {
             selectedIcon: Icon(Icons.favorite, color: Palette.amberDark),
             label: 'Mis cuentos',
           ),
+          NavigationDestination(
+            icon: Icon(Icons.emoji_events_outlined),
+            selectedIcon: Icon(Icons.emoji_events, color: Palette.amberDark),
+            label: 'Premios',
+          ),
         ],
       ),
     );
@@ -478,7 +507,7 @@ class _HomePageState extends State<HomePage> {
                       ? '¡Hola! ¿Qué cuento\nquieres esta noche?'
                       : '¡Hola, ${SettingsScope.maybeOf(context)!.child.heroName}!\n¿Qué cuento quieres?',
                   heroGender: SettingsScope.maybeOf(context)?.child.heroGender,
-                  animate: widget.animateArt,
+                  animate: _animate,
                 ),
               ),
               if (pending != null) ...[
@@ -526,6 +555,8 @@ class _HomePageState extends State<HomePage> {
                   );
                 },
               ),
+              _news(),
+              _recommended(),
               const SizedBox(height: 18),
               _GuideCard(
                 onTap: () => Navigator.of(context).push(
@@ -564,6 +595,106 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ],
+    );
+  }
+
+  /// Avisos que la familia aún no cerró.
+  Widget _news() {
+    final settings = SettingsScope.maybeOf(context);
+    final items = [
+      for (final n in newsItems)
+        if (!(settings?.dismissedNews.contains(n.id) ?? false)) n,
+    ];
+    if (items.isEmpty) return const SizedBox.shrink();
+    return Padding(
+      padding: const EdgeInsets.only(top: 22),
+      child: NewsCarousel(
+        items: items,
+        onDismiss: (n) => settings?.dismissNews(n.id),
+        onAction: (n) {
+          switch (n.action) {
+            case NewsAction.explore:
+              setState(() => _tab = 1);
+            case NewsAction.packs:
+              _openPacks();
+            case NewsAction.none:
+              break;
+          }
+        },
+      ),
+    );
+  }
+
+  /// «Recomendado para Ana»: el cuento de esta noche en grande y dos más.
+  Widget _recommended() {
+    final text = Theme.of(context).textTheme;
+    final settings = SettingsScope.maybeOf(context);
+    return FutureBuilder<StoryCatalog>(
+      future: _catalogFuture(),
+      builder: (context, snap) {
+        final catalog = snap.data;
+        if (catalog == null) return const SizedBox.shrink();
+        return ListenableBuilder(
+          listenable: widget.shelf,
+          builder: (context, _) {
+            final child = settings?.child;
+            final picks = recommend(
+              catalog.forChild(
+                  heroName: child?.heroName, heroGender: child?.heroGender),
+              childAge: child?.age,
+              childId: child?.id,
+              day: DateTime.now().toIso8601String().substring(0, 10),
+              recent: [
+                for (final e in widget.shelf.recent)
+                  (
+                    premiseId: e.premiseId,
+                    packId: e.packId,
+                    moralId: e.moralId
+                  ),
+              ],
+            );
+            if (picks.isEmpty) return const SizedBox.shrink();
+            final previews = _previewsFor(settings);
+            final name = child?.heroName;
+            return Padding(
+              padding: const EdgeInsets.only(top: 22),
+              child: Column(
+                key: const Key('home-recommended'),
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Text(
+                      name == null
+                          ? 'El cuento de esta noche'
+                          : 'Para $name, esta noche',
+                      style: text.titleLarge!
+                          .copyWith(fontWeight: FontWeight.w800)),
+                  const SizedBox(height: 12),
+                  StoryCard(
+                    story: picks.first,
+                    preview: previews.of(picks.first),
+                    artFor: _artFor,
+                    coverHeight: 170,
+                    onTap: () => _openCatalogStory(picks.first),
+                  ),
+                  if (picks.length > 1) ...[
+                    const SizedBox(height: 14),
+                    Text('También te pueden gustar',
+                        style: text.titleMedium!
+                            .copyWith(fontWeight: FontWeight.w800)),
+                    for (final s in picks.skip(1))
+                      StoryRow(
+                        story: s,
+                        preview: previews.of(s),
+                        artFor: _artFor,
+                        onTap: () => _openCatalogStory(s),
+                      ),
+                  ],
+                ],
+              ),
+            );
+          },
+        );
+      },
     );
   }
 

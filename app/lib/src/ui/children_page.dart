@@ -3,6 +3,7 @@ import 'package:caldero_engine/caldero_engine.dart'
 import 'package:flutter/material.dart';
 
 import '../settings/app_settings.dart';
+import '../progress/reading_progress.dart';
 import '../shelf/story_shelf.dart';
 import 'palette.dart';
 
@@ -63,7 +64,10 @@ class ChildAvatar extends StatelessWidget {
 /// «Niños»: quién escucha los cuentos en este teléfono. Cada niño tiene su nombre, su edad, su género de protagonista y
 /// sus propios cuentos guardados; la voz, la velocidad y la música son del teléfono. El activo es el del inicio.
 class ChildrenPage extends StatelessWidget {
-  const ChildrenPage({super.key, required this.settings, this.shelf});
+  const ChildrenPage(
+      {super.key, required this.settings, this.shelf, this.progress});
+
+  final ReadingProgress? progress;
 
   final AppSettings settings;
 
@@ -120,7 +124,10 @@ class ChildrenPage extends StatelessWidget {
     );
     if (ok != true) return;
     final id = await settings.removeChild(index);
-    if (id != null) await shelf?.removeChild(id);
+    if (id != null) {
+      await shelf?.removeChild(id);
+      await progress?.removeChild(id);
+    }
   }
 
   @override

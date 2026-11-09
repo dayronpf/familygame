@@ -9,6 +9,9 @@ import 'audio_only_page.dart';
 import 'cinema_page.dart';
 import 'hologram_page.dart';
 import 'narration/narrator.dart';
+import 'progress/progress_tab.dart';
+import 'progress/reading_progress.dart';
+import 'settings/app_settings.dart';
 import 'feedback/feedback_service.dart';
 import 'feedback/rating_card.dart';
 import 'shared_reading_page.dart';
@@ -49,7 +52,15 @@ class StoryPage extends StatefulWidget {
     this.sfx,
     this.premiseId,
     this.start = StoryStart.reader,
+    this.progress,
+    this.packId,
   });
+
+  /// Progreso del niño: se anota cada cuento terminado (y se celebran los premios nuevos).
+  final ReadingProgress? progress;
+
+  /// Paquete del cuento (para el progreso; por defecto el de la receta).
+  final String? packId;
 
   /// Cuento elegido en el catálogo (se guarda para contarlo igual otra vez).
   final String? premiseId;
@@ -110,6 +121,9 @@ class _StoryPageState extends State<StoryPage>
   bool _reachedEnd = false; // la ficha de valoración llegó a mostrarse
   bool _answered = false; // ya valoraron o dijeron «Ahora no»
   Future<String?>? _ratingId; // id del evento guardado al valorar
+  bool _counted = false; // este cuento ya se anotó como terminado
+  List<Award> _fresh =
+      const []; // premios que dio este cuento (se celebran al final, sin ventanas)
 
   @override
   void initState() {
@@ -170,6 +184,25 @@ class _StoryPageState extends State<StoryPage>
 
   bool get _complete => _flow?.isComplete ?? true;
 
+  /// El cuento se terminó (leído hasta el final, «Terminar» en Leemos juntos o sonó entero): se marca en
+  /// «Mis cuentos», se suma al progreso una sola vez y, si da premios nuevos, se celebran.
+  Future<void> _finished({bool together = false}) async {
+    widget.shelf.markFinished(_entry);
+    final progress = widget.progress;
+    if (_counted || progress == null) return;
+    _counted = true;
+    final chars = _story.scenes.fold<int>(0, (n, s) => n + s.text.length);
+    final fresh = await progress.recordFinished(
+      childId: widget.childId,
+      moralId: _story.moral.id,
+      packId: widget.packId ?? _story.recipe.packId,
+      minutes: minutesForText(chars),
+      together: together,
+    );
+    if (!mounted || fresh.isEmpty) return;
+    setState(() => _fresh = fresh);
+  }
+
   /// Anota el cuento en «Mis cuentos» (los últimos que se contaron).
   void _remember() => widget.shelf.addRecent(_entry);
 
@@ -224,6 +257,7 @@ class _StoryPageState extends State<StoryPage>
     Navigator.of(context).push(MaterialPageRoute<void>(
       builder: (_) => AudioOnlyPage(
         story: _flow?.finish() ?? _story,
+        onFinished: _finished,
         narrator: widget.narrator?.call(),
         ambience: widget.ambience?.call(),
         sfx: widget.sfx?.call(),
@@ -241,6 +275,7 @@ class _StoryPageState extends State<StoryPage>
         setups: _setups,
         narrator: widget.narrator?.call(),
         animate: widget.animate,
+        onFinished: () => _finished(together: true),
       ),
     ));
   }
@@ -295,6 +330,8 @@ class _StoryPageState extends State<StoryPage>
       _reachedEnd = false;
       _answered = false;
       _ratingId = null;
+      _counted = false;
+      _fresh = const [];
     });
     _remember();
   }
@@ -479,8 +516,10 @@ class _StoryPageState extends State<StoryPage>
                 ),
               ),
             // La lista se arma al bajar: si esto llega a armarse, leyeron hasta el final.
-            if (_complete)
-              _EndReached(onReached: () => widget.shelf.markFinished(_entry)),
+            if (_complete) _EndReached(onReached: _finished),
+            if (_fresh.isNotEmpty &&
+                (SettingsScope.maybeOf(context)?.celebrateAwards ?? true))
+              AwardsEarned(awards: _fresh),
             const SizedBox(height: 16),
             if (_askRating == true && _complete)
               RatingCard(

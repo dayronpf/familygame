@@ -45,7 +45,8 @@ Tallas S/M/L como en [07](07-backlog.md). Las fases 1–3 no necesitan servidor 
 > **Estado (8-nov-2026):** ✅ R-01, R-02, R-03 y R-04 hechos (sin commit). R-02 se resolvió **sin tocar el esquema**: los
 > minutos salen de la longitud de las escenas (≈ 850 caracteres por minuto), la sinopsis es el principio real del cuento
 > (semilla fija por cuento, así la ficha y la lectura coinciden) y los valores son la enseñanza y el paquete. «Para dormir»
-> queda para cuando el esquema tenga esa marca. El motor acepta `StoryOptions.premiseId`. Pendiente: R-05 (inicio renovado).
+> queda para cuando el esquema tenga esa marca. El motor acepta `StoryOptions.premiseId`. ✅ R-05: «Para Ana, esta noche»
+> (recomendación del día: sirve a su edad, evita lo ya contado y la enseñanza de los últimos cuentos) y avisos cerrables.
 
 | ID | Historia | Dónde | Talla |
 |---|---|---|---|
@@ -58,6 +59,11 @@ Tallas S/M/L como en [07](07-backlog.md). Las fases 1–3 no necesitan servidor 
 **Pruebas:** widgets de ficha y filtros; motor: categorías deterministas por pack; validador rechaza `duration_min` fuera de rango.
 
 ### Fase 2 · Progreso y premios suaves — release 0.13
+
+> **Estado (8-nov-2026):** ✅ R-06 a R-09. Pestaña «Premios» con minutos, semanas con cuento (≥ 3 noches de lunes a domingo)
+> y cuentos leídos; 10 premios que nunca se pierden. Cuenta como terminado: bajar hasta el final en el lector, «Terminar» en
+> Leemos juntos o que suene entero en Escuchar. La celebración es una **tarjeta al final del cuento**, no una ventana
+> (no tapa la valoración); se apaga en Ajustes. ✅ R-11 (ilustraciones animadas sí/no) adelantado.
 
 | ID | Historia | Dónde | Talla |
 |---|---|---|---|
