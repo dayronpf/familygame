@@ -53,3 +53,49 @@ dormir: HD»…). Es una pista, **no** una búsqueda de marcas: los buscadores n
 5. **Oído en otros idiomas:** que no signifique algo raro en inglés ni portugués (hoy el contenido es solo en español).
 6. **Cambio de nombre en el código:** el nombre aparece en la app (`theme`, splash, textos), el PDF del holograma (`APP_NAME` en
    `tools/guide/make_holograma_pdf.py`), el mensaje de compartir y el identificador de la app (que, ya publicado, no se puede cambiar).
+
+## Segunda ronda (8-nov-2026): nombres sin caldero
+
+El logo y el inicio ya no tienen caldero ni fuego (ahora son un libro abierto y una luna con carita), y «caldero» evoca
+brujería. Se buscaron nombres alegres, sin connotación religiosa ni de brujería, que encajen con el libro y la luna.
+Comprobado con `tools/naming/check_domains.py` (mismas salvedades: dominio no registrado hoy ≠ marca libre).
+
+| Nombre | Idea | .com | .app | .net | .org |
+|---|---|---|---|---|---|
+| **Luna de Cuentos** (`lunadecuentos`) | El icono tal cual (luna + libro); conserva «de Cuentos» | libre | libre | libre | libre |
+| **Cuentaestrellas** | «Contar estrellas» + contar cuentos; juguetón y de noche | libre | libre | libre | libre |
+| **Página Luna** (`paginaluna`) | Libro + luna, corto | libre | libre | libre | libre |
+| **Arrullaluna** | «Arrullar» + luna: cuentos para dormir | libre | libre | libre | libre |
+| **Mininoches** | Para niños, corto y tierno | libre | libre | libre | libre |
+| **Estrellacuentos** | Estrella + cuentos | libre | libre | libre | libre |
+| **Libro de Luna** (`librodeluna`) | Muy descriptivo | libre | libre | libre | libre |
+| **Cuentapáginas** | Contar páginas: leer juntos | libre | libre | libre | libre |
+
+Descartados en esta ronda (el .com está tomado): `lunalibro`, `libroluna`, `lunitacuentos`, `nochecitas`, `cuentitos`,
+`cuentaconmigo`, `leemosjuntos`, `lunalee`.
+
+### Comprobación completa de la segunda ronda (8-nov-2026)
+
+Para tener página web y correo hace falta más que un dominio sin registrar. Se comprobó, por nombre:
+
+1. **Dominio:** whois/RDAP (no registrado) y **Porkbun** (se puede comprar a precio normal, no «premium»): los 8 tienen
+   `.com` a USD 11.81/año y `.app` a USD 14.93/año (8.75 el primer año). Con el dominio, el correo (`hola@…`) sale gratis con
+   el reenvío de correo del registrador o con un buzón de pago (Porkbun, Zoho, Google Workspace).
+2. **Tiendas:** búsqueda en Google Play y en App Store (España, México y EE. UU.).
+3. **Marcas:** [TMview](https://www.tmdn.org/tmview) (oficinas de la UE, España, Latinoamérica y otras), búsqueda «contiene». El
+   método se validó con «readmio» (aparece su marca en Brasil).
+4. **Web:** búsqueda general del nombre exacto.
+
+| Nombre | Dominio .com / .app | Google Play | App Store | Marcas (TMview) | Web | Veredicto |
+|---|---|---|---|---|---|---|
+| **Página Luna** (`paginaluna`) | se pueden comprar | nada | nada | ninguna | nada | ✅ **limpio**; es el icono (libro + luna) |
+| **Mininoches** | se pueden comprar | «ningún resultado» | nada | ninguna | nada | ✅ **limpio**; corto y tierno |
+| **Arrullaluna** | se pueden comprar | nada | nada | ninguna | libro «Arrullos de luna» | ✅ limpio; algo difícil de escribir |
+| **Cuentapáginas** | se pueden comprar | nada | nada | ninguna | nada | ✅ limpio; poco distintivo |
+| **Estrellacuentos** | se pueden comprar | salen apps de horóscopo y tarot | nada | ninguna | nada | ⚠️ se asocia a astrología |
+| **Luna de Cuentos** | se pueden comprar | **«Luna: cuentos para dormir»** (MyToonTime) | **«Luna: Cuentos para Dormir IA»** | — | — | ❌ choca con una app del mismo tipo |
+| **Cuentaestrellas** | se pueden comprar | nada | **«CuentaEstrellas» (SPOTTERON)** | — | — | ❌ nombre exacto ya usado |
+| **Libro de Luna** | se pueden comprar | — | apps de libros y «Grimoire: Libro de Sombras» | — | — | ❌ confuso y con aire de brujería |
+
+Pendiente antes de comprar: reservar el usuario en Instagram, TikTok y YouTube (piden iniciar sesión para comprobarlo) y,
+si el presupuesto lo permite, una consulta con un abogado de marcas en los países donde se publicará.
