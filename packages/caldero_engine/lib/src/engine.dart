@@ -24,7 +24,12 @@ class StoryOptions {
     this.heroGender,
     this.choices = const [],
     this.interactive = true,
+    this.premiseId,
   });
+
+  /// Cuento concreto del catálogo (id de premisa). Con él, la enseñanza es la de la premisa y no se filtra por
+  /// edad ni género: lo eligió la familia. `null` = el caldero elige entre los que encajan.
+  final String? premiseId;
 
   /// Opciones ya elegidas (ids de opción), en orden de aparición. Las que falten las elige el motor con una
   /// semilla aparte, así que [StoryEngine.generate] siempre devuelve un cuento completo y determinista.
@@ -76,6 +81,33 @@ class StoryEngine {
 
   StoryRun _begin(StoryOptions options, List<_Pick> picks) {
     final rng = Mulberry32(options.seed);
+
+    if (options.premiseId != null) {
+      final premise = pack.premiseById(options.premiseId!) ??
+          (throw StoryGenerationException(
+            'cuento desconocido: ${options.premiseId}',
+          ));
+      final valueId =
+          premise.value == anyValue ? options.valueId : premise.value;
+      final told = pack.moralsWithStories;
+      final Moral moral = (valueId == null ? null : pack.moralById(valueId)) ??
+          rng.choice<Moral>(told.isEmpty ? pack.morals : told);
+      final age = pack.resolveAge(options.age);
+      return _generateFromPremise(
+        this,
+        options,
+        picks,
+        pack,
+        options.seed,
+        moral,
+        premise,
+        rng,
+        age: age,
+        moralText: moral.textFor(age),
+        heroName: normalizeChildName(options.heroName),
+        heroGender: options.heroGender,
+      );
+    }
 
     final Moral moral;
     if (options.valueId == null) {

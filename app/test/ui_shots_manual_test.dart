@@ -89,11 +89,11 @@ void main() {
     await tester.pump(const Duration(milliseconds: 300));
     await shot('04_home_valentia');
 
-    await tester.tap(find.text('Paquetes'));
+    await tester.tap(find.text('Explorar'));
     for (var i = 0; i < 4; i++) {
       await tester.pump(const Duration(milliseconds: 200));
     }
-    await shot('05_packs');
+    await shot('05_explore');
     await tester.drag(find.byType(ListView), const Offset(0, -500));
     await tester.pump(const Duration(milliseconds: 600));
     await shot('06_packs_scroll');

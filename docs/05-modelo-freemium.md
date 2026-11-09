@@ -1,41 +1,57 @@
 # 05 · Modelo freemium
 
+> **Cambio del 8 de noviembre de 2026:** pasamos de «compra única por paquete» a **suscripción con prueba gratis**,
+> el modelo de Readmio (ver [28](28-referencia-readmio-y-plan.md)). Lo hace viable que la voz se grabe una sola vez
+> en lugar de generarse en cada cuento ([29](29-voz-pregrabada-y-costos.md)).
+
 ## Principio
 
-El pack gratuito debe ser **completo y entrañable**: que una familia pueda tener un ritual semanal sin pagar.
-Lo premium añade **variedad y riqueza**, nunca elimina seguridad ni pone presión sobre el niño.
+El paquete gratuito debe ser **completo y entrañable**: que una familia pueda tener un ritual semanal sin pagar.
+La suscripción añade **variedad, voz de calidad y cuentos nuevos cada semana**, nunca quita seguridad ni presiona al niño.
 
-## Estructura propuesta
+## Estructura
 
-| Nivel | Contenido | Precio (a validar) |
+| Nivel | Qué incluye | Precio (a validar por región) |
 |---|---|---|
-| **Gratis** — «Reino de la Luna (medieval)» | ~25 personajes, ~15 lugares, 6 enseñanzas, narración básica, animaciones básicas, modo holograma básico | $0 |
-| **Packs temáticos** | Mar, Espacio, Ciudad, Fantasía, Granja… (≈ 20–30 personajes, 10–15 lugares, 3–4 enseñanzas nuevas, fondos y sonidos propios) | Compra única por pack |
-| **Suscripción «Familia»** (opcional, más adelante) | Todos los packs actuales y futuros + voces premium + cuentos con el nombre del niño | Mensual/anual |
-| **Packs de temporada** | Navidad, Día de la Madre, Halloween suave… | Compra única, edición limitada de arte |
+| **Gratis** | Paquete medieval completo con voz del teléfono; 1 cuento de regalo con voz premium; vista previa (primera escena) de los cuentos de pago | $0 |
+| **Suscripción anual** (la principal) | Todos los paquetes actuales y futuros, voz premium pregrabada en todos los idiomas, cuentos destacados nuevos cada semana, grabar la voz de mamá o papá, progreso y premios | EE. UU. ≈ USD 39.99; Latinoamérica ≈ USD 9.99–14.99 |
+| **Suscripción mensual** («Ver otros planes») | Lo mismo, pagando mes a mes | EE. UU. ≈ USD 5.99; Latinoamérica ≈ USD 1.99–2.99 |
+| **De por vida** (opcional, más adelante) | Un solo pago, solo para promociones puntuales | ≈ 4 años de anual |
 
-> Los precios se deciden con datos (pruebas de precio por región). Empezar por **compra única por pack** es
-> más sencillo de explicar a padres y encaja con el «tren de contenido».
+- **Prueba gratis de 7 días** de la anual, con una línea de tiempo honesta: *hoy* acceso total, *día 5* aviso (notificación local) de que la prueba termina, *día 7* empieza el cobro. «Cancela cuando quieras» visible.
+- **Precio por región** con los niveles de precio de cada tienda; el anual se muestra también como equivalente mensual.
+- **Compartir en familia** (Family Sharing de Apple y grupo familiar de Google Play) activado en el producto.
+- **Canjear código**: códigos de oferta de las tiendas para socios, escuelas y regalos (p. ej. 30 días gratis).
+- **Recurrencia que sostiene la suscripción**: cuentos destacados nuevos cada semana con insignia *Nuevo*, progreso de la familia, premios suaves y recordatorio de la hora del cuento (fases 1–3 de [28](28-referencia-readmio-y-plan.md)).
 
-## Qué es premium y qué no
+## Qué es de pago y qué no
 
-- ✅ Premium: más personajes/lugares/enseñanzas, escenas animadas más ricas, voces de mayor calidad, sonidos ambientales, nombre personalizado.
-- ❌ Nunca de pago: seguridad, modo noche, temporizador de sueño, plantilla del holograma básica, accesibilidad.
-- ❌ Nunca: anuncios, presión para comprar, cuentas atrás, mecánicas de «ludopatía» ni mensajes dirigidos al niño para comprar.
+- ✅ De pago: los demás paquetes, voz premium, cuentos destacados semanales, grabaciones de voz, nombre del niño narrado con voz premium.
+- ❌ Nunca de pago: seguridad, modo noche, temporizador de sueño, plantilla básica del holograma, accesibilidad, el paquete gratis completo con voz del teléfono.
+- ❌ Nunca: anuncios, cuentas atrás, ofertas que caducan en minutos, mensajes dirigidos al niño para comprar, rachas que castigan.
 
 ## Reglas de tiendas a respetar
 
-- Compras detrás de **puerta parental**; botón «Restaurar compras».
-- Sin enlaces externos ni redes sociales accesibles al niño sin puerta.
-- Suscripciones: describir claramente precio, renovación y cancelación.
-- Comisiones de tienda (varían; programas para pequeños desarrolladores): modelar el margen con el porcentaje vigente.
+- Muro de pago y compras detrás de la **puerta para adultos**; botón **Restaurar compras**; ✕ siempre visible.
+- Suscripciones: precio, periodo, renovación automática y cómo cancelar, escritos junto al botón (Apple 3.1.2 y la política de Google Play).
+- La prueba gratis solo una vez por cuenta de tienda (la tienda lo controla).
+- Comisión: 15 % en el programa para pequeños desarrolladores y desde el segundo año de cada suscriptor; modelar el margen con eso.
+
+## Números que tienen que cuadrar
+
+Con voz pregrabada, el costo de voz por suscriptor es casi cero ([29 §4](29-voz-pregrabada-y-costos.md)). Lo que queda:
+la comisión de la tienda, la entrega de audio (CDN sin costo de salida) y el servidor de verificación. Generar la voz en
+tiempo real con ElevenLabs costaría ≈ USD 0.25–0.50 por cuento, más que una suscripción latinoamericana de un mes en una
+semana de uso: **queda descartado**.
 
 ## Métricas
 
-Conversión de gratis a premium, packs por familia, retención por pack, reembolsos, tiempo hasta primera compra,
-**y sobre todo** noches con cuento completado (North Star).
+Inicio de prueba → conversión a pago, cancelaciones en la prueba, renovación del primer año, ingresos por suscriptor
+por región, reembolsos y, **sobre todo**, noches con cuento completado (North Star).
 
 ## Entrega técnica
 
-Manifiesto de packs con `product_id`; **verificación de compras en el servidor** con entitlements firmados y webhooks de las tiendas,
-registrados y visibles en el panel (ver [09 §5](09-backend-y-panel-admin.md)); descarga bajo demanda, caché y borrado manual para liberar espacio.
+`in_app_purchase` con productos de suscripción (anual, mensual) en un grupo de suscripción; **verificación en el servidor**
+(App Store Server API, Google Play Developer API y notificaciones en tiempo real) que emite un *entitlement* firmado y lo
+registra en el panel ([09 §5](09-backend-y-panel-admin.md)). La app guarda el entitlement para funcionar sin conexión y lo
+revalida al abrir. Paquetes y audio se descargan bajo demanda, con caché y borrado manual.

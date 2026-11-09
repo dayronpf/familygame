@@ -70,8 +70,7 @@ void main() {
         SettingsScope.maybeOf(tester.element(find.byType(HomePage)))!;
 
     Future<void> openPack(WidgetTester tester, String name) async {
-      await tester.tap(find.text('Paquetes'));
-      await tester.pumpAndSettle();
+      await goToPacks(tester);
       await tester.tap(find.text(name));
       await tester.pumpAndSettle();
     }
@@ -114,10 +113,21 @@ void main() {
     testWidgets('en «Paquetes» el abierto lleva su marca', (tester) async {
       await openApp(tester);
       await openPack(tester, 'Mar de las Estrellas');
-      await tester.tap(find.text('Paquetes'));
-      await tester.pumpAndSettle();
+      await goToPacks(tester);
       expect(find.byKey(const Key('pack-open-mar')), findsOneWidget);
       expect(find.byKey(const Key('pack-open-medieval')), findsNothing);
     });
   });
+}
+
+/// Los paquetes ahora se abren desde «Explorar» › «Ver todos los paquetes».
+Future<void> goToPacks(WidgetTester tester) async {
+  await tester.tap(find.text('Explorar'));
+  await tester.pumpAndSettle();
+  final button = find.byKey(const Key('explore-packs'));
+  await tester.scrollUntilVisible(button, 300,
+      scrollable: find.byType(Scrollable).first);
+  await tester.pumpAndSettle();
+  await tester.tap(button);
+  await tester.pumpAndSettle();
 }

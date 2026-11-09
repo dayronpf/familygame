@@ -23,7 +23,7 @@ mientras avanza y puede proyectarse como **holograma** con una pirámide transpa
 | [docs/02-roadmap.md](docs/02-roadmap.md) | Hoja de ruta por versiones y sprints, con criterios de salida |
 | [docs/03-arquitectura.md](docs/03-arquitectura.md) | Stack técnico, motor de cuentos, narración, animación y modo holograma |
 | [docs/04-contenido-y-derechos.md](docs/04-contenido-y-derechos.md) | Estrategia para no infringir derechos de autor + privacidad infantil |
-| [docs/05-modelo-freemium.md](docs/05-modelo-freemium.md) | Packs gratis y premium, precios y reglas de tiendas |
+| [docs/05-modelo-freemium.md](docs/05-modelo-freemium.md) | Suscripción con prueba gratis, precios por región y reglas de tiendas |
 | [docs/06-modelo-de-contenido.md](docs/06-modelo-de-contenido.md) | Cómo se describe un personaje, lugar o fragmento; ejemplo real generado |
 | [docs/07-backlog.md](docs/07-backlog.md) | Épicas e historias priorizadas; sprints 0–3 detallados |
 | [docs/08-decisiones-y-riesgos.md](docs/08-decisiones-y-riesgos.md) | Decisiones tomadas (ADR), supuestos abiertos y riesgos |

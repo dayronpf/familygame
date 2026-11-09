@@ -106,7 +106,7 @@ void main() {
     testWidgets('tiene tres pestañas, compartir y ajustes a la vista',
         (tester) async {
       await openApp(tester);
-      for (final t in ['Inicio', 'Paquetes', 'Mis cuentos']) {
+      for (final t in ['Inicio', 'Explorar', 'Mis cuentos']) {
         expect(find.text(t), findsOneWidget);
       }
       expect(find.byKey(const Key('share-app')), findsOneWidget);
@@ -155,8 +155,7 @@ void main() {
         'el Reino de la Luna se abre; los demás están en gris y «Pronto»',
         (tester) async {
       await openApp(tester);
-      await tester.tap(find.text('Paquetes'));
-      await tester.pumpAndSettle();
+      await goToPacks(tester);
       expect(find.text('Reino de la Luna'), findsOneWidget);
       // El Reino de la Luna y el Mar de las Estrellas son de la familia (y la Aldea de las Nubes, en desarrollo)
       expect(find.text('Tuyo'), findsNWidgets(3));
@@ -178,8 +177,7 @@ void main() {
 
     testWidgets('tocar el paquete abierto vuelve al inicio', (tester) async {
       await openApp(tester);
-      await tester.tap(find.text('Paquetes'));
-      await tester.pumpAndSettle();
+      await goToPacks(tester);
       await tester.tap(find.text('Reino de la Luna'));
       await tester.pumpAndSettle();
       expect(find.text('¿Qué quieres aprender hoy?'), findsOneWidget);
@@ -188,8 +186,7 @@ void main() {
     testWidgets('un paquete que llegará explica que será de pago',
         (tester) async {
       await openApp(tester);
-      await tester.tap(find.text('Paquetes'));
-      await tester.pumpAndSettle();
+      await goToPacks(tester);
       final first = packCatalog.firstWhere((p) => !p.available);
       await tester.scrollUntilVisible(find.text(first.name), 200,
           scrollable: find.byType(Scrollable).first);
@@ -335,4 +332,16 @@ void main() {
       expect(expired, 0);
     });
   });
+}
+
+/// Los paquetes ahora se abren desde «Explorar» › «Ver todos los paquetes».
+Future<void> goToPacks(WidgetTester tester) async {
+  await tester.tap(find.text('Explorar'));
+  await tester.pumpAndSettle();
+  final button = find.byKey(const Key('explore-packs'));
+  await tester.scrollUntilVisible(button, 300,
+      scrollable: find.byType(Scrollable).first);
+  await tester.pumpAndSettle();
+  await tester.tap(button);
+  await tester.pumpAndSettle();
 }

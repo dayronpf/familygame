@@ -21,11 +21,13 @@ class ShelfEntry {
     this.heroGender,
     this.childId,
     this.choices = const [],
+    this.premiseId,
   });
 
   factory ShelfEntry.fromStory(
     Story story, {
     required String? option,
+    String? premiseId,
     String? age,
     String? heroName,
     String? heroGender,
@@ -46,6 +48,7 @@ class ShelfEntry {
       heroGender: heroGender,
       childId: childId,
       choices: [for (final c in story.choices) c.optionId],
+      premiseId: premiseId,
     );
   }
 
@@ -66,6 +69,7 @@ class ShelfEntry {
           for (final c in (j['choices'] as List<Object?>? ?? const []))
             c as String,
         ],
+        premiseId: j['premise'] as String?,
       );
 
   /// Semilla del cuento y enseñanza que se eligió al crearlo (`null` = «Sorpréndeme»).
@@ -91,9 +95,12 @@ class ShelfEntry {
   /// las mismas y no se pregunta (el cuento sale igual). Solo vive en el teléfono.
   final List<String> choices;
 
+  /// Cuento elegido en el catálogo (id de premisa); `null` = lo eligió el caldero por la enseñanza.
+  final String? premiseId;
+
   /// Identifica el cuento (misma semilla, misma elección y mismo protagonista = mismo cuento).
   String get key =>
-      '$packId:$seed:${option ?? '*'}:${age ?? ''}:${heroGender ?? ''}:${heroName ?? ''}:${childId ?? ''}';
+      '$packId:$seed:${option ?? '*'}:${age ?? ''}:${heroGender ?? ''}:${heroName ?? ''}:${childId ?? ''}${premiseId == null ? '' : ':$premiseId'}';
 
   Map<String, Object?> toJson() => {
         'seed': seed,
@@ -109,6 +116,7 @@ class ShelfEntry {
         if (heroGender != null) 'heroGender': heroGender,
         if (childId != null) 'childId': childId,
         if (choices.isNotEmpty) 'choices': choices,
+        if (premiseId != null) 'premise': premiseId,
       };
 }
 
@@ -151,6 +159,10 @@ class StoryShelf extends ChangeNotifier {
   final ShelfStore _store;
   List<ShelfEntry> _favorites = [];
   List<ShelfEntry> _recent = [];
+
+  /// Claves de los cuentos que se leyeron hasta el final (para el filtro «Sin terminar»).
+  List<String> _finished = [];
+  static const int maxFinished = 300;
   bool _loaded = false;
 
   /// De qué niño se enseña el estante (`null` = todos). Lo que se guardó sin niño (estantes antiguos) se ve siempre.
@@ -175,12 +187,27 @@ class StoryShelf extends ChangeNotifier {
   Map<String, Object?> exportJson() => {
         'favorites': [for (final e in _favorites) e.toJson()],
         'recent': [for (final e in _recent) e.toJson()],
+        'finished': _finished,
       };
+
+  bool isFinished(ShelfEntry e) => _finished.contains(e.key);
+
+  /// Anota que este cuento se leyó hasta el final.
+  Future<void> markFinished(ShelfEntry e) async {
+    if (isFinished(e)) return;
+    _finished.insert(0, e.key);
+    if (_finished.length > maxFinished) {
+      _finished.removeRange(maxFinished, _finished.length);
+    }
+    notifyListeners();
+    await _save();
+  }
 
   /// Borra todos los cuentos guardados (de todos los niños).
   Future<void> clearAll() {
     _favorites = [];
     _recent = [];
+    _finished = [];
     notifyListeners();
     return _save();
   }
@@ -198,11 +225,16 @@ class StoryShelf extends ChangeNotifier {
             ];
         _favorites = list('favorites');
         _recent = list('recent');
+        _finished = [
+          for (final k in (j['finished'] as List<Object?>? ?? const []))
+            k! as String,
+        ];
       }
     } catch (_) {
       // Un estante ilegible se empieza de cero: no vale la pena fallar por eso.
       _favorites = [];
       _recent = [];
+      _finished = [];
     }
     notifyListeners();
   }
@@ -238,8 +270,5 @@ class StoryShelf extends ChangeNotifier {
     await _save();
   }
 
-  Future<void> _save() => _store.write(jsonEncode({
-        'favorites': [for (final e in _favorites) e.toJson()],
-        'recent': [for (final e in _recent) e.toJson()],
-      }));
+  Future<void> _save() => _store.write(jsonEncode(exportJson()));
 }

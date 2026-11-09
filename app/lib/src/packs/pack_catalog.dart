@@ -46,7 +46,11 @@ class PackInfo {
     required this.colors,
     this.status = PackStatus.soon,
     this.cover = PackCover.medieval,
+    this.isNew = false,
   });
+
+  /// Paquete recién llegado: sus cuentos llevan la insignia «Nuevo» y salen en «Novedades».
+  final bool isNew;
 
   final String id;
   final String name;
@@ -112,6 +116,7 @@ const List<PackInfo> packCatalog = [
     icon: Icons.rocket_launch_outlined,
     colors: [Color(0xFFE05A8B), Color(0xFF7A2A6A)],
     status: PackStatus.available,
+    isNew: true,
     cover: PackCover(
       place: 'aldea',
       heroM: 'orion',

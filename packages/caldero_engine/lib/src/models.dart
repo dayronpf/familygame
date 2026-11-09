@@ -836,6 +836,13 @@ class Pack {
     return null;
   }
 
+  Premise? premiseById(String id) {
+    for (final p in premises) {
+      if (p.id == id) return p;
+    }
+    return null;
+  }
+
   /// Enseñanzas que tienen algún cuento en este pack (un pack en construcción puede no tenerlas todas). Un pack
   /// solo de fragmentos (esquema 1) las cuenta todas.
   List<Moral> get moralsWithStories => premises.isEmpty

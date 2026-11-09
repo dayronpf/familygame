@@ -23,6 +23,9 @@ String storyLabel(Story story) {
   return '${story.moral.name} · ${hero is Character ? hero.given : ''}'.trim();
 }
 
+/// Cómo se abre el cuento: el lector de siempre, «Leemos juntos» o solo escuchar.
+enum StoryStart { reader, together, listen }
+
 /// Muestra un cuento en texto grande, pensado para leer en voz alta de noche.
 /// Al final pregunta (una vez, sin insistir) cuánto gustó.
 class StoryPage extends StatefulWidget {
@@ -44,7 +47,15 @@ class StoryPage extends StatefulWidget {
     this.narrator,
     this.ambience,
     this.sfx,
+    this.premiseId,
+    this.start = StoryStart.reader,
   });
+
+  /// Cuento elegido en el catálogo (se guarda para contarlo igual otra vez).
+  final String? premiseId;
+
+  /// Con qué modo se abre (la ficha del cuento ofrece «Leer juntos» y «Escuchar»).
+  final StoryStart start;
 
   /// Voz y fondo de los modos cine y holograma (por defecto, los del teléfono; las pruebas ponen mudos).
   final Narrator Function()? narrator;
@@ -122,7 +133,18 @@ class _StoryPageState extends State<StoryPage>
     });
     widget.shelf.addListener(_onShelf);
     // Fuera del armado de pantalla: el inicio escucha al estante y no puede reconstruirse a mitad de otro armado.
-    WidgetsBinding.instance.addPostFrameCallback((_) => _remember());
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _remember();
+      if (!mounted) return;
+      switch (widget.start) {
+        case StoryStart.reader:
+          break;
+        case StoryStart.together:
+          _openSharedReading();
+        case StoryStart.listen:
+          _openAudioOnly();
+      }
+    });
   }
 
   void _onShelf() {
@@ -139,6 +161,7 @@ class _StoryPageState extends State<StoryPage>
   ShelfEntry get _entry => ShelfEntry.fromStory(
         _story,
         option: widget.option,
+        premiseId: widget.premiseId,
         age: widget.age,
         heroName: widget.heroName,
         heroGender: widget.heroGender,
@@ -455,6 +478,9 @@ class _StoryPageState extends State<StoryPage>
                   ),
                 ),
               ),
+            // La lista se arma al bajar: si esto llega a armarse, leyeron hasta el final.
+            if (_complete)
+              _EndReached(onReached: () => widget.shelf.markFinished(_entry)),
             const SizedBox(height: 16),
             if (_askRating == true && _complete)
               RatingCard(
@@ -480,4 +506,25 @@ class _StoryPageState extends State<StoryPage>
       ),
     );
   }
+}
+
+/// Avisa una vez, al aparecer, de que el cuento llegó al final.
+class _EndReached extends StatefulWidget {
+  const _EndReached({required this.onReached});
+
+  final VoidCallback onReached;
+
+  @override
+  State<_EndReached> createState() => _EndReachedState();
+}
+
+class _EndReachedState extends State<_EndReached> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) => widget.onReached());
+  }
+
+  @override
+  Widget build(BuildContext context) => const SizedBox.shrink();
 }

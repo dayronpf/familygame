@@ -28,3 +28,20 @@ Future<void> shareApp(BuildContext context) async {
     );
   }
 }
+
+/// Recomienda un cuento concreto (su título y el enlace de la app).
+Future<void> shareStory(BuildContext context, String title) async {
+  final text =
+      '🌙 Esta noche leímos «$title» en $appName. Descárgala aquí: $appDownloadUrl';
+  final messenger = ScaffoldMessenger.maybeOf(context);
+  try {
+    await SharePlus.instance.share(ShareParams(text: text, subject: title));
+  } catch (_) {
+    await Clipboard.setData(ClipboardData(text: text));
+    messenger?.showSnackBar(
+      const SnackBar(
+          content:
+              Text('Copiamos el mensaje: pégalo donde quieras compartirlo')),
+    );
+  }
+}

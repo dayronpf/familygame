@@ -2,6 +2,10 @@ import 'package:caldero_engine/caldero_engine.dart';
 import 'package:flutter/material.dart';
 
 import 'art/story_stage.dart';
+import 'catalog/catalog_widgets.dart';
+import 'catalog/explore_tab.dart';
+import 'catalog/story_catalog.dart';
+import 'catalog/story_detail_page.dart';
 import 'feedback/adult_gate.dart';
 import 'feedback/feedback_service.dart';
 import 'feedback/feedback_store.dart';
@@ -27,7 +31,7 @@ import 'ui/palette.dart';
 import 'brand.dart';
 
 /// Pantalla de inicio, pensada para que la entienda un niño: una portada viva, tarjetas grandes para elegir lo
-/// que se aprende y un único botón enorme para crear el cuento. Tres pestañas: Inicio, Paquetes y Mis cuentos.
+/// que se aprende y un único botón enorme para crear el cuento. Tres pestañas: Inicio, Explorar y Mis cuentos.
 class HomePage extends StatefulWidget {
   const HomePage({
     super.key,
@@ -62,7 +66,97 @@ class _HomePageState extends State<HomePage> {
   /// `null` = «Sorpréndeme» (el caldero elige).
   String? _selectedMoral;
 
-  /// 0 = Inicio, 1 = Paquetes, 2 = Mis cuentos.
+  /// Catálogo de los paquetes abiertos (se arma una vez) y vistas previas del niño activo.
+  Future<StoryCatalog>? _catalog;
+  CatalogPreviews? _previews;
+
+  Future<StoryCatalog> _catalogFuture() => _catalog ??= () async {
+        final ids = [
+          for (final i in packCatalog)
+            if (i.available) i.id
+        ];
+        final packs = <String, Pack>{};
+        for (final id in ids) {
+          try {
+            packs[id] = await _packFor(id);
+          } catch (_) {
+            // un paquete que no carga no tumba el catálogo
+          }
+        }
+        return StoryCatalog.fromPacks(packs);
+      }();
+
+  CatalogPreviews _previewsFor(AppSettings? settings) {
+    final c = settings?.child;
+    final p = _previews;
+    if (p != null && p.sameChild(c?.age, c?.heroName, c?.heroGender)) {
+      return p;
+    }
+    return _previews = CatalogPreviews(
+        childAge: c?.age, heroName: c?.heroName, heroGender: c?.heroGender);
+  }
+
+  /// La ficha de un cuento del catálogo; desde ella se abre en el modo elegido.
+  void _openCatalogStory(CatalogStory s) {
+    final settings = SettingsScope.maybeOf(context);
+    final previews = _previewsFor(settings);
+    final preview = previews.of(s);
+    final opts = s.options(
+      childAge: settings?.child.age,
+      heroName: settings?.child.heroName,
+      heroGender: settings?.child.heroGender,
+    );
+    Navigator.of(context).push(MaterialPageRoute<void>(
+      builder: (_) => StoryDetailPage(
+        story: s,
+        preview: preview,
+        artFor: _artFor,
+        shelf: widget.shelf,
+        entry: preview == null
+            ? null
+            : ShelfEntry.fromStory(
+                preview,
+                option: opts.valueId,
+                premiseId: s.premise.id,
+                age: opts.age,
+                heroName: opts.heroName,
+                heroGender: opts.heroGender,
+                childId: settings?.child.id,
+              ),
+        onStart: (start) => _tell(
+          s.pack,
+          seed: s.seed,
+          option: opts.valueId,
+          premiseId: s.premise.id,
+          start: start,
+          catalog: opts,
+        ),
+      ),
+    ));
+  }
+
+  /// Los paquetes (los suyos y los que vienen); al abrir uno, vuelve al inicio con ese paquete.
+  void _openPacks() {
+    final settings = SettingsScope.maybeOf(context);
+    Navigator.of(context).push(MaterialPageRoute<void>(
+      builder: (context) => Scaffold(
+        backgroundColor: Palette.skyLow,
+        appBar: AppBar(
+            backgroundColor: Palette.skyTop, title: const Text('Paquetes')),
+        body: PacksTab(
+          onOpenPack: (p) {
+            settings?.setPack(p.id);
+            Navigator.of(context).pop();
+            setState(() => _tab = 0);
+          },
+          coverFor: _coverFor,
+          openId: settings?.packId ?? defaultPackId,
+        ),
+      ),
+    ));
+  }
+
+  /// 0 = Inicio, 1 = Explorar, 2 = Mis cuentos.
   int _tab = 0;
 
   /// Cuento leído hasta el final que aún no valoraron (se pregunta con calma, no en plena noche).
@@ -121,6 +215,9 @@ class _HomePageState extends State<HomePage> {
     required int? seed,
     required String? option,
     ShelfEntry? replay,
+    String? premiseId,
+    StoryStart start = StoryStart.reader,
+    StoryOptions? catalog,
   }) {
     if (_pendingAnswered) {
       setState(() {
@@ -129,9 +226,17 @@ class _HomePageState extends State<HomePage> {
       });
     }
     final child = SettingsScope.maybeOf(context)?.child;
-    final age = replay != null ? replay.age : child?.age;
-    final heroName = replay != null ? replay.heroName : child?.heroName;
-    final heroGender = replay != null ? replay.heroGender : child?.heroGender;
+    final age = replay != null
+        ? replay.age
+        : (catalog != null ? catalog.age : child?.age);
+    final heroName = replay != null
+        ? replay.heroName
+        : (catalog != null ? catalog.heroName : child?.heroName);
+    final heroGender = replay != null
+        ? replay.heroGender
+        : (catalog != null ? catalog.heroGender : child?.heroGender);
+    // Un cuento del catálogo (o uno guardado que salió de él) se cuenta con su premisa; «otro cuento» vuelve al caldero.
+    final premise = replay != null ? replay.premiseId : premiseId;
     final childId = replay?.childId ?? child?.id;
     final engine = StoryEngine(pack);
     // Al contar uno guardado se usan las elecciones que se hicieron y no se pregunta; si no, se pregunta salvo
@@ -141,9 +246,11 @@ class _HomePageState extends State<HomePage> {
     var first = true;
     StoryRun next() {
       final s = first && seed != null ? seed : widget.seedProvider();
+      final p = first ? premise : null;
       first = false;
       return engine.begin(StoryOptions(
         seed: s,
+        premiseId: p,
         valueId: option,
         age: age,
         heroName: heroName,
@@ -162,6 +269,8 @@ class _HomePageState extends State<HomePage> {
           feedback: widget.feedback,
           shelf: widget.shelf,
           option: option,
+          premiseId: premise,
+          start: start,
           age: age,
           heroName: heroName,
           heroGender: heroGender,
@@ -291,13 +400,25 @@ class _HomePageState extends State<HomePage> {
                   Expanded(
                     child: switch (_tab) {
                       0 => _homeTab(pack),
-                      1 => PacksTab(
-                          onOpenPack: (p) {
-                            settings?.setPack(p.id);
-                            setState(() => _tab = 0);
+                      1 => FutureBuilder<StoryCatalog>(
+                          future: _catalogFuture(),
+                          builder: (context, snap) {
+                            final catalog = snap.data;
+                            if (catalog == null) {
+                              return const Center(
+                                  child: CircularProgressIndicator());
+                            }
+                            return ExploreTab(
+                              catalog: catalog.forChild(
+                                heroName: settings?.child.heroName,
+                                heroGender: settings?.child.heroGender,
+                              ),
+                              previews: _previewsFor(settings),
+                              artFor: _artFor,
+                              onOpen: _openCatalogStory,
+                              onPacks: _openPacks,
+                            );
                           },
-                          coverFor: _coverFor,
-                          openId: pack.id,
                         ),
                       _ => MyStoriesTab(
                           shelf: widget.shelf,
@@ -323,9 +444,9 @@ class _HomePageState extends State<HomePage> {
             label: 'Inicio',
           ),
           NavigationDestination(
-            icon: Icon(Icons.widgets_outlined),
-            selectedIcon: Icon(Icons.widgets, color: Palette.amberDark),
-            label: 'Paquetes',
+            icon: Icon(Icons.explore_outlined),
+            selectedIcon: Icon(Icons.explore, color: Palette.amberDark),
+            label: 'Explorar',
           ),
           NavigationDestination(
             icon: Icon(Icons.favorite_border),

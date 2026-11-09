@@ -1,2 +1,5 @@
 __pycache__/
 *.pyc
+
+# Capturas de apps de terceros usadas como referencia (no se suben)
+adjuntos/
