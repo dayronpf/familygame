@@ -3,11 +3,16 @@
 @section('content')
 <h1 class="text-2xl font-semibold mb-4">Compras y suscripciones</h1>
 <form method="get" class="mb-4 flex gap-2">
-    <input name="q" value="{{ $q }}" placeholder="installId, hash del token o el purchaseToken" class="border rounded-md px-3 py-1.5 w-full max-w-xl text-sm">
+    <input name="q" value="{{ $q }}" placeholder="installId, hash del token, el purchaseToken o el originalTransactionId" class="border rounded-md px-3 py-1.5 w-full max-w-xl text-sm">
+    <select name="tienda" class="border rounded-md px-2 py-1.5 text-sm">
+        <option value="">Todas las tiendas</option>
+        <option value="android" @selected($platform === 'android')>Google Play (android)</option>
+        <option value="ios" @selected($platform === 'ios')>App Store (ios)</option>
+    </select>
     <button class="rounded-md bg-indigo-700 text-white px-3 py-1.5 text-sm">Buscar</button>
-    @if ($q !== '')<a href="{{ route('admin.purchases.index') }}" class="text-sm underline px-2 py-1.5">Limpiar</a>@endif
+    @if ($q !== '' || $platform !== '')<a href="{{ route('admin.purchases.index') }}" class="text-sm underline px-2 py-1.5">Limpiar</a>@endif
 </form>
-<p class="text-xs text-slate-500 mb-4">El token de compra se guarda cifrado; para buscar se usa su hash SHA-256. Si pega el token, el panel calcula el hash (no se guarda la búsqueda).</p>
+<p class="text-xs text-slate-500 mb-4">El token de compra (en iOS, el originalTransactionId) se guarda cifrado; para buscar se usa su hash SHA-256. Si pega el token, el panel calcula el hash (no se guarda la búsqueda).</p>
 
 <h2 class="font-semibold mb-2">Compras</h2>
 <div class="bg-white rounded-xl border border-slate-200 overflow-x-auto mb-2">
@@ -19,9 +24,9 @@
         <tr class="border-t border-slate-100 hover:bg-slate-50">
             <td class="p-2"><a class="text-indigo-700 hover:underline" href="{{ route('admin.purchases.show', $p) }}">{{ $p->id }}</a></td>
             <td class="p-2 font-mono text-xs">{{ $p->install_id }}</td>
-            <td class="p-2">{{ $p->platform }} @if ($p->test_purchase)<span class="text-xs bg-amber-100 rounded px-1">prueba</span>@endif</td>
+            <td class="p-2">{{ $p->platform === 'ios' ? 'App Store' : 'Google Play' }} <span class="text-slate-400 text-xs">{{ $p->platform }}</span> @if ($p->test_purchase)<span class="text-xs bg-amber-100 rounded px-1">prueba</span>@endif</td>
             <td class="p-2">{{ $p->product_id }} <span class="text-slate-400">{{ $p->base_plan }}</span></td>
-            <td class="p-2 text-xs">{{ str_replace('SUBSCRIPTION_STATE_', '', $p->state) }}</td>
+            <td class="p-2 text-xs">{{ str_replace(['SUBSCRIPTION_STATE_', 'APPLE_'], '', $p->state) }}</td>
             <td class="p-2">{{ $p->premium ? ($p->trial ? 'Sí (prueba)' : 'Sí') : 'No' }}</td>
             <td class="p-2">{{ $p->expires_at?->format('d/m/Y H:i') ?? '—' }}</td>
             <td class="p-2">{{ $p->last_verified_at?->format('d/m/Y H:i') ?? '—' }}</td>

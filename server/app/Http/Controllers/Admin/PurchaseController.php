@@ -14,10 +14,12 @@ class PurchaseController extends Controller
     public function index(Request $request): View
     {
         $q = trim((string) $request->query('q', ''));
-        $purchases = Purchase::query()->latest('id');
+        $platform = in_array($request->query('tienda'), ['android', 'ios'], true) ? $request->query('tienda') : '';
+        $purchases = Purchase::query()->latest('id')->when($platform !== '', fn ($w) => $w->where('platform', $platform));
         $entitlements = Entitlement::query()->latest('updated_at');
         if ($q !== '') {
             // Se busca por installId, por el hash del token o por el token mismo (se calcula su hash; no se guarda).
+            // En iOS el «token» es el originalTransactionId.
             $hashes = array_unique([strtolower($q), Purchase::hashToken($q)]);
             $purchases->where(fn ($w) => $w->where('install_id', strtolower($q))->orWhereIn('token_hash', $hashes)
                 ->orWhere('transaction_id', $q));
@@ -27,6 +29,7 @@ class PurchaseController extends Controller
 
         return view('admin.purchases.index', [
             'q' => $q,
+            'platform' => $platform,
             'purchases' => $purchases->paginate(30, ['*'], 'compras')->withQueryString(),
             'entitlements' => $entitlements->paginate(30, ['*'], 'derechos')->withQueryString(),
             'notifications' => StoreNotification::query()->latest('id')->limit(10)->get(),

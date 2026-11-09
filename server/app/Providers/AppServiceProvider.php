@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Services\Apple\AppleJwsVerifier;
+use App\Services\Apple\AppStoreClient;
 use App\Services\EntitlementSigner;
 use App\Services\GooglePlayClient;
 use Illuminate\Cache\RateLimiting\Limit;
@@ -16,6 +18,14 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->singleton(EntitlementSigner::class, fn () => new EntitlementSigner(config('mininoches.signing_key')));
         $this->app->singleton(GooglePlayClient::class, fn () => new GooglePlayClient(config('mininoches.google')));
+        $this->app->singleton(AppleJwsVerifier::class, fn () => new AppleJwsVerifier(
+            config('mininoches.apple.root_certificates'),
+            config('mininoches.apple.root_fingerprints'),
+        ));
+        $this->app->singleton(AppStoreClient::class, fn ($app) => new AppStoreClient(
+            config('mininoches.apple'),
+            $app->make(AppleJwsVerifier::class),
+        ));
     }
 
     public function boot(): void

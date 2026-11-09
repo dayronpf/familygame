@@ -1,6 +1,6 @@
 # Mininoches · servidor
 
-API para la app (catálogo, verificación de compras, códigos, derechos firmados y valoraciones) y panel web del
+API para la app (catálogo, verificación de compras de Google Play y App Store, códigos, derechos firmados y valoraciones) y panel web del
 SuperAdmin. Laravel 13, PHP ≥ 8.3 con las extensiones **sodium**, **openssl** y **pdo** (SQLite por defecto; también
 MySQL o Postgres).
 
@@ -71,10 +71,12 @@ pruebas locales use una compilación de depuración o un túnel HTTPS.
 - **Cuentos:** filtros por pack, edad, enseñanza, estado y gratis; la ficha muestra cada escena con todas sus variantes
   (las `{marcas}` resaltadas) y las valoraciones de ese cuento. *Aprobar*, *Rechazar* (desaparece de la app),
   *Dejar pendiente*, notas y **Gratis**. Los pendientes siguen saliendo en la app. Cada cambio sube la versión del catálogo.
-- **Compras y suscripciones:** búsqueda por installId, hash del token o el token mismo; detalle con la respuesta de Google.
+- **Compras y suscripciones:** Google Play y App Store, filtro por tienda, búsqueda por installId, hash del token o el token mismo (en iOS, el
+  originalTransactionId); detalle con la respuesta de la tienda (en iOS, la transacción y la renovación ya verificadas, sin los id).
 - **Códigos:** aleatorios `MINI-XXXX-XXXX` o propios, días, usos máximos, caducidad, activar/desactivar.
 - **Valoraciones:** por pack y por cuento, peor valorados primero, con los motivos de las notas bajas.
-- **Productos:** las suscripciones del catálogo (sembrado: `mininoches_premium`, Android, `anual` P1Y y `mensual` P1M, 7 días de prueba).
+- **Productos:** las suscripciones del catálogo (sembrado: `mininoches_premium`, Android, `anual` P1Y y `mensual` P1M, 7 días de prueba;
+  los de iOS se añaden aquí con plataforma `ios`, ver §6).
 - **Auditoría:** quién hizo qué y cuándo (sin IP).
 
 ## 5. Google Play
@@ -105,29 +107,85 @@ Google caído o sin configurar → `503 store_unavailable` (la app reintenta). L
 `offerPhase.freeTrial` (o una oferta con «trial» en el id o las etiquetas). Si la compra llega sin confirmar, el servidor la
 confirma (`GOOGLE_ACKNOWLEDGE`), porque Google reembolsa las suscripciones no confirmadas a los 3 días.
 
-**iOS:** todavía no se verifica. `platform: ios` guarda la petición y responde `503 store_unavailable`; `/v1/webhooks/apple` solo guarda.
+## 6. App Store (iOS)
 
-## 6. Privacidad (docs/09 §7 y docs/12 §8)
+Si ya tenía el servidor instalado, ejecute `php artisan migrate` (añade `notification_id` a las notificaciones).
+
+1. **Clave de la App Store Server API.** En App Store Connect → *Usuarios y acceso* → *Integraciones* → *Compra dentro
+   de la app* (In-App Purchase) pulse «+», póngale nombre y descargue el archivo `SubscriptionKey_XXXXXXXXXX.p8`
+   (**solo se puede descargar una vez**). Anote el **Key ID** (10 caracteres) y el **Issuer ID** (el UUID que sale
+   arriba en *Integraciones → App Store Connect API*). Hace falta el rol Admin o Account Holder para crearla.
+2. Guarde el `.p8` fuera de `public/` (p. ej. `storage/app/private/apple-iap.p8`, ya ignorado por git) y ponga en el `.env`:
+   ```
+   APPLE_ISSUER_ID=57246542-96fe-1a63-e053-0824d011072a
+   APPLE_KEY_ID=2X9R4HXF34
+   APPLE_PRIVATE_KEY=/ruta/absoluta/apple-iap.p8
+   APPLE_BUNDLE_ID=com.calderodecuentos.cuentos
+   APPLE_ENVIRONMENT=production
+   APPLE_PRODUCT_IDS=mininoches_premium_anual:anual,mininoches_premium_mensual:mensual
+   ```
+   (o el PEM del `.p8` en una sola línea con `\n` si su hosting solo admite variables).
+3. **Productos.** En la App Store cada duración es un producto distinto dentro de un **grupo de suscripción**
+   (p. ej. `mininoches_premium_anual` y `mininoches_premium_mensual`, con la oferta introductoria «Prueba gratis 7 días»).
+   Ponga los mismos id en `APPLE_PRODUCT_IDS` o créelos en el panel (*Productos*, plataforma `ios`) para que salgan en
+   el catálogo. Una compra de otro producto o de otro bundle responde `402 invalid_purchase`.
+4. **App Store Server Notifications V2.** En App Store Connect → su app → *Información general de la app* → *App Store
+   Server Notifications* ponga, en **URL del servidor de producción** y en **URL del servidor de sandbox**, la misma
+   dirección y elija la **versión 2**:
+   ```
+   https://SU-SERVIDOR/v1/webhooks/apple
+   ```
+   (no lleva token: cada notificación viene firmada por Apple y se verifica). Pruebe con
+   `POST /inApps/v1/notifications/test` de la App Store Server API; aparece en *Compras y suscripciones → Últimas
+   notificaciones* con el resultado `test`.
+5. Pruebe con una cuenta de *Sandbox* (App Store Connect → *Usuarios y acceso* → *Sandbox*) o desde TestFlight; esas
+   compras salen marcadas «prueba» en el panel. Las del archivo de StoreKit de Xcode **no** sirven: van firmadas con
+   un certificado local, no con el de Apple, y el servidor las rechaza.
+
+Cómo decide el servidor: con el `transactionId` que manda la app consulta `GET /inApps/v1/transactions/{id}` y luego
+`GET /inApps/v1/subscriptions/{originalTransactionId}` (en producción y, si responde 404, en sandbox). Estado `1`
+(activa) → premium hasta `expiresDate`; `4` (periodo de gracia) → premium hasta `gracePeriodExpiresDate`; `2` (caducada)
+y `3` (reintento de cobro) → `402 expired`; `5` o `revocationDate` (reembolso o revocación) → `402 invalid_purchase`.
+La prueba gratis se detecta por `offerDiscountType: FREE_TRIAL` (u `offerType: 1` con precio 0). Apple sin configurar,
+caído o rechazando la clave → `503 store_unavailable`.
+
+**Verificación de las firmas.** Todo lo que viene de Apple (`signedTransactionInfo`, `signedRenewalInfo` y el
+`signedPayload` de las notificaciones) es un JWS ES256 que se verifica antes de usarlo: cadena `x5c` hasta **Apple Root
+CA - G3** (fijada en `resources/certs/AppleRootCA-G3.pem`, de <https://www.apple.com/certificateauthority/>, y aceptada
+solo si su huella SHA-256 coincide con la de `config/mininoches.php`), intermedio con el OID `1.2.840.113635.100.6.2.1`,
+hoja con el OID `1.2.840.113635.100.6.11.1`, fechas de vigencia y firma. Si algo falla, la compra es `402` y la
+notificación `400` (y no se guarda). No se consulta OCSP (revocación de certificados en línea).
+
+**Notificaciones.** Se procesan `SUBSCRIBED`, `DID_RENEW`, `DID_FAIL_TO_RENEW` (gracia), `EXPIRED`,
+`GRACE_PERIOD_EXPIRED`, `REFUND`, `REVOKE`, `DID_CHANGE_RENEWAL_STATUS`, `OFFER_REDEEMED` (y `DID_CHANGE_RENEWAL_PREF`,
+`RENEWAL_EXTENDED`, `REFUND_REVERSED`): se busca la compra por el hash de la transacción original y se actualiza con la
+transacción firmada que trae la notificación, sin volver a llamar a Apple. Cada `notificationUUID` se procesa una vez
+(repetida → 200 sin hacer nada); una notificación firmada antes del último estado guardado no lo pisa (`stale`). Si la
+app aún no presentó la compra, queda como `unknown_purchase`. La transacción original se guarda cifrada y se busca por
+su SHA-256 (los id de Apple no quedan en claro: con ellos se podría reclamar la compra desde otra instalación).
+
+## 7. Privacidad (docs/09 §7 y docs/12 §8)
 
 - La API no usa cookies ni sesiones. No guarda IP: los límites de ritmo usan un HMAC de la IP con `APP_KEY` que vive
   un minuto en la caché. Las sesiones del panel van en archivos (`SESSION_DRIVER=file`) porque el driver `database` guarda IP.
 - Valoraciones: sin instalación, IP ni hora (solo el día que manda la app y el día de recepción). Se validan contra la
   versión importada del pack; `id` repetido no duplica; máximo 50 eventos / 64 KB.
-- Los tokens de compra se guardan cifrados con `APP_KEY` y se buscan por su SHA-256; en las notificaciones solo queda el hash.
+- Los tokens de compra (y en iOS la transacción original) se guardan cifrados con `APP_KEY` y se buscan por su SHA-256;
+  en las notificaciones solo queda el hash.
 - Nunca se recibe nombre ni edad del niño ni texto de los cuentos; cualquier campo de más en la petición se rechaza (422).
 - Límites por minuto y por IP: API 60, verificar 20, canjear 5, valoraciones 30, webhooks 300 (configurables).
 
-## 7. Publicar en un servidor
+## 8. Publicar en un servidor
 
 - PHP-FPM 8.3+ con Nginx/Apache apuntando a `server/public`, HTTPS obligatorio.
 - `.env` de producción: `APP_ENV=production`, `APP_DEBUG=false`, `SESSION_SECURE_COOKIE=true`, `LOG_LEVEL=warning`,
   `APP_URL=https://…`, base de datos MySQL o Postgres, y `TRUSTED_PROXIES` si hay proxy o CDN delante.
 - Desplegar: `composer install --no-dev --optimize-autoloader && php artisan migrate --force && php artisan config:cache && php artisan route:cache && php artisan view:cache`.
 - Copie la carpeta `content/packs` (o fije `MININOCHES_PACKS_PATH`) y ejecute `php artisan mininoches:import-packs` tras cada versión de los packs.
-- Copias de seguridad de la base de datos; guarde `APP_KEY` y `ENTITLEMENT_SIGNING_KEY` en un gestor de secretos.
+- Copias de seguridad de la base de datos; guarde `APP_KEY`, `ENTITLEMENT_SIGNING_KEY` y la clave `.p8` de Apple en un gestor de secretos.
 - Asegúrese de que los registros del servidor web no guarden la IP (o la recorten) para cumplir la política de privacidad.
 
-## 8. Estructura
+## 9. Estructura
 
 ```
 server/
@@ -138,9 +196,12 @@ server/
 │   ├── Http/Controllers/Admin/ panel
 │   ├── Models/                Premise, Pack, PackVersion, Product, Purchase, Entitlement, RedeemCode, StoryRating…
 │   └── Services/              Catalog, PackImporter, GooglePlayClient, PurchaseService, EntitlementSigner, FeedbackIngestor
+│       └── Apple/             AppStoreClient (JWT ES256), AppleJwsVerifier (cadena x5c + firma), Es256
 ├── config/mininoches.php      toda la configuración propia
 ├── database/                  migraciones y semilla
+├── resources/certs/           AppleRootCA-G3.pem (raíz fijada para los JWS de Apple)
 ├── resources/views/           panel (Blade + Tailwind por CDN)
 ├── routes/api.php · web.php
-└── tests/Feature/             pruebas (paquetes de prueba en tests/Fixtures/packs)
+├── tests/Feature/             pruebas (paquetes de prueba en tests/Fixtures/packs)
+└── tests/Support/             AppleTestChain: cadena de certificados de prueba con los OID de Apple
 ```

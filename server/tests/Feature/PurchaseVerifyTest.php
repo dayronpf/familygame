@@ -179,13 +179,15 @@ class PurchaseVerifyTest extends TestCase
         $this->verify($this->installId())->assertStatus(503)->assertJson(['error' => 'store_unavailable']);
     }
 
-    public function test_ios_is_stored_and_returns_503(): void
+    public function test_ios_without_app_store_config_returns_503(): void
     {
-        $id = $this->installId();
+        // Con la App Store sin configurar no se llama a Apple ni se guarda nada (tests/Feature/AppleVerifyTest.php).
+        Http::fake();
         $this->postJson('/v1/purchases/verify', [
-            'installId' => $id, 'platform' => 'ios', 'productId' => 'mininoches_premium', 'transactionId' => '2000000123',
+            'installId' => $this->installId(), 'platform' => 'ios', 'productId' => 'mininoches_premium_anual', 'transactionId' => '2000000123',
         ])->assertStatus(503)->assertJson(['error' => 'store_unavailable']);
-        $this->assertSame('PENDING_VERIFICATION', Purchase::query()->sole()->state);
+        $this->assertSame(0, Purchase::query()->count());
+        Http::assertNothingSent();
     }
 
     public function test_invalid_bodies_are_422(): void
@@ -231,9 +233,9 @@ class PurchaseVerifyTest extends TestCase
         $this->postJson('/v1/webhooks/google?token=', ['message' => ['data' => '']])->assertStatus(403);
     }
 
-    public function test_apple_webhook_is_stored(): void
+    public function test_unsigned_apple_webhook_is_rejected(): void
     {
-        $this->postJson('/v1/webhooks/apple', ['signedPayload' => 'eyJ...'])->assertNoContent();
-        $this->assertSame('eyJ...', StoreNotification::query()->sole()->payload['signedPayload']);
+        $this->postJson('/v1/webhooks/apple', ['signedPayload' => 'eyJ...'])->assertStatus(400);
+        $this->assertSame(0, StoreNotification::query()->count());
     }
 }

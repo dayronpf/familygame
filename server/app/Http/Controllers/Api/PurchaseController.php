@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Exceptions\StoreException;
 use App\Services\EntitlementSigner;
 use App\Services\PurchaseService;
 use Illuminate\Http\JsonResponse;
@@ -21,14 +20,10 @@ class PurchaseController extends ApiController
             'transactionId' => ['required_if:platform,ios', 'nullable', 'string', 'max:100'],
         ]);
 
-        if ($data['platform'] === 'ios') {
-            $purchases->recordIos($data['installId'], $data['productId'], $data['transactionId']);
-            // TODO(iOS): verificar con la App Store Server API cuando la app se publique en iOS.
-            throw StoreException::unavailable('La verificación de compras de iOS aún no está disponible; se guardó y la app puede reintentar más tarde.');
-        }
-
-        $signer->publicKey(); // falla con 503 claro si no hay clave de firma, antes de llamar a Google
-        $result = $purchases->verifyGoogle($data['installId'], $data['productId'], $data['purchaseToken']);
+        $signer->publicKey(); // falla con 503 claro si no hay clave de firma, antes de llamar a la tienda
+        $result = $data['platform'] === 'ios'
+            ? $purchases->verifyApple($data['installId'], $data['productId'], $data['transactionId'])
+            : $purchases->verifyGoogle($data['installId'], $data['productId'], $data['purchaseToken']);
         if ($result['error'] !== null) {
             throw $result['error'];
         }

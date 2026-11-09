@@ -120,7 +120,7 @@ paths:
         '403': { description: Token incorrecto }
   /v1/webhooks/apple:
     post:
-      summary: App Store Server Notifications v2 (se guarda; la verificación llega con la publicación en iOS)
+      summary: App Store Server Notifications v2 (firma JWS verificada hasta Apple Root CA - G3; idempotente por notificationUUID)
       operationId: appleNotification
       requestBody:
         required: true
@@ -131,7 +131,8 @@ paths:
               properties:
                 signedPayload: { type: string }
       responses:
-        '204': { description: Guardado }
+        '200': { description: Procesado (o ya procesado antes, o más viejo que lo guardado) }
+        '400': { description: Firma inválida; no se guarda nada }
 components:
   schemas:
     InstallId:
@@ -174,7 +175,7 @@ components:
         platform: { type: string, enum: [android, ios] }
         productId: { type: string }
         purchaseToken: { type: string, description: 'Android: el purchaseToken de Google Play' }
-        transactionId: { type: string, description: 'iOS: el transactionId (StoreKit 2)' }
+        transactionId: { type: string, description: 'iOS: el transactionId (StoreKit). En App Store cada duración es un producto: mininoches_premium_anual / mininoches_premium_mensual' }
     Entitlement:
       type: object
       required: [installId, premium, source, signature]

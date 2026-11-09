@@ -37,7 +37,7 @@
             <li>{{ $signerOk ? '✅' : '⚠️' }} Clave de firma de derechos (ENTITLEMENT_SIGNING_KEY)</li>
             <li>{{ $googleOk ? '✅' : '⚠️' }} Google Play (GOOGLE_SERVICE_ACCOUNT_JSON)</li>
             <li>{{ $rtdnOk ? '✅' : '⚠️' }} Notificaciones de Google (GOOGLE_RTDN_TOKEN)</li>
-            <li>⏳ App Store (iOS): pendiente; las compras se guardan sin verificar</li>
+            <li>{{ $appleOk ? '✅' : '⚠️' }} App Store (APPLE_ISSUER_ID, APPLE_KEY_ID, APPLE_PRIVATE_KEY · {{ config('mininoches.apple.bundle_id') }}, {{ config('mininoches.apple.environment') }})</li>
         </ul>
         <h3 class="font-semibold mt-4 mb-2 text-sm">Packs importados</h3>
         <ul class="text-sm space-y-1">

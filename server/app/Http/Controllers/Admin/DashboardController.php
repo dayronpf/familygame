@@ -9,6 +9,7 @@ use App\Models\Pack;
 use App\Models\Premise;
 use App\Models\Purchase;
 use App\Models\StoryRating;
+use App\Services\Apple\AppStoreClient;
 use App\Services\Catalog;
 use App\Services\EntitlementSigner;
 use App\Services\GooglePlayClient;
@@ -16,7 +17,7 @@ use Illuminate\View\View;
 
 class DashboardController extends Controller
 {
-    public function index(Catalog $catalog, EntitlementSigner $signer, GooglePlayClient $google): View
+    public function index(Catalog $catalog, EntitlementSigner $signer, GooglePlayClient $google, AppStoreClient $apple): View
     {
         $now = now();
         $activeStore = Entitlement::query()->where('store_premium', true)->where('store_expires_at', '>', $now);
@@ -38,6 +39,7 @@ class DashboardController extends Controller
             'packs' => Pack::query()->orderBy('id')->get(),
             'signerOk' => $signer->isConfigured(),
             'googleOk' => $google->isConfigured(),
+            'appleOk' => $apple->isConfigured(),
             'rtdnOk' => (string) config('mininoches.google.rtdn_token') !== '',
         ]);
     }

@@ -7,13 +7,13 @@
     <section class="bg-white rounded-xl border border-slate-200 p-4 text-sm">
         <dl class="grid grid-cols-3 gap-y-1">
             <dt class="text-slate-500">Instalación</dt><dd class="col-span-2 font-mono text-xs">{{ $purchase->install_id }}</dd>
-            <dt class="text-slate-500">Tienda</dt><dd class="col-span-2">{{ $purchase->platform }} {{ $purchase->test_purchase ? '(compra de prueba)' : '' }}</dd>
+            <dt class="text-slate-500">Tienda</dt><dd class="col-span-2">{{ $purchase->platform === 'ios' ? 'App Store' : 'Google Play' }} ({{ $purchase->platform }}) {{ $purchase->test_purchase ? ($purchase->platform === 'ios' ? '(sandbox)' : '(compra de prueba)') : '' }}</dd>
             <dt class="text-slate-500">Producto</dt><dd class="col-span-2">{{ $purchase->product_id }} {{ $purchase->base_plan }}</dd>
             <dt class="text-slate-500">Estado</dt><dd class="col-span-2">{{ $purchase->state }}</dd>
             <dt class="text-slate-500">Premium</dt><dd class="col-span-2">{{ $purchase->premium ? 'Sí' : 'No' }} {{ $purchase->trial ? '(prueba gratis)' : '' }}</dd>
             <dt class="text-slate-500">Renovación</dt><dd class="col-span-2">{{ $purchase->auto_renewing ? 'Automática' : 'No' }}</dd>
             <dt class="text-slate-500">Fin</dt><dd class="col-span-2">{{ $purchase->expires_at?->format('d/m/Y H:i') ?? '—' }} (UTC)</dd>
-            <dt class="text-slate-500">Hash del token</dt><dd class="col-span-2 font-mono text-xs break-all">{{ $purchase->token_hash }}</dd>
+            <dt class="text-slate-500">{{ $purchase->platform === 'ios' ? 'Hash de la transacción original' : 'Hash del token' }}</dt><dd class="col-span-2 font-mono text-xs break-all">{{ $purchase->token_hash }}</dd>
             @if ($purchase->transaction_id)<dt class="text-slate-500">Transacción</dt><dd class="col-span-2">{{ $purchase->transaction_id }}</dd>@endif
             <dt class="text-slate-500">Creada</dt><dd class="col-span-2">{{ $purchase->created_at->format('d/m/Y H:i') }}</dd>
             <dt class="text-slate-500">Verificada</dt><dd class="col-span-2">{{ $purchase->last_verified_at?->format('d/m/Y H:i') ?? '—' }}</dd>

@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
 import 'package:in_app_purchase_android/in_app_purchase_android.dart';
 import 'package:in_app_purchase_storekit/in_app_purchase_storekit.dart';
+import 'package:in_app_purchase_storekit/store_kit_wrappers.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'access.dart';
@@ -87,6 +88,7 @@ class StorePurchases extends PurchaseGateway {
   @override
   Future<List<PlanOption>> plans() async {
     if (!await _iap.isAvailable()) return const [];
+    if (defaultTargetPlatform == TargetPlatform.iOS) return _iosPlans();
     final r = await _iap.queryProductDetails({subscriptionProductId});
     final out = <PlanOption>[];
     for (final d in r.productDetails) {
@@ -122,6 +124,48 @@ class StorePurchases extends PurchaseGateway {
     out.sort((a, b) => a.yearly == b.yearly ? 0 : (a.yearly ? -1 : 1));
     return out;
   }
+
+  /// App Store: un producto por duración (`iosSubscriptionProducts`).
+  Future<List<PlanOption>> _iosPlans() async {
+    final r =
+        await _iap.queryProductDetails(iosSubscriptionProducts.values.toSet());
+    final out = <PlanOption>[];
+    for (final e in iosSubscriptionProducts.entries) {
+      final d = r.productDetails.where((p) => p.id == e.value).firstOrNull;
+      if (d == null) continue;
+      final yearly = e.key == 'anual';
+      var trial = iosTrialDays;
+      if (d is AppStoreProductDetails) {
+        final intro = d.skProduct.introductoryPrice;
+        trial = intro != null &&
+                intro.paymentMode ==
+                    SKProductDiscountPaymentMode
+                        .freeTrail // («freeTrail»: así se llama en el plugin)
+            ? _skDays(intro.subscriptionPeriod) * intro.numberOfPeriods
+            : 0;
+      }
+      out.add(PlanOption(
+        id: e.key,
+        price: d.price,
+        yearly: yearly,
+        trialDays: trial,
+        monthlyEquivalent: yearly
+            ? _perMonth((d.rawPrice * 1e6).round(), d.currencyCode)
+            : null,
+        details: d,
+      ));
+    }
+    return out;
+  }
+
+  static int _skDays(SKProductSubscriptionPeriodWrapper p) =>
+      p.numberOfUnits *
+      switch (p.unit) {
+        SKSubscriptionPeriodUnit.day => 1,
+        SKSubscriptionPeriodUnit.week => 7,
+        SKSubscriptionPeriodUnit.month => 30,
+        SKSubscriptionPeriodUnit.year => 365,
+      };
 
   static int _days(String iso) {
     final m = RegExp(r'P(?:(\d+)W)?(?:(\d+)D)?').firstMatch(iso);

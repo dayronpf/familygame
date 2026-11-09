@@ -30,6 +30,29 @@ return [
         'scope' => 'https://www.googleapis.com/auth/androidpublisher',
     ],
 
+    // App Store Server API y App Store Server Notifications v2.
+    'apple' => [
+        // Clave de API «In-App Purchase» de App Store Connect (Usuarios y acceso → Integraciones).
+        'issuer_id' => env('APPLE_ISSUER_ID'),
+        'key_id' => env('APPLE_KEY_ID'),
+        // Ruta al archivo .p8 o su contenido PEM (con saltos de línea o «\n» en una sola línea).
+        'private_key' => env('APPLE_PRIVATE_KEY'),
+        'bundle_id' => env('APPLE_BUNDLE_ID', 'com.calderodecuentos.cuentos'),
+        // production | sandbox. En production, una transacción desconocida (404) se repite en sandbox.
+        'environment' => env('APPLE_ENVIRONMENT', 'production') === 'sandbox' ? 'sandbox' : 'production',
+        'sandbox_fallback' => (bool) env('APPLE_SANDBOX_FALLBACK', true),
+        // Productos de la App Store que dan premium: «id:plan» separados por comas. Apple usa un id por duración
+        // dentro del grupo de suscripción. También valen los productos «ios» activos del panel.
+        'products' => (string) env('APPLE_PRODUCT_IDS', 'mininoches_premium_anual:anual,mininoches_premium_mensual:mensual'),
+        'api_base' => [
+            'production' => 'https://api.storekit.itunes.apple.com',
+            'sandbox' => 'https://api.storekit-sandbox.itunes.apple.com',
+        ],
+        // Raíz con la que se verifican los JWS de Apple (no sale del .env a propósito). Fuente y huella en el archivo.
+        'root_certificates' => [resource_path('certs/AppleRootCA-G3.pem')],
+        'root_fingerprints' => ['63343abfb89a6a03ebb57e9b3f5fa7be7c4f5c756f3017b3a8c488c3653e9179'], // Apple Root CA - G3
+    ],
+
     // Detrás de un proxy o balanceador: «*» o lista de IP separadas por comas, para que el límite de ritmo vea la
     // IP real del teléfono (que nunca se guarda).
     'trusted_proxies' => env('TRUSTED_PROXIES'),

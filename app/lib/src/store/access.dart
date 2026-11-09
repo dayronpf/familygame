@@ -7,7 +7,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../shelf/story_shelf.dart';
 
-export '../brand.dart' show subscriptionProductId;
+export '../brand.dart'
+    show subscriptionProductId, iosSubscriptionProducts, iosTrialDays;
 
 /// Compilación de prueba (`--dart-define=MININOCHES_DEV=true`): aparece el modo desarrollador, que abre todo sin pagar.
 /// En la compilación de las tiendas no existe (nadie puede saltarse el pago).

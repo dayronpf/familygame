@@ -5,10 +5,14 @@ namespace App\Http\Controllers\Api;
 use App\Exceptions\StoreException;
 use App\Models\Purchase;
 use App\Models\StoreNotification;
+use App\Services\Apple\AppleJwsException;
+use App\Services\Apple\AppleJwsVerifier;
 use App\Services\GooglePlayClient;
 use App\Services\PurchaseService;
+use Illuminate\Database\UniqueConstraintViolationException;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 
 class WebhookController extends ApiController
 {
@@ -68,17 +72,66 @@ class WebhookController extends ApiController
         return response('', 204);
     }
 
-    /** App Store Server Notifications v2: por ahora solo se guarda (se verificará con la publicación en iOS). */
-    public function apple(Request $request): Response
+    /**
+     * App Store Server Notifications v2. Se verifica el JWS (`signedPayload`) con la cadena de Apple; si no vale, 400 y
+     * no se guarda nada. Cada `notificationUUID` se procesa una sola vez. Apple reintenta si no recibe 200.
+     */
+    public function apple(Request $request, PurchaseService $purchases, AppleJwsVerifier $verifier): Response
     {
-        $payload = $request->json()->all();
-        StoreNotification::query()->create([
-            'platform' => 'ios',
-            'type' => 'unverified',
-            'payload' => ['signedPayload' => is_string($payload['signedPayload'] ?? null) ? $payload['signedPayload'] : null],
-        ]);
+        $signed = $request->json('signedPayload');
+        if (! is_string($signed) || $signed === '') {
+            return response('', 400);
+        }
+        try {
+            $payload = $verifier->verify($signed);
+        } catch (AppleJwsException) {
+            return response('', 400);
+        }
+        $uuid = $payload['notificationUUID'] ?? null;
+        if (! is_string($uuid) || $uuid === '' || strlen($uuid) > 64) {
+            return response('', 400);
+        }
+        if (StoreNotification::query()->where('platform', 'ios')->where('notification_id', $uuid)->exists()) {
+            return response('', 200); // repetida: ya se procesó
+        }
 
-        return response('', 204);
+        try {
+            DB::transaction(function () use ($payload, $uuid, $purchases) {
+                $notification = StoreNotification::query()->create([
+                    'platform' => 'ios',
+                    'notification_id' => $uuid,
+                    'type' => mb_substr(trim(($payload['notificationType'] ?? '?').':'.($payload['subtype'] ?? ''), ':'), 0, 60),
+                    'payload' => $this->appleSummary($payload),
+                ]);
+                $outcome = $purchases->applyAppleNotification($payload);
+                $notification->update([
+                    'token_hash' => $outcome['tokenHash'],
+                    'result' => mb_substr($outcome['result'], 0, 60),
+                    'processed_at' => now(),
+                ]);
+            });
+        } catch (AppleJwsException) {
+            return response('', 400); // transacción o renovación de dentro mal firmadas: no se guarda
+        } catch (UniqueConstraintViolationException) {
+            return response('', 200); // la misma notificación llegó dos veces a la vez
+        }
+
+        return response('', 200);
+    }
+
+    /** Lo que se guarda de una notificación de Apple: sin los JWS de dentro (llevan los id de transacción). */
+    private function appleSummary(array $payload): array
+    {
+        $data = (array) ($payload['data'] ?? []);
+
+        return [
+            'notificationType' => $payload['notificationType'] ?? null,
+            'subtype' => $payload['subtype'] ?? null,
+            'notificationUUID' => $payload['notificationUUID'] ?? null,
+            'version' => $payload['version'] ?? null,
+            'signedDate' => $payload['signedDate'] ?? null,
+            'data' => array_intersect_key($data, array_flip(['bundleId', 'bundleVersion', 'environment', 'status', 'appAppleId'])),
+        ];
     }
 
     /** El token de compra no se guarda en claro en las notificaciones (solo su hash). */

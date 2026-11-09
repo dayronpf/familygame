@@ -27,3 +27,12 @@ bool get legalPending =>
 /// Producto de suscripción en Google Play (un producto con dos planes base: `anual` y `mensual`). Es un
 /// identificador técnico de la tienda: **no cambia** aunque cambie el nombre de la app.
 const String subscriptionProductId = 'mininoches_premium';
+
+/// En App Store cada duración es un producto distinto (mismo grupo de suscripción): plan → id de producto.
+const Map<String, String> iosSubscriptionProducts = {
+  'anual': 'mininoches_premium_anual',
+  'mensual': 'mininoches_premium_mensual',
+};
+
+/// Días de prueba configurados en App Store Connect (StoreKit 2 no los expone en el plugin de Flutter).
+const int iosTrialDays = 7;
