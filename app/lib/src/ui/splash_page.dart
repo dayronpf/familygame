@@ -8,8 +8,8 @@ import 'night_background.dart';
 import 'palette.dart';
 import '../brand.dart';
 
-/// Pantalla de bienvenida (todo centrado en vertical): una noche de cuento; la luna sale, el caldero aparece con un
-/// rebote y se enciende, de él salen volando cuentos (un libro, un castillo, una corona, un sombrero de mago) entre
+/// Pantalla de bienvenida (todo centrado en vertical): una noche de cuento; un libro aparece con un rebote y se
+/// abre, sale una luna llena con carita, de las páginas salen volando un globo, un barquito, un cohete y estrellas entre
 /// luciérnagas, el nombre se revela letra a letra con un destello y, abajo y muy pequeña, la versión. Se queda al
 /// menos [minimum] y hasta que [ready] termine (así el inicio ya está cargado cuando cae el splash).
 class SplashPage extends StatefulWidget {
@@ -108,12 +108,12 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Semantics(
-                          label: 'Un caldero mágico de cuentos',
+                          label: 'Un libro de cuentos que se abre bajo la luna',
                           child: SizedBox(
                             width: 300,
                             height: 300,
                             child: CustomPaint(
-                              painter: CauldronPainter(
+                              painter: StorybookPainter(
                                 intro: _intro.value,
                                 t: _loop.value,
                               ),
@@ -243,14 +243,24 @@ class _TitleReveal extends StatelessWidget {
   }
 }
 
-/// La ilustración: la luna sale, el caldero aparece con un rebote y se enciende (patas, panza con brillo, borde,
-/// caldo luminoso que burbujea, llamitas), y de él suben cuentos y estrellitas entre luciérnagas.
+/// La ilustración: un libro de cuentos aparece con un rebote y se abre; detrás sale una luna llena con carita que
+/// parpadea, y de las páginas salen volando cosas de los cuentos (un globo, un barquito de papel, un cohete, un avión
+/// de papel y estrellas de cinco puntas) entre luciérnagas. Sin calderos, fuego ni símbolos: juvenil y tranquila.
 /// [intro] (0→1) es la entrada; [t] (0→1, en bucle) mantiene todo en movimiento mientras dura el splash.
-class CauldronPainter extends CustomPainter {
-  CauldronPainter({required this.intro, required this.t});
+class StorybookPainter extends CustomPainter {
+  StorybookPainter({required this.intro, required this.t});
 
   final double intro;
   final double t;
+
+  static const _cream = Color(0xFFFFF4DC);
+  static const _page = Color(0xFFFFF9EC);
+  static const _pageShade = Color(0xFFF1E3C4);
+  static const _cover = Color(0xFFFF7A6B);
+  static const _coverDark = Color(0xFFD9534F);
+  static const _moon = Color(0xFFFFE7A3);
+  static const _cheek = Color(0xFFFFA8A8);
+  static const _ink = Color(0xFF3A2A5C);
 
   double _seg(double a, double b, [Curve curve = Curves.easeOutCubic]) =>
       curve.transform(((intro - a) / (b - a)).clamp(0.0, 1.0));
@@ -259,352 +269,317 @@ class CauldronPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     final w = size.width, h = size.height;
     final cx = w / 2;
-    final potTop = h * 0.55, potBottom = h * 0.88;
-    final rx = w * 0.34;
+    final bookY = h * 0.74; // lomo del libro (abajo)
+    final show = _seg(0.02, 0.22);
+    final pop = _seg(0.02, 0.30, Curves.easeOutBack);
+    final open = _seg(0.18, 0.42, Curves.easeInOutCubic);
+    final moonUp = _seg(0.26, 0.58, Curves.easeOutBack);
+    final fly = _seg(0.40, 0.62);
 
-    final show = _seg(0.04, 0.26); // opacidad del caldero
-    final pop = _seg(0.04, 0.34, Curves.easeOutBack); // rebote al aparecer
-    final fire = _seg(0.2, 0.42); // las llamas se encienden
-    final glow = 0.6 + 0.4 * math.sin(2 * math.pi * t * 2);
-
-    // Resplandor cálido detrás del caldero
-    final halo = Offset(cx, potTop - h * 0.04);
+    // Resplandor suave detrás de todo
     canvas.drawCircle(
-      halo,
-      w * 0.5,
+      Offset(cx, h * 0.5),
+      w * 0.46,
       Paint()
         ..shader = RadialGradient(colors: [
-          Palette.teal.withValues(alpha: 0.20 * fire * glow),
-          Palette.teal.withValues(alpha: 0),
-        ]).createShader(Rect.fromCircle(center: halo, radius: w * 0.5)),
+          const Color(0xFF8E7CFF).withValues(alpha: 0.30 * show),
+          const Color(0xFF8E7CFF).withValues(alpha: 0),
+        ]).createShader(
+            Rect.fromCircle(center: Offset(cx, h * 0.5), radius: w * 0.46)),
     );
 
-    // Luna: sale desde abajo y se enciende; su halo respira
-    final moonUp = _seg(0.0, 0.35);
-    final moonC = Offset(w * 0.74, h * (0.34 - 0.16 * moonUp));
-    canvas.drawCircle(
-      moonC,
-      w * (0.19 + 0.015 * glow),
-      Paint()
-        ..shader = RadialGradient(colors: [
-          Palette.moon.withValues(alpha: 0.5 * moonUp),
-          Palette.moon.withValues(alpha: 0),
-        ]).createShader(Rect.fromCircle(center: moonC, radius: w * 0.21)),
-    );
-    canvas.drawCircle(moonC, w * 0.075,
-        Paint()..color = Palette.moon.withValues(alpha: moonUp));
-    canvas.drawCircle(moonC.translate(w * 0.03, -w * 0.012), w * 0.065,
-        Paint()..color = Palette.skyMid.withValues(alpha: moonUp));
-
-    // Luciérnagas que flotan alrededor
-    for (var i = 0; i < 9; i++) {
-      final a = 2 * math.pi * (t + i / 9) + i;
-      final fx =
-          cx + math.cos(a * (1 + (i % 3) * 0.3)) * w * (0.30 + 0.06 * (i % 3));
-      final fy = h * 0.55 + math.sin(a * 1.3) * h * 0.22 - h * 0.05;
-      final tw = 0.5 + 0.5 * math.sin(2 * math.pi * (t * 3 + i * 0.31));
-      final al = _seg(0.3, 0.6) * (0.25 + 0.6 * tw);
-      canvas.drawCircle(Offset(fx, fy), 6,
-          Paint()..color = Palette.amber.withValues(alpha: 0.18 * al));
-      canvas.drawCircle(Offset(fx, fy), 1.8,
-          Paint()..color = Palette.moon.withValues(alpha: al));
-    }
-
-    // Todo el caldero con su rebote (se escala desde la base)
-    canvas.save();
-    final s = 0.55 + 0.45 * pop;
-    canvas.translate(cx, potBottom);
-    canvas.scale(s);
-    canvas.translate(-cx, -potBottom);
-    canvas.translate(0, (1 - show) * 24);
-    _pot(canvas, size, show, fire, glow, cx, potTop, potBottom, rx);
-    canvas.restore();
-
-    // Cuentos que salen del caldero y suben, girando, hasta apagarse
-    final out = _seg(0.34, 0.5);
-    for (var i = 0; i < 4; i++) {
-      final u = (t * 0.55 + i / 4) % 1.0;
-      // Cada cuento sale hacia un lado distinto (el castillo y el sombrero hacia la derecha, sin pisar la luna)
-      final side = const [-1.0, 0.5, -0.5, 0.9][i];
-      final x = cx +
-          math.sin(u * math.pi * 1.4) * w * 0.26 * side +
-          side * w * 0.04 * u;
-      final y = potTop - Curves.easeOut.transform(u) * h * 0.50;
-      final a = math.sin(math.pi * u).clamp(0.0, 1.0) * out;
-      final r = w * (0.045 + 0.06 * math.sin(math.pi * math.min(u * 1.6, 1.0)));
-      canvas.save();
-      canvas.translate(x, y);
-      canvas.rotate(math.sin(u * math.pi * 2 + i) * 0.5);
-      switch (i) {
-        case 0:
-          _book(canvas, r, a);
-        case 1:
-          _castle(canvas, r, a);
-        case 2:
-          _crown(canvas, r, a);
-        default:
-          _hat(canvas, r, a);
-      }
-      canvas.restore();
-      // Estela de chispitas
-      for (var k = 1; k <= 3; k++) {
-        final uu = (u - k * 0.04).clamp(0.0, 1.0);
-        final sx = cx +
-            math.sin(uu * math.pi * 1.4) * w * 0.26 * side +
-            side * w * 0.04 * uu;
-        final sy = potTop - Curves.easeOut.transform(uu) * h * 0.50;
-        canvas.drawCircle(
-            Offset(sx, sy),
-            2.4 - k * 0.5,
-            Paint()
-              ..color = Palette.amber.withValues(alpha: a * (0.6 - k * 0.15)));
-      }
-    }
-
-    // Estrellitas y vapor que suben
-    for (var i = 0; i < 8; i++) {
-      final u = (t * 0.9 + i / 8) % 1.0;
-      final sx =
-          cx + math.sin(i * 2.1 + u * 5) * w * 0.17 + (i - 4) * w * 0.012;
-      final sy = potTop - u * h * 0.5;
-      final a = math.sin(math.pi * u) * fire;
-      if (i.isEven) {
-        _star(canvas, Offset(sx, sy), 4 + 4 * (1 - u),
-            Palette.amber.withValues(alpha: a));
-      } else {
-        canvas.drawCircle(Offset(sx, sy), 6 + 14 * u,
-            Paint()..color = Colors.white.withValues(alpha: 0.13 * a));
-      }
-    }
-  }
-
-  void _pot(Canvas canvas, Size size, double fade, double fire, double glow,
-      double cx, double potTop, double potBottom, double rx) {
-    final w = size.width, h = size.height;
-    // Llamitas
-    for (var i = 0; i < 5; i++) {
-      final fx = cx + (i - 2) * w * 0.085;
-      final flick = 0.7 + 0.3 * math.sin(2 * math.pi * (t * 3 + i * 0.37));
-      final fh = h * 0.12 * flick * (i == 2 ? 1.25 : 1) * fire;
-      final base = potBottom + h * 0.07;
-      canvas.drawPath(
-        Path()
-          ..moveTo(fx - w * 0.032, base)
-          ..quadraticBezierTo(fx - w * 0.03, base - fh * 0.6, fx, base - fh)
-          ..quadraticBezierTo(
-              fx + w * 0.03, base - fh * 0.6, fx + w * 0.032, base)
-          ..close(),
-        Paint()..color = const Color(0xFFFF8A2A).withValues(alpha: fade),
-      );
-      canvas.drawPath(
-        Path()
-          ..moveTo(fx - w * 0.016, base)
-          ..quadraticBezierTo(fx, base - fh * 0.75, fx + w * 0.016, base)
-          ..close(),
-        Paint()..color = const Color(0xFFFFD34A).withValues(alpha: fade),
-      );
-    }
-    // Patas
-    final leg = Paint()
-      ..color = const Color(0xFF1B1633).withValues(alpha: fade);
-    for (final dx in [-0.24, 0.24]) {
-      canvas.drawRRect(
-        RRect.fromRectAndRadius(
-          Rect.fromCenter(
-              center: Offset(cx + w * dx, potBottom + h * 0.035),
-              width: w * 0.07,
-              height: h * 0.12),
-          const Radius.circular(6),
-        ),
-        leg,
-      );
-    }
-    // Panza
-    final body = Path()
-      ..moveTo(cx - rx, potTop)
-      ..cubicTo(
-          cx - rx * 1.12, h * 0.74, cx - rx * 0.7, potBottom, cx, potBottom)
-      ..cubicTo(
-          cx + rx * 0.7, potBottom, cx + rx * 1.12, h * 0.74, cx + rx, potTop)
-      ..close();
-    canvas.drawPath(
-      body,
-      Paint()
-        ..shader = LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            const Color(0xFF4A3F86).withValues(alpha: fade),
-            const Color(0xFF1E1840).withValues(alpha: fade),
-          ],
-        ).createShader(
-            Rect.fromLTWH(cx - rx, potTop, rx * 2, potBottom - potTop)),
-    );
-    canvas.drawPath(
-      body,
-      Paint()
-        ..style = PaintingStyle.stroke
-        ..strokeWidth = 4
-        ..color = const Color(0xFF120F34).withValues(alpha: fade),
-    );
-    canvas.drawPath(
-      Path()
-        ..moveTo(cx - rx * 0.78, potTop + h * 0.08)
-        ..quadraticBezierTo(cx - rx * 0.86, h * 0.7, cx - rx * 0.5, h * 0.8),
-      Paint()
-        ..style = PaintingStyle.stroke
-        ..strokeWidth = 7
-        ..strokeCap = StrokeCap.round
-        ..color = Colors.white.withValues(alpha: 0.22 * fade),
-    );
-    // Borde y caldo luminoso (el brillo respira)
-    final rim = Rect.fromCenter(
-        center: Offset(cx, potTop), width: rx * 2.18, height: h * 0.13);
-    canvas.drawOval(
-        rim, Paint()..color = const Color(0xFF2E2658).withValues(alpha: fade));
-    final brew = Rect.fromCenter(
-        center: Offset(cx, potTop + 1), width: rx * 1.84, height: h * 0.095);
-    canvas.drawOval(
-      brew,
-      Paint()
-        ..shader = RadialGradient(colors: [
-          Color.lerp(const Color(0xFFB8FFF0), Colors.white, 0.4 * glow)!
-              .withValues(alpha: fade),
-          Palette.teal.withValues(alpha: fade),
-          const Color(0xFF3AA8C8).withValues(alpha: fade),
-        ]).createShader(brew),
-    );
-    canvas.drawOval(
-      rim,
-      Paint()
-        ..style = PaintingStyle.stroke
-        ..strokeWidth = 3
-        ..color = const Color(0xFF120F34).withValues(alpha: fade),
-    );
-    // Burbujas que suben y revientan en el caldo
-    for (var i = 0; i < 5; i++) {
-      final u = (t * 1.6 + i * 0.23) % 1.0;
-      final bx = cx + (i - 2) * w * 0.09;
+    // Luciérnagas
+    for (var i = 0; i < 12; i++) {
+      final a = i * 2.39996 + t * math.pi * 2 * (i.isEven ? 1 : -1) * 0.25;
+      final r = w * (0.30 + 0.12 * ((i * 37) % 10) / 10);
+      final p = Offset(cx + math.cos(a) * r, h * 0.48 + math.sin(a) * r * 0.65);
+      final blink = 0.5 + 0.5 * math.sin(t * math.pi * 2 * 2 + i);
       canvas.drawCircle(
-        Offset(bx, potTop + 2 - u * h * 0.05),
-        (2.5 + 4.5 * u) * (1 - u * 0.3),
-        Paint()
-          ..style = u > 0.8 ? PaintingStyle.stroke : PaintingStyle.fill
-          ..strokeWidth = 1.4
-          ..color = Colors.white.withValues(alpha: 0.75 * (1 - u * 0.6) * fade),
-      );
+          p,
+          2.2 + 1.2 * blink,
+          Paint()
+            ..color =
+                const Color(0xFFFFF3A0).withValues(alpha: 0.75 * blink * show)
+            ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 2));
     }
+
+    // Lo que sale volando del libro: cada cosa sube por su carril, se balancea y se apaga arriba.
+    final flyers = <void Function(Canvas, double)>[
+      _balloon,
+      _paperBoat,
+      _rocket,
+      _paperPlane,
+      (c, s) => _star(c, s, const Color(0xFFFFD36E)),
+      (c, s) => _star(c, s, const Color(0xFF8EE3C8)),
+      (c, s) => _star(c, s, const Color(0xFFFFA8D2)),
+    ];
+    for (var i = 0; i < flyers.length; i++) {
+      final phase = (t + i / flyers.length) % 1.0;
+      final rise = Curves.easeOut.transform(phase);
+      // Carriles a los lados (nunca por el centro, donde está la luna)
+      const lanes = [-1.0, 0.85, -0.55, 1.0, 0.6, -0.9, -0.3];
+      final side = lanes[i % lanes.length];
+      final x = cx +
+          side * w * (0.12 + 0.26 * rise) +
+          math.sin(phase * math.pi * 2 + i) * 6;
+      final y = bookY - h * 0.08 - rise * h * 0.62;
+      final alpha =
+          fly * (phase < 0.15 ? phase / 0.15 : (1 - phase).clamp(0.0, 0.5) * 2);
+      if (alpha <= 0) continue;
+      canvas.saveLayer(
+          null, Paint()..color = Colors.white.withValues(alpha: alpha));
+      canvas.translate(x, y);
+      canvas.rotate(math.sin(phase * math.pi * 2 + i) * 0.18);
+      flyers[i](canvas, w * (0.055 + 0.03 * (1 - rise)));
+      canvas.restore();
+    }
+
+    // La luna sale por detrás del libro, por encima de lo que vuela (nada le tapa la cara)
+    _moonFace(canvas, Offset(cx, h * (0.56 - 0.33 * moonUp)), w * 0.15, moonUp);
+
+    // El libro, con su rebote (se escala desde el lomo). Cerrado se centra; al abrirse, el lomo queda en medio.
+    canvas.save();
+    canvas.translate(cx - w * 0.15 * (1 - open), bookY);
+    final sc = 0.4 + 0.6 * pop;
+    canvas.scale(sc, sc);
+    _book(canvas, w, open, show);
+    canvas.restore();
   }
 
-  // ----------------------------------------------------- iconos de cuento
-  void _book(Canvas c, double r, double a) {
-    final page = Paint()..color = Palette.cream.withValues(alpha: a);
-    final edge = Paint()
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 1.6
-      ..color = Palette.amber.withValues(alpha: a);
-    final l = Path()
-      ..moveTo(0, -r * 0.5)
-      ..quadraticBezierTo(-r * 0.7, -r * 0.8, -r * 1.3, -r * 0.5)
-      ..lineTo(-r * 1.3, r * 0.6)
-      ..quadraticBezierTo(-r * 0.7, r * 0.3, 0, r * 0.6)
-      ..close();
-    final rr = Path()
-      ..moveTo(0, -r * 0.5)
-      ..quadraticBezierTo(r * 0.7, -r * 0.8, r * 1.3, -r * 0.5)
-      ..lineTo(r * 1.3, r * 0.6)
-      ..quadraticBezierTo(r * 0.7, r * 0.3, 0, r * 0.6)
-      ..close();
-    c.drawPath(l, page);
-    c.drawPath(rr, page);
-    c.drawPath(l, edge);
-    c.drawPath(rr, edge);
-  }
-
-  void _castle(Canvas c, double r, double a) {
-    final p = Paint()..color = const Color(0xFFC9C0F5).withValues(alpha: a);
-    final line = Paint()
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 1.4
-      ..color = const Color(0xFF3A2A8A).withValues(alpha: a);
-    final body = Path()
-      ..moveTo(-r, r * 0.8)
-      ..lineTo(-r, -r * 0.3)
-      ..lineTo(-r * 0.7, -r * 0.3)
-      ..lineTo(-r * 0.7, -r * 0.6)
-      ..lineTo(-r * 0.25, -r * 0.6)
-      ..lineTo(-r * 0.25, -r * 0.3)
-      ..lineTo(r * 0.25, -r * 0.3)
-      ..lineTo(r * 0.25, -r * 0.6)
-      ..lineTo(r * 0.7, -r * 0.6)
-      ..lineTo(r * 0.7, -r * 0.3)
-      ..lineTo(r, -r * 0.3)
-      ..lineTo(r, r * 0.8)
-      ..close();
-    c.drawPath(body, p);
-    c.drawPath(body, line);
-    c.drawPath(
-      Path()
-        ..moveTo(-r * 0.25, r * 0.8)
-        ..lineTo(-r * 0.25, r * 0.15)
-        ..quadraticBezierTo(0, -r * 0.2, r * 0.25, r * 0.15)
-        ..lineTo(r * 0.25, r * 0.8)
-        ..close(),
-      Paint()..color = const Color(0xFF3A2A8A).withValues(alpha: a),
+  void _moonFace(Canvas canvas, Offset c, double r, double k) {
+    if (k <= 0) return;
+    final a = k.clamp(0.0, 1.0);
+    canvas.drawCircle(
+        c,
+        r * 1.6,
+        Paint()
+          ..color = _moon.withValues(alpha: 0.18 * a)
+          ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 18));
+    canvas.drawCircle(c, r, Paint()..color = _moon.withValues(alpha: a));
+    // Cráteres suaves
+    final crater = Paint()
+      ..color = const Color(0xFFF5D27A).withValues(alpha: 0.7 * a);
+    canvas.drawCircle(c + Offset(-r * 0.45, -r * 0.42), r * 0.16, crater);
+    canvas.drawCircle(c + Offset(r * 0.5, -r * 0.2), r * 0.1, crater);
+    // Ojos que parpadean de vez en cuando
+    final blinkPhase = (t * 2) % 1.0;
+    final closed = blinkPhase > 0.92;
+    final eye = Paint()
+      ..color = _ink.withValues(alpha: a)
+      ..strokeWidth = r * 0.09
+      ..strokeCap = StrokeCap.round
+      ..style = closed ? PaintingStyle.stroke : PaintingStyle.fill;
+    for (final dx in [-0.33, 0.33]) {
+      final e = c + Offset(dx * r, -r * 0.02);
+      if (closed) {
+        canvas.drawLine(e - Offset(r * 0.1, 0), e + Offset(r * 0.1, 0), eye);
+      } else {
+        canvas.drawCircle(e, r * 0.09, eye);
+        canvas.drawCircle(e + Offset(r * 0.03, -r * 0.03), r * 0.03,
+            Paint()..color = Colors.white.withValues(alpha: a));
+      }
+    }
+    canvas.drawCircle(c + Offset(-r * 0.55, r * 0.25), r * 0.13,
+        Paint()..color = _cheek.withValues(alpha: 0.8 * a));
+    canvas.drawCircle(c + Offset(r * 0.55, r * 0.25), r * 0.13,
+        Paint()..color = _cheek.withValues(alpha: 0.8 * a));
+    canvas.drawArc(
+      Rect.fromCenter(
+          center: c + Offset(0, r * 0.2), width: r * 0.5, height: r * 0.36),
+      0.15 * math.pi,
+      0.7 * math.pi,
+      false,
+      Paint()
+        ..color = _ink.withValues(alpha: a)
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = r * 0.08
+        ..strokeCap = StrokeCap.round,
     );
   }
 
-  void _crown(Canvas c, double r, double a) {
-    final p = Paint()..color = Palette.amber.withValues(alpha: a);
+  /// El libro abierto, dibujado con el lomo en (0, 0). [open] 0 = cerrado (se ve la tapa), 1 = abierto.
+  void _book(Canvas canvas, double w, double open, double alpha) {
+    final pw = w * 0.30; // ancho de cada página
+    final ph = w * 0.30; // alto
+    final o = Paint()..color = _coverDark.withValues(alpha: alpha);
+    // Tapa trasera (asoma por debajo de las páginas)
+    canvas.drawRRect(
+      RRect.fromRectAndRadius(
+          Rect.fromLTRB(
+              -pw * (0.15 + 0.92 * open) - 6, -ph - 4, pw * 1.07 + 6, 8),
+          const Radius.circular(14)),
+      o,
+    );
+    // Página derecha (siempre abierta) con renglones
+    _pageShape(canvas, pw, ph, 1, alpha);
+    // Página izquierda: se despliega desde el lomo
+    if (open > 0.02) {
+      canvas.save();
+      canvas.scale(-open, 1);
+      _pageShape(canvas, pw, ph, open, alpha);
+      canvas.restore();
+    }
+    // Tapa delantera: mientras está cerrado se ve encima; al abrirse se pliega hacia la izquierda
+    final coverW = pw * (1 - open);
+    if (coverW > 1) {
+      final r = RRect.fromRectAndRadius(
+          Rect.fromLTRB(-2, -ph - 2, coverW + 4, 4), const Radius.circular(12));
+      canvas.drawRRect(r, Paint()..color = _cover.withValues(alpha: alpha));
+      if (coverW > pw * 0.5) {
+        _star(canvas, 0, Colors.white,
+            at: Offset(coverW * 0.55, -ph * 0.5),
+            radius: pw * 0.16 * (coverW / pw),
+            alpha: alpha * 0.9);
+      }
+    }
+    // Lomo
+    canvas.drawLine(
+        const Offset(0, 4),
+        Offset(0, -ph),
+        Paint()
+          ..color = _pageShade.withValues(alpha: alpha)
+          ..strokeWidth = 3);
+  }
+
+  void _pageShape(Canvas canvas, double pw, double ph, double k, double alpha) {
     final path = Path()
-      ..moveTo(-r, r * 0.6)
-      ..lineTo(-r, -r * 0.5)
-      ..lineTo(-r * 0.45, r * 0.05)
-      ..lineTo(0, -r * 0.8)
-      ..lineTo(r * 0.45, r * 0.05)
-      ..lineTo(r, -r * 0.5)
-      ..lineTo(r, r * 0.6)
+      ..moveTo(0, 0)
+      ..quadraticBezierTo(pw * 0.5, -ph * 0.06, pw, 0)
+      ..lineTo(pw, -ph)
+      ..quadraticBezierTo(pw * 0.5, -ph * 1.08, 0, -ph)
       ..close();
-    c.drawPath(path, p);
-    c.drawPath(
+    canvas.drawPath(
       path,
       Paint()
-        ..style = PaintingStyle.stroke
-        ..strokeWidth = 1.4
-        ..color = const Color(0xFF8A5A00).withValues(alpha: a),
+        ..shader = LinearGradient(colors: [_pageShade, _page])
+            .createShader(Rect.fromLTWH(0, -ph, pw * 0.3, ph))
+        ..color = _page.withValues(alpha: alpha),
     );
-    c.drawCircle(Offset(0, r * 0.25), r * 0.14,
-        Paint()..color = const Color(0xFFE05A8B).withValues(alpha: a));
-  }
-
-  void _hat(Canvas c, double r, double a) {
-    final p = Paint()..color = const Color(0xFF6B4FD8).withValues(alpha: a);
-    c.drawPath(
-      Path()
-        ..moveTo(-r * 0.7, r * 0.5)
-        ..quadraticBezierTo(-r * 0.2, -r * 0.2, r * 0.25, -r * 1.2)
-        ..quadraticBezierTo(r * 0.5, -r * 0.1, r * 0.7, r * 0.5)
-        ..close(),
-      p,
-    );
-    c.drawOval(
-        Rect.fromCenter(
-            center: Offset(0, r * 0.52), width: r * 2.4, height: r * 0.5),
-        Paint()..color = const Color(0xFF4A3AB0).withValues(alpha: a));
-    _star(c, Offset(0, -r * 0.1), r * 0.22, Palette.amber.withValues(alpha: a));
-  }
-
-  void _star(Canvas canvas, Offset c, double r, Color color) {
-    final p = Path();
-    for (var i = 0; i < 10; i++) {
-      final rad = i.isEven ? r : r * 0.45;
-      final a = -math.pi / 2 + i * math.pi / 5;
-      final pt = Offset(c.dx + rad * math.cos(a), c.dy + rad * math.sin(a));
-      i == 0 ? p.moveTo(pt.dx, pt.dy) : p.lineTo(pt.dx, pt.dy);
+    final line = Paint()
+      ..color = const Color(0xFFCBB892).withValues(alpha: 0.7 * alpha * k)
+      ..strokeWidth = 2.2
+      ..strokeCap = StrokeCap.round;
+    for (var i = 0; i < 5; i++) {
+      final y = -ph * (0.78 - i * 0.14);
+      final len = pw * (i == 4 ? 0.45 : 0.72);
+      canvas.drawLine(Offset(pw * 0.14, y), Offset(pw * 0.14 + len, y), line);
     }
-    canvas.drawPath(p..close(), Paint()..color = color);
+  }
+
+  // ------------------------------------------------------------- lo que vuela
+
+  /// Estrella de cinco puntas con las puntas redondeadas.
+  void _star(Canvas canvas, double s, Color color,
+      {Offset at = Offset.zero, double? radius, double alpha = 1}) {
+    final r = radius ?? s;
+    final path = Path();
+    for (var i = 0; i < 10; i++) {
+      final ang = -math.pi / 2 + i * math.pi / 5;
+      final rad = i.isEven ? r : r * 0.48;
+      final p = at + Offset(math.cos(ang) * rad, math.sin(ang) * rad);
+      i == 0 ? path.moveTo(p.dx, p.dy) : path.lineTo(p.dx, p.dy);
+    }
+    path.close();
+    canvas.drawPath(
+        path,
+        Paint()
+          ..color = color.withValues(alpha: alpha)
+          ..strokeJoin = StrokeJoin.round
+          ..strokeWidth = r * 0.25
+          ..style = PaintingStyle.fill);
+    canvas.drawPath(
+        path,
+        Paint()
+          ..color = color.withValues(alpha: alpha)
+          ..strokeJoin = StrokeJoin.round
+          ..strokeWidth = r * 0.25
+          ..style = PaintingStyle.stroke);
+  }
+
+  void _balloon(Canvas canvas, double s) {
+    canvas.drawLine(
+        Offset(0, s * 0.9),
+        Offset(0, s * 1.7),
+        Paint()
+          ..color = _cream
+          ..strokeWidth = 1.5);
+    canvas.drawRRect(
+        RRect.fromRectAndRadius(
+            Rect.fromCenter(
+                center: Offset(0, s * 1.8), width: s * 0.6, height: s * 0.4),
+            const Radius.circular(3)),
+        Paint()..color = const Color(0xFFC98A5A));
+    canvas.drawOval(
+        Rect.fromCenter(center: Offset.zero, width: s * 1.6, height: s * 1.9),
+        Paint()..color = const Color(0xFF6FC3FF));
+    canvas.drawOval(
+        Rect.fromCenter(center: Offset.zero, width: s * 0.6, height: s * 1.9),
+        Paint()..color = const Color(0xFFFFD36E));
+  }
+
+  void _paperBoat(Canvas canvas, double s) {
+    final hull = Path()
+      ..moveTo(-s * 1.1, 0)
+      ..lineTo(s * 1.1, 0)
+      ..lineTo(s * 0.7, s * 0.6)
+      ..lineTo(-s * 0.7, s * 0.6)
+      ..close();
+    final sail = Path()
+      ..moveTo(-s * 0.1, -s * 1.2)
+      ..lineTo(s * 0.7, 0)
+      ..lineTo(-s * 0.1, 0)
+      ..close();
+    canvas.drawPath(sail, Paint()..color = _cream);
+    canvas.drawPath(hull, Paint()..color = const Color(0xFF4FC3A1));
+  }
+
+  void _rocket(Canvas canvas, double s) {
+    canvas.drawOval(
+        Rect.fromCenter(
+            center: Offset(0, s * 1.15), width: s * 0.5, height: s * 0.8),
+        Paint()..color = const Color(0xFFFFB347));
+    final fin = Paint()..color = const Color(0xFFFF7A6B);
+    canvas.drawPath(
+        Path()
+          ..moveTo(-s * 0.45, s * 0.3)
+          ..lineTo(-s * 0.85, s * 0.95)
+          ..lineTo(-s * 0.35, s * 0.8)
+          ..close(),
+        fin);
+    canvas.drawPath(
+        Path()
+          ..moveTo(s * 0.45, s * 0.3)
+          ..lineTo(s * 0.85, s * 0.95)
+          ..lineTo(s * 0.35, s * 0.8)
+          ..close(),
+        fin);
+    canvas.drawRRect(
+        RRect.fromRectAndRadius(
+            Rect.fromCenter(
+                center: Offset.zero, width: s * 0.9, height: s * 1.9),
+            Radius.circular(s * 0.45)),
+        Paint()..color = _cream);
+    canvas.drawCircle(Offset(0, -s * 0.2), s * 0.22,
+        Paint()..color = const Color(0xFF6FC3FF));
+  }
+
+  void _paperPlane(Canvas canvas, double s) {
+    canvas.drawPath(
+        Path()
+          ..moveTo(s * 1.2, 0)
+          ..lineTo(-s * 1.0, -s * 0.6)
+          ..lineTo(-s * 0.4, 0)
+          ..close(),
+        Paint()..color = _cream);
+    canvas.drawPath(
+        Path()
+          ..moveTo(s * 1.2, 0)
+          ..lineTo(-s * 0.4, 0)
+          ..lineTo(-s * 0.7, s * 0.55)
+          ..close(),
+        Paint()..color = const Color(0xFFDCCFFF));
   }
 
   @override
-  bool shouldRepaint(CauldronPainter old) => old.intro != intro || old.t != t;
+  bool shouldRepaint(StorybookPainter old) => old.intro != intro || old.t != t;
 }

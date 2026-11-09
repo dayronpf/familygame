@@ -398,7 +398,7 @@ class _HomePageState extends State<HomePage> {
                   child: Padding(
                     padding: const EdgeInsets.all(24),
                     child: Text(
-                      'No se pudo abrir el caldero.\n${snapshot.error}',
+                      'No se pudieron abrir los cuentos.\n${snapshot.error}',
                       textAlign: TextAlign.center,
                       style: text.bodyLarge,
                     ),
@@ -760,7 +760,7 @@ class _TopBar extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(20, 6, 8, 6),
       child: Row(
         children: [
-          const Icon(Icons.nightlight_round, color: Palette.amber, size: 26),
+          const Icon(Icons.auto_stories, color: Palette.amber, size: 26),
           const SizedBox(width: 8),
           Expanded(
             child: Text(appName,

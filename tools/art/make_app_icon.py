@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Icono de la app, dibujado por código (el caldero de los cuentos bajo la luna) y exportado a todos los tamaños.
+"""Icono de la app, dibujado por código (un libro de cuentos abierto bajo una luna con carita) y exportado a todos los tamaños.
 
 Escribe:
   app/android/app/src/main/res/mipmap-*/ic_launcher.png            (icono clásico, cuadrado)
@@ -22,7 +22,7 @@ ROOT = Path(__file__).resolve().parents[2]
 RES = ROOT / "app/android/app/src/main/res"
 IOS = ROOT / "app/ios/Runner/Assets.xcassets/AppIcon.appiconset"
 OUT = ROOT / "art/app_icon"
-BG_TOP, BG_BOTTOM = (22, 16, 62), (66, 44, 128)
+BG_TOP, BG_BOTTOM = (40, 30, 104), (96, 72, 180)  # cielo de noche, más alegre que antes
 S = 2048  # se dibuja al doble y se reduce
 
 
@@ -54,11 +54,22 @@ def star(draw, cx, cy, r, fill):
     draw.polygon(pts, fill=fill)
 
 
+def star5(draw, cx, cy, r, fill):
+    """Estrella de cinco puntas (la de los dibujos infantiles; sin simbolismo)."""
+    pts = []
+    for i in range(10):
+        ang = -math.pi / 2 + i * math.pi / 5
+        rad = r if i % 2 == 0 else r * 0.5
+        pts.append((cx + rad * math.cos(ang), cy + rad * math.sin(ang)))
+    draw.polygon(pts, fill=fill)
+
+
 def foreground(zone=0.66):
-    """El caldero, la luna y las estrellas sobre fondo transparente. Cabe en el 66 % central (zona segura adaptativa)."""
+    """Un libro de cuentos abierto, una luna llena con carita que asoma detrás y estrellas de colores, sobre fondo
+    transparente. Cabe en el 66 % central (zona segura adaptativa). Sin calderos, fuego, coronas ni símbolos."""
     fg = Image.new("RGBA", (S, S), (0, 0, 0, 0))
     cx = S // 2
-    k = zone * S / 1000  # 1000 unidades = la zona de dibujo (0,66 = zona segura del icono adaptativo)
+    k = zone * S / 1000  # 1000 unidades = la zona de dibujo
 
     def X(v):
         return cx + (v - 500) * k
@@ -66,58 +77,41 @@ def foreground(zone=0.66):
     def Y(v):
         return S / 2 + (v - 500) * k
 
-    # luna creciente con halo
-    moon = Image.new("RGBA", (S, S), (0, 0, 0, 0))
-    ImageDraw.Draw(moon).ellipse([X(640), Y(190), X(760), Y(310)], fill=(255, 241, 194, 255))
-    cut = Image.new("L", (S, S), 0)
-    ImageDraw.Draw(cut).ellipse([X(676), Y(176), X(796), Y(296)], fill=255)
-    moon.putalpha(ImageChops.subtract(moon.getchannel("A"), cut))
-    fg.alpha_composite(glow(S, (X(700), Y(250)), 170 * k, (255, 226, 150), 80))
-    fg.alpha_composite(moon)
+    # luna llena con halo y carita
+    fg.alpha_composite(glow(S, (X(500), Y(330)), 260 * k, (255, 226, 150), 70))
     d = ImageDraw.Draw(fg)
+    d.ellipse([X(330), Y(160), X(670), Y(500)], fill=(255, 231, 163, 255))
+    for mx, my, mr in [(410, 235, 34), (600, 290, 22)]:
+        d.ellipse([X(mx - mr), Y(my - mr), X(mx + mr), Y(my + mr)], fill=(245, 210, 122, 255))
+    ink = (58, 42, 92, 255)
+    for ex in (440, 560):
+        d.ellipse([X(ex - 20), Y(315 - 20), X(ex + 20), Y(315 + 20)], fill=ink)
+        d.ellipse([X(ex - 2), Y(303 - 8), X(ex + 12), Y(303 + 6)], fill=(255, 255, 255, 255))
+    for chx in (395, 605):
+        d.ellipse([X(chx - 30), Y(370 - 22), X(chx + 30), Y(370 + 22)], fill=(255, 168, 168, 230))
+    d.arc([X(445), Y(320), X(555), Y(410)], 25, 155, fill=ink, width=int(18 * k))
 
-    # estrellas
-    for sx, sy, sr, col in [(300, 190, 34, (255, 214, 120, 255)), (160, 330, 22, (255, 245, 214, 255)),
-                            (850, 470, 24, (255, 245, 214, 255)), (430, 90, 20, (255, 245, 214, 255))]:
-        star(d, X(sx), Y(sy), sr * k, col)
+    # estrellas de colores
+    star5(d, X(195), Y(250), 58 * k, (142, 227, 200, 255))
+    star5(d, X(815), Y(215), 50 * k, (255, 168, 210, 255))
+    star5(d, X(800), Y(440), 36 * k, (255, 211, 110, 255))
+    star5(d, X(215), Y(440), 30 * k, (111, 195, 255, 255))
 
-    # llamas
-    for fx, fh, col in [(350, 130, (255, 120, 30, 255)), (430, 160, (255, 160, 50, 255)), (500, 180, (255, 205, 80, 255)),
-                        (570, 160, (255, 160, 50, 255)), (650, 130, (255, 120, 30, 255))]:
-        d.polygon([(X(fx - 50), Y(900)), (X(fx), Y(900 - fh * 1.5)), (X(fx + 50), Y(900))], fill=col)
-    # patas
-    for lx in (330, 670):
-        d.rounded_rectangle([X(lx - 40), Y(740), X(lx + 40), Y(850)], radius=30 * k, fill=(12, 8, 30, 255))
-    # cuerpo del caldero
-    body = Image.new("RGBA", (S, S), (0, 0, 0, 0))
-    bd = ImageDraw.Draw(body)
-    bd.ellipse([X(200), Y(420), X(800), Y(830)], fill=(30, 22, 70, 255), outline=(10, 7, 28, 255), width=int(14 * k))
-    bd.rectangle([X(150), Y(300), X(850), Y(600)], fill=(0, 0, 0, 0))
-    # recorta la mitad superior de la elipse del cuerpo (el borde va encima)
-    top_cut = Image.new("L", (S, S), 255)
-    ImageDraw.Draw(top_cut).rectangle([0, 0, S, Y(560)], fill=0)
-    mask = ImageChops.multiply(body.getchannel("A"), top_cut)
-    body.putalpha(mask)
-    # relleno entre el borde y la mitad de la elipse
-    bd2 = ImageDraw.Draw(body)
-    bd2.rectangle([X(200), Y(540), X(800), Y(640)], fill=(30, 22, 70, 255))
-    fg.alpha_composite(body)
-    d = ImageDraw.Draw(fg)
-    # brillo del cuerpo
-    d.arc([X(250), Y(520), X(440), Y(780)], 95, 165, fill=(150, 130, 225, 255), width=int(24 * k))
-    # borde y poción
-    d.ellipse([X(190), Y(430), X(810), Y(590)], fill=(10, 7, 28, 255))
-    d.ellipse([X(215), Y(445), X(785), Y(575)], fill=(66, 186, 214, 255))
-    d.ellipse([X(260), Y(470), X(740), Y(550)], fill=(120, 226, 236, 255))
-    # burbujas y objetos que salen de la poción
-    for bx, by, br in [(350, 500, 18), (470, 520, 13), (600, 495, 20), (680, 515, 12)]:
-        d.ellipse([X(bx - br), Y(by - br), X(bx + br), Y(by + br)], fill=(235, 252, 255, 220))
-    star(d, X(500), Y(380), 62 * k, (255, 220, 110, 255))
-    d.ellipse([X(455), Y(300), X(470), Y(315)], fill=(235, 252, 255, 200))
-    d.ellipse([X(570), Y(330), X(590), Y(350)], fill=(235, 252, 255, 200))
-    # corona pequeña
-    pts = [(420, 330), (440, 270), (470, 310), (500, 250), (530, 310), (560, 270), (580, 330)]
-    d.polygon([(X(a), Y(b)) for a, b in pts], fill=(255, 205, 80, 255), outline=(160, 110, 20, 255))
+    # libro abierto: tapa, dos páginas con renglones y lomo
+    d.rounded_rectangle([X(90), Y(520), X(910), Y(900)], radius=46 * k, fill=(217, 83, 79, 255))
+    for side in (-1, 1):
+        x0, x1 = (X(130), X(500)) if side < 0 else (X(500), X(870))
+        page = [(x0, Y(560)), (x1, Y(560)), (x1, Y(865)), (x0, Y(865))]
+        d.polygon(page, fill=(255, 249, 236, 255))
+        for i in range(5):
+            y = Y(615 + i * 52)
+            lx0 = X(175) if side < 0 else X(545)
+            ln = (275 if i < 4 else 160) * k
+            d.line([lx0, y, lx0 + ln, y], fill=(203, 184, 146, 255), width=int(14 * k))
+    # curva superior de las páginas (se abomban hacia el lomo)
+    d.ellipse([X(130), Y(530), X(500), Y(590)], fill=(255, 249, 236, 255))
+    d.ellipse([X(500), Y(530), X(870), Y(590)], fill=(255, 249, 236, 255))
+    d.line([X(500), Y(545), X(500), Y(870)], fill=(241, 227, 196, 255), width=int(14 * k))
     return fg
 
 
