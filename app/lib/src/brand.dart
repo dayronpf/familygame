@@ -4,7 +4,7 @@
 library;
 
 /// El nombre que ve la familia (pantalla de inicio, ajustes, mensaje para compartir, icono del teléfono).
-const String appName = 'Caldero de Cuentos';
+const String appName = 'Mininoches';
 
 /// La frase corta debajo del nombre en la pantalla de bienvenida.
 const String appTagline = 'Cuentos para soñar';

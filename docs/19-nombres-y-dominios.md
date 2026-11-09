@@ -99,3 +99,10 @@ Para tener página web y correo hace falta más que un dominio sin registrar. Se
 
 Pendiente antes de comprar: reservar el usuario en Instagram, TikTok y YouTube (piden iniciar sesión para comprobarlo) y,
 si el presupuesto lo permite, una consulta con un abogado de marcas en los países donde se publicará.
+
+## Decisión (8-nov-2026): **Mininoches**
+
+Elegido por el dueño. Se cambió con `tools/rename_app.py` (app, Android, iOS y guía en PDF), más la ficha de las tiendas, el
+README, la visión y el nombre del APK de descarga (`mininoches.apk`). **No se compra dominio por ahora** (decisión del dueño);
+`mininoches.com` y `.app` estaban libres y a precio normal el 8-nov-2026. Sin tocar, a propósito: los identificadores técnicos
+(`com.calderodecuentos.cuentos`, paquetes `caldero_*`), que no se ven; el `applicationId` hay que decidirlo antes de publicar.

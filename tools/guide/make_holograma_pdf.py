@@ -34,8 +34,13 @@ def _app_name():
 
 APP_NAME = _app_name()
 FONTS = Path("/usr/share/fonts/truetype/dejavu")
-pdfmetrics.registerFont(TTFont("Sans", str(FONTS / "DejaVuSans.ttf")))
-pdfmetrics.registerFont(TTFont("Sans-Bold", str(FONTS / "DejaVuSans-Bold.ttf")))
+if (FONTS / "DejaVuSans.ttf").exists():  # Linux (CI)
+    REGULAR, BOLD = FONTS / "DejaVuSans.ttf", FONTS / "DejaVuSans-Bold.ttf"
+else:  # macOS: Arial viene con el sistema
+    MAC = Path("/System/Library/Fonts/Supplemental")
+    REGULAR, BOLD = MAC / "Arial.ttf", MAC / "Arial Bold.ttf"
+pdfmetrics.registerFont(TTFont("Sans", str(REGULAR)))
+pdfmetrics.registerFont(TTFont("Sans-Bold", str(BOLD)))
 pdfmetrics.registerFontFamily("Sans", normal="Sans", bold="Sans-Bold", italic="Sans", boldItalic="Sans-Bold")
 
 INDIGO = colors.HexColor("#241A5A")

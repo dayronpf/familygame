@@ -3,7 +3,7 @@
 ## Declaración de visión
 
 > Para familias con niños de 3 a 8 años que quieren recuperar el ritual de leer un cuento antes de dormir,
-> **Caldero de Cuentos** es una app que crea cuentos originales con una enseñanza, los narra y los anima
+> **Mininoches** es una app que crea cuentos originales con una enseñanza, los narra y los anima
 > en tiempo real. A diferencia de las redes sociales o los videos cortos, está diseñada para **terminar**:
 > cada cuento tiene un final tranquilo que invita a dormir.
 

@@ -10,7 +10,7 @@
     <!-- Recordatorio de la hora del cuento: volver a programarlo al reiniciar el teléfono -->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
     <application
-        android:label="Caldero de Cuentos"
+        android:label="Mininoches"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

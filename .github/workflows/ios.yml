@@ -47,7 +47,7 @@ jobs:
           echo "Tamaño: $(du -h Runner-sin-firmar.zip | cut -f1)" >> "$GITHUB_STEP_SUMMARY"
       - uses: actions/upload-artifact@v4
         with:
-          name: caldero-de-cuentos-ios-sin-firmar
+          name: mininoches-ios-sin-firmar
           path: app/build/ios/iphoneos/Runner-sin-firmar.zip
           retention-days: 14
           if-no-files-found: error

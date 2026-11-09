@@ -8,7 +8,7 @@ sin compras, sin cuentas, nada sale del teléfono). Si cambia algo de eso, hay q
 
 ## Nombre — 30 caracteres
 
-> Caldero de Cuentos
+> Mininoches: cuentos de noche
 
 ## Subtítulo (App Store) — 30 caracteres
 
@@ -26,7 +26,7 @@ sin compras, sin cuentas, nada sale del teléfono). Si cambia algo de eso, hay q
 
 > Cada noche, un cuento nuevo.
 >
-> Caldero de Cuentos mezcla personajes, lugares y aventuras para crear un cuento distinto cada vez que lo abres. Tú eliges la enseñanza de esta noche —honestidad, generosidad, valentía, humildad, perseverancia o amistad— y el caldero hace el resto. Si escribes el nombre de tu hijo o tu hija, será el protagonista del cuento.
+> Mininoches mezcla personajes, lugares y aventuras para crear un cuento distinto cada vez que lo abres. Tú eliges la enseñanza de esta noche —honestidad, generosidad, valentía, humildad, perseverancia o amistad— y Mininoches hace el resto. Si escribes el nombre de tu hijo o tu hija, será el protagonista del cuento.
 >
 > TRES MUNDOS PARA SOÑAR
 >

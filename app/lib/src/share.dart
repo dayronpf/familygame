@@ -6,7 +6,7 @@ import 'brand.dart';
 /// Dónde se descarga la app. Mientras no esté en las tiendas es el enlace del APK de prueba; cuando se
 /// publique, se cambia aquí por el de la tienda.
 const String appDownloadUrl =
-    'https://github.com/dayronpf/familygame/releases/download/apk-latest/caldero-de-cuentos.apk';
+    'https://github.com/dayronpf/familygame/releases/download/apk-latest/mininoches.apk';
 
 const String shareMessage =
     '🌙 ¡Te recomiendo $appName! Cuentos para dormir con dibujos animados, voz y una enseñanza, '

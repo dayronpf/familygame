@@ -61,18 +61,18 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          cp build/app/outputs/flutter-apk/app-release.apk caldero-de-cuentos.apk
+          cp build/app/outputs/flutter-apk/app-release.apk mininoches.apk
           # Release fija: siempre tiene el APK más reciente, con la misma URL.
           gh release delete apk-latest --cleanup-tag --yes --repo "$GITHUB_REPOSITORY" || true
-          gh release create apk-latest caldero-de-cuentos.apk \
+          gh release create apk-latest mininoches.apk \
             --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" --prerelease \
             --title "APK de prueba (el más reciente)" \
             --notes "Compilado desde ${GITHUB_SHA::7} (${GITHUB_REF_NAME}). Firmado con la llave de prueba fija: se instala encima del anterior. NO es para las tiendas."
           echo "### Descarga directa" >> "$GITHUB_STEP_SUMMARY"
-          echo "https://github.com/$GITHUB_REPOSITORY/releases/download/apk-latest/caldero-de-cuentos.apk" >> "$GITHUB_STEP_SUMMARY"
+          echo "https://github.com/$GITHUB_REPOSITORY/releases/download/apk-latest/mininoches.apk" >> "$GITHUB_STEP_SUMMARY"
       - uses: actions/upload-artifact@v4
         with:
-          name: caldero-de-cuentos-apk
+          name: mininoches-apk
           path: app/build/app/outputs/flutter-apk/app-release.apk
           retention-days: 14
           if-no-files-found: error
