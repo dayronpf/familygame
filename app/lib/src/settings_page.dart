@@ -732,7 +732,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     title: const Text('Recomendar a un amigo'),
                     subtitle: const Text(
                         'Envía el enlace por WhatsApp, mensajes o correo.'),
-                    onTap: () => shareApp(context),
+                    onTap: () => shareApp(context, gated: false),
                   ),
                   ListTile(
                     key: const Key('settings-guide'),

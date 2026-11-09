@@ -39,13 +39,13 @@ Un adulto puede ver el ejemplo exacto de lo que se envía en Ajustes → «Ver u
 Para saber si una instalación tiene la suscripción, la app habla con nuestro servidor:
 - **Identificador de instalación:** un número aleatorio que la app crea la primera vez. No está ligado a una persona, a una cuenta, al teléfono ni a la publicidad; si se borran los datos de la app, se crea otro.
 - **Al comprar o restaurar:** el identificador de la compra que entrega la tienda (en Android, el *purchase token* de Google Play). Nuestro servidor lo consulta a la tienda para comprobar que la compra es real y vigente, y guarda el resultado (producto, estado, fecha de caducidad) junto al identificador de instalación. **No recibimos** el nombre, el correo ni los datos de pago de quien compra: eso lo gestiona la tienda.
-- **Al canjear un código:** el código y el identificador de instalación.
+- **Códigos de regalo:** se canjean en la tienda (Apple o Google Play), con sus propias reglas; a nosotros solo nos llega la compra que resulta, igual que cualquier otra.
 - **Al abrir la app** (como mucho una vez al día): se pide la lista de cuentos gratis y la de cuentos retirados, sin enviar nada más.
 - La tienda nos avisa de renovaciones, cancelaciones y reembolsos de esa compra para mantener el estado al día.
 Estos datos se guardan mientras la suscripción esté activa y hasta 24 meses después de que termine (para atender reclamaciones y por obligaciones contables), y luego se borran. Para pedir que se borren antes, escriba a {{CORREO}} con el identificador que aparece en Ajustes → «Ver mis datos».
 
 ## 4. Permisos del teléfono
-- **Internet:** para comprobar la suscripción, canjear códigos, recibir la lista de cuentos gratis y, si se permite, enviar las valoraciones.
+- **Internet:** para comprobar la suscripción, recibir la lista de cuentos gratis y, si se permite, enviar las valoraciones.
 - **Notificaciones y servicio en primer plano:** para que el cuento siga sonando con la pantalla bloqueada y mostrar los botones de pausa en la pantalla de bloqueo, y, solo si un adulto lo enciende en Ajustes, para el recordatorio diario de la hora del cuento (lo programa el propio teléfono; no pasa por ningún servidor). No se envían notificaciones de publicidad.
 - **Mantener el teléfono despierto y el brillo:** para que el cuento siga y para bajar el brillo al dormir.
 

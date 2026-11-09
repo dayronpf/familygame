@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
 import 'package:in_app_purchase_android/in_app_purchase_android.dart';
+import 'package:in_app_purchase_storekit/in_app_purchase_storekit.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'access.dart';
 
@@ -50,6 +52,11 @@ abstract class PurchaseGateway extends ChangeNotifier {
   Future<List<PlanOption>> plans();
   Future<void> buy(PlanOption plan);
   Future<void> restore();
+
+  /// Canjear un código **de la tienda** (las tiendas no permiten códigos propios que abran contenido de pago):
+  /// en iPhone, la hoja de canje de Apple; en Android, la página de canje de Google Play. Lo canjeado llega como una
+  /// compra más (y se verifica en el servidor). `false` si esta plataforma no tiene canje.
+  Future<bool> redeemWithStore() async => false;
 }
 
 class StorePurchases extends PurchaseGateway {
@@ -161,6 +168,26 @@ class StorePurchases extends PurchaseGateway {
     } catch (_) {
       _set(PurchaseState.error, 'No se pudo restaurar. Revisa la conexión.');
     }
+  }
+
+  @override
+  Future<bool> redeemWithStore() async {
+    try {
+      if (defaultTargetPlatform == TargetPlatform.iOS) {
+        await _iap
+            .getPlatformAddition<InAppPurchaseStoreKitPlatformAddition>()
+            .presentCodeRedemptionSheet();
+        return true;
+      }
+      if (defaultTargetPlatform == TargetPlatform.android) {
+        // Google Play no tiene hoja de canje dentro de la app: se abre su página de canje
+        return await launchUrl(Uri.parse('https://play.google.com/redeem'),
+            mode: LaunchMode.externalApplication);
+      }
+    } catch (_) {
+      // sin tienda en este dispositivo
+    }
+    return false;
   }
 
   Future<void> _onPurchases(List<PurchaseDetails> list) async {

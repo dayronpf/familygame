@@ -89,6 +89,11 @@ class _FakePurchases extends PurchaseGateway {
 
   @override
   Future<void> restore() async {}
+
+  bool redeemed = false;
+
+  @override
+  Future<bool> redeemWithStore() async => redeemed = true;
 }
 
 void main() {
@@ -258,6 +263,42 @@ void main() {
       expect(purchases.bought, isTrue);
       expect(access.premium, isTrue);
       expect(result, isTrue);
+    });
+
+    testWidgets(
+        'en la versión de las tiendas: términos y privacidad a la vista, y los códigos se canjean en la tienda',
+        (tester) async {
+      tester.view
+        ..physicalSize = const Size(1080, 3400)
+        ..devicePixelRatio = 3;
+      addTearDown(tester.view.reset);
+      final access = AccessService(MemoryShelfStore(), devAvailable: false);
+      await access.load();
+      final purchases = _FakePurchases(access);
+      await tester.pumpWidget(MaterialApp(
+        builder: (context, child) => AccessScope(
+          access: access,
+          child: PurchasesScope(
+            purchases: purchases,
+            child: MediaQuery(
+                data: MediaQuery.of(context).copyWith(disableAnimations: true),
+                child: child!),
+          ),
+        ),
+        home: const PaywallPage(),
+      ));
+      await _frames(tester);
+      await tester.scrollUntilVisible(
+          find.byKey(const Key('paywall-redeem')), 300,
+          scrollable: find.byType(Scrollable).first);
+      await _frames(tester);
+      expect(find.byKey(const Key('paywall-terms')), findsOneWidget);
+      expect(find.byKey(const Key('paywall-privacy')), findsOneWidget);
+      await tester.tap(find.byKey(const Key('paywall-redeem')));
+      await _frames(tester);
+      expect(purchases.redeemed, isTrue,
+          reason: 'sin códigos propios: se abre el canje de la tienda');
+      expect(find.byKey(const Key('redeem-field')), findsNothing);
     });
 
     testWidgets('sin tienda explica que aún no está publicada', (tester) async {

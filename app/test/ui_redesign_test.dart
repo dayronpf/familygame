@@ -141,7 +141,16 @@ void main() {
         tester.binding.defaultBinaryMessenger.setMockMethodCallHandler(
             const MethodChannel('dev.fluttercommunity.plus/share'), null);
       });
+      // Compartir saca un enlace fuera de la app: primero, la pregunta para adultos
       await tester.tap(find.byKey(const Key('share-app')));
+      await tester.pumpAndSettle();
+      expect(find.text('Solo para adultos'), findsOneWidget);
+      final q =
+          tester.widget<Text>(find.byKey(const Key('gate-question'))).data!;
+      final m = RegExp(r'(\d) por (\d)').firstMatch(q)!;
+      await tester.enterText(find.byKey(const Key('gate-answer')),
+          '${int.parse(m.group(1)!) * int.parse(m.group(2)!)}');
+      await tester.tap(find.byKey(const Key('gate-ok')));
       await tester.pump(const Duration(milliseconds: 300));
       await tester.pump(const Duration(milliseconds: 300));
       expect(copied, shareMessage);

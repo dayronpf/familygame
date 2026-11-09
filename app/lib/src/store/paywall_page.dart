@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../brand.dart';
 import '../feedback/adult_gate.dart';
+import '../legal/legal_page.dart';
 import '../notifications/bedtime_reminder.dart';
 import '../ui/night_background.dart';
 import '../ui/palette.dart';
@@ -114,9 +115,26 @@ class _PaywallPageState extends State<PaywallPage> {
     }
   }
 
+  void _legal(String title, String asset) =>
+      Navigator.of(context).push(MaterialPageRoute<void>(
+        builder: (_) => LegalPage(title: title, asset: asset),
+      ));
+
   Future<void> _redeem() async {
     final access = AccessScope.read(context);
     final messenger = ScaffoldMessenger.of(context);
+    // En la versión de las tiendas se canjean los códigos de la tienda (Apple «offer codes», códigos promocionales de
+    // Google Play): ni Apple ni Google permiten códigos propios que abran contenido de pago. Los códigos del servidor
+    // quedan para las compilaciones de prueba.
+    if (!access.devAvailable) {
+      final handled = await _purchases?.redeemWithStore() ?? false;
+      if (!mounted) return;
+      messenger.showSnackBar(SnackBar(
+          content: Text(handled
+              ? 'Cuando termines de canjear el código en la tienda, vuelve y toca «Restaurar compras».'
+              : 'Los códigos se canjean en la tienda de tu teléfono.')));
+      return;
+    }
     final controller = TextEditingController();
     final code = await showDialog<String>(
       context: context,
@@ -292,6 +310,19 @@ class _PaywallPageState extends State<PaywallPage> {
                     alignment: WrapAlignment.center,
                     spacing: 8,
                     children: [
+                      // Las tiendas piden los términos y la privacidad a la vista donde se ofrece la suscripción
+                      TextButton(
+                        key: const Key('paywall-terms'),
+                        onPressed: () => _legal('Términos de uso',
+                            'assets/legal/terminos-de-uso.es.md'),
+                        child: const Text('Términos de uso'),
+                      ),
+                      TextButton(
+                        key: const Key('paywall-privacy'),
+                        onPressed: () => _legal('Política de privacidad',
+                            'assets/legal/politica-de-privacidad.es.md'),
+                        child: const Text('Política de privacidad'),
+                      ),
                       TextButton(
                         key: const Key('paywall-restore'),
                         onPressed: busy ? null : () => _purchases?.restore(),
