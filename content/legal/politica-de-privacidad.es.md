@@ -15,7 +15,8 @@
 
 ## 2. Qué se guarda en el teléfono (y no sale de él)
 - **Perfiles de los niños:** el nombre que un adulto escriba (opcional, para que el niño sea el protagonista del cuento), una edad aproximada (de 2–3, 4–5, 6–8 o 9–12 años), si el protagonista es niño o niña, el idioma, la voz y la velocidad de lectura, y si el cuento hace preguntas.
-- **Mis cuentos:** los cuentos que se contaron o se marcaron con un corazón, guardados como números y códigos (no como texto), y los caminos que el niño eligió.
+- **Mis cuentos:** los cuentos que se contaron o se marcaron con un corazón, guardados como números y códigos (no como texto), los caminos que el niño eligió y cuáles se leyeron hasta el final.
+- **Progreso y premios:** por cada niño, cuántos cuentos terminó, los minutos aproximados, las noches con cuento (solo el día), las enseñanzas y paquetes que leyó y los premios ganados.
 - **Ajustes:** música, efectos de sonido y si se envían valoraciones.
 - **Valoraciones pendientes:** las notas que todavía no se han enviado.
 La app no pide nombres de usuario, correos, teléfonos, fotos, ubicación ni acceso a la agenda.
@@ -34,7 +35,7 @@ Un adulto puede ver el ejemplo exacto de lo que se envía en Ajustes → «Ver u
 
 ## 4. Permisos del teléfono
 - **Internet:** solo para enviar las valoraciones si se permiten.
-- **Notificaciones y servicio en primer plano:** para que el cuento siga sonando con la pantalla bloqueada y mostrar los botones de pausa en la pantalla de bloqueo. No se envían notificaciones de publicidad.
+- **Notificaciones y servicio en primer plano:** para que el cuento siga sonando con la pantalla bloqueada y mostrar los botones de pausa en la pantalla de bloqueo, y, solo si un adulto lo enciende en Ajustes, para el recordatorio diario de la hora del cuento (lo programa el propio teléfono; no pasa por ningún servidor). No se envían notificaciones de publicidad.
 - **Mantener el teléfono despierto y el brillo:** para que el cuento siga y para bajar el brillo al dormir.
 
 ## 5. Servicios de terceros

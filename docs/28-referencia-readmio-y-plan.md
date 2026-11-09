@@ -74,6 +74,10 @@ Tallas S/M/L como en [07](07-backlog.md). Las fases 1–3 no necesitan servidor 
 
 ### Fase 3 · Ajustes y hábito — release 0.14
 
+> **Estado (8-nov-2026):** ✅ R-10 recordatorio diario (notificación local, sin servidor, apagado por defecto; Android sin
+> alarma exacta, se reprograma al reiniciar), ✅ R-11. R-13 ya lo cubre Ajustes para adultos (privacidad, términos,
+> licencias, versión); una pantalla aparte sería repetir. R-12 espera al segundo idioma; R-14 (widget) queda para después.
+
 | ID | Historia | Dónde | Talla |
 |---|---|---|---|
 | R-10 | **Recordatorio de la hora del cuento** (notificación local diaria a la hora que elija el adulto, días de la semana, apagado por defecto). Paquete `flutter_local_notifications`; permiso en Android 13+ e iOS. | `settings_page.dart`, `notifications/bedtime_reminder.dart` | M |

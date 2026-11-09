@@ -194,7 +194,11 @@ class AppSettings extends ChangeNotifier {
   bool _animatedArt = true;
   bool _celebrateAwards = true;
   List<String> _dismissedNews = const [];
+  int? _reminder;
   bool _loaded = false;
+
+  /// Recordatorio de la hora del cuento, en minutos desde medianoche (`null` = apagado).
+  int? get reminderMinutes => _reminder;
 
   /// Ilustraciones animadas (con `false`, cada escena se queda quieta: ahorra batería y calma a algunos niños).
   bool get animatedArt => _animatedArt;
@@ -239,6 +243,7 @@ class AppSettings extends ChangeNotifier {
         _packId = (j['paquete'] as String?) ?? defaultPackId;
         _animatedArt = j['ilustraciones_animadas'] != false;
         _celebrateAwards = j['celebrar_premios'] != false;
+        _reminder = (j['recordatorio'] as num?)?.toInt();
         _dismissedNews = [
           for (final n in (j['avisos_cerrados'] as List<Object?>? ?? const []))
             n! as String,
@@ -373,6 +378,7 @@ class AppSettings extends ChangeNotifier {
         'ilustraciones_animadas': _animatedArt,
         'celebrar_premios': _celebrateAwards,
         'avisos_cerrados': _dismissedNews,
+        'recordatorio': _reminder,
         'activo': _active,
         'perfiles': [for (final p in _profiles) p.toJson()],
       };
@@ -389,6 +395,14 @@ class AppSettings extends ChangeNotifier {
     _animatedArt = true;
     _celebrateAwards = true;
     _dismissedNews = const [];
+    _reminder = null;
+    notifyListeners();
+    return _save();
+  }
+
+  /// Guarda la hora del recordatorio (`null` = apagado). Programarlo en el teléfono es cosa de [BedtimeReminder].
+  Future<void> setReminder(int? minutes) {
+    _reminder = minutes;
     notifyListeners();
     return _save();
   }
@@ -463,6 +477,7 @@ class AppSettings extends ChangeNotifier {
         if (!_animatedArt) 'ilustraciones_animadas': false,
         if (!_celebrateAwards) 'celebrar_premios': false,
         if (_dismissedNews.isNotEmpty) 'avisos_cerrados': _dismissedNews,
+        if (_reminder != null) 'recordatorio': _reminder,
         'activo': _active,
         'perfiles': [for (final p in _profiles) p.toJson()],
       }));

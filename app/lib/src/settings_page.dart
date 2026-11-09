@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'feedback/feedback_service.dart';
 import 'feedback/rating_event.dart';
 import 'settings/app_settings.dart';
+import 'notifications/bedtime_reminder.dart';
 import 'progress/reading_progress.dart';
 import 'shelf/story_shelf.dart';
 import 'ui/children_page.dart';
@@ -25,8 +26,12 @@ class SettingsPage extends StatefulWidget {
     this.bundle,
     this.shelf,
     this.progress,
+    this.reminder,
     this.agesWithStories = const {'6-8'},
   });
+
+  /// Quien programa el recordatorio de la hora del cuento (por defecto, las notificaciones del teléfono).
+  final BedtimeReminder? reminder;
 
   final FeedbackService feedback;
 
@@ -47,6 +52,34 @@ class SettingsPage extends StatefulWidget {
 class _SettingsPageState extends State<SettingsPage> {
   bool? _enabled;
   int _queued = 0;
+  late final BedtimeReminder _reminder =
+      widget.reminder ?? LocalBedtimeReminder();
+
+  /// Enciende (eligiendo la hora) o apaga el recordatorio de la hora del cuento.
+  Future<void> _setReminder(AppSettings settings, bool on) async {
+    final messenger = ScaffoldMessenger.of(context);
+    if (!on) {
+      await settings.setReminder(null);
+      await _reminder.cancel();
+      return;
+    }
+    final current = settings.reminderMinutes ?? 19 * 60 + 30;
+    final picked = await showTimePicker(
+      context: context,
+      helpText: '¿A qué hora es el cuento?',
+      initialTime: TimeOfDay(hour: current ~/ 60, minute: current % 60),
+    );
+    if (picked == null) return;
+    final ok = await _reminder.schedule(picked);
+    if (!ok) {
+      messenger.showSnackBar(const SnackBar(
+          content: Text(
+              'Sin permiso para avisar. Puedes darlo en los ajustes del teléfono.')));
+      return;
+    }
+    await settings.setReminder(picked.hour * 60 + picked.minute);
+  }
+
   TextEditingController? _nameCtl;
   String? _nameFor;
 
@@ -366,6 +399,26 @@ class _SettingsPageState extends State<SettingsPage> {
         onChanged: settings.setEffects,
       ),
       SwitchListTile(
+        key: const Key('setting-reminder'),
+        contentPadding: EdgeInsets.zero,
+        title: const Text('Recordatorio de la hora del cuento'),
+        subtitle: Text(settings.reminderMinutes == null
+            ? 'Un aviso al día para el adulto, a la hora que elijas.'
+            : 'Cada día a las ${TimeOfDay(hour: settings.reminderMinutes! ~/ 60, minute: settings.reminderMinutes! % 60).format(context)}.'),
+        value: settings.reminderMinutes != null,
+        onChanged: (v) => _setReminder(settings, v),
+      ),
+      if (settings.reminderMinutes != null)
+        Align(
+          alignment: Alignment.centerLeft,
+          child: TextButton.icon(
+            key: const Key('setting-reminder-time'),
+            onPressed: () => _setReminder(settings, true),
+            icon: const Icon(Icons.schedule),
+            label: const Text('Cambiar la hora'),
+          ),
+        ),
+      SwitchListTile(
         key: const Key('setting-animated-art'),
         contentPadding: EdgeInsets.zero,
         title: const Text('Ilustraciones animadas'),
@@ -443,6 +496,7 @@ class _SettingsPageState extends State<SettingsPage> {
     if (ok != true || !mounted) return;
     final settings = SettingsScope.maybeOf(context);
     final nav = Navigator.of(context);
+    if (settings?.reminderMinutes != null) await _reminder.cancel();
     await settings?.resetAll();
     await widget.shelf?.clearAll();
     await widget.progress?.clearAll();
