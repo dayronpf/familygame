@@ -448,7 +448,7 @@ def casa():
 # ------------------------------------------------------------------ cuarto
 def cuarto(time="noche", season=None):
     """Cuarto de dormir: ventana (con luna y estrellas de noche, con sol o nieve de día), cama con colcha,
-    mesita con vela, alfombra. De día la vela está apagada y la luz entra por la ventana."""
+    mesita con una vela apagada, alfombra. De noche la luz es la de la luna; de día entra por la ventana."""
     night = time == "noche"
     wall = ("#2a2552", "#4a3a72") if night else ("#caa57a", "#e2c595")
     floor = ("#6a4a38", "#3e2a20") if night else ("#a8764e", "#7a5030")
@@ -509,11 +509,8 @@ def cuarto(time="noche", season=None):
     stand_shapes = [S(rrect(500, 310, 80, 100, 4), "#5a3a28", "#2a180c", 3), S(rrect(506, 330, 68, 4, 0), "#2a180c", None, 0, 0.5),
                     S(rrect(530, 282, 16, 28, 3), "#f2e7c8", "#8a7a5a", 2)]
     post = []
-    if night:
-        stand_shapes.append(S(ell(538, 272, 5, 9), "#ffb43a", None, 0))
-        glow = node("candleglow", (540, 300), shapes=[S(ell(540, 300, 120, 100), "@candle", None, 0)])
-        glow["anim"] = [ambient("opacity", [0.7, 1.0, 0.8, 1.0], 1.8, 0.3)]
-        post = [glow]
+    # La vela de la mesita está siempre apagada: las luces que se ven son las que el cuento nombra (una linterna, un farol),
+    # que se dibujan como objetos. Una vela encendida en el fondo confundía («habla de una linterna y se ve una vela»).
     stand = layer("stand", stand_shapes, post)
     floor_ = layer("floor", [S(rrect(0, FLOOR - 24, W, H - FLOOR + 24, 0), "@floor", "#2a180c", 3)]
                    + [S(rrect(0, y, W, 2, 0), "#000000", None, 0, 0.18) for y in range(FLOOR + 6, H, 22)]

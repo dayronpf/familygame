@@ -610,7 +610,11 @@ class Premise {
     this.npcs = const {},
     this.weight = 1,
     this.ages = const [],
+    this.lesson,
   });
+
+  /// La enseñanza de **este** cuento, escrita a partir de lo que pasa en él (no la general de su `value`).
+  final String? lesson;
 
   factory Premise.fromJson(Map<String, Object?> j) {
     final id = _str(j, 'id', 'premisa');
@@ -711,6 +715,10 @@ class Premise {
       npcs: npcs,
       weight: weight is num ? weight.toDouble() : 1,
       ages: ages,
+      lesson:
+          j['lesson'] is String && (j['lesson']! as String).trim().isNotEmpty
+              ? (j['lesson']! as String).trim()
+              : null,
     );
   }
 

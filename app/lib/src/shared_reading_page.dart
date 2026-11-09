@@ -191,13 +191,13 @@ class _SharedReadingPageState extends State<SharedReadingPage>
     });
   }
 
-  /// La pregunta: el adulto la lee y el niño toca una tarjeta; después queda la línea «Elegisteis…».
+  /// La pregunta: el adulto la lee y el niño toca una tarjeta; después queda la línea «Eligieron…».
   Widget _question(PlayScene sc, TextTheme text) {
     final q = sc.choice!;
     if (!sc.needsAnswer) {
       final label = q.optionById(sc.pickedOption!)?.label ?? '';
       return Text(
-        'Elegisteis: $label',
+        'Eligieron: $label',
         key: const Key('choice-picked'),
         style: text.titleMedium!
             .copyWith(color: Palette.amber, fontStyle: FontStyle.italic),

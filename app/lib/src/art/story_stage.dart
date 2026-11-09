@@ -107,6 +107,9 @@ const Set<String> fearClips = {
   'sad',
   'sit_sad',
   'sneak',
+  'freeze',
+  // La risita tapándose la boca: sin espada ni escudo (la variante sin armas; la cara la pone la animación)
+  'giggle',
 };
 
 /// Arte listo para dibujar: personajes compilados y escenas compiladas bajo demanda.
@@ -227,7 +230,13 @@ StageSetup? stageFor(
     if (clip == null) continue;
     // Cara de miedo o pijama según lo que hace (si el personaje tiene esa variante)
     // Tumbado en la cama (dormido o no) se ve en pijama, sin casco ni armadura
-    final variant = clipName == 'sleep' || (e.rotate ?? 0) != 0
+    // De noche en un cuarto con cama, el protagonista va en pijama toda la escena (también de pie): no se viste de
+    // caballero para levantarse a mirar una sombra.
+    final bedtime = time == 'noche' &&
+        placeEntity is Place &&
+        (placeEntity.features?.contains('cama') ?? false) &&
+        role == 'hero';
+    final variant = clipName == 'sleep' || (e.rotate ?? 0) != 0 || bedtime
         ? 'pijama'
         : (fearClips.contains(clipName) ? 'miedo' : null);
     final dressed = variant != null && art.rigs.containsKey('${rigId}_$variant')

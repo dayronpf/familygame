@@ -482,6 +482,12 @@
                 "minLength": 1
               }
             }
+          },
+          "lesson": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200,
+            "description": "La enseñanza de este cuento, escrita a partir de lo que pasa en él (sustituye a la general de «value»)."
           }
         }
       }

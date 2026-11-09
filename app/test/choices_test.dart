@@ -327,7 +327,7 @@ void main() {
       await showPicked(tester);
       expect(find.byKey(const Key('choice-picked')), findsOneWidget);
       await showPicked(tester);
-      expect(find.text('Elegisteis: Esperar y respirar'), findsOneWidget);
+      expect(find.text('Eligieron: Esperar y respirar'), findsOneWidget);
       await showMoral(tester);
       expect(find.text('Enseñanza'), findsOneWidget);
       expect(find.byType(Text).evaluate().length, greaterThan(before));
@@ -516,7 +516,7 @@ void main() {
       expect(flow.isComplete, isTrue);
       expect(flow.story.choices.single.optionId, 'luna');
       expect(find.byKey(const Key('choice-picked')), findsOneWidget);
-      expect(find.textContaining('Elegisteis'), findsOneWidget);
+      expect(find.textContaining('Eligieron'), findsOneWidget);
       // sigue el cuento por el camino elegido, hasta la enseñanza
       var guard = 0;
       while (find.byKey(const Key('shared-next')).evaluate().isNotEmpty &&

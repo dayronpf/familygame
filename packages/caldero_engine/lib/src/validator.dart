@@ -32,6 +32,7 @@ ValidationReport validatePack(Pack pack, {int coverageSeeds = 50}) {
   _checkStructure(pack, problems);
   for (final premise in pack.premises) {
     renders += _checkPremise(pack, premise, problems, coverageSeeds);
+    _checkLessonAndVoice(premise, problems);
   }
 
   // Renderiza cada fragmento con todos los repartos posibles.
@@ -458,7 +459,12 @@ int _checkPremise(
       }
       if (!story.recipe.fragmentIds.first.startsWith('$pid.')) continue;
       seenOptions.addAll(story.choices.map((c) => c.id));
-      _checkStory(premise, story, problems);
+      _checkStory(
+        premise,
+        story,
+        problems,
+        drawable: {for (final p in pack.props) p.id},
+      );
     }
   }
   for (final b in premise.beats) {
@@ -677,7 +683,12 @@ List<Map<String, Entity>> _allCasts(Pack pack, Premise premise) {
   return partial;
 }
 
-void _checkStory(Premise premise, Story story, Set<String> problems) {
+void _checkStory(
+  Premise premise,
+  Story story,
+  Set<String> problems, {
+  Set<String>? drawable,
+}) {
   final pid = premise.id;
   final texts = [for (final s in story.scenes) s.text];
   final who =
@@ -752,7 +763,8 @@ void _checkStory(Premise premise, Story story, Set<String> problems) {
   // Texto ↔ ilustración: quien sale dibujado está en el texto y quien el texto cuenta sale dibujado
   for (var i = 0; i < story.scenes.length; i++) {
     _checkStage(premise, story, i, add);
-    _checkSetting(premise, story, i, add);
+    _checkSetting(premise, story, i, add, drawable: drawable);
+    _checkActing(story, i, add);
   }
 
   // Los lugares no cambian sin contar el viaje
@@ -1055,8 +1067,9 @@ void _checkSetting(
   Premise premise,
   Story story,
   int i,
-  void Function(String) add,
-) {
+  void Function(String) add, {
+  Set<String>? drawable,
+}) {
   final scene = story.scenes[i];
   final d = scene.directives;
   final bg = d['bg'];
@@ -1148,21 +1161,119 @@ void _checkSetting(
   };
   final spoken = text.replaceAll(RegExp('«[^»]*»'), ' ');
   for (final (re, key, rigs) in _objectWords) {
-    if (!re.hasMatch(spoken) || hidden.contains(key)) continue;
+    if (!re.hasMatch(spoken)) continue;
     if (rigs.any(drawn.contains)) continue;
+    // Si el paquete no tiene ese dibujo, la palabra nombra otra cosa (en la Aldea de las Nubes, «cometa» es el del cielo)
+    if (drawable != null && !rigs.any(drawable.contains)) continue;
+    // `unseen` ya no vale para los objetos del cuento: lo que se nombra, se ve (si depende de una elección, se dibuja
+    // con `when`). Solo sirve para rasgos del lugar que se atisban.
     add('$where: el texto nombra «$key» pero no se ve en la escena '
-        '(dibújalo con un objeto, acércalo con un primer plano o márcalo «unseen»)');
+        '(dibújalo con un objeto —con «when» si depende de lo elegido— o acércalo con un primer plano)'
+        '${hidden.contains(key) ? '; «unseen» no vale para objetos' : ''}');
   }
 
-  // Un objeto que se presenta se ve de cerca: primer plano (`focus`) de ese objeto
+  // Un objeto que se presenta tiene que verse (en la escena o de cerca, con `focus`)
   final beat = premise.beats[i];
   for (final slot in beat.introduces) {
     final e = story.cast[slot];
     if (e is! Prop) continue;
-    final focus = d['focus'];
-    if (focus is! Map || focus['prop'] != e.id) {
-      add('$where: «$slot» (${e.id}) se presenta aquí y debe verse de cerca (falta «focus» con prop: ${e.id})');
+    if (!drawn.contains(e.id)) {
+      add('$where: «$slot» (${e.id}) se presenta aquí y hay que dibujarlo (en la escena o de cerca con «focus»)');
     }
     break; // si se presentan varios objetos a la vez, basta con el primero
+  }
+}
+
+/// El texto dice que el personaje está quieto («no se movió ni un pelo»): su animación no puede moverse.
+final RegExp _stillWords = RegExp(
+  r'\b(?:no se mov(?:ió|ía)|sin mover(?:se)?|no movi[óo]|quiet[oa] como|inmóvil|ni un pelo|ni un dedo|se quedó quiet[oa]|se quedó helad[oa])',
+  caseSensitive: false,
+);
+
+/// Animaciones en las que el personaje no se balancea.
+const Set<String> stillClips = {'freeze', 'sleep'};
+
+/// El texto dice que se tapa la boca al reír: la animación lo hace.
+final RegExp _coverMouthWords = RegExp(
+  r'(?:tap(?:ándose|ó|aba) la boca|mano en la boca|se tapó la boca)',
+  caseSensitive: false,
+);
+
+/// Lo que hace el protagonista según el texto se ve en su animación, y lo que el texto cuenta de él no se tapa con un
+/// primer plano de un objeto.
+void _checkActing(Story story, int i, void Function(String) add) {
+  final scene = story.scenes[i];
+  final d = scene.directives;
+  final where = 'escena ${i + 1} (${scene.fragmentId})';
+  final hero = story.cast['hero'];
+  if (hero is! Character) return;
+  final narration = scene.text.replaceAll(RegExp('«[^»]*»'), ' ');
+  final heroEntries = [
+    for (final e in stageEntries(d))
+      if (e.who == 'hero') e,
+  ];
+  final clip = heroEntries.isEmpty ? null : heroEntries.first.clip;
+
+  // Primer plano de un objeto mientras el texto cuenta lo que hace el protagonista: no se le ve.
+  if (d['focus'] is Map && narration.contains(hero.given)) {
+    add('$where: el texto cuenta lo que hace ${hero.given} pero el dibujo es un primer plano de un objeto '
+        '(dibuja la escena con el protagonista y el objeto)');
+  }
+  // «No se movió ni un pelo» con una animación que se balancea
+  final still = _stillWords.firstMatch(narration);
+  if (still != null && heroEntries.isNotEmpty && !stillClips.contains(clip)) {
+    add('$where: el texto dice «${still.group(0)}» pero ${hero.given} se anima con «${clip ?? 'idle'}» '
+        '(usa ${stillClips.join(' o ')})');
+  }
+  // «Se tapó la boca» al reír
+  final mouth = _coverMouthWords.firstMatch(narration);
+  if (mouth != null && heroEntries.isNotEmpty && clip != 'giggle') {
+    add('$where: el texto dice «${mouth.group(0)}» pero ${hero.given} se anima con «${clip ?? 'idle'}» (usa giggle)');
+  }
+}
+
+/// «Vosotros» de España: la app habla el español de Latinoamérica («ustedes»). Pronombres y posesivos, verbos en
+/// -áis/-éis y los imperativos más usados en los cuentos.
+final RegExp vosotrosForms = RegExp(
+  r'(?<![a-záéíóúüñ])(?:vosotr[oa]s|vuestr[oa]s?|os)(?![a-záéíóúüñ])'
+  r'|[a-záéíóúñ]+(?<!s)(?:áis|éis)(?![a-záéíóúüñ])'
+  r'|«¡?(?:Escuchad|Mirad|Venid|Buscad|Pisad|Perdonad|Esperad|Ayudad|Corred|Tened|Id|Sentaos|Agachaos|Quedaos|Callaos|Dejad|Traed|Subid|Bajad|Contad|Decid)(?![a-záéíóúüñ])',
+  caseSensitive: false,
+);
+
+/// Cada cuento termina con **su** enseñanza (lo que de verdad pasó en él), y sus textos no usan «vosotros».
+void _checkLessonAndVoice(Premise premise, Set<String> problems) {
+  final pid = premise.id;
+  final lesson = premise.lesson;
+  if (lesson == null) {
+    problems.add(
+      '$pid: falta «lesson», la enseñanza de este cuento (la general de «${premise.value}» no vale para todos)',
+    );
+  } else {
+    if (lesson.contains('{')) {
+      problems.add('$pid: «lesson» no puede llevar huecos ({…})');
+    }
+    final m = vosotrosForms.firstMatch(lesson);
+    if (m != null) {
+      problems.add('$pid: «lesson» usa «vosotros» («${m.group(0)}»)');
+    }
+  }
+  for (final b in premise.beats) {
+    for (final v in b.variants) {
+      final m = vosotrosForms.firstMatch(v.text);
+      if (m != null) {
+        problems.add(
+          '${v.id}: usa «vosotros» («${m.group(0)}»): en la app se habla de «ustedes»',
+        );
+      }
+    }
+    for (final o in b.choice?.options ?? const <ChoiceOption>[]) {
+      for (final t in [o.label, ...o.says.values]) {
+        final m = vosotrosForms.firstMatch(t);
+        if (m != null) {
+          problems.add('${b.id}.${o.id}: usa «vosotros» («${m.group(0)}»)');
+        }
+      }
+    }
   }
 }

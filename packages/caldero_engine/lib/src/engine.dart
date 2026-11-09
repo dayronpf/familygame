@@ -332,7 +332,7 @@ StoryRun _generateFromPremise(
         StoryScene(
           fragmentId: variant.id,
           text: text,
-          directives: variant.scene,
+          directives: sceneForState(variant.scene, state),
         ),
       );
       continue;
@@ -362,7 +362,7 @@ StoryRun _generateFromPremise(
       StoryScene(
         fragmentId: variant.id,
         text: text,
-        directives: variant.scene,
+        directives: sceneForState(variant.scene, state),
         choice: rendered,
         pickedOption: optionId,
       ),
@@ -391,7 +391,8 @@ StoryRun _generateFromPremise(
       cast: cast,
       scenes: scenes,
       title: renderTemplate(premise.title, cast),
-      moralText: moralText,
+      // La enseñanza propia del cuento (lo que de verdad pasó en él); si aún no la tiene, la general de la enseñanza
+      moralText: premise.lesson ?? moralText,
       choices: chosen,
       recipe: StoryRecipe(
         packId: pack.id,
@@ -409,6 +410,42 @@ StoryRun _generateFromPremise(
     options,
     picks,
   );
+}
+
+/// Lo que se dibuja según lo que ya pasó: un objeto o personaje de `props`/`stage` con `when` (un hecho o una lista)
+/// solo sale si el cuento lo tiene, y con `unless`, solo si no lo tiene. Así la última escena muestra la linterna
+/// apagada solo si el niño eligió encenderla.
+Map<String, Object?> sceneForState(
+  Map<String, Object?> scene,
+  Set<String> state,
+) {
+  bool keep(Object? e) {
+    if (e is! Map) return true;
+    List<String> facts(Object? v) =>
+        v == null ? const [] : (v is List ? [for (final x in v) '$x'] : ['$v']);
+    final when = facts(e['when']);
+    final unless = facts(e['unless']);
+    return when.every(state.contains) && !unless.any(state.contains);
+  }
+
+  if (!scene.values.any(
+    (v) =>
+        v is List &&
+        v.any(
+          (e) => e is Map && (e.containsKey('when') || e.containsKey('unless')),
+        ),
+  )) {
+    return scene;
+  }
+  return {
+    for (final e in scene.entries)
+      e.key: e.value is List
+          ? [
+              for (final x in e.value! as List)
+                if (keep(x)) x,
+            ]
+          : e.value,
+  };
 }
 
 /// La pregunta con los nombres puestos.

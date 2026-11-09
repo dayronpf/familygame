@@ -361,7 +361,7 @@ class _StoryPageState extends State<StoryPage>
             const SizedBox(width: 8),
             Expanded(
               child: Text(
-                'Elegisteis: ${q.optionById(picked)?.label ?? ''}',
+                'Eligieron: ${q.optionById(picked)?.label ?? ''}',
                 style: text.bodyLarge!.copyWith(
                   fontStyle: FontStyle.italic,
                   color: scheme.primary,

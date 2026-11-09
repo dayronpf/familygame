@@ -306,7 +306,7 @@ void main() {
       final scenes = playScenes(story, setups);
       expect(scenes.length, story.scenes.length + 1);
       expect(scenes.last.isMoral, isTrue);
-      expect(scenes.last.text, contains(story.moral.text));
+      expect(scenes.last.text, contains(story.moralLine));
       expect(scenes.every((s) => s.setup != null), isTrue);
     });
 

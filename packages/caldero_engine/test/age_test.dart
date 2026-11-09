@@ -110,14 +110,17 @@ void main() {
           expect(c.roles, isNot(contains('villain')), reason: p.id);
         }
       }
-      for (final age in ['2-3', '4-5']) {
+      // Cada cuento termina con SU enseñanza (la de su premisa), no con la general de la enseñanza elegida
+      for (final age in ['2-3', '4-5', '6-8']) {
         final s = engine.generate(StoryOptions(seed: 3, age: age));
-        expect(s.moralLine, s.moral.simple[age], reason: age);
+        final premise = pack.premises.firstWhere(
+          (p) => s.recipe.fragmentIds.first.startsWith('${p.id}.'),
+        );
+        expect(premise.lesson, isNotNull, reason: premise.id);
+        expect(s.moralLine, premise.lesson, reason: age);
         expect(s.moralLine, isNot(s.moral.text));
         expect(s.fullText, endsWith(s.moralLine));
       }
-      final older = engine.generate(StoryOptions(seed: 3, age: '6-8'));
-      expect(older.moralLine, older.moral.text);
     });
 
     test('con la edad pedida solo salen cuentos de esa edad', () {

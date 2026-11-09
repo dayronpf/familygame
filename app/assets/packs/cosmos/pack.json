@@ -542,6 +542,7 @@
       "id": "atajo_anillo",
       "value": "honestidad",
       "title": "El atajo del anillo",
+      "lesson": "Las normas suelen tener razones que no vemos; decir la verdad sobre nuestra trampa, aunque nadie la viera, ayuda a reparar lo que rompimos.",
       "ages": [
         "9-12"
       ],
@@ -902,6 +903,7 @@
       "id": "aterrizaje",
       "value": "perseverancia",
       "title": "El examen de piloto",
+      "lesson": "Cuando algo falla una y otra vez, mirar cada error de frente nos enseña a dejar de intentarlo igual y empezar a intentarlo mejor.",
       "ages": [
         "9-12"
       ],
@@ -1340,6 +1342,7 @@
       "id": "baron_estrellas",
       "value": "valentia",
       "title": "Las estrellas del Barón Brillo",
+      "lesson": "Cuando algo no es justo, decirlo con respeto, aunque tiemblen las rodillas, puede hacer que otros cambien.",
       "ages": [
         "6-8"
       ],
@@ -1579,12 +1582,7 @@
                     "lift": 40,
                     "scale": 0.5
                   }
-                ],
-                "focus": {
-                  "prop": "estrella_caida",
-                  "x": 0.5,
-                  "fill": 0.55
-                }
+                ]
               },
               "requires": [
                 "dio_el_paso"
@@ -1703,6 +1701,7 @@
       "id": "chispa_perdida",
       "value": "amistad",
       "title": "¿Dónde está Chispa?",
+      "lesson": "En vez de buscar culpables, darnos la mano y buscar juntos arregla lo que una pelea rompió.",
       "ages": [
         "6-8"
       ],
@@ -1882,9 +1881,6 @@
                     "clip": "goat_idle",
                     "x": 0.84
                   }
-                ],
-                "unseen": [
-                  "piedras"
                 ]
               }
             }
@@ -2003,9 +1999,6 @@
                 ],
                 "offstage": [
                   "nube"
-                ],
-                "unseen": [
-                  "piedras"
                 ]
               }
             }
@@ -2017,6 +2010,7 @@
       "id": "cohete_ayuda",
       "value": "humildad",
       "title": "El cohete que no volaba",
+      "lesson": "Con un poquito de ayuda, el cohete vuela.",
       "ages": [
         "2-3"
       ],
@@ -2069,11 +2063,22 @@
               "scene": {
                 "bg": "taller",
                 "mood": "calm",
-                "focus": {
-                  "prop": "cohete_juguete",
-                  "x": 0.5,
-                  "fill": 0.55
-                }
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "proud",
+                    "x": 0.36
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "cohete_juguete",
+                    "near": "hero",
+                    "dx": 0.07,
+                    "lift": 60,
+                    "scale": 0.6
+                  }
+                ]
               }
             }
           ],
@@ -2258,6 +2263,7 @@
       "id": "colina_cristal",
       "value": "perseverancia",
       "title": "La flor de la colina de cristal",
+      "lesson": "A veces no hay que intentarlo más fuerte, sino de otra manera.",
       "ages": [
         "4-5"
       ],
@@ -2308,11 +2314,23 @@
               "scene": {
                 "bg": "planeta_cristal",
                 "mood": "mystery",
-                "focus": {
-                  "prop": "flor_cristal",
-                  "x": 0.5,
-                  "fill": 0.55
-                }
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "wonder",
+                    "x": 0.3
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "flor_cristal",
+                    "x": 0.62,
+                    "scale": 0.8
+                  }
+                ],
+                "offstage": [
+                  "nube"
+                ]
               }
             }
           ],
@@ -2506,6 +2524,7 @@
       "id": "estacion_oscuras",
       "value": "valentia",
       "title": "La estación a oscuras",
+      "lesson": "La oscuridad se cruza de número en número, y es más fácil cuando alguien cuenta con nosotros.",
       "ages": [
         "6-8"
       ],
@@ -2775,6 +2794,7 @@
       "id": "estrella_nube",
       "value": "generosidad",
       "title": "La noche de las estrellas fugaces",
+      "lesson": "A veces regalar nuestro deseo a quien lo necesita más nos da una alegría doble.",
       "ages": [
         "6-8"
       ],
@@ -2885,11 +2905,28 @@
                 "bg": "aldea",
                 "mood": "joy",
                 "time": "noche",
-                "focus": {
-                  "prop": "estrella_caida",
-                  "x": 0.5,
-                  "fill": 0.55
-                }
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "cheer",
+                    "x": 0.32
+                  },
+                  {
+                    "rig": "pip",
+                    "clip": "jump",
+                    "x": 0.62
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "estrella_caida",
+                    "near": "hero",
+                    "dx": 0.07,
+                    "lift": 70,
+                    "scale": 0.5,
+                    "clip": "shimmer"
+                  }
+                ]
               }
             }
           ],
@@ -3115,6 +3152,7 @@
       "id": "estrellita_perdida",
       "value": "amistad",
       "title": "La estrellita perdida",
+      "lesson": "Ayudamos a quien está lejos de casa.",
       "ages": [
         "2-3"
       ],
@@ -3160,11 +3198,22 @@
                 "bg": "aldea",
                 "mood": "mystery",
                 "time": "noche",
-                "focus": {
-                  "prop": "estrella_caida",
-                  "x": 0.5,
-                  "fill": 0.55
-                }
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "surprised",
+                    "x": 0.36
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "estrella_caida",
+                    "x": 0.62,
+                    "lift": 40,
+                    "scale": 0.5,
+                    "clip": "shimmer"
+                  }
+                ]
               }
             }
           ],
@@ -3331,6 +3380,7 @@
       "id": "feria_cohetes",
       "value": "generosidad",
       "title": "La feria de los cohetes",
+      "lesson": "Renunciar a ganar para que otro viva su primera vez no es perder: lo que regalamos sigue vivo, haciendo feliz a alguien.",
       "ages": [
         "9-12"
       ],
@@ -3393,11 +3443,25 @@
               "scene": {
                 "bg": "taller",
                 "mood": "calm",
-                "focus": {
-                  "prop": "cohete_juguete",
-                  "x": 0.5,
-                  "fill": 0.55
-                }
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "proud",
+                    "x": 0.3
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "talk",
+                    "x": 0.66
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "cohete_juguete",
+                    "x": 0.48,
+                    "scale": 0.7
+                  }
+                ]
               }
             }
           ],
@@ -3523,9 +3587,6 @@
                 ],
                 "offstage": [
                   "pip"
-                ],
-                "unseen": [
-                  "linterna"
                 ]
               },
               "adds": [
@@ -3749,6 +3810,7 @@
       "id": "fiesta_tornillo",
       "value": "amistad",
       "title": "La fiesta de Tornillo",
+      "lesson": "Un buen regalo nace de pensar en lo que le gusta a nuestro amigo.",
       "ages": [
         "4-5"
       ],
@@ -3895,13 +3957,17 @@
                     "x": 0.6
                   }
                 ],
-                "focus": {
-                  "prop": "llave_inglesa",
-                  "x": 0.5,
-                  "fill": 0.55
-                },
                 "offstage": [
                   "helper"
+                ],
+                "props": [
+                  {
+                    "prop": "llave_inglesa",
+                    "near": "hero",
+                    "dx": 0.07,
+                    "lift": 55,
+                    "scale": 0.6
+                  }
                 ]
               },
               "adds": [
@@ -4027,6 +4093,7 @@
       "id": "flotar_estacion",
       "value": "perseverancia",
       "title": "Flotar en la estación",
+      "lesson": "Lo nuevo cuesta al principio; probando suavecito, una y otra vez, sale.",
       "ages": [
         "4-5"
       ],
@@ -4248,6 +4315,7 @@
       "id": "funcion_planetario",
       "value": "humildad",
       "title": "La función del planetario",
+      "lesson": "Rechazar la ayuda por orgullo, o por lo que alguien fue antes, nos deja a oscuras; aceptarla con humildad deja que todos brillen.",
       "ages": [
         "9-12"
       ],
@@ -4347,7 +4415,7 @@
           "variants": [
             {
               "id": "funcion_planetario_baron_a",
-              "text": "Unos días antes de la función, llamaron a la puerta del observatorio. Era el Barón Brillo, con su chistera y una caja de cristal bajo el brazo. Desde que había soltado las estrellas fugaces, el barón estudiaba astronomía por su cuenta, en su torre. «He fabricado una lente especial», dijo, algo nervioso. «Hace que se vean los colores de las nebulosas. Me gustaría ayudar en la función, si queréis.» {hero} miró la caja con desconfianza. «No hace falta», contestó. «Ya está todo preparado.» El barón bajó la cabeza y se marchó despacio.",
+              "text": "Unos días antes de la función, llamaron a la puerta del observatorio. Era el Barón Brillo, con su chistera y una caja de cristal bajo el brazo. Desde que había soltado las estrellas fugaces, el barón estudiaba astronomía por su cuenta, en su torre. «He fabricado una lente especial», dijo, algo nervioso. «Hace que se vean los colores de las nebulosas. Me gustaría ayudar en la función, si quieren.» {hero} miró la caja con desconfianza. «No hace falta», contestó. «Ya está todo preparado.» El barón bajó la cabeza y se marchó despacio.",
               "scene": {
                 "bg": "observatorio",
                 "mood": "sad",
@@ -4417,24 +4485,29 @@
                   {
                     "who": "hero",
                     "clip": "surprised",
-                    "x": 0.3
+                    "x": 0.24
                   },
                   {
                     "rig": "pip",
                     "clip": "think",
-                    "x": 0.56
+                    "x": 0.62
                   },
                   {
                     "rig": "nube",
                     "clip": "think",
-                    "x": 0.8
+                    "x": 0.82
                   }
                 ],
-                "focus": {
-                  "prop": "telescopio",
-                  "x": 0.5,
-                  "fill": 0.55
-                }
+                "props": [
+                  {
+                    "prop": "telescopio",
+                    "x": 0.42,
+                    "scale": 0.8
+                  }
+                ],
+                "offstage": [
+                  "cartera"
+                ]
               }
             }
           ],
@@ -4661,6 +4734,7 @@
       "id": "galletas_estrella",
       "value": "generosidad",
       "title": "Las galletas de estrella",
+      "lesson": "Cuando repartimos lo que tenemos, los amigos traen lo suyo y la merienda crece.",
       "ages": [
         "4-5"
       ],
@@ -4723,9 +4797,6 @@
                     "clip": "offer",
                     "x": 0.66
                   }
-                ],
-                "unseen": [
-                  "bolsa"
                 ]
               }
             }
@@ -4752,9 +4823,6 @@
                     "clip": "sit_sad",
                     "x": 0.64
                   }
-                ],
-                "unseen": [
-                  "bolsa"
                 ]
               }
             }
@@ -4815,9 +4883,6 @@
                     "clip": "goat_hop",
                     "x": 0.82
                   }
-                ],
-                "unseen": [
-                  "bolsa"
                 ]
               },
               "requires": [
@@ -4890,6 +4955,7 @@
       "id": "globo_nube",
       "value": "honestidad",
       "title": "El globo de Nube",
+      "lesson": "Si algo se escapa, lo contamos.",
       "ages": [
         "2-3"
       ],
@@ -4929,11 +4995,28 @@
                 "bg": "aldea",
                 "mood": "calm",
                 "time": "dia",
-                "focus": {
-                  "prop": "globo",
-                  "x": 0.5,
-                  "fill": 0.55
-                }
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "idle",
+                    "x": 0.34
+                  },
+                  {
+                    "rig": "nube",
+                    "clip": "talk",
+                    "x": 0.64
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "globo",
+                    "near": "hero",
+                    "dx": 0.08,
+                    "lift": 120,
+                    "scale": 0.6,
+                    "clip": "bob"
+                  }
+                ]
               }
             }
           ],
@@ -5089,6 +5172,7 @@
       "id": "luz_movia",
       "value": "humildad",
       "title": "La luz que se movía",
+      "lesson": "Saber mucho no es saberlo todo: escuchar al más pequeño puede mostrarnos lo que no habíamos visto.",
       "ages": [
         "6-8"
       ],
@@ -5415,6 +5499,7 @@
       "id": "mapa_estrellas",
       "value": "humildad",
       "title": "El mapa de las estrellas",
+      "lesson": "Decir «me equivoqué» y mirar el mapa juntos nos devuelve al camino.",
       "ages": [
         "4-5"
       ],
@@ -5474,11 +5559,27 @@
                 "bg": "plataforma",
                 "mood": "calm",
                 "time": "dia",
-                "focus": {
-                  "prop": "mapa_estelar",
-                  "x": 0.5,
-                  "fill": 0.55
-                }
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "proud",
+                    "x": 0.34
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "talk",
+                    "x": 0.66
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "mapa_estelar",
+                    "near": "hero",
+                    "dx": 0.08,
+                    "lift": 70,
+                    "scale": 0.6
+                  }
+                ]
               }
             }
           ],
@@ -5688,6 +5789,7 @@
       "id": "mapa_propio",
       "value": "perseverancia",
       "title": "El mapa de las constelaciones",
+      "lesson": "Las cosas grandes se hacen un trocito cada día, aunque a veces toque borrar y volver a empezar.",
       "ages": [
         "6-8"
       ],
@@ -5739,11 +5841,26 @@
                 "bg": "observatorio",
                 "mood": "calm",
                 "time": "atardecer",
-                "focus": {
-                  "prop": "mapa_estelar",
-                  "x": 0.5,
-                  "fill": 0.55
-                }
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "wonder",
+                    "x": 0.28
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "idle",
+                    "x": 0.78
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "mapa_estelar",
+                    "x": 0.54,
+                    "lift": 150,
+                    "scale": 0.9
+                  }
+                ]
               }
             }
           ],
@@ -5988,6 +6105,7 @@
       "id": "noche_festival",
       "value": "amistad",
       "title": "La noche del festival",
+      "lesson": "Una fiesta vuelve cada año; un amigo en apuros nos necesita ahora. La amistad de verdad es aparecer cuando hace falta.",
       "ages": [
         "9-12"
       ],
@@ -6194,9 +6312,6 @@
                     "clip": "think",
                     "x": 0.78
                   }
-                ],
-                "unseen": [
-                  "linterna"
                 ]
               },
               "requires": [
@@ -6393,6 +6508,7 @@
       "id": "noche_oscura",
       "value": "valentia",
       "title": "La luz de la noche",
+      "lesson": "De la mano, vemos que la noche brilla.",
       "ages": [
         "2-3"
       ],
@@ -6440,9 +6556,6 @@
                     "clip": "hide",
                     "x": 0.42
                   }
-                ],
-                "unseen": [
-                  "manta"
                 ]
               }
             }
@@ -6498,9 +6611,6 @@
                     "clip": "offer",
                     "x": 0.62
                   }
-                ],
-                "unseen": [
-                  "manta"
                 ]
               },
               "adds": [
@@ -6586,9 +6696,6 @@
                     "clip": "idle",
                     "x": 0.7
                   }
-                ],
-                "unseen": [
-                  "manta"
                 ]
               }
             }
@@ -6601,6 +6708,7 @@
       "id": "piedra_zumbo",
       "value": "honestidad",
       "title": "La piedra que brillaba",
+      "lesson": "Si por nuestro silencio nadie le cree a otro, decir la verdad, aunque perdamos un premio, le devuelve lo suyo.",
       "ages": [
         "6-8"
       ],
@@ -6655,7 +6763,7 @@
           "variants": [
             {
               "id": "piedra_zumbo_concurso_a",
-              "text": "Aquella mañana, la comandante {helper} reunió a los cadetes en la plataforma de los cohetes. «Hoy vamos a la luna», anunció. «Quien traiga la piedra más curiosa ganará la medalla de exploradores.» Era una medalla redonda, con una estrella dorada en el centro. {hero} la miró y se imaginó con la medalla colgada del traje, paseando por la aldea. «Buscad con calma», añadió la comandante {helper}. «Lo curioso no siempre es lo que más brilla.»",
+              "text": "Aquella mañana, la comandante {helper} reunió a los cadetes en la plataforma de los cohetes. «Hoy vamos a la luna», anunció. «Quien traiga la piedra más curiosa ganará la medalla de exploradores.» Era una medalla redonda, con una estrella dorada en el centro. {hero} la miró y se imaginó con la medalla colgada del traje, paseando por la aldea. «Busquen con calma», añadió la comandante {helper}. «Lo curioso no siempre es lo que más brilla.»",
               "scene": {
                 "bg": "plataforma",
                 "mood": "calm",
@@ -6688,13 +6796,21 @@
               "scene": {
                 "bg": "luna",
                 "mood": "mystery",
-                "focus": {
-                  "prop": "piedra_lunar",
-                  "x": 0.5,
-                  "fill": 0.55
-                },
-                "unseen": [
-                  "piedras"
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "think",
+                    "x": 0.34
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "piedra_lunar",
+                    "near": "hero",
+                    "dx": 0.07,
+                    "lift": 60,
+                    "scale": 0.6
+                  }
                 ]
               }
             }
@@ -6771,9 +6887,6 @@
                     "lift": 60,
                     "scale": 0.5
                   }
-                ],
-                "unseen": [
-                  "piedras"
                 ]
               }
             }
@@ -6926,7 +7039,6 @@
                   }
                 ],
                 "unseen": [
-                  "linterna",
                   "ventana"
                 ]
               }
@@ -6939,6 +7051,7 @@
       "id": "piedras_luna",
       "value": "generosidad",
       "title": "Las piedras de la luna",
+      "lesson": "Una piedrita para cada amigo.",
       "ages": [
         "2-3"
       ],
@@ -6995,11 +7108,20 @@
               "scene": {
                 "bg": "luna",
                 "mood": "joy",
-                "focus": {
-                  "prop": "piedra_lunar",
-                  "x": 0.5,
-                  "fill": 0.55
-                }
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "jump",
+                    "x": 0.4
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "piedra_lunar",
+                    "x": 0.6,
+                    "scale": 0.6
+                  }
+                ]
               }
             }
           ],
@@ -7193,6 +7315,7 @@
       "id": "primer_viaje",
       "value": "valentia",
       "title": "El primer viaje a la luna",
+      "lesson": "El miedo puede viajar con nosotros, pero somos quienes apretamos el botón.",
       "ages": [
         "4-5"
       ],
@@ -7426,6 +7549,7 @@
       "id": "robot_pitaba",
       "value": "amistad",
       "title": "El robot que pitaba",
+      "lesson": "Lo que nos hace diferentes puede ser justo lo que ayuda a nuestros amigos.",
       "ages": [
         "4-5"
       ],
@@ -7670,6 +7794,7 @@
       "id": "semilla_baron",
       "value": "generosidad",
       "title": "La semilla del Barón Brillo",
+      "lesson": "Un regalo vale más donde más falta: la luz luce poco en una vitrina y mucho en una casa oscura.",
       "ages": [
         "6-8"
       ],
@@ -7723,13 +7848,27 @@
                 "bg": "planeta_jardin",
                 "mood": "calm",
                 "time": "dia",
-                "focus": {
-                  "prop": "semilla_luz",
-                  "x": 0.5,
-                  "fill": 0.55
-                },
-                "unseen": [
-                  "semillas"
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "idle",
+                    "x": 0.34
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "talk",
+                    "x": 0.64
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "semilla_luz",
+                    "near": "hero",
+                    "dx": 0.07,
+                    "lift": 70,
+                    "scale": 0.5,
+                    "clip": "shimmer"
+                  }
                 ]
               }
             }
@@ -7985,9 +8124,6 @@
                     "clip": "shimmer",
                     "scale": 0.7
                   }
-                ],
-                "unseen": [
-                  "semillas"
                 ]
               }
             }
@@ -8017,9 +8153,6 @@
                     "clip": "shimmer",
                     "scale": 0.5
                   }
-                ],
-                "unseen": [
-                  "semillas"
                 ]
               }
             }
@@ -8032,6 +8165,7 @@
       "id": "semilla_luz",
       "value": "perseverancia",
       "title": "La semilla de luz",
+      "lesson": "Agua cada día, y la flor crece.",
       "ages": [
         "2-3"
       ],
@@ -8073,11 +8207,28 @@
                 "bg": "planeta_jardin",
                 "mood": "calm",
                 "time": "dia",
-                "focus": {
-                  "prop": "semilla_luz",
-                  "x": 0.5,
-                  "fill": 0.55
-                }
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "idle",
+                    "x": 0.34
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "talk",
+                    "x": 0.64
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "semilla_luz",
+                    "near": "hero",
+                    "dx": 0.07,
+                    "lift": 70,
+                    "scale": 0.5,
+                    "clip": "shimmer"
+                  }
+                ]
               }
             }
           ],
@@ -8258,6 +8409,7 @@
       "id": "telescopio_osa",
       "value": "honestidad",
       "title": "El telescopio de la Abuela Osa",
+      "lesson": "Cuando contamos lo que movimos, podemos buscarlo juntos, y hasta encontrar sorpresas.",
       "ages": [
         "4-5"
       ],
@@ -8412,9 +8564,6 @@
                     "clip": "cheer",
                     "x": 0.64
                   }
-                ],
-                "unseen": [
-                  "cometa"
                 ]
               },
               "requires": [
@@ -8444,9 +8593,6 @@
                     "clip": "laugh",
                     "x": 0.64
                   }
-                ],
-                "unseen": [
-                  "cometa"
                 ]
               }
             }
@@ -8473,10 +8619,6 @@
                     "clip": "idle",
                     "x": 0.66
                   }
-                ],
-                "unseen": [
-                  "manta",
-                  "cometa"
                 ]
               }
             }
@@ -8488,6 +8630,7 @@
       "id": "toc_ventana",
       "value": "valentia",
       "title": "Toc, toc en la ventana",
+      "lesson": "Un ruido asusta menos cuando vamos a ver qué es; puede ser una sorpresa.",
       "ages": [
         "4-5"
       ],
@@ -8554,9 +8697,6 @@
                     "clip": "hide",
                     "x": 0.42
                   }
-                ],
-                "unseen": [
-                  "manta"
                 ]
               }
             }
@@ -8599,11 +8739,25 @@
                 "bg": "dormitorio",
                 "mood": "joy",
                 "time": "noche",
-                "focus": {
-                  "prop": "globo",
-                  "x": 0.5,
-                  "fill": 0.55
-                }
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "laugh",
+                    "x": 0.4
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "globo",
+                    "x": 0.7,
+                    "lift": 160,
+                    "scale": 0.6,
+                    "clip": "bob"
+                  }
+                ],
+                "offstage": [
+                  "cartera"
+                ]
               },
               "requires": [
                 "dio_el_paso"
@@ -8708,6 +8862,7 @@
       "id": "tormenta_lunar",
       "value": "valentia",
       "title": "La tormenta de polvo lunar",
+      "lesson": "Cuando alguien más pequeño depende de nosotros, primero respiramos, luego pensamos y solo después caminamos: así el miedo deja sitio a una idea.",
       "ages": [
         "9-12"
       ],
@@ -8757,7 +8912,7 @@
           "variants": [
             {
               "id": "tormenta_lunar_excursion_a",
-              "text": "Aquella excursión a la luna era la primera que {hero} hacía sin la comandante Aurora. Iba con Pip, que era más pequeño, y con {helper}, el robot, que se quedaría en el cohete vigilando la radio. «Una hora de paseo, ni un minuto más», les recordó {helper} antes de abrir la compuerta. «Y si pasa algo, os quedáis quietos y me llamáis.» {hero} le dio a Pip la mano, porque se lo había prometido a su madre, y bajaron la escalerita hasta el polvo gris. Las primeras huellas de la mañana quedaron marcadas en el suelo, nítidas como galletas recién cortadas.",
+              "text": "Aquella excursión a la luna era la primera que {hero} hacía sin la comandante Aurora. Iba con Pip, que era más pequeño, y con {helper}, el robot, que se quedaría en el cohete vigilando la radio. «Una hora de paseo, ni un minuto más», les recordó {helper} antes de abrir la compuerta. «Y si pasa algo, se quedan quietos y me llaman.» {hero} le dio a Pip la mano, porque se lo había prometido a su madre, y bajaron la escalerita hasta el polvo gris. Las primeras huellas de la mañana quedaron marcadas en el suelo, nítidas como galletas recién cortadas.",
               "scene": {
                 "bg": "cabina",
                 "mood": "calm",
@@ -8808,9 +8963,6 @@
                     "clip": "moonhop",
                     "x": 0.62
                   }
-                ],
-                "unseen": [
-                  "piedras"
                 ]
               }
             }
@@ -8822,7 +8974,7 @@
           "variants": [
             {
               "id": "tormenta_lunar_tormenta_a",
-              "text": "De pronto, el horizonte se volvió borroso. Una nube gris avanzaba hacia ellos, rodando por el suelo como una ola. «¡Tormenta de polvo!», gritó la voz de {helper} por la radio, entrecortada. «¡Agachaos y no os mováis!» {hero} y Pip se agacharon detrás de una roca, agarrados de la mano, mientras el polvo pasaba a su alrededor como una lluvia de arena. Duró solo unos minutos, pero parecieron horas, largas y grises como un día de lluvia sin ventanas. Las piedrecitas golpeaban los cascos con un ruido de granizo, y no se veía nada más allá de las propias manos.",
+              "text": "De pronto, el horizonte se volvió borroso. Una nube gris avanzaba hacia ellos, rodando por el suelo como una ola. «¡Tormenta de polvo!», gritó la voz de {helper} por la radio, entrecortada. «¡Agáchense y no se muevan!» {hero} y Pip se agacharon detrás de una roca, agarrados de la mano, mientras el polvo pasaba a su alrededor como una lluvia de arena. Duró solo unos minutos, pero parecieron horas, largas y grises como un día de lluvia sin ventanas. Las piedrecitas golpeaban los cascos con un ruido de granizo, y no se veía nada más allá de las propias manos.",
               "scene": {
                 "bg": "luna",
                 "mood": "tension",
@@ -9001,7 +9153,7 @@
           "variants": [
             {
               "id": "tormenta_lunar_cohete_a",
-              "text": "{camino.llegada} {helper} bajó la escalera a toda prisa, pitando sin parar, y los abrazó a los dos con sus brazos de metal. «¡Os he llamado mil veces!», decía. «Mil veces y una.» Subieron a la cabina, se quitaron los cascos llenos de polvo y se bebieron dos botellas de agua cada uno. Pip se rio por primera vez desde la tormenta, una risa temblorosa que se contagió enseguida. {hero} se dejó caer en el asiento, con las piernas como de gelatina, y se dio cuenta de que tenía las manos todavía apretadas.",
+              "text": "{camino.llegada} {helper} bajó la escalera a toda prisa, pitando sin parar, y los abrazó a los dos con sus brazos de metal. «¡Los he llamado mil veces!», decía. «Mil veces y una.» Subieron a la cabina, se quitaron los cascos llenos de polvo y se bebieron dos botellas de agua cada uno. Pip se rio por primera vez desde la tormenta, una risa temblorosa que se contagió enseguida. {hero} se dejó caer en el asiento, con las piernas como de gelatina, y se dio cuenta de que tenía las manos todavía apretadas.",
               "scene": {
                 "bg": "cabina",
                 "mood": "joy",
@@ -9021,9 +9173,6 @@
                     "clip": "hug",
                     "x": 0.78
                   }
-                ],
-                "unseen": [
-                  "botella"
                 ]
               },
               "adds": [
@@ -9158,6 +9307,7 @@
       "id": "zumbo_jugar",
       "value": "amistad",
       "title": "Zumbo quiere jugar",
+      "lesson": "Cuando invitamos a jugar a quien se siente solo, descubrimos lo que hace mejor y ya no necesita trastadas.",
       "ages": [
         "6-8"
       ],
@@ -9462,7 +9612,7 @@
           "variants": [
             {
               "id": "zumbo_jugar_amigo_a",
-              "text": "Cuando se hizo tarde, Zumbo se subió a su platillo pequeñito. «Gracias por buscarme sin enfadaros», dijo. «Ya no necesito esconder cosas.» «Para eso están los amigos», dijo {hero}, porque un amigo de verdad se alegra de cómo eres, aunque tengas tres ojos y seas un poco travieso.",
+              "text": "Cuando se hizo tarde, Zumbo se subió a su platillo pequeñito. «Gracias por buscarme sin enojarse», dijo. «Ya no necesito esconder cosas.» «Para eso están los amigos», dijo {hero}, porque un amigo de verdad se alegra de cómo eres, aunque tengas tres ojos y seas un poco travieso.",
               "scene": {
                 "bg": "aldea",
                 "mood": "calm",

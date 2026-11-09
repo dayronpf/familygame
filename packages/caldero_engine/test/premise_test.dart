@@ -785,7 +785,14 @@ void main() {
         'lo que el texto cuenta se ve: una mariposa nombrada hay que dibujarla',
         () {
       const text = 'Entonces vio pasar una mariposa. ¡Plaf! Tiró la taza.';
-      final sin = problems(scene(text, {'time': 'dia'}));
+      // El paquete tiene esos dibujos (si no, la palabra nombraría otra cosa y no se exige)
+      Map<String, Object?> withArt(Map<String, Object?> json) => json
+        ..['props'] = [
+          ...(json['props']! as List<Object?>),
+          {'id': 'mariposa', 'noun': 'mariposa', 'gender': 'f'},
+          {'id': 'taza_volcada', 'noun': 'taza', 'gender': 'f'},
+        ];
+      final sin = problems(withArt(scene(text, {'time': 'dia'})));
       expect(sin, contains('nombra «mariposa» pero no se ve en la escena'));
       expect(sin, contains('nombra «taza» pero no se ve en la escena'));
       // dibujada (o en primer plano) cuenta; también un secundario dibujado
@@ -824,14 +831,21 @@ void main() {
       expect(p, isNot(contains('no se ve')));
     });
 
-    test('el objeto que se presenta se ve de cerca (focus)', () {
+    test('el objeto que se presenta se dibuja (en la escena o de cerca)', () {
       final sin = problems(scene('Hola.', {'time': 'dia'}));
-      expect(sin, contains('se presenta aquí y debe verse de cerca'));
-      final ok = problems(scene('Hola.', {
+      expect(sin, contains('se presenta aquí y hay que dibujarlo'));
+      final cerca = problems(scene('Hola.', {
         'time': 'dia',
         'focus': {'prop': 'farol'},
       }));
-      expect(ok, isNot(contains('de cerca')));
+      expect(cerca, isNot(contains('hay que dibujarlo')));
+      final escena = problems(scene('Hola.', {
+        'time': 'dia',
+        'props': [
+          {'prop': 'farol'},
+        ],
+      }));
+      expect(escena, isNot(contains('hay que dibujarlo')));
     });
 
     test('en un primer plano nadie sale dibujado y no hace falta «offstage»',

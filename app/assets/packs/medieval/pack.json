@@ -669,6 +669,7 @@
       "id": "campana",
       "value": "honestidad",
       "title": "La campana rota",
+      "lesson": "Pagar para que un error no se sepa lo hace más pesado; contarlo, con alguien al lado, lo aligera.",
       "ages": [
         "6-8"
       ],
@@ -744,19 +745,30 @@
           "variants": [
             {
               "id": "a",
-              "text": "En lo alto {torre.del} colgaba {item.un} grande como un caldero, de bronce reluciente. Por la mañana sonaba para despertar al reino y, por la noche, para decirle que ya era hora de dormir. Su cuidador era el campanero Tomás, un viejo de barba blanca que olía a aceite y a pan tostado. {hero}, {hero.rasgo}, iba a verla todas las tardes.",
+              "text": "En lo alto {torre.del} colgaba {item.un} grande como un caldero, de bronce reluciente. Por la mañana sonaba para despertar al reino y, por la noche, para decirle que ya era hora de dormir. Su cuidador era el campanero Tomás, un viejo de barba blanca que olía a aceite y a leña. {hero}, {hero.rasgo}, iba a verla todas las tardes.",
               "scene": {
                 "bg": "torre",
                 "mood": "calm",
                 "time": "atardecer",
-                "focus": {
-                  "prop": "campana",
-                  "x": 0.7,
-                  "lift": 235,
-                  "fill": 0.6
-                },
-                "unseen": [
-                  "pan"
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "wonder",
+                    "x": 0.26
+                  },
+                  {
+                    "rig": "tomas",
+                    "clip": "idle",
+                    "x": 0.76
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "campana",
+                    "x": 0.5,
+                    "lift": 235,
+                    "scale": 0.55
+                  }
                 ]
               }
             },
@@ -767,12 +779,26 @@
                 "bg": "torre",
                 "mood": "calm",
                 "time": "atardecer",
-                "focus": {
-                  "prop": "campana",
-                  "x": 0.7,
-                  "lift": 235,
-                  "fill": 0.6
-                }
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "wonder",
+                    "x": 0.26
+                  },
+                  {
+                    "rig": "tomas",
+                    "clip": "idle",
+                    "x": 0.76
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "campana",
+                    "x": 0.5,
+                    "lift": 235,
+                    "scale": 0.55
+                  }
+                ]
               }
             }
           ],
@@ -859,7 +885,7 @@
                 "stage": [
                   {
                     "who": "hero",
-                    "clip": "shiver",
+                    "clip": "freeze",
                     "x": 0.3
                   }
                 ],
@@ -878,7 +904,7 @@
             },
             {
               "id": "b",
-              "text": "[[Tomás había bajado a merendar|Tomás había salido a comprar aceite|Tomás se había echado una siesta]], y la torre estaba vacía. Esperar le picaba demasiado. {hero} agarró la cuerda y tiró, solo un poquito. El viejo gancho crujió. [[¡Clang!|¡Clong!]] {item.El} se descolgó, rodó escalera abajo y se partió en dos pedazos: [[¡Craaac!|¡Crac, crac!]] [[Con un ruido enorme que hizo volar a todas las palomas|Y todas las palomas salieron volando]]. {hero} se tapó la boca con las dos manos. El corazón le saltaba en el pecho y {hero.miedo}.",
+              "text": "[[Tomás había bajado a merendar|Tomás había salido a comprar aceite|Tomás se había echado una siesta]], y la torre estaba vacía. Esperar le picaba demasiado. {hero} agarró la cuerda y tiró, solo un poquito. El viejo gancho crujió. [[¡Clang!|¡Clong!]] {item.El} se descolgó, rodó escalera abajo y se partió en dos pedazos: [[¡Craaac!|¡Crac, crac!]] [[Con un ruido enorme que hizo volar a todas las palomas|Y todas las palomas salieron volando]]. {hero} se llevó las dos manos a la cara. El corazón le saltaba en el pecho y {hero.miedo}.",
               "scene": {
                 "time": "atardecer",
                 "bg": "interior",
@@ -1046,7 +1072,7 @@
           "variants": [
             {
               "id": "a",
-              "text": "{hero} no dijo que sí, pero tampoco que no. Con la boca seca, entregó {villain.entrega}. Metió los dos pedazos en un saco y bajó corriendo hasta {plaza.el}. [[Aquella noche|Esa noche]] la campana no sonó, y nadie supo cuándo era hora de cenar ni de dormir. Rosa, la panadera, [[sacó el pan demasiado pronto|empezó a amasar a medianoche]]. Teo y los demás niños [[jugaron hasta tarde|no quisieron irse a dormir]]. Y hasta [[las gallinas cantaron a medianoche|las vacas pidieron la cena en plena madrugada]]. {hero} no pegó ojo, porque el saco escondido pesaba el doble. Y al otro lado de la aldea, {villain} {villain.disfrute}.",
+              "text": "{hero} no dijo que sí, pero tampoco que no. Con la boca seca, entregó {villain.entrega}. Metió los dos pedazos en un saco y bajó corriendo hasta {plaza.el}. [[Aquella noche|Esa noche]] no sonó ningún ¡dong!, y nadie supo cuándo era hora de cenar ni de dormir. Rosa, la panadera, [[sacó el pan demasiado pronto|empezó a amasar a medianoche]]. Teo y los demás niños [[jugaron hasta tarde|no quisieron irse a dormir]]. Y hasta [[las gallinas cantaron a medianoche|las vacas pidieron la cena en plena madrugada]]. {hero} no pegó ojo, porque el saco escondido pesaba el doble. Y al otro lado de la aldea, {villain} {villain.disfrute}.",
               "scene": {
                 "time": "noche",
                 "bg": "plaza",
@@ -1080,17 +1106,20 @@
                     "dx": -0.06,
                     "lift": 30,
                     "scale": 1.0
+                  },
+                  {
+                    "prop": "pan",
+                    "near": "rosa",
+                    "dx": 0.06,
+                    "lift": 62,
+                    "scale": 0.45
                   }
-                ],
-                "unseen": [
-                  "campana",
-                  "pan"
                 ]
               }
             },
             {
               "id": "b",
-              "text": "{hero} apretó los labios. Entregó {villain.entrega}, metió los pedazos en un saco y corrió hacia {plaza.el}. Sin campana, el reino se volvió un lío. Rosa, la panadera, [[horneó a medianoche|sacó el pan antes de que saliera el sol]]. Teo y los demás niños [[no quisieron dormir|siguieron jugando a oscuras]]. [[Las gallinas cantaron a la luna|Los gallos no sabían si cantar]]. Y {hero} daba vueltas y más vueltas, porque lo escondido pesaba como una piedra. Mientras tanto, {villain} {villain.disfrute}.",
+              "text": "{hero} apretó los labios. Entregó {villain.entrega}, metió los pedazos en un saco y corrió hacia {plaza.el}. Sin su ¡dong!, el reino se volvió un lío. Rosa, la panadera, [[horneó a medianoche|sacó el pan antes de que saliera el sol]]. Teo y los demás niños [[no quisieron dormir|siguieron jugando a oscuras]]. [[Las gallinas cantaron a la luna|Los gallos no sabían si cantar]]. Y {hero} daba vueltas y más vueltas, porque lo escondido pesaba como una piedra. Mientras tanto, {villain} {villain.disfrute}.",
               "scene": {
                 "time": "noche",
                 "bg": "plaza",
@@ -1124,11 +1153,14 @@
                     "dx": -0.06,
                     "lift": 30,
                     "scale": 1.0
+                  },
+                  {
+                    "prop": "pan",
+                    "near": "rosa",
+                    "dx": 0.06,
+                    "lift": 62,
+                    "scale": 0.45
                   }
-                ],
-                "unseen": [
-                  "campana",
-                  "pan"
                 ]
               }
             }
@@ -1216,16 +1248,21 @@
                     "dx": -0.07,
                     "lift": 30,
                     "scale": 1.0
+                  },
+                  {
+                    "prop": "pan",
+                    "near": "helper",
+                    "dx": -0.06,
+                    "lift": 62,
+                    "scale": 0.45,
+                    "when": "helper:aldo"
                   }
-                ],
-                "unseen": [
-                  "pan"
                 ]
               }
             },
             {
               "id": "b",
-              "text": "No había salido el sol cuando {hero} llamó a la puerta {helper.del} {helper}, con un saco lleno de pedazos. Entre suspiros y hipos le contó lo de la campana, el susto y el trato con {villain.el} {villain}. {helper.El} {helper} l{hero.o} escuchó sin interrumpir y, al terminar, {helper.gesto}.",
+              "text": "No había salido el sol cuando {hero} llamó a la puerta {helper.del} {helper}, con un saco lleno de pedazos. Entre suspiros y hipos le contó lo de los dos pedazos, el susto y el trato con {villain.el} {villain}. {helper.El} {helper} l{hero.o} escuchó sin interrumpir y, al terminar, {helper.gesto}.",
               "scene": {
                 "time": "amanecer",
                 "bg": "plaza",
@@ -1253,9 +1290,6 @@
                 ],
                 "offstage": [
                   "villain"
-                ],
-                "unseen": [
-                  "campana"
                 ]
               }
             }
@@ -1629,10 +1663,15 @@
                     "x": 0.68,
                     "scale": 0.9,
                     "clip": "still"
+                  },
+                  {
+                    "prop": "bolsa",
+                    "near": "villain",
+                    "dx": -0.06,
+                    "lift": 58,
+                    "scale": 0.45,
+                    "when": "villain:sombra"
                   }
-                ],
-                "unseen": [
-                  "bolsa"
                 ]
               }
             },
@@ -1676,10 +1715,15 @@
                     "x": 0.68,
                     "scale": 0.9,
                     "clip": "still"
+                  },
+                  {
+                    "prop": "bolsa",
+                    "near": "villain",
+                    "dx": -0.06,
+                    "lift": 58,
+                    "scale": 0.45,
+                    "when": "villain:sombra"
                   }
-                ],
-                "unseen": [
-                  "bolsa"
                 ]
               }
             }
@@ -1757,6 +1801,7 @@
       "id": "olla",
       "value": "generosidad",
       "title": "La olla de los poquitos",
+      "lesson": "Un poquito de cada uno, puesto en la misma olla, alcanza para que nadie se quede con hambre.",
       "ages": [
         "6-8"
       ],
@@ -1830,11 +1875,27 @@
                 "mood": "calm",
                 "time": "dia",
                 "season": "invierno",
-                "focus": {
-                  "prop": "pan",
-                  "x": 0.5,
-                  "fill": 0.5
-                }
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "idle",
+                    "x": 0.42
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "pan",
+                    "near": "hero",
+                    "dx": 0.05,
+                    "lift": 70,
+                    "scale": 0.45,
+                    "front": true
+                  }
+                ],
+                "offstage": [
+                  "aldeano",
+                  "aldeana"
+                ]
               }
             },
             {
@@ -1845,11 +1906,27 @@
                 "mood": "calm",
                 "time": "dia",
                 "season": "invierno",
-                "focus": {
-                  "prop": "pan",
-                  "x": 0.5,
-                  "fill": 0.5
-                }
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "idle",
+                    "x": 0.42
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "pan",
+                    "near": "hero",
+                    "dx": 0.05,
+                    "lift": 70,
+                    "scale": 0.45,
+                    "front": true
+                  }
+                ],
+                "offstage": [
+                  "aldeano",
+                  "aldeana"
+                ]
               }
             }
           ],
@@ -2233,8 +2310,15 @@
                 "mood": "hope",
                 "time": "dia",
                 "season": "invierno",
-                "unseen": [
-                  "bolsa"
+                "props": [
+                  {
+                    "prop": "bolsa",
+                    "near": "helper",
+                    "dx": 0.06,
+                    "lift": 58,
+                    "scale": 0.45,
+                    "when": "helper:zafiro"
+                  }
                 ]
               }
             },
@@ -2272,8 +2356,15 @@
                 "mood": "hope",
                 "time": "dia",
                 "season": "invierno",
-                "unseen": [
-                  "bolsa"
+                "props": [
+                  {
+                    "prop": "bolsa",
+                    "near": "helper",
+                    "dx": 0.06,
+                    "lift": 58,
+                    "scale": 0.45,
+                    "when": "helper:zafiro"
+                  }
                 ]
               }
             }
@@ -2527,7 +2618,7 @@
             },
             {
               "id": "c",
-              "text": "A {hero} solo le quedaba su pedacito de pan, el último, todavía tibio. La olla estaba a medio llenar y los vecinos hacían cola con sus cuencos. Teo se había sentado en el suelo, sin moverse, mirando la sopa. «¿No tienes hambre?», le preguntó {hero}. Teo negó con la cabeza, pero su barriga dijo que sí: ¡Grrr! {hero} miró el pan. Miró a Teo. Y soltó el pedacito en la olla: ¡Plof! «Ahora sí», dijo, y le dio la primera cucharada. Teo sonrió con la boca llena. Cuando el último vecino llenó su cuenco, en el fondo de la olla todavía quedaba sopa.",
+              "text": "A {hero} solo le quedaba su pedacito de pan, el último, todavía tibio. La olla estaba a medio llenar y los vecinos hacían cola con sus cuencos. Teo se había sentado en el suelo, muy callado, mirando la sopa. «¿No tienes hambre?», le preguntó {hero}. Teo negó con la cabeza, pero su barriga dijo que sí: ¡Grrr! {hero} miró el pan. Miró a Teo. Y soltó el pedacito en la olla: ¡Plof! «Ahora sí», dijo, y le dio la primera cucharada. Teo sonrió con la boca llena. Cuando el último vecino llenó su cuenco, en el fondo de la olla todavía quedaba sopa.",
               "scene": {
                 "time": "atardecer",
                 "season": "invierno",
@@ -2814,7 +2905,7 @@
           "variants": [
             {
               "id": "a",
-              "text": "Cuando la fiesta se apagó, Lía bostezó y Teo miró la nieve: ¿adónde irían? {hero} abrió la boca, pero Rosa fue más rápida: «Mi panadería sigue tibia y mi casa tiene sitio». Entonces {villain} carraspeó: «Y yo tengo… mantas. Muchas». Y trajo todas, hasta una de lana que olía a lavanda. «Mañana mismo mandaremos aviso a vuestra familia», dijo Rosa. «Seguro que os está buscando.»",
+              "text": "Cuando la fiesta se apagó, Lía bostezó y Teo miró la nieve: ¿adónde irían? {hero} abrió la boca, pero Rosa fue más rápida: «Mi panadería sigue tibia y mi casa tiene sitio». Entonces {villain} carraspeó: «Y yo tengo… mantas. Muchas». Y trajo todas, hasta una de lana que olía a lavanda. «Mañana mismo mandaremos aviso a su familia», dijo Rosa. «Seguro que los está buscando.»",
               "scene": {
                 "time": "noche",
                 "season": "invierno",
@@ -2874,7 +2965,7 @@
             },
             {
               "id": "b",
-              "text": "Al final de la fiesta, Lía bostezó, y Teo miró la nieve sin decir nada. {hero} abrió la boca, pero Rosa fue más rápida: «Mi panadería sigue tibia y mi casa tiene sitio», dijo Rosa. {villain} se rascó la barbilla. «Y yo… tengo mantas. Muchas.» Las trajo todas, hasta una de lana que olía a lavanda, y se las puso a Lía y a Teo sobre los hombros. «Mañana mismo mandaremos aviso a vuestra familia», dijo Rosa. «Seguro que os está buscando.» {hero} sonrió.",
+              "text": "Al final de la fiesta, Lía bostezó, y Teo miró la nieve sin decir nada. {hero} abrió la boca, pero Rosa fue más rápida: «Mi panadería sigue tibia y mi casa tiene sitio», dijo Rosa. {villain} se rascó la barbilla. «Y yo… tengo mantas. Muchas.» Las trajo todas, hasta una de lana que olía a lavanda, y se las puso a Lía y a Teo sobre los hombros. «Mañana mismo mandaremos aviso a su familia», dijo Rosa. «Seguro que los está buscando.» {hero} sonrió.",
               "scene": {
                 "time": "noche",
                 "season": "invierno",
@@ -2934,7 +3025,7 @@
             },
             {
               "id": "c",
-              "text": "Cuando se acabó la fiesta, había nieve en los tejados y sueño en todos los ojos. Lía bostezó. Teo se frotó los pies fríos. Rosa los vio y abrió su puerta: «Mi casa tiene sitio y mi panadería sigue tibia». {villain} carraspeó. «Yo traigo las mantas», dijo, y se fue corriendo. Volvió con tantas que no le cabían en los brazos, y la de arriba era de lana y olía a lavanda. {hero} les sonrió. «Mañana preguntaremos por vuestra familia», dijo Rosa. «Esta noche, a dormir.»",
+              "text": "Cuando se acabó la fiesta, había nieve en los tejados y sueño en todos los ojos. Lía bostezó. Teo se frotó los pies fríos. Rosa los vio y abrió su puerta: «Mi casa tiene sitio y mi panadería sigue tibia». {villain} carraspeó. «Yo traigo las mantas», dijo, y se fue corriendo. Volvió con tantas que no le cabían en los brazos, y la de arriba era de lana y olía a lavanda. {hero} les sonrió. «Mañana preguntaremos por su familia», dijo Rosa. «Esta noche, a dormir.»",
               "scene": {
                 "time": "noche",
                 "season": "invierno",
@@ -2999,7 +3090,7 @@
           "variants": [
             {
               "id": "a",
-              "text": "[[Esa noche|Aquella noche]], {hero} se quedó con ellos. Rosa les subió las mantas hasta la barbilla, junto al horno todavía tibio. Teo y Lía ya roncaban. Fuera nevaba [[despacito|sin parar]] sobre {plaza.el}. Dentro olía a pan y a lavanda. Y {hero} se durmió sonriendo, con el olor a sopa todavía en la ropa.",
+              "text": "[[Esa noche|Aquella noche]], {hero} se quedó con ellos. Rosa les subió las mantas hasta la barbilla, junto al horno todavía tibio. Teo y Lía ya roncaban. Fuera nevaba [[despacito|sin parar]] sobre {plaza.el}. Dentro olía a leña y a lavanda. Y {hero} se durmió sonriendo, con el olor a sopa todavía en la ropa.",
               "scene": {
                 "time": "noche",
                 "season": "invierno",
@@ -3058,9 +3149,6 @@
                     "lift": 16,
                     "scale": 1.15
                   }
-                ],
-                "unseen": [
-                  "pan"
                 ]
               }
             },
@@ -3125,9 +3213,6 @@
                     "lift": 16,
                     "scale": 1.15
                   }
-                ],
-                "unseen": [
-                  "olla"
                 ]
               }
             }
@@ -3140,6 +3225,7 @@
       "id": "linterna",
       "value": "valentia",
       "title": "La linterna apagada",
+      "lesson": "Podemos ir con miedo; si seguimos con calma, la oscuridad se vuelve algo conocido y hasta simpático.",
       "ages": [
         "6-8"
       ],
@@ -3215,13 +3301,31 @@
                 "bg": "pueblo",
                 "mood": "calm",
                 "time": "atardecer",
-                "focus": {
-                  "prop": "linterna",
-                  "x": 0.5,
-                  "lift": 60,
-                  "fill": 0.6,
-                  "emit": true
-                }
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "wonder",
+                    "x": 0.3
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "roble",
+                    "x": 0.82,
+                    "scale": 0.7
+                  },
+                  {
+                    "prop": "linterna",
+                    "emit": true,
+                    "x": 0.8,
+                    "lift": 115,
+                    "scale": 0.25,
+                    "clip": "glow"
+                  }
+                ],
+                "offstage": [
+                  "farolero"
+                ]
               }
             },
             {
@@ -3231,13 +3335,31 @@
                 "bg": "pueblo",
                 "mood": "calm",
                 "time": "atardecer",
-                "focus": {
-                  "prop": "linterna",
-                  "x": 0.5,
-                  "lift": 60,
-                  "fill": 0.6,
-                  "emit": true
-                }
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "wonder",
+                    "x": 0.3
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "roble",
+                    "x": 0.82,
+                    "scale": 0.7
+                  },
+                  {
+                    "prop": "linterna",
+                    "emit": true,
+                    "x": 0.8,
+                    "lift": 115,
+                    "scale": 0.25,
+                    "clip": "glow"
+                  }
+                ],
+                "offstage": [
+                  "farolero"
+                ]
               }
             }
           ],
@@ -3739,7 +3861,7 @@
                 "stage": [
                   {
                     "who": "hero",
-                    "clip": "shiver",
+                    "clip": "freeze",
                     "x": 0.36
                   }
                 ],
@@ -4010,7 +4132,7 @@
                 },
                 "says": {
                   "llegada": "El balido sonó ya muy cerca, y las manos de {hero} toparon con una corteza enorme: el roble viejo.",
-                  "recuerdo": "una cabrita que bala"
+                  "recuerdo": "un balido que llama bajito"
                 }
               },
               {
@@ -4096,7 +4218,7 @@
                 "stage": [
                   {
                     "who": "hero",
-                    "clip": "think",
+                    "clip": "freeze",
                     "x": 0.45
                   }
                 ],
@@ -4770,9 +4892,6 @@
                   "aldeana",
                   "farolero",
                   "rosa"
-                ],
-                "unseen": [
-                  "cabrita"
                 ]
               }
             },
@@ -4816,9 +4935,6 @@
                   "farolero",
                   "rosa",
                   "villain"
-                ],
-                "unseen": [
-                  "cabrita"
                 ]
               }
             }
@@ -4831,6 +4947,7 @@
       "id": "pozo",
       "value": "honestidad",
       "title": "La bolsa del pozo",
+      "lesson": "Lo que encontramos y no es nuestro pesa en el bolsillo; devolverlo a su dueño nos deja dormir tranquilos.",
       "ages": [
         "6-8"
       ],
@@ -4889,19 +5006,32 @@
           "variants": [
             {
               "id": "a",
-              "text": "Era día de mercado en {plaza.el}, y todo olía a pan, a manzanas y a canela. {hero}, {hero.rasgo}, se paró delante del puesto del molinero Beto. Colgaba allí {cometa.un} roja, con una cola larga de lazos amarillos. «Cuesta cinco monedas de plata», dijo Beto. {hero} metió la mano en el bolsillo: solo tenía dos.",
+              "text": "Era día de mercado en {plaza.el}, y todo olía a manzanas y a canela. {hero}, {hero.rasgo}, se paró delante del puesto del molinero Beto. Colgaba allí {cometa.un} roja, con una cola larga de lazos amarillos. «Cuesta cinco monedas de plata», dijo Beto. {hero} metió la mano en el bolsillo: solo tenía dos.",
               "scene": {
                 "bg": "plaza",
                 "mood": "hope",
                 "time": "dia",
-                "focus": {
-                  "prop": "cometa",
-                  "x": 0.5,
-                  "lift": 150,
-                  "fill": 0.6
-                },
-                "unseen": [
-                  "pan"
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "wonder",
+                    "x": 0.28
+                  },
+                  {
+                    "rig": "beto",
+                    "clip": "talk",
+                    "x": 0.74
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "cometa",
+                    "near": "beto",
+                    "dx": -0.07,
+                    "lift": 60,
+                    "scale": 0.55,
+                    "clip": "sway"
+                  }
                 ]
               }
             },
@@ -4912,29 +5042,58 @@
                 "bg": "plaza",
                 "mood": "hope",
                 "time": "dia",
-                "focus": {
-                  "prop": "cometa",
-                  "x": 0.5,
-                  "lift": 150,
-                  "fill": 0.6
-                }
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "wonder",
+                    "x": 0.28
+                  },
+                  {
+                    "rig": "beto",
+                    "clip": "talk",
+                    "x": 0.74
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "cometa",
+                    "near": "beto",
+                    "dx": -0.07,
+                    "lift": 60,
+                    "scale": 0.55,
+                    "clip": "sway"
+                  }
+                ]
               }
             },
             {
               "id": "c",
-              "text": "El día de mercado, {plaza.el} olía a canela y a pan caliente. Entre los puestos, el molinero Beto vendía {cometa.un} roja con la cola llena de lazos amarillos. {hero} la miró un rato largo. «Son cinco monedas de plata», dijo Beto. {hero} sacó las suyas y las contó dos veces, por si acaso. Dos. Siempre dos.",
+              "text": "El día de mercado, {plaza.el} olía a canela y a manzanas asadas. Entre los puestos, el molinero Beto vendía {cometa.un} roja con la cola llena de lazos amarillos. {hero} la miró un rato largo. «Son cinco monedas de plata», dijo Beto. {hero} sacó las suyas y las contó dos veces, por si acaso. Dos. Siempre dos.",
               "scene": {
                 "bg": "plaza",
                 "mood": "hope",
                 "time": "dia",
-                "focus": {
-                  "prop": "cometa",
-                  "x": 0.5,
-                  "lift": 150,
-                  "fill": 0.6
-                },
-                "unseen": [
-                  "pan"
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "wonder",
+                    "x": 0.28
+                  },
+                  {
+                    "rig": "beto",
+                    "clip": "talk",
+                    "x": 0.74
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "cometa",
+                    "near": "beto",
+                    "dx": -0.07,
+                    "lift": 60,
+                    "scale": 0.55,
+                    "clip": "sway"
+                  }
                 ]
               }
             }
@@ -4953,31 +5112,48 @@
                 "bg": "plaza",
                 "mood": "mystery",
                 "time": "dia",
-                "focus": {
-                  "prop": "bolsa",
-                  "x": 0.5,
-                  "fill": 0.5
-                },
-                "unseen": [
-                  "piedras"
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "surprised",
+                    "x": 0.4
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "bolsa",
+                    "near": "hero",
+                    "dx": 0.07,
+                    "lift": 64,
+                    "scale": 0.7,
+                    "clip": "jingle"
+                  }
                 ]
               }
             },
             {
               "id": "b",
-              "text": "Junto al pozo, entre dos piedras, algo tintineó: ¡tilín! {hero} se agachó y sacó {item.un} de cuero, pesada y fría. Dentro había tres monedas de plata. Tres, justo las que le faltaban para comprar la cometa. {hero} miró a un lado y a otro. No había nadie. «¿De quién será?», preguntó al pozo. «…será… será…», contestó el eco.",
+              "text": "Junto al pozo, entre dos piedras, algo tintineó: ¡tilín! {hero} se agachó y sacó {item.un} de cuero, pesada y fría. Dentro había tres monedas de plata. Tres, justo las que le faltaban. {hero} miró a un lado y a otro. No había nadie. «¿De quién será?», preguntó al pozo. «…será… será…», contestó el eco.",
               "scene": {
                 "bg": "plaza",
                 "mood": "mystery",
                 "time": "dia",
-                "focus": {
-                  "prop": "bolsa",
-                  "x": 0.5,
-                  "fill": 0.5
-                },
-                "unseen": [
-                  "cometa",
-                  "piedras"
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "surprised",
+                    "x": 0.4
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "bolsa",
+                    "near": "hero",
+                    "dx": 0.07,
+                    "lift": 64,
+                    "scale": 0.7,
+                    "clip": "jingle"
+                  }
                 ]
               }
             },
@@ -4988,13 +5164,22 @@
                 "bg": "plaza",
                 "mood": "mystery",
                 "time": "dia",
-                "focus": {
-                  "prop": "bolsa",
-                  "x": 0.5,
-                  "fill": 0.5
-                },
-                "unseen": [
-                  "piedras"
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "surprised",
+                    "x": 0.4
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "bolsa",
+                    "near": "hero",
+                    "dx": 0.07,
+                    "lift": 64,
+                    "scale": 0.7,
+                    "clip": "jingle"
+                  }
                 ]
               }
             }
@@ -5060,7 +5245,7 @@
             },
             {
               "id": "c",
-              "text": "«Tres monedas de plata», pensó {hero}, «justo las que me faltan para la cometa». Tocó {item.el} una vez más. Quien la había perdido no estaba cerca. Y la cometa roja estaba tan, tan cerca… Se guardó la bolsa en el bolsillo y echó a andar muy derecho, como si nada. ¡Tilín, tilín! {hero} aceleró el paso.",
+              "text": "«Tres monedas de plata», pensó {hero}, «justo las que me faltan para la cometa». Tocó {item.el} una vez más. Quien la había perdido no estaba cerca. Y el sueño de volar estaba tan, tan cerca… Se guardó la bolsa en el bolsillo y echó a andar muy derecho, como si nada. ¡Tilín, tilín! {hero} aceleró el paso.",
               "scene": {
                 "time": "dia",
                 "bg": "plaza",
@@ -5081,9 +5266,6 @@
                     "front": true,
                     "near": "hero"
                   }
-                ],
-                "unseen": [
-                  "cometa"
                 ]
               }
             }
@@ -5131,12 +5313,11 @@
             },
             {
               "id": "b",
-              "text": "{hero} no podía dormir. Debajo de la almohada, {item.el} hacía tilín cada vez que respiraba. Cerró los ojos y vio la cometa roja, volando muy alto. Pero entonces, tilín, y en el pecho le pesó una piedra pequeña y fría. «Es solo una bolsa», se dijo. Pero la bolsa no se callaba, y el eco del pozo tampoco: «…será… será…».",
+              "text": "{hero} no podía dormir. Debajo de la almohada, {item.el} hacía tilín cada vez que respiraba. Cerró los ojos y se imaginó un rombo rojo volando muy alto. Pero entonces, tilín, y en el pecho le pesó una piedra pequeña y fría. «Es solo una bolsa», se dijo. Pero la bolsa no se callaba, y el eco del pozo tampoco: «…será… será…».",
               "scene": {
                 "time": "noche",
                 "unseen": [
-                  "pozo",
-                  "cometa"
+                  "pozo"
                 ],
                 "bg": "cuarto",
                 "mood": "tension",
@@ -5225,7 +5406,7 @@
                   },
                   {
                     "who": "hero",
-                    "clip": "hide",
+                    "clip": "freeze",
                     "x": 0.4,
                     "scale": 0.95
                   }
@@ -5291,7 +5472,7 @@
           "variants": [
             {
               "id": "a",
-              "text": "Con {item.el} en el bolsillo y un nudo en la garganta, {hero} fue a ver {helper.al} {helper}. Se lo contó todo sin respirar: la cometa, la bolsa, la noche sin dormir, el llanto de Rosa. {helper} escuchó sin interrumpir, porque sabía que eso era lo más difícil. Al final, {helper.consuelo}.",
+              "text": "Con {item.el} en el bolsillo y un nudo en la garganta, {hero} fue a ver {helper.al} {helper}. Se lo contó todo sin respirar: el juguete del mercado, la bolsa, la noche sin dormir, el llanto de Rosa. {helper} escuchó sin interrumpir, porque sabía que eso era lo más difícil. Al final, {helper.consuelo}.",
               "scene": {
                 "bg": "plaza",
                 "stage": [
@@ -5309,16 +5490,28 @@
                   "rosa"
                 ],
                 "time": "dia",
-                "unseen": [
-                  "bolsa",
-                  "cometa",
-                  "pan"
+                "props": [
+                  {
+                    "prop": "bolsa",
+                    "near": "hero",
+                    "dx": 0.07,
+                    "lift": 58,
+                    "scale": 0.45
+                  },
+                  {
+                    "prop": "pan",
+                    "near": "helper",
+                    "dx": -0.06,
+                    "lift": 62,
+                    "scale": 0.45,
+                    "when": "helper:aldo"
+                  }
                 ]
               }
             },
             {
               "id": "b",
-              "text": "{hero} caminó despacio hacia {helper.el} {helper}, con una mano sobre el bolsillo para que no sonara. En cuanto abrió la boca, todo salió de golpe: la cometa, la bolsa, la noche en vela, el llanto de Rosa. {helper.El} {helper} no dijo ni una palabra. Solo {helper.gesto}.",
+              "text": "{hero} caminó despacio hacia {helper.el} {helper}, con una mano sobre el bolsillo para que no sonara. En cuanto abrió la boca, todo salió de golpe: el juguete del mercado, la bolsa, la noche en vela, el llanto de Rosa. {helper.El} {helper} no dijo ni una palabra. Solo {helper.gesto}.",
               "scene": {
                 "bg": "plaza",
                 "stage": [
@@ -5336,9 +5529,22 @@
                   "rosa"
                 ],
                 "time": "dia",
-                "unseen": [
-                  "bolsa",
-                  "cometa"
+                "props": [
+                  {
+                    "prop": "bolsa",
+                    "near": "hero",
+                    "dx": 0.07,
+                    "lift": 58,
+                    "scale": 0.45
+                  },
+                  {
+                    "prop": "pan",
+                    "near": "helper",
+                    "dx": -0.06,
+                    "lift": 62,
+                    "scale": 0.45,
+                    "when": "helper:aldo"
+                  }
                 ]
               }
             }
@@ -5593,7 +5799,7 @@
             },
             {
               "id": "c",
-              "text": "Rosa apretó la bolsa contra el pecho y, de pronto, soltó una carcajada. «¡Pan para todos!», gritó. «Corro al molino por harina. Y esta tarde, el primer panecillo es para ti, gracias a ti.» Dos monedas no eran cinco. Pero un panecillo ya era algo.",
+              "text": "Rosa apretó la bolsa contra el pecho y, de pronto, soltó una carcajada. «¡Pan para todos!», gritó. «Corro al molino por harina. Y esta tarde, lo primero que salga de mi panadería es para ti, gracias a ti.» Dos monedas no eran cinco. Pero era un buen comienzo.",
               "scene": {
                 "time": "dia",
                 "bg": "plaza",
@@ -5621,9 +5827,6 @@
                 ],
                 "offstage": [
                   "beto"
-                ],
-                "unseen": [
-                  "panecillo"
                 ]
               }
             }
@@ -5817,7 +6020,7 @@
             },
             {
               "id": "b",
-              "text": "En el cuarto de {hero} reinaba un silencio blando. Ninguna bolsa hacía tilín y ningún eco susurraba «será». Solo la luna miraba por la ventana, y a {hero} le pareció que la luna le guiñaba un ojo. Buenas noches, luna; buenas noches, cometa. {hero} se quedó dormid{hero.o} enseguida.",
+              "text": "En el cuarto de {hero} reinaba un silencio blando. Ya nada hacía tilín en su bolsillo y ningún eco susurraba «será». Solo la luna miraba por la ventana, y a {hero} le pareció que la luna le guiñaba un ojo. Buenas noches, luna; buenas noches, estrellas. {hero} se quedó dormid{hero.o} enseguida.",
               "scene": {
                 "time": "noche",
                 "bg": "cuarto",
@@ -5840,10 +6043,6 @@
                     "scale": 1.05,
                     "front": true
                   }
-                ],
-                "unseen": [
-                  "bolsa",
-                  "cometa"
                 ]
               }
             }
@@ -5856,6 +6055,7 @@
       "id": "girasol",
       "value": "generosidad",
       "title": "Las semillas de sol",
+      "lesson": "Las semillas que regalamos no se pierden: florecen en otros jardines y vuelven multiplicadas.",
       "ages": [
         "6-8"
       ],
@@ -5920,13 +6120,27 @@
                 "mood": "hope",
                 "time": "dia",
                 "season": "invierno",
-                "focus": {
-                  "prop": "semillas",
-                  "x": 0.5,
-                  "fill": 0.5
-                },
-                "unseen": [
-                  "girasol"
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "wonder",
+                    "x": 0.36
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "semillas",
+                    "near": "hero",
+                    "dx": -0.08,
+                    "lift": 64,
+                    "scale": 0.6
+                  },
+                  {
+                    "prop": "girasol_seco",
+                    "x": 0.74,
+                    "scale": 1.0,
+                    "clip": "sun"
+                  }
                 ]
               }
             },
@@ -5938,13 +6152,27 @@
                 "mood": "hope",
                 "time": "dia",
                 "season": "invierno",
-                "focus": {
-                  "prop": "semillas",
-                  "x": 0.5,
-                  "fill": 0.5
-                },
-                "unseen": [
-                  "girasol"
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "wonder",
+                    "x": 0.36
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "semillas",
+                    "near": "hero",
+                    "dx": -0.08,
+                    "lift": 64,
+                    "scale": 0.6
+                  },
+                  {
+                    "prop": "girasol_seco",
+                    "x": 0.74,
+                    "scale": 1.0,
+                    "clip": "sun"
+                  }
                 ]
               }
             }
@@ -5959,7 +6187,7 @@
           "variants": [
             {
               "id": "a",
-              "text": "Pero {plaza.en} no todos tenían semillas, porque la nevada había cubierto los huertos. [[Rosa, la panadera, miraba su tierra vacía.|Rosa, la panadera, se asomaba a su huerto sin nada.]] «Este año no tendré ni una flor», [[suspiró|dijo con un hilito de voz]]. Beto, el molinero, [[tampoco|estaba igual]]. «Ni una», dijo. Lía, la más pequeña del pueblo, abrazaba una maceta rota. {hero} apretó {item.el} en el bolsillo.",
+              "text": "Pero {plaza.en} no todos tenían semillas, porque la nevada había cubierto los huertos. [[Rosa, la panadera, miraba su tierra vacía.|Rosa, la panadera, se asomaba a su huerto sin nada.]] «Este año no tendré ni una flor», [[suspiró|dijo con un hilito de voz]]. Beto, el molinero, [[tampoco|estaba igual]]. «Ni una», dijo. Lía, la más pequeña del pueblo, abrazaba una maceta rota. {hero} apretó {item.el} entre las manos.",
               "scene": {
                 "time": "dia",
                 "season": "invierno",
@@ -6009,16 +6237,20 @@
                     "dx": 0,
                     "lift": 45,
                     "scale": 0.6
+                  },
+                  {
+                    "prop": "semillas",
+                    "near": "hero",
+                    "dx": 0.07,
+                    "lift": 64,
+                    "scale": 0.6
                   }
-                ],
-                "unseen": [
-                  "semillas"
                 ]
               }
             },
             {
               "id": "b",
-              "text": "{plaza.El} se veía gris y sin flores, porque la nevada había cubierto las huertas y no quedaba ni una semilla. Rosa, la panadera, regaba una maceta vacía por si acaso. Beto, el molinero, la miraba desde su puerta con cara larga, y Lía, la más pequeña del pueblo, abrazaba una maceta rota. {hero} pasó entre los dos con las manos metidas en el bolsillo, tocando {item.el}.",
+              "text": "{plaza.El} se veía gris y sin flores, porque la nevada había cubierto las huertas y no quedaba ni una semilla. Rosa, la panadera, regaba una maceta vacía por si acaso. Beto, el molinero, la miraba desde su puerta con cara larga, y Lía, la más pequeña del pueblo, abrazaba una maceta rota. {hero} pasó entre los dos, apretando {item.el} entre las manos.",
               "scene": {
                 "time": "dia",
                 "season": "invierno",
@@ -6068,10 +6300,14 @@
                     "dx": 0,
                     "lift": 45,
                     "scale": 0.6
+                  },
+                  {
+                    "prop": "semillas",
+                    "near": "hero",
+                    "dx": 0.07,
+                    "lift": 64,
+                    "scale": 0.6
                   }
-                ],
-                "unseen": [
-                  "semillas"
                 ]
               }
             }
@@ -6088,12 +6324,34 @@
                 "mood": "tension",
                 "time": "noche",
                 "season": "invierno",
-                "focus": {
-                  "prop": "semillas",
-                  "x": 0.8,
-                  "lift": 100,
-                  "fill": 0.5
-                }
+                "stage": [
+                  {
+                    "who": "hero",
+                    "x": 0.31,
+                    "rotate": -90,
+                    "lift": 152,
+                    "scale": 0.95,
+                    "clip": "think"
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "semillas",
+                    "x": 0.8,
+                    "lift": 100,
+                    "scale": 0.6
+                  },
+                  {
+                    "prop": "manta",
+                    "x": 0.2,
+                    "lift": 118,
+                    "scale": 1.05,
+                    "front": true
+                  }
+                ],
+                "offstage": [
+                  "rosa"
+                ]
               }
             },
             {
@@ -6104,14 +6362,33 @@
                 "mood": "tension",
                 "time": "noche",
                 "season": "invierno",
-                "focus": {
-                  "prop": "semillas",
-                  "x": 0.2,
-                  "lift": 148,
-                  "fill": 0.5
-                },
-                "unseen": [
-                  "manta"
+                "stage": [
+                  {
+                    "who": "hero",
+                    "x": 0.31,
+                    "rotate": -90,
+                    "lift": 152,
+                    "scale": 0.95,
+                    "clip": "think"
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "semillas",
+                    "x": 0.2,
+                    "lift": 148,
+                    "scale": 0.6
+                  },
+                  {
+                    "prop": "manta",
+                    "x": 0.2,
+                    "lift": 118,
+                    "scale": 1.05,
+                    "front": true
+                  }
+                ],
+                "offstage": [
+                  "rosa"
                 ]
               }
             }
@@ -6260,7 +6537,7 @@
           "variants": [
             {
               "id": "a",
-              "text": "Esa tarde, {hero} contó otra vez las semillas: una, dos, tres, cuatro, cinco. Respiró hondo. «Dos para mí», dijo despacio, «y tres para vosotros». Dos se quedaron en su bolsillo. Una fue para Rosa, otra para Beto y la última para Lía, la más pequeña del pueblo. [[«¿Para mí?», dijo Rosa, con los ojos muy abiertos.|«¿Para mí?», dijo Rosa, y se tapó la boca con las manos.]] «Es poquito», dijo {hero}. «Pero es una.» Con solo dos, la cinta azul se alejó un poco. Rosa abrazó a {hero} y le dejó la nariz llena de harina.",
+              "text": "Esa tarde, {hero} contó otra vez las semillas: una, dos, tres, cuatro, cinco. Respiró hondo. «Dos para mí», dijo despacio, «y tres para ustedes». Dos se quedaron en su bolsillo. Una fue para Rosa, otra para Beto y la última para Lía, la más pequeña del pueblo. [[«¿Para mí?», dijo Rosa, con los ojos muy abiertos.|«¿Para mí?», dijo Rosa, y se llevó las manos a las mejillas.]] «Es poquito», dijo {hero}. «Pero es una.» Con solo dos, la cinta azul se alejó un poco. Rosa abrazó a {hero} y le dejó la nariz llena de harina.",
               "scene": {
                 "time": "atardecer",
                 "season": "invierno",
@@ -6347,7 +6624,7 @@
           "variants": [
             {
               "id": "a",
-              "text": "{hero} plantó las suyas en dos macetas, junto a la ventana. [[Pasó el invierno, y luego llegaron las lluvias de primavera.|Se acabó el invierno, y en primavera llovió y llovió.]] Cada mañana [[regaba las macetas y miraba la tierra: nada.|les echaba agua y se asomaba a la tierra: nada.]] Una mañana, dos hojitas verdes asomaron. ¡Habían brotado! Y ese mismo día brotaron también las semillas de Rosa, de Beto y de Lía.",
+              "text": "{hero} plantó las suyas en dos macetas, junto a la ventana. [[Pasó el invierno, y luego llegaron las lluvias de primavera.|Se acabó el invierno, y en primavera llovió y llovió.]] Cada mañana [[regaba las macetas y miraba la tierra: nada.|les echaba agua y se asomaba a la tierra: nada.]] Una mañana, dos hojitas verdes asomaron. ¡Habían brotado! Y ese mismo día brotaron también las macetas de Rosa, de Beto y de Lía.",
               "scene": {
                 "time": "dia",
                 "season": "primavera",
@@ -6384,15 +6661,12 @@
                   "rosa",
                   "beto",
                   "lia"
-                ],
-                "unseen": [
-                  "semillas"
                 ]
               }
             },
             {
               "id": "b",
-              "text": "{hero} plantó sus dos semillas en dos macetas, junto a la ventana. Pasó el invierno, y llegó la primavera con sus charcos. [[Cada mañana las regaba y esperaba.|Cada mañana les echaba agua y les cantaba una canción.]] Esperar era lo más difícil. Hasta que un día, dos puntitas verdes empujaron la tierra. Corrió a contarlo, y descubrió que habían brotado también las semillas de Rosa, de Beto y de Lía.",
+              "text": "{hero} plantó las dos suyas en dos macetas, junto a la ventana. Pasó el invierno, y llegó la primavera con sus charcos. [[Cada mañana las regaba y esperaba.|Cada mañana les echaba agua y les cantaba una canción.]] Esperar era lo más difícil. Hasta que un día, dos puntitas verdes empujaron la tierra. Corrió a contarlo, y descubrió que habían brotado también las macetas de Rosa, de Beto y de Lía.",
               "scene": {
                 "time": "dia",
                 "season": "primavera",
@@ -6429,9 +6703,6 @@
                   "rosa",
                   "beto",
                   "lia"
-                ],
-                "unseen": [
-                  "semillas"
                 ]
               }
             }
@@ -6799,6 +7070,7 @@
       "id": "puente",
       "value": "valentia",
       "title": "El puente que crujía",
+      "lesson": "Con miedo también se cruza: contando paso a paso, y con alguien que nos sujeta, llegamos al otro lado.",
       "ages": [
         "6-8"
       ],
@@ -6854,37 +7126,63 @@
           "variants": [
             {
               "id": "a",
-              "text": "[[Aquella semana|Un día]], Tomás, el viejo campanero, cayó enfermo. [[Tosía tanto que la campana, cada noche, sonaba un poco triste.|Tosía tanto que la campana ya no sonaba igual.]] Los vecinos decían que solo curaba {item.el}, que crece al otro lado del río. Pero el puente era viejo y crujía, así que nadie se atrevía a cruzarlo. {hero} oyó la campana, que sonaba apagada. «Iré yo», dijo, aunque le temblaba la voz.",
+              "text": "[[Aquella semana|Un día]], Tomás, el viejo campanero, cayó enfermo. [[Tosía tanto que el ¡dong! de cada noche sonaba un poco triste.|Tosía tanto que la torre ya no sonaba igual.]] Los vecinos decían que solo curaba {item.el}, que crece al otro lado del río. Pero el puente era viejo y crujía, así que nadie se atrevía a cruzarlo. {hero} oyó a lo lejos el ¡dong! apagado de la torre. «Iré yo», dijo, aunque le temblaba la voz.",
               "scene": {
                 "bg": "rio",
                 "mood": "tension",
                 "time": "dia",
-                "focus": {
-                  "prop": "hierba",
-                  "x": 0.5,
-                  "fill": 0.5
-                },
                 "unseen": [
-                  "puente",
-                  "campana"
+                  "puente"
+                ],
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "talk",
+                    "x": 0.28
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "hierba",
+                    "x": 0.84,
+                    "lift": 80,
+                    "scale": 0.6
+                  }
+                ],
+                "offstage": [
+                  "tomas",
+                  "aldeana"
                 ]
               }
             },
             {
               "id": "b",
-              "text": "Tomás, el viejo campanero, llevaba [[tres|cuatro]] días tosiendo. «Solo lo curaría {item.el}», decían los vecinos, «la que crece al otro lado del río». Pero para llegar había que cruzar el puente de madera, el que crujía ¡cric, cric! con cada soplo de viento. Nadie quería ir, porque el puente parecía a punto de romperse. {hero} oyó la campana, que sonaba apagada. «Iré yo», dijo, aunque le temblaba la voz.",
+              "text": "Tomás, el viejo campanero, llevaba [[tres|cuatro]] días tosiendo. «Solo lo curaría {item.el}», decían los vecinos, «la que crece al otro lado del río». Pero para llegar había que cruzar el puente de madera, el que crujía ¡cric, cric! con cada soplo de viento. Nadie quería ir, porque el puente parecía a punto de romperse. {hero} oyó a lo lejos el ¡dong! apagado de la torre. «Iré yo», dijo, aunque le temblaba la voz.",
               "scene": {
                 "bg": "rio",
                 "mood": "tension",
                 "time": "dia",
-                "focus": {
-                  "prop": "hierba",
-                  "x": 0.5,
-                  "fill": 0.5
-                },
                 "unseen": [
-                  "puente",
-                  "campana"
+                  "puente"
+                ],
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "talk",
+                    "x": 0.28
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "hierba",
+                    "x": 0.84,
+                    "lift": 80,
+                    "scale": 0.6
+                  }
+                ],
+                "offstage": [
+                  "tomas",
+                  "aldeana"
                 ]
               }
             }
@@ -7312,7 +7610,7 @@
                 "stage": [
                   {
                     "who": "hero",
-                    "clip": "hide",
+                    "clip": "freeze",
                     "x": 0.5,
                     "lift": 80,
                     "scale": 0.85
@@ -7353,7 +7651,7 @@
                 "stage": [
                   {
                     "who": "hero",
-                    "clip": "hide",
+                    "clip": "freeze",
                     "x": 0.5,
                     "lift": 80,
                     "scale": 0.85
@@ -7432,7 +7730,7 @@
                 "stage": [
                   {
                     "who": "hero",
-                    "clip": "idle",
+                    "clip": "freeze",
                     "x": 0.5,
                     "lift": 80,
                     "scale": 0.85
@@ -7462,7 +7760,7 @@
             },
             {
               "id": "vista_a",
-              "text": "El viento sopló fuerte, ¡fuuu!, y los tablones se balancearon. {hero} no miró el agua: miró la otra orilla, donde algo brillaba como una estrellita. [[Abajo, la luna se rompía en pedacitos de agua.|Abajo, el río se tragaba la luna a trocitos.]] De pronto, un pie resbaló, ¡plaf!, y el agua fría le subió hasta el tobillo. «¡Ay!», dijo {hero}, sin apartar los ojos de la estrellita. La estrellita no se movía, y eso ayudaba. La orilla estaba a veinte tablones, hacia atrás; la hierba, a veinte, hacia delante. «Voy a seguir», dijo, y levantó el pie mojado.",
+              "text": "El viento sopló fuerte, ¡fuuu!, y los tablones se balancearon. {hero} no miró el agua: miró la otra orilla, donde algo brillaba como una estrellita. [[Abajo, la luna se rompía en pedacitos de agua.|Abajo, el río se tragaba la luna a trocitos.]] De pronto, un pie resbaló, ¡plaf!, y el agua fría le subió hasta el tobillo. «¡Ay!», dijo {hero}, sin apartar los ojos de la estrellita. La estrellita seguía en su sitio, y eso ayudaba. La orilla estaba a veinte tablones, hacia atrás; la hierba, a veinte, hacia delante. «Voy a seguir», dijo, y levantó el pie mojado.",
               "scene": {
                 "time": "noche",
                 "bg": "rio",
@@ -7859,13 +8157,12 @@
           "variants": [
             {
               "id": "a",
-              "text": "[[Aquella noche, la campana sonó otra vez fuerte y alegre.|La campana, esa noche, volvió a sonar fuerte y alegre.]] {hero} la oyó desde la cama, con los pies calentitos dentro de calcetines secos. El río seguía haciendo shhh, pero ya no decía «no puedes». Decía «buenas noches». {hero} cerró los ojos y cruzó el puente otra vez, solo que en sueños, muy despacio, con un poquito de miedo y, aun así, paso a paso.",
+              "text": "[[Aquella noche, la torre sonó otra vez fuerte y alegre.|El ¡dong! de la torre, esa noche, volvió a sonar fuerte y alegre.]] {hero} la oyó desde la cama, con los pies calentitos dentro de calcetines secos. El río seguía haciendo shhh, pero ya no decía «no puedes». Decía «buenas noches». {hero} cerró los ojos y cruzó el puente otra vez, solo que en sueños, muy despacio, con un poquito de miedo y, aun así, paso a paso.",
               "scene": {
                 "time": "noche",
                 "unseen": [
                   "puente",
-                  "cama",
-                  "campana"
+                  "cama"
                 ],
                 "bg": "cuarto",
                 "mood": "sleep",
@@ -7892,12 +8189,11 @@
             },
             {
               "id": "b",
-              "text": "[[Esa noche se oyó la campana desde la cama de {hero}.|Desde su cama, {hero} oyó la campana.]] Sonaba fuerte y redonda, sin una gota de tos. {hero} se arropó. Pensó en los cuarenta tablones, uno por uno, y en {apoyo.recuerdo}: los había cruzado todos. Fuera, el río hacía shhh. Y {hero} se durmió con el sonido del agua, que ahora sonaba a nana.",
+              "text": "[[Esa noche se oyó el ¡dong! de la torre desde la cama de {hero}.|Desde su cama, {hero} oyó el ¡dong! de la torre.]] Sonaba fuerte y redonda, sin una gota de tos. {hero} se arropó. Pensó en los cuarenta tablones, uno por uno, y en {apoyo.recuerdo}: los había cruzado todos. Fuera, el río hacía shhh. Y {hero} se durmió con el sonido del agua, que ahora sonaba a nana.",
               "scene": {
                 "time": "noche",
                 "unseen": [
-                  "cama",
-                  "campana"
+                  "cama"
                 ],
                 "bg": "cuarto",
                 "mood": "sleep",
@@ -7931,6 +8227,7 @@
       "id": "cuenco_yo_solo",
       "value": "humildad",
       "title": "El cuenco grande",
+      "lesson": "Pedir ayuda no da vergüenza: entre dos, lo pesado se lleva sin derramar.",
       "ages": [
         "4-5"
       ],
@@ -8338,7 +8635,7 @@
           "variants": [
             {
               "id": "cuenco_yo_solo_cierre",
-              "text": "Esa noche, {hero} volvió a la cocina de Rosa. Rosa le sirvió un plato de sopa tibia y le dio un abrazo. «Entre los dos llegasteis», dijo Rosa. «Y toda la aldea comió sopa.» Por la ventana asomaba la luna. {hero} bostezó, y Rosa arropó a {hero} en su camita. Con los ojos cerrados y la barriga caliente, {hero} se durmió.",
+              "text": "Esa noche, {hero} volvió a la cocina de Rosa. Rosa le sirvió un plato de sopa tibia y le dio un abrazo. «Entre los dos llegaron», dijo Rosa. «Y toda la aldea comió sopa.» Por la ventana asomaba la luna. {hero} bostezó, y Rosa arropó a {hero} en su camita. Con los ojos cerrados y la barriga caliente, {hero} se durmió.",
               "scene": {
                 "bg": "cocina",
                 "mood": "sleep",
@@ -8369,6 +8666,7 @@
       "id": "torre_de_piedras",
       "value": "perseverancia",
       "title": "La torre de piedras",
+      "lesson": "Si algo se cae muchas veces, pensar con calma nos enseña a hacerlo firme.",
       "ages": [
         "4-5"
       ],
@@ -8779,6 +9077,7 @@
       "id": "cinta_de_lia",
       "value": "amistad",
       "title": "La cinta de Lía",
+      "lesson": "Cuando un amigo pierde algo, buscamos juntos, porque dos pares de ojos ven más.",
       "ages": [
         "4-5"
       ],
@@ -8818,11 +9117,27 @@
                 "bg": "colina",
                 "mood": "calm",
                 "time": "dia",
-                "focus": {
-                  "prop": "cinta",
-                  "x": 0.5,
-                  "fill": 0.55
-                }
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "idle",
+                    "x": 0.32
+                  },
+                  {
+                    "rig": "lia",
+                    "clip": "talk",
+                    "x": 0.62
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "cinta",
+                    "near": "lia",
+                    "dx": 0.0,
+                    "lift": 124,
+                    "scale": 0.45
+                  }
+                ]
               }
             },
             {
@@ -8832,11 +9147,27 @@
                 "bg": "colina",
                 "mood": "calm",
                 "time": "dia",
-                "focus": {
-                  "prop": "cinta",
-                  "x": 0.5,
-                  "fill": 0.55
-                }
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "idle",
+                    "x": 0.32
+                  },
+                  {
+                    "rig": "lia",
+                    "clip": "talk",
+                    "x": 0.62
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "cinta",
+                    "near": "lia",
+                    "dx": 0.0,
+                    "lift": 124,
+                    "scale": 0.45
+                  }
+                ]
               }
             }
           ],
@@ -9194,6 +9525,7 @@
       "id": "ayudita",
       "value": "humildad",
       "title": "Una ayudita",
+      "lesson": "Si pesa mucho, pedimos ayuda.",
       "ages": [
         "2-3"
       ],
@@ -9233,11 +9565,23 @@
                 "bg": "plaza",
                 "mood": "calm",
                 "time": "dia",
-                "focus": {
-                  "prop": "saco",
-                  "x": 0.5,
-                  "fill": 0.5
-                }
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "proud",
+                    "x": 0.34
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "saco",
+                    "near": "hero",
+                    "dx": 0.12,
+                    "lift": 0,
+                    "scale": 1.3,
+                    "front": true
+                  }
+                ]
               }
             },
             {
@@ -9247,11 +9591,23 @@
                 "bg": "plaza",
                 "mood": "calm",
                 "time": "dia",
-                "focus": {
-                  "prop": "saco",
-                  "x": 0.5,
-                  "fill": 0.5
-                }
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "proud",
+                    "x": 0.34
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "saco",
+                    "near": "hero",
+                    "dx": 0.12,
+                    "lift": 0,
+                    "scale": 1.3,
+                    "front": true
+                  }
+                ]
               }
             }
           ],
@@ -9595,6 +9951,7 @@
       "id": "otra_vez",
       "value": "perseverancia",
       "title": "Otra vez",
+      "lesson": "Si la cometa cae, la subimos otra vez.",
       "ages": [
         "2-3"
       ],
@@ -9630,11 +9987,23 @@
                 "bg": "colina",
                 "mood": "calm",
                 "time": "dia",
-                "focus": {
-                  "prop": "cometa",
-                  "x": 0.5,
-                  "fill": 0.6
-                }
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "talk",
+                    "x": 0.36
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "cometa",
+                    "near": "hero",
+                    "dx": 0.1,
+                    "lift": 10,
+                    "scale": 0.6,
+                    "clip": "sway"
+                  }
+                ]
               }
             },
             {
@@ -9644,11 +10013,23 @@
                 "bg": "colina",
                 "mood": "calm",
                 "time": "dia",
-                "focus": {
-                  "prop": "cometa",
-                  "x": 0.5,
-                  "fill": 0.6
-                }
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "talk",
+                    "x": 0.36
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "cometa",
+                    "near": "hero",
+                    "dx": 0.1,
+                    "lift": 10,
+                    "scale": 0.6,
+                    "clip": "sway"
+                  }
+                ]
               }
             }
           ],
@@ -9949,6 +10330,7 @@
       "id": "regar_juntos",
       "value": "amistad",
       "title": "Regar juntos",
+      "lesson": "Con un amigo, cuidar es más bonito.",
       "ages": [
         "2-3"
       ],
@@ -9988,11 +10370,25 @@
                 "bg": "huerto",
                 "mood": "calm",
                 "time": "dia",
-                "focus": {
-                  "prop": "maceta_brote",
-                  "x": 0.5,
-                  "fill": 0.55
-                }
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "wonder",
+                    "x": 0.3
+                  },
+                  {
+                    "rig": "lia",
+                    "clip": "think",
+                    "x": 0.46
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "maceta_brote",
+                    "x": 0.64,
+                    "scale": 1.1
+                  }
+                ]
               }
             },
             {
@@ -10002,11 +10398,25 @@
                 "bg": "huerto",
                 "mood": "calm",
                 "time": "dia",
-                "focus": {
-                  "prop": "maceta_brote",
-                  "x": 0.5,
-                  "fill": 0.55
-                }
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "wonder",
+                    "x": 0.3
+                  },
+                  {
+                    "rig": "lia",
+                    "clip": "think",
+                    "x": 0.46
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "maceta_brote",
+                    "x": 0.64,
+                    "scale": 1.1
+                  }
+                ]
               }
             }
           ],
@@ -10228,12 +10638,26 @@
                 "bg": "huerto",
                 "mood": "triumph",
                 "time": "dia",
-                "focus": {
-                  "prop": "maceta_brote",
-                  "x": 0.5,
-                  "fill": 0.55,
-                  "clip": "grow"
-                }
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "clap",
+                    "x": 0.3
+                  },
+                  {
+                    "rig": "lia",
+                    "clip": "clap",
+                    "x": 0.46
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "maceta_brote",
+                    "clip": "grow",
+                    "x": 0.64,
+                    "scale": 1.1
+                  }
+                ]
               }
             }
           ]
@@ -10305,6 +10729,7 @@
       "id": "eco_colina",
       "value": "honestidad",
       "title": "El eco de la colina",
+      "lesson": "Una mentira pequeña echa a andar y crece de boca en boca; solo la verdad entera, con las palabras exactas, la detiene.",
       "ages": [
         "9-12"
       ],
@@ -10511,7 +10936,7 @@
           "variants": [
             {
               "id": "a",
-              "text": "{hero} bajó a la aldea con la cometa a rastras, y por el camino pasaron tantas cosas, un gato persiguiendo su propia cola, una carrera con Teo hasta el pozo, un olor a pan recién hecho que salía de la panadería, que el recado de Tomás se le fue escurriendo de la cabeza como el agua de un cubo con agujero. Al caer la tarde, Rosa lo paró en la plaza. «Os vi hablando bajo el roble. ¿Qué quería Tomás?» Al oírla, a {hero} se le heló el estómago: el martillo, la compuerta, Hugo… Rosa sonreía, segura de que {hero} nunca fallaba. «Nada, que ya se lo dije a Hugo», contestó {hero}, y la mentirijilla le salió sola, pequeña como una avellana. «Es algo del molino. Pero no te preocupes, ya está todo en marcha.»",
+              "text": "{hero} bajó a la aldea con la cometa a rastras, y por el camino pasaron tantas cosas, un gato persiguiendo su propia cola, una carrera con Teo hasta el pozo, un olor a pan recién hecho que salía de la panadería, que el recado de Tomás se le fue escurriendo de la cabeza como el agua de un cubo con agujero. Al caer la tarde, Rosa lo paró en la plaza. «Los vi hablando bajo el roble. ¿Qué quería Tomás?» Al oírla, a {hero} se le heló el estómago: el martillo, la compuerta, Hugo… Rosa sonreía, segura de que {hero} nunca fallaba. «Nada, que ya se lo dije a Hugo», contestó {hero}, y la mentirijilla le salió sola, pequeña como una avellana. «Es algo del molino. Pero no te preocupes, ya está todo en marcha.»",
               "scene": {
                 "time": "atardecer",
                 "bg": "aldea",
@@ -10535,21 +10960,25 @@
                     "dx": 0.09,
                     "lift": 60,
                     "scale": 0.5
+                  },
+                  {
+                    "prop": "pan",
+                    "near": "rosa",
+                    "dx": 0.06,
+                    "lift": 62,
+                    "scale": 0.45
                   }
                 ],
                 "offstage": [
                   "teo",
                   "tomas",
                   "hugo"
-                ],
-                "unseen": [
-                  "pan"
                 ]
               }
             },
             {
               "id": "b",
-              "text": "Fue una bajada larga y feliz, y por eso mismo peligrosa: {hero} corrió con la cometa, ayudó a un gato a bajar de un muro, echó una carrera con Teo hasta el pozo y se paró a oler el pan que sacaban de la panadería, hasta que el encargo de Tomás desapareció de su cabeza sin hacer ruido. Al caer la tarde, en la plaza, Rosa le preguntó: «¿Qué te quería Tomás? Os vi bajo el roble.» De golpe {hero} lo recordó todo, y se le heló el estómago. Rosa lo miraba con tanta confianza que no hubo modo de confesar. «Ya se lo dije a Hugo», soltó {hero}. «Cosas del molino. Está todo en marcha, no te preocupes.»",
+              "text": "Fue una bajada larga y feliz, y por eso mismo peligrosa: {hero} corrió con la cometa, ayudó a un gato a bajar de un muro, echó una carrera con Teo hasta el pozo y se paró a oler el pan que sacaban de la panadería, hasta que el encargo de Tomás desapareció de su cabeza sin hacer ruido. Al caer la tarde, en la plaza, Rosa le preguntó: «¿Qué te quería Tomás? Los vi bajo el roble.» De golpe {hero} lo recordó todo, y se le heló el estómago. Rosa lo miraba con tanta confianza que no hubo modo de confesar. «Ya se lo dije a Hugo», soltó {hero}. «Cosas del molino. Está todo en marcha, no te preocupes.»",
               "scene": {
                 "time": "atardecer",
                 "bg": "aldea",
@@ -10573,15 +11002,19 @@
                     "dx": 0.09,
                     "lift": 60,
                     "scale": 0.5
+                  },
+                  {
+                    "prop": "pan",
+                    "near": "rosa",
+                    "dx": 0.06,
+                    "lift": 62,
+                    "scale": 0.45
                   }
                 ],
                 "offstage": [
                   "teo",
                   "tomas",
                   "hugo"
-                ],
-                "unseen": [
-                  "pan"
                 ]
               }
             }
@@ -10592,7 +11025,7 @@
           "variants": [
             {
               "id": "a",
-              "text": "A la mañana siguiente, junto al pozo, {hero} descubrió lo que le pasa a una palabra cuando nadie la ata. Rosa le contaba a una vecina, mientras un aldeano escuchaba con la boca abierta: «Tomás se trae algo entre manos con el molino. Es un secreto.» Dos pasos más allá, Teo ya lo repetía así: «Tomás ha cerrado el molino y no quiere decir por qué.» Y poco después, junto a la fuente de la plaza, el mismo aldeano le decía a Hugo: «Dicen que Tomás no va a moler más trigo, ni siquiera para vosotros.» Hugo, que no sabía nada del martillo ni de la compuerta, se puso rojo hasta las orejas. {hero} quiso hablar, pero las palabras se le quedaron pegadas a la garganta como miel fría.",
+              "text": "A la mañana siguiente, junto al pozo, {hero} descubrió lo que le pasa a una palabra cuando nadie la ata. Rosa le contaba a una vecina, mientras un aldeano escuchaba con la boca abierta: «Tomás se trae algo entre manos con el molino. Es un secreto.» Dos pasos más allá, Teo ya lo repetía así: «Tomás ha cerrado el molino y no quiere decir por qué.» Y poco después, junto a la fuente de la plaza, el mismo aldeano le decía a Hugo: «Dicen que Tomás no va a moler más trigo, ni siquiera para ustedes.» Hugo, que no sabía nada del martillo ni de la compuerta, se puso rojo hasta las orejas. {hero} quiso hablar, pero las palabras se le quedaron pegadas a la garganta como miel fría.",
               "scene": {
                 "time": "dia",
                 "bg": "aldea",
@@ -11073,7 +11506,7 @@
           "variants": [
             {
               "id": "a",
-              "text": "Casi no durmió, ensayando en voz baja lo que iba a decir, y al mediodía la plaza estaba llena de murmullos. {hero} se subió al borde del pozo con {helper} a su lado, pensando que nunca había visto tantas caras juntas. «Escuchadme, por favor», dijo con la voz temblando. «Tomás me dio un recado para Hugo: que subiera con el martillo grande, porque se le rajó la compuerta del molino. Y no se lo dije. Me distraje, me olvidé, y cuando Rosa me preguntó, dije que ya lo había hecho. No era verdad. Todo lo demás lo habéis ido añadiendo sin querer, pero el principio fue mío.» Teo bajó la mirada. Rosa abrió la boca y la cerró. «Confié en ti», murmuró, con una tristeza fina que dolía más que un grito. A {hero} le ardían las mejillas, pero respiró como si pesara la mitad.",
+              "text": "Casi no durmió, ensayando en voz baja lo que iba a decir, y al mediodía la plaza estaba llena de murmullos. {hero} se subió al borde del pozo con {helper} a su lado, pensando que nunca había visto tantas caras juntas. «Escuchadme, por favor», dijo con la voz temblando. «Tomás me dio un recado para Hugo: que subiera con el martillo grande, porque se le rajó la compuerta del molino. Y no se lo dije. Me distraje, me olvidé, y cuando Rosa me preguntó, dije que ya lo había hecho. No era verdad. Todo lo demás lo han ido añadiendo sin querer, pero el principio fue mío.» Teo bajó la mirada. Rosa abrió la boca y la cerró. «Confié en ti», murmuró, con una tristeza fina que dolía más que un grito. A {hero} le ardían las mejillas, pero respiró como si pesara la mitad.",
               "scene": {
                 "time": "dia",
                 "bg": "aldea",
@@ -11116,7 +11549,7 @@
             },
             {
               "id": "b",
-              "text": "Después de una noche en blanco, {hero} esperó a que la plaza se llenara a mediodía, tragó saliva y se subió al borde del pozo, con {helper} a su lado. Tenía las rodillas como gelatina. «Quiero contaros lo que pasó de verdad», anunció. «Tomás me pidió que avisara a Hugo de que subiera con el martillo, porque se le rajó la compuerta del molino. Me olvidé. Y para que nadie lo notara, dije que ya estaba hecho, y esa mentira ha corrido por toda la aldea disfrazada de otras cosas.» Teo bajó la cabeza. «Me dijiste que todo estaba en marcha…», susurró. Rosa lo miraba sin sonreír, y esa mirada pesó más que cualquier regañina. Aun así, a {hero} le salió un suspiro largo, de los que sueltan un nudo.",
+              "text": "Después de una noche en blanco, {hero} esperó a que la plaza se llenara a mediodía, tragó saliva y se subió al borde del pozo, con {helper} a su lado. Tenía las rodillas como gelatina. «Quiero contarles lo que pasó de verdad», anunció. «Tomás me pidió que avisara a Hugo de que subiera con el martillo, porque se le rajó la compuerta del molino. Me olvidé. Y para que nadie lo notara, dije que ya estaba hecho, y esa mentira ha corrido por toda la aldea disfrazada de otras cosas.» Teo bajó la cabeza. «Me dijiste que todo estaba en marcha…», susurró. Rosa lo miraba sin sonreír, y esa mirada pesó más que cualquier regañina. Aun así, a {hero} le salió un suspiro largo, de los que sueltan un nudo.",
               "scene": {
                 "time": "dia",
                 "bg": "aldea",
@@ -11165,7 +11598,7 @@
           "variants": [
             {
               "id": "a",
-              "text": "Nadie esperó a que {hero} terminara de hablar. Hugo echó a correr a por su martillo grande, Rosa llenó un cesto de rosquillas, Teo cargó con una caja de clavos, y todos juntos, con {helper} cerrando la fila, subieron por el camino de la colina. Tomás seguía bajo el roble, con una mano en los riñones, como si el árbol le hubiera echado raíces. Había pasado la noche empujando la compuerta sin ayuda de nadie. «Perdonad», dijo {hero} sin aliento. «Fue culpa mía.» Tomás sacudió la cabeza. «No toda, muchacho. Yo te pedí que no se lo dijeras a nadie más, porque me daba vergüenza que se supiera que un molinero no puede con su compuerta. Si hubiera pedido ayuda a gritos, esto se habría arreglado en un día.» {hero} se dio cuenta de que el nudo tenía dos cabos, y de que Tomás sujetaba uno.",
+              "text": "Nadie esperó a que {hero} terminara de hablar. Hugo echó a correr a por su martillo grande, Rosa llenó un cesto de rosquillas, Teo cargó con una caja de clavos, y todos juntos, con {helper} cerrando la fila, subieron por el camino de la colina. Tomás seguía bajo el roble, con una mano en los riñones, como si el árbol le hubiera echado raíces. Había pasado la noche empujando la compuerta sin ayuda de nadie. «Perdonen», dijo {hero} sin aliento. «Fue culpa mía.» Tomás sacudió la cabeza. «No toda, muchacho. Yo te pedí que no se lo dijeras a nadie más, porque me daba vergüenza que se supiera que un molinero no puede con su compuerta. Si hubiera pedido ayuda a gritos, esto se habría arreglado en un día.» {hero} se dio cuenta de que el nudo tenía dos cabos, y de que Tomás sujetaba uno.",
               "scene": {
                 "time": "dia",
                 "bg": "colina",
@@ -11350,7 +11783,7 @@
           "variants": [
             {
               "id": "a",
-              "text": "Aquella noche, {hero} se metió en la cama y notó que algo había cambiado en su pecho: la piedra ya no estaba, y en su lugar quedaba un hueco tibio, como el que deja un pan recién hecho. Por la ventana se veía la silueta redonda de la colina, con el roble pequeñito en lo alto. Los sacos de la aldea dormían en fila junto al molino, y el eco, allá arriba, guardaba en silencio todas las palabras del día, tal como se las habían dado. {hero} tiró de la manta hasta la barbilla, bostezó y se quedó dormid{hero.o} contando las palabras verdaderas que sabía, que eran muchas, y que ya no pesaban nada.",
+              "text": "Aquella noche, {hero} se metió en la cama y notó que algo había cambiado en su pecho: la piedra ya no estaba, y en su lugar quedaba un hueco tibio, como el que deja un gato al bajarse de la cama. Por la ventana se veía la silueta redonda de la colina, con el roble pequeñito en lo alto. Los sacos de la aldea dormían en fila junto al molino, y el eco, allá arriba, guardaba en silencio todas las palabras del día, tal como se las habían dado. {hero} tiró de la manta hasta la barbilla, bostezó y se quedó dormid{hero.o} contando las palabras verdaderas que sabía, que eran muchas, y que ya no pesaban nada.",
               "scene": {
                 "time": "noche",
                 "bg": "cuarto",
@@ -11373,9 +11806,6 @@
                     "scale": 1.05,
                     "front": true
                   }
-                ],
-                "unseen": [
-                  "pan"
                 ],
                 "offstage": [
                   "rosa",
@@ -11412,9 +11842,6 @@
                     "front": true
                   }
                 ],
-                "unseen": [
-                  "pan"
-                ],
                 "offstage": [
                   "rosa",
                   "tomas"
@@ -11432,6 +11859,7 @@
       "id": "huerto_seco",
       "value": "generosidad",
       "title": "El huerto de todos",
+      "lesson": "Repartir con justicia lo poco que hay puede dejarnos con menos, pero convierte lo nuestro en algo que todos cuidan cuando hace falta.",
       "ages": [
         "9-12"
       ],
@@ -11514,13 +11942,24 @@
                 "bg": "huerto",
                 "time": "dia",
                 "mood": "tension",
-                "focus": {
-                  "prop": "regadera",
-                  "x": 0.5,
-                  "fill": 0.5
-                },
                 "unseen": [
                   "pozo"
+                ],
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "walk",
+                    "x": 0.4
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "regadera",
+                    "near": "hero",
+                    "dx": 0.08,
+                    "lift": 0,
+                    "scale": 0.7
+                  }
                 ]
               }
             },
@@ -11531,13 +11970,24 @@
                 "bg": "huerto",
                 "time": "dia",
                 "mood": "tension",
-                "focus": {
-                  "prop": "regadera",
-                  "x": 0.5,
-                  "fill": 0.5
-                },
                 "unseen": [
                   "pozo"
+                ],
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "walk",
+                    "x": 0.4
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "regadera",
+                    "near": "hero",
+                    "dx": 0.08,
+                    "lift": 0,
+                    "scale": 0.7
+                  }
                 ]
               }
             }
@@ -11636,7 +12086,7 @@
           "variants": [
             {
               "id": "a",
-              "text": "Al caer la tarde llegó también {villain.el} {villain}, que no traía cubos sino una libreta. {villain} {villain.gesto} y miró el hilo de agua como otros miran un cofre. «¡Qué desperdicio!», dijo {villain.voz}. «Un manantial vivo en plena sequía y lo regaláis por amor al arte. ¿Sabes lo que vale hoy un cubo de agua en el valle? Una moneda. Dos, a la hora de comer. Véndela, {hero}. Tú pones el agua, yo pongo los clientes y la libreta, y nos repartimos las ganancias. Antes de que acabe el verano tendrías un huerto de oro.» Su sombra, larga y flaca sobre la tierra seca, parecía apuntar cada cifra en otra libreta. {hero} se quedó mirando la regadera, que de pronto parecía pesar mucho más.",
+              "text": "Al caer la tarde llegó también {villain.el} {villain}, que no traía cubos sino una libreta. {villain} {villain.gesto} y miró el hilo de agua como otros miran un cofre. «¡Qué desperdicio!», dijo {villain.voz}. «Un manantial vivo en plena sequía y lo regalan por amor al arte. ¿Sabes lo que vale hoy un cubo de agua en el valle? Una moneda. Dos, a la hora de comer. Véndela, {hero}. Tú pones el agua, yo pongo los clientes y la libreta, y nos repartimos las ganancias. Antes de que acabe el verano tendrías un huerto de oro.» Su sombra, larga y flaca sobre la tierra seca, parecía apuntar cada cifra en otra libreta. {hero} se quedó mirando la regadera, que de pronto parecía pesar mucho más.",
               "scene": {
                 "time": "atardecer",
                 "bg": "huerto",
@@ -11852,7 +12302,7 @@
             },
             {
               "id": "b",
-              "text": "Por la mañana, {hero} clavó en la valla una tabla con once nombres y una regla escrita con carbón: un turno por casa, dos cubos de agua cada una, y {item.el} de mano en mano, sin quedarse nunca en ninguna. {helper} le sostuvo la tabla, Teo aplaudió y Rosa leyó los nombres en voz alta, uno a uno. «Pero tu huerto…», empezó Lía. «Tendrá su turno, igual que el vuestro», respondió {hero}. Entonces {villain} se acercó, {villain.gesto} y soltó, {villain.voz}: «Cuando tus coles se sequen por regalar el agua, no vengas a llorarme con la regadera vacía.» Y se fue sin gritar, que era lo más educado que sabía. La abuela, desde el cobertizo, comentó que las coles se comen igual de flacas.",
+              "text": "Por la mañana, {hero} clavó en la valla una tabla con once nombres y una regla escrita con carbón: un turno por casa, dos cubos de agua cada una, y {item.el} de mano en mano, sin quedarse nunca en ninguna. {helper} le sostuvo la tabla, Teo aplaudió y Rosa leyó los nombres en voz alta, uno a uno. «Pero tu huerto…», empezó Lía. «Tendrá su turno, igual que el de ustedes», respondió {hero}. Entonces {villain} se acercó, {villain.gesto} y soltó, {villain.voz}: «Cuando tus coles se sequen por regalar el agua, no vengas a llorarme con la regadera vacía.» Y se fue sin gritar, que era lo más educado que sabía. La abuela, desde el cobertizo, comentó que las coles se comen igual de flacas.",
               "scene": {
                 "time": "dia",
                 "bg": "huerto",
@@ -12416,7 +12866,7 @@
           "variants": [
             {
               "id": "a",
-              "text": "Aquella noche, {hero} se acostó con las manos huelendo a tierra mojada y la manta hasta la nariz. En el tejado, la lluvia dejó de repiquetear y se quedó en un tamborileo suave, sosegado, de esos que arrullan a los árboles. Los once nombres de la tabla dormían en sus casas, y el huerto, allá abajo, bebía y bebía, por una vez, sin turno. La abuela había dicho que las coles de este año serían pequeñas y sabrosas. {hero} sonrió en la penumbra, pensó en el manantial, que seguía goteando detrás del cobertizo para todos, y se quedó dormid{hero.o} antes de acabar la cuenta de las gotas.",
+              "text": "Aquella noche, {hero} se acostó con las manos oliendo a tierra mojada y la manta hasta la nariz. En el tejado, la lluvia dejó de repiquetear y se quedó en un tamborileo suave, sosegado, de esos que arrullan a los árboles. Los once nombres de la tabla dormían en sus casas, y el huerto, allá abajo, bebía y bebía, por una vez, sin turno. La abuela había dicho que las coles de este año serían pequeñas y sabrosas. {hero} sonrió en la penumbra, pensó en el manantial, que seguía goteando detrás del cobertizo para todos, y se quedó dormid{hero.o} antes de acabar la cuenta de las gotas.",
               "scene": {
                 "time": "noche",
                 "bg": "cuarto",
@@ -12484,6 +12934,7 @@
       "id": "aprendiz_sabelotodo",
       "value": "humildad",
       "title": "El aprendiz que todo lo sabía",
+      "lesson": "Decir «ya lo sé» cierra la puerta a aprender; dejarnos enseñar, incluso por alguien más pequeño, la abre de par en par.",
       "ages": [
         "9-12"
       ],
@@ -12563,14 +13014,33 @@
                 "bg": "torre",
                 "mood": "calm",
                 "time": "dia",
-                "focus": {
-                  "prop": "cuerda_rollo",
-                  "x": 0.5,
-                  "lift": 60,
-                  "fill": 0.6
-                },
-                "unseen": [
-                  "campana"
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "proud",
+                    "x": 0.28
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "talk",
+                    "x": 0.68
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "cuerda_rollo",
+                    "near": "hero",
+                    "dx": 0.07,
+                    "lift": 0,
+                    "scale": 0.5
+                  },
+                  {
+                    "prop": "campana_colgada",
+                    "clip": "swing",
+                    "x": 0.41,
+                    "lift": 336,
+                    "scale": 1.0
+                  }
                 ]
               }
             },
@@ -12581,14 +13051,33 @@
                 "bg": "torre",
                 "mood": "calm",
                 "time": "dia",
-                "focus": {
-                  "prop": "cuerda_rollo",
-                  "x": 0.5,
-                  "lift": 60,
-                  "fill": 0.6
-                },
-                "unseen": [
-                  "campana"
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "proud",
+                    "x": 0.28
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "talk",
+                    "x": 0.68
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "cuerda_rollo",
+                    "near": "hero",
+                    "dx": 0.07,
+                    "lift": 0,
+                    "scale": 0.5
+                  },
+                  {
+                    "prop": "campana_colgada",
+                    "clip": "swing",
+                    "x": 0.41,
+                    "lift": 336,
+                    "scale": 1.0
+                  }
                 ]
               }
             }
@@ -12931,7 +13420,7 @@
           "variants": [
             {
               "id": "a",
-              "text": "{hero} se secó la cara con la manga, se puso de pie con las rodillas llenas de tierra y atravesó el huerto despacio, como se camina hacia un baño frío. Lía levantó la vista de la caña que estaba atando. «Perdóname lo de antes», dijo {hero}. «Tenías razón. ¿Me enseñas el nudo del conejo?» Lía lo pensó, o hizo como que lo pensaba. «Mi cabra me ha dicho cosas peores», contestó al fin. Cogió un cabo de {item.el}, que {hero} arrastraba todavía, y dibujó con el dedo un agujerito. «Mira. El conejo sale de su agujero, da la vuelta al árbol… y vuelve a entrar.» {hero} lo intentó. Le salió un churro. Lo intentó otra vez, y le salió un churro más pequeño. «Otra vez», dijo Lía, sin un solo suspiro, y a la tercera el conejo entró en su agujero y se quedó allí, redondo y flaco, mucho más pequeño que la bola de lana de antes y mucho más fuerte. {hero} tiró con todas sus fuerzas. No se movió.",
+              "text": "{hero} se secó la cara con la manga, se puso de pie con las rodillas llenas de tierra y atravesó el huerto despacio, como se camina hacia un baño frío. Lía levantó la vista de la caña que estaba atando. «Perdóname lo de antes», dijo {hero}. «Tenías razón. ¿Me enseñas el nudo del conejo?» Lía lo pensó, o hizo como que lo pensaba. «Mi cabra me ha dicho cosas peores», contestó al fin. Cogió un cabo de {item.el}, que {hero} arrastraba todavía, y dibujó con el dedo un agujerito. «Mira. El conejo sale de su agujero, da la vuelta al árbol… y vuelve a entrar.» {hero} lo intentó. Le salió un churro. Lo intentó otra vez, y le salió un churro más pequeño. «Otra vez», dijo Lía, sin un solo suspiro, y a la tercera el conejo entró en su agujero y se quedó allí, redondo y flaco, mucho más pequeño que la bola de lana de antes y mucho más fuerte. {hero} tiró con todas sus fuerzas. El nudo aguantó.",
               "scene": {
                 "bg": "huerto",
                 "mood": "hope",
@@ -13060,7 +13549,7 @@
             },
             {
               "id": "b",
-              "text": "{hero} ató el nudo del conejo con la lengua entre los dientes, mientras Lía alumbraba con la vela. Sale, rodea, entra. Parecía poca cosa después de la enorme bola de lana de antes, y por eso mismo costaba un poco fiarse. «Pruébalo», dijo Lía. {hero} tiró suave, solo un poquito, y la campana respondió con un «dan» pequeño y redondo. El nudo no se movió ni un dedo. Entonces {hero} tiró con todas sus fuerzas, y la campana, que llevaba un buen rato esperando una razón, se puso a cantar: ¡dooon, dooon, dooon! El sonido llenó la torre hasta los bordes, se derramó por la escalera, rodó por los tejados y se fue despacio hacia el lago. Lía se tapó los oídos riendo, y {hero} también, aunque en el fondo no quería dejar de oírlo.",
+              "text": "{hero} ató el nudo del conejo con la lengua entre los dientes, mientras Lía alumbraba con la vela. Sale, rodea, entra. Parecía poca cosa después de la enorme bola de lana de antes, y por eso mismo costaba un poco fiarse. «Pruébalo», dijo Lía. {hero} tiró suave, solo un poquito, y la campana respondió con un «dan» pequeño y redondo. El nudo aguantó, firme como una piedra. Entonces {hero} tiró con todas sus fuerzas, y la campana, que llevaba un buen rato esperando una razón, se puso a cantar: ¡dooon, dooon, dooon! El sonido llenó la torre hasta los bordes, se derramó por la escalera, rodó por los tejados y se fue despacio hacia el lago. Lía se tapó los oídos riendo, y {hero} también, aunque en el fondo no quería dejar de oírlo.",
               "scene": {
                 "bg": "torre",
                 "mood": "triumph",
@@ -13203,7 +13692,7 @@
           "variants": [
             {
               "id": "a",
-              "text": "Esa noche, {hero} se metió en la cama con un cordón de las botas entre los dedos. Por la ventana abierta llegaba, allá a lo lejos, el don, don, don de la campana de la torre, que {helper} tocaba despacito para decir que ya era hora de dormir, y que sonaba redondo, firme, sin una sola vuelta de más. {hero} hizo un agujerito con los dedos, rodeó el árbol, volvió a entrar. Otra vez. Y otra. El conejo salía y entraba de su agujero, cada vez más despacio, hasta que los dedos dejaron de saber qué hacían y {hero} se quedó dormid{hero.o}, con el nudo hecho y la cabeza en paz.",
+              "text": "Esa noche, {hero} se metió en la cama con un cordón de las botas entre los dedos. Por la ventana abierta llegaba, allá a lo lejos, el don, don, don de la torre, que {helper} tocaba despacito para decir que ya era hora de dormir, y que sonaba redondo, firme, sin una sola vuelta de más. {hero} hizo un agujerito con los dedos, rodeó el árbol, volvió a entrar. Otra vez. Y otra. El conejo salía y entraba de su agujero, cada vez más despacio, hasta que los dedos dejaron de saber qué hacían y {hero} se quedó dormid{hero.o}, con el nudo hecho y la cabeza en paz.",
               "scene": {
                 "bg": "cuarto",
                 "mood": "sleep",
@@ -13226,9 +13715,6 @@
                     "scale": 1.05,
                     "front": true
                   }
-                ],
-                "unseen": [
-                  "campana"
                 ],
                 "offstage": [
                   "helper"
@@ -13240,7 +13726,7 @@
             },
             {
               "id": "b",
-              "text": "Aquella noche, ya en el cuarto, {hero} se tumbó con un cordón de las botas en las manos. Desde lo alto del castillo llegaba, muy lejos, el don, don, don de la campana, que {helper} hacía sonar despacio para mandar a todos a la cama, y que sonaba como una nana: redonda, firme, sin una sola vuelta de más. {hero} dibujó con el cordón un agujerito. El conejo salió, rodeó el árbol, volvió a entrar. Salió otra vez, más despacio. Entró otra vez, más despacio todavía. Y antes de que el conejo terminara la tercera vuelta, {hero} ya dormía, con una sonrisa pequeña y el nudo bien hecho entre los dedos.",
+              "text": "Aquella noche, ya en el cuarto, {hero} se tumbó con un cordón de las botas en las manos. Desde lo alto del castillo llegaba, muy lejos, el don, don, don de la torre, que {helper} hacía sonar despacio para mandar a todos a la cama, y que sonaba como una nana: redonda, firme, sin una sola vuelta de más. {hero} dibujó con el cordón un agujerito. El conejo salió, rodeó el árbol, volvió a entrar. Salió otra vez, más despacio. Entró otra vez, más despacio todavía. Y antes de que el conejo terminara la tercera vuelta, {hero} ya dormía, con una sonrisa pequeña y el nudo bien hecho entre los dedos.",
               "scene": {
                 "bg": "cuarto",
                 "mood": "sleep",
@@ -13263,9 +13749,6 @@
                     "scale": 1.05,
                     "front": true
                   }
-                ],
-                "unseen": [
-                  "campana"
                 ],
                 "offstage": [
                   "helper"
@@ -13283,6 +13766,7 @@
       "id": "roble_atrapado",
       "value": "humildad",
       "title": "El roble de la colina",
+      "lesson": "Cuando el orgullo nos deja atascados, decir «necesito ayuda» y escuchar las ideas de los demás nos devuelve al suelo.",
       "ages": [
         "6-8"
       ],
@@ -13343,13 +13827,32 @@
                 "bg": "colina",
                 "mood": "hope",
                 "time": "dia",
-                "focus": {
-                  "prop": "cometa",
-                  "x": 0.5,
-                  "lift": 150,
-                  "fill": 0.6,
-                  "clip": "sway"
-                }
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "surprised",
+                    "x": 0.22
+                  },
+                  {
+                    "rig": "teo",
+                    "clip": "scared",
+                    "x": 0.46
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "roble",
+                    "x": 0.82,
+                    "scale": 1.5
+                  },
+                  {
+                    "prop": "cometa",
+                    "clip": "sway",
+                    "x": 0.78,
+                    "lift": 240,
+                    "scale": 0.45
+                  }
+                ]
               }
             },
             {
@@ -13359,13 +13862,37 @@
                 "bg": "colina",
                 "mood": "hope",
                 "time": "dia",
-                "focus": {
-                  "prop": "cometa",
-                  "x": 0.5,
-                  "lift": 150,
-                  "fill": 0.6,
-                  "clip": "sway"
-                }
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "surprised",
+                    "x": 0.18
+                  },
+                  {
+                    "rig": "teo",
+                    "clip": "scared",
+                    "x": 0.36
+                  },
+                  {
+                    "rig": "lia",
+                    "clip": "point",
+                    "x": 0.54
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "roble",
+                    "x": 0.82,
+                    "scale": 1.5
+                  },
+                  {
+                    "prop": "cometa",
+                    "clip": "sway",
+                    "x": 0.78,
+                    "lift": 240,
+                    "scale": 0.45
+                  }
+                ]
               }
             }
           ]
@@ -14217,6 +14744,7 @@
       "id": "escalera_torre",
       "value": "perseverancia",
       "title": "Los ciento doce escalones",
+      "lesson": "Una escalera larga se sube por tramos cortos: mirar cuánto llevamos, y no cuánto falta, nos da fuerzas para seguir.",
       "ages": [
         "6-8"
       ],
@@ -14283,13 +14811,25 @@
                 "bg": "torre",
                 "mood": "calm",
                 "time": "dia",
-                "focus": {
-                  "prop": "campana",
-                  "x": 0.5,
-                  "fill": 0.6,
-                  "clip": "ring",
-                  "lift": 235
-                }
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "wonder",
+                    "x": 0.24
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "campana",
+                    "clip": "ring",
+                    "x": 0.41,
+                    "lift": 250,
+                    "scale": 1.0
+                  }
+                ],
+                "offstage": [
+                  "tomas"
+                ]
               }
             },
             {
@@ -14299,13 +14839,25 @@
                 "bg": "torre",
                 "mood": "calm",
                 "time": "dia",
-                "focus": {
-                  "prop": "campana",
-                  "x": 0.5,
-                  "fill": 0.6,
-                  "clip": "ring",
-                  "lift": 235
-                }
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "wonder",
+                    "x": 0.24
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "campana",
+                    "clip": "ring",
+                    "x": 0.41,
+                    "lift": 250,
+                    "scale": 1.0
+                  }
+                ],
+                "offstage": [
+                  "tomas"
+                ]
               }
             }
           ]
@@ -14333,10 +14885,7 @@
                     "x": 0.62
                   }
                 ],
-                "props": [],
-                "unseen": [
-                  "campana"
-                ]
+                "props": []
               }
             },
             {
@@ -14358,10 +14907,7 @@
                     "x": 0.62
                   }
                 ],
-                "props": [],
-                "unseen": [
-                  "campana"
-                ]
+                "props": []
               }
             }
           ]
@@ -14798,7 +15344,7 @@
           "variants": [
             {
               "id": "a",
-              "text": "En la plaza, los vecinos salieron de sus casas con las mejores galletas, porque la campana había hablado. Tomás dejó de frotarse las rodillas y aplaudió con las dos manos. «Justo a tiempo», dijo, y le puso a {hero} su bufanda de campanero. {villain} fue el último en bajar, agarrándose a la pared, con una cruz de tiza en la espalda, porque nadie se lo había dicho. Por una vez, no dijo que nada fuera imposible. Aceptó una galleta, y luego otra, y esa noche hasta las galletas parecían saber más ricas.",
+              "text": "En la plaza, los vecinos salieron de sus casas con las mejores galletas, porque la torre había hablado. Tomás dejó de frotarse las rodillas y aplaudió con las dos manos. «Justo a tiempo», dijo, y le puso a {hero} su bufanda de campanero. {villain} fue el último en bajar, agarrándose a la pared, con una cruz de tiza en la espalda, porque nadie se lo había dicho. Por una vez, no dijo que nada fuera imposible. Aceptó una galleta, y luego otra, y esa noche hasta las galletas parecían saber más ricas.",
               "scene": {
                 "bg": "plaza",
                 "mood": "joy",
@@ -14830,10 +15376,7 @@
                     "x": 0.82
                   }
                 ],
-                "props": [],
-                "unseen": [
-                  "campana"
-                ]
+                "props": []
               },
               "requires": [
                 "marcas"
@@ -14873,10 +15416,7 @@
                     "x": 0.82
                   }
                 ],
-                "props": [],
-                "unseen": [
-                  "campana"
-                ]
+                "props": []
               },
               "requires": [
                 "marcas"
@@ -14890,7 +15430,7 @@
           "variants": [
             {
               "id": "a",
-              "text": "Aquella noche, en la cama, a {hero} le hormigueaban las piernas como si dentro vivieran mil hormigas. Cerró los ojos. En vez de ovejas, contó cruces de tiza: diez, veinte, treinta… A lo lejos, la campana todavía zumbaba un poquito, ¡dong…, dong…!, como un gato que ronronea. Por la ventana entraba el último olor de la fiesta. {hero} llegó al ciento doce, y ya no hizo falta contar más.",
+              "text": "Aquella noche, en la cama, a {hero} le hormigueaban las piernas como si dentro vivieran mil hormigas. Cerró los ojos. En vez de ovejas, contó cruces de tiza: diez, veinte, treinta… A lo lejos, la torre todavía zumbaba un poquito, ¡dong…, dong…!, como un gato que ronronea. Por la ventana entraba el último olor de la fiesta. {hero} llegó al ciento doce, y ya no hizo falta contar más.",
               "scene": {
                 "bg": "cuarto",
                 "mood": "sleep",
@@ -14913,9 +15453,6 @@
                     "scale": 1.05,
                     "front": true
                   }
-                ],
-                "unseen": [
-                  "campana"
                 ]
               },
               "requires": [
@@ -14924,7 +15461,7 @@
             },
             {
               "id": "b",
-              "text": "En el cuarto de {hero} todo estaba en calma. Las piernas zumbaban todavía, tan cansadas que parecían de otra persona. {hero} repasó el día en la cama: una cruz de tiza, otra cruz, otra más, once en total, y al final dos escalones sin cruz que se subieron solos. Dentro de la cabeza, la campana seguía sonando bajito: ¡dong…, dong…! {hero} se quedó dormid{hero.o} antes del último ¡dong!",
+              "text": "En el cuarto de {hero} todo estaba en calma. Las piernas zumbaban todavía, tan cansadas que parecían de otra persona. {hero} repasó el día en la cama: una cruz de tiza, otra cruz, otra más, once en total, y al final dos escalones sin cruz que se subieron solos. Dentro de la cabeza, el ¡dong! seguía sonando bajito: ¡dong…, dong…! {hero} se quedó dormid{hero.o} antes del último ¡dong!",
               "scene": {
                 "bg": "cuarto",
                 "mood": "sleep",
@@ -14947,9 +15484,6 @@
                     "scale": 1.05,
                     "front": true
                   }
-                ],
-                "unseen": [
-                  "campana"
                 ]
               },
               "requires": [
@@ -14964,6 +15498,7 @@
       "id": "amigo_nuevo",
       "value": "amistad",
       "title": "La niña de la mochila verde",
+      "lesson": "Si nos reímos de alguien, un perdón sincero, sin excusas, puede convertir aquel mal rato en una amistad nueva.",
       "ages": [
         "6-8"
       ],
@@ -15111,7 +15646,7 @@
             },
             {
               "id": "b",
-              "text": "Lía se puso en la rueda sin soltar las correas de la mochila verde. {hero} le explicó las reglas deprisa: girar a la derecha, cantar la canción, quedarse sin moverse al final. Lía lo intentó con todas sus fuerzas. Pero giró a la izquierda, porque en su pueblo se giraba al revés, y cantó la canción de un pez que tocaba la flauta. Al final de la ronda todos quedaron como estatuas, menos Lía, que siguió girando como una trompo y tropezó con Teo. ¡Pum! Se cayeron los dos, y la mochila verde rodó hasta el pozo. «¡Un pez con flauta!», dijo Teo, y se echó a reír. Beto se agarró la barriga: «¡Si ni sabe girar!»",
+              "text": "Lía se puso en la rueda sin soltar las correas de la mochila verde. {hero} le explicó las reglas deprisa: girar a la derecha, cantar la canción, quedarse como estatuas al final. Lía lo intentó con todas sus fuerzas. Pero giró a la izquierda, porque en su pueblo se giraba al revés, y cantó la canción de un pez que tocaba la flauta. Al final de la ronda todos quedaron como estatuas, menos Lía, que siguió girando como una trompo y tropezó con Teo. ¡Pum! Se cayeron los dos, y la mochila verde rodó hasta el pozo. «¡Un pez con flauta!», dijo Teo, y se echó a reír. Beto se agarró la barriga: «¡Si ni sabe girar!»",
               "scene": {
                 "bg": "plaza",
                 "mood": "tension",
@@ -15741,6 +16276,7 @@
       "id": "dos_faroles",
       "value": "amistad",
       "title": "Los dos faroles",
+      "lesson": "Ganar el mejor sitio vale poco a solas; compartir la luz con un amigo, y saber pedirle perdón, no nos quita nada.",
       "ages": [
         "9-12"
       ],
@@ -15863,7 +16399,7 @@
           "variants": [
             {
               "id": "a",
-              "text": "A media tarde, {hero} cruzó la aldea con un bote de engrudo en una mano y un fajo de papeles en la otra, esquivando gallinas y vecinos. Junto al pozo, un corro de niños comparaba sus faroles entre risas. Un poco más allá, sentado en el borde de piedra, había un chico al que {hero} no conocía. Era Teo, el hijo del nuevo ayudante del molino, que había llegado a la aldea hacía dos días. Sostenía sobre las rodillas un farol de hojalata, abollado y sin encender, y miraba el corro con la barbilla inmóvil, como quien mira una sopa que no le han ofrecido. A {hero} le dio un vuelco el corazón. Pero el plan tenía tres partes y el día no tenía más que unas pocas horas, así que «luego», pensó, y siguió andando.",
+              "text": "A media tarde, {hero} cruzó la aldea con un bote de engrudo en una mano y un fajo de papeles en la otra, esquivando gallinas y vecinos. Junto al pozo, un corro de niños comparaba sus faroles entre risas. Un poco más allá, sentado en el borde de piedra, había un chico al que {hero} no conocía. Era Teo, el hijo del nuevo ayudante del molino, que había llegado a la aldea hacía dos días. Sostenía sobre las rodillas un farol de hojalata, abollado y sin encender, y miraba el corro muy serio, como quien mira una sopa que no le han ofrecido. A {hero} le dio un vuelco el corazón. Pero el plan tenía tres partes y el día no tenía más que unas pocas horas, así que «luego», pensó, y siguió andando.",
               "scene": {
                 "bg": "aldea",
                 "mood": "tension",
@@ -16367,7 +16903,7 @@
           "variants": [
             {
               "id": "a",
-              "text": "Fue lo más difícil que {hero} hizo en todo el día: descolgar el farol del poste de la punta. Le costó menos de lo que esperaba. Se metió por la senda de los juncos, llamando bajito: «¡Teo! ¡Teo!». Los juncos crujían. Al final oyó una voz pequeña: «Estoy aquí. No veo mis pies.» Teo estaba sentado entre las raíces, con el farol apagado en el regazo y los ojos brillantes. «Pensé que todos os reíais de mí», dijo. «Que lo del corro, y lo de ayudar, era una broma.» Habló un buen rato, de su pueblo y de su perro, y {hero} no lo interrumpió ni una vez. «Nadie se reía de ti», dijo por fin, y se sentó a su lado. «Yo estaba enfadad{hero.o} con un papel quemado y lo dije fatal. Perdóname.» «Y yo no debí encender el farol sin preguntar», murmuró Teo. {hero} prendió el cabo de vela de Teo con la llama del suyo. «Mira: una luz enciende otra y no pierde nada.»",
+              "text": "Fue lo más difícil que {hero} hizo en todo el día: descolgar el farol del poste de la punta. Le costó menos de lo que esperaba. Se metió por la senda de los juncos, llamando bajito: «¡Teo! ¡Teo!». Los juncos crujían. Al final oyó una voz pequeña: «Estoy aquí. No veo mis pies.» Teo estaba sentado entre las raíces, con el farol apagado en el regazo y los ojos brillantes. «Pensé que todos se reían de mí», dijo. «Que lo del corro, y lo de ayudar, era una broma.» Habló un buen rato, de su pueblo y de su perro, y {hero} no lo interrumpió ni una vez. «Nadie se reía de ti», dijo por fin, y se sentó a su lado. «Yo estaba enfadad{hero.o} con un papel quemado y lo dije fatal. Perdóname.» «Y yo no debí encender el farol sin preguntar», murmuró Teo. {hero} prendió el cabo de vela de Teo con la llama del suyo. «Mira: una luz enciende otra y no pierde nada.»",
               "scene": {
                 "bg": "lago",
                 "mood": "hope",
@@ -16553,7 +17089,7 @@
             },
             {
               "id": "som_a",
-              "text": "Un poco más allá, bajo el embarcadero viejo, algo se movió, y se oyó un sorbetón. Los faroles alumbraron una capucha y un par de ojos muy abiertos. Era Sombra, encogido entre los pilares, y salió a medias, como un caracol. «Siempre vengo a mirar desde aquí», dijo {villain.voz}. «Me escondo antes de que me echen. Es más cómodo. Una vez intenté acercarme al corro de los faroles y todos se callaron de golpe, así que no he vuelto a intentarlo.» «¿Y si no te echamos?», preguntó Teo, con su farol en alto. Sombra parpadeó. «Hay sitio a este lado del poste», añadió {hero}, «y dos faroles dan luz para tres». Sombra se quedó inmóvil. Luego, sin decir nada, salió de entre los pilares y se sentó con ellos en el borde de las tablas, con las rodillas contra el pecho, como quien no se cree que lo hayan invitado.",
+              "text": "Un poco más allá, bajo el embarcadero viejo, algo se movió, y se oyó un sorbetón. Los faroles alumbraron una capucha y un par de ojos muy abiertos. Era Sombra, encogido entre los pilares, y salió a medias, como un caracol. «Siempre vengo a mirar desde aquí», dijo {villain.voz}. «Me escondo antes de que me echen. Es más cómodo. Una vez intenté acercarme al corro de los faroles y todos se callaron de golpe, así que no he vuelto a intentarlo.» «¿Y si no te echamos?», preguntó Teo, con su farol en alto. Sombra parpadeó. «Hay sitio a este lado del poste», añadió {hero}, «y dos faroles dan luz para tres». Sombra se quedó callado. Luego, sin decir palabra, salió de entre los pilares y se sentó con ellos en el borde de las tablas, con las rodillas contra el pecho, como quien no se cree que lo hayan invitado.",
               "scene": {
                 "bg": "lago",
                 "mood": "mystery",
@@ -16853,6 +17389,7 @@
       "id": "linterna_teo",
       "value": "honestidad",
       "title": "La linterna de Teo",
+      "lesson": "Si rompemos algo prestado, contarlo deshace el nudo de la barriga y deja arreglarlo.",
       "ages": [
         "4-5"
       ],
@@ -16898,12 +17435,28 @@
                 "bg": "plaza",
                 "mood": "hope",
                 "time": "dia",
-                "focus": {
-                  "prop": "linterna",
-                  "x": 0.5,
-                  "fill": 0.5,
-                  "clip": "glow"
-                }
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "idle",
+                    "x": 0.32
+                  },
+                  {
+                    "rig": "teo",
+                    "clip": "offer",
+                    "x": 0.62
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "linterna",
+                    "clip": "glow",
+                    "near": "hero",
+                    "dx": 0.07,
+                    "lift": 48,
+                    "scale": 0.35
+                  }
+                ]
               }
             },
             {
@@ -16913,12 +17466,28 @@
                 "bg": "plaza",
                 "mood": "hope",
                 "time": "dia",
-                "focus": {
-                  "prop": "linterna",
-                  "x": 0.5,
-                  "fill": 0.5,
-                  "clip": "glow"
-                }
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "idle",
+                    "x": 0.32
+                  },
+                  {
+                    "rig": "teo",
+                    "clip": "offer",
+                    "x": 0.62
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "linterna",
+                    "clip": "glow",
+                    "near": "hero",
+                    "dx": 0.07,
+                    "lift": 48,
+                    "scale": 0.35
+                  }
+                ]
               }
             },
             {
@@ -16928,12 +17497,28 @@
                 "bg": "plaza",
                 "mood": "hope",
                 "time": "dia",
-                "focus": {
-                  "prop": "linterna",
-                  "x": 0.5,
-                  "fill": 0.5,
-                  "clip": "glow"
-                }
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "idle",
+                    "x": 0.32
+                  },
+                  {
+                    "rig": "teo",
+                    "clip": "offer",
+                    "x": 0.62
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "linterna",
+                    "clip": "glow",
+                    "near": "hero",
+                    "dx": 0.07,
+                    "lift": 48,
+                    "scale": 0.35
+                  }
+                ]
               }
             }
           ],
@@ -17409,7 +17994,7 @@
           "variants": [
             {
               "id": "linterna_teo_cierre",
-              "text": "Aquella noche, {hero} se acostó con el corazón ligero. Ya no había nudo en la barriga. Pensó en Teo y en su linterna, que brillaba otra vez como una estrellita. {hero} sonrió y se durmió enseguida.",
+              "text": "Aquella noche, {hero} se acostó con el corazón ligero. Ya no había nudo en la barriga. Pensó en Teo, que esa noche volvía a tener su lucecita de estrella. {hero} sonrió y se durmió enseguida.",
               "scene": {
                 "bg": "cuarto",
                 "mood": "sleep",
@@ -17435,15 +18020,12 @@
                 ],
                 "offstage": [
                   "teo"
-                ],
-                "unseen": [
-                  "linterna"
                 ]
               }
             },
             {
               "id": "linterna_teo_cierre_b",
-              "text": "Esa noche, {hero} se metió en la cama. En la barriga ya no había ningún nudo. Cerró los ojos y vio la linterna de Teo encendida, con su lucecita de estrella. {hero} sonrió. Dormir fue fácil, porque ya no quedaba nada por esconder. {hero} se hundió en la almohada y soñó con estrellas.",
+              "text": "Esa noche, {hero} se metió en la cama. En la barriga ya no había ningún nudo. Cerró los ojos y vio a Teo con su lucecita de estrella otra vez encendida. {hero} sonrió. Dormir fue fácil, porque ya no quedaba nada por esconder. {hero} se hundió en la almohada y soñó con estrellas.",
               "scene": {
                 "bg": "cuarto",
                 "mood": "sleep",
@@ -17469,9 +18051,6 @@
                 ],
                 "offstage": [
                   "teo"
-                ],
-                "unseen": [
-                  "linterna"
                 ]
               }
             }
@@ -17484,6 +18063,7 @@
       "id": "manta_lia",
       "value": "generosidad",
       "title": "La manta de Lía",
+      "lesson": "Una manta compartida abriga a dos, y el calor nos llega también por dentro.",
       "ages": [
         "4-5"
       ],
@@ -17526,12 +18106,24 @@
                 "bg": "plaza",
                 "mood": "calm",
                 "time": "dia",
-                "focus": {
-                  "prop": "manta",
-                  "x": 0.5,
-                  "fill": 0.55
-                },
-                "season": "invierno"
+                "season": "invierno",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "idle",
+                    "x": 0.4
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "manta",
+                    "near": "hero",
+                    "dx": 0.0,
+                    "lift": 88,
+                    "scale": 0.9,
+                    "front": true
+                  }
+                ]
               }
             },
             {
@@ -17541,12 +18133,24 @@
                 "bg": "plaza",
                 "mood": "calm",
                 "time": "dia",
-                "focus": {
-                  "prop": "manta",
-                  "x": 0.5,
-                  "fill": 0.55
-                },
-                "season": "invierno"
+                "season": "invierno",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "idle",
+                    "x": 0.4
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "manta",
+                    "near": "hero",
+                    "dx": 0.0,
+                    "lift": 88,
+                    "scale": 0.9,
+                    "front": true
+                  }
+                ]
               }
             },
             {
@@ -17556,12 +18160,24 @@
                 "bg": "plaza",
                 "mood": "calm",
                 "time": "dia",
-                "focus": {
-                  "prop": "manta",
-                  "x": 0.5,
-                  "fill": 0.55
-                },
-                "season": "invierno"
+                "season": "invierno",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "idle",
+                    "x": 0.4
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "manta",
+                    "near": "hero",
+                    "dx": 0.0,
+                    "lift": 88,
+                    "scale": 0.9,
+                    "front": true
+                  }
+                ]
               }
             }
           ],
@@ -17990,7 +18606,7 @@
             },
             {
               "id": "manta_lia_rosa_b",
-              "text": "Entonces apareció Rosa, con un delantal blanco. Llevaba dos bollos calientes en las manos. «¡Mirad lo que traigo!», dijo Rosa. «Vi a Lía y a {hero} bajo la manta. Así que corrí a buscar dos bollos.» Cada uno se comió el suyo, miga a miga. El vapor les subía hasta la nariz.",
+              "text": "Entonces apareció Rosa, con un delantal blanco. Llevaba dos bollos calientes en las manos. «¡Miren lo que traigo!», dijo Rosa. «Vi a Lía y a {hero} bajo la manta. Así que corrí a buscar dos bollos.» Cada uno se comió el suyo, miga a miga. El vapor les subía hasta la nariz.",
               "scene": {
                 "bg": "plaza",
                 "mood": "joy",
@@ -18034,7 +18650,7 @@
             },
             {
               "id": "manta_lia_rosa_c",
-              "text": "Rosa llegó por la esquina de la plaza. Traía dos bollos que olían a mantequilla. «Son para vosotros», dijo Rosa. «Bajo una manta se agradece algo calentito.» Lía y {hero} dieron un mordisco y suspiraron de gusto. Comieron despacio, porque querían que durara, y no quedó ni una miga.",
+              "text": "Rosa llegó por la esquina de la plaza. Traía dos bollos que olían a mantequilla. «Son para ustedes», dijo Rosa. «Bajo una manta se agradece algo calentito.» Lía y {hero} dieron un mordisco y suspiraron de gusto. Comieron despacio, porque querían que durara, y no quedó ni una miga.",
               "scene": {
                 "bg": "plaza",
                 "mood": "joy",
@@ -18159,6 +18775,7 @@
       "id": "campana_mediodia",
       "value": "valentia",
       "title": "La campana del mediodía",
+      "lesson": "No hace falta mirar todos los escalones: basta con subir el que tenemos delante.",
       "ages": [
         "4-5"
       ],
@@ -18267,7 +18884,7 @@
           "variants": [
             {
               "id": "campana_mediodia_silencio",
-              "text": "Pero ese día el campanero estaba resfriado, y la campana no sonó. Pasó el mediodía, y nada. Su amigo Teo se tocó la barriga. «Tengo hambre», dijo Teo. «¿Quién puede tocar la campana?» {hero} levantó la mano, aunque le temblaba un poquito.",
+              "text": "Pero ese día el campanero estaba resfriado, y la torre se quedó callada. Pasó el mediodía, y nada. Su amigo Teo se tocó la barriga. «Tengo hambre», dijo Teo. «¿Quién puede tocar la campana?» {hero} levantó la mano, aunque le temblaba un poquito.",
               "scene": {
                 "bg": "plaza",
                 "mood": "hope",
@@ -18284,15 +18901,12 @@
                     "x": 0.7
                   }
                 ],
-                "props": [],
-                "unseen": [
-                  "campana"
-                ]
+                "props": []
               }
             },
             {
               "id": "campana_mediodia_silencio_b",
-              "text": "En la plaza, Teo no paraba de mirar al cielo. Ya había pasado el mediodía, pero la campana seguía callada. El campanero tenía un resfriado muy grande. «Me ruge la barriga», dijo Teo. «Alguien tiene que tocar la campana.» {hero} dio un paso al frente y levantó la mano. Le temblaba un poco, pero la levantó igual.",
+              "text": "En la plaza, Teo no paraba de mirar al cielo. Ya había pasado el mediodía, pero la torre seguía callada. El campanero tenía un resfriado muy grande. «Me ruge la barriga», dijo Teo. «Alguien tiene que tocar la campana.» {hero} dio un paso al frente y levantó la mano. Le temblaba un poco, pero la levantó igual.",
               "scene": {
                 "bg": "plaza",
                 "mood": "hope",
@@ -18309,15 +18923,12 @@
                     "x": 0.7
                   }
                 ],
-                "props": [],
-                "unseen": [
-                  "campana"
-                ]
+                "props": []
               }
             },
             {
               "id": "campana_mediodia_silencio_c",
-              "text": "Todos esperaban el din, don de la campana. Pero no llegó, porque el campanero se había resfriado y se quedó en casa. Teo, el amigo de {hero}, se agarró la barriga. «Tengo un hambre enorme», dijo. «¿Alguien se atreve a tocar la campana?» {hero} sintió un cosquilleo en las rodillas, pero levantó la mano.",
+              "text": "Todos esperaban el din, don del mediodía. Pero no llegó, porque el campanero se había resfriado y se quedó en casa. Teo, el amigo de {hero}, se agarró la barriga. «Tengo un hambre enorme», dijo. «¿Alguien se atreve a tocar la campana?» {hero} sintió un cosquilleo en las rodillas, pero levantó la mano.",
               "scene": {
                 "bg": "plaza",
                 "mood": "hope",
@@ -18334,10 +18945,7 @@
                     "x": 0.7
                   }
                 ],
-                "props": [],
-                "unseen": [
-                  "campana"
-                ]
+                "props": []
               }
             }
           ],
@@ -18899,6 +19507,7 @@
       "id": "panecillo",
       "value": "honestidad",
       "title": "El panecillo de Rosa",
+      "lesson": "Antes de tomar, pedimos; y si ya lo tomamos, decirlo quita el nudo.",
       "ages": [
         "4-5"
       ],
@@ -19154,7 +19763,7 @@
           "variants": [
             {
               "id": "panecillo_migas",
-              "text": "Pero cuando terminó, a {hero} le dio vergüenza. Tenía migas en la barbilla y en la nariz, y ya no estaba el panecillo. Ahora {hero} tenía un nudo en la barriga, porque sabía que no estaba bien.",
+              "text": "Pero cuando terminó, a {hero} le dio vergüenza. Tenía migas en la barbilla y en la nariz, y en la mesa ya no quedaba nada. Ahora {hero} tenía un nudo en la barriga, porque sabía que no estaba bien.",
               "scene": {
                 "bg": "plaza",
                 "mood": "sad",
@@ -19171,15 +19780,12 @@
                     "prop": "mesa",
                     "x": 0.62
                   }
-                ],
-                "unseen": [
-                  "panecillo"
                 ]
               }
             },
             {
               "id": "panecillo_migas_b",
-              "text": "Cuando se lo terminó, a {hero} le dio vergüenza. En la nariz y en la barbilla le habían quedado migas, y el panecillo ya no estaba. Dentro de la barriga, {hero} sentía un nudo, porque sabía que eso no estaba bien.",
+              "text": "Cuando se lo terminó, a {hero} le dio vergüenza. En la nariz y en la barbilla le habían quedado migas, y en la mesa ya no quedaba nada. Dentro de la barriga, {hero} sentía un nudo, porque sabía que eso no estaba bien.",
               "scene": {
                 "bg": "plaza",
                 "mood": "sad",
@@ -19196,9 +19802,6 @@
                     "prop": "mesa",
                     "x": 0.62
                   }
-                ],
-                "unseen": [
-                  "panecillo"
                 ]
               }
             }
@@ -19487,6 +20090,7 @@
       "id": "sombras",
       "value": "valentia",
       "title": "Las sombras del cuarto",
+      "lesson": "Si algo da miedo, respirar, pensar y mirar de cerca lo hace pequeño.",
       "ages": [
         "4-5"
       ],
@@ -19522,11 +20126,25 @@
                 "bg": "cuarto",
                 "mood": "calm",
                 "time": "noche",
-                "focus": {
-                  "prop": "manta",
-                  "x": 0.5,
-                  "fill": 0.55
-                }
+                "stage": [
+                  {
+                    "who": "hero",
+                    "x": 0.31,
+                    "rotate": -90,
+                    "lift": 152,
+                    "scale": 0.95,
+                    "clip": "idle"
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "manta",
+                    "x": 0.2,
+                    "lift": 126,
+                    "scale": 1.2,
+                    "front": true
+                  }
+                ]
               }
             },
             {
@@ -19536,11 +20154,25 @@
                 "bg": "cuarto",
                 "mood": "calm",
                 "time": "noche",
-                "focus": {
-                  "prop": "manta",
-                  "x": 0.5,
-                  "fill": 0.55
-                }
+                "stage": [
+                  {
+                    "who": "hero",
+                    "x": 0.31,
+                    "rotate": -90,
+                    "lift": 152,
+                    "scale": 0.95,
+                    "clip": "idle"
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "manta",
+                    "x": 0.2,
+                    "lift": 126,
+                    "scale": 1.2,
+                    "front": true
+                  }
+                ]
               }
             },
             {
@@ -19550,11 +20182,25 @@
                 "bg": "cuarto",
                 "mood": "calm",
                 "time": "noche",
-                "focus": {
-                  "prop": "manta",
-                  "x": 0.5,
-                  "fill": 0.55
-                }
+                "stage": [
+                  {
+                    "who": "hero",
+                    "x": 0.31,
+                    "rotate": -90,
+                    "lift": 152,
+                    "scale": 0.95,
+                    "clip": "idle"
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "manta",
+                    "x": 0.2,
+                    "lift": 126,
+                    "scale": 1.2,
+                    "front": true
+                  }
+                ]
               }
             }
           ],
@@ -19575,7 +20221,7 @@
                 "stage": [
                   {
                     "who": "hero",
-                    "clip": "surprised",
+                    "clip": "freeze",
                     "x": 0.31,
                     "rotate": -90,
                     "lift": 152,
@@ -19608,7 +20254,7 @@
                 "stage": [
                   {
                     "who": "hero",
-                    "clip": "surprised",
+                    "clip": "freeze",
                     "x": 0.31,
                     "rotate": -90,
                     "lift": 152,
@@ -19641,7 +20287,7 @@
                 "stage": [
                   {
                     "who": "hero",
-                    "clip": "surprised",
+                    "clip": "freeze",
                     "x": 0.31,
                     "rotate": -90,
                     "lift": 152,
@@ -19878,7 +20524,7 @@
           "variants": [
             {
               "id": "ojo",
-              "text": "{hero} asomó un ojo por encima de la manta. Luego, el otro. El gigante seguía allí, sin moverse. Entonces {hero} se levantó: un pasito, y otro pasito, y otro más. Poco a poco llegó hasta el rincón, porque quería ver de cerca al gigante.",
+              "text": "{hero} asomó un ojo por encima de la manta. Luego, el otro. El gigante seguía allí, en su rincón. Entonces {hero} se levantó: un pasito, y otro pasito, y otro más. Poco a poco llegó hasta el rincón, porque quería ver de cerca al gigante.",
               "scene": {
                 "bg": "cuarto",
                 "mood": "hope",
@@ -19964,7 +20610,7 @@
                 "stage": [
                   {
                     "who": "hero",
-                    "clip": "laugh",
+                    "clip": "giggle",
                     "x": 0.46
                   }
                 ],
@@ -19990,7 +20636,7 @@
                 "stage": [
                   {
                     "who": "hero",
-                    "clip": "laugh",
+                    "clip": "giggle",
                     "x": 0.46
                   }
                 ],
@@ -20016,7 +20662,7 @@
                 "stage": [
                   {
                     "who": "hero",
-                    "clip": "laugh",
+                    "clip": "giggle",
                     "x": 0.46
                   }
                 ],
@@ -20066,10 +20712,14 @@
                     "prop": "capa",
                     "x": 0.72,
                     "scale": 1.5
+                  },
+                  {
+                    "prop": "linterna_apagada",
+                    "x": 0.875,
+                    "lift": 86,
+                    "scale": 0.8,
+                    "when": "camino:linterna"
                   }
-                ],
-                "unseen": [
-                  "linterna"
                 ]
               }
             },
@@ -20102,10 +20752,14 @@
                     "prop": "capa",
                     "x": 0.72,
                     "scale": 1.5
+                  },
+                  {
+                    "prop": "linterna_apagada",
+                    "x": 0.875,
+                    "lift": 86,
+                    "scale": 0.8,
+                    "when": "camino:linterna"
                   }
-                ],
-                "unseen": [
-                  "linterna"
                 ]
               }
             }
@@ -20117,6 +20771,7 @@
       "id": "sopa",
       "value": "generosidad",
       "title": "Sopa para dos",
+      "lesson": "Si alguien tiene hambre, un sorbo tú y uno yo alcanza para dos.",
       "ages": [
         "4-5"
       ],
@@ -20159,13 +20814,30 @@
                 "bg": "plaza",
                 "mood": "calm",
                 "time": "dia",
-                "focus": {
-                  "prop": "cuenco",
-                  "x": 0.5,
-                  "fill": 0.5,
-                  "clip": "still"
-                },
-                "season": "invierno"
+                "season": "invierno",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "walk",
+                    "x": 0.4
+                  },
+                  {
+                    "rig": "rosa",
+                    "clip": "wave",
+                    "x": 0.76
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "cuenco",
+                    "clip": "still",
+                    "near": "hero",
+                    "dx": 0.06,
+                    "lift": 52,
+                    "scale": 1.0,
+                    "front": true
+                  }
+                ]
               }
             },
             {
@@ -20175,13 +20847,30 @@
                 "bg": "plaza",
                 "mood": "calm",
                 "time": "dia",
-                "focus": {
-                  "prop": "cuenco",
-                  "x": 0.5,
-                  "fill": 0.5,
-                  "clip": "still"
-                },
-                "season": "invierno"
+                "season": "invierno",
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "walk",
+                    "x": 0.4
+                  },
+                  {
+                    "rig": "rosa",
+                    "clip": "wave",
+                    "x": 0.76
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "cuenco",
+                    "clip": "still",
+                    "near": "hero",
+                    "dx": 0.06,
+                    "lift": 52,
+                    "scale": 1.0,
+                    "front": true
+                  }
+                ]
               }
             }
           ],
@@ -20194,7 +20883,7 @@
           "variants": [
             {
               "id": "sopa_beto",
-              "text": "Allí estaba Beto, el molinero. Tenía las manos frías y la barriga vacía. Ese día no había viento, y sin viento el molino no gira. Sin molino no hay harina, y sin harina no hay pan. Beto miraba el cielo, esperando al viento. Y suspiraba.",
+              "text": "Allí estaba Beto, el molinero. Tenía las manos frías y la barriga vacía. Ese día no había viento, y sin viento el molino no gira. Sin molino no hay harina, y sin harina Rosa no puede hornear. Beto miraba el cielo, esperando al viento. Y suspiraba.",
               "scene": {
                 "bg": "plaza",
                 "mood": "sad",
@@ -20215,15 +20904,12 @@
                 "season": "invierno",
                 "offstage": [
                   "rosa"
-                ],
-                "unseen": [
-                  "pan"
                 ]
               }
             },
             {
               "id": "sopa_beto_b",
-              "text": "Al llegar a la plaza, {hero} vio a Beto, el molinero. Tenía las manos heladas y la barriga vacía. Aquel día no soplaba nada de viento. Sin viento, las aspas del molino no giran. Si el molino no gira, no hay harina. Y sin harina no hay pan. Beto miraba al cielo y suspiraba. Esperaba al viento.",
+              "text": "Al llegar a la plaza, {hero} vio a Beto, el molinero. Tenía las manos heladas y la barriga vacía. Aquel día no soplaba nada de viento. Sin viento, las aspas del molino no giran. Si el molino no gira, no hay harina. Y sin harina no hay nada que hornear. Beto miraba al cielo y suspiraba. Esperaba al viento.",
               "scene": {
                 "bg": "plaza",
                 "mood": "sad",
@@ -20244,15 +20930,12 @@
                 "season": "invierno",
                 "offstage": [
                   "rosa"
-                ],
-                "unseen": [
-                  "pan"
                 ]
               }
             },
             {
               "id": "sopa_beto_c",
-              "text": "Sentado en la plaza estaba Beto, el molinero. Tenía las manos frías y la barriga vacía. No había ni una pizca de viento, así que el molino no giraba. Sin molino no había harina, y sin harina no había pan. Beto suspiraba y miraba el cielo, esperando al viento.",
+              "text": "Sentado en la plaza estaba Beto, el molinero. Tenía las manos frías y la barriga vacía. No había ni una pizca de viento, así que el molino no giraba. Sin molino no había harina, y sin harina no había nada que hornear. Beto suspiraba y miraba el cielo, esperando al viento.",
               "scene": {
                 "bg": "plaza",
                 "mood": "sad",
@@ -20273,9 +20956,6 @@
                 "season": "invierno",
                 "offstage": [
                   "rosa"
-                ],
-                "unseen": [
-                  "pan"
                 ]
               }
             }
@@ -20902,6 +21582,7 @@
       "id": "cabrita",
       "value": "generosidad",
       "title": "El pan y la cabrita",
+      "lesson": "Si los dos tienen hambre, partimos el pan.",
       "ages": [
         "2-3"
       ],
@@ -20943,11 +21624,23 @@
                 "bg": "plaza",
                 "mood": "calm",
                 "time": "dia",
-                "focus": {
-                  "prop": "pan",
-                  "x": 0.5,
-                  "fill": 0.5
-                }
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "idle",
+                    "x": 0.4
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "pan",
+                    "near": "hero",
+                    "dx": 0.05,
+                    "lift": 70,
+                    "scale": 0.45,
+                    "front": true
+                  }
+                ]
               }
             },
             {
@@ -20957,11 +21650,23 @@
                 "bg": "plaza",
                 "mood": "calm",
                 "time": "dia",
-                "focus": {
-                  "prop": "pan",
-                  "x": 0.5,
-                  "fill": 0.5
-                }
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "idle",
+                    "x": 0.4
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "pan",
+                    "near": "hero",
+                    "dx": 0.05,
+                    "lift": 70,
+                    "scale": 0.45,
+                    "front": true
+                  }
+                ]
               }
             }
           ],
@@ -20979,14 +21684,28 @@
                 "bg": "plaza",
                 "mood": "hope",
                 "time": "dia",
-                "focus": {
-                  "prop": "cabrita",
-                  "x": 0.5,
-                  "fill": 0.55,
-                  "clip": "goat_idle"
-                },
-                "unseen": [
-                  "pan"
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "surprised",
+                    "x": 0.34
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "cabrita",
+                    "clip": "goat_idle",
+                    "x": 0.66,
+                    "scale": 1.3
+                  },
+                  {
+                    "prop": "pan",
+                    "near": "hero",
+                    "dx": 0.05,
+                    "lift": 70,
+                    "scale": 0.45,
+                    "front": true
+                  }
                 ]
               }
             },
@@ -20997,14 +21716,28 @@
                 "bg": "plaza",
                 "mood": "hope",
                 "time": "dia",
-                "focus": {
-                  "prop": "cabrita",
-                  "x": 0.5,
-                  "fill": 0.55,
-                  "clip": "goat_idle"
-                },
-                "unseen": [
-                  "pan"
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "surprised",
+                    "x": 0.34
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "cabrita",
+                    "clip": "goat_idle",
+                    "x": 0.66,
+                    "scale": 1.3
+                  },
+                  {
+                    "prop": "pan",
+                    "near": "hero",
+                    "dx": 0.05,
+                    "lift": 70,
+                    "scale": 0.45,
+                    "front": true
+                  }
                 ]
               }
             }
@@ -21247,6 +21980,7 @@
       "id": "piedras",
       "value": "valentia",
       "title": "Pasito a pasito",
+      "lesson": "Piedra a piedra, llegamos al otro lado.",
       "ages": [
         "2-3"
       ],
@@ -21381,7 +22115,7 @@
                 "stage": [
                   {
                     "who": "hero",
-                    "clip": "sneak",
+                    "clip": "freeze",
                     "x": 0.22
                   },
                   {
@@ -21682,6 +22416,7 @@
       "id": "taza",
       "value": "honestidad",
       "title": "La taza de leche",
+      "lesson": "Decimos «fui yo», y limpiamos juntos.",
       "ages": [
         "2-3"
       ],
@@ -21721,11 +22456,28 @@
                 "bg": "plaza",
                 "mood": "calm",
                 "time": "dia",
-                "focus": {
-                  "prop": "taza_leche",
-                  "x": 0.5,
-                  "fill": 0.45
-                }
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "idle",
+                    "x": 0.36
+                  },
+                  {
+                    "rig": "rosa",
+                    "clip": "talk",
+                    "x": 0.74
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "taza_leche",
+                    "near": "hero",
+                    "dx": 0.07,
+                    "lift": 74,
+                    "scale": 0.7,
+                    "front": true
+                  }
+                ]
               }
             },
             {
@@ -21735,11 +22487,28 @@
                 "bg": "plaza",
                 "mood": "calm",
                 "time": "dia",
-                "focus": {
-                  "prop": "taza_leche",
-                  "x": 0.5,
-                  "fill": 0.45
-                }
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "idle",
+                    "x": 0.36
+                  },
+                  {
+                    "rig": "rosa",
+                    "clip": "talk",
+                    "x": 0.74
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "taza_leche",
+                    "near": "hero",
+                    "dx": 0.07,
+                    "lift": 74,
+                    "scale": 0.7,
+                    "front": true
+                  }
+                ]
               }
             }
           ],
@@ -21826,13 +22595,30 @@
                 "bg": "plaza",
                 "mood": "hope",
                 "time": "dia",
-                "focus": {
-                  "prop": "mariposa",
-                  "x": 0.5,
-                  "fill": 0.5,
-                  "clip": "flutter",
-                  "lift": 60
-                }
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "wonder",
+                    "x": 0.36
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "mariposa",
+                    "clip": "flutter",
+                    "x": 0.66,
+                    "lift": 150,
+                    "scale": 0.7
+                  },
+                  {
+                    "prop": "taza_leche",
+                    "near": "hero",
+                    "dx": 0.07,
+                    "lift": 74,
+                    "scale": 0.7,
+                    "front": true
+                  }
+                ]
               }
             },
             {
@@ -21842,13 +22628,30 @@
                 "bg": "plaza",
                 "mood": "hope",
                 "time": "dia",
-                "focus": {
-                  "prop": "mariposa",
-                  "x": 0.5,
-                  "fill": 0.5,
-                  "clip": "flutter",
-                  "lift": 60
-                }
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "wonder",
+                    "x": 0.36
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "mariposa",
+                    "clip": "flutter",
+                    "x": 0.66,
+                    "lift": 150,
+                    "scale": 0.7
+                  },
+                  {
+                    "prop": "taza_leche",
+                    "near": "hero",
+                    "dx": 0.07,
+                    "lift": 74,
+                    "scale": 0.7,
+                    "front": true
+                  }
+                ]
               }
             }
           ]
@@ -21863,11 +22666,26 @@
                 "bg": "plaza",
                 "mood": "tension",
                 "time": "dia",
-                "focus": {
-                  "prop": "taza_volcada",
-                  "x": 0.5,
-                  "fill": 0.6
-                }
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "surprised",
+                    "x": 0.4
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "taza_volcada",
+                    "x": 0.62,
+                    "lift": 46,
+                    "scale": 0.8
+                  },
+                  {
+                    "prop": "mesa",
+                    "x": 0.62,
+                    "scale": 1.0
+                  }
+                ]
               }
             },
             {
@@ -21877,11 +22695,26 @@
                 "bg": "plaza",
                 "mood": "tension",
                 "time": "dia",
-                "focus": {
-                  "prop": "taza_volcada",
-                  "x": 0.5,
-                  "fill": 0.6
-                }
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "surprised",
+                    "x": 0.4
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "taza_volcada",
+                    "x": 0.62,
+                    "lift": 46,
+                    "scale": 0.8
+                  },
+                  {
+                    "prop": "mesa",
+                    "x": 0.62,
+                    "scale": 1.0
+                  }
+                ]
               }
             }
           ]
@@ -22188,6 +23021,7 @@
       "id": "faro_lago",
       "value": "valentia",
       "title": "La luz del lago",
+      "lesson": "Aunque el miedo camine a nuestro lado, podemos seguir: casi siempre se cansa antes que nosotros.",
       "ages": [
         "9-12"
       ],
@@ -22267,12 +23101,30 @@
                 "bg": "lago",
                 "mood": "calm",
                 "time": "atardecer",
-                "focus": {
-                  "prop": "linterna",
-                  "x": 0.5,
-                  "lift": 60,
-                  "fill": 0.6
-                }
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "wonder",
+                    "x": 0.4
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "walk",
+                    "x": 0.64
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "linterna",
+                    "x": 0.06,
+                    "lift": 160,
+                    "scale": 0.8,
+                    "clip": "glow"
+                  }
+                ],
+                "offstage": [
+                  "farolero"
+                ]
               }
             },
             {
@@ -22282,12 +23134,30 @@
                 "bg": "lago",
                 "mood": "calm",
                 "time": "atardecer",
-                "focus": {
-                  "prop": "linterna",
-                  "x": 0.5,
-                  "lift": 60,
-                  "fill": 0.6
-                }
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "wonder",
+                    "x": 0.4
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "walk",
+                    "x": 0.64
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "linterna",
+                    "x": 0.06,
+                    "lift": 160,
+                    "scale": 0.8,
+                    "clip": "glow"
+                  }
+                ],
+                "offstage": [
+                  "farolero"
+                ]
               }
             }
           ]
@@ -22542,7 +23412,7 @@
                 "stage": [
                   {
                     "who": "hero",
-                    "clip": "scared",
+                    "clip": "freeze",
                     "x": 0.3
                   }
                 ],
@@ -23031,7 +23901,7 @@
           "variants": [
             {
               "id": "a",
-              "text": "El bosque se acabó de pronto, como si alguien hubiera corrido una cortina, y {hero} salió a la orilla del lago. No se veía nada: ni agua, ni embarcadero, ni cielo. Solo una niebla blanca e inmóvil que olía a barro y a juncos, y que se tragaba hasta el ruido de los pasos. La cabrita se pegó a la pierna de {hero}, temblando, y por encima de sus cabezas pasó el búho. «Uuh», dijo en voz baja, como quien dice «por aquí». Entonces, entre los juncos, se encendió una lucecita verde. Luego otra, y otra, y de pronto cientos, flotando a la altura de las rodillas: las luciérnagas del lago, que salen con la niebla. No alumbraban mucho, pero juntas dibujaban un caminito de puntos que se alejaba hacia el embarcadero. «Gracias», les dijo {hero}, porque a veces las cosas hay que decirlas en voz alta. Y echó a andar por donde ellas indicaban, con la cabrita al lado y el búho por delante, de poste en poste.",
+              "text": "El bosque se acabó de pronto, como si alguien hubiera corrido una cortina, y {hero} salió a la orilla del lago. No se veía nada: ni agua, ni embarcadero, ni cielo. Solo una niebla blanca y espesa que olía a barro y a juncos, y que se tragaba hasta el ruido de los pasos. La cabrita se pegó a la pierna de {hero}, temblando, y por encima de sus cabezas pasó el búho. «Uuh», dijo en voz baja, como quien dice «por aquí». Entonces, entre los juncos, se encendió una lucecita verde. Luego otra, y otra, y de pronto cientos, flotando a la altura de las rodillas: las luciérnagas del lago, que salen con la niebla. No alumbraban mucho, pero juntas dibujaban un caminito de puntos que se alejaba hacia el embarcadero. «Gracias», les dijo {hero}, porque a veces las cosas hay que decirlas en voz alta. Y echó a andar por donde ellas indicaban, con la cabrita al lado y el búho por delante, de poste en poste.",
               "scene": {
                 "bg": "lago",
                 "mood": "mystery",
@@ -23317,9 +24187,6 @@
                     "emit": true
                   }
                 ],
-                "unseen": [
-                  "cabrita"
-                ],
                 "offstage": [
                   "farolero",
                   "helper",
@@ -23333,7 +24200,7 @@
             },
             {
               "id": "b",
-              "text": "Volver fue más largo que ir, porque nadie tenía prisa. Lía se marchó con la cabrita en brazos, rendida de sueño, el búho se quedó de guardia en el embarcadero y {hero} regresó a la aldea con {helper} a un lado y el rumor del lago al otro. En la puerta de su casa l{hero.o} esperaba el farolero, que no dijo nada: solo sonrió con toda la cara. Ya en su cuarto, {hero} se tumbó con los pies fríos y el pelo lleno de hojas. Antes de dormir, {hero} se acordó de {camino.recuerdo} y sonrió en la oscuridad. Por la ventana, allá lejos, detrás de la colina, brillaba el puntito dorado, firme y en paz, de vuelta en su sitio. {hero} pensó en el miedo, que le había hecho compañía todo el camino, y le dejó un hueco a los pies de la cama. Bostezó largo y, por primera vez, se quedó dormid{hero.o} antes que su miedo.",
+              "text": "Volver fue más largo que ir, porque nadie tenía prisa. Lía se marchó a su casa, rendida de sueño, el búho se quedó de guardia en el embarcadero y {hero} regresó a la aldea con {helper} a un lado y el rumor del lago al otro. En la puerta de su casa l{hero.o} esperaba el farolero, que no dijo nada: solo sonrió con toda la cara. Ya en su cuarto, {hero} se tumbó con los pies fríos y el pelo lleno de hojas. Antes de dormir, {hero} se acordó de {camino.recuerdo} y sonrió en la oscuridad. Por la ventana, allá lejos, detrás de la colina, brillaba el puntito dorado, firme y en paz, de vuelta en su sitio. {hero} pensó en el miedo, que le había hecho compañía todo el camino, y le dejó un hueco a los pies de la cama. Bostezó largo y, por primera vez, se quedó dormid{hero.o} antes que su miedo.",
               "scene": {
                 "bg": "cuarto",
                 "mood": "sleep",
@@ -23365,9 +24232,6 @@
                     "emit": true
                   }
                 ],
-                "unseen": [
-                  "cabrita"
-                ],
                 "offstage": [
                   "farolero",
                   "helper",
@@ -23387,6 +24251,7 @@
       "id": "cometa_norte",
       "value": "perseverancia",
       "title": "La cometa del viento del norte",
+      "lesson": "Cada caída esconde una pista: si la buscamos con curiosidad, en vez de con rabia, el siguiente intento vuela más alto.",
       "ages": [
         "9-12"
       ],
@@ -23453,11 +24318,22 @@
                 "bg": "taller",
                 "mood": "hope",
                 "time": "dia",
-                "focus": {
-                  "prop": "cometa",
-                  "x": 0.5,
-                  "fill": 0.55
-                }
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "proud",
+                    "x": 0.3
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "cometa",
+                    "x": 0.8,
+                    "lift": 86,
+                    "scale": 0.55,
+                    "clip": "sway"
+                  }
+                ]
               }
             },
             {
@@ -23467,11 +24343,23 @@
                 "bg": "taller",
                 "mood": "hope",
                 "time": "dia",
-                "focus": {
-                  "prop": "cometa",
-                  "x": 0.5,
-                  "fill": 0.55
-                }
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "cheer",
+                    "x": 0.4
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "cometa",
+                    "near": "hero",
+                    "dx": 0.1,
+                    "lift": 70,
+                    "scale": 0.6,
+                    "clip": "sway"
+                  }
+                ]
               }
             }
           ]
@@ -23700,7 +24588,7 @@
                 "stage": [
                   {
                     "who": "hero",
-                    "clip": "sit_sad",
+                    "clip": "giggle",
                     "x": 0.28
                   },
                   {
@@ -23967,7 +24855,7 @@
             },
             {
               "id": "som_b",
-              "text": "{hero} dejó la cometa en la hierba y apoyó la espalda contra el roble. Con la cuerda hecha un lío y el papel rasgado, no tenía ganas de nada. «Mala suerte», dijo una voz muy cerca. Sombra estaba allí, apoyado en el tronco, tan inmóvil que {hero} no lo había visto. «Yo tuve una cometa, hace mucho», añadió {villain.voz}. «Se me quedó colgada ahí arriba, en la rama más alta, y desde entonces pienso que las cosas que suben se ríen de uno al caer. No te canses, {hero}. Hay quien nace para mirar volar a los demás.» Desapareció tras el tronco sin hacer ruido. {hero} se quedó mucho rato con la mirada perdida, y no supo decir si lo que sentía era rabia o ganas de rendirse.",
+              "text": "{hero} dejó la cometa en la hierba y apoyó la espalda contra el roble. Con la cuerda hecha un lío y el papel rasgado, no tenía ganas de nada. «Mala suerte», dijo una voz muy cerca. Sombra estaba allí, apoyado en el tronco, y {hero} ni siquiera lo había visto. «Yo tuve una cometa, hace mucho», añadió {villain.voz}. «Se me quedó colgada ahí arriba, en la rama más alta, y desde entonces pienso que las cosas que suben se ríen de uno al caer. No te canses, {hero}. Hay quien nace para mirar volar a los demás.» Desapareció tras el tronco sin hacer ruido. {hero} se quedó mucho rato con la mirada perdida, y no supo decir si lo que sentía era rabia o ganas de rendirse.",
               "scene": {
                 "bg": "colina",
                 "mood": "sad",
@@ -24653,7 +25541,7 @@
             },
             {
               "id": "som_b",
-              "text": "Esta vez, {hero} no corrió. Se colocó de espaldas al viento, con la cometa en alto y la cuerda en orden a sus pies, y esperó a sentirlo en la nuca. Esperó un poco más. Hasta que llegó la ráfaga, una ráfaga ancha y firme, de las que mueven el pelo, y {hero} soltó. La cometa se elevó sin un titubeo, con la cola larga ondeando detrás, y la cuerda salió del carrete ordenada y limpia entre los dedos, vuelta tras vuelta. Pasó el roble y subió más alto todavía, tan arriba que {hero} ya no distinguía las tres pistas del reverso, pero sabía que estaban allí, llenándose de sol. Lía gritó, {helper} aplaudió, y toda la colina se volvió a mirar una cometa roja que ya no era un juguete, sino un punto de color en lo alto del cielo. Sombra salió de detrás del roble, sin esconderse esta vez. «Yo la dejé colgada», dijo {villain.voz}. «Debí haberlo intentado otra vez.» {hero} le tendió el carrete, y Sombra lo agarró con las dos manos. Sintió cómo tiraba el viento por el hilo, y se quedó mirando arriba, inmóvil como un niño, hasta que la capucha se le cayó hacia atrás.",
+              "text": "Esta vez, {hero} no corrió. Se colocó de espaldas al viento, con la cometa en alto y la cuerda en orden a sus pies, y esperó a sentirlo en la nuca. Esperó un poco más. Hasta que llegó la ráfaga, una ráfaga ancha y firme, de las que mueven el pelo, y {hero} soltó. La cometa se elevó sin un titubeo, con la cola larga ondeando detrás, y la cuerda salió del carrete ordenada y limpia entre los dedos, vuelta tras vuelta. Pasó el roble y subió más alto todavía, tan arriba que {hero} ya no distinguía las tres pistas del reverso, pero sabía que estaban allí, llenándose de sol. Lía gritó, {helper} aplaudió, y toda la colina se volvió a mirar una cometa roja que ya no era un juguete, sino un punto de color en lo alto del cielo. Sombra salió de detrás del roble, sin esconderse esta vez. «Yo la dejé colgada», dijo {villain.voz}. «Debí haberlo intentado otra vez.» {hero} le tendió el carrete, y Sombra lo agarró con las dos manos. Sintió cómo tiraba el viento por el hilo, y se quedó mirando arriba, con la boca abierta como un niño, hasta que la capucha se le cayó hacia atrás.",
               "scene": {
                 "bg": "colina",
                 "mood": "triumph",

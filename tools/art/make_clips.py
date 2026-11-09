@@ -129,6 +129,19 @@ CLIPS = {
         "legR.dy": keys((0, 0), (0.7, 0), (1.05, -5), (1.4, 0)),
         "armL": sine(1.4, -10), "armR": sine(1.4, -10),
         "eyes.sy": keys((0, 0.6), (1.4, 0.6))}),
+    # Quieto de miedo: «no se movió ni un pelo». Nada se balancea; solo los ojos muy abiertos (sin parpadear).
+    "freeze": dict(dur=2.0, loop=True, tracks={
+        "head": keys((0, -5), (2.0, -5)),
+        "torso": keys((0, 0), (2.0, 0)),
+        "root.dy": keys((0, 0), (2.0, 0)),
+        "legL": keys((0, 4), (2.0, 4)), "legR": keys((0, -4), (2.0, -4)),
+        "eyes.sy": keys((0, 1.3), (2.0, 1.3))}),
+    # Risita tapándose la boca: una mano en la boca, la otra en la barriga, hombros que saltan un poquito.
+    "giggle": dict(dur=1.0, loop=True, tracks={
+        "root.dy": keys((0, 0), (0.25, -3), (0.5, 0), (0.75, -3), (1.0, 0)),
+        "head": keys((0, -4), (0.5, -6), (1.0, -4)),
+        "torso": sine(1.0, 1.5),
+        "eyes.sy": keys((0, 0.3), (1.0, 0.3))}),
     "laugh": dict(dur=0.8, loop=True, tracks={
         "root.dy": keys((0, 0), (0.1, -7), (0.2, 0), (0.3, -7), (0.4, 0), (0.5, -7), (0.6, 0), (0.7, -5), (0.8, 0)),
         "head": keys((0, -6), (0.4, -9), (0.8, -6)),
@@ -321,6 +334,8 @@ FACES = {
                         "eyes.dx": keys((0, 0), (0.5, -5), (d * 0.8, -5), (d, 0)), "eyes.dy": keys((0, 0), (0.5, -4), (d * 0.8, -4), (d, 0))},
     "sneak": lambda d: {**brows(d, -ANGRY), "mouth.sx": hold(d, 0.6), "eyes.dx": cycle(d, [-5, 5, -5, 5])},
     "laugh": lambda d: {**brows(d, dy=-3), **open_mouth(d, 5.5, 1.3, 0.8, 8)},
+    "freeze": lambda d: {**brows(d, WORRY, -4), **open_mouth(d, 3.0, 0.7)},
+    "giggle": lambda d: {**brows(d, dy=-3), **open_mouth(d, 1.5, 0.8)},
     "sleep": lambda d: {"mouth.sx": hold(d, 0.55), "jaw.sy": cycle(d, [1.2, 2.4, 1.2, 2.0]), "jaw.sx": hold(d, 0.5)},
     "offer": lambda d: {**brows(d, dy=-2), "mouth.sx": hold(d, 1.15)},
     "no": lambda d: {**brows(d, -ANGRY), "mouth.sy": hold(d, -0.7), "mouth.dy": hold(d, 2)},
@@ -433,6 +448,8 @@ ARM_POSES = {
     "think": lambda d: arms(d, [(0, N, N), (0.4, (-4, -118), (10, -160)), (2.6, (-4, -118), (10, -160)), (d, N, N)]),
     "sad": lambda d: arms(d, [(0, (-10, -102), (10, -102)), (1.6, (-12, -104), (12, -104)), (d, (-10, -102), (10, -102))]),
     "laugh": lambda d: arms(d, [(0, (-14, -112), (14, -112)), (0.4, (-16, -108), (16, -108)), (d, (-14, -112), (14, -112))]),
+    "freeze": lambda d: arms(d, [(0, (-24, -160), (24, -160)), (d, (-24, -160), (24, -160))]),
+    "giggle": lambda d: arms(d, [(0, (-6, -118), (12, -166)), (0.5, (-8, -116), (12, -168)), (d, (-6, -118), (12, -166))]),
     "clap": lambda d: arms(d, [(0, (-4, -124), (4, -124)), (0.3, (-26, -120), (26, -120)), (d, (-4, -124), (4, -124))]),
     "shiver": lambda d: arms(d, [(0, (4, -132), (-4, -132)), (0.1, (8, -130), (-8, -130)), (0.2, (4, -132), (-4, -132)),
                                  (0.3, (8, -130), (-8, -130)), (d, (4, -132), (-4, -132))]),
@@ -453,7 +470,8 @@ ARM_POSES = {
                                (1.05, (-52, -170), (56, -150)), (d, (-40, -190), (40, -110))]),
 }
 # (el arma de la mano derecha se aparta de la cara: se inclina hacia fuera)
-for _name, _deg in {"eat": 55, "think": 55, "yawn": 55, "hide": 50, "surprised": 45, "scared": 45, "blow": 40}.items():
+for _name, _deg in {"eat": 55, "think": 55, "yawn": 55, "hide": 50, "surprised": 45, "scared": 45, "blow": 40,
+                    "freeze": 45, "giggle": 55}.items():
     CLIPS[_name]["tracks"]["itemR"] = hold(CLIPS[_name]["dur"], _deg)
 for _name, _arm in ARM_POSES.items():
     CLIPS[_name]["tracks"].update(_arm(CLIPS[_name]["dur"]))

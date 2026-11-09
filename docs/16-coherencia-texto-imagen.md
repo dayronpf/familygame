@@ -167,3 +167,24 @@ revisan también lo que dicen las frases de enlace. Dos consecuencias para quien
 * Si una frase de una opción nombra algo (p. ej. «una cabrita que dice beee»), **todas las escenas donde puede salir** deben dibujarlo
   o declararlo `offstage`/`unseen` (el eco del cierre lo hace en sus dos variantes).
 * Una rama que no añade la etiqueta que exige un beat posterior (el «ancla» de la enseñanza) deja al cuento sin variante: el pack se rechaza.
+
+## Revisión de raíz (9-nov-2026, a partir de «Las sombras del cuarto»)
+
+El dueño leyó el cuento en el teléfono y encontró nueve incoherencias. Las causas no eran del cuento sino de cómo se
+decidía el dibujo, así que se corrigieron en el motor, el validador, el arte y los 90 cuentos:
+
+| Causa | Regla o cambio |
+|---|---|
+| Un primer plano de un objeto mientras el texto cuenta lo que hace el protagonista | El validador lo prohíbe (`_checkActing`); un objeto que se presenta basta con que se vea (en la escena o de cerca) |
+| «No se movió ni un pelo» con una animación que se balancea | Animación nueva `freeze`; el texto de quietud exige `freeze` o `sleep` |
+| «Se tapó la boca» con una risa que saca la espada | Animación nueva `giggle` (sin armas) |
+| El protagonista se levanta de la cama vestido de caballero | De noche en un cuarto con cama va en pijama toda la escena |
+| Una vela encendida en el fondo del cuarto que el texto no nombra | La vela del fondo está siempre apagada; las luces son objetos del cuento |
+| `unseen` permitía nombrar un objeto sin dibujarlo | Ya no vale para objetos; lo que depende de una elección se dibuja con `when`/`unless` |
+| La enseñanza era la general de cada valor y edad | Cada premisa tiene su `lesson`, escrita a partir de lo que pasa en ella (obligatoria) |
+| «Elegisteis», «os», «¡Mirad!» | Nada de «vosotros» (regla `vosotrosForms`); en la app, «Eligieron» |
+
+**Auditoría visual** (para lo que las reglas no ven): `app/test/audit_visual_manual_test.dart` dibuja cada variante de
+cada escena de los 90 cuentos, en todos los caminos, con su texto (`AUDIT_OUT=… flutter test test/audit_visual_manual_test.dart`),
+y `tools/audit/visual_audit.py` le pide a Claude que compare texto y dibujo con una lista fija y escribe `revision.html`
+con lo dudoso primero. El SuperAdmin mira cada hallazgo antes de corregir. Necesita una clave de la API y Python 3.10+.

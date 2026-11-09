@@ -605,6 +605,7 @@
       "id": "caracola_nacar",
       "value": "amistad",
       "title": "La caracola de Nácar",
+      "lesson": "Devolver lo que es suyo hace amigos.",
       "ages": [
         "2-3"
       ],
@@ -646,11 +647,22 @@
                 "bg": "playa",
                 "mood": "calm",
                 "time": "dia",
-                "focus": {
-                  "prop": "caracola",
-                  "x": 0.5,
-                  "fill": 0.5
-                }
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "wonder",
+                    "x": 0.4
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "caracola",
+                    "near": "hero",
+                    "dx": 0.06,
+                    "lift": 90,
+                    "scale": 0.6
+                  }
+                ]
               }
             },
             {
@@ -660,11 +672,22 @@
                 "bg": "playa",
                 "mood": "calm",
                 "time": "dia",
-                "focus": {
-                  "prop": "caracola",
-                  "x": 0.5,
-                  "fill": 0.5
-                }
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "wonder",
+                    "x": 0.4
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "caracola",
+                    "near": "hero",
+                    "dx": 0.06,
+                    "lift": 90,
+                    "scale": 0.6
+                  }
+                ]
               }
             }
           ],
@@ -872,6 +895,7 @@
       "id": "galleta_cazo",
       "value": "honestidad",
       "title": "La galleta de Tío Cazo",
+      "lesson": "Decir la verdad quita la barriga rara.",
       "ages": [
         "2-3"
       ],
@@ -917,11 +941,27 @@
                 "bg": "cubierta",
                 "mood": "calm",
                 "time": "dia",
-                "focus": {
-                  "prop": "galleta_barco",
-                  "x": 0.5,
-                  "fill": 0.55
-                }
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "wonder",
+                    "x": 0.32
+                  },
+                  {
+                    "rig": "cazo",
+                    "clip": "offer",
+                    "x": 0.64
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "galleta_barco",
+                    "near": "cazo",
+                    "dx": -0.07,
+                    "lift": 60,
+                    "scale": 0.6
+                  }
+                ]
               }
             },
             {
@@ -931,11 +971,27 @@
                 "bg": "cubierta",
                 "mood": "calm",
                 "time": "dia",
-                "focus": {
-                  "prop": "galleta_barco",
-                  "x": 0.5,
-                  "fill": 0.55
-                }
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "wonder",
+                    "x": 0.32
+                  },
+                  {
+                    "rig": "cazo",
+                    "clip": "offer",
+                    "x": 0.64
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "galleta_barco",
+                    "near": "cazo",
+                    "dx": -0.07,
+                    "lift": 60,
+                    "scale": 0.6
+                  }
+                ]
               }
             }
           ],
@@ -1117,6 +1173,7 @@
       "id": "cofa_paso",
       "value": "valentia",
       "title": "Arriba, en la cofa",
+      "lesson": "Si miramos arriba, llegamos a lo alto.",
       "ages": [
         "2-3"
       ],
@@ -1243,11 +1300,27 @@
                 "bg": "cofa",
                 "mood": "triumph",
                 "time": "dia",
-                "focus": {
-                  "prop": "catalejo",
-                  "x": 0.5,
-                  "fill": 0.55
-                }
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "cheer",
+                    "x": 0.36
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "offer",
+                    "x": 0.66
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "catalejo",
+                    "near": "hero",
+                    "dx": 0.06,
+                    "lift": 95,
+                    "scale": 0.8
+                  }
+                ]
               },
               "requires": [
                 "subio"
@@ -1327,6 +1400,7 @@
       "id": "cofre_pesado",
       "value": "humildad",
       "title": "El cofre pesado",
+      "lesson": "Cuando no podemos solos, preguntamos: «¿Me ayudan?».",
       "ages": [
         "2-3"
       ],
@@ -1369,11 +1443,19 @@
                 "bg": "puerto",
                 "mood": "calm",
                 "time": "dia",
-                "focus": {
-                  "prop": "cofre",
-                  "x": 0.5,
-                  "fill": 0.55
-                }
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "proud",
+                    "x": 0.36
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "cofre",
+                    "x": 0.6
+                  }
+                ]
               }
             }
           ],
@@ -1386,7 +1468,7 @@
           "variants": [
             {
               "id": "cofre_pesado_empuja_a",
-              "text": "{hero} empujó el cofre: ¡uf! No se movió. {hero} tiró del cofre: ¡uf, uf! No se movió nada de nada.",
+              "text": "{hero} empujó el cofre: ¡uf! Nada. {hero} tiró del cofre: ¡uf, uf! Nada de nada.",
               "scene": {
                 "bg": "puerto",
                 "mood": "tension",
@@ -1440,7 +1522,7 @@
           "variants": [
             {
               "id": "cofre_pesado_ayuda_a",
-              "text": "Por el muelle pasaban un marinero y una marinera. Sin ayuda no podía, así que {hero} respiró hondo. «¿Me ayudáis?», preguntó {hero}. «¡Claro!», dijeron los dos.",
+              "text": "Por el muelle pasaban un marinero y una marinera. Sin ayuda no podía, así que {hero} respiró hondo. «¿Me ayudan?», preguntó {hero}. «¡Claro!», dijeron los dos.",
               "scene": {
                 "bg": "puerto",
                 "mood": "hope",
@@ -1537,6 +1619,7 @@
       "id": "botella_corcho",
       "value": "perseverancia",
       "title": "La botella del mar",
+      "lesson": "Si no sale, probamos de otra manera.",
       "ages": [
         "2-3"
       ],
@@ -1582,11 +1665,22 @@
                 "bg": "playa",
                 "mood": "mystery",
                 "time": "dia",
-                "focus": {
-                  "prop": "botella_mensaje",
-                  "x": 0.5,
-                  "fill": 0.55
-                }
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "surprised",
+                    "x": 0.4
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "botella_mensaje",
+                    "near": "hero",
+                    "dx": 0.08,
+                    "lift": 60,
+                    "scale": 0.8
+                  }
+                ]
               }
             }
           ],
@@ -1754,6 +1848,7 @@
       "id": "galletas_todos",
       "value": "generosidad",
       "title": "Galletas para todos",
+      "lesson": "Repartida entre todos, la galleta sabe mejor.",
       "ages": [
         "2-3"
       ],
@@ -1796,11 +1891,22 @@
                 "bg": "playa",
                 "mood": "calm",
                 "time": "dia",
-                "focus": {
-                  "prop": "galleta_barco",
-                  "x": 0.5,
-                  "fill": 0.55
-                }
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "idle",
+                    "x": 0.4
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "galleta_barco",
+                    "near": "hero",
+                    "dx": 0.07,
+                    "lift": 60,
+                    "scale": 0.6
+                  }
+                ]
               }
             },
             {
@@ -1810,11 +1916,22 @@
                 "bg": "playa",
                 "mood": "calm",
                 "time": "dia",
-                "focus": {
-                  "prop": "galleta_barco",
-                  "x": 0.5,
-                  "fill": 0.55
-                }
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "idle",
+                    "x": 0.4
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "galleta_barco",
+                    "near": "hero",
+                    "dx": 0.07,
+                    "lift": 60,
+                    "scale": 0.6
+                  }
+                ]
               }
             }
           ],
@@ -1990,6 +2107,7 @@
       "id": "mapa_roto",
       "value": "honestidad",
       "title": "El mapa del Abuelo Faro",
+      "lesson": "Lo que se rompe se puede pegar, pero solo si lo contamos.",
       "ages": [
         "4-5"
       ],
@@ -2060,11 +2178,22 @@
                 "bg": "faro",
                 "mood": "mystery",
                 "time": "dia",
-                "focus": {
-                  "prop": "mapa",
-                  "x": 0.5,
-                  "fill": 0.55
-                }
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "wonder",
+                    "x": 0.36
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "mapa",
+                    "near": "hero",
+                    "dx": 0.08,
+                    "lift": 50,
+                    "scale": 0.6
+                  }
+                ]
               }
             }
           ],
@@ -2244,6 +2373,7 @@
       "id": "perla_marina",
       "value": "generosidad",
       "title": "La perla de Nácar",
+      "lesson": "Un regalo que pasamos a quien lo necesita brilla todavía más.",
       "ages": [
         "4-5"
       ],
@@ -2324,11 +2454,27 @@
                 "bg": "laguna",
                 "mood": "joy",
                 "time": "dia",
-                "focus": {
-                  "prop": "perla",
-                  "x": 0.5,
-                  "fill": 0.55
-                }
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "cheer",
+                    "x": 0.34
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "talk",
+                    "x": 0.64
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "perla",
+                    "near": "hero",
+                    "dx": 0.07,
+                    "lift": 60,
+                    "scale": 0.6
+                  }
+                ]
               }
             }
           ],
@@ -2503,6 +2649,7 @@
       "id": "bajo_agua",
       "value": "valentia",
       "title": "Los ojos bajo el agua",
+      "lesson": "Lo que no conocemos asusta; abriendo los ojos poco a poco, aparece algo precioso.",
       "ages": [
         "4-5"
       ],
@@ -2730,6 +2877,7 @@
       "id": "mejor_nudo",
       "value": "humildad",
       "title": "El mejor nudo del barco",
+      "lesson": "Presumir no ata la vela; preguntar «¿me enseñas?», sí.",
       "ages": [
         "4-5"
       ],
@@ -2958,6 +3106,7 @@
       "id": "brujula_norte",
       "value": "perseverancia",
       "title": "La brújula y el camino",
+      "lesson": "Si nos equivocamos de camino, parar y esperar con calma nos ayuda a encontrarlo.",
       "ages": [
         "4-5"
       ],
@@ -3011,11 +3160,27 @@
                 "bg": "playa",
                 "mood": "calm",
                 "time": "dia",
-                "focus": {
-                  "prop": "brujula",
-                  "x": 0.5,
-                  "fill": 0.55
-                }
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "cheer",
+                    "x": 0.34
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "talk",
+                    "x": 0.64
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "brujula",
+                    "near": "hero",
+                    "dx": 0.07,
+                    "lift": 60,
+                    "scale": 0.6
+                  }
+                ]
               }
             }
           ],
@@ -3125,7 +3290,7 @@
           "variants": [
             {
               "id": "brujula_norte_piensa_a",
-              "text": "Entonces {hero} se paró a pensar. Dejó la {item.noun} sin moverla sobre la mano y esperó a que la aguja dejara de bailar. ¡Ahí estaba el norte! Así que {hero} giró los pies hasta que la aguja apuntó hacia delante.",
+              "text": "Entonces {hero} se paró a pensar. Dejó la {item.noun} quietecita sobre la mano y esperó a que la aguja dejara de bailar. ¡Ahí estaba el norte! Así que {hero} giró los pies hasta que la aguja apuntó hacia delante.",
               "scene": {
                 "bg": "selva",
                 "mood": "hope",
@@ -3215,6 +3380,7 @@
       "id": "carrera_calma",
       "value": "amistad",
       "title": "La carrera de la playa",
+      "lesson": "Esperar a un amigo que va despacio vale más que llegar primero.",
       "ages": [
         "4-5"
       ],
@@ -3363,7 +3529,7 @@
           "variants": [
             {
               "id": "carrera_calma_leo_a",
-              "text": "Leo llegó el primero a las palmeras. Pero al ver a {hero} con Calma, se rio y volvió también. «Yo también os acompaño», dijo. Y los tres llegaron a la meta a la vez, cantando una canción de piratas.",
+              "text": "Leo llegó el primero a las palmeras. Pero al ver a {hero} con Calma, se rio y volvió también. «Yo también los acompaño», dijo. Y los tres llegaron a la meta a la vez, cantando una canción de piratas.",
               "scene": {
                 "bg": "playa",
                 "mood": "joy",
@@ -3429,6 +3595,7 @@
       "id": "timon_primera",
       "value": "valentia",
       "title": "La primera vez al timón",
+      "lesson": "Equivocarse no es tan grave: si el barco se tuerce, lo enderezamos y seguimos.",
       "ages": [
         "4-5"
       ],
@@ -3645,6 +3812,7 @@
       "id": "leo_nuevo",
       "value": "amistad",
       "title": "Un grumete nuevo",
+      "lesson": "Recordar nuestro primer día nos ayuda a saludar a quien acaba de llegar.",
       "ages": [
         "4-5"
       ],
@@ -3685,7 +3853,7 @@
           "variants": [
             {
               "id": "leo_nuevo_llega_a",
-              "text": "Una mañana subió al barco un grumete nuevo. Se llamaba Leo, y llevaba un saco enorme a la espalda. No hablaba con nadie, porque no conocía a nadie. Se quedó junto al mástil, sin moverse, mirándose los pies. Los marineros iban de aquí para allá, y nadie se fijaba en Leo.",
+              "text": "Una mañana subió al barco un grumete nuevo. Se llamaba Leo, y llevaba un saco enorme a la espalda. No hablaba con nadie, porque no conocía a nadie. Se quedó junto al mástil, muy callado, mirándose los pies. Los marineros iban de aquí para allá, y nadie se fijaba en Leo.",
               "scene": {
                 "bg": "cubierta",
                 "mood": "calm",
@@ -3848,6 +4016,7 @@
       "id": "farol_ola",
       "value": "generosidad",
       "title": "Un farol para Ola",
+      "lesson": "Prestar nuestra luz a quien la necesita la hace brillar más lejos.",
       "ages": [
         "4-5"
       ],
@@ -3893,11 +4062,28 @@
                 "bg": "puerto",
                 "mood": "calm",
                 "time": "atardecer",
-                "focus": {
-                  "prop": "farol_barco",
-                  "x": 0.5,
-                  "fill": 0.55
-                }
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "cheer",
+                    "x": 0.34
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "talk",
+                    "x": 0.64
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "farol_barco",
+                    "near": "hero",
+                    "dx": 0.07,
+                    "lift": 55,
+                    "scale": 0.6,
+                    "clip": "glow"
+                  }
+                ]
               }
             }
           ],
@@ -4120,6 +4306,7 @@
       "id": "catalejo_rajado",
       "value": "honestidad",
       "title": "El catalejo rajado",
+      "lesson": "Si culpan a alguien de lo que hicimos, decir «fui yo» lo libera, aunque nos tiemblen las rodillas.",
       "ages": [
         "6-8"
       ],
@@ -4179,11 +4366,27 @@
                 "bg": "cubierta",
                 "mood": "calm",
                 "time": "dia",
-                "focus": {
-                  "prop": "catalejo",
-                  "x": 0.5,
-                  "fill": 0.55
-                }
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "wonder",
+                    "x": 0.3
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "talk",
+                    "x": 0.66
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "catalejo",
+                    "near": "helper",
+                    "dx": -0.07,
+                    "lift": 60,
+                    "scale": 0.7
+                  }
+                ]
               }
             }
           ],
@@ -4230,7 +4433,7 @@
           "variants": [
             {
               "id": "catalejo_rajado_crac_a",
-              "text": "En la bodega, {hero} trepó a un barril para otear el horizonte imaginario. Entonces el barco dio un bandazo, porque una ola grande lo empujó de lado, y el {item.noun} se le escurrió de las manos. Rodó por el suelo, chocó contra una caja y se quedó inmóvil, con el cristal rajado de lado a lado. A {hero} se le encogió el estómago.",
+              "text": "En la bodega, {hero} trepó a un barril para otear el horizonte imaginario. Entonces el barco dio un bandazo, porque una ola grande lo empujó de lado, y el {item.noun} se le escurrió de las manos. Rodó por el suelo, chocó contra una caja y se detuvo, con el cristal rajado de lado a lado. A {hero} se le encogió el estómago.",
               "scene": {
                 "bg": "bodega",
                 "mood": "tension",
@@ -4486,6 +4689,7 @@
       "id": "tesoro_compartido",
       "value": "generosidad",
       "title": "El tesoro de la Isla Quieta",
+      "lesson": "Un tesoro para uno solo sirve poco; repartido, arregla barcas, pone tejados y hasta cambia a un pirata.",
       "ages": [
         "6-8"
       ],
@@ -4817,6 +5021,7 @@
       "id": "faro_apagado",
       "value": "valentia",
       "title": "La noche que se apagó el faro",
+      "lesson": "Pensar en quienes nos necesitan, y cantar bajito, nos ayuda a seguir adelante aunque tengamos miedo.",
       "ages": [
         "6-8"
       ],
@@ -4921,11 +5126,28 @@
                 "bg": "faro",
                 "mood": "tension",
                 "time": "noche",
-                "focus": {
-                  "prop": "farol_barco",
-                  "x": 0.5,
-                  "fill": 0.55
-                }
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "shiver",
+                    "x": 0.34
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "offer",
+                    "x": 0.64
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "farol_barco",
+                    "near": "hero",
+                    "dx": 0.07,
+                    "lift": 55,
+                    "scale": 0.6,
+                    "clip": "glow"
+                  }
+                ]
               }
             }
           ],
@@ -5085,9 +5307,6 @@
                     "clip": "idle",
                     "x": 0.64
                   }
-                ],
-                "unseen": [
-                  "manta"
                 ]
               }
             }
@@ -5100,6 +5319,7 @@
       "id": "marea_baja",
       "value": "humildad",
       "title": "Yo me sé el camino",
+      "lesson": "Cuando dejamos de fingir que lo sabemos todo y decimos «me equivoqué», las ideas y la ayuda empiezan a llegar.",
       "ages": [
         "6-8"
       ],
@@ -5248,7 +5468,7 @@
           "variants": [
             {
               "id": "marea_baja_pide_a",
-              "text": "«¡Nácar!», llamó {hero} con todas sus fuerzas. «¡Nácar, necesitamos ayuda!» Al momento, una cola verde salpicó entre los nenúfares. La sirena asomó la cabeza, con los ojos muy abiertos. «¿Qué hacéis ahí arriba?», preguntó. «Presumí de saberme el camino y la marea nos atrapó a Leo y a mí», confesó {hero}. Nácar no se rio. Solo dijo: «Pedir ayuda es de listos de verdad».",
+              "text": "«¡Nácar!», llamó {hero} con todas sus fuerzas. «¡Nácar, necesitamos ayuda!» Al momento, una cola verde salpicó entre los nenúfares. La sirena asomó la cabeza, con los ojos muy abiertos. «¿Qué hacen ahí arriba?», preguntó. «Presumí de saberme el camino y la marea nos atrapó a Leo y a mí», confesó {hero}. Nácar no se rio. Solo dijo: «Pedir ayuda es de listos de verdad».",
               "scene": {
                 "bg": "laguna",
                 "mood": "hope",
@@ -5285,7 +5505,7 @@
           "variants": [
             {
               "id": "marea_baja_rescate_a",
-              "text": "{helper} conocía cada piedra de la laguna, incluso las que estaban bajo el agua. «Pisad donde yo os diga», explicó. Y así, piedra a piedra, siguiendo su voz, {hero} y Leo cruzaron hasta la playa. El agua les llegaba por las rodillas, pero no se cayeron ni una vez.",
+              "text": "{helper} conocía cada piedra de la laguna, incluso las que estaban bajo el agua. «Pisen donde yo les diga», explicó. Y así, piedra a piedra, siguiendo su voz, {hero} y Leo cruzaron hasta la playa. El agua les llegaba por las rodillas, pero no se cayeron ni una vez.",
               "scene": {
                 "bg": "laguna",
                 "mood": "triumph",
@@ -5316,7 +5536,7 @@
           "variants": [
             {
               "id": "marea_baja_mareas_a",
-              "text": "Ya en la arena, {helper} les explicó el secreto de la laguna. «El mar respira», dijo. «Dos veces al día sube la marea, y dos veces baja. Cuando la luna está gorda, sube todavía más.» {hero} escuchaba con atención, sin interrumpir, porque se había dado cuenta de que había muchísimas cosas que no sabía. Leo hacía preguntas, y {helper} las contestaba todas, salpicando con la cola de vez en cuando. «Mañana os enseño a leer las mareas en las conchas de la orilla», prometió la sirena. Les contó también que los cangrejos saben cuándo sube el agua, y que por eso corren a esconderse un rato antes. Luego se zambulló con un chapuzón que los dejó empapados de risa.",
+              "text": "Ya en la arena, {helper} les explicó el secreto de la laguna. «El mar respira», dijo. «Dos veces al día sube la marea, y dos veces baja. Cuando la luna está gorda, sube todavía más.» {hero} escuchaba con atención, sin interrumpir, porque se había dado cuenta de que había muchísimas cosas que no sabía. Leo hacía preguntas, y {helper} las contestaba todas, salpicando con la cola de vez en cuando. «Mañana les enseño a leer las mareas en las conchas de la orilla», prometió la sirena. Les contó también que los cangrejos saben cuándo sube el agua, y que por eso corren a esconderse un rato antes. Luego se zambulló con un chapuzón que los dejó empapados de risa.",
               "scene": {
                 "bg": "laguna",
                 "mood": "calm",
@@ -5378,6 +5598,7 @@
       "id": "vela_rota",
       "value": "perseverancia",
       "title": "La vela remendada",
+      "lesson": "Cuando algo duele o no sale, una ayudita y mucha paciencia, puntada a puntada, cierran hasta el desgarrón más grande.",
       "ages": [
         "6-8"
       ],
@@ -5585,9 +5806,6 @@
                     "clip": "sleep",
                     "x": 0.8
                   }
-                ],
-                "unseen": [
-                  "taza"
                 ]
               }
             }
@@ -5652,6 +5870,7 @@
       "id": "remolino_juega",
       "value": "amistad",
       "title": "Las travesuras de Remolino",
+      "lesson": "A veces quien hace travesuras solo quiere un amigo; preguntar por qué, en vez de regañar, puede abrirle la puerta.",
       "ages": [
         "6-8"
       ],
@@ -5924,6 +6143,7 @@
       "id": "cueva_ecos",
       "value": "valentia",
       "title": "La cueva de los ecos",
+      "lesson": "En la oscuridad, las cosas raras suelen tener explicación; si escuchamos con calma, encontramos el camino hacia quien nos necesita.",
       "ages": [
         "6-8"
       ],
@@ -5999,11 +6219,23 @@
                 "bg": "selva",
                 "mood": "tension",
                 "time": "atardecer",
-                "focus": {
-                  "prop": "farol_barco",
-                  "x": 0.5,
-                  "fill": 0.55
-                }
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "think",
+                    "x": 0.4
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "farol_barco",
+                    "near": "hero",
+                    "dx": 0.07,
+                    "lift": 55,
+                    "scale": 0.6,
+                    "clip": "glow"
+                  }
+                ]
               }
             }
           ],
@@ -6214,6 +6446,7 @@
       "id": "pelea_leo",
       "value": "amistad",
       "title": "La pelea del catalejo",
+      "lesson": "Tras una pelea, pedirse perdón y volver a compartir ata la amistad más fuerte que antes.",
       "ages": [
         "6-8"
       ],
@@ -6271,11 +6504,30 @@
                 "bg": "cofa",
                 "mood": "tension",
                 "time": "dia",
-                "focus": {
-                  "prop": "catalejo",
-                  "x": 0.5,
-                  "fill": 0.55
-                }
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "talk",
+                    "x": 0.36
+                  },
+                  {
+                    "rig": "nino_puerto",
+                    "clip": "talk",
+                    "x": 0.6
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "catalejo",
+                    "near": "hero",
+                    "dx": 0.12,
+                    "lift": 70,
+                    "scale": 0.7
+                  }
+                ],
+                "offstage": [
+                  "helper"
+                ]
               }
             }
           ],
@@ -6504,6 +6756,7 @@
       "id": "sopa_mostacho",
       "value": "generosidad",
       "title": "Sopa para el capitán Mostacho",
+      "lesson": "Compartir lo último nos deja con menos, pero no con nada, y hasta quien nos perseguía puede volverse amigo.",
       "ages": [
         "6-8"
       ],
@@ -6680,7 +6933,7 @@
           "variants": [
             {
               "id": "sopa_mostacho_sirve_a",
-              "text": "Acercaron los dos barcos y tendieron una tabla entre ellos. {hero} cruzó con la sopa humeante en una cacerola, con cuidado de no derramar ni una gota. {villain} se quedó mirando la sopa con el bigote temblando. «¿Por qué me ayudas?», preguntó con voz ronca. «Siempre os he gritado y os he perseguido.» «Porque tienes hambre», dijo {hero}. «Y eso es lo que importa ahora.»",
+              "text": "Acercaron los dos barcos y tendieron una tabla entre ellos. {hero} cruzó con la sopa humeante en una cacerola, con cuidado de no derramar ni una gota. {villain} se quedó mirando la sopa con el bigote temblando. «¿Por qué me ayudas?», preguntó con voz ronca. «Siempre les he gritado y los he perseguido.» «Porque tienes hambre», dijo {hero}. «Y eso es lo que importa ahora.»",
               "scene": {
                 "bg": "cubierta",
                 "mood": "joy",
@@ -6718,7 +6971,7 @@
           "variants": [
             {
               "id": "sopa_mostacho_cuentan_a",
-              "text": "Los marineros de {villain} comieron en silencio, rebañando los cuencos hasta dejarlos brillantes. Cuando terminaron, el más joven contó lo que había pasado: una tormenta les había roto las redes y el mástil pequeño, y desde entonces no habían pescado ni una sardina. «Por eso estamos tan flacos», dijo, y se rio por primera vez en días. Tío Cazo, que había cruzado detrás de {hero}, le dio una palmada en la espalda. «Mañana os ayudamos a coser las redes», prometió. {villain} se retorció el bigote y miró al suelo, porque no sabía cómo dar las gracias.",
+              "text": "Los marineros de {villain} comieron en silencio, rebañando los cuencos hasta dejarlos brillantes. Cuando terminaron, el más joven contó lo que había pasado: una tormenta les había roto las redes y el mástil pequeño, y desde entonces no habían pescado ni una sardina. «Por eso estamos tan flacos», dijo, y se rio por primera vez en días. Tío Cazo, que había cruzado detrás de {hero}, le dio una palmada en la espalda. «Mañana los ayudamos a coser las redes», prometió. {villain} se retorció el bigote y miró al suelo, porque no sabía cómo dar las gracias.",
               "scene": {
                 "bg": "cubierta",
                 "mood": "hope",
@@ -6749,7 +7002,7 @@
           "variants": [
             {
               "id": "sopa_mostacho_cambia_a",
-              "text": "{villain} probó la sopa y cerró los ojos. Luego, sin decir nada, se quitó el sombrero de tres picos. Era la primera vez que alguien lo veía sin sombrero. «Mi tripulación y yo os debemos una», dijo. Y al día siguiente, cuando pescaron un banco entero de sardinas, lo primero que hizo {villain} fue mandar la mitad a la Gaviota, con una nota que decía: «Gracias, grumete».",
+              "text": "{villain} probó la sopa y cerró los ojos. Luego, sin decir nada, se quitó el sombrero de tres picos. Era la primera vez que alguien lo veía sin sombrero. «Mi tripulación y yo les debemos una», dijo. Y al día siguiente, cuando pescaron un banco entero de sardinas, lo primero que hizo {villain} fue mandar la mitad a la Gaviota, con una nota que decía: «Gracias, grumete».",
               "scene": {
                 "bg": "cubierta",
                 "mood": "joy",
@@ -6802,6 +7055,7 @@
       "id": "regata_atajo",
       "value": "honestidad",
       "title": "La regata de las Estrellas",
+      "lesson": "Un triunfo con trampa pesa más que cualquier trofeo; aunque nadie nos haya visto, reconocerlo y reparar el daño nos devuelve la paz.",
       "ages": [
         "9-12"
       ],
@@ -7157,9 +7411,6 @@
                     "clip": "idle",
                     "x": 0.64
                   }
-                ],
-                "unseen": [
-                  "manta"
                 ]
               }
             }
@@ -7171,6 +7422,7 @@
       "id": "ahorro_faro",
       "value": "generosidad",
       "title": "Las monedas del catalejo",
+      "lesson": "Dar lo que tanto nos costó juntar, para que otros vuelvan a salvo, anima a todos a dar y aligera el corazón.",
       "ages": [
         "9-12"
       ],
@@ -7233,18 +7485,29 @@
           "variants": [
             {
               "id": "ahorro_faro_hucha_a",
-              "text": "Durante todo un año, {hero} había guardado cada moneda que ganaba en el barco: por pelar patatas con Tío Cazo, por coser velas, por limpiar la cubierta los días de tormenta. Las guardaba en un calcetín viejo, debajo de la hamaca, y cada noche las contaba en voz baja. Ya casi tenía bastante para comprar el catalejo del escaparate de la tienda del puerto: uno de latón brillante, con funda de cuero, que hacía que la luna pareciera tan cercana como una naranja. Faltaban solo tres monedas. Una semana más de trabajo, y sería suyo.",
+              "text": "Durante todo un año, {hero} había guardado cada moneda que ganaba en el barco: por pelar patatas con Tío Cazo, por coser velas, por limpiar la cubierta los días de tormenta. Las guardaba en un calcetín viejo, debajo de la hamaca, y cada noche las contaba en voz baja. Ya casi tenía bastante para comprar lo que más quería en el mundo, en el escaparate de la tienda del puerto: un tubo de latón brillante, con funda de cuero, que hacía que la luna pareciera tan cercana como una naranja. Faltaban solo tres monedas. Una semana más de trabajo, y sería suyo.",
               "scene": {
                 "bg": "camarote",
                 "mood": "calm",
                 "time": "noche",
-                "focus": {
-                  "prop": "monedas",
-                  "x": 0.5,
-                  "fill": 0.55
-                },
-                "unseen": [
-                  "catalejo"
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "sit",
+                    "x": 0.42
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "monedas",
+                    "near": "hero",
+                    "dx": 0.09,
+                    "lift": 40,
+                    "scale": 0.6
+                  }
+                ],
+                "offstage": [
+                  "cazo"
                 ]
               }
             }
@@ -7379,7 +7642,7 @@
           "variants": [
             {
               "id": "ahorro_faro_duda_a",
-              "text": "Esa noche, {hero} sacó el calcetín de debajo de la hamaca y vació las monedas sobre la manta. Las contó dos veces. Era todo lo que tenía, el trabajo de un año entero. Pensó en el catalejo del escaparate, en la luna como una naranja. Pensó en lo injusto que era tener que elegir. Y después pensó en las barcas de Ola volviendo de noche, sin luz, en medio de una tormenta grandes. Tardó mucho en dormirse, porque las dos cosas tiraban de su corazón como dos cuerdas en direcciones opuestas.",
+              "text": "Esa noche, {hero} sacó el calcetín de debajo de la hamaca y vació las monedas sobre la manta. Las contó dos veces. Era todo lo que tenía, el trabajo de un año entero. Pensó en el escaparate de la tienda, en la luna como una naranja. Pensó en lo injusto que era tener que elegir. Y después pensó en las barcas de Ola volviendo de noche, sin luz, en medio de una tormenta grande. Tardó mucho en dormirse, porque las dos cosas tiraban de su corazón como dos cuerdas en direcciones opuestas.",
               "scene": {
                 "bg": "camarote",
                 "mood": "mystery",
@@ -7397,10 +7660,6 @@
                     "x": 0.62,
                     "scale": 0.7
                   }
-                ],
-                "unseen": [
-                  "manta",
-                  "catalejo"
                 ],
                 "offstage": [
                   "ola"
@@ -7561,6 +7820,7 @@
       "id": "niebla_bote",
       "value": "valentia",
       "title": "El bote en la niebla",
+      "lesson": "El miedo no se va gritando, sino pensando: aunque el corazón corra, detenernos y elegir un camino con calma nos saca de la niebla.",
       "ages": [
         "9-12"
       ],
@@ -7754,7 +8014,7 @@
                   "glyph": "explore"
                 },
                 "says": {
-                  "llegada": "La aguja no se movió ni un poquito más, y de pronto, de entre la niebla, surgió el casco de la Gaviota, enorme y familiar.",
+                  "llegada": "La aguja siguió firme, apuntando al norte, y de pronto, de entre la niebla, surgió el casco de la Gaviota, enorme y familiar.",
                   "recuerdo": "una aguja que siempre señala el norte"
                 }
               }
@@ -7853,7 +8113,7 @@
           "variants": [
             {
               "id": "niebla_bote_gaviota_a",
-              "text": "{camino.llegada} Desde la borda, la capitana {helper} les lanzó una escala de cuerda y, por primera vez desde que la conocían, la vieron correr. Los marineros subieron el bote entre gritos de alegría, y Tío Cazo apareció con dos mantas y dos tazas de chocolate caliente. La capitana abrazó a {hero} y a Leo a la vez, tan fuerte que les crujieron los huesos. «Cuando entró la niebla y no volvíais, pensé lo peor», dijo con la voz rara. «¿Cómo nos encontrasteis?» Y {hero} se lo contó todo, sin olvidar ningún detalle, mientras Leo asentía con la boca llena de chocolate.",
+              "text": "{camino.llegada} Desde la borda, la capitana {helper} les lanzó una escala de cuerda y, por primera vez desde que la conocían, la vieron correr. Los marineros subieron el bote entre gritos de alegría, y Tío Cazo apareció con dos mantas y dos tazas de chocolate caliente. La capitana abrazó a {hero} y a Leo a la vez, tan fuerte que les crujieron los huesos. «Cuando entró la niebla y no volvían, pensé lo peor», dijo con la voz rara. «¿Cómo nos encontraron?» Y {hero} se lo contó todo, sin olvidar ningún detalle, mientras Leo asentía con la boca llena de chocolate.",
               "scene": {
                 "bg": "cubierta",
                 "mood": "joy",
@@ -7879,10 +8139,6 @@
                     "clip": "offer",
                     "x": 0.84
                   }
-                ],
-                "unseen": [
-                  "manta",
-                  "taza"
                 ]
               },
               "adds": [
@@ -7926,7 +8182,7 @@
           "variants": [
             {
               "id": "niebla_bote_cocina_a",
-              "text": "Después de cenar, Tío Cazo llamó a los dos grumetes a la cocina, porque quería oír la historia otra vez, con todos los detalles. Les sirvió un tazón de sopa de pescado tan caliente que echaba humo, y se sentó a escuchar con los codos en la mesa. Leo contaba la parte del miedo, haciendo muecas exageradas que hacían reír al cocinero. {hero} contaba la parte del camino de vuelta. Al final, Tío Cazo se quedó pensativo, removiendo su sopa. «En cuarenta años de mar, yo me he perdido en la niebla tres veces», dijo. «Y las tres veces salí igual que vosotros: pensando despacio, aunque el corazón corriera deprisa.» Los dos grumetes se miraron, sorprendidos de que un marinero tan viejo hubiera tenido miedo alguna vez.",
+              "text": "Después de cenar, Tío Cazo llamó a los dos grumetes a la cocina, porque quería oír la historia otra vez, con todos los detalles. Les sirvió un tazón de sopa de pescado tan caliente que echaba humo, y se sentó a escuchar con los codos en la mesa. Leo contaba la parte del miedo, haciendo muecas exageradas que hacían reír al cocinero. {hero} contaba la parte del camino de vuelta. Al final, Tío Cazo se quedó pensativo, removiendo su sopa. «En cuarenta años de mar, yo me he perdido en la niebla tres veces», dijo. «Y las tres veces salí igual que ustedes: pensando despacio, aunque el corazón corriera deprisa.» Los dos grumetes se miraron, sorprendidos de que un marinero tan viejo hubiera tenido miedo alguna vez.",
               "scene": {
                 "bg": "cubierta",
                 "mood": "joy",
@@ -7985,6 +8241,7 @@
       "id": "ayudante_navegante",
       "value": "humildad",
       "title": "El ayudante del navegante",
+      "lesson": "Un cargo importante no nos hace saberlo todo; escuchar a quien sabe lo que el mapa no dice nos lleva a buen puerto.",
       "ages": [
         "9-12"
       ],
@@ -8051,11 +8308,32 @@
                 "bg": "cubierta",
                 "mood": "joy",
                 "time": "dia",
-                "focus": {
-                  "prop": "mapa",
-                  "x": 0.5,
-                  "fill": 0.55
-                }
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "proud",
+                    "x": 0.3
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "talk",
+                    "x": 0.54
+                  },
+                  {
+                    "rig": "nino_puerto",
+                    "clip": "cheer",
+                    "x": 0.78
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "mapa",
+                    "near": "hero",
+                    "dx": 0.07,
+                    "lift": 55,
+                    "scale": 0.6
+                  }
+                ]
               }
             }
           ],
@@ -8289,7 +8567,7 @@
           "variants": [
             {
               "id": "ayudante_navegante_mostacho_a",
-              "text": "Al caer la noche, un barco de velas remendadas apareció por el paso. Era el barco {villain.del} {villain}. Al verlos inclinados en el banco de arena, se le escapó una carcajada que se oyó en toda la isla. «¡La famosa Gaviota, varada como una ballena!», gritó. Pero luego vio a {hero}, que le saludaba con la gorra en la mano, sin enfadarse. Y {villain}, que llevaba años presumiendo de no necesitar a nadie, se rascó el bigote. La capitana {helper} se cruzó de brazos, esperando. «Bueno, bueno», refunfuñó {villain}. «Os echo un cabo. Pero que conste que lo hago por las risas.»",
+              "text": "Al caer la noche, un barco de velas remendadas apareció por el paso. Era el barco {villain.del} {villain}. Al verlos inclinados en el banco de arena, se le escapó una carcajada que se oyó en toda la isla. «¡La famosa Gaviota, varada como una ballena!», gritó. Pero luego vio a {hero}, que le saludaba con la gorra en la mano, sin enfadarse. Y {villain}, que llevaba años presumiendo de no necesitar a nadie, se rascó el bigote. La capitana {helper} se cruzó de brazos, esperando. «Bueno, bueno», refunfuñó {villain}. «Les echo un cabo. Pero que conste que lo hago por las risas.»",
               "scene": {
                 "bg": "mar_abierto",
                 "mood": "joy",
@@ -8403,6 +8681,7 @@
       "id": "mapa_siete",
       "value": "perseverancia",
       "title": "El mapa de las siete islas",
+      "lesson": "Lo que logramos tras muchos intentos vale más, porque lleva dentro todo lo que aprendimos en los que salieron mal.",
       "ages": [
         "9-12"
       ],
@@ -8469,11 +8748,27 @@
                 "bg": "faro",
                 "mood": "calm",
                 "time": "dia",
-                "focus": {
-                  "prop": "mapa",
-                  "x": 0.5,
-                  "fill": 0.55
-                }
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "think",
+                    "x": 0.3
+                  },
+                  {
+                    "who": "helper",
+                    "clip": "idle",
+                    "x": 0.68
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "mapa",
+                    "near": "hero",
+                    "dx": 0.08,
+                    "lift": 50,
+                    "scale": 0.6
+                  }
+                ]
               }
             }
           ],
@@ -8838,6 +9133,7 @@
       "id": "faroles_remolino",
       "value": "amistad",
       "title": "La red y la noche de las lámparas",
+      "lesson": "Ser buen amigo no es cumplir una promesa al pie de la letra, sino entender lo que significa: no dejar solo a quien nos necesita.",
       "ages": [
         "9-12"
       ],
@@ -8958,11 +9254,28 @@
                 "bg": "puerto",
                 "mood": "sad",
                 "time": "atardecer",
-                "focus": {
-                  "prop": "farol_barco",
-                  "x": 0.5,
-                  "fill": 0.55
-                }
+                "stage": [
+                  {
+                    "who": "hero",
+                    "clip": "freeze",
+                    "x": 0.32
+                  },
+                  {
+                    "rig": "nino_puerto",
+                    "clip": "sad",
+                    "x": 0.72
+                  }
+                ],
+                "props": [
+                  {
+                    "prop": "farol_barco",
+                    "near": "hero",
+                    "dx": 0.07,
+                    "lift": 55,
+                    "scale": 0.6,
+                    "clip": "glow"
+                  }
+                ]
               }
             }
           ],
@@ -9155,7 +9468,7 @@
           "variants": [
             {
               "id": "faroles_remolino_faroles_a",
-              "text": "Cuando salieron del agua, temblando y felices, ya era tarde. Se habían perdido el momento de soltar las lámparas. Pero al llegar a la orilla se quedaron con la boca abierta. Miles de lucecitas flotaban mar adentro, meciéndose sobre las olas, y la corriente las había traído justo hacia la playa del arrecife. Era como estar dentro del cielo. Leo sacó la lámpara de los peces, que todavía tenía la vela encendida. Lo pusieron juntos sobre el agua y lo vieron alejarse despacio entre los demás. {villain} asomó la cabeza a su lado y lo miró con sus ojos enormes, que reflejaban mil luces.",
+              "text": "Cuando salieron del agua, temblando y felices, ya era tarde. Se habían perdido el momento de soltar las lámparas. Pero al llegar a la orilla se quedaron con la boca abierta. Miles de lucecitas flotaban mar adentro, meciéndose sobre las olas, y la corriente las había traído justo hacia la playa del arrecife. Era como estar dentro del cielo. Leo sacó la lámpara de los peces, que todavía tenía la vela encendida. La pusieron juntos sobre el agua y la vieron alejarse despacio entre las demás. {villain} asomó la cabeza a su lado y la miró con sus ojos enormes, que reflejaban mil luces.",
               "scene": {
                 "bg": "playa",
                 "mood": "joy",

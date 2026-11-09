@@ -83,12 +83,13 @@ void main() {
     final pack =
         jsonDecode(File('assets/packs/medieval/pack.json').readAsStringSync())
             as Map<String, Object?>;
-    final moral = (pack['morals']! as List)
-        .cast<Map<String, Object?>>()
-        .firstWhere((m) => m['id'] == 'honestidad');
-    // La edad por defecto es 4–5: la enseñanza se dice en su forma sencilla.
-    expect(
-        find.text((moral['simple']! as Map)['4-5']! as String), findsOneWidget);
+    // Cada cuento termina con su propia enseñanza («lesson» de su premisa), escrita a partir de lo que pasó en él
+    final lessons = {
+      for (final p in (pack['premises']! as List).cast<Map<String, Object?>>())
+        if (p['value'] == 'honestidad') p['lesson'] as String,
+    };
+    expect(find.byWidgetPredicate((w) => w is Text && lessons.contains(w.data)),
+        findsOneWidget);
   });
 
   testWidgets('cada escena del cuento lleva su dibujo animado', (tester) async {
@@ -168,10 +169,16 @@ void main() {
     expect(storyText(), isNot(first));
     await answerIfAsked();
     await scrollTo(tester, find.text('Enseñanza'));
-    expect(
-      find.text('Un paso pequeñito, y luego otro, y llegamos lejos.'),
-      findsOneWidget,
-    );
+    // Sigue siendo un cuento de valentía: termina con la enseñanza propia de alguno de ellos
+    final pack =
+        jsonDecode(File('assets/packs/medieval/pack.json').readAsStringSync())
+            as Map<String, Object?>;
+    final lessons = {
+      for (final p in (pack['premises']! as List).cast<Map<String, Object?>>())
+        if (p['value'] == 'valentia') p['lesson'] as String,
+    };
+    expect(find.byWidgetPredicate((w) => w is Text && lessons.contains(w.data)),
+        findsOneWidget);
   });
 
   testWidgets('«Sorpréndeme» también genera un cuento', (tester) async {
