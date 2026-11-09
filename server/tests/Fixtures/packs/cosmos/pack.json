@@ -1,0 +1,132 @@
+{
+ "pack": {
+  "schema": 2,
+  "id": "cosmos",
+  "name": "Cosmos",
+  "version": "1.0.0",
+  "language": "es",
+  "age_band": "2-12"
+ },
+ "characters": [
+  {
+   "id": "mara"
+  },
+  {
+   "id": "aldo"
+  },
+  {
+   "id": "bonifacio"
+  }
+ ],
+ "places": [
+  {
+   "id": "aldea"
+  },
+  {
+   "id": "castillo"
+  }
+ ],
+ "props": [
+  {
+   "id": "linterna"
+  }
+ ],
+ "morals": [
+  {
+   "id": "valentia",
+   "name": "Valentía",
+   "text": "x"
+  },
+  {
+   "id": "honestidad",
+   "name": "Honestidad",
+   "text": "y"
+  },
+  {
+   "id": "generosidad",
+   "name": "Generosidad",
+   "text": "z"
+  },
+  {
+   "id": "amistad",
+   "name": "Amistad",
+   "text": "w"
+  }
+ ],
+ "premises": [
+  {
+   "id": "chispa_perdida",
+   "value": "amistad",
+   "title": "¿Dónde está Chispa?",
+   "ages": [
+    "6-8"
+   ],
+   "cast": {
+    "hero": {
+     "kind": "character"
+    }
+   },
+   "beats": [
+    {
+     "id": "inicio",
+     "variants": [
+      {
+       "id": "a",
+       "text": "{hero} miraba {item.un} en la {place}."
+      },
+      {
+       "id": "b",
+       "text": "Había una vez {hero}."
+      }
+     ]
+    },
+    {
+     "id": "cierre",
+     "variants": [
+      {
+       "id": "a",
+       "text": "Y {hero} se durmió."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "globo_nube",
+   "value": "honestidad",
+   "title": "El globo y la nube",
+   "ages": [
+    "2-3"
+   ],
+   "cast": {
+    "hero": {
+     "kind": "character"
+    }
+   },
+   "beats": [
+    {
+     "id": "inicio",
+     "variants": [
+      {
+       "id": "a",
+       "text": "{hero} miraba {item.un} en la {place}."
+      },
+      {
+       "id": "b",
+       "text": "Había una vez {hero}."
+      }
+     ]
+    },
+    {
+     "id": "cierre",
+     "variants": [
+      {
+       "id": "a",
+       "text": "Y {hero} se durmió."
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

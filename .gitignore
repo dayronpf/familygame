@@ -3,3 +3,6 @@ __pycache__/
 
 # Capturas de apps de terceros usadas como referencia (no se suben)
 adjuntos/
+
+# APK de prueba compilados en local
+builds/
