@@ -99,6 +99,12 @@ void main() {
       await open(tester);
       expect(find.text('Ver y escuchar'), findsOneWidget);
       expect(find.byKey(const Key('mode-watch')), findsOneWidget);
+      // Nunca «apagado» (se leía mal): activo aunque los dibujos aún estén cargando
+      final watch = tester.widget<ButtonStyleButton>(find.descendant(
+          of: find.byKey(const Key('mode-watch')),
+          matching: find.byWidgetPredicate((w) => w is ButtonStyleButton),
+          matchRoot: true));
+      expect(watch.onPressed, isNotNull);
       for (final label in ['Leer juntos', 'Solo escuchar', 'Holograma']) {
         expect(find.text(label), findsOneWidget);
       }

@@ -261,6 +261,40 @@ class _StoryPageState extends State<StoryPage>
     Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => page));
   }
 
+  /// «Ver y escuchar» funciona siempre: si los dibujos aún cargan, espera a que lleguen; si no hay dibujos, el cuento
+  /// se escucha igual (solo audio) en vez de dejar un botón apagado que no explica nada.
+  Future<void> _watch() async {
+    if (_artPending) {
+      try {
+        await widget.art;
+      } catch (_) {}
+      if (!mounted) return;
+    }
+    if (_stageArt != null && _setups.any((s) => s != null)) {
+      _openShow(hologram: false);
+    } else {
+      _openAudioOnly();
+    }
+  }
+
+  /// El holograma necesita los dibujos: espera a que carguen y, si no hay, lo dice.
+  Future<void> _hologram() async {
+    final messenger = ScaffoldMessenger.maybeOf(context);
+    if (_artPending) {
+      try {
+        await widget.art;
+      } catch (_) {}
+      if (!mounted) return;
+    }
+    if (_stageArt != null && _setups.any((s) => s != null)) {
+      _openShow(hologram: true);
+    } else {
+      messenger?.showSnackBar(const SnackBar(
+          content: Text(
+              'Este cuento no tiene dibujos ahora: prueba «Leer juntos» o «Solo escuchar».')));
+    }
+  }
+
   /// Solo audio: la pantalla se queda negra y el cuento sigue sonando.
   void _openAudioOnly() {
     Navigator.of(context).push(MaterialPageRoute<void>(
@@ -445,12 +479,11 @@ class _StoryPageState extends State<StoryPage>
       ),
       // Cómo se cuenta el cuento, siempre a la vista y con palabras (no solo iconos): un niño tiene que entenderlo.
       bottomNavigationBar: _ModeBar(
-        artReady: _stageArt != null && _setups.any((s) => s != null),
         artLoading: _artPending,
-        onWatch: () => _openShow(hologram: false),
+        onWatch: _watch,
         onTogether: _openSharedReading,
         onListen: _openAudioOnly,
-        onHologram: () => _openShow(hologram: true),
+        onHologram: _hologram,
       ),
       body: SafeArea(
         child: ListView(
@@ -562,15 +595,12 @@ class _EndReachedState extends State<_EndReached> {
 /// con su icono y dos palabras, para que se entienda sin explicaciones. Leer aquí mismo es lo que ya se ve arriba.
 class _ModeBar extends StatelessWidget {
   const _ModeBar({
-    required this.artReady,
     this.artLoading = false,
     required this.onWatch,
     required this.onTogether,
     required this.onListen,
     required this.onHologram,
   });
-
-  final bool artReady;
 
   /// Mientras cargan los dibujos el botón grande muestra que espera; si no hay dibujos, queda apagado.
   final bool artLoading;
@@ -597,8 +627,12 @@ class _ModeBar extends StatelessWidget {
                 height: 60,
                 child: FilledButton.icon(
                   key: const Key('mode-watch'),
-                  onPressed: artReady ? onWatch : null,
+                  // Siempre activo y con buen contraste (marrón oscuro sobre amarillo, ~10:1): un botón «apagado» se
+                  // leía mal y no decía por qué.
+                  onPressed: onWatch,
                   style: FilledButton.styleFrom(
+                    backgroundColor: Palette.amber,
+                    foregroundColor: Palette.amberDark,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30)),
                     textStyle:
@@ -609,7 +643,8 @@ class _ModeBar extends StatelessWidget {
                       : const SizedBox(
                           width: 22,
                           height: 22,
-                          child: CircularProgressIndicator(strokeWidth: 2.5),
+                          child: CircularProgressIndicator(
+                              strokeWidth: 2.5, color: Palette.amberDark),
                         ),
                   label: const Text('Ver y escuchar'),
                 ),
@@ -638,7 +673,7 @@ class _ModeBar extends StatelessWidget {
                     icon: Icons.view_in_ar,
                     label: 'Holograma',
                     color: const Color(0xFFFFA8D2),
-                    onTap: artReady ? onHologram : null,
+                    onTap: onHologram,
                   ),
                 ],
               ),
