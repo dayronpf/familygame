@@ -126,6 +126,7 @@ class _StoryPageState extends State<StoryPage>
   bool _answered = false; // ya valoraron o dijeron «Ahora no»
   Future<String?>? _ratingId; // id del evento guardado al valorar
   bool _counted = false; // este cuento ya se anotó como terminado
+  bool _artPending = false; // los dibujos aún se están cargando
   List<Award> _fresh =
       const []; // premios que dio este cuento (se celebran al final, sin ventanas)
 
@@ -139,12 +140,16 @@ class _StoryPageState extends State<StoryPage>
       _ticker = createTicker((e) => _clock.value = e.inMicroseconds / 1e6)
         ..start();
     }
+    _artPending = widget.art != null;
     widget.art?.then((a) {
       if (!mounted) return;
       setState(() {
         _stageArt = a;
+        _artPending = false;
         _computeSetups();
       });
+    }, onError: (Object _) {
+      if (mounted) setState(() => _artPending = false);
     });
     widget.feedback.enabled.then((v) {
       if (mounted) setState(() => _askRating = v);
@@ -436,44 +441,16 @@ class _StoryPageState extends State<StoryPage>
                 : 'Guardar en Mis cuentos',
             onPressed: () => widget.shelf.toggleFavorite(_entry),
           ),
-          PopupMenuButton<String>(
-            key: const Key('more-modes'),
-            tooltip: 'Más formas de contar',
-            icon: const Icon(Icons.more_vert),
-            onSelected: (v) =>
-                v == 'audio' ? _openAudioOnly() : _openSharedReading(),
-            itemBuilder: (_) => const [
-              PopupMenuItem(
-                value: 'audio',
-                child: ListTile(
-                  leading: Icon(Icons.headphones),
-                  title: Text('Solo audio'),
-                  subtitle: Text('Pantalla negra, el cuento sigue sonando'),
-                ),
-              ),
-              PopupMenuItem(
-                value: 'shared',
-                child: ListTile(
-                  leading: Icon(Icons.menu_book),
-                  title: Text('Leemos juntos'),
-                  subtitle: Text('Texto grande para leer en voz alta'),
-                ),
-              ),
-            ],
-          ),
-          if (_stageArt != null && _setups.any((s) => s != null)) ...[
-            IconButton(
-              icon: const Icon(Icons.movie_filter),
-              tooltip: 'Modo cine: escuchar con dibujos',
-              onPressed: () => _openShow(hologram: false),
-            ),
-            IconButton(
-              icon: const Icon(Icons.view_in_ar),
-              tooltip: 'Modo holograma (prisma sobre la pantalla)',
-              onPressed: () => _openShow(hologram: true),
-            ),
-          ],
         ],
+      ),
+      // Cómo se cuenta el cuento, siempre a la vista y con palabras (no solo iconos): un niño tiene que entenderlo.
+      bottomNavigationBar: _ModeBar(
+        artReady: _stageArt != null && _setups.any((s) => s != null),
+        artLoading: _artPending,
+        onWatch: () => _openShow(hologram: false),
+        onTogether: _openSharedReading,
+        onListen: _openAudioOnly,
+        onHologram: () => _openShow(hologram: true),
       ),
       body: SafeArea(
         child: ListView(
@@ -578,4 +555,154 @@ class _EndReachedState extends State<_EndReached> {
 
   @override
   Widget build(BuildContext context) => const SizedBox.shrink();
+}
+
+/// «¿Cómo quieren el cuento?»: un botón grande para que se cuente solo (con dibujos y voz) y tres más pequeños para
+/// leerlo juntos con letra grande, solo escucharlo (pantalla negra, para dormirse) o verlo como holograma. Cada uno
+/// con su icono y dos palabras, para que se entienda sin explicaciones. Leer aquí mismo es lo que ya se ve arriba.
+class _ModeBar extends StatelessWidget {
+  const _ModeBar({
+    required this.artReady,
+    this.artLoading = false,
+    required this.onWatch,
+    required this.onTogether,
+    required this.onListen,
+    required this.onHologram,
+  });
+
+  final bool artReady;
+
+  /// Mientras cargan los dibujos el botón grande muestra que espera; si no hay dibujos, queda apagado.
+  final bool artLoading;
+  final VoidCallback onWatch;
+  final VoidCallback onTogether;
+  final VoidCallback onListen;
+  final VoidCallback onHologram;
+
+  @override
+  Widget build(BuildContext context) {
+    final text = Theme.of(context).textTheme;
+    return Material(
+      color: Palette.skyTop,
+      elevation: 8,
+      child: SafeArea(
+        top: false,
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(16, 10, 16, 10),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              SizedBox(
+                width: double.infinity,
+                height: 60,
+                child: FilledButton.icon(
+                  key: const Key('mode-watch'),
+                  onPressed: artReady ? onWatch : null,
+                  style: FilledButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30)),
+                    textStyle:
+                        text.titleLarge!.copyWith(fontWeight: FontWeight.w800),
+                  ),
+                  icon: !artLoading
+                      ? const Icon(Icons.play_circle_fill, size: 34)
+                      : const SizedBox(
+                          width: 22,
+                          height: 22,
+                          child: CircularProgressIndicator(strokeWidth: 2.5),
+                        ),
+                  label: const Text('Ver y escuchar'),
+                ),
+              ),
+              const SizedBox(height: 8),
+              Row(
+                children: [
+                  _ModeChip(
+                    key: const Key('mode-together'),
+                    icon: Icons.menu_book,
+                    label: 'Leer juntos',
+                    color: Palette.teal,
+                    onTap: onTogether,
+                  ),
+                  const SizedBox(width: 8),
+                  _ModeChip(
+                    key: const Key('mode-listen'),
+                    icon: Icons.headphones,
+                    label: 'Solo escuchar',
+                    color: const Color(0xFF8E9BFF),
+                    onTap: onListen,
+                  ),
+                  const SizedBox(width: 8),
+                  _ModeChip(
+                    key: const Key('mode-hologram'),
+                    icon: Icons.view_in_ar,
+                    label: 'Holograma',
+                    color: const Color(0xFFFFA8D2),
+                    onTap: artReady ? onHologram : null,
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _ModeChip extends StatelessWidget {
+  const _ModeChip({
+    super.key,
+    required this.icon,
+    required this.label,
+    required this.color,
+    required this.onTap,
+  });
+
+  final IconData icon;
+  final String label;
+  final Color color;
+  final VoidCallback? onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final text = Theme.of(context).textTheme;
+    final enabled = onTap != null;
+    return Expanded(
+      child: Semantics(
+        button: true,
+        label: label,
+        excludeSemantics: true,
+        child: Material(
+          color: Palette.card,
+          borderRadius: BorderRadius.circular(18),
+          child: InkWell(
+            borderRadius: BorderRadius.circular(18),
+            onTap: onTap,
+            child: Opacity(
+              opacity: enabled ? 1 : 0.45,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(icon, color: color, size: 28),
+                    const SizedBox(height: 4),
+                    FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Text(label,
+                          maxLines: 1,
+                          style: text.labelLarge!.copyWith(
+                              fontWeight: FontWeight.w700,
+                              color: Palette.cream)),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
 }

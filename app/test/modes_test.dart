@@ -93,24 +93,24 @@ void main() {
       await tester.pump();
     }
 
-    testWidgets('el menú ofrece «Solo audio» y «Leemos juntos»',
+    testWidgets(
+        'abajo, siempre a la vista: «Ver y escuchar» en grande y los otros modos con su nombre',
         (tester) async {
       await open(tester);
-      await tester.tap(find.byKey(const Key('more-modes')));
-      await tester.pumpAndSettle();
-      expect(find.text('Solo audio'), findsOneWidget);
-      expect(find.text('Leemos juntos'), findsOneWidget);
-      await tester.tap(find.text('Leemos juntos'));
+      expect(find.text('Ver y escuchar'), findsOneWidget);
+      expect(find.byKey(const Key('mode-watch')), findsOneWidget);
+      for (final label in ['Leer juntos', 'Solo escuchar', 'Holograma']) {
+        expect(find.text(label), findsOneWidget);
+      }
+      await tester.tap(find.byKey(const Key('mode-together')));
       await tester.pumpAndSettle();
       expect(find.byType(SharedReadingPage), findsOneWidget);
       await close(tester);
     });
 
-    testWidgets('«Solo audio» deja la pantalla negra', (tester) async {
+    testWidgets('«Solo escuchar» deja la pantalla negra', (tester) async {
       await open(tester);
-      await tester.tap(find.byKey(const Key('more-modes')));
-      await tester.pumpAndSettle();
-      await tester.tap(find.text('Solo audio'));
+      await tester.tap(find.byKey(const Key('mode-listen')));
       await tester.pump();
       await tester.pump(const Duration(milliseconds: 300));
       expect(find.byType(AudioOnlyPage), findsOneWidget);
