@@ -39,10 +39,24 @@ class AwardMedal extends StatelessWidget {
               ]
             : null,
       ),
-      child: Icon(
-        earned ? award.icon : Icons.lock_outline,
-        size: size * 0.48,
-        color: earned ? Colors.white : Palette.mutedText,
+      // Sin ganar se ve su silueta en gris (para saber qué se puede conseguir) con un candadito.
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          Icon(
+            award.icon,
+            size: size * 0.48,
+            color: earned
+                ? Colors.white
+                : Palette.mutedText.withValues(alpha: 0.6),
+          ),
+          if (!earned)
+            Positioned(
+              right: size * 0.1,
+              bottom: size * 0.1,
+              child: Icon(Icons.lock, size: size * 0.2, color: Palette.cream),
+            ),
+        ],
       ),
     );
   }

@@ -17,6 +17,8 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+import 'package:caldero_app/src/catalog/catalog_widgets.dart';
+
 import 'file_bundle.dart';
 
 /// Herramienta de revisión, no una prueba: guarda capturas de las pantallas (splash, inicio, paquetes, mis cuentos,
@@ -27,7 +29,8 @@ void main() {
   final out = Platform.environment['UI_OUT'];
 
   Future<void> loadFonts() async {
-    const dir = '/opt/flutter-sdk/flutter/bin/cache/artifacts/material_fonts';
+    final dir = Platform.environment['FLUTTER_FONTS'] ??
+        '/opt/flutter-sdk/flutter/bin/cache/artifacts/material_fonts';
     Future<ByteData> bytes(String f) async => ByteData.sublistView(
         Uint8List.fromList(File('$dir/$f').readAsBytesSync()));
     final roboto = FontLoader('Roboto')
@@ -94,7 +97,7 @@ void main() {
       await tester.pump(const Duration(milliseconds: 200));
     }
     await shot('05_explore');
-    await tester.drag(find.byType(ListView), const Offset(0, -500));
+    await tester.drag(find.byType(ListView).first, const Offset(0, -500));
     await tester.pump(const Duration(milliseconds: 600));
     await shot('06_packs_scroll');
 
@@ -112,6 +115,20 @@ void main() {
     await tester.tap(find.text('Mis cuentos'));
     await tester.pump(const Duration(milliseconds: 600));
     await shot('09_mis_cuentos');
+    await tester.tap(find.text('Premios'));
+    await tester.pump(const Duration(milliseconds: 600));
+    await shot('10_premios');
+    await tester.tap(find.text('Inicio'));
+    await tester.pump(const Duration(milliseconds: 600));
+    await tester.drag(find.byType(Scrollable).first, const Offset(0, -700));
+    await tester.pump(const Duration(milliseconds: 600));
+    await shot('11_inicio_recomendado');
+    final card = find.byType(StoryCard).first;
+    await tester.tap(card);
+    for (var i = 0; i < 4; i++) {
+      await tester.pump(const Duration(milliseconds: 200));
+    }
+    await shot('12_ficha');
   }, skip: out == null);
 
   testWidgets('capturas del wizard y de ajustes', (tester) async {
