@@ -1,76 +1,75 @@
-# Ficha de las tiendas (español)
+# Ficha de las tiendas (español) · versión de lanzamiento
 
-Textos para App Store y Google Play, con los límites de cada campo. Describen **solo lo que la app hace hoy** (sin anuncios,
-sin compras, sin cuentas, nada sale del teléfono). Si cambia algo de eso, hay que cambiar esta ficha y la de datos (docs/22).
+Textos para Google Play y, más adelante, App Store, con los límites de cada campo. Describen **lo que la app hace hoy**:
+- un catálogo fijo de cuentos con voz grabada;
+- suscripción con 7 días de prueba y 3 cuentos gratis;
+- sin anuncios y sin cuentas.
 
-**Antes de publicar** (decisiones del dueño, ver docs/19 y docs/22): nombre definitivo, titular y correo de contacto
-(`app/lib/src/brand.dart`), URL pública de la política de privacidad y revisión legal de los textos.
+Si cambia algo de esto, hay que cambiar también esta ficha y el formulario de datos ([docs/36](../../docs/36-google-play-respuestas.md)).
+
+**Direcciones públicas:**
+- Política de privacidad: `https://audio.tuvendor.com/legal/privacidad.html`
+- Términos: `https://audio.tuvendor.com/legal/terminos.html`
+- Soporte: `https://audio.tuvendor.com/legal/soporte.html`
+- Correo de contacto: `ventas@tuvendor.com`
 
 ## Nombre — 30 caracteres
 
-> Mininoches: cuentos de noche
-
-## Subtítulo (App Store) — 30 caracteres
-
-> Cuentos de noche con valores
+> Mininoches: cuentos para dormir
 
 ## Descripción corta (Google Play) — 80 caracteres
 
-> Cuentos para dormir que se crean cada noche, con el nombre de tu hijo y valores.
+> 100 cuentos para dormir narrados con voz cálida, con valores y dibujos animados.
 
-## Palabras clave (App Store) — 100 caracteres, separadas por comas, sin espacios
+## Subtítulo (App Store) — 30 caracteres
 
-> cuentos,dormir,niños,infantil,valores,piratas,castillos,espacio,cohetes,audio,nana,noche,familia
+> Cuentos narrados para dormir
+
+## Palabras clave (App Store) — 100 caracteres
+
+> cuentos,dormir,niños,infantil,audiocuentos,valores,narrados,noche,piratas,espacio,castillos,familia
 
 ## Descripción completa — hasta 4000 caracteres
 
-> Cada noche, un cuento nuevo.
+> Cada noche, un cuento para soñar.
 >
-> Mininoches mezcla personajes, lugares y aventuras para crear un cuento distinto cada vez que lo abres. Tú eliges la enseñanza de esta noche —honestidad, generosidad, valentía, humildad, perseverancia o amistad— y Mininoches hace el resto. Si escribes el nombre de tu hijo o tu hija, será el protagonista del cuento.
+> Mininoches tiene 100 cuentos para dormir, escritos para niños de 2 a 12 años y narrados con una voz cálida y tranquila. Cada cuento tiene sus dibujos animados y termina con una enseñanza sencilla: honestidad, generosidad, valentía, humildad, perseverancia o amistad.
 >
 > TRES MUNDOS PARA SOÑAR
 >
-> • Reino de la Luna: castillos, magos, campanas rotas, linternas apagadas y semillas que se convierten en soles.
-> • Mar de las Estrellas: piratas buenos que navegan siguiendo las estrellas, mapas del tesoro, un faro en la niebla, una sirena que canta nanas y un pulpo travieso que solo quería jugar. Aquí los piratas no roban: exploran, ayudan a quien naufraga y cumplen su palabra.
-> • Aldea de las Nubes (¡nuevo!): un pueblito que flota sobre las nubes, cohetes que van a la luna, una estación espacial y planetas de cristal y de jardines. Con un robot amable que hace preguntas raras, una astrónoma que sabe historias de cada estrella y un alien travieso de tres ojos que solo quería amigos. Cuentos para descubrir que la oscuridad está llena de luces.
->
-> PENSADO PARA CADA EDAD
->
-> Cuentos cortos y con repeticiones para los más pequeños (2–3 años), aventuras con un susto suave para 6–8 años y tramas con giros para 9–12. En los cuentos de los mayores, la historia se detiene una vez y el niño elige qué camino toma el protagonista.
+> • Reino de la Luna: castillos, campanas, linternas, molinos y semillas que se convierten en soles.
+> • Mar de las Estrellas: piratas buenos que navegan siguiendo las estrellas, un faro en la niebla, una sirena que canta nanas y un pulpo travieso que solo quería jugar.
+> • Aldea de las Nubes: un pueblito que flota sobre las nubes, cohetes que van a la luna y un robot amable que hace preguntas raras.
 >
 > PARA ESCUCHAR CON LA LUZ APAGADA
 >
-> • Una voz lee el cuento, a la velocidad de su edad.
-> • Ilustraciones animadas en cada escena: los personajes caminan, saludan, nadan y bostezan.
-> • Sonido de fondo suave (el mar suena a olas; el espacio, a estrellas que titilan) y efectos que aparecen en su sitio: el crujido de un puente, el chapoteo de una ola.
-> • Modo cine, modo solo audio y temporizador de sueño que baja el volumen poco a poco.
-> • «Leemos juntos»: para leerlo en voz alta con tu hijo, página a página.
+> • «Ver y escuchar»: el cuento narrado, con sus dibujos animados escena por escena.
+> • Solo audio, con la pantalla apagada, y temporizador de sueño que baja el volumen poco a poco.
+> • «Leemos juntos», para que mamá o papá lo lean en voz alta, página a página.
+> • Sonido de fondo suave: el mar suena a olas y el espacio, a estrellas que titilan.
 >
-> CUENTOS QUE SE CUIDAN
+> PENSADO PARA CADA EDAD
 >
-> Cada cuento pasa un revisor automático antes de llegar a la app: que el protagonista concuerde con el género que elegiste, que todo lo que nombra el texto se vea en el dibujo, que haya causas y consecuencias, que la longitud y las palabras sean de su edad y que el final sea tranquilo, para dormir. Sin moralinas: la enseñanza se cuenta al final, con palabras sencillas.
+> Cuentos cortitos y con repeticiones para los más pequeños, aventuras con un susto suave para los de 6 a 8 y tramas con giros para los mayores. Busca por edad, por enseñanza o por mundo, y guarda tus favoritos.
+>
+> CUENTOS CUIDADOS
+>
+> Cada cuento lo revisamos para que tenga un lenguaje de su edad, una historia coherente con sus dibujos y un final tranquilo, para dormir. Y cada semana pueden llegar cuentos nuevos.
 >
 > HECHO PARA FAMILIAS
 >
-> • Varios niños en el mismo teléfono, cada uno con su edad, su nombre y sus cuentos.
-> • Los ajustes están protegidos con una pregunta para adultos.
-> • Sin anuncios, sin compras, sin cuentas y sin registro.
-> • Nada sale del teléfono: los nombres, las edades y los cuentos guardados se quedan en tu dispositivo, y puedes verlos y borrarlos desde Ajustes.
+> • Varios niños en el mismo teléfono, cada uno con su edad, su progreso y sus premios.
+> • Recordatorio de la hora del cuento.
+> • Los ajustes y las compras están protegidos con una pregunta para adultos.
+> • Sin anuncios y sin cuentas ni registro.
 >
-> Dulces sueños, y buen viaje.
+> PRUÉBALO GRATIS
+>
+> Tres cuentos son gratis para siempre. Con la suscripción se abren los 100 cuentos y los que vayan llegando, con 7 días de prueba gratis. Puedes cancelar cuando quieras desde tu tienda.
+>
+> Dulces sueños.
 
-## Novedades de esta versión (0.11.0) — hasta 4000 / 500 caracteres
+## Notas para la revisión (App Review / Google)
 
-> ¡Nuevo mundo: la Aldea de las Nubes! 30 cuentos de cohetes, planetas y estrellas para todas las edades, con un robot amable, un perrito astronauta y un alien travieso de tres ojos. Ilustraciones propias, sonido de estrellas y cuentos para perder el miedo a la oscuridad.
-
-## Categoría
-
-* App Store: **Libros** (y marcar «Hecha para niños» solo tras revisar los requisitos de la sección Kids: sin enlaces externos ni
-  compras sin control parental).
-* Google Play: **Libros y obras de consulta**, público objetivo «Familias».
-
-## Capturas
-
-`art/store/phone/` (ver [README](README.md)). Para esta versión hay **una** captura del simulador del **iPhone 17 Pro Max**
-(1320×2868, el tamaño de 6,9 pulgadas que pide App Store): `art/store/phone/mar-cuento.png` (*Las monedas del catalejo*, en el faro).
-**Faltan** las del inicio con la portada pirata y de «Paquetes» con los dos paquetes, sacadas a mano en el simulador o un teléfono.
+La app es para que la usen adultos con niños. Los ajustes, los enlaces externos y la compra están detrás de una pregunta
+para adultos (una multiplicación). Para probar la suscripción sin pagar, usa una cuenta de prueba de la tienda.

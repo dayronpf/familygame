@@ -4,7 +4,7 @@
 
 ## Ya hecho
 
-- **Subdominio** `cuentos.tuvendor.com` en el cPanel (hosting24). Su carpeta raíz es `/home/tuven780/external/cuentos.tuvendor.com/public`, que es la carpeta `public` de Laravel.
+- **Subdominio** `cuentos2.tuvendor.com` en el cPanel (el primer intento, `cuentos.tuvendor.com`, no generó bien el certificado; los dos apuntan a la misma carpeta) (hosting24). Su carpeta raíz es `/home/tuven780/external/cuentos.tuvendor.com/public`, que es la carpeta `public` de Laravel.
 - **PHP 8.4** solo para ese subdominio: aislamiento por sitio. Los demás sitios siguen con 7.4. Las extensiones necesarias ya están activas. `sodium` no se pudo activar en el panel, así que el servidor usa `paragonie/sodium_compat`, que hace lo mismo.
 - **Base de datos** `tuven780_cuentos`.
 - **Publicación automática:** `.github/workflows/server-deploy.yml`. En cada push a la rama `servidor`:
@@ -34,7 +34,7 @@ Son contraseñas y claves, así que las pones tú. No me las pases por el chat.
    APP_NAME=Mininoches
    APP_ENV=production
    APP_DEBUG=false
-   APP_URL=https://cuentos.tuvendor.com
+   APP_URL=https://cuentos2.tuvendor.com
    APP_KEY=                      # paso 5
    DB_CONNECTION=mysql
    DB_HOST=localhost
@@ -62,7 +62,7 @@ Son contraseñas y claves, así que las pones tú. No me las pases por el chat.
    - `mininoches:keys` crea la clave que firma las compras; sigue lo que te indique.
    - `mininoches:admin` te pide la contraseña del panel.
 
-Después, cada `git push` a la rama `servidor` publica solo. El panel queda en `https://cuentos.tuvendor.com/admin`.
+Después, cada `git push` a la rama `servidor` publica solo. El panel queda en `https://cuentos2.tuvendor.com/admin`.
 
 ## Audio y cuentos nuevos (Cloudflare R2)
 

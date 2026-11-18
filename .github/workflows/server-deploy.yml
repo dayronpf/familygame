@@ -1,4 +1,4 @@
-# Despliegue del servidor de Mininoches (Laravel, server/) a cuentos.tuvendor.com por FTP.
+# Despliegue del servidor de Mininoches (Laravel, server/) a cuentos2.tuvendor.com por FTP (carpeta external/cuentos.tuvendor.com).
 #
 # Se publica al hacer push a la rama `servidor` (o a mano desde Actions). Antes de subir, corre las pruebas.
 # Después de subir, llama al gancho /internal/deploy, que hace migraciones, importa los paquetes y arma las cachés.
@@ -86,4 +86,4 @@ jobs:
           curl -fsS -X POST \
             -H "Authorization: Bearer ${{ secrets.DEPLOY_TOKEN }}" \
             -H "Accept: application/json" \
-            https://cuentos.tuvendor.com/internal/deploy
+            https://cuentos2.tuvendor.com/internal/deploy
