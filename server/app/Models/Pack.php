@@ -17,7 +17,7 @@ class Pack extends Model
 
     protected function casts(): array
     {
-        return ['morals' => 'array', 'imported_at' => 'datetime'];
+        return ['morals' => 'array', 'library' => 'array', 'imported_at' => 'datetime'];
     }
 
     public function premises(): HasMany

@@ -12,10 +12,28 @@ use Illuminate\View\View;
 
 class CodeController extends Controller
 {
-    public function index(): View
+    public function index(Request $request): View
     {
+        $q = trim((string) $request->query('q', ''));
+        $estado = (string) $request->query('estado', '');
+        $perPage = in_array((int) $request->query('por_pagina'), [25, 50, 100], true) ? (int) $request->query('por_pagina') : 25;
+        $codes = RedeemCode::query()->latest('id')
+            ->when($q !== '', fn ($w) => $w->where(fn ($x) => $x->where('code', 'like', '%'.strtoupper($q).'%')->orWhere('note', 'like', "%{$q}%")))
+            ->when($estado === 'activos', fn ($w) => $w->where('active', true)->whereColumn('uses_count', '<', 'max_uses')
+                ->where(fn ($x) => $x->whereNull('expires_at')->orWhere('expires_at', '>', now())))
+            ->when($estado === 'agotados', fn ($w) => $w->whereColumn('uses_count', '>=', 'max_uses'))
+            ->when($estado === 'caducados', fn ($w) => $w->where('expires_at', '<=', now()))
+            ->when($estado === 'desactivados', fn ($w) => $w->where('active', false));
+
         return view('admin.codes.index', [
-            'codes' => RedeemCode::query()->latest('id')->paginate(50),
+            'codes' => $codes->paginate($perPage)->withQueryString(),
+            'q' => $q,
+            'estado' => $estado,
+            'perPage' => $perPage,
+            'totals' => [
+                'all' => RedeemCode::query()->count(),
+                'redeemed' => RedeemCode::query()->sum('uses_count'),
+            ],
         ]);
     }
 

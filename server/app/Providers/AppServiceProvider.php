@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Premise;
 use App\Services\Apple\AppleJwsVerifier;
 use App\Services\Apple\AppStoreClient;
 use App\Services\EntitlementSigner;
@@ -9,7 +10,9 @@ use App\Services\GooglePlayClient;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Middleware\TrustProxies;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -36,6 +39,19 @@ class AppServiceProvider extends ServiceProvider
         if ($proxies = config('mininoches.trusted_proxies')) {
             TrustProxies::at($proxies === '*' ? '*' : array_map('trim', explode(',', $proxies)));
         }
+
+        Paginator::defaultView('vendor.pagination.admin');
+        Paginator::defaultSimpleView('vendor.pagination.admin');
+
+        // Contadores de la barra lateral: cuentos con cambios sin publicar o con error.
+        View::composer('layouts.admin', function ($view) {
+            if (! auth()->check()) {
+                return;
+            }
+            $view->with('navCounts', [
+                'stories' => Premise::query()->whereIn('draft_state', [Premise::DRAFT, Premise::FAILED])->count(),
+            ]);
+        });
 
         $limits = config('mininoches.rate_limits');
         foreach (['api', 'verify', 'redeem', 'feedback', 'webhooks'] as $name) {

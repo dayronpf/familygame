@@ -10,6 +10,11 @@ return [
     'packs_path' => env('MININOCHES_PACKS_PATH')
         ?: (is_dir(base_path('../content/packs')) ? base_path('../content/packs') : resource_path('packs')),
 
+    // Catálogo fijo de la app (los cuentos que salen en la app, con su semilla, héroe y edad).
+    'catalog_path' => env('MININOCHES_CATALOG_PATH')
+        ?: (is_file(base_path('../content/catalogo/lanzamiento-es.json'))
+            ? base_path('../content/catalogo/lanzamiento-es.json') : resource_path('catalogo/lanzamiento-es.json')),
+
     // Clave del gancho de despliegue (POST /internal/deploy): vacía = desactivado.
     'deploy_token' => env('MININOCHES_DEPLOY_TOKEN', ''),
 

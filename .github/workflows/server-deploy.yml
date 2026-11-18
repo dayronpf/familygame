@@ -18,6 +18,7 @@ on:
     paths:
       - "server/**"
       - "content/packs/**"
+      - "content/catalogo/**"
       - ".github/workflows/server-deploy.yml"
   workflow_dispatch:
 
@@ -57,8 +58,11 @@ jobs:
       - name: Dependencias de producción
         working-directory: server
         run: composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist --no-progress
-      - name: Copia de los paquetes de cuentos para el panel
-        run: rm -rf server/resources/packs && cp -r content/packs server/resources/packs
+      - name: Copia de los paquetes de cuentos y del catálogo de la app para el panel
+        run: |
+          rm -rf server/resources/packs server/resources/catalogo
+          cp -r content/packs server/resources/packs
+          cp -r content/catalogo server/resources/catalogo
       - name: Subir por FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:

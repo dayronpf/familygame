@@ -1,60 +1,81 @@
 @extends('layouts.admin')
 @section('title', 'Valoraciones')
 @section('content')
-<h1 class="text-2xl font-semibold mb-1">Valoraciones</h1>
-<p class="text-sm text-slate-600 mb-4">{{ $total }} valoraciones anónimas @if ($avg) · promedio {{ number_format($avg, 2, ',', '') }} @endif. Sin instalación, IP ni hora: solo nota, motivo, receta del cuento y día.</p>
+<x-page-header title="Valoraciones" subtitle="Lo que opinan las familias de cada cuento. Son anónimas: solo la nota, el motivo y el día; sin teléfono, sin IP y sin hora." />
+
+<div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+    <x-stat label="Valoraciones" :value="$total" icon="star" tone="amber" />
+    <x-stat label="Promedio" :value="$avg ? number_format($avg, 1, ',', '') : '—'" hint="de 5" icon="star" tone="amber" />
+</div>
 
 <div class="grid lg:grid-cols-3 gap-6 mb-6">
-    <section class="bg-white rounded-xl border border-slate-200 p-4">
-        <h2 class="font-semibold mb-2">Por pack</h2>
-        <table class="w-full text-sm">
-            <thead class="text-left text-slate-500"><tr><th>Pack</th><th>N</th><th>Prom.</th><th>≤ 3</th></tr></thead>
+    <x-card title="Por mundo">
+        <table class="table-base">
+            <thead><tr><th>Mundo</th><th class="text-right">Votos</th><th class="text-right">Promedio</th><th class="text-right">≤ 3</th></tr></thead>
             <tbody>
             @forelse ($byPack as $r)
-                <tr class="border-t"><td class="py-1">{{ $r->pack_id }}</td><td>{{ $r->n }}</td><td>{{ number_format($r->avg, 2, ',', '') }}</td><td>{{ $r->low }}</td></tr>
+                <tr><td>{{ $r->pack_id }}</td><td class="text-right tabular-nums">{{ $r->n }}</td><td class="text-right tabular-nums">{{ number_format($r->avg, 1, ',', '') }}</td><td class="text-right tabular-nums">{{ $r->low }}</td></tr>
             @empty
-                <tr><td colspan="4" class="py-2 text-slate-500">Sin datos.</td></tr>
+                <tr><td colspan="4" class="text-slate-500">Sin datos.</td></tr>
             @endforelse
             </tbody>
         </table>
-    </section>
-    <section class="bg-white rounded-xl border border-slate-200 p-4 lg:col-span-2">
-        <h2 class="font-semibold mb-2">Motivos de las notas bajas</h2>
-        @php($maxReason = max(1, max($reasons)))
+    </x-card>
+    <x-card title="Por qué no gustan" subtitle="Motivos que marcan las familias con notas de 3 o menos." class="lg:col-span-2">
+        @php $maxReason = max(1, max($reasons ?: [0])); @endphp
         @foreach ($reasons as $code => $c)
-            <div class="flex items-center gap-2 text-sm mb-1">
-                <span class="w-48">{{ \App\Models\StoryRating::REASONS[$code] ?? $code }}</span>
-                <div class="flex-1 bg-slate-100 rounded h-2"><div class="bg-rose-400 h-2 rounded" style="width: {{ round($c * 100 / $maxReason) }}%"></div></div>
-                <span class="w-10 text-right">{{ $c }}</span>
+            <div class="flex items-center gap-3 text-sm mb-2">
+                <span class="w-48 text-slate-700">{{ \App\Models\StoryRating::REASONS[$code] ?? $code }}</span>
+                <div class="flex-1 bg-slate-100 rounded-full h-2"><div class="bg-rose-400 h-2 rounded-full" style="width: {{ round($c * 100 / $maxReason) }}%"></div></div>
+                <span class="w-10 text-right tabular-nums">{{ $c }}</span>
             </div>
         @endforeach
-    </section>
+    </x-card>
 </div>
 
-<div class="flex items-center gap-3 mb-2">
-    <h2 class="font-semibold">Por cuento (peor valorados primero)</h2>
-    <form method="get" class="text-sm ml-auto">Mínimo de valoraciones <input type="number" name="min" min="1" value="{{ $minCount }}" class="border rounded px-2 py-0.5 w-20"> <button class="underline">Aplicar</button></form>
-</div>
-<div class="bg-white rounded-xl border border-slate-200 overflow-x-auto">
-<table class="w-full text-sm">
-    <thead class="bg-slate-100 text-left text-slate-600"><tr><th class="p-2">Cuento</th><th class="p-2">N</th><th class="p-2">Promedio</th><th class="p-2">Notas ≤ 3</th><th class="p-2">Motivos</th></tr></thead>
-    <tbody>
-    @forelse ($byPremise as $r)
-        @php($ref = $r->pack_id.':'.$r->premise_id)
-        @php($premise = $premises[$ref] ?? null)
-        <tr class="border-t border-slate-100">
-            <td class="p-2">@if ($premise)<a class="text-indigo-700 hover:underline" href="{{ route('admin.stories.show', $premise->id) }}">{{ $premise->title }}</a>@else {{ $ref }} @endif <div class="text-xs text-slate-400">{{ $ref }}</div></td>
-            <td class="p-2">{{ $r->n }}</td>
-            <td class="p-2">{{ number_format($r->avg, 2, ',', '') }}</td>
-            <td class="p-2">{{ $r->low }}</td>
-            <td class="p-2 text-xs">
-                @foreach ($reasonsByPremise[$ref] ?? [] as $code => $c) {{ \App\Models\StoryRating::REASONS[$code] ?? $code }}: {{ $c }}@if (! $loop->last) · @endif @endforeach
-            </td>
-        </tr>
-    @empty
-        <tr><td colspan="5" class="p-6 text-center text-slate-500">Sin valoraciones todavía.</td></tr>
-    @endforelse
-    </tbody>
-</table>
-</div>
+<x-card title="Por cuento" :padding="false">
+    <x-slot:actions>
+        <form method="get" class="flex flex-wrap items-center gap-2 text-sm">
+            <input type="hidden" name="orden" value="{{ $sort }}"><input type="hidden" name="dir" value="{{ $dir }}">
+            <select name="pack" class="input w-auto py-1" onchange="this.form.submit()">
+                <option value="">Todos los mundos</option>
+                @foreach ($byPack as $r)<option value="{{ $r->pack_id }}" @selected($packFilter === $r->pack_id)>{{ $r->pack_id }}</option>@endforeach
+            </select>
+            <label class="inline-flex items-center gap-2 text-slate-600">Con al menos
+                <input type="number" name="min" min="1" value="{{ $minCount }}" class="input w-16 py-1" onchange="this.form.submit()"> votos</label>
+        </form>
+    </x-slot:actions>
+    <div class="overflow-x-auto">
+    <table class="table-base">
+        <thead><tr>
+            <th>Cuento</th>
+            <x-sort column="n" label="Votos" :sort="$sort" :dir="$dir" class="text-right" />
+            <x-sort column="avg" label="Promedio" :sort="$sort" :dir="$dir" />
+            <x-sort column="low" label="Notas ≤ 3" :sort="$sort" :dir="$dir" class="text-right" />
+            <th>Motivos</th>
+        </tr></thead>
+        <tbody>
+        @forelse ($byPremise as $r)
+            @php
+                $ref = $r->pack_id.':'.$r->premise_id;
+                $premise = $premises[$ref] ?? null;
+            @endphp
+            <tr>
+                <td>@if ($premise)<a class="font-medium text-slate-900 hover:text-brand-700" href="{{ route('admin.stories.show', ['premise' => $premise->id, 'vista' => 'valoraciones']) }}">{{ $premise->title }}</a>@else {{ $ref }} @endif
+                    <div class="text-xs text-slate-400 font-mono">{{ $ref }}</div></td>
+                <td class="text-right tabular-nums">{{ $r->n }}</td>
+                <td class="whitespace-nowrap"><span class="inline-flex items-center gap-1"><x-icon name="star" class="w-4 h-4 text-amber-400" /><b>{{ number_format($r->avg, 1, ',', '') }}</b></span></td>
+                <td class="text-right tabular-nums">{{ $r->low }}</td>
+                <td class="text-xs text-slate-600">
+                    @foreach ($reasonsByPremise[$ref] ?? [] as $code => $c){{ \App\Models\StoryRating::REASONS[$code] ?? $code }} ({{ $c }})@if (! $loop->last) · @endif @endforeach
+                </td>
+            </tr>
+        @empty
+            <tr><td colspan="5"><x-empty title="Sin valoraciones todavía." icon="star">Cuando las familias valoren cuentos, verás aquí cuáles gustan más y cuáles menos.</x-empty></td></tr>
+        @endforelse
+        </tbody>
+    </table>
+    </div>
+</x-card>
+<div class="mt-4">{{ $byPremise->links() }}</div>
 @endsection

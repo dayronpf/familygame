@@ -11,11 +11,30 @@ use RuntimeException;
 /**
  * Lee `content/packs/{id}/pack.json` (esquema 2) y guarda packs, versiones y cuentos.
  *
- * Nunca pisa la revisión del SuperAdmin (estado, notas, «Gratis»): solo el texto y los datos del pack.
+ * Nunca pisa la revisión del SuperAdmin (estado, notas, «Gratis») ni los borradores del editor: solo el texto
+ * publicado y los datos del pack. Guarda también la premisa completa y su entrada en el catálogo fijo de la app.
  */
 class PackImporter
 {
+    /** @var array<string, array> entradas del catálogo fijo por ref */
+    private array $catalogEntries = [];
+
     public function __construct(private readonly Catalog $catalog) {}
+
+    /** @return array<string, array> */
+    private function readCatalog(): array
+    {
+        $path = (string) config('mininoches.catalog_path');
+        $json = is_file($path) ? json_decode((string) file_get_contents($path), true) : null;
+        $out = [];
+        foreach ($json['cuentos'] ?? [] as $c) {
+            if (isset($c['id'])) {
+                $out[$c['id']] = $c;
+            }
+        }
+
+        return $out;
+    }
 
     /**
      * @return array{packs: list<array{id: string, version: string, premises: int, created: int, removed: int}>, skipped: list<string>, catalogChanged: bool}
@@ -33,6 +52,7 @@ class PackImporter
         }
 
         $before = $this->snapshot();
+        $this->catalogEntries = $this->readCatalog();
         $result = ['packs' => [], 'skipped' => [], 'catalogChanged' => false];
 
         DB::transaction(function () use ($files, &$result) {
@@ -77,6 +97,14 @@ class PackImporter
             'morals' => array_map(fn ($m) => [
                 'id' => $m['id'], 'name' => $m['name'] ?? $m['id'], 'text' => $m['text'] ?? null,
             ], $json['morals'] ?? []),
+            'library' => [
+                'characters' => array_values(array_map(fn ($c) => [
+                    'id' => $c['id'], 'name' => $c['given'] ?? $c['id'], 'noun' => $c['noun'] ?? null,
+                    'gender' => $c['gender'] ?? null, 'roles' => $c['roles'] ?? [],
+                ], $json['characters'] ?? [])),
+                'places' => array_values(array_map(fn ($c) => ['id' => $c['id'], 'name' => $c['name'] ?? $c['id']], $json['places'] ?? [])),
+                'props' => array_values(array_map(fn ($c) => ['id' => $c['id'], 'name' => $c['name'] ?? $c['id']], $json['props'] ?? [])),
+            ],
             'imported_at' => $now,
         ]);
 
@@ -131,11 +159,22 @@ class PackImporter
                 'position' => $position,
                 'pack_version' => $version,
                 'in_pack' => true,
-            ])->save();
+                'data' => $p,
+                'catalog' => $this->catalogEntries[$ref] ?? null,
+            ]);
+            // Si lo publicado ya es igual al borrador en cola, el borrador se cumplió: se limpia.
+            if ($premise->draft !== null && $premise->draft_op !== 'eliminar'
+                && in_array($premise->draft_state, [Premise::QUEUED, Premise::PUBLISHING], true) && self::same($premise->draft, $p)) {
+                $premise->clearDraft();
+            }
+            $premise->save();
         }
 
         $removed = Premise::query()->where('pack_id', $packId)->whereNotIn('premise_id', $seen)
             ->where('in_pack', true)->update(['in_pack' => false]);
+        // Los que se pidió eliminar y ya no están en el pack: la eliminación se cumplió.
+        Premise::query()->where('pack_id', $packId)->whereNotIn('premise_id', $seen)->where('draft_op', 'eliminar')
+            ->update(Premise::CLEARED_DRAFT + ['catalog' => null]);
 
         $castIds = [];
         foreach (['characters', 'places', 'props'] as $kind) {
@@ -161,6 +200,23 @@ class PackImporter
             'id' => $packId, 'version' => $version, 'premises' => count($seen),
             'created' => $created, 'removed' => $removed,
         ];
+    }
+
+    private static function same(mixed $a, mixed $b): bool
+    {
+        return json_encode(self::sortKeys($a)) === json_encode(self::sortKeys($b));
+    }
+
+    private static function sortKeys(mixed $v): mixed
+    {
+        if (! is_array($v)) {
+            return $v;
+        }
+        if (! array_is_list($v)) {
+            ksort($v);
+        }
+
+        return array_map(self::sortKeys(...), $v);
     }
 
     private function snapshot(): string

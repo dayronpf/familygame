@@ -89,7 +89,7 @@ class AdminTest extends TestCase
 
         // Las páginas se ven, con el texto de las variantes y las marcas resaltadas.
         $this->get('/admin/cuentos')->assertOk()->assertSee('La campana rota');
-        $this->get('/admin/cuentos?pack=medieval&age=6-8&status=pendiente')->assertOk()->assertSee('La campana rota')->assertDontSee('Las sombras del cuarto');
+        $this->get('/admin/cuentos?pack=medieval&edad=6-8&vista=pendientes')->assertOk()->assertSee('La campana rota')->assertDontSee('Las sombras del cuarto');
         $this->get("/admin/cuentos/{$sombras->id}")->assertOk()
             ->assertSee('<mark class="token">{hero}</mark>', false)->assertSee('Encender la luz');
 

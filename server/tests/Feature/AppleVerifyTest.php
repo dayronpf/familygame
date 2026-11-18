@@ -586,7 +586,7 @@ class AppleVerifyTest extends TestCase
         $this->actingAs($admin)->get('/admin/compras?tienda=android')->assertOk()->assertSee('Sin compras.');
         $this->actingAs($admin)->get('/admin/compras/'.$purchase->id)->assertOk()
             ->assertSee('Hash de la transacción original')->assertSee('mininoches_premium_anual')->assertDontSee(self::ORIGINAL);
-        $this->actingAs($admin)->get('/admin')->assertOk()->assertSee('App Store (APPLE_ISSUER_ID');
+        $this->actingAs($admin)->get('/admin')->assertOk()->assertSee('App Store')->assertSee('APPLE_*');
     }
 
     // ── Verificador ──────────────────────────────────────────────────────────────────────────────────────────

@@ -27,12 +27,21 @@ class PurchaseController extends Controller
                 ->orWhereIn('purchase_id', Purchase::query()->whereIn('token_hash', $hashes)->select('id')));
         }
 
+        $estado = (string) $request->query('estado', '');
+        $purchases->when($estado === 'premium', fn ($w) => $w->where('premium', true)->where('trial', false))
+            ->when($estado === 'prueba', fn ($w) => $w->where('trial', true))
+            ->when($estado === 'vencidas', fn ($w) => $w->where('premium', false))
+            ->when($request->query('test') === '1', fn ($w) => $w->where('test_purchase', true));
+        $tab = in_array($request->query('vista'), ['compras', 'derechos', 'avisos'], true) ? $request->query('vista') : 'compras';
+
         return view('admin.purchases.index', [
+            'tab' => $tab,
+            'estado' => $estado,
             'q' => $q,
             'platform' => $platform,
             'purchases' => $purchases->paginate(30, ['*'], 'compras')->withQueryString(),
             'entitlements' => $entitlements->paginate(30, ['*'], 'derechos')->withQueryString(),
-            'notifications' => StoreNotification::query()->latest('id')->limit(10)->get(),
+            'notifications' => StoreNotification::query()->latest('id')->paginate(30, ['*'], 'avisos')->withQueryString(),
         ]);
     }
 

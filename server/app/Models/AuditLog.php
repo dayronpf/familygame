@@ -12,6 +12,37 @@ class AuditLog extends Model
 
     protected $guarded = [];
 
+    /** Nombre legible de cada acción (para el panel). */
+    public const LABELS = [
+        'login' => 'Entró al panel',
+        'logout' => 'Salió del panel',
+        'packs.import' => 'Leyó los packs',
+        'story.create' => 'Creó un cuento',
+        'story.edit' => 'Guardó un borrador',
+        'story.queue' => 'Mandó a publicar',
+        'story.queue_all' => 'Mandó a publicar todo',
+        'story.published' => 'Se publicó',
+        'story.publish_failed' => 'Falló la publicación',
+        'story.discard' => 'Descartó cambios',
+        'story.delete' => 'Eliminó un cuento',
+        'story.restore' => 'Canceló la eliminación',
+        'story.review' => 'Revisó un cuento',
+        'story.free' => 'Cambió «Gratis»',
+        'story.bulk' => 'Acción en lote',
+        'code.create' => 'Creó códigos',
+        'code.activate' => 'Activó un código',
+        'code.deactivate' => 'Desactivó un código',
+        'product.create' => 'Creó un producto',
+        'product.update' => 'Cambió un producto',
+        'product.activate' => 'Activó un producto',
+        'product.deactivate' => 'Desactivó un producto',
+    ];
+
+    public static function label(string $action): string
+    {
+        return self::LABELS[$action] ?? $action;
+    }
+
     protected function casts(): array
     {
         return ['details' => 'array', 'created_at' => 'datetime'];

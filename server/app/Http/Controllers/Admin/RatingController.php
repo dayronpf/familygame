@@ -18,10 +18,14 @@ class RatingController extends Controller
             ->selectRaw('pack_id, count(*) as n, avg(rating) as avg, sum(case when rating <= 3 then 1 else 0 end) as low')
             ->groupBy('pack_id')->orderBy('pack_id')->get();
 
+        $sort = in_array($request->query('orden'), ['avg', 'n', 'low'], true) ? $request->query('orden') : 'avg';
+        $dir = $request->query('dir') === 'desc' ? 'desc' : 'asc';
+        $packFilter = (string) $request->query('pack', '');
         $byPremise = StoryRating::query()
             ->selectRaw('pack_id, premise_id, count(*) as n, avg(rating) as avg, sum(case when rating <= 3 then 1 else 0 end) as low')
+            ->when($packFilter !== '', fn ($w) => $w->where('pack_id', $packFilter))
             ->groupBy('pack_id', 'premise_id')->havingRaw('count(*) >= ?', [$minCount])
-            ->orderBy('avg')->get();
+            ->orderBy($sort, $dir)->paginate(25)->withQueryString();
 
         // Motivos de las notas bajas, en total y por cuento.
         $reasons = array_fill_keys(array_keys(StoryRating::REASONS), 0);
@@ -45,6 +49,9 @@ class RatingController extends Controller
             'reasonsByPremise' => $reasonsByPremise,
             'premises' => $premises,
             'minCount' => $minCount,
+            'sort' => $sort,
+            'dir' => $dir,
+            'packFilter' => $packFilter,
         ]);
     }
 }
