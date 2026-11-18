@@ -48,6 +48,8 @@ void main() {
         seedProvider: () => seed++,
         animateArt: false,
         feedback: override ?? service,
+        // Las recetas que se comprueban (semilla del reloj, «otro cuento» con otra semilla) son las del caldero
+        catalogOnly: false,
       ),
     );
     await tester.pumpAndSettle();

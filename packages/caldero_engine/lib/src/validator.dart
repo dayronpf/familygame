@@ -1252,6 +1252,9 @@ final RegExp spainWords = RegExp(
   r'|¡menud[oa]s?'
   r'|vale\?'
   r'|hacia delante|lengua fuera'
+  r'|enfad(?:ar|arse|o|a|as|an|ó|aron|ad[oa]s?|aba|aban|ándose|e|es|en)'
+  r'|peonzas?|pata coja|todo el rato|haci?er(?:se)? una foto'
+  r'|(?:echar|echo|echa|eché|echó|echaba|echaron|echamos)(?: \w+)? de menos'
   r')(?![a-záéíóúüñ])',
   caseSensitive: false,
 );
@@ -1264,7 +1267,8 @@ void _checkLessonAndVoice(Premise premise, Set<String> problems) {
     final m = spainWords.firstMatch(text);
     if (m != null) {
       problems.add(
-          '$where: «${m.group(0)}» es de España: usa la palabra de Latinoamérica (docs/32)');
+        '$where: «${m.group(0)}» es de España: usa la palabra de Latinoamérica (docs/32)',
+      );
     }
   }
 

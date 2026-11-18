@@ -1,7 +1,10 @@
 import 'dart:convert';
 
 import 'package:caldero_engine/caldero_engine.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
+
+import 'brand.dart';
 
 /// Paquete que se abre la primera vez (el gratuito incluido en la app).
 const String defaultPackId = 'medieval';
@@ -16,4 +19,16 @@ final String bundledPackPath = packPath(defaultPackId);
 Future<Pack> loadPack(AssetBundle bundle, {String? path}) async {
   final raw = await bundle.loadString(path ?? bundledPackPath);
   return Pack.fromJson(jsonDecode(raw) as Map<String, Object?>);
+}
+
+/// Lee el catálogo fijo de cuentos grabados (docs/31). Si falta o está roto, devuelve uno vacío.
+Future<FixedCatalog> loadFixedCatalog(AssetBundle bundle,
+    {String path = fixedCatalogAsset}) async {
+  try {
+    final raw = await bundle.loadString(path);
+    return FixedCatalog.fromJson(jsonDecode(raw) as Map<String, Object?>);
+  } catch (e) {
+    debugPrint('Sin catálogo fijo ($path): $e');
+    return FixedCatalog.empty;
+  }
 }

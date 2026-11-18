@@ -4,15 +4,28 @@ import '../packs/pack_catalog.dart';
 
 /// Un cuento del catálogo: una premisa de un paquete (lo que la familia elige en «Explorar»). El texto exacto lo
 /// arma el caldero con una semilla fija por cuento, así que la ficha enseña el mismo principio que luego se lee.
+///
+/// Con [entry] es un cuento del catálogo fijo grabado (docs/31): se cuenta siempre con sus opciones, sin el nombre
+/// del niño, sin su edad y sin preguntas, para que el texto coincida con la voz grabada.
 class CatalogStory {
-  CatalogStory({required this.info, required this.pack, required this.premise})
-      : moral =
+  CatalogStory({
+    required this.info,
+    required this.pack,
+    required this.premise,
+    this.entry,
+  })  : moral =
             premise.value == anyValue ? null : pack.moralById(premise.value),
         minutes = estimateMinutes(premise);
 
   final PackInfo info;
   final Pack pack;
   final Premise premise;
+
+  /// Su entrada en el catálogo fijo (`null` = cuento del caldero, que se adapta al niño).
+  final CatalogEntry? entry;
+
+  /// `true` = se cuenta siempre igual (catálogo fijo).
+  bool get fixed => entry != null;
 
   /// Enseñanza del cuento (`null` si la premisa sirve a cualquiera).
   final Moral? moral;
@@ -25,8 +38,8 @@ class CatalogStory {
   int get scenes => premise.beats.length;
   bool get isNew => info.isNew;
 
-  /// Semilla fija del cuento: la ficha y la lectura salen iguales.
-  int get seed => stableSeed(key);
+  /// Semilla fija del cuento: la ficha y la lectura salen iguales (en el catálogo fijo, la de la grabación).
+  int get seed => entry?.seed ?? stableSeed(key);
 
   /// «2–3 años», «4–5 años y 6–8 años»… (vacío = todas las edades).
   String get agesLabel {
@@ -49,7 +62,9 @@ class CatalogStory {
   }
 
   /// Si el cuento cabe para un niño con este nombre y género (con nombre, el héroe no puede cambiar de género).
+  /// Un cuento fijo no lleva el nombre del niño, así que le sirve a cualquiera.
   bool fitsChild({String? heroName, String? heroGender}) =>
+      fixed ||
       heroName == null ||
       heroGender == null ||
       heroCanBe(pack, premise, heroGender);
@@ -59,13 +74,16 @@ class CatalogStory {
       ? childAge
       : (premise.ages.isEmpty ? childAge : premise.ages.first);
 
-  /// Opciones para contarlo (o para la vista previa de la ficha).
+  /// Opciones para contarlo (o para la vista previa de la ficha). Un cuento fijo ignora al niño: son las de su
+  /// entrada del catálogo ([CatalogEntry.options]).
   StoryOptions options({
     String? childAge,
     String? heroName,
     String? heroGender,
     bool interactive = false,
   }) {
+    final e = entry;
+    if (e != null) return e.options();
     final gender = heroGender != null && heroCanBe(pack, premise, heroGender)
         ? heroGender
         : null;
@@ -147,13 +165,34 @@ class CatalogCategory {
 class StoryCatalog {
   StoryCatalog(this.stories, {this.free = const {}});
 
-  /// Arma el catálogo con los paquetes ya cargados (en el orden de [packCatalog]).
-  factory StoryCatalog.fromPacks(Map<String, Pack> packs) => StoryCatalog([
-        for (final info in packCatalog)
-          if (info.available && packs[info.id] != null)
-            for (final p in packs[info.id]!.premises)
-              CatalogStory(info: info, pack: packs[info.id]!, premise: p),
+  /// Arma el catálogo con los paquetes ya cargados (en el orden de [packCatalog]). Con [fixed] (lanzamiento,
+  /// `brand.catalogOnly`) solo entran los cuentos de ese catálogo, en su orden, cada uno con su entrada; los que
+  /// no estén en los paquetes se saltan.
+  factory StoryCatalog.fromPacks(Map<String, Pack> packs,
+      {FixedCatalog? fixed}) {
+    if (fixed != null) {
+      return StoryCatalog([
+        for (final e in fixed.entries)
+          if (_storyFor(packs, e) case final s?) s,
       ]);
+    }
+    return StoryCatalog([
+      for (final info in packCatalog)
+        if (info.available && packs[info.id] != null)
+          for (final p in packs[info.id]!.premises)
+            CatalogStory(info: info, pack: packs[info.id]!, premise: p),
+    ]);
+  }
+
+  static CatalogStory? _storyFor(Map<String, Pack> packs, CatalogEntry e) {
+    final pack = packs[e.packId];
+    final premise = pack?.premiseById(e.premiseId);
+    final info = packCatalog.where((i) => i.id == e.packId).firstOrNull;
+    if (pack == null || premise == null || info == null || !info.available) {
+      return null;
+    }
+    return CatalogStory(info: info, pack: pack, premise: premise, entry: e);
+  }
 
   final List<CatalogStory> stories;
 

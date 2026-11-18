@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Copia a la app los packs y el arte que lleva incluidos (la fuente de verdad está fuera de app/).
+# Copia a la app los packs, el catálogo fijo y el arte que lleva incluidos (la fuente de verdad está fuera de app/).
 # Uso: tools/sync_assets.sh         → sincroniza
 #      tools/sync_assets.sh --check → falla si hay diferencias (para CI)
 set -euo pipefail
@@ -21,6 +21,11 @@ done
 dst=app/assets/legal
 if $check; then diff -r content/legal "$dst" >/dev/null || fail "$dst"
 else rm -rf "$dst"; mkdir -p "$(dirname "$dst")"; cp -r content/legal "$dst"; fi
+
+# --- catálogo fijo de cuentos (los que tienen voz grabada, docs/31): la app solo cuenta estos en el lanzamiento
+dst=app/assets/catalogo
+if $check; then diff -r content/catalogo "$dst" >/dev/null || fail "$dst"
+else rm -rf "$dst"; mkdir -p "$(dirname "$dst")"; cp -r content/catalogo "$dst"; fi
 
 # --- arte (rigs, escenas, índice y clips; no las vistas previas ni las especificaciones)
 dst=app/assets/art

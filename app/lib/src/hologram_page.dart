@@ -87,6 +87,8 @@ class _HologramPageState extends State<HologramPage>
   void initState() {
     super.initState();
     final flow = widget.flow;
+    // Voz grabada del cuento, si es del catálogo (docs/31); si no, la del teléfono
+    final voice = recordedFor(context, widget.story);
     _playback = StoryPlayback(
       scenes: flow == null
           ? playScenes(widget.story, widget.setups)
@@ -98,6 +100,9 @@ class _HologramPageState extends State<HologramPage>
       narrator: widget.narrator ?? narratorFor(context),
       title: widget.story.title,
       sfx: _sfx,
+      recorded: voice.clips,
+      clipStore: voice.store,
+      clipPlayer: voice.player,
       resolve: flow == null
           ? null
           : (o) async => continueFlow(flow, widget.art, _playback.scene, o),

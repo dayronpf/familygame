@@ -17,6 +17,10 @@ void main() {
       '¡Menudo gigante!',
       'del color de la nata',
       'miró hacia delante',
+      'No te enfades.',
+      'Te eché de menos.',
+      'Saltaba a la pata coja.',
+      'Giraba como una peonza.',
     ]) {
       expect(spainWords.hasMatch(s), isTrue, reason: s);
     }
@@ -32,6 +36,8 @@ void main() {
       'Iba nadando con natación.',
       'Comió un pastel con jugo.',
       'Miró hacia adelante.',
+      'Se enojó un poco.',
+      'Encontró un escondite.',
     ]) {
       expect(spainWords.hasMatch(s), isFalse, reason: s);
     }

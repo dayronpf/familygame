@@ -264,7 +264,7 @@ void main() {
 
   group('en el inicio', () {
     Future<AppSettings> openHome(WidgetTester tester,
-        {List<String> names = const ['Ana']}) async {
+        {List<String> names = const ['Ana'], bool catalogOnly = true}) async {
       phone(tester);
       final settings = AppSettings(MemorySettingsStore());
       await settings.completeWizard(name: names.first);
@@ -278,6 +278,7 @@ void main() {
         settings: settings,
         showWizard: false,
         animateArt: false,
+        catalogOnly: catalogOnly,
       ));
       await tester.pumpAndSettle();
       return settings;
@@ -306,7 +307,9 @@ void main() {
     testWidgets(
         'el cuento se cuenta con el nombre del niño activo y se guarda a su nombre',
         (tester) async {
-      final settings = await openHome(tester, names: ['Ana', 'Beto']);
+      // El nombre del niño solo va en los cuentos del caldero (el catálogo fijo se grabó sin él)
+      final settings =
+          await openHome(tester, names: ['Ana', 'Beto'], catalogOnly: false);
       await tester.tap(find.text('Crear cuento'));
       await tester.pumpAndSettle();
       // Beto se guardó sin género: se pregunta una vez y se recuerda

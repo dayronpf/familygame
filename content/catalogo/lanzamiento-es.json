@@ -1,7 +1,7 @@
 {
- "version": "1.0",
+ "version": "1.1",
  "idioma": "es",
- "descripcion": "Los 50 cuentos del lanzamiento (docs/31). Texto fijo: semilla, sin nombre del niño, sin preguntas. Se graban con ElevenLabs (Isabela).",
+ "descripcion": "Los 100 cuentos del lanzamiento (docs/31): 50 de la primera tanda y 50 más (39 auditados en docs/33 y 11 nuevos). Texto fijo: semilla, sin nombre del niño, sin preguntas. Se graban con ElevenLabs (Isabela).",
  "gratis": [
   "medieval:sombras",
   "mar:galletas_todos",
@@ -507,7 +507,506 @@
    "heroe": "Orión",
    "generoHeroe": "m",
    "caracteres": 3008
+  },
+  {
+   "id": "medieval:linterna",
+   "titulo": "La linterna apagada",
+   "edad": "6-8",
+   "valor": "valentia",
+   "semilla": 1,
+   "heroe": "Mara",
+   "generoHeroe": "f",
+   "caracteres": 5584
+  },
+  {
+   "id": "medieval:puente",
+   "titulo": "El puente que crujía",
+   "edad": "6-8",
+   "valor": "valentia",
+   "semilla": 1,
+   "heroe": "Aldo",
+   "generoHeroe": "m",
+   "caracteres": 3444
+  },
+  {
+   "id": "medieval:eco_colina",
+   "titulo": "El eco de la colina",
+   "edad": "9-12",
+   "valor": "honestidad",
+   "semilla": 1,
+   "heroe": "Mara",
+   "generoHeroe": "f",
+   "caracteres": 7743
+  },
+  {
+   "id": "medieval:huerto_seco",
+   "titulo": "El huerto de todos",
+   "edad": "9-12",
+   "valor": "generosidad",
+   "semilla": 1,
+   "heroe": "Aldo",
+   "generoHeroe": "m",
+   "caracteres": 7690
+  },
+  {
+   "id": "medieval:aprendiz_sabelotodo",
+   "titulo": "Quien todo lo sabía",
+   "edad": "9-12",
+   "valor": "humildad",
+   "semilla": 1,
+   "heroe": "Mara",
+   "generoHeroe": "f",
+   "caracteres": 7990
+  },
+  {
+   "id": "medieval:dos_faroles",
+   "titulo": "Los dos faroles",
+   "edad": "9-12",
+   "valor": "amistad",
+   "semilla": 1,
+   "heroe": "Aldo",
+   "generoHeroe": "m",
+   "caracteres": 8258
+  },
+  {
+   "id": "medieval:campana_mediodia",
+   "titulo": "La campana del mediodía",
+   "edad": "4-5",
+   "valor": "valentia",
+   "semilla": 1,
+   "heroe": "Mara",
+   "generoHeroe": "f",
+   "caracteres": 2141
+  },
+  {
+   "id": "medieval:panecillo",
+   "titulo": "El panecillo de Rosa",
+   "edad": "4-5",
+   "valor": "honestidad",
+   "semilla": 1,
+   "heroe": "Aldo",
+   "generoHeroe": "m",
+   "caracteres": 1833
+  },
+  {
+   "id": "medieval:piedras",
+   "titulo": "Pasito a pasito",
+   "edad": "2-3",
+   "valor": "valentia",
+   "semilla": 1,
+   "heroe": "Mara",
+   "generoHeroe": "f",
+   "caracteres": 1248
+  },
+  {
+   "id": "medieval:taza",
+   "titulo": "La taza de leche",
+   "edad": "2-3",
+   "valor": "honestidad",
+   "semilla": 1,
+   "heroe": "Aldo",
+   "generoHeroe": "m",
+   "caracteres": 1237
+  },
+  {
+   "id": "medieval:faro_lago",
+   "titulo": "La luz del lago",
+   "edad": "9-12",
+   "valor": "valentia",
+   "semilla": 1,
+   "heroe": "Mara",
+   "generoHeroe": "f",
+   "caracteres": 9339
+  },
+  {
+   "id": "medieval:cometa_norte",
+   "titulo": "La cometa del viento del norte",
+   "edad": "9-12",
+   "valor": "perseverancia",
+   "semilla": 1,
+   "heroe": "Aldo",
+   "generoHeroe": "m",
+   "caracteres": 7160
+  },
+  {
+   "id": "medieval:campana_turno",
+   "titulo": "La campana de los dos",
+   "edad": "2-3",
+   "valor": "generosidad",
+   "semilla": 1,
+   "heroe": "Mara",
+   "generoHeroe": "f",
+   "caracteres": 1345
+  },
+  {
+   "id": "medieval:cabrita_lia",
+   "titulo": "La cabrita que no venía",
+   "edad": "4-5",
+   "valor": "humildad",
+   "semilla": 1,
+   "heroe": "Aldo",
+   "generoHeroe": "m",
+   "caracteres": 1930
+  },
+  {
+   "id": "medieval:lazo_girasol",
+   "titulo": "El lazo del girasol",
+   "edad": "4-5",
+   "valor": "perseverancia",
+   "semilla": 1,
+   "heroe": "Mara",
+   "generoHeroe": "f",
+   "caracteres": 1843
+  },
+  {
+   "id": "medieval:fiesta_teo",
+   "titulo": "Una fiesta para Teo",
+   "edad": "6-8",
+   "valor": "amistad",
+   "semilla": 1,
+   "heroe": "Aldo",
+   "generoHeroe": "m",
+   "caracteres": 3374
+  },
+  {
+   "id": "mar:cofre_pesado",
+   "titulo": "El cofre pesado",
+   "edad": "2-3",
+   "valor": "humildad",
+   "semilla": 1,
+   "heroe": "Vega",
+   "generoHeroe": "f",
+   "caracteres": 786
+  },
+  {
+   "id": "mar:botella_corcho",
+   "titulo": "La botella del mar",
+   "edad": "2-3",
+   "valor": "perseverancia",
+   "semilla": 1,
+   "heroe": "Bruno",
+   "generoHeroe": "m",
+   "caracteres": 774
+  },
+  {
+   "id": "mar:timon_primera",
+   "titulo": "La primera vez al timón",
+   "edad": "4-5",
+   "valor": "valentia",
+   "semilla": 1,
+   "heroe": "Vega",
+   "generoHeroe": "f",
+   "caracteres": 1504
+  },
+  {
+   "id": "mar:leo_nuevo",
+   "titulo": "Un grumete nuevo",
+   "edad": "4-5",
+   "valor": "amistad",
+   "semilla": 1,
+   "heroe": "Bruno",
+   "generoHeroe": "m",
+   "caracteres": 1395
+  },
+  {
+   "id": "mar:farol_ola",
+   "titulo": "Un farol para Ola",
+   "edad": "4-5",
+   "valor": "generosidad",
+   "semilla": 1,
+   "heroe": "Vega",
+   "generoHeroe": "f",
+   "caracteres": 1433
+  },
+  {
+   "id": "mar:cueva_ecos",
+   "titulo": "La cueva de los ecos",
+   "edad": "6-8",
+   "valor": "valentia",
+   "semilla": 1,
+   "heroe": "Bruno",
+   "generoHeroe": "m",
+   "caracteres": 2807
+  },
+  {
+   "id": "mar:pelea_leo",
+   "titulo": "La pelea del catalejo",
+   "edad": "6-8",
+   "valor": "amistad",
+   "semilla": 1,
+   "heroe": "Vega",
+   "generoHeroe": "f",
+   "caracteres": 2730
+  },
+  {
+   "id": "mar:sopa_mostacho",
+   "titulo": "Sopa para el capitán Mostacho",
+   "edad": "6-8",
+   "valor": "generosidad",
+   "semilla": 1,
+   "heroe": "Bruno",
+   "generoHeroe": "m",
+   "caracteres": 3090
+  },
+  {
+   "id": "mar:regata_atajo",
+   "titulo": "La regata de las Estrellas",
+   "edad": "9-12",
+   "valor": "honestidad",
+   "semilla": 1,
+   "heroe": "Vega",
+   "generoHeroe": "f",
+   "caracteres": 5694
+  },
+  {
+   "id": "mar:ahorro_faro",
+   "titulo": "Las monedas del catalejo",
+   "edad": "9-12",
+   "valor": "generosidad",
+   "semilla": 1,
+   "heroe": "Bruno",
+   "generoHeroe": "m",
+   "caracteres": 5514
+  },
+  {
+   "id": "mar:niebla_bote",
+   "titulo": "El bote en la niebla",
+   "edad": "9-12",
+   "valor": "valentia",
+   "semilla": 1,
+   "heroe": "Vega",
+   "generoHeroe": "f",
+   "caracteres": 5515
+  },
+  {
+   "id": "mar:ayudante_navegante",
+   "titulo": "El ayudante del navegante",
+   "edad": "9-12",
+   "valor": "humildad",
+   "semilla": 1,
+   "heroe": "Bruno",
+   "generoHeroe": "m",
+   "caracteres": 5464
+  },
+  {
+   "id": "mar:mapa_siete",
+   "titulo": "El mapa de las siete islas",
+   "edad": "9-12",
+   "valor": "perseverancia",
+   "semilla": 1,
+   "heroe": "Vega",
+   "generoHeroe": "f",
+   "caracteres": 5574
+  },
+  {
+   "id": "mar:faroles_remolino",
+   "titulo": "La red y la noche de las lámparas",
+   "edad": "9-12",
+   "valor": "amistad",
+   "semilla": 1,
+   "heroe": "Bruno",
+   "generoHeroe": "m",
+   "caracteres": 5727
+  },
+  {
+   "id": "mar:pimienta_repite",
+   "titulo": "Pimienta repite todo",
+   "edad": "2-3",
+   "valor": "amistad",
+   "semilla": 1,
+   "heroe": "Vega",
+   "generoHeroe": "f",
+   "caracteres": 1374
+  },
+  {
+   "id": "mar:ballena_inventada",
+   "titulo": "La ballena que no estaba",
+   "edad": "4-5",
+   "valor": "honestidad",
+   "semilla": 1,
+   "heroe": "Bruno",
+   "generoHeroe": "m",
+   "caracteres": 1871
+  },
+  {
+   "id": "mar:catalejo_reves",
+   "titulo": "El catalejo al revés",
+   "edad": "4-5",
+   "valor": "humildad",
+   "semilla": 1,
+   "heroe": "Vega",
+   "generoHeroe": "f",
+   "caracteres": 1950
+  },
+  {
+   "id": "mar:remar_faro",
+   "titulo": "Remar hasta el faro",
+   "edad": "6-8",
+   "valor": "perseverancia",
+   "semilla": 1,
+   "heroe": "Bruno",
+   "generoHeroe": "m",
+   "caracteres": 3842
+  },
+  {
+   "id": "cosmos:atajo_anillo",
+   "titulo": "El atajo del anillo",
+   "edad": "9-12",
+   "valor": "honestidad",
+   "semilla": 1,
+   "heroe": "Lira",
+   "generoHeroe": "f",
+   "caracteres": 5816
+  },
+  {
+   "id": "cosmos:aterrizaje",
+   "titulo": "El examen de piloto",
+   "edad": "9-12",
+   "valor": "perseverancia",
+   "semilla": 1,
+   "heroe": "Orión",
+   "generoHeroe": "m",
+   "caracteres": 5845
+  },
+  {
+   "id": "cosmos:estacion_oscuras",
+   "titulo": "La estación a oscuras",
+   "edad": "6-8",
+   "valor": "valentia",
+   "semilla": 1,
+   "heroe": "Lira",
+   "generoHeroe": "f",
+   "caracteres": 2947
+  },
+  {
+   "id": "cosmos:feria_cohetes",
+   "titulo": "La feria de los cohetes",
+   "edad": "9-12",
+   "valor": "generosidad",
+   "semilla": 1,
+   "heroe": "Orión",
+   "generoHeroe": "m",
+   "caracteres": 5640
+  },
+  {
+   "id": "cosmos:flotar_estacion",
+   "titulo": "Flotar en la estación",
+   "edad": "4-5",
+   "valor": "perseverancia",
+   "semilla": 1,
+   "heroe": "Lira",
+   "generoHeroe": "f",
+   "caracteres": 1547
+  },
+  {
+   "id": "cosmos:funcion_planetario",
+   "titulo": "La función del planetario",
+   "edad": "9-12",
+   "valor": "humildad",
+   "semilla": 1,
+   "heroe": "Orión",
+   "generoHeroe": "m",
+   "caracteres": 5757
+  },
+  {
+   "id": "cosmos:llave_tornillo",
+   "titulo": "La llave de Tornillo",
+   "edad": "2-3",
+   "valor": "honestidad",
+   "semilla": 1,
+   "heroe": "Lira",
+   "generoHeroe": "f",
+   "caracteres": 1169
+  },
+  {
+   "id": "cosmos:noche_festival",
+   "titulo": "La noche del festival",
+   "edad": "9-12",
+   "valor": "amistad",
+   "semilla": 1,
+   "heroe": "Orión",
+   "generoHeroe": "m",
+   "caracteres": 5654
+  },
+  {
+   "id": "cosmos:piedras_luna",
+   "titulo": "Las piedras de la luna",
+   "edad": "2-3",
+   "valor": "generosidad",
+   "semilla": 1,
+   "heroe": "Lira",
+   "generoHeroe": "f",
+   "caracteres": 885
+  },
+  {
+   "id": "cosmos:robot_pitaba",
+   "titulo": "El robot que pitaba",
+   "edad": "4-5",
+   "valor": "amistad",
+   "semilla": 1,
+   "heroe": "Orión",
+   "generoHeroe": "m",
+   "caracteres": 1494
+  },
+  {
+   "id": "cosmos:salto_alto",
+   "titulo": "El salto más alto",
+   "edad": "6-8",
+   "valor": "humildad",
+   "semilla": 1,
+   "heroe": "Lira",
+   "generoHeroe": "f",
+   "caracteres": 3189
+  },
+  {
+   "id": "cosmos:semilla_baron",
+   "titulo": "La semilla del Barón Brillo",
+   "edad": "6-8",
+   "valor": "generosidad",
+   "semilla": 1,
+   "heroe": "Orión",
+   "generoHeroe": "m",
+   "caracteres": 2756
+  },
+  {
+   "id": "cosmos:semilla_luz",
+   "titulo": "La semilla de luz",
+   "edad": "2-3",
+   "valor": "perseverancia",
+   "semilla": 1,
+   "heroe": "Lira",
+   "generoHeroe": "f",
+   "caracteres": 794
+  },
+  {
+   "id": "cosmos:tormenta_lunar",
+   "titulo": "La tormenta de polvo lunar",
+   "edad": "9-12",
+   "valor": "valentia",
+   "semilla": 1,
+   "heroe": "Orión",
+   "generoHeroe": "m",
+   "caracteres": 5786
+  },
+  {
+   "id": "cosmos:turno_luna",
+   "titulo": "El último turno",
+   "edad": "4-5",
+   "valor": "generosidad",
+   "semilla": 1,
+   "heroe": "Lira",
+   "generoHeroe": "f",
+   "caracteres": 1607
+  },
+  {
+   "id": "cosmos:zumbo_jugar",
+   "titulo": "Zumbo quiere jugar",
+   "edad": "6-8",
+   "valor": "amistad",
+   "semilla": 1,
+   "heroe": "Orión",
+   "generoHeroe": "m",
+   "caracteres": 2907
   }
- ],
- "caracteresTotales": 106453
+ ]
 }

@@ -34,6 +34,8 @@ void main() {
       shelf: s,
       showWizard: false,
       animateArt: false,
+      // El nombre del niño en el cuento es cosa del caldero: el catálogo fijo se cuenta sin él
+      catalogOnly: false,
     ));
     await tester.pumpAndSettle();
     return (settings, s, feedback);

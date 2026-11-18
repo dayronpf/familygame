@@ -151,8 +151,17 @@ def main():
                         if diff > a.umbral:
                             flagged.append({"cuento": story["id"], "escena": i + 1, "diferencia": diff, "oido": heard})
                     break
-                entry["escenas"].append({"archivo": f"audio/{h}.mp3", "huella": h, "caracteres": len(text),
+                entry["escenas"].append({"archivo": f"audio/{h}.mp3", "huella": h, "texto": text, "caracteres": len(text),
                                          "segundos": duration(path), **({"diferencia": diff} if diff is not None else {})})
+            # Título y enseñanza (la app los dice al empezar y al terminar): cada uno, su clip.
+            for field, text in (("titulo_audio", story["titulo"]),
+                                ("ensenanza_audio", f"La enseñanza de hoy: {story['ensenanza']}")):
+                h = fingerprint(text)
+                path = audio_dir / f"{h}.mp3"
+                if not path.exists():
+                    path.write_bytes(tts(key, text, None, None))
+                    spent += len(text)
+                entry[field] = {"archivo": f"audio/{h}.mp3", "texto": text, "segundos": duration(path)}
             manifest["cuentos"][story["id"]] = entry
             manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=1), encoding="utf-8")
             print(f"[{n}/{len(stories)}] {story['id']} · {len(scenes)} escenas · gastados {spent} caracteres", flush=True)

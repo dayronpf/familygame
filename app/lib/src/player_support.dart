@@ -9,6 +9,7 @@ import 'audio/ambience.dart';
 import 'audio/sfx.dart';
 import 'narration/narrator.dart';
 import 'narration/playback.dart';
+import 'narration/recorded_voice.dart';
 import 'settings/app_settings.dart';
 import 'story_flow.dart';
 import 'ui/screen_dimmer.dart';
@@ -39,6 +40,30 @@ Ambience ambienceFor(BuildContext context, {String? packId}) {
 Sfx sfxFor(BuildContext context) {
   final s = SettingsScope.maybeOf(context);
   return s != null && s.effects ? AssetSfx() : SilentSfx();
+}
+
+/// La voz grabada de [story] (docs/31), para pasarla a [StoryPlayback]: sus audios, de dónde salen y un
+/// reproductor nuevo. Sin audios (no es del catálogo, o no hay voz grabada como en las pruebas) todo es `null` y el
+/// cuento lo dice la voz del teléfono.
+///
+/// Los audios se buscan por la clave del cuento («paquete:premisa», [Story.catalogId]) y cada uno suena solo si su
+/// texto coincide letra por letra. Si coincide menos de la mitad de las escenas (un cuento guardado de antes, con el
+/// nombre del niño), no se usa ninguno: mejor una sola voz todo el cuento que ir saltando de una a otra.
+({StoryClips? clips, ClipStore? store, ClipPlayer? player}) recordedFor(
+  BuildContext context,
+  Story story,
+) {
+  final voice = RecordedVoiceScope.of(context);
+  final clips = voice.clipsFor(story.catalogId);
+  if (clips == null || story.scenes.isEmpty) {
+    return (clips: null, store: null, player: null);
+  }
+  final matching =
+      story.scenes.where((s) => clips.clipFor(s.text) != null).length;
+  if (matching * 2 <= story.scenes.length) {
+    return (clips: null, store: null, player: null);
+  }
+  return (clips: clips, store: voice.store, player: voice.newPlayer());
 }
 
 bool musicOn(BuildContext context) =>

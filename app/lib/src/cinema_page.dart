@@ -97,6 +97,8 @@ class _CinemaPageState extends State<CinemaPage>
   void initState() {
     super.initState();
     final flow = widget.flow;
+    // Voz grabada del cuento, si es del catálogo (docs/31); si no, la del teléfono
+    final voice = recordedFor(context, widget.story);
     _playback = StoryPlayback(
       scenes: playScenes(
         _story,
@@ -106,6 +108,9 @@ class _CinemaPageState extends State<CinemaPage>
       narrator: widget.narrator ?? narratorFor(context),
       title: widget.story.title,
       sfx: _sfx,
+      recorded: voice.clips,
+      clipStore: voice.store,
+      clipPlayer: voice.player,
       resolve: flow == null ? null : _resolve,
     )..addListener(() => mounted ? setState(() {}) : null);
     enterShowMode(immersive: false);

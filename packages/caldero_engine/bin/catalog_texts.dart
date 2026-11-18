@@ -11,38 +11,37 @@ import 'package:caldero_engine/caldero_engine.dart';
 void main(List<String> args) {
   if (args.length < 2) {
     stderr.writeln(
-        'Uso: dart run bin/catalog_texts.dart <catalogo.json> <salida.json>');
+      'Uso: dart run bin/catalog_texts.dart <catalogo.json> <salida.json>',
+    );
     exit(64);
   }
   final catalogFile = File(args[0]);
-  final catalog =
-      jsonDecode(catalogFile.readAsStringSync()) as Map<String, Object?>;
+  final catalog = FixedCatalog.fromJson(
+    jsonDecode(catalogFile.readAsStringSync()) as Map<String, Object?>,
+  );
   final packsDir = '${catalogFile.parent.parent.path}/packs';
   final engines = <String, StoryEngine>{};
   final out = <Map<String, Object?>>[];
   var problems = 0;
-  for (final entry
-      in (catalog['cuentos']! as List).cast<Map<String, Object?>>()) {
-    final id = entry['id']! as String;
-    final [packId, premiseId] = id.split(':');
+  for (final entry in catalog.entries) {
+    final id = entry.id;
     final engine = engines.putIfAbsent(
-      packId,
-      () => StoryEngine(Pack.fromJson(
-        jsonDecode(File('$packsDir/$packId/pack.json').readAsStringSync())
-            as Map<String, Object?>,
-      )),
+      entry.packId,
+      () => StoryEngine(
+        Pack.fromJson(
+          jsonDecode(
+            File('$packsDir/${entry.packId}/pack.json').readAsStringSync(),
+          ) as Map<String, Object?>,
+        ),
+      ),
     );
-    final story = engine.generate(StoryOptions(
-      seed: entry['semilla']! as int,
-      premiseId: premiseId,
-      heroGender: entry['generoHeroe'] as String?,
-      interactive: false,
-    ));
-    final hero = story.cast['hero'];
-    final heroName = hero is Character ? hero.given : null;
-    if (entry['heroe'] != null && heroName != entry['heroe']) {
+    // Las mismas opciones con que la app cuenta el cuento (CatalogEntry.options): así el texto es el grabado.
+    final story = engine.generate(entry.options());
+    final heroName = CatalogEntry.heroOf(story);
+    if (entry.heroName != null && heroName != entry.heroName) {
       stderr.writeln(
-          '$id: el héroe salió «$heroName» y el catálogo dice «${entry['heroe']}»');
+        '$id: el héroe salió «$heroName» y el catálogo dice «${entry.heroName}»',
+      );
       problems++;
     }
     out.add({
@@ -53,17 +52,20 @@ void main(List<String> args) {
       'escenas': [for (final s in story.scenes) s.text],
     });
   }
-  File(args[1]).writeAsStringSync(const JsonEncoder.withIndent(' ').convert({
-    'version': catalog['version'],
-    'idioma': catalog['idioma'],
-    'cuentos': out,
-  }));
+  File(args[1]).writeAsStringSync(
+    const JsonEncoder.withIndent(' ').convert({
+      'version': catalog.version,
+      'idioma': catalog.language,
+      'cuentos': out,
+    }),
+  );
   final chars = out.fold<int>(
-      0,
-      (n, c) =>
-          n +
-          (c['escenas']! as List)
-              .fold<int>(0, (m, s) => m + (s as String).length));
+    0,
+    (n, c) =>
+        n +
+        (c['escenas']! as List)
+            .fold<int>(0, (m, s) => m + (s as String).length),
+  );
   print('${out.length} cuentos, $chars caracteres → ${args[1]}');
   if (problems > 0) exit(1);
 }

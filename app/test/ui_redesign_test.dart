@@ -224,7 +224,8 @@ void main() {
       await tester.tap(find.text('Crear cuento'));
       await tester.pumpAndSettle();
       expect(shelf.recent, hasLength(1));
-      expect(shelf.recent.first.option, 'honestidad');
+      // Con el catálogo fijo se cuenta un cuento de honestidad con sus opciones fijas (sin enseñanza pedida aparte)
+      expect(shelf.recent.first.moralId, 'honestidad');
       expect(shelf.favorites, isEmpty);
 
       await tester.tap(find.byKey(const Key('favorite')));

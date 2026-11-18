@@ -34,6 +34,7 @@ import 'ui/moral_tile.dart';
 import 'ui/night_background.dart';
 import 'ui/palette.dart';
 import 'brand.dart';
+import 'brand.dart' as brand show catalogOnly;
 
 /// Pantalla de inicio, pensada para que la entienda un niño: una portada viva, tarjetas grandes para elegir lo
 /// que se aprende y un único botón enorme para crear el cuento. Tres pestañas: Inicio, Explorar y Mis cuentos.
@@ -46,7 +47,11 @@ class HomePage extends StatefulWidget {
     required this.shelf,
     this.progress,
     this.animateArt = true,
+    this.catalogOnly = brand.catalogOnly,
   });
+
+  /// Lanzamiento (`brand.catalogOnly`): solo los cuentos del catálogo grabado, contados siempre igual.
+  final bool catalogOnly;
 
   /// Progreso y premios (por defecto, en memoria).
   final ReadingProgress? progress;
@@ -87,7 +92,13 @@ class _HomePageState extends State<HomePage> {
   Future<StoryCatalog>? _catalog;
   CatalogPreviews? _previews;
 
+  /// El catálogo ya armado (para elegir «otro cuento» del catálogo fijo sin esperar).
+  StoryCatalog? _catalogReady;
+
   Future<StoryCatalog> _catalogFuture() => _catalog ??= () async {
+        // Lanzamiento: solo los cuentos grabados. Si el catálogo fijo no se pudo leer, se usan todos.
+        final fixed =
+            widget.catalogOnly ? await loadFixedCatalog(widget.bundle) : null;
         final ids = [
           for (final i in packCatalog)
             if (i.available) i.id
@@ -100,7 +111,10 @@ class _HomePageState extends State<HomePage> {
             // un paquete que no carga no tumba el catálogo
           }
         }
-        return StoryCatalog.fromPacks(packs);
+        return _catalogReady = StoryCatalog.fromPacks(
+          packs,
+          fixed: fixed == null || fixed.isEmpty ? null : fixed,
+        );
       }();
 
   CatalogPreviews _previewsFor(AppSettings? settings) {
@@ -146,14 +160,7 @@ class _HomePageState extends State<HomePage> {
                   heroGender: opts.heroGender,
                   childId: settings?.child.id,
                 ),
-          onStart: (start) => _tell(
-            s.pack,
-            seed: s.seed,
-            option: opts.valueId,
-            premiseId: s.premise.id,
-            start: start,
-            catalog: opts,
-          ),
+          onStart: (start) => _tellCatalog(s, opts, start: start),
         ),
       ),
     ));
@@ -161,9 +168,13 @@ class _HomePageState extends State<HomePage> {
 
   /// «Crear cuento». Con la suscripción, el caldero crea uno nuevo; sin ella, se cuenta uno de los gratis (de la
   /// enseñanza elegida si hay alguno), para que la familia pruebe la app de verdad.
+  ///
+  /// Con el catálogo fijo (lanzamiento) siempre se cuenta uno del catálogo: de los que puede leer (todos con la
+  /// suscripción, los gratis sin ella), de la enseñanza elegida si hay alguno y, si se puede, del paquete abierto.
   Future<void> _create(Pack pack) async {
     final access = AccessScope.read(context);
-    if (access.premium) {
+    final fixed = widget.catalogOnly;
+    if (access.premium && !fixed) {
       return _openStory(pack, seed: null, option: _selectedMoral);
     }
     final child = SettingsScope.maybeOf(context)?.child;
@@ -171,30 +182,73 @@ class _HomePageState extends State<HomePage> {
         .withAccess(hidden: access.hiddenStories)
         .forChild(heroName: child?.heroName, heroGender: child?.heroGender);
     if (!mounted) return;
-    final free = [
+    final readable = [
       for (final s in catalog.stories)
-        if (access.isFree(s.pack.id, s.premise.id)) s,
+        if (access.premium || access.isFree(s.pack.id, s.premise.id)) s,
     ];
-    if (free.isEmpty) {
+    if (readable.isEmpty) {
       await openPaywall(context);
       return;
     }
+    final moral = _selectedMoral;
     final byMoral = [
-      for (final s in free)
-        if (s.moral?.id == _selectedMoral) s,
+      for (final s in readable)
+        if (moral == null || s.moral?.id == moral) s,
     ];
-    final pool = byMoral.isNotEmpty ? byMoral : free;
+    var pool = byMoral.isNotEmpty ? byMoral : readable;
+    final inPack = [
+      for (final s in pool)
+        if (s.pack.id == pack.id) s,
+    ];
+    if (fixed && inPack.isNotEmpty) pool = inPack;
     final s = pool[widget.seedProvider().abs() % pool.length];
-    final opts = s.options(
-      childAge: child?.age,
-      heroName: child?.heroName,
-      heroGender: child?.heroGender,
+    _tellCatalog(
+      s,
+      s.options(
+        childAge: child?.age,
+        heroName: child?.heroName,
+        heroGender: child?.heroGender,
+      ),
     );
-    _tell(s.pack,
+  }
+
+  /// Cuenta un cuento del catálogo con sus opciones (las fijas si es del catálogo grabado).
+  void _tellCatalog(
+    CatalogStory s,
+    StoryOptions opts, {
+    StoryStart start = StoryStart.reader,
+  }) =>
+      _tell(
+        s.pack,
         seed: s.seed,
         option: opts.valueId,
         premiseId: s.premise.id,
-        catalog: opts);
+        start: start,
+        catalog: opts,
+        fixed: s.fixed,
+      );
+
+  /// «Contar otro cuento» con el catálogo fijo: otro del mismo paquete (el reproductor ya tiene sus dibujos), de la
+  /// enseñanza elegida si hay alguno. `null` si no hay otro.
+  CatalogStory? _anotherFixed(Pack pack, String? current) {
+    final access = AccessScope.read(context);
+    final stories = [
+      for (final s in _catalogReady?.stories ?? const <CatalogStory>[])
+        if (s.fixed &&
+            s.pack.id == pack.id &&
+            s.premise.id != current &&
+            !access.hiddenStories.contains(s.key) &&
+            access.canRead(s.pack.id, s.premise.id))
+          s,
+    ];
+    if (stories.isEmpty) return null;
+    final byMoral = [
+      for (final s in stories)
+        if (s.moral?.id == _selectedMoral) s,
+    ];
+    final pool =
+        _selectedMoral != null && byMoral.isNotEmpty ? byMoral : stories;
+    return pool[widget.seedProvider().abs() % pool.length];
   }
 
   /// Los paquetes (los suyos y los que vienen); al abrir uno, vuelve al inicio con ese paquete.
@@ -281,6 +335,7 @@ class _HomePageState extends State<HomePage> {
     String? premiseId,
     StoryStart start = StoryStart.reader,
     StoryOptions? catalog,
+    bool fixed = false,
   }) {
     if (_pendingAnswered) {
       setState(() {
@@ -308,11 +363,22 @@ class _HomePageState extends State<HomePage> {
         if (r.startsWith('${pack.id}:')) r.substring(pack.id.length + 1),
     };
     // Al contar uno guardado se usan las elecciones que se hicieron y no se pregunta; si no, se pregunta salvo
-    // que la familia lo haya apagado para este niño.
-    final asks = replay == null && (child?.asksQuestions ?? true);
+    // que la familia lo haya apagado para este niño. Un cuento del catálogo fijo nunca pregunta (se grabó sin
+    // preguntas).
+    final asks = replay == null && !fixed && (child?.asksQuestions ?? true);
     // Cada «otro cuento» usa una semilla nueva; el primero, la pedida (o la del reloj).
     var first = true;
+    var current = premise;
     StoryRun next() {
+      // Catálogo fijo: el cuento con sus opciones exactas (las de la grabación), y «otro cuento» es otro del
+      // catálogo contado igual
+      if (fixed) {
+        final other = first ? null : _anotherFixed(pack, current);
+        first = false;
+        if (other == null) return engine.begin(catalog!);
+        current = other.premise.id;
+        return engine.begin(other.options());
+      }
       final s = first && seed != null ? seed : widget.seedProvider();
       final p = first ? premise : null;
       first = false;
@@ -351,6 +417,7 @@ class _HomePageState extends State<HomePage> {
           onAnother: () => next().toStory(),
           onAnotherRun: next,
           canTellAnother: access.premium,
+          fixedCatalog: fixed,
         ),
       ),
     );

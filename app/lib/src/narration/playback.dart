@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:audioplayers/audioplayers.dart' show Source;
 import 'package:caldero_engine/caldero_engine.dart'
     show SoundEffect, SpokenText, StoryChoice, normalizeForVoice, speechParts;
 import 'package:flutter/foundation.dart';
@@ -7,6 +8,7 @@ import 'package:flutter/foundation.dart';
 import '../art/story_stage.dart';
 import '../audio/sfx.dart';
 import 'narrator.dart';
+import 'recorded_voice.dart';
 
 /// Una escena para reproducir: su texto (que se narra y, en el modo cine, se muestra) y su dibujo.
 class PlayScene {
@@ -53,7 +55,38 @@ class StoryPlayback extends ChangeNotifier {
     this.sfx,
     this.firstWait = const Duration(seconds: 20),
     this.secondWait = const Duration(seconds: 15),
-  }) : scenes = List.of(scenes);
+    this.recorded,
+    this.clipStore,
+    ClipPlayer? clipPlayer,
+  })  : scenes = List.of(scenes),
+        _clipPlayer = recorded == null ? null : clipPlayer {
+    final r = recorded;
+    if (r != null && clipStore != null) {
+      unawaited(clipStore!.prefetch(r.byText.values));
+    }
+  }
+
+  /// Voz grabada del cuento (docs/31): la escena, el título o la enseñanza cuyo texto coincide suena con su audio;
+  /// lo demás, con [narrator].
+  final StoryClips? recorded;
+  final ClipStore? clipStore;
+  final ClipPlayer? _clipPlayer;
+
+  /// Suena el audio de una escena: un audio no se puede retomar a media frase, así que al pausar la escena vuelve
+  /// a empezar.
+  bool _onClip = false;
+
+  /// El audio grabado de [text], listo para sonar (o `null`: lo dice [narrator]).
+  Future<Source?> _clipFor(String text) async {
+    final clip = recorded?.clipFor(text);
+    final store = clipStore;
+    if (clip == null || store == null || _clipPlayer == null || !narrate) {
+      return null;
+    }
+    return store
+        .sourceFor(clip)
+        .timeout(const Duration(seconds: 10), onTimeout: () => null);
+  }
 
   /// Las escenas; crece cuando el niño responde una pregunta (el resto del cuento depende de su respuesta).
   final List<PlayScene> scenes;
@@ -150,8 +183,10 @@ class StoryPlayback extends ChangeNotifier {
     _run++;
     _cancelBreath();
     _cancelAsk();
+    if (_onClip) _sentence = 0;
     notifyListeners();
     unawaited(sfx?.stop());
+    unawaited(_clipPlayer?.stop());
     await narrator.stop();
   }
 
@@ -160,6 +195,7 @@ class StoryPlayback extends ChangeNotifier {
   /// Volumen de la voz (fundido del temporizador de sueño).
   Future<void> setVolume(double volume) {
     sfx?.setLevel(volume);
+    unawaited(_clipPlayer?.setVolume(volume));
     return narrator.setVolume(volume);
   }
 
@@ -182,6 +218,7 @@ class StoryPlayback extends ChangeNotifier {
     _playing = false;
     notifyListeners();
     unawaited(sfx?.stop());
+    unawaited(_clipPlayer?.stop());
     await narrator.stop();
     if (token != _jump || _disposed) return;
     final resume = _resume;
@@ -306,7 +343,12 @@ class StoryPlayback extends ChangeNotifier {
     if (run == _run && _scene == 0 && _sentence == 0) {
       final t = title;
       if (t != null && t.isNotEmpty) {
-        await _say(t);
+        final clip = await _clipFor(t);
+        if (!_alive(run)) return;
+        final ok = clip != null && await _clipPlayer!.play(clip);
+        if (!_alive(run)) return;
+        // Sin audio (o no pudo sonar): la voz del teléfono
+        if (!ok) await _say(t);
         if (!_alive(run)) return;
         await _breathe();
         if (!_alive(run)) return;
@@ -314,6 +356,15 @@ class StoryPlayback extends ChangeNotifier {
     }
     while (_alive(run) && _scene < scenes.length) {
       final sc = scenes[_scene];
+      final clip = _sentence == 0 ? await _clipFor(sc.text) : null;
+      if (!_alive(run)) return;
+      if (clip != null) {
+        final ok = await _playRecorded(sc, clip, run);
+        if (!_alive(run)) return;
+        _sentence = ok
+            ? sc.sentences.length
+            : 0; // si no pudo sonar, lo dice la voz del teléfono
+      }
       while (_alive(run) && _sentence < sc.sentences.length) {
         notifyListeners();
         await _sayStory(sc.sentences[_sentence], run);
@@ -348,8 +399,41 @@ class StoryPlayback extends ChangeNotifier {
     notifyListeners();
   }
 
+  /// Suena el audio grabado de la escena y, mientras tanto, marca la frase que va diciendo (repartiendo la duración
+  /// según lo largo de cada frase), para el subtítulo del modo cine.
+  Future<bool> _playRecorded(PlayScene sc, Source clip, int run) async {
+    _onClip = true;
+    final seconds = recorded?.clipFor(sc.text)?.seconds ?? 0;
+    Timer? ticker;
+    if (seconds > 0 && sc.sentences.length > 1) {
+      final total = sc.sentences.fold<int>(0, (n, s) => n + s.length);
+      final start = DateTime.now();
+      ticker = Timer.periodic(const Duration(milliseconds: 250), (_) {
+        if (!_alive(run)) return;
+        final elapsed = DateTime.now().difference(start).inMilliseconds / 1000;
+        var acc = 0, i = 0;
+        for (; i < sc.sentences.length - 1; i++) {
+          acc += sc.sentences[i].length;
+          if (elapsed < seconds * acc / total) break;
+        }
+        if (i != _sentence) {
+          _sentence = i;
+          notifyListeners();
+        }
+      });
+    }
+    notifyListeners();
+    try {
+      return await _clipPlayer!.play(clip);
+    } finally {
+      ticker?.cancel();
+      _onClip = false;
+    }
+  }
+
   @override
   void dispose() {
+    _clipPlayer?.dispose();
     _disposed = true;
     _run++;
     _cancelBreath();

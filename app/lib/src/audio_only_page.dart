@@ -75,11 +75,16 @@ class _AudioOnlyPageState extends State<AudioOnlyPage> {
   @override
   void initState() {
     super.initState();
+    // Voz grabada del cuento, si es del catálogo (docs/31); si no, la del teléfono
+    final voice = recordedFor(context, widget.story);
     _playback = StoryPlayback(
       scenes: playScenes(widget.story, const []),
       narrator: widget.narrator ?? narratorFor(context),
       title: widget.story.title,
       sfx: _sfx,
+      recorded: voice.clips,
+      clipStore: voice.store,
+      clipPlayer: voice.player,
     )..addListener(() {
         if (!mounted) return;
         // Al terminar los controles se quedan a la vista (con el botón «Volver»)

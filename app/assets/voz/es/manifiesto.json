@@ -1,0 +1,2677 @@
+{
+ "version": "1.1",
+ "idioma": "es",
+ "voz": "1BxAZWANeDIxeyHKSJF2",
+ "cuentos": {
+  "medieval:ayudita": {
+   "incluido": false,
+   "titulo": {
+    "texto": "Una ayudita",
+    "archivo": "ca41043f4279fe78.m4a",
+    "segundos": 1.44
+   },
+   "ensenanza": {
+    "texto": "La enseñanza de hoy: Si pesa mucho, pedimos ayuda.",
+    "archivo": "587d225d2adde3b1.m4a",
+    "segundos": 5.34
+   },
+   "escenas": [
+    {
+     "texto": "Mara miró el saco. ¡Qué grande! Grande, grande, grande, y lleno de harina. «Yo puedo», dijo Mara. «Yo lo llevo a la plaza.»",
+     "archivo": "9a27f071c24a767d.m4a",
+     "segundos": 12.59
+    },
+    {
+     "texto": "Mara levantó el saco con las dos manos. Uno, dos, tres. ¡Arriba! Un pasito. Otro pasito. «¡Pesa, pesa, pesa!», dijo Mara.",
+     "archivo": "422513f4007fc7ff.m4a",
+     "segundos": 13.93
+    },
+    {
+     "texto": "El saco pesaba, pesaba, pesaba. A Mara le temblaron los brazos. Un pasito más. Y otro pasito más. «¡Pesa, pesa, pesa!» Ya no podía más, así que Mara se detuvo.",
+     "archivo": "c19f633cb99bb9dc.m4a",
+     "segundos": 15.33
+    },
+    {
+     "texto": "Mara miró hacia la plaza. «Uf… ¡Qué lejos!», suspiró Mara. Lejos, lejos, lejos. Y el saco, grande, grande, grande. «Necesito ayuda», dijo bajito, porque el saco pesaba mucho.",
+     "archivo": "79b47993de66fbb0.m4a",
+     "segundos": 17.18
+    },
+    {
+     "texto": "Rosa, la panadera, estaba en la puerta de la panadería. Mara la miró. «Rosa, ¿me ayudas?», dijo Mara. «¡Pesa, pesa, pesa!» Rosa sonrió. «Sí, claro. Yo agarro este lado.»",
+     "archivo": "548445a377d745ab.m4a",
+     "segundos": 16.25
+    },
+    {
+     "texto": "Rosa agarró un lado del saco. Mara agarró el otro lado. Uno, dos, tres. ¡Arriba! Un pasito. Otro pasito. El saco pesaba menos, porque eran dos. «¡Pesa menos, pesa menos!», dijo Mara.",
+     "archivo": "eab6b8684946553d.m4a",
+     "segundos": 16.02
+    },
+    {
+     "texto": "Ya estaban en la plaza. ¡Plof! El saco se quedó en el suelo. «Gracias, Rosa», dijo Mara. Rosa abrió los brazos. Mara bostezó, muy grande. Se sentaron junto al saco, y Mara se acurrucó con Rosa, con mucho sueño.",
+     "archivo": "2f360cc77c07f20e.m4a",
+     "segundos": 18.44
+    }
+   ]
+  },
+  "medieval:otra_vez": {
+   "incluido": false,
+   "titulo": {
+    "texto": "Otra vez",
+    "archivo": "e55a9af825afdce3.m4a",
+    "segundos": 1.07
+   },
+   "ensenanza": {
+    "texto": "La enseñanza de hoy: Si la cometa cae, la subimos otra vez.",
+    "archivo": "05288c2324cf154a.m4a",
+    "segundos": 5.48
+   },
+   "escenas": [
+    {
+     "texto": "Aldo subió a la colina con una cometa roja. ¡Qué cola tan larga, con lazos amarillos! «Hoy vas a volar», dijo Aldo. «Vuela, vuela, vuela.»",
+     "archivo": "98f3d898b5d2c9dc.m4a",
+     "segundos": 14.21
+    },
+    {
+     "texto": "Aldo corrió, corrió, corrió. La cometa fue detrás: zum, zum. Pero la cometa cayó, porque casi no había viento. ¡Plaf! «¡Otra vez!», dijo Aldo.",
+     "archivo": "73d8e5ea6401c57a.m4a",
+     "segundos": 14.44
+    },
+    {
+     "texto": "Aldo corrió, corrió, corrió. La cometa saltó: zum, zum. Pero la cometa cayó. ¡Plaf! «¡Otra vez!», dijo Aldo.",
+     "archivo": "acae2742d7ff0a46.m4a",
+     "segundos": 12.91
+    },
+    {
+     "texto": "Una vez más, Aldo corrió, corrió, corrió. La cometa subió un poquito, un poquito, un poquito. Pero la cometa cayó. ¡Plaf! Aldo se sentó un ratito y suspiró: «Uf.» Le dolían las piernas, porque había corrido mucho. Luego se levantó. «Otra vez», dijo Aldo, despacito.",
+     "archivo": "a9df0c3bd46e7283.m4a",
+     "segundos": 23.22
+    },
+    {
+     "texto": "Una vez más, Aldo levantó la cometa con los brazos bien estirados. De pronto llegó el viento, sopla que sopla, sobre toda la colina. La cometa se llenó de aire: ¡flap, flap! Así que Aldo la agarró fuerte de la cuerda.",
+     "archivo": "eb91518712edec35.m4a",
+     "segundos": 16.02
+    },
+    {
+     "texto": "Aldo corrió, corrió, corrió. ¡Y la cometa voló! Arriba, arriba, arriba. Voló muy alto, con su cola larga. «¡Vuela, vuela!», dijo Aldo, y dio saltos de alegría.",
+     "archivo": "0f3b6edea606d7f9.m4a",
+     "segundos": 15.51
+    },
+    {
+     "texto": "Pasó un ratito largo. El cielo se puso naranja. La cometa bailaba, bailaba, bailaba. Aldo se acostó en la hierba, con la cuerda en la mano. Bostezó, muy grande. Cerró los ojos. Había corrido mucho. La cometa, arriba, se movía despacito, y Aldo sonrió con sueño.",
+     "archivo": "b107fb18a0971778.m4a",
+     "segundos": 21.46
+    }
+   ]
+  },
+  "medieval:regar_juntos": {
+   "incluido": false,
+   "titulo": {
+    "texto": "Regar juntos",
+    "archivo": "d1d0a197e52af467.m4a",
+    "segundos": 1.49
+   },
+   "ensenanza": {
+    "texto": "La enseñanza de hoy: Con un amigo, cuidar es más bonito.",
+    "archivo": "67d277a5cb3c1f8a.m4a",
+    "segundos": 5.57
+   },
+   "escenas": [
+    {
+     "texto": "En el huerto, Mara y Lía encontraron una maceta. Adentro había un brote verde, pequeñito, pequeñito. Se veía agachadito, porque tenía sed.",
+     "archivo": "ec601e8c33f790f7.m4a",
+     "segundos": 13.14
+    },
+    {
+     "texto": "Mara llenó la regadera. Lía sostuvo la maceta. Glu, glu, glu, cayó el agua. «Bebe, brote, bebe», dijo Mara. «Bebe, brote, bebe», dijo Lía.",
+     "archivo": "b7aa1064b985e56c.m4a",
+     "segundos": 16.58
+    },
+    {
+     "texto": "Hacía mucho sol, y el brote seguía agachadito. Entonces Mara y Lía hicieron sombra con las manos. Sombrita, sombrita, sombrita para el brote. Así el sol no le picaba. Luego Mara hizo sombrita también para Lía, que tenía sol en la cara.",
+     "archivo": "1749e400984a6ee8.m4a",
+     "segundos": 17.65
+    },
+    {
+     "texto": "Después le cantaron bajito, porque a las plantas les gusta la música. «Crece, brote, crece. Un poquito, un poquito.» Mara cantó. Lía cantó. Cantaron otra vez: «Crece, brote, crece. Un poquito, un poquito.»",
+     "archivo": "5f1b47b31ab98ea7.m4a",
+     "segundos": 15.88
+    },
+    {
+     "texto": "Esperaron un ratito. Uno, dos, tres. El brote seguía quietito. Esperaron otro ratito. Uno, dos, tres. Mara y Lía lo miraban, lo miraban, lo miraban.",
+     "archivo": "1f92638f2318d790.m4a",
+     "segundos": 15.84
+    },
+    {
+     "texto": "Y de pronto, el brote se movió. Se estiró un poquito. Arriba, arriba, arriba. ¡Ya estaba derechito! Mara y Lía aplaudieron: clap, clap, clap.",
+     "archivo": "3fb7cef97db43fa8.m4a",
+     "segundos": 15.14
+    },
+    {
+     "texto": "El cielo se puso naranja. Mara y Lía se sentaron al lado de la maceta, muy cerquita. Lía bostezó, muy grande. Mara bostezó también. Se dieron la mano y un abrazo, porque se querían mucho. Y el brote, derechito, se quedó dormidito a su lado.",
+     "archivo": "8f03194f18a488f5.m4a",
+     "segundos": 19.09
+    }
+   ]
+  },
+  "medieval:cabrita": {
+   "incluido": false,
+   "titulo": {
+    "texto": "El pan y la cabrita",
+    "archivo": "e450d6e984a26047.m4a",
+    "segundos": 1.63
+   },
+   "ensenanza": {
+    "texto": "La enseñanza de hoy: Si los dos tienen hambre, partimos el pan.",
+    "archivo": "0c54b6c6d204d358.m4a",
+    "segundos": 5.48
+   },
+   "escenas": [
+    {
+     "texto": "Aldo paseaba por la plaza del pueblo. En la mano llevaba un pan, todavía calentito. ¡Qué bien olía! Olía rico, rico, rico. Y Aldo tenía hambre, así que dijo: «Ñam, ñam, qué ganas».",
+     "archivo": "a92c24829efe13fd.m4a",
+     "segundos": 17.97
+    },
+    {
+     "texto": "De pronto se oyó un balido: ¡bee! Era una cabrita chiquitita. Miraba el pan con sus ojos grandes, porque también tenía hambre. La cabrita baló, «¡bee!», y le sonó la barriguita.",
+     "archivo": "71700f17c25c3038.m4a",
+     "segundos": 14.4
+    },
+    {
+     "texto": "Aldo miró el pan. Miró a la cabrita. El pan era de Aldo, y Aldo tenía hambre. Pero la cabrita tenía hambre también, así que Aldo lo partió: ¡crac! «Un trozo para ti. Un trozo para mí», dijo.",
+     "archivo": "0c23ee59b1167813.m4a",
+     "segundos": 16.3
+    },
+    {
+     "texto": "¡Ñam, ñam! La cabrita se comió su trozo. ¡Ñam, ñam! Aldo se comió el suyo. ¡Qué rico, qué rico! La cabrita movió la colita, porque ya no tenía hambre. Y baló muy alegre: «¡Bee, bee, bee!»",
+     "archivo": "0d99a9a171da9cb5.m4a",
+     "segundos": 16.81
+    },
+    {
+     "texto": "La cabrita hizo saltitos. Saltó a la izquierda: ¡hop! Saltó a la derecha: ¡hop! Aldo saltó con la cabrita: ¡hop, hop! Se rieron mucho. Luego saltaron más despacito, cada vez más despacito: hop… hop… Y se detuvieron a respirar.",
+     "archivo": "742f00a958ce66e1.m4a",
+     "segundos": 19.04
+    },
+    {
+     "texto": "Aldo y la cabrita se sentaron al sol, muy juntitos. Con la barriguita llena, a Aldo se le cerraron los ojitos. La cabrita bajó la cabeza, y ya solo se oía su respiración suave. Todo quedó en calma, con una sonrisa.",
+     "archivo": "f16d085c8637d276.m4a",
+     "segundos": 18.99
+    }
+   ]
+  },
+  "medieval:sombras": {
+   "incluido": true,
+   "titulo": {
+    "texto": "Las sombras del cuarto",
+    "archivo": "273ce403d906c873.m4a",
+    "segundos": 1.76
+   },
+   "ensenanza": {
+    "texto": "La enseñanza de hoy: Si algo da miedo, respirar, pensar y mirar de cerca lo hace pequeño.",
+    "archivo": "9bf540afb6a3f791.m4a",
+    "segundos": 9.57
+   },
+   "escenas": [
+    {
+     "texto": "Mara tenía un cuarto nuevo, con una cama grande y una ventana. La manta era suave. Olía a jabón y a campo. Entraba un poco de luz por la ventana. «¡Qué cuarto tan bonito!», dijo Mara. Y se tapó hasta la barbilla.",
+     "archivo": "ef122184fd974d15.m4a",
+     "segundos": 19.23
+    },
+    {
+     "texto": "El cuarto se fue llenando de sombras, y afuera todo estaba en silencio. En el rincón, algo muy alto levantaba dos brazos largos. Tenía un pico en lo alto de la cabeza. ¡Parecía un gigante! Mara no movió ni un dedo.",
+     "archivo": "ff910512ca35ca88.m4a",
+     "segundos": 16.49
+    },
+    {
+     "texto": "De pronto, un ruido: ¡crac! La madera de la cama crujió. Mara abrió mucho los ojos. Otra vez el ruido: ¡crac! Era solo la cama, que se estiraba como un gato, después de la siesta. Pero Mara todavía no lo sabía.",
+     "archivo": "b05a7cfa0e7c536e.m4a",
+     "segundos": 16.44
+    },
+    {
+     "texto": "Mara se subió la manta hasta la nariz. Pum, pum, pum, hacía su corazón. Entonces tomó aire despacio y lo soltó: uno, dos, tres. «Un gigante no cabe en un cuarto tan pequeño», pensó Mara. «Así que este gigante es muy raro».",
+     "archivo": "3a3f7fa54dfd2894.m4a",
+     "segundos": 17.55
+    },
+    {
+     "texto": "Mara alargó la mano hasta la mesita, donde tenía su linterna, y la encendió. La luz hizo un círculo amarillo en el cuarto. Con la linterna en la mano, dio un pasito, y otro pasito. Llegó hasta el rincón, porque quería ver de cerca al gigante.",
+     "archivo": "3bf55edf073f7a75.m4a",
+     "segundos": 18.39
+    },
+    {
+     "texto": "¡Pero no era un gigante! Era su capa, colgada con el sombrero encima. Mara soltó una risita. «¡Qué gigante tan raro!», dijo Mara. «Si es mi capa, no hay por qué tener miedo.» Y volvió a reírse, tapándose la boca.",
+     "archivo": "87f49512c9fb3258.m4a",
+     "segundos": 17.97
+    },
+    {
+     "texto": "Mara regresó a la cama. Se arropó con la manta, ya sin miedo. Antes de dormir, apagó la linterna. Después saludó a la capa con la mano: «Buenas noches, gigante». La luna entraba por la ventana, grande y amiga. Mara se quedó dormida abrazando la manta, porque ya sabía un secreto. De cerca, el gigante se hace chiquito.",
+     "archivo": "e886e3f77e7cee76.m4a",
+     "segundos": 26.38
+    }
+   ]
+  },
+  "medieval:cuenco_yo_solo": {
+   "incluido": false,
+   "titulo": {
+    "texto": "El cuenco grande",
+    "archivo": "4600871e301bc8f2.m4a",
+    "segundos": 1.39
+   },
+   "ensenanza": {
+    "texto": "La enseñanza de hoy: Pedir ayuda no da vergüenza: entre dos, lo pesado se lleva sin derramar.",
+    "archivo": "67d6f2371641d71d.m4a",
+    "segundos": 8.82
+   },
+   "escenas": [
+    {
+     "texto": "Rosa había hecho sopa de calabaza para toda la aldea. La sirvió en un cuenco enorme, con dos asas. La sopa humeaba un poquito, y ya estaba tibia. Olía a dulce. «Hay que llevarlo a la plaza», dijo Rosa. «Yo salgo detrás con el pan, en cuanto esté listo. El cuenco está lleno hasta arriba, así que pesa mucho.»",
+     "archivo": "4d502d1368c52f33.m4a",
+     "segundos": 24.38
+    },
+    {
+     "texto": "Aldo se puso de puntillas. «¡Yo solo! ¡Yo solo!», dijo Aldo. «Ya soy grande, y puedo llevarlo.» Rosa sonrió. «Pesa mucho, pero te dejo probar», dijo Rosa, y puso el cuenco en sus manos. «Ve con cuidado.»",
+     "archivo": "f91237bf3e28045b.m4a",
+     "segundos": 17.09
+    },
+    {
+     "texto": "Con el cuenco bien abrazado, Aldo caminó por la aldea. Un paso, otro paso, otro paso. Chap, chap, hacía la sopa. El cuenco pesaba más y más, y a Aldo le temblaban los brazos. «Yo solo», se repetía.",
+     "archivo": "ad3ab3c76093c65f.m4a",
+     "segundos": 16.39
+    },
+    {
+     "texto": "De pronto, ¡plof! Un chorrito de sopa saltó del cuenco y cayó al suelo. No fue mucho, solo un poquito. Pero a Aldo se le puso la cara colorada, porque le dio vergüenza. Los brazos ya no aguantaban. «Yo solo no puedo», pensó Aldo.",
+     "archivo": "2e5c776144a05062.m4a",
+     "segundos": 18.02
+    },
+    {
+     "texto": "Justo entonces llegó Beto, el molinero, silbando una canción. «¡Qué cuenco tan grande!», dijo Beto. «¿Te echo una mano?» Aldo miró la sopa del suelo. Miró el cuenco. Le daba un poco de vergüenza pedir ayuda, pero le dolían más los brazos. «Sí, Beto, ayúdame, por favor», dijo Aldo.",
+     "archivo": "6ddada808cd0e1d6.m4a",
+     "segundos": 22.76
+    },
+    {
+     "texto": "Cada uno tomó un asa. «A la una, a las dos y a las tres», cantó Beto. Caminaron al mismo paso: uno, dos, uno, dos. El cuenco ya no pesaba tanto, así que a Aldo le volvieron las ganas de reír. Ni una gota más se cayó.",
+     "archivo": "dc8f5c725debd04c.m4a",
+     "segundos": 18.34
+    },
+    {
+     "texto": "Llegaron a la plaza, donde los vecinos esperaban con sus cucharas. Pusieron el cuenco sobre la mesa grande. ¡Qué bien olía! Todos aplaudieron: clap, clap, clap. Al ratito llegó Rosa con el pan, todavía calentito. «Para eso estamos los vecinos», dijo Beto. Aldo se sintió muy contento.",
+     "archivo": "f7ccdbb4ad140081.m4a",
+     "segundos": 23.03
+    },
+    {
+     "texto": "Esa noche, Aldo se quedó a dormir en casa de Rosa, que era su madrina. Rosa le sirvió un plato de sopa tibia y le dio un abrazo. «Entre los dos llegaron», dijo Rosa. «Y toda la aldea comió sopa.» Por la ventana asomaba la luna. Aldo bostezó, y Rosa arropó a Aldo en su camita. Con los ojos cerrados y la barriga caliente, Aldo se durmió.",
+     "archivo": "a0d905109d906f8f.m4a",
+     "segundos": 28.14
+    }
+   ]
+  },
+  "medieval:torre_de_piedras": {
+   "incluido": false,
+   "titulo": {
+    "texto": "La torre de piedras",
+    "archivo": "85f872b3935dd9ec.m4a",
+    "segundos": 1.25
+   },
+   "ensenanza": {
+    "texto": "La enseñanza de hoy: Si algo se cae muchas veces, pensar con calma nos enseña a hacerlo firme.",
+    "archivo": "f3cf6349e7beae0b.m4a",
+    "segundos": 9.15
+   },
+   "escenas": [
+    {
+     "texto": "Junto al lago había una playita de arena. Los juncos se mecían, susurra que susurra. Mara encontró piedras grandes y piedras chiquitas, lisas y frescas, y las juntó todas. «Voy a hacer una torre», dijo Mara. «La torre más alta del mundo.»",
+     "archivo": "0259b5d339c91c73.m4a",
+     "segundos": 20.53
+    },
+    {
+     "texto": "Mara puso primero una piedra chiquita, porque era la más fácil de levantar. Puso otra encima, y otra, y otra. Una, dos, tres, cuatro. La torre crecía y crecía. Mara la miraba sin parpadear, porque no quería que se cayera. «Ya casi», susurró Mara.",
+     "archivo": "3983505aa0548ac1.m4a",
+     "segundos": 20.85
+    },
+    {
+     "texto": "De pronto, la torre se movió: tic, tac, tic, tac. ¡Plaf! Las piedras rodaron por la arena, lejos de la torre. Mara dijo «¡oh, no!», pero enseguida sonrió. «¡Otra vez!», dijo Mara, y juntó las piedras.",
+     "archivo": "55bbc26bbc9fa8a4.m4a",
+     "segundos": 15.88
+    },
+    {
+     "texto": "Puso una piedra, otra y otra. Esta vez la torre llegó más alto, así que Mara sonrió. Tic, tac, tic, tac... ¡plaf! Se cayó otra vez. A Mara le dio un poco de rabia, y apretó los puños. Respiró hondo: uno, dos, tres. «¡Otra vez!»",
+     "archivo": "8b33fca2ab8b1172.m4a",
+     "segundos": 19.46
+    },
+    {
+     "texto": "Se hacía tarde, y el cielo se puso naranja. Mara hizo una torre más: una piedra, otra y otra. ¡Plaf! Se cayó por tercera vez. «Otra vez», dijo Mara, pero esta vez más despacito. «Primero voy a pensar.»",
+     "archivo": "da9bf0ae2246b4d6.m4a",
+     "segundos": 16.35
+    },
+    {
+     "texto": "Mara se quedó mirando las piedras un buen rato. Las de abajo eran chiquitas, y las de arriba, grandes. Así que la torre se caía, porque las chiquitas no podían con el peso de las grandes. «¡Ya sé!», dijo Mara. «Las grandes van abajo. Las chiquitas, arriba.»",
+     "archivo": "8ae8b9ba3308e9df.m4a",
+     "segundos": 21.36
+    },
+    {
+     "texto": "Con mucho cuidado, Mara puso primero la piedra más grande, ancha y plana. Encima, una un poquito más chica. Encima, otra más chica todavía. Y arriba del todo, la más chiquitita de todas. La torre se quedó firme. Ni un tic, ni un tac. No era la más alta del mundo, pero era la más firme. «¡Lo logré!», dijo Mara, y dio una palmada.",
+     "archivo": "4cb606d49a88669e.m4a",
+     "segundos": 28.14
+    },
+    {
+     "texto": "Después salió la luna, y el lago se llenó de plata. Allí, en el agua, había otra luna, redonda y blanca. Y al lado, otra torre chiquita: la torre de Mara, reflejada. Mara se despidió de su torre con la mano, y volvió a casa con un bostezo muy grande. En la cama, cerró los ojos. Desde muy lejos, el lago le cantó bajito, muy bajito.",
+     "archivo": "cb795ee4b5a5d8c9.m4a",
+     "segundos": 28.65
+    }
+   ]
+  },
+  "medieval:cinta_de_lia": {
+   "incluido": false,
+   "titulo": {
+    "texto": "La cinta de Lía",
+    "archivo": "87709ecd515fa20e.m4a",
+    "segundos": 1.35
+   },
+   "ensenanza": {
+    "texto": "La enseñanza de hoy: Cuando un amigo pierde algo, buscamos juntos, porque dos pares de ojos ven más.",
+    "archivo": "5a9939fe7ae457e7.m4a",
+    "segundos": 9.06
+   },
+   "escenas": [
+    {
+     "texto": "Lía tenía una cinta azul que brillaba como el cielo. Siempre la llevaba en el pelo. Aquella tarde, Lía y Aldo subieron a la colina del roble. «¿Se me ve la cinta?», preguntó Lía. «Se ve preciosa», dijo Aldo.",
+     "archivo": "bafafd1afaf3dc2d.m4a",
+     "segundos": 18.76
+    },
+    {
+     "texto": "Subieron corriendo hasta el roble y bajaron rodando por la hierba. ¡Cómo se reían! De pronto sopló el viento, sopla que sopla. A Lía se le despeinó el pelo, y Aldo corrió para alcanzar a Lía. Algo azul voló por el aire, pero iban riéndose y no lo vieron.",
+     "archivo": "0be9978571dc2007.m4a",
+     "segundos": 20.11
+    },
+    {
+     "texto": "Cuando se detuvieron, Lía se tocó el pelo. ¡La cinta no estaba! «¡Mi cinta azul!», dijo Lía. Se sentó en la hierba, con la carita triste, porque la quería mucho. «Ya no está», dijo Lía. Aldo se sentó a su lado.",
+     "archivo": "84a6585ad208e026.m4a",
+     "segundos": 17.23
+    },
+    {
+     "texto": "Aldo dejó el juego y abrazó a Lía. «Yo te ayudo a buscar la cinta», dijo Aldo. «Y la vamos a encontrar.» Lía sonrió un poquito. «Vamos», dijo Lía.",
+     "archivo": "2501257fc6db0531.m4a",
+     "segundos": 14.77
+    },
+    {
+     "texto": "Aldo y Lía buscaron entre las flores. ¿Estará aquí? Aquí no. Buscaron por el camino. ¿Estará aquí? Aquí no. Buscaron junto al roble, y alrededor del tronco grande. La cinta no aparecía. Pero Aldo no dejó de buscar, y Lía tampoco.",
+     "archivo": "810db5330ccedb50.m4a",
+     "segundos": 17.46
+    },
+    {
+     "texto": "Entonces Aldo levantó la vista. ¡Algo azul se movía en una rama baja del roble! «¡Mira, Lía!», dijo Aldo. Era la cinta, colgada de la rama, bailando con el viento. La rama estaba bajita. Así que Aldo se puso de puntillas y estiró el brazo. Con la punta de los dedos, alcanzó la cinta.",
+     "archivo": "5691f4d1678a1c3f.m4a",
+     "segundos": 23.17
+    },
+    {
+     "texto": "Lía dio un salto de alegría. Aldo le sujetó el pelo y le puso la cinta con un lazo bien hecho. Así no se escaparía otra vez. «Ya está en su sitio», dijo Aldo. «¡Gracias, gracias!», dijo Lía, y le dio un abrazo muy fuerte.",
+     "archivo": "739039ae902adc20.m4a",
+     "segundos": 17.69
+    },
+    {
+     "texto": "Después Lía y Aldo se acostaron en la hierba, hombro con hombro. Salieron las primeras estrellas: una, dos, tres. La cinta azul se movía despacito con la brisa. Abajo, en la aldea, se encendían las ventanas. Entonces bajaron despacito a la aldea, y cada quien se fue a su casa a dormir. La cinta azul seguía en su sitio, porque estaba bien atada.",
+     "archivo": "387997d078080ef6.m4a",
+     "segundos": 29.16
+    }
+   ]
+  },
+  "medieval:linterna_teo": {
+   "incluido": false,
+   "titulo": {
+    "texto": "La linterna de Teo",
+    "archivo": "ce71cd2d5ee6a79a.m4a",
+    "segundos": 1.53
+   },
+   "ensenanza": {
+    "texto": "La enseñanza de hoy: Si rompemos algo prestado, contarlo deshace el nudo de la barriga y deja arreglarlo.",
+    "archivo": "454e08f3f13d3863.m4a",
+    "segundos": 8.5
+   },
+   "escenas": [
+    {
+     "texto": "Teo llegó corriendo a buscar a Mara. Traía su linterna, la que brillaba como una estrellita. «Me la regaló mi abuelo», dijo Teo, «y la quiero muchísimo. Hoy te la presto, porque eres mi amiga. Mañana me la devuelves, ¿sí?» Mara puso cara de mucha seriedad. Dijo que sí, y se llevó la linterna con cuidado.",
+     "archivo": "389991180de2ec73.m4a",
+     "segundos": 25.17
+    },
+    {
+     "texto": "Mara corrió a jugar con la linterna por la plaza. Corrió, saltó y dio una vuelta entera. Como iba tan deprisa, tropezó con una piedra, ¡cras!, y la linterna cayó al suelo. Se le apagó la luz. Mara la sacudió, pero no se encendía.",
+     "archivo": "1d1c3a900f1829b3.m4a",
+     "segundos": 18.3
+    },
+    {
+     "texto": "En su cuarto, Mara miró la linterna apagada. Pensó en la cara que pondría Teo, porque no quería verlo triste. «Mejor la escondo», se dijo, y la metió bajo la cama, hasta el fondo. «Así nadie lo sabrá.» Pero Mara sintió un nudo en la barriga. Ya no quiso jugar.",
+     "archivo": "59aab8fe7d4b7a55.m4a",
+     "segundos": 20.94
+    },
+    {
+     "texto": "A la hora de la merienda llamaron a la puerta. Era Teo. «¿Cómo va mi linterna?», preguntó Teo, asomándose. Mara se miró los pies. «Está bien... muy bien», dijo Mara. Teo dijo adiós y se alejó silbando, porque no sospechó nada. Pero Mara se sintió todavía peor.",
+     "archivo": "0b2f431563ffe6de.m4a",
+     "segundos": 21.46
+    },
+    {
+     "texto": "Ya era de noche, y Mara seguía con los ojos abiertos. No podía dormir, porque el nudo de la barriga no se iba. Se tapó con la manta hasta la nariz. En la ventana brillaba la luna. «Mañana le contaré la verdad a Teo», pensó Mara. Entonces el nudo se aflojó un poco, y Mara se quedó dormida.",
+     "archivo": "45ce63459b28d729.m4a",
+     "segundos": 24.2
+    },
+    {
+     "texto": "Al día siguiente, Mara fue a buscar a Teo con la linterna apagada. Lo encontró junto al pozo. Mara lo miró a los ojos, porque quería decirlo bien. «Teo, tengo que contarte algo. Se me cayó tu linterna y ya no enciende. Perdóname. La escondí y no te lo dije. Me sentí mal por no decirte la verdad.»",
+     "archivo": "811c2728357698d9.m4a",
+     "segundos": 23.78
+    },
+    {
+     "texto": "Teo miró la linterna. Luego miró a Mara. «Gracias por contármelo», dijo Teo. «Mira, solo se había soltado un tornillito.» Teo apretó el tornillito, una vuelta, dos vueltas, y la luz volvió: ¡clic! «¡Ya está!», dijo Teo.",
+     "archivo": "a9a26b8dcb8506f6.m4a",
+     "segundos": 18.9
+    },
+    {
+     "texto": "Aquella noche, Mara se acostó con el corazón ligero. Ya no había nudo en la barriga. Pensó en Teo, que esa noche volvía a tener su lucecita de estrella. Mara sonrió y se durmió enseguida.",
+     "archivo": "5e9221512173fccd.m4a",
+     "segundos": 15.09
+    }
+   ]
+  },
+  "medieval:manta_lia": {
+   "incluido": false,
+   "titulo": {
+    "texto": "La manta de Lía",
+    "archivo": "3f9ad15c8a3b0a5d.m4a",
+    "segundos": 1.35
+   },
+   "ensenanza": {
+    "texto": "La enseñanza de hoy: Una manta compartida abriga a dos, y el calor nos llega también por dentro.",
+    "archivo": "275a973cd8611ef3.m4a",
+    "segundos": 9.29
+   },
+   "escenas": [
+    {
+     "texto": "Los copos bajaban girando y se posaban en la plaza. Aldo salió con su manta nueva. La llevaba doblada en los brazos. Era suave como una nube y calentita como un abrazo. «Con esta manta no pasaré frío», pensó Aldo. Y se la echó por los hombros, porque el aire de la nieve picaba en la cara.",
+     "archivo": "f82e92d58d7fbc2f.m4a",
+     "segundos": 22.71
+    },
+    {
+     "texto": "Al otro lado de la plaza estaba Lía, la amiga de Aldo. Algo no iba bien. Lía daba saltitos y se abrazaba a sí misma, porque tenía mucho frío. Había olvidado la bufanda. Su abrigo era tan fino que no la abrigaba. Se frotaba las manos una contra otra. Pero no entraba en calor. Tenía la nariz roja como una cereza.",
+     "archivo": "a688ba971468ed59.m4a",
+     "segundos": 26.33
+    },
+    {
+     "texto": "Aldo miró su manta. Era tan suave... Solo había una, y era su favorita. «¿Y si me quedo sin manta?», pensó Aldo. Pero Lía tiritaba tanto que a Aldo le dio pena. Y la pena pesó más que las ganas de guardársela.",
+     "archivo": "61fda4af4a628654.m4a",
+     "segundos": 16.95
+    },
+    {
+     "texto": "Aldo abrió los brazos y levantó una punta de la manta. «Lía, ven aquí», dijo Aldo. «Hay sitio de sobra.» Lía se acercó con pasitos cortos. La manta se cerró alrededor de los dos. Era como un abrazo grande. Lía sonrió, porque por fin entraba en calor. Era su primera sonrisa en toda la mañana.",
+     "archivo": "8f353368d0d6a2c3.m4a",
+     "segundos": 24.52
+    },
+    {
+     "texto": "El frío se había ido. Bajo la manta, Lía y Aldo estaban muy juntos y calentitos. Un copo hizo cosquillas en la nariz de Lía: ¡achís! Y las risas salieron a la vez. Se reían porque la nieve parecía bailar.",
+     "archivo": "353b7bb3ef29b1bc.m4a",
+     "segundos": 17.0
+    },
+    {
+     "texto": "Entonces apareció Rosa, con un delantal blanco. Llevaba dos panecitos dulces, calientes, en las manos. «¡Miren lo que traigo!», dijo Rosa. «Vi a Lía y a Aldo bajo la manta. Así que corrí a buscar dos panecitos.» Cada uno se comió el suyo, miga a miga. El vapor les subía hasta la nariz.",
+     "archivo": "1a3a4e0dbfe2e1ae.m4a",
+     "segundos": 25.22
+    },
+    {
+     "texto": "Al caer la tarde, dejó de nevar. Aldo y Lía fueron juntos hasta la casa de Lía, bajo la manta. El frío no pudo alcanzarlos. En la puerta, Lía abrazó fuerte a Aldo. «Gracias», dijo, y le devolvió la manta, porque era suya. Esa noche, Aldo se acostó con la manta hasta la barbilla. Dentro del pecho brillaba un solito calentito. Y Aldo se durmió.",
+     "archivo": "88f27a27bef91791.m4a",
+     "segundos": 27.63
+    }
+   ]
+  },
+  "medieval:sopa": {
+   "incluido": false,
+   "titulo": {
+    "texto": "Sopa para dos",
+    "archivo": "45af8f6d1bfea224.m4a",
+    "segundos": 1.3
+   },
+   "ensenanza": {
+    "texto": "La enseñanza de hoy: Si alguien tiene hambre, un sorbo tú y uno yo alcanza para dos.",
+    "archivo": "57bd06a67a60ca4d.m4a",
+    "segundos": 8.59
+   },
+   "escenas": [
+    {
+     "texto": "Era invierno, y toda la aldea olía a sopa. Caían copos de nieve, y los tejados parecían espolvoreados de azúcar. Rosa llenó un cuenco de sopa caliente. Le dio también una cuchara de madera a Mara. Mara cruzó hasta la plaza muy atenta. No derramó ni una gota.",
+     "archivo": "2d72ed214b190fbf.m4a",
+     "segundos": 20.62
+    },
+    {
+     "texto": "Sentado en la plaza estaba Beto, el molinero. Tenía las manos frías y la barriga vacía. No había ni una pizca de viento, así que el molino no giraba. Sin molino no había harina, y sin harina no había nada que hornear. Beto suspiraba y miraba el cielo, esperando al viento.",
+     "archivo": "0b0f3b06bebeb9bf.m4a",
+     "segundos": 21.08
+    },
+    {
+     "texto": "Mara sopló la sopa despacito. Olía muy rico. Era todo lo que Mara tenía para comer. Miró el cuenco. Miró a Beto. Beto no pidió nada, porque le daba vergüenza.",
+     "archivo": "6fa4a77aa8cd5f4b.m4a",
+     "segundos": 16.21
+    },
+    {
+     "texto": "«Ven, Beto, siéntate conmigo», dijo Mara. «Si la tomamos despacito, hay sopa para los dos.» Y le dio el cuenco a Beto para que probara primero.",
+     "archivo": "ab17f20e6da31828.m4a",
+     "segundos": 13.05
+    },
+    {
+     "texto": "Los dos se fueron pasando el cuenco. Un sorbito Beto, un sorbito Mara, y otra vez Beto, y otra vez Mara. Así se acabó la sopa. A los dos les supo más rica que nunca.",
+     "archivo": "af4d6e75b90656b5.m4a",
+     "segundos": 16.35
+    },
+    {
+     "texto": "Cuando no quedó sopa, Mara pasó la cuchara por el cuenco: ras, ras. Beto soltó una carcajada. Tenían la barriga calentita y las mejillas rojas. Ya no sentían el frío de la nieve.",
+     "archivo": "167034591a902263.m4a",
+     "segundos": 14.63
+    },
+    {
+     "texto": "Justo entonces se levantó el viento, sopla que sopla. El molino empezó a dar vueltas, vuelta tras vuelta. Beto se puso de pie de un salto. «¡Con esta sopa tengo fuerzas otra vez!», dijo Beto. «Mañana te traigo un pan enorme.»",
+     "archivo": "7c1278c55a579ba2.m4a",
+     "segundos": 17.51
+    },
+    {
+     "texto": "Al día siguiente, a la hora de la cena, Beto llegó a la puerta de Mara. Traía un pan enorme. Pesaba tanto que había que llevarlo entre dos. Mara lo partió con Beto y con Rosa, porque había pan para todos. Los tres se rieron de tanto pan. Esa noche, con la barriguita llena, Mara se durmió oyendo girar el molino.",
+     "archivo": "4da1f476726a7ea5.m4a",
+     "segundos": 24.8
+    }
+   ]
+  },
+  "medieval:campana": {
+   "incluido": false,
+   "titulo": {
+    "texto": "La campana rota",
+    "archivo": "28708a26bfb1dce5.m4a",
+    "segundos": 1.44
+   },
+   "ensenanza": {
+    "texto": "La enseñanza de hoy: Pagar para que un error no se sepa lo hace más pesado; contarlo, con alguien al lado, lo aligera.",
+    "archivo": "60b03bdd8b9c1321.m4a",
+    "segundos": 11.1
+   },
+   "escenas": [
+    {
+     "texto": "Cada tarde, cuando el cielo se ponía naranja, Aldo, que se subía a todos los muros del castillo, llegaba jadeando a lo alto de la torre. Eran ciento veinte escalones, pero valía la pena: allí estaba la campana más famosa del reino. Por la mañana despertaba al pueblo y por la noche lo mandaba a dormir. Era de bronce reluciente, grande como un caldero. Solo el campanero Tomás sabía hacerla sonar. Tomás, un viejo de barba blanca, siempre le hacía un sitio a su lado.",
+     "archivo": "ae715b95ec1a19d3.m4a",
+     "segundos": 38.87
+    },
+    {
+     "texto": "«Cuando te crezcan las manos, te enseñaré a tocarla», le prometió Tomás. «Pero primero hay que esperar.» Aldo se mordió el labio: esperar era lo más difícil del mundo. Tomás le dejó rozar la cuerda con la punta de los dedos, solo un momento. «Con cuidado», susurró, «porque esta campana es la voz de todo el reino».",
+     "archivo": "77918353c8d96cdb.m4a",
+     "segundos": 26.66
+    },
+    {
+     "texto": "Aquella tarde Tomás bajó a beber agua fresca y la torre se quedó vacía. «Solo un tironcito», pensó Aldo, «para oírla un segundito». Tiró de la cuerda. El viejo gancho crujió. ¡Clang! La campana se soltó del techo, rodó escalera abajo y se partió en dos pedazos: ¡Crac! Aldo se quedó helado. Sabía que había hecho algo enorme. El corazón le saltaba en el pecho y se le encogieron los dedos de los pies dentro de las botas.",
+     "archivo": "8c569f044e9dcd3a.m4a",
+     "segundos": 34.32
+    },
+    {
+     "texto": "Un roce de capa en la escalera. Era el bandido Sombra, que lo había visto todo, quietísimo, pegado a la pared. «Silencio…», siseó. «Nadie lo sabe. Yo estaba en la escalera cuando se rompió, y si se sabe, dirán que fui yo. Así que alguien tendrá que cargar con la culpa. Dame tu merienda de mañana… y no serás tú.»",
+     "archivo": "12654618f7f43bae.m4a",
+     "segundos": 26.8
+    },
+    {
+     "texto": "Aldo apretó los labios. Entregó la merienda que llevaba en el morral, metió los pedazos en un saco y corrió hacia la aldea de los molinos. Sin su ¡dong!, el reino se volvió un lío. Rosa, la panadera, horneó a medianoche. Teo y los demás niños no quisieron dormir. Las gallinas cantaron a la luna. Y Aldo daba vueltas y más vueltas, porque lo escondido pesaba como una piedra. Mientras tanto, Sombra se comía aquella merienda ajena, ñam, ñam.",
+     "archivo": "fd6d9c3571ef9dd1.m4a",
+     "segundos": 35.11
+    },
+    {
+     "texto": "Cuando la luna estaba más alta, Aldo no aguantó más y se asomó a la torre. Tomás estaba sentado bajo el gancho vacío, con la cuerda en las rodillas, hablando solito. «¿Dónde te habrás metido, campana?», murmuró. «No pasa nada, no pasa nada.» Aldo retrocedió despacito, con la culpa pesándole en el pecho, sin atreverse a respirar.",
+     "archivo": "410b88867c302db4.m4a",
+     "segundos": 25.68
+    },
+    {
+     "texto": "No había salido el sol cuando Aldo llamó a la puerta de la arquera Mara, con el saco de los dos pedazos. Entre suspiros y hipos le contó lo de los dos pedazos, el susto y el trato con el bandido Sombra. La arquera Mara lo escuchó sin interrumpir y, al terminar, se enredó la trenza entre los dedos.",
+     "archivo": "78288d3141d9cb07.m4a",
+     "segundos": 24.15
+    },
+    {
+     "texto": "«Una vez tuve una flecha rota en el carcaj durante una semana», dijo Mara sin dar vueltas. «Cada vez que la tocaba, me pinchaba el dedo.» Le puso la mano en el hombro. «Voy contigo. Si te tiembla el pulso, yo te lo sostengo.»",
+     "archivo": "a1f78606cb82771c.m4a",
+     "segundos": 18.62
+    },
+    {
+     "texto": "La plaza se llenó de vecinos. La torre seguía muda. «¿Dónde está la campana?», preguntaban todos. De pronto una voz salió de entre la gente: «Yo vi algo…». Era Sombra, que se escondió medio cuerpo detrás de la capa. «Se perdió por culpa del campanero. Siempre anda descuidado…» El pobre Tomás se quedó mirando sus botas. Tendría que dejar la torre donde había trabajado toda la vida. A Aldo se le encogió el pecho: Tomás no había hecho nada. Mara le apretó la mano.",
+     "archivo": "c1cbc1d8dc43d94a.m4a",
+     "segundos": 39.2
+    },
+    {
+     "texto": "Aldo miró a la arquera Mara, que asintió con una sonrisa. A Aldo le temblaban las rodillas. Pensó en Tomás, tan triste, y dio un paso al frente. «¡Por mis botas! Fui yo», dijo con voz clara. «Tiré de la cuerda sin permiso y la rompí. Tomás no tuvo la culpa. Perdón.» Entre Aldo y Mara sacaron los pedazos del saco y los dejaron en el suelo, ¡clong!, delante de todos. «También le di mi merienda a Sombra para que callara.» Los vecinos contuvieron la respiración. Al fondo, Sombra intentó esconderse, pero ya todos lo miraban.",
+     "archivo": "40c3fc40d26c6b61.m4a",
+     "segundos": 42.86
+    },
+    {
+     "texto": "Durante un momento nadie dijo nada. Luego Tomás se rascó la barba, resopló y abrazó a Aldo tan fuerte que le crujieron los huesos. «Un mes limpiando la torre», gruñó, aunque sonreía. Entre todos arreglaron la campana: el herrero Hugo la soldó, y Teo y los demás niños la pulieron hasta sacarle brillo. Tomás miró a Sombra: «¿Y tú, que sabías la verdad?». Sombra, rojo hasta las orejas, devolvió a Aldo una merienda entera de su propia bolsa. Pidió perdón delante de todos. Y se puso a restregar los escalones, resoplando.",
+     "archivo": "77941cd9aafd2e30.m4a",
+     "segundos": 41.24
+    },
+    {
+     "texto": "Esa misma noche, Aldo subió con Tomás a la torre y entre los dos colgaron otra vez la campana. «Tocar la campana es cosa de después», dijo Tomás. «Cuando acabes el mes de escaleras, con mi mano encima de la tuya.» Tomás tiró suave: ¡Don, don, don! Sonó como una nana. Aldo se fue a dormir con el pecho en calma. Buenas noches, campana; buenas noches, Tomás.",
+     "archivo": "fafc39e5943b4287.m4a",
+     "segundos": 29.63
+    }
+   ]
+  },
+  "medieval:olla": {
+   "incluido": false,
+   "titulo": {
+    "texto": "La olla de los poquitos",
+    "archivo": "fdb8d5350e51d92a.m4a",
+    "segundos": 1.67
+   },
+   "ensenanza": {
+    "texto": "La enseñanza de hoy: Un poquito de cada uno, puesto en la misma olla, alcanza para que nadie se quede con hambre.",
+    "archivo": "5a5add39ee91b1bd.m4a",
+    "segundos": 9.98
+   },
+   "escenas": [
+    {
+     "texto": "Aquel invierno nevó tanto que las casitas de la aldea de los molinos parecían gorros blancos de lana. Pero la nieve había enterrado la cosecha, y en cada despensa quedaba muy poquito. La arquera Mara tenía solo un pan, redondo y calentito. Era todo para el día, y lo guardaba en su morral, porque no había más.",
+     "archivo": "d41d765e2a2b8ab4.m4a",
+     "segundos": 24.71
+    },
+    {
+     "texto": "Una mañana, al cruzar la plaza, Mara encontró en la nieve a dos niños que tiritaban. Eran Lía, la pequeña, y su hermano Teo. Venían de muy lejos y llevaban dos días sin comer. Mara también tenía hambre, y se le notó en la barriga. Pero sacó el pan del morral y lo partió en tres pedazos: uno para Lía, otro para Teo y otro para sí.",
+     "archivo": "07643669195376eb.m4a",
+     "segundos": 27.59
+    },
+    {
+     "texto": "Los tres pedazos eran muy pequeños, así que Mara fue a pedir ayuda al bandido Sombra, el único con comida de sobra. Vivía en su cabaña escondida junto al camino, con la despensa llena hasta el techo. Se abrió una rendija, y apareció un ojo. Por la rendija, Mara alcanzó a ver una mesa con una sola silla. «Aquí no hay nadie», susurró Sombra desde adentro, y la puerta se cerró de golpe. ¡Pum! Teo, que había acompañado a Mara, empezó a llorar sin hacer ruido. A Lía la habían dejado en casa de Mara, junto al fuego, para que entrara en calor.",
+     "archivo": "3d86f386a7a230ac.m4a",
+     "segundos": 43.61
+    },
+    {
+     "texto": "Mara contó con los dedos: un pedazo de pan, otro, otro… «¡Es muy poco!». Entonces se acordó del aprendiz Aldo, que siempre tenía buenas ideas, y fue a buscarlo. Aldo se apretó el casco con las dos manos. Luego dijo con voz clarita: «Si cada puerta pone un poquito, se llena algo grande que burbujea. ¿Sabes qué es?» Mara abrió mucho los ojos. «¡Una olla!», gritó. «¡Vamos a llamar a las puertas!»",
+     "archivo": "c0268e71aec80cc6.m4a",
+     "segundos": 33.9
+    },
+    {
+     "texto": "Fueron de puerta en puerta. Lía, agarrada a la manga de Mara, contaba los puñados con un dedito: uno, dos… «Solo me queda un puñado de harina», dijo la panadera Rosa. «Yo solo tengo un nabo», dijo el molinero Beto. Y Aldo sacó de su morral una cebolla un poco arrugada. «¡Ya son tres cosas!», anunció Lía, muy seria. «¡Es muy poco!», suspiró Teo. «Un poco, y otro poco, y otro poco», sonrió Mara, «ya es una olla llena».",
+     "archivo": "ac062f54b75fd194.m4a",
+     "segundos": 34.5
+    },
+    {
+     "texto": "Beto trajo rodando la olla más grande del molino, y la pusieron sobre el fuego, en medio de la plaza. Aldo la removía con una cuchara larga. Lía y Teo echaron sus pedacitos de pan; Rosa, la harina; Beto, el nabo; y Aldo, lo que había traído. ¡Blup, blup, blup! La sopa olía tan rico que su olor viajó por toda la aldea. Las puertas se fueron abriendo, una a una, porque a todos les rugía la barriga.",
+     "archivo": "5792d692cfcf7871.m4a",
+     "segundos": 32.0
+    },
+    {
+     "texto": "La olla estaba a medio llenar y la cola de vecinos con cuencos era larga. Mara olió su pedacito de pan. Lo apretó en la mano. La barriga protestó con un rugido. Teo miraba al suelo, como si no tuviera hambre. «Es mi pedacito», dijo Mara en voz baja. Y lo soltó en la olla. ¡Plof! Teo levantó la cabeza, oyó rugir otra vez la barriga y se rio, ¡ja!, y la sopa también pareció reírse. Cuando el último vecino llenó su cuenco, en el fondo de la olla todavía quedaba sopa.",
+     "archivo": "554e1045a377a643.m4a",
+     "segundos": 37.52
+    },
+    {
+     "texto": "Solo quedaba una puerta cerrada: la del bandido Sombra. Mientras Aldo vigilaba la olla, Mara llamó con los nudillos, con un cuenco de sopa humeante entre las manos. «Es de todos, y también tuya», dijo. El bandido Sombra asomó un solo ojo. Quiso decir que no. Pero el olor de la sopa le llegó hasta la nariz, y su barriga, que llevaba mucho tiempo comiendo sola, contestó antes con un rugido largo.",
+     "archivo": "3807aa12facc1729.m4a",
+     "segundos": 33.16
+    },
+    {
+     "texto": "El bandido Sombra tomó el cuenco y probó la sopa. Cerró los ojos. La sopa estaba tan calentita que se le escapó una sonrisa. «Mi mesa solo tiene una silla», confesó. Volvió a su cabaña escondida junto al camino y regresó cargando sacos de harina, quesos y manzanas. Traía también su única silla, y se sentó en el suelo para que otro la usara. Al caer la tarde hubo mesa para toda la aldea. Aldo repartía cucharas, y Sombra se sentó entre Lía y Teo. Mara sirvió a todos antes que a sí misma, y su cuenco fue el último: el del fondo, el que raspa la cuchara. Era el que mejor sabía.",
+     "archivo": "34b7961387b45fd1.m4a",
+     "segundos": 46.58
+    },
+    {
+     "texto": "Cuando la fiesta se apagó, Lía bostezó y Teo miró la nieve: ¿adónde irían? Mara abrió la boca, pero Rosa fue más rápida: «Mi panadería sigue tibia y mi casa tiene sitio». Entonces Sombra carraspeó: «Y yo tengo… mantas. Muchas». Y trajo todas, hasta una de lana que olía a lavanda. «Mañana mismo mandaremos aviso a su familia», dijo Rosa. «Seguro que los está buscando.»",
+     "archivo": "c4cfed11f27f0abf.m4a",
+     "segundos": 31.3
+    },
+    {
+     "texto": "Esa noche, Mara se quedó con ellos. Rosa les subió las mantas hasta la barbilla, junto al horno todavía tibio. Teo y Lía ya roncaban. Afuera nevaba sin parar sobre la aldea de los molinos. Adentro olía a leña y a lavanda. Y Mara se durmió sonriendo, con el olor a sopa todavía en la ropa.",
+     "archivo": "b34adf3aa6bf7fab.m4a",
+     "segundos": 24.29
+    }
+   ]
+  },
+  "medieval:roble_atrapado": {
+   "incluido": false,
+   "titulo": {
+    "texto": "El roble de la colina",
+    "archivo": "56e7a50c9e55f679.m4a",
+    "segundos": 1.58
+   },
+   "ensenanza": {
+    "texto": "La enseñanza de hoy: Cuando el orgullo nos deja atascados, decir «necesito ayuda» y escuchar las ideas de los demás nos devuelve al suelo.",
+    "archivo": "c45e976edf9a693d.m4a",
+    "segundos": 12.63
+   },
+   "escenas": [
+    {
+     "texto": "Aquella tarde soplaba un viento travieso, de los que despeinan hasta a las nubes. En lo alto de la colina, Teo hacía volar una cometa roja, con una cola de lazos amarillos, y Aldo lo miraba desde la hierba, mordisqueando una brizna de paja. La cometa tiraba tanto del hilo que Teo corría detrás con los pies casi en el aire, porque no quería perderla de vista. De pronto, ¡zas!, el hilo se le escapó de los dedos. La cometa dio tres vueltas por el cielo, se enredó en lo más alto del roble grande y se quedó allí, aleteando como un pájaro con el ala presa.",
+     "archivo": "14a1c05f765c2731.m4a",
+     "segundos": 46.63
+    },
+    {
+     "texto": "«No llores, Teo», dijo Aldo, plantándose delante del roble con los brazos en jarras. «Esto es cosa de un minuto.» Beto ofreció su cuerda larguísima, la del molino, y Lía asomó la cabeza: «Yo había pensado una cosa…» «Gracias, pero no», la cortó Aldo, que se subía a todos los muros del castillo. «Eso es para quien no sabe trepar. Yo puedo solo, y además tú ni llegas a la primera rama.» Lía se encogió de hombros, guardó su idea en el bolsillo y se sentó junto a Teo a esperar.",
+     "archivo": "4c4f69cf63e3c616.m4a",
+     "segundos": 38.27
+    },
+    {
+     "texto": "Aldo trepó sin parar: una rama, otra rama, una hoja en el pelo. El roble tenía los brazos llenos de nudos, y cada nudo servía de escalón. Abajo, Beto contaba en voz alta, Teo no se atrevía a mirar y Lía seguía cada movimiento con el dedo. «¡Esto es un paseo!», dijo Aldo. Arriba, la cometa tiraba del hilo como un perro de su correa. Aldo la desenredó con cuidado, la apretó contra el pecho y, para presumir un poquito más, miró hacia abajo. Teo, Lía y Beto eran tres puntitos.",
+     "archivo": "112ede4954c91675.m4a",
+     "segundos": 39.38
+    },
+    {
+     "texto": "La colina se había encogido. Las casitas parecían migas, el camino, un hilo, y el suelo estaba lejísimos. A Aldo se le puso el penacho tieso como un erizo. Quiso bajar un pie, pero el pie dijo que no. Quiso bajar el otro, y el otro dijo lo mismo. Abrazado al tronco y a la cometa, Aldo gritó: «¡Estoy bien! ¡Es que me gusta la vista!» Empezaba a atardecer. Beto bostezó, Lía se sentó y Teo se puso a contar nubes. «¿Quieres que vaya por la cuerda del molino?», preguntó Beto. «¡No hace falta!», dijo Aldo, con la voz muy finita.",
+     "archivo": "9efef8027ee75b12.m4a",
+     "segundos": 43.93
+    },
+    {
+     "texto": "Pasó un buen rato. Cayó una hoja, luego otra. A Aldo le pesaba más el orgullo que la cometa, y la cometa pesaba poquísimo. Entonces Aldo respiró hondo y dijo en voz alta la frase que llevaba rato guardada debajo de la lengua: «¡Necesito ayuda!» Nadie se rio. Beto soltó el aire, como si llevara una hora aguantándolo. «¡Por fin!», dijo, y sonrió con toda la cara. Luego salió corriendo hacia el molino. Lía dio un salto. «¡Ahora sí es mi turno de idea!» Y Teo, que no había dejado de mirar hacia arriba, levantó los dos pulgares.",
+     "archivo": "037ec629d3745915.m4a",
+     "segundos": 41.8
+    },
+    {
+     "texto": "Al ratito, Beto volvió del molino con su cuerda, tan larga que le sobraba para arrastrarla. Teo la miraba con los ojos muy abiertos. «Pero nadie la puede lanzar hasta tan arriba, así que de poco sirve», suspiró. Entonces Lía dio un saltito. «¡El hilo!», dijo. «El hilo de la cometa cuelga hasta el suelo. Atamos la cuerda a este extremo, Aldo tira del hilo desde arriba, y la cuerda sube sola, como el cordón por los agujeros de un zapato.» Beto, que hacía los mejores nudos de la aldea, ató el hilo a la cuerda con tres vueltas y un lazo. Arriba, Aldo empezó a tirar, y la cuerda trepó por el roble como una culebra perezosa.",
+     "archivo": "77d0ab4770c9cf0b.m4a",
+     "segundos": 52.06
+    },
+    {
+     "texto": "Aldo se ató la cuerda a la cintura, con el nudo que Beto le iba explicando desde abajo. Beto agarró el otro extremo con las dos manos y echó el cuerpo hacia atrás, firme como un ancla. Entonces Teo se puso al pie del roble y habló con la voz más calmada de la colina. «Una vez me quedé en el techo del gallinero», contó. «Bajé mirando solo la teja de abajo. Ahora tú: un pie. Ahora el otro. La rama está ahí, justo ahí.» Y Aldo bajó, rama por rama, con la cometa remetida en el cinturón y los ojos fijos en la voz de Teo. Lía vigilaba el nudo sin parpadear.",
+     "archivo": "58ffb10423f0c5b2.m4a",
+     "segundos": 46.21
+    },
+    {
+     "texto": "Cuando los pies de Aldo tocaron la hierba, las rodillas se doblaron solas y Aldo se sentó de golpe. Teo recibió la cometa con los dos brazos, como se recibe a un gatito, y la abrazó fuerte. «Tu idea fue la mejor, Lía», dijo Aldo, todavía sin aire. «Y yo no te dejé hablar.» «Ya lo sé», contestó Lía, muy digna. Luego se le escapó la risa. Beto se limpió las manos en el pantalón. «Pesas menos que un saco de harina», le dijo a Aldo. «Pero entre todos se hace más fácil.»",
+     "archivo": "4f1bb2bb1f6ee32d.m4a",
+     "segundos": 38.22
+    },
+    {
+     "texto": "Volvieron a la aldea cuando el cielo se ponía de color durazno. Teo se enrolló el hilo de la cometa en la muñeca, dos vueltas y un nudo, para que no se escapara nunca más. Lía iba contándole su idea a Beto con todos los detalles, aunque Beto había estado allí. Al llegar al pozo, Beto le tendió la cuerda a Aldo. «Por si mañana quieres subir otra vez.» «Mañana subo», contestó Aldo, «pero con ustedes al pie del roble.»",
+     "archivo": "6777a761cc020caa.m4a",
+     "segundos": 33.62
+    },
+    {
+     "texto": "Esa noche, Aldo se metió en la cama con los brazos cansados y las manos todavía oliendo a corteza. Por la ventana se veía la silueta de la colina y, en lo alto, el roble moviendo las hojas sin prisa. Ya no parecía tan alto. Aldo pensó en la cuerda que subía como una culebra perezosa, en la voz de Teo, en el nudo de Beto y en la idea que Lía había guardado doblada. Afuera, el viento se había ido a dormir. Aldo cerró los ojos, y se fue detrás.",
+     "archivo": "3879ef3c52de9639.m4a",
+     "segundos": 37.34
+    }
+   ]
+  },
+  "medieval:escalera_torre": {
+   "incluido": false,
+   "titulo": {
+    "texto": "Los ciento doce escalones",
+    "archivo": "c80d20b1eb310efc.m4a",
+    "segundos": 2.18
+   },
+   "ensenanza": {
+    "texto": "La enseñanza de hoy: Una escalera larga se sube por tramos cortos: mirar cuánto llevamos, y no cuánto falta, nos da fuerzas para seguir.",
+    "archivo": "1845c2af62b51f43.m4a",
+    "segundos": 11.28
+   },
+   "escenas": [
+    {
+     "texto": "La campana del campanario era tan antigua que nadie recordaba quién la había colgado. Pesaba más que tres vacas, y sonaba una sola vez cada año, el día de la fiesta, cuando el sol tocaba las colinas. ¡Dong, dong!, y a todo el mundo se le ponía la piel de gallina de felicidad. Tomás, el campanero, llevaba cuarenta años subiendo a tocarla. Este año, Mara quería probar.",
+     "archivo": "6d52ca379099c7dc.m4a",
+     "segundos": 30.98
+    },
+    {
+     "texto": "Tomás se llevó la mano a la rodilla y puso cara de haber mordido un limón. «Este año no me dan las piernas, porque la torre es muy alta», confesó. «Ciento doce escalones son demasiados para un viejo campanero.» Mara, que dibujaba una rayuela junto al pozo con un cabo de tiza, levantó la cabeza. «Yo puedo tocar la campana», dijo. Tomás se rascó la barba. «Tiene que sonar cuando el sol toque las colinas, ni antes ni después. ¿Seguro?» «Seguro», dijo Mara, y se guardó la tiza en el bolsillo.",
+     "archivo": "2a13c0ac716ba20d.m4a",
+     "segundos": 40.31
+    },
+    {
+     "texto": "Al pie de la torre, la escalera de piedra subía y subía hasta perderse en la oscuridad del techo. Mara levantó la cabeza hasta que le dolió el cuello. En el primer escalón estaba sentado el duque Codicio, contando monedas: clic, clic. «Ciento doce», dijo con una vocecita aguda, sin levantar la vista. «Yo subí hasta el cuarenta, y soy un duque. Nadie sube más. Hazme caso, es imposible.» Se le cayó una moneda y no se molestó en levantarla. «Mejor vete a la plaza, a comer galletas. Cansarse es de tontos.»",
+     "archivo": "87717759a3d80aab.m4a",
+     "segundos": 41.1
+    },
+    {
+     "texto": "«Voy a contar para que el tiempo pase», decidió Mara, y empezó a subir: uno, dos, tres, cuatro. Subió tan deprisa que los números salían atropellados, de dos en dos, porque quería llegar cuanto antes. Pasó el diez, pasó el veinte. A los treinta, las piernas le pesaban como si fueran de plomo. A los cuarenta y uno, los escalones se pusieron a bailar delante de sus ojos, y Mara tuvo que sentarse de golpe. «Cuarenta y uno», jadeó. Desde abajo llegó la voz de Codicio: «¿Ves? Te lo dije.» Mara bajó despacito, con las piernas temblando como flanes.",
+     "archivo": "6063f5fee175ee31.m4a",
+     "segundos": 45.74
+    },
+    {
+     "texto": "«Si corro, me quedo sin aire», pensó Mara al pie de la escalera. «Pues iré más despacio, y cuando me falte el aire, me detendré a respirar.» Y lo cumplió. Diez escalones y una parada: aire adentro, uno, dos; aire afuera, uno, dos. Otros diez, y otra parada. Cada vez que se detenía, miraba por el arco, y la aldea se veía más pequeña y más bonita. Llegó al sesenta, al setenta, al setenta y siete. Entonces miró hacia arriba, y el techo seguía igual de lejos, porque la escalera no se había acortado ni un poquito. Las piernas dijeron «basta», y Mara bajó otra vez. Abajo, Codicio no dijo nada. Solo se oyó que carraspeaba.",
+     "archivo": "094f2abd169a6895.m4a",
+     "segundos": 50.48
+    },
+    {
+     "texto": "La tercera vez, el sol ya estaba bajo. Mara sacó del bolsillo el cabo de tiza de la rayuela y pensó en voz alta: «Si miro cuántos faltan, me da vértigo. Mejor miro cuántos llevo.» En el escalón diez dibujó una cruz blanca. Respiró: aire adentro, uno, dos; aire afuera, uno, dos. Subió hasta el veinte, y otra cruz. Hasta el treinta, y otra. Cada cruz era un amigo que esperaba en la escalera, y cada tramo, un trocito pequeño que cabía en las piernas. Como los tramos eran cortos, las piernas no protestaron. Pasó el cuarenta y uno sin darse cuenta. Pasó el setenta y siete y sonrió. Abajo, alguien empezó a subir muy despacio, de cruz en cruz.",
+     "archivo": "13c39de9885f468c.m4a",
+     "segundos": 53.73
+    },
+    {
+     "texto": "Las últimas cruces costaron más que las primeras. En la del cien, Mara se apoyó en la pared y respiró diez veces, y después subió los doce escalones que quedaban, uno por uno, hasta que no hubo más. Arriba olía a viento y a bronce, y el sol ya tocaba las colinas, así que no había tiempo que perder. La campana colgaba de su cuerda gruesa, enorme y callada, como si esperara. Mara la agarró con las dos manos y tiró con todas sus fuerzas. ¡Dong, dong! El sonido salió por el arco y bajó por los tejados hasta el último rincón de la aldea.",
+     "archivo": "4f6f5339dd1c95e1.m4a",
+     "segundos": 42.91
+    },
+    {
+     "texto": "Detrás de Mara se oyó un jadeo. Era Codicio, que había subido siguiendo las cruces de tiza, una por una. Se había quedado sin aliento y sin palabras, y dejó caer una moneda y ni la oyó. «Ciento doce», dijo al fin, con un hilito de voz. «Llegué. Y yo que le dije a todo el mundo que era imposible…» Mara se sentó a su lado en el último escalón, mientras la aldea entera cantaba abajo. «Toma», dijo, y le dio el cabo de tiza. «Para la próxima vez.» Codicio lo guardó en el bolsillo como si fuera un tesoro.",
+     "archivo": "1d8d8acc45d5ef67.m4a",
+     "segundos": 40.12
+    },
+    {
+     "texto": "En la plaza, los vecinos salieron de sus casas con las mejores galletas, porque la torre había hablado. Tomás dejó de frotarse las rodillas y aplaudió con las dos manos. «Justo a tiempo», dijo, y le puso a Mara su bufanda de campanero. Codicio fue el último en bajar, agarrándose a la pared. Llevaba una cruz de tiza pintada en la espalda, porque se había acostado a descansar encima de una de las cruces, y nadie se lo había dicho. Por una vez, no dijo que nada fuera imposible. Aceptó una galleta, y luego otra, y esa noche hasta las galletas parecían saber más ricas.",
+     "archivo": "b17bf1f607ba2ad8.m4a",
+     "segundos": 46.9
+    },
+    {
+     "texto": "Aquella noche, en la cama, a Mara le hormigueaban las piernas como si adentro vivieran mil hormigas. Cerró los ojos. En vez de ovejas, contó cruces de tiza: diez, veinte, treinta… A lo lejos, la torre todavía zumbaba un poquito, ¡dong…, dong…!, como un gato que ronronea. Por la ventana entraba el último olor de la fiesta. Mara llegó al ciento doce, y ya no hizo falta contar más.",
+     "archivo": "2f7d987077773029.m4a",
+     "segundos": 32.32
+    }
+   ]
+  },
+  "medieval:pozo": {
+   "incluido": false,
+   "titulo": {
+    "texto": "La bolsa del pozo",
+    "archivo": "6a42792f75e9dfb4.m4a",
+    "segundos": 1.53
+   },
+   "ensenanza": {
+    "texto": "La enseñanza de hoy: Lo que encontramos y no es nuestro pesa en el bolsillo; devolverlo a su dueño nos deja dormir tranquilos.",
+    "archivo": "0131653c9cf33db4.m4a",
+    "segundos": 11.66
+   },
+   "escenas": [
+    {
+     "texto": "En la aldea de los molinos había pregones y risas por todas partes, pero Aldo no miraba nada de eso. Solo miraba una cometa roja que colgaba del puesto del molinero Beto, con su cola larga de lazos amarillos. «Cinco monedas de plata», dijo Beto con un guiño. Aldo contó las suyas: una, dos. Faltaban tres.",
+     "archivo": "4ba8e6df944587f2.m4a",
+     "segundos": 25.4
+    },
+    {
+     "texto": "Camino de casa, Aldo se detuvo a beber en el pozo. Al inclinarse vio algo entre las piedras: una bolsa de cuero. La levantó, ¡tilín!, y se la acercó a la oreja. Monedas. Las contó en la palma de la mano: tres, de plata, redondas y frías. «¿De quién será?», preguntó al pozo. «…será… será…», contestó el eco. Aldo miró alrededor. Nadie.",
+     "archivo": "6342e0c3a401e985.m4a",
+     "segundos": 27.77
+    },
+    {
+     "texto": "Aldo se quedó pensando. «Alguien la perdió», se dijo. «Pero ese alguien no está aquí. Y yo quiero la cometa.» Metió la bolsa en el bolsillo, tilín, tilín, y se fue a casa con las manos apretadas contra la ropa para que no sonara.",
+     "archivo": "bdf3c7195bebc693.m4a",
+     "segundos": 17.32
+    },
+    {
+     "texto": "Esa noche, la luna se asomó a la ventana de Aldo y vio algo raro. Debajo de la almohada había un bulto que hacía tilín cuando Aldo respiraba. Aldo dio una vuelta, y tilín. Dio otra, y tilín, tilín. Se tapó la cabeza con la manta, pero el eco del pozo se colaba hasta debajo: «…será… será…». Aldo apretó los ojos, porque la bolsa pesaba y pesaba.",
+     "archivo": "da8172d3f75341af.m4a",
+     "segundos": 30.46
+    },
+    {
+     "texto": "Por la mañana, Rosa, la panadera, buscaba por todas partes con los ojos rojos. «Eran las monedas de la harina», contaba a los vecinos. «Mañana es la fiesta, y sin harina no hay pan, porque no tengo con qué comprarla.» Todos la ayudaban a mirar. Aldo se escondió detrás del pozo. En su bolsillo, tilín, tilín, tilín.",
+     "archivo": "b82da7868541ff58.m4a",
+     "segundos": 25.77
+    },
+    {
+     "texto": "Con la bolsa en el bolsillo y un nudo en la garganta, Aldo fue a ver a la arquera Mara. Se lo contó todo sin respirar: el juguete del mercado, la bolsa, la noche sin dormir, el llanto de Rosa. Mara escuchó sin interrumpir, porque sabía que eso era lo más difícil. Al final, le tendió media manzana.",
+     "archivo": "2f6a81df200bce3f.m4a",
+     "segundos": 22.85
+    },
+    {
+     "texto": "«Yo rompí una vez una flecha que no era mía», dijo Mara sin dar vueltas. «Tardé una semana en contarlo, porque me daba vergüenza. Lo peor no fue decirlo. Lo peor fue la semana.» Le guiñó un ojo. «Cuanto antes lo digas, menos semana te toca.»",
+     "archivo": "4c873449cd6b3154.m4a",
+     "segundos": 19.27
+    },
+    {
+     "texto": "«Voy a decírselo», dijo Aldo. Le temblaban las rodillas, pero fue. Mara se quedó atrás, mirando. Aldo le puso la bolsa a Rosa en las manos. ¡Tilín! «Una, dos, tres. Son tuyas», dijo, casi sin voz. «La encontré ayer, junto al pozo. Me la quedé una noche entera, porque quería la cometa. Perdón.» Rosa abrió la boca, abrió los ojos y abrió la bolsa. Una, dos, tres… ¡Estaban todas!",
+     "archivo": "42ebfe9def2d25f7.m4a",
+     "segundos": 36.08
+    },
+    {
+     "texto": "Rosa se secó los ojos con el delantal. «Mañana habrá pan para todo el pueblo, gracias a ti», dijo. «Voy al molino por harina, y esta tarde el primer panecillo es para ti.» La cometa roja seguía colgada en el puesto de Beto. Pero Aldo ya no la miraba con tanta hambre.",
+     "archivo": "39d6e9254f1765a7.m4a",
+     "segundos": 19.78
+    },
+    {
+     "texto": "Al atardecer, Rosa llegó con el primer panecillo, tibio y envuelto en papel. Aldo y Mara se sentaron junto al pozo a comérselo. Con el papel, un hilo y dos palitos, Mara hizo una cometa chiquita. Tenía la cola torcida y ningún lazo. El viento la levantó, sopla que sopla, y subió, subió, subió. Aldo se rio.",
+     "archivo": "8493c3f4df78d9ab.m4a",
+     "segundos": 29.21
+    },
+    {
+     "texto": "Aquella noche, en el bolsillo de Aldo no tintineaba nada. Ni debajo de la almohada, ni en el pozo, ni en la cabeza. El eco se había callado. Solo se oía el viento, que movía la cortina, y a lo lejos, un gallo que soñaba en voz alta. Aldo cerró los ojos y durmió hasta que amaneció.",
+     "archivo": "068ba52659dd2aa4.m4a",
+     "segundos": 21.92
+    }
+   ]
+  },
+  "medieval:girasol": {
+   "incluido": false,
+   "titulo": {
+    "texto": "Las semillas de sol",
+    "archivo": "2ed5968d9053ec18.m4a",
+    "segundos": 1.76
+   },
+   "ensenanza": {
+    "texto": "La enseñanza de hoy: Las semillas que regalamos no se pierden: florecen en otros jardines y vuelven multiplicadas.",
+    "archivo": "78e798d63258f8db.m4a",
+    "segundos": 10.31
+   },
+   "escenas": [
+    {
+     "texto": "Al despedirse, la abuela de Mara le dejó una bolsita de semillas. Adentro había cinco semillas de girasol. «Dan flores amarillas como la miel», le dijo. En la fiesta del girasol, el pueblo daba una cinta azul y un pastel de miel al girasol más alto. Mara se imaginó con la cinta puesta, y sonrió. Pensaba plantar las cinco juntas, para que ninguna se quedara atrás.",
+     "archivo": "f08012fe4dd63942.m4a",
+     "segundos": 30.33
+    },
+    {
+     "texto": "La aldea de los molinos se veía gris y sin flores, porque la nevada había cubierto las huertas y no quedaba ni una semilla. Rosa, la panadera, regaba una maceta vacía por si acaso. Beto, el molinero, la miraba desde su puerta con cara larga, y Lía, la más pequeña del pueblo, abrazaba una maceta rota. Mara pasó entre los tres, apretando la bolsita de semillas entre las manos.",
+     "archivo": "3cebb48fbe706f7e.m4a",
+     "segundos": 32.04
+    },
+    {
+     "texto": "Aquella noche, Mara puso las cinco semillas sobre la mesita y las contó. Una, dos, tres, cuatro, cinco. Con cinco, la cinta azul era casi suya. Con dos, a lo mejor no. Se las guardó otra vez y apagó la vela. Tardó mucho en dormirse, porque no dejaba de pensar en la tierra vacía de Rosa.",
+     "archivo": "e6fcc6c3f33478f2.m4a",
+     "segundos": 24.61
+    },
+    {
+     "texto": "Por la mañana, Mara fue a ver al aprendiz Aldo y le enseñó las semillas. «¿Y qué piensas hacer con ellas?», preguntó Aldo, y se rascó la cabeza por debajo del casco.",
+     "archivo": "02921f5e04b4c946.m4a",
+     "segundos": 13.75
+    },
+    {
+     "texto": "«Mi abuelo me dio una vez una manzana», recordó Aldo a media voz. «Me la comí a escondidas, detrás de un muro. Estaba rica, sí. Pero la que se parte en dos sabe mejor, porque la comes con alguien.»",
+     "archivo": "905470066419647f.m4a",
+     "segundos": 16.67
+    },
+    {
+     "texto": "Esa tarde, Mara contó otra vez las semillas: una, dos, tres, cuatro, cinco. Respiró hondo. «Dos para mí», dijo despacio, «y tres para ustedes». Dos se quedaron en su bolsillo. Una fue para Rosa, otra para Beto y la última para Lía, la más pequeña del pueblo. «¿Para mí?», dijo Rosa, con los ojos muy abiertos. «Es poquito», dijo Mara. «Pero es una.» Con solo dos, la cinta azul se alejó un poco. Rosa abrazó a Mara y le dejó la nariz llena de harina.",
+     "archivo": "faf278d45964689e.m4a",
+     "segundos": 37.29
+    },
+    {
+     "texto": "Mara plantó las dos suyas en dos macetas, junto a la ventana. Pasó el invierno, y llegó la primavera con sus charcos. Cada mañana las regaba y esperaba. Esperar era lo más difícil. Hasta que un día, dos puntitas verdes empujaron la tierra. Corrió a contarlo, y descubrió que habían brotado también las macetas de Rosa, de Beto y de Lía.",
+     "archivo": "bfcf8263d00ea2f8.m4a",
+     "segundos": 28.14
+    },
+    {
+     "texto": "Llegó el verano, y con el verano, la fiesta del girasol. La aldea de los molinos se llenó de amarillo. Había girasoles en el balcón de Rosa, en la puerta de Beto y en la maceta rota de Lía. El más alto era el de Rosa, y ganó la cinta azul. Los de Mara eran más bajos, pero tenían tantas abejas que zumbaban como una canción. Mara sintió una puntita de pena. Entonces Rosa le puso la cinta azul en la oreja, de broma. «Esta cinta es de los dos», dijo. «Yo solo planté lo que tú me regalaste.»",
+     "archivo": "4f669b337163ea45.m4a",
+     "segundos": 37.62
+    },
+    {
+     "texto": "Cuando las hojas se pusieron doradas, los girasoles bajaron la cabeza, cargados de semillas. ¡Qué cantidad, en una sola flor! Mara las juntó en una bolsa enorme. Aldo la miró y sonrió. «Treinta casas tiene la aldea», dijo. «Treinta puñados», contestó Mara, y se rascó la cabeza. Entonces llamaron a la puerta las tres casas que habían recibido una semilla, cada una con una bolsa llena: las semillas regaladas habían vuelto multiplicadas. Y salieron todos a repartirlas, puñado a puñado, hasta que no quedó ni una puerta sin su regalo.",
+     "archivo": "7ffd85052149f1e1.m4a",
+     "segundos": 43.24
+    },
+    {
+     "texto": "Esa noche, Mara guardó una sola semilla en el bolsillo del pijama, por si acaso. Por la ventana se veían los tejados de la aldea y, abajo, las flores dormidas con la cabeza gacha. «El año que viene…», pensó, y se quedó dormida soñando con un pueblo entero color sol.",
+     "archivo": "a2b41858fe82d0a5.m4a",
+     "segundos": 22.48
+    }
+   ]
+  },
+  "mar:galletas_todos": {
+   "incluido": true,
+   "titulo": {
+    "texto": "Galletas para todos",
+    "archivo": "3707245ed7b9ed02.m4a",
+    "segundos": 1.44
+   },
+   "ensenanza": {
+    "texto": "La enseñanza de hoy: Repartida entre todos, la galleta sabe mejor.",
+    "archivo": "1caeef512ef05232.m4a",
+    "segundos": 6.08
+   },
+   "escenas": [
+    {
+     "texto": "Esa mañana, Bruno fue a la playa con tres galletas de barco. Una, dos y tres. Cada galleta era grande, recién hecha.",
+     "archivo": "576701cacdfbde1f.m4a",
+     "segundos": 11.19
+    },
+    {
+     "texto": "Entonces llegó Pimienta, el loro, volando: flap, flap. Se posó en la arena. «¡Galleta, galleta!», cantó Pimienta.",
+     "archivo": "cd34d3a85bdba25d.m4a",
+     "segundos": 14.54
+    },
+    {
+     "texto": "Pimienta tenía hambre, así que Bruno le dio una galleta. «Una para ti», dijo Bruno. Pimienta se la comió de un picotazo. ¡Ñam!",
+     "archivo": "6099ee51f92d1ff0.m4a",
+     "segundos": 11.8
+    },
+    {
+     "texto": "Luego llegó Calma, la tortuga, despacito, despacito. Tardó mucho en llegar, porque las tortugas caminan poco a poco. Bruno le dio otra galleta. «Una para ti.»",
+     "archivo": "f28c636fdbee10a1.m4a",
+     "segundos": 15.33
+    },
+    {
+     "texto": "Ahora quedaba una galleta para Bruno. Bruno la partió en tres trocitos. Uno para Pimienta, otro para Calma y el último, para Bruno. Ñam, ñam, ñam. ¡Sabía mejor así, porque era de todos!",
+     "archivo": "9692f0194e5ed482.m4a",
+     "segundos": 17.09
+    },
+    {
+     "texto": "El sol se puso naranja sobre el mar. Pimienta se durmió en una palmera. Calma se durmió en la arena. Y Bruno cerró los ojos, con la barriga llena.",
+     "archivo": "0108d27281df4447.m4a",
+     "segundos": 13.84
+    }
+   ]
+  },
+  "mar:caracola_nacar": {
+   "incluido": false,
+   "titulo": {
+    "texto": "La caracola de Nácar",
+    "archivo": "b1323705da7b04dd.m4a",
+    "segundos": 1.58
+   },
+   "ensenanza": {
+    "texto": "La enseñanza de hoy: Devolver lo que es suyo hace amigos.",
+    "archivo": "dcc9f56ef6f9c3b4.m4a",
+    "segundos": 4.27
+   },
+   "escenas": [
+    {
+     "texto": "Por la mañana, Vega corría por la playa. ¡Plaf, plaf!, hacían sus pies en la arena mojada. De pronto, vio una caracola rosa y brillante. Se la puso en la oreja. «Chss, chss», cantaba el mar dentro de la caracola.",
+     "archivo": "a4a2bfa4e6131bdd.m4a",
+     "segundos": 19.27
+    },
+    {
+     "texto": "Entonces, en una roca, asomó Nácar, la sirena. Tenía la cola verde y el pelo lleno de conchitas. Estaba triste, porque no encontraba su caracola. «Sin mi caracola no puedo cantar la nana del mar», le dijo a Vega.",
+     "archivo": "0c107568c5a910a3.m4a",
+     "segundos": 17.18
+    },
+    {
+     "texto": "Vega miró la caracola. Era muy bonita, y cantaba tan bien… Pero era de Nácar. Así que Vega se acercó a la roca y se la dio. «Toma. Es tuya», dijo Vega. Nácar sonrió con toda la cara.",
+     "archivo": "9d1cc001768c7e96.m4a",
+     "segundos": 15.65
+    },
+    {
+     "texto": "Nácar sopló la caracola: uuh, uuh. Las olas se pusieron a bailar, chof, chof. Los cangrejos sacaron la cabeza de la arena. Hasta las gaviotas se callaron para escuchar. Vega escuchaba también, con la boca abierta, porque la nana del mar era muy bonita.",
+     "archivo": "d17eb4d0658ee3c8.m4a",
+     "segundos": 20.39
+    },
+    {
+     "texto": "Después, Vega y Nácar jugaron juntas en la orilla. Nácar salpicaba con la cola, y Vega se reía, ja, ja. Ahora eran amigas, porque Vega le había devuelto lo que era suyo.",
+     "archivo": "f75e3e34aceaab8f.m4a",
+     "segundos": 16.86
+    },
+    {
+     "texto": "Cuando salió la luna, Nácar cantó la nana del mar solo para Vega. Uuh, uuh, hacía la caracola, despacito. Vega bostezó y se acurrucó en la arena tibia. Cerró los ojos, con el mar cantando bajito.",
+     "archivo": "413d2fed9e67ebe4.m4a",
+     "segundos": 19.32
+    }
+   ]
+  },
+  "mar:galleta_cazo": {
+   "incluido": false,
+   "titulo": {
+    "texto": "La galleta de Tío Cazo",
+    "archivo": "4c9287552ab85cc0.m4a",
+    "segundos": 1.86
+   },
+   "ensenanza": {
+    "texto": "La enseñanza de hoy: Decir la verdad quita la barriga rara.",
+    "archivo": "6d88b1577de0a9a7.m4a",
+    "segundos": 4.74
+   },
+   "escenas": [
+    {
+     "texto": "¡Qué olor tan rico había en la cubierta! Tío Cazo había hecho galletas de barco con miel. Arriba del todo estaba la galleta más doradita. «Son para la merienda», dijo Tío Cazo. A Bruno le sonaron las tripas.",
+     "archivo": "78b05aee703bacb4.m4a",
+     "segundos": 18.11
+    },
+    {
+     "texto": "Tío Cazo se fue a la cocina. Bruno miró el plato. Una galleta, solo una… Y se la comió de un bocado. ¡Crac, crac! Quedaron migas en la camisa.",
+     "archivo": "60cf9677f0758978.m4a",
+     "segundos": 15.42
+    },
+    {
+     "texto": "Tío Cazo volvió y contó las galletas. «Una, dos, tres… ¡Falta una!» Bruno tenía la barriga rara, porque guardaba un secreto.",
+     "archivo": "576fa1b727299d94.m4a",
+     "segundos": 12.96
+    },
+    {
+     "texto": "Así que Bruno se acercó despacito. «Fui yo», dijo Bruno. «Me la comí.» Tío Cazo se rascó el bigote y miró a Bruno.",
+     "archivo": "71753f725d9e0786.m4a",
+     "segundos": 11.15
+    },
+    {
+     "texto": "Tío Cazo sonrió. «Gracias por decir la verdad», dijo. Y lo invitó a la merienda, con todos. La barriga de Bruno ya no estaba rara.",
+     "archivo": "673ea5e2c45983ac.m4a",
+     "segundos": 10.91
+    },
+    {
+     "texto": "Cuando salió la luna, Bruno se fue a la hamaca. El barco hacía ñec, ñec, porque las olas lo mecían. Bruno cerró los ojos, con sabor a miel.",
+     "archivo": "09efb2be4849cd71.m4a",
+     "segundos": 13.75
+    }
+   ]
+  },
+  "mar:cofa_paso": {
+   "incluido": false,
+   "titulo": {
+    "texto": "Arriba, en la cofa",
+    "archivo": "0a9663ff189dad04.m4a",
+    "segundos": 1.67
+   },
+   "ensenanza": {
+    "texto": "La enseñanza de hoy: Si miramos arriba, llegamos a lo alto.",
+    "archivo": "030b26f095a25f33.m4a",
+    "segundos": 5.9
+   },
+   "escenas": [
+    {
+     "texto": "La capitana Estela señaló el mástil. Arriba, muy arriba, estaba la cofa. «Desde allí se ve la isla», dijo Estela. Vega miró hacia arriba. ¡Qué alto!",
+     "archivo": "86ae1de9a79db23b.m4a",
+     "segundos": 14.54
+    },
+    {
+     "texto": "Vega puso un pie en la escalera de cuerda. Le temblaban las piernas, así que respiró hondo. «Un pasito», le dijo Estela. «Un pasito», repitió Vega. Y subió un pasito.",
+     "archivo": "e81ccf407f29eca8.m4a",
+     "segundos": 14.49
+    },
+    {
+     "texto": "Y otro pasito. Y otro más. El viento soplaba suave: fiu, fiu. Vega no miraba abajo, porque miraba la cofa.",
+     "archivo": "0e22e7126e1335a4.m4a",
+     "segundos": 12.77
+    },
+    {
+     "texto": "¡Arriba! Vega llegó a la cofa. Estela subió detrás y le dio un catalejo dorado, para que viera la isla.",
+     "archivo": "cc260f33628002b8.m4a",
+     "segundos": 10.03
+    },
+    {
+     "texto": "Vega miró por el catalejo. ¡Allí estaba la isla, con sus palmeras! «La veo», dijo Vega, con una sonrisa enorme. Estela aplaudió, porque Vega había subido paso a paso.",
+     "archivo": "6f64ef75213955a2.m4a",
+     "segundos": 15.46
+    },
+    {
+     "texto": "Por la noche, ya en la cubierta, Vega bostezó junto a Estela. Arriba brillaba la luna, tan alta como la cofa. Vega le dijo buenas noches a la luna. Y se durmió.",
+     "archivo": "695f809e79b4f100.m4a",
+     "segundos": 13.14
+    }
+   ]
+  },
+  "mar:mapa_roto": {
+   "incluido": false,
+   "titulo": {
+    "texto": "El mapa del Abuelo Faro",
+    "archivo": "2a8ae93497bf5fb6.m4a",
+    "segundos": 1.81
+   },
+   "ensenanza": {
+    "texto": "La enseñanza de hoy: Lo que se rompe se puede pegar, pero solo si lo contamos.",
+    "archivo": "85e2dc2ef1655381.m4a",
+    "segundos": 7.71
+   },
+   "escenas": [
+    {
+     "texto": "Aquella mañana, Bruno subió al faro a visitar al Abuelo Faro. El Abuelo Faro tenía la barba blanca y olía a sal. Siempre contaba historias del mar, y a Bruno le encantaba escucharlas. «Hoy te voy a enseñar mi tesoro», dijo el Abuelo Faro, guiñando un ojo.",
+     "archivo": "36160264ab5f08a4.m4a",
+     "segundos": 20.76
+    },
+    {
+     "texto": "Su tesoro era un mapa viejísimo, dibujado a mano. Tenía islas, ballenas y estrellas. «Lo dibujó mi abuela, cuando era farera», contó. «Con este mapa nunca se pierde nadie.» Bruno lo miró con los ojos muy abiertos.",
+     "archivo": "672529cf1ffc9bb6.m4a",
+     "segundos": 17.14
+    },
+    {
+     "texto": "Entonces el Abuelo Faro subió a limpiar la lámpara del faro. Bruno quiso ver el mapa mejor y lo desenrolló del todo. Pero sopló una ráfaga de viento, y el papel se dobló. ¡Ras! Se rompió una esquina. A Bruno se le hizo un nudo en la barriga.",
+     "archivo": "fb02d3381421bd79.m4a",
+     "segundos": 19.88
+    },
+    {
+     "texto": "Bruno escondió el mapa detrás de la espalda. Tenía miedo de que el Abuelo Faro se pusiera triste. Cuando el Abuelo Faro bajó, preguntó: «¿Dónde está mi mapa?». Bruno no dijo nada, y el nudo de la barriga se hizo más grande.",
+     "archivo": "118b5f03c80c6db3.m4a",
+     "segundos": 17.41
+    },
+    {
+     "texto": "Así que Bruno respiró hondo y sacó el mapa. «Se me rompió», dijo bajito. «Lo desenrollé, sopló el viento y ¡ras! Lo siento mucho.» El Abuelo Faro miró la esquina rota con calma, porque era un hombre paciente. Luego miró a Bruno, y sonrió despacio.",
+     "archivo": "12995ec8b453d0cd.m4a",
+     "segundos": 21.46
+    },
+    {
+     "texto": "«Gracias por decirme la verdad», dijo el Abuelo Faro. «Los mapas se arreglan. Los secretos, no tanto.» Juntaron los trozos con engrudo. Ahora el mapa tenía una cicatriz, como los marineros viejos.",
+     "archivo": "a8fd716db77cb120.m4a",
+     "segundos": 16.76
+    },
+    {
+     "texto": "Al caer la noche, la luz del faro empezó a girar sobre el mar. Bruno se sentó junto al Abuelo Faro y se le cerraron los ojos. El nudo de la barriga se había ido. Solo quedaba un calorcito suave, porque ya no había secretos.",
+     "archivo": "84ecd6a275765f9a.m4a",
+     "segundos": 19.64
+    }
+   ]
+  },
+  "mar:perla_marina": {
+   "incluido": false,
+   "titulo": {
+    "texto": "La perla de Nácar",
+    "archivo": "36196840724689e8.m4a",
+    "segundos": 1.58
+   },
+   "ensenanza": {
+    "texto": "La enseñanza de hoy: Un regalo que pasamos a quien lo necesita brilla todavía más.",
+    "archivo": "89145ea3d50578af.m4a",
+    "segundos": 8.45
+   },
+   "escenas": [
+    {
+     "texto": "En la laguna vivía Nácar, la sirena. Era amiga de Vega, y cada tarde se contaban cosas del mar. Ese día, Nácar sacó algo del agua. «Es para ti», dijo, y abrió la mano.",
+     "archivo": "027617a767d6a17c.m4a",
+     "segundos": 16.02
+    },
+    {
+     "texto": "Era una perla redonda y brillante, del color de la leche. «La encontré dentro de una concha», contó Nácar. Vega la guardó en el bolsillo, con mucho cuidado. ¡Era el regalo más bonito del mundo!",
+     "archivo": "f7f806d608ec1c3e.m4a",
+     "segundos": 15.65
+    },
+    {
+     "texto": "De vuelta en el puerto, Vega vio a Marina sentada en el muelle. Marina hacía un collar de conchas para su abuela, que cumplía años. Pero estaba triste, porque le faltaba la pieza del centro. «Sin el centro, el collar se ve vacío», suspiró Marina.",
+     "archivo": "cec47f9ae9a16b88.m4a",
+     "segundos": 19.74
+    },
+    {
+     "texto": "Vega tocó la perla en el bolsillo. Era su regalo, y le gustaba muchísimo. Pero pensó en la abuela de Marina, y en su cumpleaños. Pensó también en lo triste que estaba Marina.",
+     "archivo": "40f718aed96eb7d6.m4a",
+     "segundos": 15.6
+    },
+    {
+     "texto": "Así que Vega sacó la perla y se la dio. «Para el centro del collar», dijo Vega. Marina abrió mucho la boca. «¿De verdad?» La perla quedó perfecta, en medio de todas las conchas. ¡Ahora el collar brillaba como una estrella!",
+     "archivo": "7d2bb8c44c8e0a6f.m4a",
+     "segundos": 18.3
+    },
+    {
+     "texto": "Al día siguiente, la abuela de Marina se puso el collar y se rio de alegría. Marina le dio a Vega un abrazo enorme, porque eso es lo que hacen los buenos amigos. Y Vega sintió un calorcito en el pecho, más brillante que cualquier perla.",
+     "archivo": "3f318a1e6a351915.m4a",
+     "segundos": 19.41
+    },
+    {
+     "texto": "Esa noche, desde la laguna, Nácar cantó su nana más bonita. El agua brillaba bajo la luna. Vega la escuchaba con los ojos cerrados, muy cerquita del agua. Y se durmió sonriendo.",
+     "archivo": "98fcf72839c0938d.m4a",
+     "segundos": 16.39
+    }
+   ]
+  },
+  "mar:bajo_agua": {
+   "incluido": false,
+   "titulo": {
+    "texto": "Los ojos bajo el agua",
+    "archivo": "6e225e3dea8da6d1.m4a",
+    "segundos": 1.67
+   },
+   "ensenanza": {
+    "texto": "La enseñanza de hoy: Lo que no conocemos asusta; abriendo los ojos poco a poco, aparece algo precioso.",
+    "archivo": "1965ea94a8d73258.m4a",
+    "segundos": 10.91
+   },
+   "escenas": [
+    {
+     "texto": "Bruno sabía chapotear en la orilla, pero nunca había metido la cabeza bajo el agua. Cada vez que lo intentaba, cerraba los ojos muy fuerte y salía corriendo. El agua le hacía cosquillas en la nariz. «Bajo el agua no se ve nada», decía, porque nunca había mirado. Y se sentaba en la arena a mirar las olas.",
+     "archivo": "7445b433b357c6e0.m4a",
+     "segundos": 23.5
+    },
+    {
+     "texto": "Un día, Nácar asomó la cabeza entre las olas. «Abajo hay un jardín», le contó. «Tiene peces de colores y estrellas que no brillan, pero son preciosas.» Bruno quería verlo. Pero le daba miedo, y se lo dijo a Nácar.",
+     "archivo": "382e1fc9d619cb63.m4a",
+     "segundos": 16.81
+    },
+    {
+     "texto": "«El miedo está bien», dijo Nácar. «Vamos a hacerlo poquito a poco, para que el miedo se vaya cansando.» Primero, Bruno metió la barbilla. Luego, la nariz. Luego, la cara entera, uno, dos, tres, ¡fuera! «¡Lo hice!», gritó Bruno, salpicando.",
+     "archivo": "02003339ca3ff1ce.m4a",
+     "segundos": 20.71
+    },
+    {
+     "texto": "«Ahora falta lo último: abrir los ojos», dijo Nácar. A Bruno le temblaba un poco la barriga. Pero respiró hondo, dio la mano a Nácar y se sumergió. Contó hasta tres, y abrió los ojos despacito.",
+     "archivo": "c9f7cd18b3ab5031.m4a",
+     "segundos": 16.67
+    },
+    {
+     "texto": "¡Allí estaba el jardín! Había algas que bailaban, peces amarillos y una estrella de mar naranja. La luz del sol bajaba en rayos, como cintas doradas. Nácar nadaba a su lado y le señalaba cada pez. Bruno sonrió con burbujas, porque era lo más bonito que había visto nunca.",
+     "archivo": "92b3d99330379610.m4a",
+     "segundos": 21.13
+    },
+    {
+     "texto": "Al salir, Bruno se envolvió en la toalla, temblando de alegría. «Mañana quiero volver», dijo. Nácar se rio y salpicó con la cola. «Mañana te enseño las tortugas», prometió.",
+     "archivo": "4864ff50a43f367b.m4a",
+     "segundos": 16.44
+    },
+    {
+     "texto": "Esa noche, Bruno soñó con algas que bailaban y peces que saludaban. En el sueño, nadaba con los ojos bien abiertos. Y no tenía nada de miedo.",
+     "archivo": "74a5ed2a7b34d6b9.m4a",
+     "segundos": 12.96
+    }
+   ]
+  },
+  "mar:mejor_nudo": {
+   "incluido": false,
+   "titulo": {
+    "texto": "El mejor nudo del barco",
+    "archivo": "e07a9cd74cfed1d2.m4a",
+    "segundos": 1.81
+   },
+   "ensenanza": {
+    "texto": "La enseñanza de hoy: Presumir no ata la vela; preguntar «¿me enseñas?», sí.",
+    "archivo": "7802f639aa016416.m4a",
+    "segundos": 8.36
+   },
+   "escenas": [
+    {
+     "texto": "En el barco, todos sabían que Vega hacía nudos. Nudos de lazo, nudos de ocho y nudos de zapato. «Nadie hace nudos como yo en todo el barco», decía Vega, inflando el pecho. Los marineros se reían por lo bajo, porque nadie lo sabe todo.",
+     "archivo": "7ceb347cb4eed4fa.m4a",
+     "segundos": 20.39
+    },
+    {
+     "texto": "Una mañana, la capitana Estela necesitó atar la vela grande. «¿Quién me ayuda?», preguntó. «¡Yo!», dijo Vega. «Yo sé hacerlo sin ayuda de nadie.» Y antes de que nadie dijera nada, agarró la cuerda.",
+     "archivo": "da8893e81a274891.m4a",
+     "segundos": 15.79
+    },
+    {
+     "texto": "Vega hizo un nudo de lazo. ¡Zas!, se soltó. Hizo un nudo de ocho. ¡Zas!, se soltó otra vez. La vela empezó a aletear con el viento, flap, flap. La capitana Estela miraba sin decir nada, y Vega se puso roja como un tomate.",
+     "archivo": "3a82378423576994.m4a",
+     "segundos": 17.83
+    },
+    {
+     "texto": "Entonces se fijó en el marinero más viejo del barco, que llevaba muchos años en el mar. A Vega le daba vergüenza. Pero la vela seguía aleteando, y la necesitaban para navegar. Así que se acercó y dijo: «No sé hacer este nudo. ¿Me enseñas?».",
+     "archivo": "554f1dad80864bc0.m4a",
+     "segundos": 19.18
+    },
+    {
+     "texto": "El marinero sonrió. «Este es el nudo de la vela. El conejo sale de la madriguera, da la vuelta al árbol y vuelve a entrar.» Vega lo probó una vez, y dos, y a la tercera ¡aguantó! La vela dejó de aletear, porque el nudo era fuerte de verdad.",
+     "archivo": "94eff66e60c7a3aa.m4a",
+     "segundos": 18.76
+    },
+    {
+     "texto": "La capitana Estela dio una palmada. «Los buenos marineros no lo saben todo», dijo. «Los buenos marineros preguntan.» Vega se rio, y esta vez no presumió. Le dio las gracias al marinero.",
+     "archivo": "f25dc83f0f006451.m4a",
+     "segundos": 17.0
+    },
+    {
+     "texto": "Por la noche, el barco se mecía bajo las estrellas. Vega repasaba el nudo nuevo con los dedos, despacito: el conejo sale, da la vuelta, vuelve a entrar. Y antes de terminar, se quedó dormida.",
+     "archivo": "d8520c6f39775685.m4a",
+     "segundos": 17.6
+    }
+   ]
+  },
+  "mar:brujula_norte": {
+   "incluido": false,
+   "titulo": {
+    "texto": "La brújula y el camino",
+    "archivo": "9312378dea78f3c8.m4a",
+    "segundos": 1.76
+   },
+   "ensenanza": {
+    "texto": "La enseñanza de hoy: Si nos equivocamos de camino, parar y esperar con calma nos ayuda a encontrarlo.",
+    "archivo": "19db4332a9c90439.m4a",
+    "segundos": 8.82
+   },
+   "escenas": [
+    {
+     "texto": "Un día, en la playa, el Abuelo Faro le regaló a Bruno una brújula. «La aguja siempre señala el norte», le explicó. «Y el norte lleva a mi faro. Si te pierdes, sigue la aguja.» Bruno la apretó en la mano, muy contento.",
+     "archivo": "098e32c6a9972247.m4a",
+     "segundos": 20.57
+    },
+    {
+     "texto": "«¿Me esperas en el faro?», preguntó Bruno. «Quiero llegar con la brújula, sin ayuda.» El Abuelo Faro se rio. «Allí te espero, con un vaso de leche con miel. Pero Pimienta irá contigo, para que no vayas solo.» Pimienta, el loro, se posó en el hombro de Bruno, y el abuelo se marchó por la orilla.",
+     "archivo": "0b4e86eba6d32cfb.m4a",
+     "segundos": 24.15
+    },
+    {
+     "texto": "Bruno miró la brújula, pero se equivocó de lado, porque todavía no sabía leerla. Caminó y caminó con Pimienta, y llegaron a las palmeras, no al faro. «¡Vaya!», dijo Bruno. Se sentó un momento, un poco enojado, y Pimienta se acurrucó a su lado.",
+     "archivo": "4816a3cdbd71a10b.m4a",
+     "segundos": 19.88
+    },
+    {
+     "texto": "Pero se levantó y volvió a mirar. Esta vez giró hacia la selva, con Pimienta en el hombro. Las lianas le hacían cosquillas y los pájaros cantaban, pero tampoco había faro. «Otra vez no», suspiró Bruno. «¡Otra vez, otra vez!», cantó Pimienta.",
+     "archivo": "85ce424a19faec15.m4a",
+     "segundos": 19.83
+    },
+    {
+     "texto": "Entonces Bruno se detuvo a pensar. Dejó la brújula quietecita sobre la mano y esperó a que la aguja dejara de bailar. Pimienta esperó también, sin hacer ruido. ¡Ahí estaba el norte! Así que Bruno giró los pies hasta que la aguja apuntó hacia adelante.",
+     "archivo": "a57e7eb3ed1d370c.m4a",
+     "segundos": 20.48
+    },
+    {
+     "texto": "Paso a paso, siguiendo la aguja, Bruno y Pimienta salieron de la selva. Y allí, sobre las rocas, estaba el faro. El Abuelo Faro aplaudió desde la puerta, porque Bruno no se había rendido. «¡Lo conseguí a la tercera!», gritó Bruno. «¡A la tercera!», repitió Pimienta.",
+     "archivo": "83291632a9be0900.m4a",
+     "segundos": 22.85
+    },
+    {
+     "texto": "Con el vaso de leche con miel entre las manos, Bruno miró el mar oscuro. La luz del faro empezó a girar. «Mañana te enseño a buscar el norte en las estrellas», dijo el Abuelo Faro. Pero Bruno ya estaba bostezando.",
+     "archivo": "e1ff6277cb0cbcdf.m4a",
+     "segundos": 18.02
+    }
+   ]
+  },
+  "mar:carrera_calma": {
+   "incluido": false,
+   "titulo": {
+    "texto": "La carrera de la playa",
+    "archivo": "b0347a4adc3c4307.m4a",
+    "segundos": 1.76
+   },
+   "ensenanza": {
+    "texto": "La enseñanza de hoy: Esperar a un amigo que va despacio vale más que llegar primero.",
+    "archivo": "b2c6f5aedd2e9c53.m4a",
+    "segundos": 7.01
+   },
+   "escenas": [
+    {
+     "texto": "En la playa, los niños del puerto organizaron una carrera hasta las palmeras. Leo quería ganar, y Vega también. También quería correr Calma, la tortuga, que era amiga de todos. Calma se puso en la línea de salida, muy seria, con el cuello estirado. Todos se rieron, porque nunca habían visto a una tortuga en una carrera.",
+     "archivo": "8c099d4d8db98683.m4a",
+     "segundos": 25.08
+    },
+    {
+     "texto": "«¡En sus marcas, listos, fuera!» Leo salió disparado, y Vega detrás, levantando arena. ¡Qué rápido corrían! Pero Calma iba despacito, despacito, porque las tortugas no saben correr.",
+     "archivo": "a2323b86b4e94dfa.m4a",
+     "segundos": 16.63
+    },
+    {
+     "texto": "Casi en la meta, Vega miró atrás. Calma estaba muy lejos, sola en medio de la playa. Tenía la cabeza agachada, porque nadie la esperaba. A Vega se le encogió el corazón.",
+     "archivo": "07a58cf6e6169f0c.m4a",
+     "segundos": 15.6
+    },
+    {
+     "texto": "Así que Vega dio media vuelta y volvió con Calma. «Te acompaño», le dijo. «Una carrera es más bonita con amigos.» Calma levantó la cabeza, con sus ojitos brillantes. Y siguieron despacito, contando las conchas del camino: una blanca, una rosa, una con rayas.",
+     "archivo": "0a9b519f5765ca16.m4a",
+     "segundos": 21.69
+    },
+    {
+     "texto": "Leo llegó el primero a las palmeras. Pero al ver a Vega con Calma, se rio y volvió también. «Yo también los acompaño», dijo. Y los tres llegaron a la meta a la vez, cantando una canción de piratas.",
+     "archivo": "a45191ff7dab995b.m4a",
+     "segundos": 14.95
+    },
+    {
+     "texto": "El sol se escondió en el mar, naranja como una mandarina. Calma estiró el cuello, feliz, y cerró los ojos sobre la arena tibia. Leo se sentó a un lado, y Vega al otro. «La próxima carrera, la hacemos al paso de Calma», dijo Leo. Ya nadie se acordaba de quién había llegado primero, porque la habían pasado de maravilla. Las olas hacían chss, y las gaviotas se iban a dormir.",
+     "archivo": "23bd04790dc05eb4.m4a",
+     "segundos": 31.39
+    }
+   ]
+  },
+  "mar:catalejo_rajado": {
+   "incluido": false,
+   "titulo": {
+    "texto": "El catalejo rajado",
+    "archivo": "68a4bce18eafb61d.m4a",
+    "segundos": 1.58
+   },
+   "ensenanza": {
+    "texto": "La enseñanza de hoy: Si culpan a alguien de lo que hicimos, decir «fui yo» lo libera, aunque nos tiemblen las rodillas.",
+    "archivo": "9e00e6df9bb9ecc9.m4a",
+    "segundos": 11.61
+   },
+   "escenas": [
+    {
+     "texto": "Junto al timón de la Gaviota colgaba un catalejo de latón, el más bonito de todos los mares. Era de la capitana Estela, y con ese catalejo había descubierto tres islas y una ballena blanca. «Cuando quieras mirar, me lo pides», le decía siempre a Bruno. Y Bruno siempre lo pedía, porque era la norma del barco.",
+     "archivo": "faf5c9e7a52f8138.m4a",
+     "segundos": 25.77
+    },
+    {
+     "texto": "Pero aquella tarde la capitana dormía la siesta, y Bruno tenía muchísimas ganas de jugar a los exploradores. Miró a un lado, miró al otro y descolgó el catalejo sin pedir permiso. «Solo un ratito», se dijo, y bajó corriendo a la bodega, donde los barriles parecían montañas.",
+     "archivo": "927a3b7478eade6d.m4a",
+     "segundos": 22.38
+    },
+    {
+     "texto": "En la bodega, Bruno trepó a un barril para otear el horizonte imaginario. Entonces el barco dio un bandazo, porque una ola grande lo empujó de lado, y el catalejo se le escurrió de las manos. Rodó por el suelo, chocó contra una caja y se detuvo, con el cristal rajado de lado a lado. A Bruno se le encogió el estómago.",
+     "archivo": "91e4f9e189e4ce3c.m4a",
+     "segundos": 26.15
+    },
+    {
+     "texto": "Sin decir nada, Bruno volvió a colgar el catalejo junto al timón y se escondió detrás del mástil. Al rato, la capitana Estela lo descolgó para mirar las nubes, y vio la raja. Los marineros se acercaron enseguida. «¡Fue el pulpo Remolino!», dijo uno. «Siempre anda escondiendo y rompiendo cosas.» En la borda, Remolino abrió mucho los ojos.",
+     "archivo": "6a3a6c51a5a87e1f.m4a",
+     "segundos": 29.81
+    },
+    {
+     "texto": "«¡Yo no fui!», protestó Remolino, y se puso de color rosa, de pura vergüenza. Pero nadie le creía, porque otras veces sí había escondido sombreros y lazos. Los marineros le pidieron que se marchara del barco, y la capitana Estela no sabía qué pensar. Bruno lo veía todo desde el mástil, y cada palabra le pesaba como una piedra en el bolsillo.",
+     "archivo": "da46a63926a17b5c.m4a",
+     "segundos": 28.0
+    },
+    {
+     "texto": "Entonces Bruno salió de detrás del mástil, con las mejillas ardiendo. «Fui yo», dijo. «Tomé el catalejo sin pedirlo, se me cayó en la bodega y se rajó. Remolino no hizo nada.» Se hizo un silencio tan grande que solo se oían las gaviotas. La capitana Estela bajó despacio el catalejo rajado. A Bruno le temblaban las rodillas, pero ya no tenía la piedra en el bolsillo.",
+     "archivo": "131c169fbc020324.m4a",
+     "segundos": 29.44
+    },
+    {
+     "texto": "La capitana Estela se agachó a la altura de Bruno. «Un catalejo se arregla», dijo despacio. «Pero que alguien cargue con una culpa que no es suya, eso cuesta mucho más de arreglar. Gracias por decir la verdad.» Luego miró a Remolino. «Y a ti te debemos una disculpa.» Remolino se puso de un color nuevo, entre naranja y dorado, que nadie le había visto nunca.",
+     "archivo": "c69739000231ae31.m4a",
+     "segundos": 31.49
+    },
+    {
+     "texto": "Al día siguiente, Remolino bajó con Bruno al arrecife. «Conozco un sitio donde el mar pule los cristales», le dijo. Entre las algas encontraron un trozo de vidrio redondo y transparente, suave como un caramelo. Con ese cristal, la capitana arregló el catalejo aquella misma tarde, y quedó tan bien que se veían las estrellas más pequeñas.",
+     "archivo": "a03b638b6958a076.m4a",
+     "segundos": 28.51
+    },
+    {
+     "texto": "Aquella noche, la capitana Estela prestó el catalejo a Bruno para mirar la luna. Remolino se había quedado a dormir en un balde de agua junto al timón. Bruno miraba el cielo, tranquilamente, y pensaba que la verdad, aunque cueste, deja el corazón ligero como una vela al viento.",
+     "archivo": "3a4d9c415253789a.m4a",
+     "segundos": 22.38
+    }
+   ]
+  },
+  "mar:tesoro_compartido": {
+   "incluido": false,
+   "titulo": {
+    "texto": "El tesoro de la Isla Quieta",
+    "archivo": "beddca071a89fb7f.m4a",
+    "segundos": 1.95
+   },
+   "ensenanza": {
+    "texto": "La enseñanza de hoy: Un tesoro para uno solo sirve poco; repartido, arregla barcas, pone tejados y hasta cambia a un pirata.",
+    "archivo": "3a73d7d397dc80ad.m4a",
+    "segundos": 12.59
+   },
+   "escenas": [
+    {
+     "texto": "La capitana Estela desenrolló un mapa sobre la arena de la playa. Una cruz roja marcaba una cueva en el centro de la Isla Quieta. «Dicen que allí hay un tesoro», contó. «Lo escondió hace cien años una tripulación que se fue a vivir a las estrellas.» Vega sintió un cosquilleo de aventura desde los pies hasta las orejas.",
+     "archivo": "718e60288473ae6c.m4a",
+     "segundos": 26.19
+    },
+    {
+     "texto": "Vega y la capitana Estela cruzaron la selva siguiendo el mapa, apartando lianas y saltando raíces. Los pájaros chillaban en lo alto, y una vez un mono les robó un plátano y se rio desde una rama. Vega iba adelante, contando los pasos que decía el mapa: cien hacia la palmera torcida, cincuenta hacia la roca con forma de sombrero.",
+     "archivo": "227cade612cd6f3d.m4a",
+     "segundos": 29.4
+    },
+    {
+     "texto": "La cueva brillaba con charcos de luz verde. Y en el fondo, medio enterrado en la arena, había un cofre de madera con herrajes dorados. Tardaron un buen rato en abrirlo, porque la cerradura estaba llena de óxido. Cuando por fin cedió, la tapa chirrió como una puerta vieja.",
+     "archivo": "775e6e3d9235dd2c.m4a",
+     "segundos": 22.11
+    },
+    {
+     "texto": "Dentro había monedas de oro, sí, pero también herramientas de carpintero y una carta. La capitana Estela la leyó en voz alta. La carta decía: «Para quien lo encuentre: este tesoro sirve para empezar algo nuevo. Úsalo bien». Vega y Estela se miraron. Pensaron en el puerto, donde las barcas de los pescadores tenían agujeros y la escuela no tenía tejado.",
+     "archivo": "46fcfd1ec2fd283f.m4a",
+     "segundos": 29.3
+    },
+    {
+     "texto": "De pronto, una voz de trueno chiquito retumbó en la entrada de la cueva. «¡Ese tesoro es mío!» Era el capitán Mostacho, con su sombrero de tres picos y su bigote enroscado. «Llevo diez años buscándolo», refunfuñó. «Lo quiero todo para mí, para llenar mi barco de oro.» La capitana Estela dio un paso al frente. Los marineros del pirata asomaban detrás, flacos y con cara de no haber comido bien en semanas.",
+     "archivo": "191610adef049830.m4a",
+     "segundos": 32.51
+    },
+    {
+     "texto": "Vega miró a los marineros de Mostacho, y luego miró el cofre. Entonces tuvo una idea. «Hay tesoro para todos», dijo. «Para arreglar las barcas del puerto, para el tejado de la escuela… y para que tus marineros coman caliente.» Y le tendió a Mostacho un buen puñado de monedas. La capitana Estela asintió, orgullosa. Mostacho se quedó con la boca abierta, porque nadie le había regalado nunca nada.",
+     "archivo": "be368c97cbac5c15.m4a",
+     "segundos": 33.34
+    },
+    {
+     "texto": "Una semana después, el puerto era una fiesta. Había banderines de colores colgados entre las casas, y los niños corrían por el muelle con cometas. Las barcas tenían tablas nuevas, la escuela tenía tejado rojo y los marineros de Mostacho ayudaban a clavar los últimos clavos. La capitana Estela pintaba la puerta de la escuela, y el propio Mostacho servía sopa a todo el mundo, con el delantal torcido. «Compartir es raro», le dijo a Vega, retorciéndose el bigote. «Pero se te queda un gusto muy bueno en la boca.»",
+     "archivo": "52b2323d1e3c8c5e.m4a",
+     "segundos": 44.4
+    },
+    {
+     "texto": "Cuando salieron las estrellas, Vega se sentó en el muelle con la capitana Estela. «Me pregunto si la tripulación de las estrellas nos está viendo», dijo. La capitana señaló una estrella que parpadeaba. «Seguro que sí. Y está feliz, porque el tesoro sirvió para empezar algo nuevo.» Vega bostezó y apoyó la cabeza en su hombro.",
+     "archivo": "8c2cab09401429d0.m4a",
+     "segundos": 26.38
+    }
+   ]
+  },
+  "mar:faro_apagado": {
+   "incluido": false,
+   "titulo": {
+    "texto": "La noche que se apagó el faro",
+    "archivo": "5bfab44099a9eb04.m4a",
+    "segundos": 2.18
+   },
+   "ensenanza": {
+    "texto": "La enseñanza de hoy: Pensar en quienes nos necesitan, y cantar bajito, nos ayuda a seguir adelante aunque tengamos miedo.",
+    "archivo": "233eac81ed1ab98e.m4a",
+    "segundos": 11.05
+   },
+   "escenas": [
+    {
+     "texto": "Aquella semana, el Abuelo Faro agarró un resfriado tremendo. Estornudaba tan fuerte que las gaviotas salían volando. «Tienes que quedarte en reposo», le dijo Bruno, que había ido a cuidarlo con una sopa caliente. «Pero ¿quién cuidará el faro esta noche?», se preocupó el abuelo. «Las barcas de los pescadores vuelven tarde, y hay niebla.»",
+     "archivo": "7aeae2105cd4527f.m4a",
+     "segundos": 27.17
+    },
+    {
+     "texto": "El abuelo había encendido la gran lámpara entre estornudo y estornudo, muy despacio. Pero cuando el sol se puso, la niebla subió del mar como una sábana gris. Y entonces pasó lo que el abuelo temía: la lámpara parpadeó dos veces y se apagó. El mar quedó oscuro. A lo lejos, entre la niebla, se oía la bocina de una barca que buscaba el camino de vuelta, porque sin la luz del faro nadie sabe dónde están las rocas.",
+     "archivo": "0c0c49af353d1244.m4a",
+     "segundos": 33.53
+    },
+    {
+     "texto": "El Abuelo Faro le dio a Bruno un farol pequeño, encendido. «Hay que subir los ciento veinte escalones y encender la lámpara con esta llama», dijo con la voz ronca. «Yo no puedo, me tiemblan las piernas. ¿Te atreves?» A Bruno también le temblaban las piernas. Arriba estaba muy oscuro, y los escalones crujían.",
+     "archivo": "19d45e1ecb9adcc8.m4a",
+     "segundos": 26.1
+    },
+    {
+     "texto": "Bruno se quedó un momento delante de la puerta de la escalera. Dentro, todo estaba negro como la tinta de un pulpo. «¿Y si me equivoco de escalón?», preguntó. El Abuelo Faro sonrió desde su sillón, envuelto en tres bufandas. «Cuando yo era pequeño y me daba miedo subir, cantaba», le dijo. «La canción de los farolillos. La oscuridad no soporta las canciones.» Y empezó a tararear, con su voz ronca, una melodía lenta y bonita, la misma que su madre le cantaba cuando las noches de niebla no lo dejaban dormir. Bruno la repitió bajito. Y luego un poco más alto, porque cantando el miedo parecía más pequeño.",
+     "archivo": "20ea48ccc1d8619e.m4a",
+     "segundos": 49.5
+    },
+    {
+     "texto": "Y pensó también en los pescadores perdidos en la niebla, y apretó el asa del farol. Empezó a subir. Diez escalones, veinte, treinta. Las sombras bailaban en la pared, alargadas como gigantes, pero eran solo sombras. Cuarenta, cincuenta. El viento silbaba por las ventanas. Bruno seguía cantando bajito la canción de los farolillos, para hacerse compañía.",
+     "archivo": "9e2a8c29ede974dc.m4a",
+     "segundos": 30.7
+    },
+    {
+     "texto": "Ciento veinte. Arriba, la lámpara esperaba, enorme y fría. Bruno abrió la portezuela, acercó la llama del farol a la mecha y sopló suavemente, como le había enseñado el abuelo. ¡Fuum! La luz se encendió, giró sobre sí misma y lanzó un rayo dorado a través de la niebla.",
+     "archivo": "925a7b6e5dcb32cb.m4a",
+     "segundos": 22.38
+    },
+    {
+     "texto": "Desde lo alto, Bruno vio cómo, una a una, las lucecitas de las barcas cambiaban de rumbo y se acercaban al puerto. La última era la de Ola, la pescadora, que agitaba los brazos desde la proa. Abajo, en el muelle, la gente aplaudía y gritaba el nombre de Bruno.",
+     "archivo": "af2536a35e9e5927.m4a",
+     "segundos": 21.18
+    },
+    {
+     "texto": "Cuando bajó, el Abuelo Faro lo esperaba con una manta y una sonrisa enorme. «Seguro que tenías miedo», le dijo. «Muchísimo», confesó Bruno. «Pues eso es ser valiente», dijo el abuelo. «Subir con miedo.» Bruno le contó cómo las sombras parecían gigantes y cómo, al final, solo eran sombras. El abuelo escuchó cada palabra, asintiendo despacio. Y Bruno se quedó dormido allí mismo, en el sillón, mientras la luz del faro giraba y giraba sobre el mar.",
+     "archivo": "c28c65e840ab1e21.m4a",
+     "segundos": 37.71
+    }
+   ]
+  },
+  "mar:marea_baja": {
+   "incluido": false,
+   "titulo": {
+    "texto": "Yo me sé el camino",
+    "archivo": "bc4358af8a521366.m4a",
+    "segundos": 1.44
+   },
+   "ensenanza": {
+    "texto": "La enseñanza de hoy: Cuando dejamos de fingir que lo sabemos todo y decimos «me equivoqué», las ideas y la ayuda empiezan a llegar.",
+    "archivo": "2ca7c1ed14f65039.m4a",
+    "segundos": 12.07
+   },
+   "escenas": [
+    {
+     "texto": "Vega se conocía la Isla Quieta mejor que nadie, o eso decía siempre. «Me sé todos los atajos», le contó a Leo, el grumete nuevo, mientras paseaban por la playa. «Por la laguna se llega antes al barco. Sígueme y verás.» Leo dudó un poco, porque el sol ya bajaba, pero la siguió.",
+     "archivo": "31a96a9a66fef086.m4a",
+     "segundos": 22.66
+    },
+    {
+     "texto": "Al principio todo fue bien. Saltaban de roca en roca por la orilla de la laguna, riéndose de las salpicaduras. Pero la marea estaba subiendo, y el agua iba tapando las rocas una a una. De pronto, Vega y Leo se encontraron en una roca grande, con agua por todas partes. El camino de vuelta había desaparecido.",
+     "archivo": "0ca94f1543ba4e0d.m4a",
+     "segundos": 24.85
+    },
+    {
+     "texto": "«No pasa nada», dijo Vega, aunque el corazón le iba muy deprisa. «Seguro que por allí hay otro atajo.» Pero no lo había. Leo se abrazaba las rodillas y miraba el agua, que seguía subiendo despacito. Vega sabía que se había equivocado, pero le costaba decirlo, porque había presumido muchísimo. Le daba vergüenza que Leo pensara que no sabía nada.",
+     "archivo": "40e7ebce8e6619ba.m4a",
+     "segundos": 29.72
+    },
+    {
+     "texto": "Al fin, Vega se sentó junto a Leo. «Me equivoqué», dijo. «No conocía este camino. Presumí demasiado, y lo siento.» Leo levantó la cabeza y sonrió un poquito. «Gracias por decirlo», contestó. «Yo tampoco lo sabía. Ahora pensemos juntos.» Y en cuanto dejaron de fingir, las ideas empezaron a llegar.",
+     "archivo": "27bf543ed22c68f2.m4a",
+     "segundos": 24.38
+    },
+    {
+     "texto": "«¡Nácar!», llamó Vega con todas sus fuerzas. «¡Nácar, necesitamos ayuda!» Al momento, una cola verde salpicó entre las rocas. La sirena asomó la cabeza, con los ojos muy abiertos. «¿Qué hacen ahí arriba?», preguntó. «Presumí de saberme el camino y la marea nos atrapó a Leo y a mí», confesó Vega. Nácar no se rio. Solo dijo: «Pedir ayuda es de listos de verdad».",
+     "archivo": "761c8679895c45b9.m4a",
+     "segundos": 32.09
+    },
+    {
+     "texto": "Nácar conocía cada piedra de la laguna, incluso las que estaban bajo el agua. «Pisen donde yo les diga», explicó. Y así, piedra a piedra, siguiendo su voz, Vega y Leo cruzaron hasta la playa. Leo iba detrás, agarrado a la camisa de Vega. El agua les llegaba a las rodillas, pero no se cayeron ni una vez.",
+     "archivo": "cf4b50526e7c172f.m4a",
+     "segundos": 23.96
+    },
+    {
+     "texto": "Ya en la arena, Nácar les explicó el secreto de la laguna. «El mar respira», dijo. «Dos veces al día sube la marea, y dos veces baja. Cuando la luna está gorda, sube todavía más.» Vega escuchaba con atención, sin interrumpir, porque se había dado cuenta de que había muchísimas cosas que no sabía. Leo hacía preguntas, y Nácar las contestaba todas, salpicando con la cola. «Mañana les enseño a leer las mareas en las conchas de la orilla», prometió la sirena. Los cangrejos también lo saben, y por eso corren a esconderse antes. Luego se zambulló con un chapuzón que los empapó, y los dos se echaron a reír.",
+     "archivo": "9b5fcddcc915574c.m4a",
+     "segundos": 51.83
+    },
+    {
+     "texto": "En la playa, el sol se hundía naranja en el mar. «La próxima vez», dijo Vega, «preguntaremos antes de buscar atajos». Leo se rio. Nácar los despidió agitando la cola. Más tarde, ya en su hamaca, Vega pensó que admitir un error le había hecho sentir más grande, no más pequeño. Y se durmió con ese pensamiento calentito.",
+     "archivo": "fc3f71242eb6fbc8.m4a",
+     "segundos": 26.8
+    }
+   ]
+  },
+  "mar:vela_rota": {
+   "incluido": false,
+   "titulo": {
+    "texto": "La vela remendada",
+    "archivo": "8ed4053824876d5e.m4a",
+    "segundos": 1.44
+   },
+   "ensenanza": {
+    "texto": "La enseñanza de hoy: Cuando algo duele o no sale, una ayudita y mucha paciencia, puntada a puntada, cierran hasta el desgarrón más grande.",
+    "archivo": "d008a8f131777ecb.m4a",
+    "segundos": 13.79
+   },
+   "escenas": [
+    {
+     "texto": "Navegaban hacia la Isla de las Conchas cuando una ráfaga de viento sacudió el barco. ¡Raaas! La vela grande se rasgó de arriba abajo, con un ruido de sábana vieja. El barco perdió velocidad y empezó a balancearse sin rumbo. La capitana Estela miró el desgarrón y suspiró. «Habrá que coserla antes de que vuelva a soplar fuerte.»",
+     "archivo": "558d0ebda107e9e0.m4a",
+     "segundos": 26.52
+    },
+    {
+     "texto": "Tío Cazo, el cocinero, sacó una aguja enorme, gruesa como un dedo, y un ovillo de hilo encerado. «Yo quiero ayudar», dijo Bruno. Tío Cazo le enseñó la puntada: la aguja entra, da la vuelta y sale. Parecía fácil. Pero la lona era dura como una tabla, y la aguja no quería atravesarla.",
+     "archivo": "ea651e3efe3c2c3b.m4a",
+     "segundos": 22.43
+    },
+    {
+     "texto": "Bruno empujó la aguja, y se le dobló la muñeca. Lo intentó otra vez, y el hilo se enredó en un nudo gordo. A la tercera, se pinchó el dedo, ¡ay! «No me sale», le dijo a Tío Cazo, y se le humedecieron los ojos. Tenía ganas de dejarlo y marcharse a jugar con el loro Pimienta.",
+     "archivo": "cb56a6fa63b4d763.m4a",
+     "segundos": 22.29
+    },
+    {
+     "texto": "Tío Cazo se sentó a su lado. «Cuando aprendí a coser, rompí siete agujas», le contó. «Y la octava me salió torcida.» Luego le dio un dedal de metal para proteger el dedo. «Empuja con esto, despacito, y respira.» Bruno se secó los ojos, se puso el dedal y volvió a intentarlo, porque la vela era de todos.",
+     "archivo": "e50774d014609041.m4a",
+     "segundos": 26.05
+    },
+    {
+     "texto": "Una puntada. La aguja entró, dio la vuelta y salió. Otra puntada, y otra más. Algunas quedaban torcidas, y Bruno las deshacía y las volvía a hacer. Las estrellas fueron saliendo una a una, y Bruno seguía cosiendo, con la lengua afuera de tanto concentrarse. A su lado, Tío Cazo se había quedado roncando. Poco a poco, la fila de puntadas pequeñitas fue creciendo por la vela.",
+     "archivo": "a65a3afaa0a9205c.m4a",
+     "segundos": 32.09
+    },
+    {
+     "texto": "A medianoche, la capitana Estela subió a cubierta con una taza de chocolate caliente. Vio a Bruno todavía cosiendo, y a Tío Cazo roncando sobre un rollo de cuerda. «¿Sigues aquí?», preguntó en voz baja. «Me quedan veinte puntadas», contestó Bruno, sin levantar la vista. La capitana no le dijo que lo dejara. Se sentó a su lado y le sujetó la lona tirante, para que la aguja entrara mejor. Juntas, la aguja y la paciencia fueron cerrando el último trozo del desgarrón, mientras la luna cruzaba el cielo. A veces la capitana le contaba historias de otras velas que había cosido, en otros barcos y otros mares, y Bruno se reía bajito para no despertar a nadie. Al final de la noche, el desgarrón quedó cerrado.",
+     "archivo": "c989284e411032e0.m4a",
+     "segundos": 56.42
+    },
+    {
+     "texto": "Por la mañana, los marineros izaron la vela remendada. El viento la hinchó, ¡fuum!, y aguantó. Ni una puntada se soltó. La capitana Estela pasó la mano por la costura. «Esto lo cosió alguien que no se rinde», dijo, y le guiñó un ojo a Bruno. Tío Cazo aplaudió con las dos manos llenas de harina.",
+     "archivo": "f55c4dcc6b3c47a9.m4a",
+     "segundos": 23.73
+    },
+    {
+     "texto": "Esa noche, Bruno se acostó en su hamaca con el dedo un poco dolorido y el corazón en paz. Por el ojo de buey se veía la vela, blanca bajo la luna, con su costura como una cicatriz de aventura. Bruno contó las puntadas hasta que se le cerraron los ojos.",
+     "archivo": "5e9b2e5f9e2a0155.m4a",
+     "segundos": 19.88
+    }
+   ]
+  },
+  "mar:remolino_juega": {
+   "incluido": false,
+   "titulo": {
+    "texto": "Las travesuras de Remolino",
+    "archivo": "2bc403acbb71379a.m4a",
+    "segundos": 1.9
+   },
+   "ensenanza": {
+    "texto": "La enseñanza de hoy: A veces quien hace travesuras solo quiere un amigo; preguntar por qué, en vez de regañar, puede abrirle la puerta.",
+    "archivo": "863110eb897e843c.m4a",
+    "segundos": 12.49
+   },
+   "escenas": [
+    {
+     "texto": "Desde hacía una semana, en la Gaviota pasaban cosas raras. Los sombreros aparecían colgados del mástil, las cuerdas se ataban solas en lazos imposibles y el loro Pimienta aparecía por la mañana con un calcetín en la cabeza. Los marineros refunfuñaban, y Pimienta repetía sin parar: «¡Travesura, travesura!».",
+     "archivo": "9d66d632900be807.m4a",
+     "segundos": 26.01
+    },
+    {
+     "texto": "Una noche, Vega se escondió detrás de un barril para descubrir al culpable. Al rato, un brazo morado salió del agua, luego otro, y luego seis más. Era el pulpo Remolino. Con mucho cuidado, empezó a atar los cordones de las botas de un marinero que roncaba. Vega salió de su escondite. «¡Te atrapé!»",
+     "archivo": "c8ebd87435869acc.m4a",
+     "segundos": 25.45
+    },
+    {
+     "texto": "Remolino se puso de color rosa, de pura vergüenza, y soltó una nubecita de tinta. Ya iba a escaparse, pero Vega le preguntó: «¿Por qué haces tantas travesuras?». El pulpo se quedó un momento pensativo, con los ocho brazos enredados. «Porque nadie juega conmigo», dijo al fin. «En el arrecife todos dicen que soy demasiado raro.»",
+     "archivo": "b85e4d3f6e6a4ebe.m4a",
+     "segundos": 27.49
+    },
+    {
+     "texto": "A Vega se le encogió el corazón. Se acordó de una vez que nadie quería jugar con Vega en el puerto, y de lo largo que se le hizo aquel día. «Yo juego contigo», dijo. «Pero sin atar botas. ¿Qué te gusta hacer?» A Remolino se le iluminaron los ojos, porque nadie se lo había preguntado nunca.",
+     "archivo": "cae8bea34bcf393b.m4a",
+     "segundos": 24.33
+    },
+    {
+     "texto": "Al día siguiente, Remolino le enseñó a Vega su arrecife. Sabía cambiar de color para parecer una roca, una esponja o un coral. Jugaron al escondite entre las algas, y Vega no lo encontró ni una sola vez, aunque buscó por todas partes. Luego Remolino le enseñó a hacer burbujas con forma de anillo, y Vega se rio tanto que tragó agua.",
+     "archivo": "45bd17f408661d45.m4a",
+     "segundos": 29.3
+    },
+    {
+     "texto": "Después, Remolino la llevó a un lugar secreto: un barco antiguo, hundido hacía muchísimos años y cubierto de corales de colores. Los peces entraban y salían por las ventanas como si fuera su casa. «Aquí vengo cuando estoy triste», le contó el pulpo. «Nunca se lo había enseñado a nadie.» Vega se sintió importante, porque compartir un secreto es un regalo muy grande. En el timón dormía una tortuga vieja. Remolino había encontrado aquel barco cuando era muy pequeño y todavía no sabía cambiar de color. Desde entonces lo cuidaba y le quitaba las algas de las ventanas. Y cuando subieron a respirar, ya no eran solo dos que jugaban juntos: eran amigos.",
+     "archivo": "73ed1efdc5057430.m4a",
+     "segundos": 52.48
+    },
+    {
+     "texto": "Esa tarde, Remolino subió al barco y, con sus ocho brazos, desató todos los lazos imposibles en un momento. Devolvió los sombreros y le quitó el calcetín a Pimienta. Luego pidió perdón a los marineros, uno por uno. Los marineros se miraron, se rieron y lo invitaron a merendar galletas de Tío Cazo.",
+     "archivo": "02c27890f4ee6697.m4a",
+     "segundos": 22.43
+    },
+    {
+     "texto": "Desde entonces, cada tarde, Vega y Remolino jugaban en la laguna, entre las rocas y las algas verdes. Y por la noche, el pulpo se quedaba un rato en la borda, contando historias del fondo del mar hasta que a Vega se le cerraban los ojos. Ya no hacía travesuras, porque ya no le hacía falta llamar la atención de nadie: había encontrado una amistad de verdad.",
+     "archivo": "7dcecfd198e3ca57.m4a",
+     "segundos": 28.51
+    }
+   ]
+  },
+  "cosmos:cohete_ayuda": {
+   "incluido": false,
+   "titulo": {
+    "texto": "El cohete que no volaba",
+    "archivo": "b27ddb474cae6af7.m4a",
+    "segundos": 1.72
+   },
+   "ensenanza": {
+    "texto": "La enseñanza de hoy: Con un poquito de ayuda, el cohete vuela.",
+    "archivo": "6c5868098f44c16b.m4a",
+    "segundos": 5.85
+   },
+   "escenas": [
+    {
+     "texto": "Orión tenía un cohete de juguete, blanco y rojo. Quería que volara. «Yo sé hacerlo», dijo Orión, muy seguro.",
+     "archivo": "a519fb2187bd6e8e.m4a",
+     "segundos": 13.19
+    },
+    {
+     "texto": "Orión lo lanzó: ¡zas! Pero el cohete de juguete cayó: ¡plof!, porque le faltaba algo. Lo lanzó otra vez. ¡Plof! El cohete no volaba nada de nada.",
+     "archivo": "d342d8d6d7d210be.m4a",
+     "segundos": 14.91
+    },
+    {
+     "texto": "Allí estaba Tornillo, el robot, arreglando cosas. Orión lo miró un poquito. «¿Me ayudas?», preguntó Orión.",
+     "archivo": "7bc28192b89c02de.m4a",
+     "segundos": 10.68
+    },
+    {
+     "texto": "Tornillo sacó su llave pequeñita. Clic, clic, clac. Le puso una hélice nueva al cohete. «Ahora sí», pitó Tornillo.",
+     "archivo": "3e58f39a434b20ce.m4a",
+     "segundos": 13.84
+    },
+    {
+     "texto": "Salieron a la aldea. Orión lanzó el cohete. ¡Fiu! Voló alto, alto, entre las nubes. «¡Gracias, Tornillo!», dijo Orión, porque juntos era más fácil.",
+     "archivo": "afaa83c80ea2d846.m4a",
+     "segundos": 15.14
+    },
+    {
+     "texto": "Por la noche, el cohete de juguete dormía en la mesita. Orión lo miró y sonrió, porque ahora volaba. Pedir ayuda había sido fácil. Y se durmió.",
+     "archivo": "f64c0a7e6fe59e92.m4a",
+     "segundos": 12.26
+    }
+   ]
+  },
+  "cosmos:estrellita_perdida": {
+   "incluido": false,
+   "titulo": {
+    "texto": "La estrellita perdida",
+    "archivo": "08cb8ede24851714.m4a",
+    "segundos": 1.58
+   },
+   "ensenanza": {
+    "texto": "La enseñanza de hoy: Ayudamos a quien está lejos de casa.",
+    "archivo": "eb8fc36cc8f65cb0.m4a",
+    "segundos": 5.15
+   },
+   "escenas": [
+    {
+     "texto": "Una noche, algo cayó del cielo: ¡plin! Lira corrió a mirar. Entre las nubes había una estrellita. Era pequeña, amarilla y brillaba mucho.",
+     "archivo": "b35f5d366aa2e0a8.m4a",
+     "segundos": 13.47
+    },
+    {
+     "texto": "La estrellita estaba triste. Quería volver al cielo con sus amigas. Pero sola no podía subir. «¿Te ayudo?», dijo Lira.",
+     "archivo": "4572ca507e62eb85.m4a",
+     "segundos": 11.56
+    },
+    {
+     "texto": "Chispa, el perrito, vino corriendo: guau, guau. Movía la cola, porque quería ayudar también. Así que Lira, Chispa y la estrellita fueron juntos al globo grande de la aldea.",
+     "archivo": "daad5f5d70e26b23.m4a",
+     "segundos": 16.58
+    },
+    {
+     "texto": "Lira ató la estrellita al globo grande. Uno, dos y tres: ¡arriba! El globo subió, subió, subió. Chispa ladraba de alegría. Y la estrellita volvió al cielo, con sus amigas.",
+     "archivo": "6677138b9d415652.m4a",
+     "segundos": 17.09
+    },
+    {
+     "texto": "Desde arriba, la estrellita brilló más que nunca. Parpadeaba así: hola, hola. «¡Gracias!», parecía decir. Chispa movía la cola sin parar.",
+     "archivo": "457fbb44b3f2bd92.m4a",
+     "segundos": 13.98
+    },
+    {
+     "texto": "Lira se fue a dormir. Como la ventana estaba abierta, desde su cama se veía la estrellita, brillando solo para Lira. Lira le dijo buenas noches. Y cerró los ojos.",
+     "archivo": "3b703e19f42d3f6c.m4a",
+     "segundos": 14.35
+    }
+   ]
+  },
+  "cosmos:globo_nube": {
+   "incluido": false,
+   "titulo": {
+    "texto": "El globo de Nube",
+    "archivo": "af241a1025726cd2.m4a",
+    "segundos": 1.49
+   },
+   "ensenanza": {
+    "texto": "La enseñanza de hoy: Si algo se escapa, lo contamos.",
+    "archivo": "75a32a0c56f42ea3.m4a",
+    "segundos": 4.5
+   },
+   "escenas": [
+    {
+     "texto": "Nube tenía un globo rojo, grande y redondo. Se lo dejó a Orión un ratito. «Agárralo fuerte», dijo Nube.",
+     "archivo": "9f69353923bbf5ec.m4a",
+     "segundos": 9.89
+    },
+    {
+     "texto": "Orión jugaba con el globo, salta que salta. Pero se le escapó la cuerda, porque saltaba mucho. ¡Fiu! El globo voló alto, alto, hasta las nubes.",
+     "archivo": "32fcb40699d3f038.m4a",
+     "segundos": 14.49
+    },
+    {
+     "texto": "Nube volvió y miró por todas partes. «¿Y mi globo?», preguntó. A Orión se le apretó la barriga, porque no quería contarlo.",
+     "archivo": "903f6b77241e8d7d.m4a",
+     "segundos": 10.08
+    },
+    {
+     "texto": "Orión respiró hondo. «Se me escapó», dijo Orión. «Lo siento mucho, Nube.» Nube puso la cara un poco triste. Pero luego sonrió, porque Orión se lo había contado.",
+     "archivo": "303022f4ffbd1a08.m4a",
+     "segundos": 15.56
+    },
+    {
+     "texto": "«Mira», dijo Nube, y señaló el cielo. El globo bailaba en el cielo, muy alto. «Es un globo del cielo», se rio Nube. Y Orión se rio también.",
+     "archivo": "d89d1b02270cbe3c.m4a",
+     "segundos": 15.42
+    },
+    {
+     "texto": "Por la noche, la barriga de Orión ya no estaba apretada. Estaba tranquilita y calentita. Orión bostezó, muy grande. Y se durmió.",
+     "archivo": "f3956e819fbf0726.m4a",
+     "segundos": 12.17
+    }
+   ]
+  },
+  "cosmos:noche_oscura": {
+   "incluido": false,
+   "titulo": {
+    "texto": "La luz de la noche",
+    "archivo": "7a1af7f9ece78f05.m4a",
+    "segundos": 1.44
+   },
+   "ensenanza": {
+    "texto": "La enseñanza de hoy: De la mano, vemos que la noche brilla.",
+    "archivo": "2bb0eab9e85ab00f.m4a",
+    "segundos": 5.43
+   },
+   "escenas": [
+    {
+     "texto": "Era hora de dormir, y la luz se apagó: clic. Lira abrió mucho los ojos. Todo se puso muy negro, así que Lira se tapó con la manta hasta la nariz.",
+     "archivo": "3adcc4c574c1c731.m4a",
+     "segundos": 14.21
+    },
+    {
+     "texto": "Entonces se oyó un pitido: pi, pi. Era Tornillo, el robot. Sus ojos de pantalla brillaban verdes. «¿Vamos a ver la noche?», le preguntó Tornillo a Lira.",
+     "archivo": "0c0e5bfda6729f62.m4a",
+     "segundos": 15.93
+    },
+    {
+     "texto": "Lira no quería salir de la manta, porque afuera estaba muy negro. Pero Tornillo le dio la mano, fría y suave. «Un pasito», dijo Tornillo. Y Lira dio un pasito, y otro.",
+     "archivo": "fc94c33ae8c918a3.m4a",
+     "segundos": 16.07
+    },
+    {
+     "texto": "Subieron al observatorio. Y arriba… ¡oh! Lira y Tornillo vieron el cielo lleno de estrellas. Una, dos, tres, ¡muchísimas! Brillaban como lucecitas, una al lado de otra. ¡La noche no es negra: está llena de luz!",
+     "archivo": "2c2b2fd4a344cb3c.m4a",
+     "segundos": 16.16
+    },
+    {
+     "texto": "Lira y Tornillo contaron estrellas. Una para mamá, una para papá, una para la abuela. Tornillo pitaba bajito: pi, pi, pi.",
+     "archivo": "267e6f6d079127f9.m4a",
+     "segundos": 14.44
+    },
+    {
+     "texto": "Al volver a dormir, Tornillo se quedó a su lado. Ahora Lira lo sabía: la noche era una manta de estrellas. Lira cerró los ojos, despacito, y se durmió.",
+     "archivo": "6df8b11fe61ac429.m4a",
+     "segundos": 13.84
+    }
+   ]
+  },
+  "cosmos:colina_cristal": {
+   "incluido": false,
+   "titulo": {
+    "texto": "La flor de la colina de cristal",
+    "archivo": "66d35a7b643984c9.m4a",
+    "segundos": 2.18
+   },
+   "ensenanza": {
+    "texto": "La enseñanza de hoy: A veces no hay que intentarlo más fuerte, sino de otra manera.",
+    "archivo": "abd30ad2ad5c1534.m4a",
+    "segundos": 7.48
+   },
+   "escenas": [
+    {
+     "texto": "En el planeta de cristal, todo brillaba como el hielo. Arriba de una colina, Orión vio una flor de cristal, que brillaba de todos los colores. «Se la llevaré a Nube», pensó. «Le encantan las flores.»",
+     "archivo": "325bdc292772a24b.m4a",
+     "segundos": 17.41
+    },
+    {
+     "texto": "Orión empezó a subir. Pero la colina era de cristal, y resbalaba muchísimo. A mitad de camino, ¡fiu!, se deslizó hasta abajo, como por un tobogán. Lo intentó otra vez, y otra vez abajo. Orión se sentó en el suelo, con el trasero frío y ganas de llorar.",
+     "archivo": "40b70e9a23e21807.m4a",
+     "segundos": 20.67
+    },
+    {
+     "texto": "Entonces apareció Tornillo, el robot, que exploraba el planeta. «¿Qué pasa?», preguntó. «No puedo subir», dijo Orión. Tornillo se rascó la cabeza con un clic. «A lo mejor no hay que subir más fuerte», dijo. «A lo mejor hay que subir de otra manera.»",
+     "archivo": "c39c9f41bbda8137.m4a",
+     "segundos": 20.9
+    },
+    {
+     "texto": "Así que Orión lo intentó otra vez, pensando un poquito. Esta vez no subió recto. Subió en zigzag, de un lado a otro, como las cabras de las montañas. Tornillo le enseñaba dónde pisar: solo donde el cristal tenía rayitas, porque allí no resbalaba.",
+     "archivo": "dc0341fc9a5c8df6.m4a",
+     "segundos": 19.32
+    },
+    {
+     "texto": "¡Y llegó arriba! Desde la cima, el planeta entero brillaba a sus pies. Orión recogió la flor de cristal con mucho cuidado. «¡Lo conseguí!», gritó, porque no se había rendido. A su lado, Tornillo pitaba y aplaudía: pi, pi, pi.",
+     "archivo": "c3612a62a11f8dc8.m4a",
+     "segundos": 18.39
+    },
+    {
+     "texto": "De vuelta en la aldea, Orión le dio la flor de cristal a Nube. Nube abrió mucho los ojos. «¡Brilla como un arcoíris!», dijo, y le dio un abrazo. Orión le contó lo de los resbalones, y se rieron a la vez.",
+     "archivo": "7423e4e43a483b05.m4a",
+     "segundos": 15.74
+    },
+    {
+     "texto": "Esa noche, la flor de cristal brillaba en casa de su amiga, y se veía desde toda la aldea. Orión la miró desde lejos, bostezó y cerró los ojos. Y soñó con colinas de cristal, que ya no le daban ningún miedo.",
+     "archivo": "281c9662b71732db.m4a",
+     "segundos": 17.83
+    }
+   ]
+  },
+  "cosmos:fiesta_tornillo": {
+   "incluido": false,
+   "titulo": {
+    "texto": "La fiesta de Tornillo",
+    "archivo": "9462272a448691a3.m4a",
+    "segundos": 1.72
+   },
+   "ensenanza": {
+    "texto": "La enseñanza de hoy: Un buen regalo nace de pensar en lo que le gusta a nuestro amigo.",
+    "archivo": "5562d546acbece5f.m4a",
+    "segundos": 6.5
+   },
+   "escenas": [
+    {
+     "texto": "Aquel día hacía un año que Tornillo, el robot, había llegado a la aldea. Lira quería darle una sorpresa. Pip y Nube también querían ayudar. Pero ¿qué se le regala a un robot?",
+     "archivo": "bc9ddd2bd0dfef2a.m4a",
+     "segundos": 16.95
+    },
+    {
+     "texto": "«Un pastel», dijo Pip. «Los robots no comen pastel», se rio Nube. «Unas flores», dijo Nube. «Los robots no huelen flores», se rio Pip. Lira pensó en Tornillo: le encantaban las tuercas, las preguntas raras y arreglar cosas.",
+     "archivo": "484ad4ad1f0a5c8d.m4a",
+     "segundos": 18.02
+    },
+    {
+     "texto": "Entonces Lira tuvo una idea. A Tornillo lo que más le gustaba era arreglar cosas, ¡y su llave estaba vieja y torcida! Siempre la usaba para ayudar a todos, pero nunca pedía nada. Así que fueron a ver al panadero, que de joven había sido herrero. Entre todos hicieron una llave inglesa nueva y brillante, con un lazo rojo.",
+     "archivo": "307d57fa6320061a.m4a",
+     "segundos": 26.24
+    },
+    {
+     "texto": "Por la tarde, entraron en el taller de puntillas. «¡Sorpresa!», gritaron Lira, Pip y Nube. Tornillo dio un salto, y le dieron la llave inglesa nueva. Sus ojos de pantalla se pusieron con forma de corazón. «¿Es para mí?», pitó. «Es para ti, para que sigas arreglando cosas, que es lo que más te gusta», dijo Lira.",
+     "archivo": "b9b9a9d07a4f6230.m4a",
+     "segundos": 24.29
+    },
+    {
+     "texto": "Luego jugaron al juego favorito de Tornillo: hacer preguntas raras. «¿Las nubes tienen cosquillas?», preguntó Tornillo. «¿La luna se lava la cara?», preguntó Pip. «¿Las estrellas usan pijama?», preguntó Nube. Se rieron tanto que se les saltaron las lágrimas, porque las preguntas de Tornillo eran lo más divertido del mundo.",
+     "archivo": "8ec94b1e9087cb50.m4a",
+     "segundos": 26.66
+    },
+    {
+     "texto": "Esa noche, Lira se metió en la cama muy contenta. Por la ventana se veía la luz del taller, porque Tornillo seguía admirando su llave inglesa nueva. Pi, pi, hizo el robot, como diciendo gracias. Y Lira se durmió.",
+     "archivo": "080d81ff71e0d63a.m4a",
+     "segundos": 20.2
+    }
+   ]
+  },
+  "cosmos:galletas_estrella": {
+   "incluido": false,
+   "titulo": {
+    "texto": "Las galletas de estrella",
+    "archivo": "bd9fc459f3d439fb.m4a",
+    "segundos": 1.81
+   },
+   "ensenanza": {
+    "texto": "La enseñanza de hoy: Cuando repartimos lo que tenemos, los amigos traen lo suyo y la merienda crece.",
+    "archivo": "0245f306a017fa59.m4a",
+    "segundos": 8.03
+   },
+   "escenas": [
+    {
+     "texto": "Aquella mañana, Orión ayudó al panadero de la aldea a llevar los sacos de harina. Pesaban mucho, pero Orión no se rindió. «Toma, por ayudarme», dijo el panadero, y le dio una bolsa con cinco galletas con forma de estrella. Olían a miel y estaban calentitas.",
+     "archivo": "38516cd06b976457.m4a",
+     "segundos": 20.76
+    },
+    {
+     "texto": "En la plaza, Orión vio a Pip sentado en una nube, muy triste. Se le había caído su merienda por el borde de la aldea, y ya no podía recogerla. Orión miró su bolsa. Luego sacó una galleta y se la dio a Pip. «¡Gracias!», dijo Pip, y se le iluminó la cara.",
+     "archivo": "7f720bbae880b3d8.m4a",
+     "segundos": 20.76
+    },
+    {
+     "texto": "Más allá estaba la cartera de la aldea, que repartía cartas volando en su globo. Llevaba toda la mañana trabajando, así que tenía mucha hambre. Orión le ofreció otra galleta. «¡Qué buena idea!», dijo la cartera, y se la comió despacito.",
+     "archivo": "a25af02f374477ab.m4a",
+     "segundos": 18.81
+    },
+    {
+     "texto": "Luego llegaron Nube y Chispa, el perrito. Chispa movía la cola sin parar, mirando la bolsa. Orión le dio una galleta a Nube y media a Chispa, que se la comió de un bocado. Ahora en la bolsa solo quedaba una galleta y media.",
+     "archivo": "46f3b0e80049071f.m4a",
+     "segundos": 18.34
+    },
+    {
+     "texto": "Al atardecer, todos aparecieron en la puerta de Orión. Pip traía jugo, Nube traía fresas y la cartera traía una carta con un dibujo. «Para la merienda de los amigos», dijeron. Se sentaron juntos en la nube más blanda. Orión partió en trocitos la galleta y media que le quedaba, así que todos la probaron.",
+     "archivo": "5fde0e319dffc475.m4a",
+     "segundos": 24.66
+    },
+    {
+     "texto": "Esa noche, Orión pensó en la merienda. Al principio tenía cinco galletas, y al final no le quedaba ninguna. Pero tenía la barriga llena, porque sus amigos habían compartido su merienda. Y tenía una alegría enorme en el corazón. Y se durmió.",
+     "archivo": "fbc72e03917f1fce.m4a",
+     "segundos": 20.06
+    }
+   ]
+  },
+  "cosmos:mapa_estrellas": {
+   "incluido": false,
+   "titulo": {
+    "texto": "El mapa de las estrellas",
+    "archivo": "251d1a2cc1c7f050.m4a",
+    "segundos": 1.72
+   },
+   "ensenanza": {
+    "texto": "La enseñanza de hoy: Decir «me equivoqué» y mirar el mapa juntos nos devuelve al camino.",
+    "archivo": "52b45cdd4a9ab17e.m4a",
+    "segundos": 8.78
+   },
+   "escenas": [
+    {
+     "texto": "Aquel día, Lira y Tornillo iban a volar al planeta jardín. Lira llevaba un mapa de estrellas, azul oscuro y lleno de puntitos. «Yo sé leerlo mejor que nadie», dijo Lira, muy creída. «¿Te ayudo?», preguntó Tornillo. «No hace falta», contestó Lira.",
+     "archivo": "0c74e067a9a0a4ea.m4a",
+     "segundos": 20.15
+    },
+    {
+     "texto": "En la cabina, Lira miraba el mapa de estrellas y daba órdenes. «Ahora a la izquierda. Ahora, todo recto.» Tornillo obedecía y pitaba bajito. Pero Lira tenía el mapa de estrellas al revés, y no se había dado cuenta.",
+     "archivo": "9cb08907e6e4c0b2.m4a",
+     "segundos": 17.51
+    },
+    {
+     "texto": "De pronto, unas rocas grandes pasaron muy cerca del cohete, girando despacio. No estaban en el planeta jardín: ¡estaban en el anillo de asteroides! «Nos perdimos», dijo Tornillo. Lira se puso roja como un tomate, porque la culpa era suya.",
+     "archivo": "212a7459499b26ea.m4a",
+     "segundos": 19.04
+    },
+    {
+     "texto": "A Lira le daba vergüenza. Pero estaban perdidos, y había que volver. Así que Lira dijo: «Me equivoqué. No sé leer bien el mapa. ¿Me ayudas, Tornillo?». Tornillo hizo girar su antena de alegría.",
+     "archivo": "c68be54991cf3ada.m4a",
+     "segundos": 16.3
+    },
+    {
+     "texto": "«El truco es buscar la estrella más grande», explicó Tornillo. «Esa va siempre arriba.» Giraron el mapa juntos, y de repente todo tenía sentido. Esta vez, Lira y Tornillo miraban el mapa a la vez. Y el cohete llegó al planeta jardín, lleno de flores que brillaban.",
+     "archivo": "6025d838e026d987.m4a",
+     "segundos": 22.11
+    },
+    {
+     "texto": "Pasearon entre las flores toda la tarde. «Gracias por ayudarme», le dijo Lira a Tornillo. «Dos cabezas piensan mejor que una.» «Y una cabeza de robot piensa con clics», se rio Tornillo. Y los dos se rieron a la vez.",
+     "archivo": "63431b457dba4c49.m4a",
+     "segundos": 17.55
+    },
+    {
+     "texto": "Cuando se hizo de noche, Lira y Tornillo se acostaron en el pasto a mirar las estrellas. Lira ya sabía encontrar la más grande. Se le cerraron los ojos despacito, y se durmió entre las flores.",
+     "archivo": "92f0c16464f14f1c.m4a",
+     "segundos": 17.37
+    }
+   ]
+  },
+  "cosmos:primer_viaje": {
+   "incluido": false,
+   "titulo": {
+    "texto": "El primer viaje a la luna",
+    "archivo": "55e55eaf9c19b77d.m4a",
+    "segundos": 1.86
+   },
+   "ensenanza": {
+    "texto": "La enseñanza de hoy: El miedo puede viajar con nosotros, pero somos quienes apretamos el botón.",
+    "archivo": "73a3eafe6f8ccfbe.m4a",
+    "segundos": 8.17
+   },
+   "escenas": [
+    {
+     "texto": "Aquella mañana, la comandante Aurora llevó a Orión a la plataforma de los cohetes. «Hoy es tu primer viaje a la luna», le dijo. Orión miró el cohete. ¡Era altísimo, más alto que diez casas! Y a Orión empezaron a temblarle un poco las piernas.",
+     "archivo": "43b626378363098a.m4a",
+     "segundos": 19.97
+    },
+    {
+     "texto": "Dentro, la cabina estaba llena de botones y lucecitas. Orión se sentó y se abrochó el cinturón. La comandante Aurora empezó a contar: «Diez, nueve, ocho…». Entonces el casco de Orión se empañó, porque tenía miedo. «No sé si quiero ir», dijo bajito.",
+     "archivo": "b55441fe6f35367c.m4a",
+     "segundos": 21.13
+    },
+    {
+     "texto": "La comandante Aurora paró la cuenta. «¿Sabes una cosa?», dijo. «La primera vez yo también tenía miedo. El miedo puede venir con nosotros. Pero quien aprieta el botón eres tú.» Y le señaló un botón verde, redondo y grande.",
+     "archivo": "8883afcc7f153103.m4a",
+     "segundos": 17.46
+    },
+    {
+     "texto": "Orión respiró hondo, una vez y otra. Luego estiró el dedo y apretó el botón verde. ¡Brum! El cohete tembló, rugió y subió, subió, subió. Orión se agarró fuerte al asiento, y Aurora le guiñó un ojo.",
+     "archivo": "dd9660f25b6233f7.m4a",
+     "segundos": 16.58
+    },
+    {
+     "texto": "Por la ventana, la aldea se hizo pequeñita, como una bolita de algodón. Luego apareció el espacio, lleno de estrellas. «¡Qué bonito!», gritó Orión. Aurora sonrió, y a Orión se le olvidó que tenía miedo, porque había muchísimas estrellas que mirar.",
+     "archivo": "0d26abe3b61246ff.m4a",
+     "segundos": 19.46
+    },
+    {
+     "texto": "En la luna, Orión dio un saltito, y ¡boing!, subió altísimo, porque allí todo pesa muy poquito. Orión saltó y saltó entre los cráteres, y dejó sus huellas en el polvo gris. Aurora también saltaba. «¡Estas huellas son mías!», dijo Orión, muy orgulloso.",
+     "archivo": "86cadd521f36d5ba.m4a",
+     "segundos": 22.29
+    },
+    {
+     "texto": "Esa noche, ya en su cama, Orión miró la luna por la ventana. Allí arriba estaban sus huellas, esperándolo. Orión sonrió, bostezó y cerró los ojos.",
+     "archivo": "ace280537feccf84.m4a",
+     "segundos": 15.14
+    }
+   ]
+  },
+  "cosmos:telescopio_osa": {
+   "incluido": false,
+   "titulo": {
+    "texto": "El telescopio de la Abuela Osa",
+    "archivo": "f1614167b0d7bf14.m4a",
+    "segundos": 2.14
+   },
+   "ensenanza": {
+    "texto": "La enseñanza de hoy: Cuando contamos lo que movimos, podemos buscarlo juntos, y hasta encontrar sorpresas.",
+    "archivo": "6536e2adb39da443.m4a",
+    "segundos": 9.71
+   },
+   "escenas": [
+    {
+     "texto": "Aquella tarde, Lira subió al observatorio a visitar a la Abuela Osa. La Abuela Osa tenía lentes redondos y sabía historias de todas las estrellas. «Mira por mi telescopio», le dijo. «Está apuntando a la primera estrella de la noche. Se llama la estrella de la tarde.»",
+     "archivo": "c67bb1e250facb40.m4a",
+     "segundos": 20.76
+    },
+    {
+     "texto": "Luego, la Abuela Osa bajó a preparar chocolate caliente. Lira miró por el telescopio otra vez. Tenía una ruedecita al lado, y Lira la giró un poquito, y otro poquito más. ¡Uy! La estrella ya no estaba, porque el telescopio miraba a otro sitio. A Lira se le hizo un nudo en la barriga.",
+     "archivo": "9a176ae67db3d4c1.m4a",
+     "segundos": 21.46
+    },
+    {
+     "texto": "La Abuela Osa volvió con el chocolate, que olía muy rico. Se asomó al telescopio y levantó las cejas. «Qué raro», dijo. «¿Adónde se fue mi estrella?» Lira quería decir que no sabía nada. Pero el nudo de la barriga apretaba cada vez más.",
+     "archivo": "f49510b2bac79344.m4a",
+     "segundos": 19.74
+    },
+    {
+     "texto": "Así que Lira respiró hondo. «Fui yo», dijo. «Giré la ruedecita y la estrella se escapó. Lo siento mucho.» La Abuela Osa se quitó los lentes y sonrió, porque Lira le había dicho la verdad.",
+     "archivo": "efd958830ea640e3.m4a",
+     "segundos": 16.81
+    },
+    {
+     "texto": "«Gracias por decírmelo», dijo la Abuela Osa. «Ahora sé que hay que buscarla.» Giraron la rueda despacito, a cuatro manos. Y entonces, en el telescopio, apareció algo nuevo: ¡un cometa con una cola larga de colores! «Esto no lo había visto nunca», susurró la Abuela Osa, con los ojos brillantes.",
+     "archivo": "b5b9931d742aa828.m4a",
+     "segundos": 23.82
+    },
+    {
+     "texto": "Después encontraron también la estrella de la tarde, que seguía en su sitio. Se tomaron el chocolate mirando el cometa. «Le pondremos un nombre», dijo la Abuela Osa. «El cometa de la verdad.» Lira se rio, y el nudo de la barriga se deshizo.",
+     "archivo": "4c26293fe391148b.m4a",
+     "segundos": 19.09
+    },
+    {
+     "texto": "Esa noche, Lira se quedó dormida en el sillón del observatorio, tapadita con una manta de estrellas. La Abuela Osa apagó la luz sin hacer ruido. Y el cometa siguió brillando en el cielo.",
+     "archivo": "7519a31bb75cc58b.m4a",
+     "segundos": 15.56
+    }
+   ]
+  },
+  "cosmos:toc_ventana": {
+   "incluido": false,
+   "titulo": {
+    "texto": "Toc, toc en la ventana",
+    "archivo": "00d9b8acffa2f523.m4a",
+    "segundos": 1.72
+   },
+   "ensenanza": {
+    "texto": "La enseñanza de hoy: Un ruido asusta menos cuando vamos a ver qué es; puede ser una sorpresa.",
+    "archivo": "0060353637ef2df6.m4a",
+    "segundos": 8.78
+   },
+   "escenas": [
+    {
+     "texto": "Era de noche, y Orión ya estaba en la cama. Entonces se oyó un ruido en la ventana: toc, toc. Orión abrió mucho los ojos. Toc, toc, otra vez. ¿Quién llamaba a la ventana, allá arriba, en medio de las nubes?",
+     "archivo": "a3293c89c395c9d6.m4a",
+     "segundos": 19.69
+    },
+    {
+     "texto": "Orión se tapó con la manta hasta la nariz. El corazón le hacía pum, pum, pum. «¿Y si es algo que da miedo?», pensó. Toc, toc. El ruido no se iba, y Orión tampoco podía dormir, porque quería saber qué era.",
+     "archivo": "1447ec089e3544df.m4a",
+     "segundos": 15.98
+    },
+    {
+     "texto": "Así que Orión respiró hondo. Sacó un pie de la cama, y luego el otro. Dio un pasito, y otro pasito, hasta la ventana. Le temblaban las rodillas, pero siguió. Y despacito, muy despacito, apartó la cortina.",
+     "archivo": "87addda9411b2d02.m4a",
+     "segundos": 16.02
+    },
+    {
+     "texto": "¡No era nada malo! Era un globo azul, atado a una carta, que daba golpecitos en el cristal. Era un globo de la cartera: se le había escapado con el viento. Orión se rio bajito y abrió la ventana para atraparlo.",
+     "archivo": "effa11c56d3fc88b.m4a",
+     "segundos": 16.53
+    },
+    {
+     "texto": "La carta era de la Abuela Osa, y decía: «Esta noche llueven estrellas. ¡Asómate a mirar!». Orión se asomó a la ventana. Y allí estaban: estrellas fugaces cruzando el cielo, una, dos, tres, ¡muchas! Si no hubiera mirado, se las habría perdido.",
+     "archivo": "cd8f10eb6c1b3404.m4a",
+     "segundos": 20.2
+    },
+    {
+     "texto": "Al rato llegó la cartera, volando en otro globo, buscando el que se le había escapado. «¡Aquí está!», dijo Orión, y se lo dio. «Gracias por ser tan valiente y abrir la ventana», dijo la cartera, y le guiñó un ojo.",
+     "archivo": "652bc5f143f3667a.m4a",
+     "segundos": 17.14
+    },
+    {
+     "texto": "Orión volvió a la cama. El ruido de la ventana ya no daba miedo, porque ahora sabía lo que era. Contó estrellas fugaces hasta que se le cerraron los ojos. Y se durmió.",
+     "archivo": "6042a255cd1313a4.m4a",
+     "segundos": 14.63
+    }
+   ]
+  },
+  "cosmos:chispa_perdida": {
+   "incluido": true,
+   "titulo": {
+    "texto": "¿Dónde está Chispa?",
+    "archivo": "9659cf124f04c0dc.m4a",
+    "segundos": 1.53
+   },
+   "ensenanza": {
+    "texto": "La enseñanza de hoy: En vez de buscar culpables, darnos la mano y buscar juntos arregla lo que una pelea rompió.",
+    "archivo": "69c0ea784ffcf17e.m4a",
+    "segundos": 11.01
+   },
+   "escenas": [
+    {
+     "texto": "Aquel día, Lira y Nube llevaron a Chispa, el perrito astronauta, de excursión al planeta jardín. Pero por el camino discutieron, porque cada cual quería llevar la correa. «¡Me toca a mí!», decía Lira. «¡No, a mí!», decía Nube. Tiraban tanto, cada cual de un lado, que la correa se soltó.",
+     "archivo": "a95b4220c60cc1e2.m4a",
+     "segundos": 22.57
+    },
+    {
+     "texto": "¡Chispa salió corriendo! Saltó entre las flores gigantes y desapareció en un bosque de hongos de colores. Lira y Nube lo llamaron: «¡Chispa! ¡Chispa!». Pero solo contestaron unos pájaros que cantaban como flautas. Y se quedaron sin hablar ni mirarse, porque cada cual creía que la culpa no era suya.",
+     "archivo": "b6f3feaff90eecde.m4a",
+     "segundos": 26.8
+    },
+    {
+     "texto": "Entonces Nube se echó a llorar. «Es mi culpa», dijo. «Yo tiré más fuerte.» Lira la miró. Tenía ganas de decir «sí, es tu culpa», pero no lo dijo. En vez de eso, se acercó y le dio la mano. «Tiramos las dos», dijo Lira. «Y lo vamos a encontrar, tú y yo.»",
+     "archivo": "7d6fc4c3626a67cf.m4a",
+     "segundos": 21.97
+    },
+    {
+     "texto": "Nube se secó las lágrimas y miró el suelo. «¡Mira, huellas!», dijo. Eran pequeñas y redondas, como las de Chispa. Las siguieron entre los hongos. Lira apartaba las hojas grandes, y Nube vigilaba que no se perdiera ninguna huella. Juntas, se dieron cuenta, buscaban el doble de rápido. Por el camino encontraron una flor que cantaba y un hongo que olía a fresa, pero no se detuvieron, porque Chispa era lo primero.",
+     "archivo": "14d09a7223d2d289.m4a",
+     "segundos": 33.2
+    },
+    {
+     "texto": "Las huellas terminaban en un río de agua brillante. Y al otro lado, en una piedra, estaba Chispa, temblando, sin atreverse a saltar. «¿Cómo llegamos?», preguntó Nube. Lira vio unas piedras planas en el agua. «Yo salto y tú me avisas si resbala», dijo. «Y luego tú saltas, y yo te aviso.»",
+     "archivo": "8dcc963d70b3dc71.m4a",
+     "segundos": 25.45
+    },
+    {
+     "texto": "Saltaron de piedra en piedra, avisándose en cada salto. «¡Esa no, que se mueve!», gritaba Nube. «¡Esa sí, es grande!», gritaba Lira. Y llegaron hasta Chispa, que les dio lengüetazos por toda la cara y ladró tan fuerte que los pájaros flauta salieron volando. Lira y Nube se rieron hasta que les dolió la barriga. Volvieron cruzando el río, con Chispa en brazos, muy despacito. Esta vez Lira y Nube no discutieron quién lo llevaba: lo llevaron entre las dos.",
+     "archivo": "9053b4e080cbc77e.m4a",
+     "segundos": 37.15
+    },
+    {
+     "texto": "Antes de volver, Lira y Nube se pusieron de acuerdo: la correa la llevaría cada cual un rato, contando hasta cien. Al final les pareció tan divertido contar que se olvidaron de discutir. Y Chispa caminaba entre Lira y Nube, moviendo la cola, muy feliz de que ya no discutieran.",
+     "archivo": "08332425db42d322.m4a",
+     "segundos": 22.48
+    },
+    {
+     "texto": "Cuando llegaron a la aldea ya era de noche. Les dolían los pies, tenían las rodillas llenas de barro y el pelo lleno de hojas. Pero se despidieron con un abrazo largo. «Hoy fuiste mi mejor amiga», le dijo Lira a Nube, porque en el peor momento no se habían soltado la mano. «Y tú, mi mejor amiga», contestó Nube.",
+     "archivo": "89722763e2eabd1c.m4a",
+     "segundos": 24.66
+    },
+    {
+     "texto": "Esa noche, en su dormitorio, Chispa se quedó a dormir a los pies de la cama de Lira, enroscado como una rosquilla. Lira pensó en el río y en las piedras, y en la mano de Nube. Y se durmió sonriendo, porque los amigos de verdad se dan la mano justo cuando más falta hace.",
+     "archivo": "02a0b1269715008a.m4a",
+     "segundos": 20.99
+    }
+   ]
+  },
+  "cosmos:baron_estrellas": {
+   "incluido": false,
+   "titulo": {
+    "texto": "Las estrellas del Barón Brillo",
+    "archivo": "4f34eb0896093f7c.m4a",
+    "segundos": 2.32
+   },
+   "ensenanza": {
+    "texto": "La enseñanza de hoy: Cuando algo no es justo, decirlo con respeto, aunque tiemblen las rodillas, puede hacer que otros cambien.",
+    "archivo": "0349fcee7ae4b026.m4a",
+    "segundos": 12.26
+   },
+   "escenas": [
+    {
+     "texto": "Una noche, la Abuela Osa bajó del observatorio con cara de preocupación. «Faltan estrellas fugaces», dijo. «Cada noche caen menos, y el cielo se está quedando apagado.» Orión miró hacia arriba. Era verdad: había huecos negros donde antes había lucecitas. Y en el telescopio se veía un brillo raro en el planeta de cristal.",
+     "archivo": "443890c7f45d4665.m4a",
+     "segundos": 25.5
+    },
+    {
+     "texto": "Orión y Tornillo, el robot, se subieron al cohete pequeño para ir a ver qué pasaba. Tornillo pilotaba, pitando bajito de nervios. «Tengo un poco de miedo», confesó el robot. «Yo también», dijo Orión. «Pero alguien tiene que ir.» Por la ventana, el planeta de cristal brillaba cada vez más cerca.",
+     "archivo": "189ae51d88e9ad56.m4a",
+     "segundos": 24.61
+    },
+    {
+     "texto": "En el planeta de cristal había una torre altísima, con una vitrina enorme llena de estrellas fugaces. Estaban metidas en frascos, y brillaban muy poquito, tristes. Había cientos, ordenadas por colores, cada una con una etiqueta dorada que decía «Propiedad del barón». Orión y Tornillo se escondieron detrás de una columna. Delante de la vitrina estaba el Barón Brillo, con su chistera y su perilla, sacándoles brillo a los frascos con un pañuelo de seda.",
+     "archivo": "8f22fdf3d8c6ebec.m4a",
+     "segundos": 36.5
+    },
+    {
+     "texto": "A Orión se le empañó el casco. El Barón Brillo parecía muy serio y muy importante, y la torre daba un poco de frío. Tornillo le tiró del brazo. «Vámonos», pitó. «Podemos contárselo a la comandante Aurora.» Pero Orión pensó en los huecos negros del cielo y en las estrellas tristes de los frascos.",
+     "archivo": "68d73e0af1038bb5.m4a",
+     "segundos": 23.59
+    },
+    {
+     "texto": "Así que Orión respiró hondo y salió de su escondite. Le temblaban las rodillas. «Buenas noches, señor barón», dijo, con la voz más firme que pudo. «Esas estrellas no son suyas. Son del cielo, y el cielo se está quedando a oscuras.» El Barón Brillo se dio la vuelta de golpe, porque nadie le había hablado así nunca. Tornillo contuvo el pitido.",
+     "archivo": "67a135d9de41dac0.m4a",
+     "segundos": 28.84
+    },
+    {
+     "texto": "«¡Son mi colección!», protestó el Barón Brillo, ajustándose la chistera. «Son las cosas más bonitas del universo. Si las suelto, me quedaré sin nada bonito.» Orión se acercó a un frasco. Dentro había una estrellita, que apenas brillaba. «Mírela», le dijo. «En el frasco ya no es bonita. Solo brilla cuando está libre.»",
+     "archivo": "98103f1d42ba2143.m4a",
+     "segundos": 24.38
+    },
+    {
+     "texto": "El Barón Brillo miró el frasco mucho rato. Luego, con los dedos temblando, le quitó la tapa. La estrellita salió despacio, dio una vuelta… y se encendió como una bengala, preciosa. Orión contuvo la respiración, y Tornillo pitó de alegría. El barón se quedó con la chistera torcida, sin saber qué decir. Y después abrió otro frasco, y otro, y otro.",
+     "archivo": "bf26538bd226ad9a.m4a",
+     "segundos": 30.46
+    },
+    {
+     "texto": "Cientos de estrellas fugaces salieron de la torre y subieron al cielo, como una fuente de luz. Esa noche, en la aldea, Orión y Tornillo vieron con todos la lluvia de estrellas más grande de la historia. Y en el balcón de la torre, el Barón Brillo las miraba con la boca abierta. «Son mucho más bonitas así», murmuró.",
+     "archivo": "5c0abc6ca8fb4f36.m4a",
+     "segundos": 25.87
+    },
+    {
+     "texto": "Esa noche, mientras el Barón Brillo miraba desde su balcón las estrellas sueltas, Orión se durmió con el casco todavía puesto, de puro cansancio. Había hablado aunque le temblaran las rodillas, porque alguien tenía que hacerlo. Y desde entonces, el cielo de la aldea nunca volvió a quedarse a oscuras.",
+     "archivo": "4af96c1141eafdf9.m4a",
+     "segundos": 24.38
+    }
+   ]
+  },
+  "cosmos:estrella_nube": {
+   "incluido": false,
+   "titulo": {
+    "texto": "La noche de las estrellas fugaces",
+    "archivo": "d4743218083b9eb2.m4a",
+    "segundos": 2.37
+   },
+   "ensenanza": {
+    "texto": "La enseñanza de hoy: A veces regalar nuestro deseo a quien lo necesita más nos da una alegría doble.",
+    "archivo": "099d804172757cf8.m4a",
+    "segundos": 8.68
+   },
+   "escenas": [
+    {
+     "texto": "Una vez al año, en la aldea, caían estrellas fugaces tan cerca que se podían atrapar. Era la noche más esperada. La Abuela Osa lo explicaba desde el observatorio: «Cada niño atrapa una estrella fugaz, le pide un deseo al oído y luego la suelta para que vuelva al cielo». Lira escuchaba con los ojos muy abiertos. Los niños se preparaban con redes grandes y mucha paciencia, porque las estrellas fugaces son muy rápidas.",
+     "archivo": "a8c090db7304a822.m4a",
+     "segundos": 35.81
+    },
+    {
+     "texto": "Lira tenía su deseo pensado desde hacía semanas: quería que le saliera bien su primer vuelo de cadete, sin ayuda de nadie. Lo repetía bajito para no olvidarlo. Nube, a su lado, también tenía un deseo, pero no se lo contaba a nadie. Se le notaba en la cara que era algo importante.",
+     "archivo": "d536d3033a39a09c.m4a",
+     "segundos": 22.06
+    },
+    {
+     "texto": "Cuando se hizo de noche, ¡empezaron a caer! Las estrellas bajaban dando vueltas, como chispitas de colores. Los niños corrían y saltaban, y las atrapaban riendo. Pip atrapó una verde. Lira, después de tres saltos, atrapó una estrellita dorada que ronroneaba bajito, como un gatito feliz. Era calentita, y le hacía cosquillas en los dedos.",
+     "archivo": "d1bd426927d22bb4.m4a",
+     "segundos": 28.75
+    },
+    {
+     "texto": "Pero la lluvia de estrellas se acabó enseguida, y Nube no había atrapado ninguna. Se quedó con la red vacía en medio de la plaza. «Era para mi abuelo», dijo, con la voz pequeñita. «Está enfermito, y yo quería desearle que se curara.» Y se sentó en el borde de una nube, mirando el cielo vacío.",
+     "archivo": "075e3beea27da5be.m4a",
+     "segundos": 24.98
+    },
+    {
+     "texto": "Lira miró su estrellita dorada. La lluvia ya había terminado, y no iban a caer más estrellas hasta el año siguiente. Y su deseo también era importante. Pensó en su primer vuelo, y en lo mucho que lo había deseado. Luego pensó en el abuelo de Nube, que le contaba cuentos en la plaza y siempre le guardaba caramelos de miel en el bolsillo. La estrellita le ronroneaba en la mano, esperando.",
+     "archivo": "87d5169dfb4960d2.m4a",
+     "segundos": 31.3
+    },
+    {
+     "texto": "Así que Lira se sentó al lado de Nube y le abrió la mano. «Toma», le dijo. «Tu deseo es más importante que el mío.» Nube la miró sin creérselo. Luego acercó la estrellita a su oreja y le susurró su deseo, muy despacito. La estrellita brilló tan fuerte que iluminó toda la plaza.",
+     "archivo": "2f442a13c53d9adb.m4a",
+     "segundos": 22.66
+    },
+    {
+     "texto": "Lira y Nube soltaron la estrellita, que subió dando vueltas hasta su sitio en el cielo. Desde el observatorio, la Abuela Osa lo había visto todo. Bajó despacio, se subió los lentes y les sonrió. «Las estrellas cumplen mejor los deseos que se regalan», dijo con un guiño, porque eso lo sabía desde niña.",
+     "archivo": "746d5fad9600b260.m4a",
+     "segundos": 25.31
+    },
+    {
+     "texto": "Unos días después, el abuelo de Nube ya paseaba por la plaza, con su bastón y sus caramelos. Y unas semanas más tarde, Lira hizo su primer vuelo de cadete. Le salió bien, sin ninguna estrella, porque había practicado muchísimo. Nube fue la que más aplaudió desde la plataforma, y su abuelo, a su lado, silbaba con dos dedos.",
+     "archivo": "c9b7e67408aee96d.m4a",
+     "segundos": 27.35
+    },
+    {
+     "texto": "Esa noche, Lira miró el cielo desde la cama. Arriba había una estrellita dorada que parpadeaba más que las otras. «Buenas noches, estrellita», le dijo Lira, muy bajito. Y se durmió pensando que regalar un deseo era como pedir dos.",
+     "archivo": "e73ddb08bfc2cb36.m4a",
+     "segundos": 19.23
+    }
+   ]
+  },
+  "cosmos:luz_movia": {
+   "incluido": false,
+   "titulo": {
+    "texto": "La luz que se movía",
+    "archivo": "0d2575b4a50c2f15.m4a",
+    "segundos": 1.53
+   },
+   "ensenanza": {
+    "texto": "La enseñanza de hoy: Saber mucho no es saberlo todo: escuchar al más pequeño puede mostrarnos lo que no habíamos visto.",
+    "archivo": "804b8405532558ca.m4a",
+    "segundos": 10.36
+   },
+   "escenas": [
+    {
+     "texto": "Aquel verano, la Abuela Osa nombró a Orión ayudante del observatorio. Orión limpiaba los cristales del telescopio, apuntaba las estrellas en un cuaderno y aprendía los nombres de las constelaciones. Se sentía importantísimo, y caminaba con la barbilla muy alta. A los pocos días, ya les decía a todos: «Yo sé más de estrellas que nadie de la aldea».",
+     "archivo": "67e621cd8965b1e6.m4a",
+     "segundos": 27.4
+    },
+    {
+     "texto": "Una noche, Pip subió al observatorio. Era más pequeño que Orión y no sabía casi nada de estrellas. Miró por el telescopio y dijo: «Esa estrella de ahí se mueve. Pasó de una nube a otra». Orión se rio. «Las estrellas no se mueven así, Pip. Eso lo sabe todo el mundo.» Pip se puso colorado y no dijo nada más.",
+     "archivo": "55b31b1b3c691d53.m4a",
+     "segundos": 26.98
+    },
+    {
+     "texto": "Pero a la noche siguiente, Pip volvió. «Se sigue moviendo», dijo bajito. «Ahora está más cerca.» Orión ni siquiera miró. «Ya te lo dije, Pip. Yo ayudo en el observatorio, y yo lo sé.» Pip se fue a casa, cabizbajo. La Abuela Osa lo había oído todo desde su sillón, y no dijo nada, pero se le arrugó la frente.",
+     "archivo": "b383ec454ec2c5c2.m4a",
+     "segundos": 26.01
+    },
+    {
+     "texto": "A la tercera noche, Orión miró por el telescopio, por si acaso. Y allí estaba: una lucecita violeta que daba vueltas, bajaba y subía, y no se parecía a ninguna estrella. ¡Se movía de verdad! Además, se estaba acercando a la aldea. A Orión le subió un calor a la cara, porque Pip tenía razón desde el principio.",
+     "archivo": "b924749ce911c229.m4a",
+     "segundos": 24.89
+    },
+    {
+     "texto": "A Orión le costó mucho, pero fue a buscar a Pip a su casa. «Tenías razón», le dijo. «Esa luz se mueve, y yo no te escuché porque me creía que lo sabía todo. Lo siento mucho.» Pip abrió mucho los ojos. «¿De verdad?», preguntó. «De verdad. ¿Me ayudas a averiguar qué es?» Y Pip dijo que sí con la cabeza, muy deprisa.",
+     "archivo": "d72e9c04c42fb8e5.m4a",
+     "segundos": 25.4
+    },
+    {
+     "texto": "Subieron juntos al observatorio. Pip, que tenía muy buena vista, calculó por dónde iba a pasar la luz. Y acertó: un minuto después, aterrizó en el patio un platillo pequeñito, violeta y con tres lucecitas. De dentro salió Zumbo, el alien travieso de tres ojos, con cara de estar muy perdido.",
+     "archivo": "0f24afffb971bc62.m4a",
+     "segundos": 23.82
+    },
+    {
+     "texto": "«Llevo tres noches dando vueltas», dijo Zumbo, frotándose los tres ojos. «Se me rompió el mapa, y nadie me veía.» «Yo te vi», dijo Pip. «Desde el primer día.» La Abuela Osa salió con un mapa de estrellas y le enseñó a Zumbo el camino a su planeta. Zumbo, feliz, le regaló a Pip una de sus lucecitas violetas.",
+     "archivo": "763bac05982c0b63.m4a",
+     "segundos": 27.31
+    },
+    {
+     "texto": "Antes de despedirse, la Abuela Osa abrió el cuaderno del observatorio. «Quien ayuda en un observatorio no lo sabe todo», dijo. «Sabe escuchar.» Y escribió en la página de esa noche: «Luz que se movía. Descubierta por Pip». Orión sonrió, y esta vez no le importó que el nombre no fuera el suyo.",
+     "archivo": "1a42723818401341.m4a",
+     "segundos": 24.24
+    },
+    {
+     "texto": "Esa noche, Orión se quedó en el observatorio, al lado de Pip. Arriba, el platillo de Zumbo se alejaba entre las estrellas, haciendo guiños de despedida. Y Orión se durmió pensando que hasta el más pequeño puede ver lo que los demás no ven, porque mira con atención.",
+     "archivo": "46666715f2b01bca.m4a",
+     "segundos": 21.04
+    }
+   ]
+  },
+  "cosmos:mapa_propio": {
+   "incluido": false,
+   "titulo": {
+    "texto": "El mapa de las constelaciones",
+    "archivo": "29edfe06c674eb81.m4a",
+    "segundos": 2.23
+   },
+   "ensenanza": {
+    "texto": "La enseñanza de hoy: Las cosas grandes se hacen un trocito cada día, aunque a veces toque borrar y volver a empezar.",
+    "archivo": "1aeb071fb95e7d88.m4a",
+    "segundos": 11.56
+   },
+   "escenas": [
+    {
+     "texto": "En el observatorio había un mapa de estrellas enorme, pintado por la Abuela Osa cuando era joven. Tenía todas las constelaciones: el Carro, el Cisne, la Osa Mayor. Lira lo miraba siempre embobada. «Yo quiero hacer mi propio mapa de estrellas», le dijo un día a la Abuela Osa. «Y ponerle nombre a una constelación nueva.»",
+     "archivo": "bec74853ac43b360.m4a",
+     "segundos": 26.61
+    },
+    {
+     "texto": "La Abuela Osa le dio papel azul oscuro y un lápiz de brillantina. «Las estrellas no se quedan quietas para que las dibujes», le avisó. «Giran un poquito cada hora.» La primera noche, Lira dibujó veinte puntitos. Pero cuando volvió a mirar el cielo, nada coincidía, porque las estrellas se habían movido. El dibujo no servía.",
+     "archivo": "2442f378139a101a.m4a",
+     "segundos": 27.49
+    },
+    {
+     "texto": "La segunda noche, unas nubes taparon medio cielo, y Lira solo pudo dibujar tres estrellas. La tercera, se le volcó el frasco de brillantina encima del papel, y quedó todo brillante y sin forma. Lira hizo una bola con el papel y la tiró al suelo. «¡No me sale!», gritó. «¡Es imposible!» Y se sentó en el suelo, con los brazos cruzados y la nariz arrugada.",
+     "archivo": "08d764085a556303.m4a",
+     "segundos": 29.44
+    },
+    {
+     "texto": "La Abuela Osa recogió la bola de papel y la alisó con cuidado. «¿Sabes cuántos mapas rompí yo antes de pintar este?», le preguntó. «Cuarenta y dos.» Lira abrió mucho los ojos. «El truco», siguió la Abuela Osa, «es dibujar siempre a la misma hora, y empezar por la estrella más brillante. Luego las demás, una a una».",
+     "archivo": "a78025556887b1f6.m4a",
+     "segundos": 28.37
+    },
+    {
+     "texto": "Así que Lira lo intentó otra vez, pensando un poco. Cada noche subía a las nueve en punto, ni antes ni después. Primero dibujaba la estrella más brillante, y desde allí contaba las demás. La Abuela Osa miraba desde su sillón, sin decir nada, con una sonrisa escondida. Una noche dibujaba un trocito, y la siguiente, otro. Algunas noches se equivocaba, y borraba, y volvía a empezar.",
+     "archivo": "ff2f66cd54c7d544.m4a",
+     "segundos": 30.79
+    },
+    {
+     "texto": "Al cabo de tres semanas, el mapa de estrellas de Lira estaba casi terminado. Entonces, al unir unos puntitos con el lápiz, vio una forma que no estaba en ningún mapa: ¡una figura con antena y dos brazos! «¡Parece Tornillo!», se rio Lira. La Abuela Osa se acercó, miró el cielo y miró el papel. «Es nueva», dijo. «Nadie la había dibujado nunca.»",
+     "archivo": "3f8cb6a4dd85859b.m4a",
+     "segundos": 30.51
+    },
+    {
+     "texto": "«Le tienes que poner nombre», dijo la Abuela Osa. Lira lo pensó un buen rato. «Se llamará la Constelación del Robot», decidió al final. Al día siguiente, Tornillo vino al observatorio a verla, y pitó tan fuerte de emoción que la Abuela Osa tuvo que taparse las orejas.",
+     "archivo": "ebecd21778499ced.m4a",
+     "segundos": 21.64
+    },
+    {
+     "texto": "La Abuela Osa colgó el mapa de estrellas de Lira al lado del suyo. Uno era grande y antiguo, y el otro era pequeño y tenía manchas de brillantina. Pero los dos eran mapas de verdad. «Cuarenta y dos mapas rotos antes del mío, y solo tres antes del tuyo», dijo la Abuela Osa, porque los había contado.",
+     "archivo": "e877a3f3cb1adda5.m4a",
+     "segundos": 24.2
+    },
+    {
+     "texto": "Esa noche, Lira se fue a la cama cansada y feliz. Por la ventana se veía la Constelación del Robot, con su antena de estrellas. Lira le dio las buenas noches y cerró los ojos, porque al día siguiente quería empezar otro dibujo del cielo. Esta vez, pensó, sabía que no le saldría a la primera, y no le importaba nada.",
+     "archivo": "3cf8c497d160eee3.m4a",
+     "segundos": 24.66
+    }
+   ]
+  },
+  "cosmos:piedra_zumbo": {
+   "incluido": false,
+   "titulo": {
+    "texto": "La piedra que brillaba",
+    "archivo": "b73f58f631513234.m4a",
+    "segundos": 1.76
+   },
+   "ensenanza": {
+    "texto": "La enseñanza de hoy: Si por nuestro silencio nadie le cree a otro, decir la verdad, aunque perdamos un premio, le devuelve lo suyo.",
+    "archivo": "703aa9d1afa28c13.m4a",
+    "segundos": 12.07
+   },
+   "escenas": [
+    {
+     "texto": "Aquella mañana, la comandante Aurora reunió a los cadetes en la plataforma de los cohetes. «Hoy vamos a la luna», anunció. «Quien traiga la piedra más curiosa ganará la medalla de exploradores.» Era una medalla redonda, con una estrella dorada en el centro. Orión la miró y se imaginó con la medalla colgada del traje, paseando por la aldea. «Busquen con calma», añadió la comandante Aurora. «Lo curioso no siempre es lo que más brilla.»",
+     "archivo": "b31a4f2c965b0db3.m4a",
+     "segundos": 34.09
+    },
+    {
+     "texto": "En la luna, todos saltaban de cráter en cráter buscando piedras. Orión encontró una piedra lunar, pero era gris y normal, igual que todas. Siguió buscando un buen rato, sin suerte. Entonces vio a un alien pequeñito de tres ojos, que llevaba en las manos una piedra que brillaba de color violeta, como un caramelo de uva.",
+     "archivo": "1f16f404e6feda76.m4a",
+     "segundos": 25.22
+    },
+    {
+     "texto": "Era Zumbo, famoso en la aldea por sus travesuras: cambiaba las cosas de sitio y escondía los cascos de los cadetes. Mientras daba un salto lunar, la piedra violeta se le cayó del bolsillo y rodó hasta los pies de Orión. Zumbo no se dio cuenta, porque ya iba saltando hacia otro cráter, muy lejos.",
+     "archivo": "8140f5b2b3d081be.m4a",
+     "segundos": 25.17
+    },
+    {
+     "texto": "Orión miró la piedra violeta. Luego miró su piedra lunar gris. Y, sin pensarlo mucho, se guardó la piedra que brillaba. «Total, se le cayó», se dijo. De vuelta en la aldea, la comandante Aurora miró todas las piedras, una por una. Cuando vio la violeta, abrió mucho los ojos. «¡La medalla es para Orión!», anunció.",
+     "archivo": "489404b553dc3456.m4a",
+     "segundos": 27.21
+    },
+    {
+     "texto": "Todos aplaudieron, menos uno. Zumbo se acercó con los tres ojos muy abiertos. «¡Esa piedra es mía!», dijo. «La encontré yo, en el cráter grande.» Pero los cadetes se rieron, porque Zumbo siempre decía cosas raras para llamar la atención. «Seguro que es otra de tus bromas», dijo uno. Zumbo se puso verde oscuro, de vergüenza, y se fue. La comandante Aurora no sabía qué pensar.",
+     "archivo": "54efe45cff32c25e.m4a",
+     "segundos": 31.07
+    },
+    {
+     "texto": "Esa tarde, la medalla le pesaba a Orión como si fuera de piedra. No podía jugar, no tenía hambre y no paraba de pensar en los tres ojos tristes de Zumbo. Nadie sabía la verdad, solo Orión. Y la verdad le hacía cosquillas en la garganta, como si quisiera salir. Intentó mirar la medalla para ponerse contento, pero la estrella dorada ya no le parecía tan bonita.",
+     "archivo": "938cb4bdf714d0dc.m4a",
+     "segundos": 29.72
+    },
+    {
+     "texto": "Así que Orión fue a buscar a la comandante Aurora, y también a Zumbo. Respiró hondo. «La piedra violeta no la encontré yo», dijo. «Se le cayó a Zumbo, y me la quedé. Él decía la verdad, y nadie le creyó por mi culpa. Lo siento.» Y se quitó la medalla del traje, aunque le temblaban un poco los dedos.",
+     "archivo": "7af3153f469dbe7c.m4a",
+     "segundos": 24.57
+    },
+    {
+     "texto": "La comandante Aurora se quedó callada un momento. «Decir esto es más difícil que encontrar cualquier piedra», dijo despacio. «Gracias, Orión.» Luego le colgó la medalla a Zumbo, que dio tres saltos de alegría y se puso de un verde clarito, como una hoja nueva. «Nadie me había creído nunca», susurró Zumbo.",
+     "archivo": "1994e3b3808971fe.m4a",
+     "segundos": 25.91
+    },
+    {
+     "texto": "Esa noche, Zumbo llamó a la ventana de Orión con su linterna de tres colores. «Mañana te enseño el cráter de las piedras violetas», le dijo. «Hay muchas, y podemos buscar juntos.» Orión se fue a dormir con el corazón ligero, porque la verdad, aunque cueste, siempre deja sitio para un amigo nuevo.",
+     "archivo": "4c523ad9e3cb41aa.m4a",
+     "segundos": 24.01
+    }
+   ]
+  }
+ }
+}

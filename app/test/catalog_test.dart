@@ -159,6 +159,7 @@ void main() {
       final row = find.byKey(const Key('story-row-medieval:campana'));
       await tester.scrollUntilVisible(row, 300,
           scrollable: find.byType(Scrollable).last);
+      await tester.pumpAndSettle();
       await tester.tap(row);
       await tester.pumpAndSettle();
       expect(find.text('La campana rota'), findsWidgets);

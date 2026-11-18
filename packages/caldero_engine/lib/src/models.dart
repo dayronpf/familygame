@@ -950,7 +950,15 @@ class Story {
     this.title,
     String? moralText,
     this.choices = const [],
+    this.premiseId,
   }) : moralText = moralText ?? '';
+
+  /// Premisa con la que se contó (`null` en los cuentos armados con fragmentos sueltos).
+  final String? premiseId;
+
+  /// «paquete:premisa»: la clave del cuento en el catálogo fijo y en la voz grabada (`null` sin premisa).
+  String? get catalogId =>
+      premiseId == null ? null : '${recipe.packId}:$premiseId';
 
   /// Elecciones hechas en este cuento, en orden.
   final List<ChosenOption> choices;

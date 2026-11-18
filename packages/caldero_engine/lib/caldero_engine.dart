@@ -2,6 +2,7 @@
 library;
 
 export 'src/age.dart';
+export 'src/catalog.dart';
 export 'src/engine.dart';
 export 'src/grammar.dart';
 export 'src/models.dart';

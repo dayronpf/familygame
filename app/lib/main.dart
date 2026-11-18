@@ -42,5 +42,6 @@ Future<void> main() async {
     shelf: StoryShelf(PrefsShelfStore(prefs)),
     progress: ReadingProgress(PrefsProgressStore(prefs)),
     showSplash: true,
+    recordedVoice: true,
   ));
 }

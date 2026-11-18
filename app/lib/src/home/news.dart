@@ -41,8 +41,7 @@ const List<NewsItem> newsItems = [
   NewsItem(
     id: 'aldea-nubes',
     title: 'Llegó la Aldea de las Nubes',
-    body:
-        'Cohetes, planetas y un robot amable: treinta cuentos para soñar despacio.',
+    body: 'Cohetes, planetas y un robot amable: cuentos para soñar despacio.',
     icon: Icons.rocket_launch,
     colors: [Color(0xFFE05A8B), Color(0xFF7A2A6A)],
     action: NewsAction.explore,

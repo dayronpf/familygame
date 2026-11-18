@@ -36,3 +36,17 @@ const Map<String, String> iosSubscriptionProducts = {
 
 /// Días de prueba configurados en App Store Connect (StoreKit 2 no los expone en el plugin de Flutter).
 const int iosTrialDays = 7;
+
+/// Lanzamiento: solo cuentos del catálogo grabado (`assets/catalogo/lanzamiento-es.json`, docs/31 paso A7).
+/// «Explorar», las recomendaciones, los avisos y «Crear cuento» usan solo esos cuentos, y cada uno se cuenta siempre
+/// igual (su semilla, sin el nombre del niño y sin preguntas) para que el texto sea el que se grabó. Con `false`, el
+/// caldero vuelve a crear cuentos nuevos con el nombre del niño y sus preguntas.
+const bool catalogOnly = true;
+
+/// El catálogo fijo que lee la app (copia de `content/catalogo/`, la sincroniza `tools/sync_assets.sh`).
+const String fixedCatalogAsset = 'assets/catalogo/lanzamiento-es.json';
+
+/// Carpeta pública del audio grabado que no viene dentro de la app (`https://…/voz/es/`, con la barra final).
+/// **Se llena en el paso A8** (Cloudflare R2, docs/31). Vacía = solo suenan los cuentos incluidos en la app; los demás
+/// los dice la voz del teléfono.
+const String recordedVoiceBaseUrl = '';

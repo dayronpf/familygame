@@ -391,6 +391,7 @@ StoryRun _generateFromPremise(
       cast: cast,
       scenes: scenes,
       title: renderTemplate(premise.title, cast),
+      premiseId: premise.id,
       // La enseñanza propia del cuento (lo que de verdad pasó en él); si aún no la tiene, la general de la enseñanza
       moralText: premise.lesson ?? moralText,
       choices: chosen,

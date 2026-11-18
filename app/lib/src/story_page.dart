@@ -55,7 +55,12 @@ class StoryPage extends StatefulWidget {
     this.progress,
     this.packId,
     this.canTellAnother = true,
+    this.fixedCatalog = false,
   });
+
+  /// Cuento del catálogo fijo grabado (docs/31): este y cada «otro cuento» se cuentan con sus opciones fijas, así
+  /// que lo que se guarda en «Mis cuentos» (premisa y género del héroe) sale del propio cuento.
+  final bool fixedCatalog;
 
   /// Si «Contar otro cuento» puede crear uno nuevo (sin suscripción, solo hay los gratis: el botón lleva a verlos).
   final bool canTellAnother;
@@ -181,15 +186,27 @@ class _StoryPageState extends State<StoryPage>
     _remember();
   }
 
-  ShelfEntry get _entry => ShelfEntry.fromStory(
+  ShelfEntry get _entry {
+    if (widget.fixedCatalog) {
+      final hero = _story.cast['hero'];
+      return ShelfEntry.fromStory(
         _story,
-        option: widget.option,
-        premiseId: widget.premiseId,
-        age: widget.age,
-        heroName: widget.heroName,
-        heroGender: widget.heroGender,
+        option: null,
+        premiseId: _story.premiseId ?? widget.premiseId,
+        heroGender: hero is Character ? hero.gender.name : widget.heroGender,
         childId: widget.childId,
       );
+    }
+    return ShelfEntry.fromStory(
+      _story,
+      option: widget.option,
+      premiseId: widget.premiseId,
+      age: widget.age,
+      heroName: widget.heroName,
+      heroGender: widget.heroGender,
+      childId: widget.childId,
+    );
+  }
 
   bool get _complete => _flow?.isComplete ?? true;
 

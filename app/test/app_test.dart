@@ -34,8 +34,9 @@ FeedbackService _feedback() => FeedbackService(store: MemoryFeedbackStore());
 
 void main() {
   /// El cuento está en un ListView perezoso: hay que desplazarse para construir el final.
+  // Los cuentos del catálogo para 9 a 12 años son largos: hay que dejar desplazarse bastante.
   Future<void> scrollTo(WidgetTester tester, Finder finder) =>
-      tester.scrollUntilVisible(finder, 300);
+      tester.scrollUntilVisible(finder, 300, maxScrolls: 300);
 
   /// Tamaño de un teléfono: el inicio está pensado para verse sin desplazarse.
   void phone(WidgetTester tester) {
@@ -124,11 +125,14 @@ void main() {
       (tester) async {
     var seed = 3;
     phone(tester);
+    // Con el catálogo fijo apagado: el caldero crea otro cuento de la misma enseñanza (con el catálogo fijo,
+    // «otro cuento» es otro del catálogo: ver catalog_only_test.dart)
     await tester.pumpWidget(CalderoApp(
         bundle: _bundle,
         seedProvider: () => seed++,
         feedback: _feedback(),
-        animateArt: false));
+        animateArt: false,
+        catalogOnly: false));
     await tester.pumpAndSettle();
     await tester.tap(find.text('Valentía'));
     await tester.pump();

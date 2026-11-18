@@ -27,6 +27,7 @@ dependencies:
   in_app_purchase_android: ^0.5.5
   in_app_purchase_storekit: ^0.4.17
   url_launcher: ^6.3.3
+  path_provider: ^2.1.6
 
 dev_dependencies:
   flutter_test:
@@ -43,6 +44,12 @@ flutter:
     - assets/packs/medieval/
     - assets/packs/mar/
     - assets/packs/cosmos/
+    # Catálogo fijo de cuentos (copia de content/catalogo; lo sincroniza tools/sync_assets.sh).
+    - assets/catalogo/
+    # Voz grabada (docs/31, A6): el manifiesto y el audio de los cuentos gratis. Los escribe
+    # tools/voice/export_app.py; el resto del audio se descarga del servidor.
+    - assets/voz/es/
+    - assets/voz/es/audio/
     # Política de privacidad y términos de uso (los sincroniza tools/sync_assets.sh desde content/legal/).
     - assets/legal/
     # Guía en PDF (la genera tools/guide/make_holograma_pdf.py)

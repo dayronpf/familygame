@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:caldero_engine/caldero_engine.dart' show AgePremises;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -5,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'art/story_stage.dart';
 import 'feedback/feedback_service.dart';
 import 'home_page.dart';
+import 'narration/recorded_voice.dart';
 import 'pack_loader.dart';
 import 'seed.dart';
 import 'settings/app_settings.dart';
@@ -18,6 +21,7 @@ import 'ui/splash_page.dart';
 import 'ui/voice_services.dart';
 import 'ui/wizard_page.dart';
 import 'brand.dart';
+import 'brand.dart' as brand show catalogOnly;
 
 class CalderoApp extends StatefulWidget {
   const CalderoApp({
@@ -35,7 +39,16 @@ class CalderoApp extends StatefulWidget {
     this.showWizard = false,
     this.showSplash = false,
     this.splashMinimum = const Duration(milliseconds: 3600),
+    this.recordedVoice = false,
+    this.catalogOnly = brand.catalogOnly,
   });
+
+  /// Carga la voz grabada de los cuentos del catálogo (docs/31, A6). La app real sí; las pruebas no (suenan con la
+  /// voz del teléfono de mentira, como siempre).
+  final bool recordedVoice;
+
+  /// Lanzamiento: solo los cuentos del catálogo grabado (`brand.catalogOnly`; las pruebas lo pueden apagar).
+  final bool catalogOnly;
 
   /// Si `false`, los dibujos de los cuentos no se animan (pruebas).
   final bool animateArt;
@@ -85,6 +98,16 @@ class _CalderoAppState extends State<CalderoApp> {
   late bool _wizard = widget.showWizard && !_settings.wizardDone;
   late bool _splash = widget.showSplash;
 
+  /// Voz grabada: ninguna hasta que se lea el manifiesto (mientras tanto, y si falla, la voz del teléfono).
+  RecordedVoice _voice = RecordedVoice.none;
+  late final Future<void> _voiceLoaded = _loadVoice();
+
+  Future<void> _loadVoice() async {
+    if (!widget.recordedVoice) return;
+    final v = await RecordedVoice.load(_bundle, baseUrl: recordedVoiceBaseUrl);
+    if (mounted) setState(() => _voice = v);
+  }
+
   /// Si se borran los datos (Ajustes), el asistente de bienvenida vuelve a salir.
   void _showWizardAgain() {
     if (widget.showWizard && !_settings.wizardDone && !_wizard && mounted) {
@@ -96,6 +119,7 @@ class _CalderoAppState extends State<CalderoApp> {
   void initState() {
     super.initState();
     _access.load().then((_) => _access.refresh());
+    unawaited(_voiceLoaded);
     _settings.addListener(_showWizardAgain);
   }
 
@@ -111,6 +135,7 @@ class _CalderoAppState extends State<CalderoApp> {
           loadStageArt(_bundle).then((_) {}),
           _shelf.load(),
           _progress.load(),
+          _voiceLoaded,
         ])
       : Future<void>.value();
 
@@ -142,13 +167,16 @@ class _CalderoAppState extends State<CalderoApp> {
           access: _access,
           child: PurchasesScope(
             purchases: widget.purchases,
-            child: widget.animateArt
-                ? child!
-                : MediaQuery(
-                    data: MediaQuery.of(context)
-                        .copyWith(disableAnimations: true),
-                    child: child!,
-                  ),
+            child: RecordedVoiceScope(
+              voice: _voice,
+              child: widget.animateArt
+                  ? child!
+                  : MediaQuery(
+                      data: MediaQuery.of(context)
+                          .copyWith(disableAnimations: true),
+                      child: child!,
+                    ),
+            ),
           ),
         ),
       ),
@@ -166,6 +194,7 @@ class _CalderoAppState extends State<CalderoApp> {
                     shelf: _shelf,
                     progress: _progress,
                     animateArt: widget.animateArt,
+                    catalogOnly: widget.catalogOnly,
                   ),
           ),
           // El splash se desvanece al caer (en vez de desaparecer de golpe)
