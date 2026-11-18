@@ -125,7 +125,7 @@
           "despacio, como quien lee un mapa"
         ],
         "idea": "«En mi barco, el tesoro se cuenta entre todos, o no se cuenta.»",
-        "consuelo": "le hizo sitio a su lado junto al timón",
+        "consuelo": "le hizo un lugar a su lado junto al timón",
         "regalo": "su farol de barco, ya encendido"
       }
     },
@@ -149,17 +149,17 @@
       "attrs": {
         "gesto": [
           "se acarició la barba blanca, que olía a algas",
-          "se limpió las gafas con la punta de la camisa",
+          "se limpió los lentes con la punta de la camisa",
           "señaló una estrella con el dedo"
         ],
-        "miedo": "se le empañaron las gafas",
+        "miedo": "se le empañaron los lentes",
         "voz": [
           "con su voz lenta de olas",
           "con un guiño",
           "despacito"
         ],
         "idea": "«Las estrellas no se pierden nunca: solo hay que saber mirarlas.»",
-        "consuelo": "puso a calentar un cazo de leche con miel",
+        "consuelo": "puso a calentar leche con miel",
         "regalo": "un mapa de estrellas dibujado a mano"
       }
     },
@@ -642,7 +642,7 @@
           "variants": [
             {
               "id": "caracola_nacar_caracola_a",
-              "text": "{hero} paseaba por la playa, descalz{hero.o} y content{hero.o}. En la arena había {item.un} rosa, grande y brillante. {hero} se la acercó a la oreja. «Shhh, shhh», cantaba el mar dentro de la caracola.",
+              "text": "{hero} paseaba por la playa, descalz{hero.o} y content{hero.o}. En la arena había {item.un} rosa, grande y brillante. {hero} se la acercó a la oreja. «Chss, chss», cantaba el mar dentro de la caracola.",
               "scene": {
                 "bg": "playa",
                 "mood": "calm",
@@ -667,7 +667,7 @@
             },
             {
               "id": "caracola_nacar_caracola_b",
-              "text": "Por la mañana, {hero} corría por la playa. ¡Plaf, plaf!, hacían sus pies en la arena mojada. De pronto, vio {item.un} rosa y brillante. Se la puso en la oreja. «Shhh, shhh», cantaba el mar dentro de la caracola.",
+              "text": "Por la mañana, {hero} corría por la playa. ¡Plaf, plaf!, hacían sus pies en la arena mojada. De pronto, vio {item.un} rosa y brillante. Se la puso en la oreja. «Chss, chss», cantaba el mar dentro de la caracola.",
               "scene": {
                 "bg": "playa",
                 "mood": "calm",
@@ -800,7 +800,7 @@
           "variants": [
             {
               "id": "caracola_nacar_nana_a",
-              "text": "{helper} sopló la caracola: uuuh, uuuh. Las olas se pusieron a bailar, chof, chof. Los cangrejos sacaron la cabeza de la arena. Hasta las gaviotas se callaron para escuchar. {hero} escuchaba también, con la boca abierta, porque la nana del mar era muy bonita.",
+              "text": "{helper} sopló la caracola: uuh, uuh. Las olas se pusieron a bailar, chof, chof. Los cangrejos sacaron la cabeza de la arena. Hasta las gaviotas se callaron para escuchar. {hero} escuchaba también, con la boca abierta, porque la nana del mar era muy bonita.",
               "scene": {
                 "bg": "playa",
                 "mood": "joy",
@@ -834,7 +834,7 @@
           "variants": [
             {
               "id": "caracola_nacar_amigos_a",
-              "text": "Después, {hero} y {helper} jugaron junt{hero.o}s en la orilla. {helper} salpicaba con la cola, y {hero} se reía, ja, ja. Ahora eran amig{hero.o}s, porque los amigos se cuidan.",
+              "text": "Después, {hero} y {helper} jugaron junt{hero.o}s en la orilla. {helper} salpicaba con la cola, y {hero} se reía, ja, ja. Ahora eran amig{hero.o}s, porque {hero} le había devuelto lo que era suyo.",
               "scene": {
                 "bg": "playa",
                 "mood": "joy",
@@ -860,7 +860,7 @@
           "variants": [
             {
               "id": "caracola_nacar_noche_a",
-              "text": "Cuando salió la luna, {helper} cantó la nana del mar solo para {hero}. Uuuh, uuuh, hacía la caracola, despacito. {hero} bostezó y se acurrucó en la arena tibia. Cerró los ojos, con el mar cantando bajito.",
+              "text": "Cuando salió la luna, {helper} cantó la nana del mar solo para {hero}. Uuh, uuh, hacía la caracola, despacito. {hero} bostezó y se acurrucó en la arena tibia. Cerró los ojos, con el mar cantando bajito.",
               "scene": {
                 "bg": "playa",
                 "mood": "sleep",
@@ -966,7 +966,7 @@
             },
             {
               "id": "galleta_cazo_olor_b",
-              "text": "¡Qué olor tan rico había en la cubierta! Tío Cazo había hecho galletas de barco. Arriba del todo estaba {item.el} más doradita. «Son para la merienda», dijo Tío Cazo. A {hero} le sonaron las tripas.",
+              "text": "¡Qué olor tan rico había en la cubierta! Tío Cazo había hecho galletas de barco con miel. Arriba del todo estaba {item.el} más doradita. «Son para la merienda», dijo Tío Cazo. A {hero} le sonaron las tripas.",
               "scene": {
                 "bg": "cubierta",
                 "mood": "calm",
@@ -1097,7 +1097,7 @@
           "variants": [
             {
               "id": "galleta_cazo_regalo_a",
-              "text": "Tío Cazo sonrió. «Gracias por decir la verdad», dijo. Y le dio otra {item.noun} para la merienda, con todos. La barriga de {hero} ya no estaba rara.",
+              "text": "Tío Cazo sonrió. «Gracias por decir la verdad», dijo. Y l{hero.o} invitó a la merienda, con todos. La barriga de {hero} ya no estaba rara.",
               "scene": {
                 "bg": "cubierta",
                 "mood": "joy",
@@ -1245,7 +1245,7 @@
           "variants": [
             {
               "id": "cofa_paso_pasito_a",
-              "text": "{hero} puso un pie en la escalera de cuerda. Las piernas hacían cosquillas, así que respiró hondo. «Un pasito», le dijo {helper}. «Un pasito», repitió {hero}. Y subió un pasito.",
+              "text": "{hero} puso un pie en la escalera de cuerda. Le temblaban las piernas, así que respiró hondo. «Un pasito», le dijo {helper}. «Un pasito», repitió {hero}. Y subió un pasito.",
               "scene": {
                 "bg": "cubierta",
                 "mood": "tension",
@@ -1295,7 +1295,7 @@
           "variants": [
             {
               "id": "cofa_paso_arriba_a",
-              "text": "¡Arriba! {hero} llegó a la cofa. {helper} subió detrás, para que {hero} viera la isla. Y le dio {item.un} dorado.",
+              "text": "¡Arriba! {hero} llegó a la cofa. {helper} subió detrás y le dio {item.un} dorado, para que viera la isla.",
               "scene": {
                 "bg": "cofa",
                 "mood": "triumph",
@@ -1372,7 +1372,7 @@
           "variants": [
             {
               "id": "cofa_paso_luna_a",
-              "text": "Por la noche, ya en la cubierta, {hero} bostezó junto a {helper}. Arriba brillaba la luna, tan alta como la cofa. {hero} le dijo buenas noches. Y se durmió.",
+              "text": "Por la noche, ya en la cubierta, {hero} bostezó junto a {helper}. Arriba brillaba la luna, tan alta como la cofa. {hero} le dijo buenas noches a la luna. Y se durmió.",
               "scene": {
                 "bg": "cubierta",
                 "mood": "sleep",
@@ -1597,7 +1597,7 @@
           "variants": [
             {
               "id": "cofre_pesado_gaviotas_a",
-              "text": "Al atardecer, {hero} se sentó a mirar el mar. Las gaviotas volaban despacio. Pedir ayuda había sido fácil. {hero} bostezó, y el mar dijo shhh.",
+              "text": "Al atardecer, {hero} se sentó a mirar el mar. Las gaviotas volaban despacio. Pedir ayuda había sido fácil. {hero} bostezó, y el mar dijo chss.",
               "scene": {
                 "bg": "puerto",
                 "mood": "sleep",
@@ -1818,7 +1818,7 @@
           "variants": [
             {
               "id": "botella_corcho_almohada_a",
-              "text": "Esa noche, {hero} guardó el dibujo dentro de la {item.noun}, junto a la hamaca. Fuera, el mar hacía shhh, shhh. {hero} miró la {item.noun} una vez más. Y se durmió.",
+              "text": "Esa noche, {hero} guardó el dibujo dentro de la {item.noun}, junto a la hamaca. Afuera, el mar hacía chss, chss. {hero} miró la {item.noun} una vez más. Y se durmió.",
               "scene": {
                 "bg": "camarote",
                 "mood": "sleep",
@@ -2004,7 +2004,7 @@
           "variants": [
             {
               "id": "galletas_todos_tortuga_a",
-              "text": "Luego llegó Calma, la tortuga, despacito, despacito. Venía de muy lejos, porque las tortugas caminan poco a poco. {hero} le dio otra galleta. «Una para ti.»",
+              "text": "Luego llegó Calma, la tortuga, despacito, despacito. Tardó mucho en llegar, porque las tortugas caminan poco a poco. {hero} le dio otra galleta. «Una para ti.»",
               "scene": {
                 "bg": "playa",
                 "mood": "hope",
@@ -2272,7 +2272,7 @@
           "variants": [
             {
               "id": "mapa_roto_verdad_a",
-              "text": "Así que {hero} respiró hondo y sacó el {item.noun}. «Se me ha roto», dijo bajito. «Lo desenrollé, sopló el viento y ¡ras! Lo siento mucho.» El {helper} miró la esquina rota con calma, porque era un hombre paciente. Luego miró a {hero}, y sonrió despacio.",
+              "text": "Así que {hero} respiró hondo y sacó el {item.noun}. «Se me rompió», dijo bajito. «Lo desenrollé, sopló el viento y ¡ras! Lo siento mucho.» El {helper} miró la esquina rota con calma, porque era un hombre paciente. Luego miró a {hero}, y sonrió despacio.",
               "scene": {
                 "bg": "faro",
                 "mood": "hope",
@@ -2310,7 +2310,7 @@
           "variants": [
             {
               "id": "mapa_roto_arreglo_a",
-              "text": "«Gracias por decirme la verdad», dijo el {helper}. «Los mapas se arreglan. Los secretos, no tanto.» Juntaron los trozos con engrudo, porque el engrudo pega muy bien el papel. Ahora el {item.noun} tenía una cicatriz, como los marineros viejos.",
+              "text": "«Gracias por decirme la verdad», dijo el {helper}. «Los mapas se arreglan. Los secretos, no tanto.» Juntaron los trozos con engrudo. Ahora el {item.noun} tenía una cicatriz, como los marineros viejos.",
               "scene": {
                 "bg": "faro",
                 "mood": "joy",
@@ -2449,7 +2449,7 @@
           "variants": [
             {
               "id": "perla_marina_perla_a",
-              "text": "Era {item.un} redonda y brillante, del color de la nata. «La encontré dentro de una concha», contó {helper}. {hero} la guardó en el bolsillo, con mucho cuidado. ¡Era el regalo más bonito del mundo!",
+              "text": "Era {item.un} redonda y brillante, del color de la leche. «La encontré dentro de una concha», contó {helper}. {hero} la guardó en el bolsillo, con mucho cuidado. ¡Era el regalo más bonito del mundo!",
               "scene": {
                 "bg": "laguna",
                 "mood": "joy",
@@ -2707,7 +2707,7 @@
           "variants": [
             {
               "id": "bajo_agua_sirena_a",
-              "text": "Un día, {helper} asomó la cabeza entre los nenúfares. «Abajo hay un jardín», le contó. «Tiene peces de colores y estrellas que no brillan, pero son preciosas.» {hero} quería verlo. Pero le daba miedo, y se lo dijo a {helper}.",
+              "text": "Un día, {helper} asomó la cabeza entre las olas. «Abajo hay un jardín», le contó. «Tiene peces de colores y estrellas que no brillan, pero son preciosas.» {hero} quería verlo. Pero le daba miedo, y se lo dijo a {helper}.",
               "scene": {
                 "bg": "laguna",
                 "mood": "mystery",
@@ -2762,7 +2762,7 @@
           "variants": [
             {
               "id": "bajo_agua_abre_a",
-              "text": "«Ahora, la última vez, abre los ojos», dijo {helper}. A {hero} le temblaba un poco la barriga. Pero respiró hondo, dio la mano a {helper} y se sumergió. Contó hasta tres, y abrió los ojos despacito.",
+              "text": "«Ahora falta lo último: abrir los ojos», dijo {helper}. A {hero} le temblaba un poco la barriga. Pero respiró hondo, dio la mano a {helper} y se sumergió. Contó hasta tres, y abrió los ojos despacito.",
               "scene": {
                 "bg": "laguna",
                 "mood": "tension",
@@ -2914,7 +2914,7 @@
           "variants": [
             {
               "id": "mejor_nudo_presume_a",
-              "text": "En el barco, todos sabían que {hero} hacía nudos. Nudos de lazo, nudos de ocho y nudos de zapato. «Soy la mejor persona haciendo nudos de todo el barco», decía {hero}, muy estirad{hero.o}. Los marineros se reían por lo bajo, porque nadie lo sabe todo.",
+              "text": "En el barco, todos sabían que {hero} hacía nudos. Nudos de lazo, nudos de ocho y nudos de zapato. «Nadie hace nudos como yo en todo el barco», decía {hero}, inflando el pecho. Los marineros se reían por lo bajo, porque nadie lo sabe todo.",
               "scene": {
                 "bg": "cubierta",
                 "mood": "calm",
@@ -2940,7 +2940,7 @@
           "variants": [
             {
               "id": "mejor_nudo_vela_a",
-              "text": "Una mañana, la capitana {helper} necesitó atar la vela grande. «¿Quién me ayuda?», preguntó. «¡Yo!», dijo {hero}. «Yo sé hacerlo sin ayuda de nadie.» Y antes de que nadie dijera nada, cogió la cuerda.",
+              "text": "Una mañana, la capitana {helper} necesitó atar la vela grande. «¿Quién me ayuda?», preguntó. «¡Yo!», dijo {hero}. «Yo sé hacerlo sin ayuda de nadie.» Y antes de que nadie dijera nada, agarró la cuerda.",
               "scene": {
                 "bg": "cubierta",
                 "mood": "hope",
@@ -2969,7 +2969,7 @@
           "variants": [
             {
               "id": "mejor_nudo_suelta_a",
-              "text": "{hero} hizo un nudo de lazo. ¡Fsss!, se soltó. Hizo un nudo de ocho. ¡Fsss!, se soltó otra vez. La vela empezó a aletear con el viento, flap, flap. La capitana {helper} miraba sin decir nada, y {hero} se puso roj{hero.o} como un tomate.",
+              "text": "{hero} hizo un nudo de lazo. ¡Zas!, se soltó. Hizo un nudo de ocho. ¡Zas!, se soltó otra vez. La vela empezó a aletear con el viento, flap, flap. La capitana {helper} miraba sin decir nada, y {hero} se puso roj{hero.o} como un tomate.",
               "scene": {
                 "bg": "cubierta",
                 "mood": "tension",
@@ -2995,7 +2995,7 @@
           "variants": [
             {
               "id": "mejor_nudo_pide_a",
-              "text": "Entonces vio al marinero, que llevaba muchos años en el mar. A {hero} le daba vergüenza. Pero la vela seguía aleteando, y la necesitaban para navegar. Así que se acercó y dijo: «No sé hacer este nudo. ¿Me enseñas?».",
+              "text": "Entonces se fijó en el marinero más viejo del barco, que llevaba muchos años en el mar. A {hero} le daba vergüenza. Pero la vela seguía aleteando, y la necesitaban para navegar. Así que se acercó y dijo: «No sé hacer este nudo. ¿Me enseñas?».",
               "scene": {
                 "bg": "cubierta",
                 "mood": "hope",
@@ -3110,7 +3110,11 @@
       "ages": [
         "4-5"
       ],
-      "npcs": {},
+      "npcs": {
+        "loro": [
+          "Pimienta"
+        ]
+      },
       "cast": {
         "hero": {
           "kind": "character",
@@ -3194,7 +3198,7 @@
           "variants": [
             {
               "id": "brujula_norte_abuelo_a",
-              "text": "«¿Me esperas en el faro?», preguntó {hero}. «Quiero llegar con la {item.noun}, sin ayuda.» El {helper} se rio y se marchó por la orilla. «Allí te espero, con un vaso de leche con miel.»",
+              "text": "«¿Me esperas en el faro?», preguntó {hero}. «Quiero llegar con la {item.noun}, sin ayuda.» El {helper} se rio. «Allí te espero, con un vaso de leche con miel. Pero Pimienta irá contigo, para que no vayas sol{hero.o}.» Pimienta, el loro, se posó en el hombro de {hero}, y el abuelo se marchó por la orilla.",
               "scene": {
                 "bg": "playa",
                 "mood": "hope",
@@ -3209,6 +3213,11 @@
                     "who": "helper",
                     "clip": "wave",
                     "x": 0.66
+                  },
+                  {
+                    "rig": "loro",
+                    "clip": "flutter",
+                    "x": 0.18
                   }
                 ],
                 "props": [
@@ -3229,7 +3238,7 @@
           "variants": [
             {
               "id": "brujula_norte_primera_a",
-              "text": "{hero} miró la {item.noun}, pero se equivocó de lado, porque todavía no sabía leerla. Caminó y caminó, y llegó a las palmeras, no al faro. «¡Vaya!», dijo. Se sentó un momento, un poco enfadad{hero.o}.",
+              "text": "{hero} miró la {item.noun}, pero se equivocó de lado, porque todavía no sabía leerla. Caminó y caminó con Pimienta, y llegaron a las palmeras, no al faro. «¡Vaya!», dijo {hero}. Se sentó un momento, un poco enojad{hero.o}, y Pimienta se acurrucó a su lado.",
               "scene": {
                 "bg": "playa",
                 "mood": "sad",
@@ -3239,6 +3248,11 @@
                     "who": "hero",
                     "clip": "sit_sad",
                     "x": 0.42
+                  },
+                  {
+                    "rig": "loro",
+                    "clip": "hoot",
+                    "x": 0.62
                   }
                 ],
                 "props": [
@@ -3259,7 +3273,7 @@
           "variants": [
             {
               "id": "brujula_norte_segunda_a",
-              "text": "Pero se levantó y volvió a mirar. Esta vez giró hacia la selva. Las lianas le hacían cosquillas y los pájaros cantaban, pero tampoco había faro. «Otra vez no», suspiró {hero}.",
+              "text": "Pero se levantó y volvió a mirar. Esta vez giró hacia la selva, con Pimienta en el hombro. Las lianas le hacían cosquillas y los pájaros cantaban, pero tampoco había faro. «Otra vez no», suspiró {hero}. «¡Otra vez, otra vez!», cantó Pimienta.",
               "scene": {
                 "bg": "selva",
                 "mood": "tension",
@@ -3269,6 +3283,11 @@
                     "who": "hero",
                     "clip": "walk",
                     "x": 0.42
+                  },
+                  {
+                    "rig": "loro",
+                    "clip": "flutter",
+                    "x": 0.62
                   }
                 ],
                 "props": [
@@ -3290,7 +3309,7 @@
           "variants": [
             {
               "id": "brujula_norte_piensa_a",
-              "text": "Entonces {hero} se paró a pensar. Dejó la {item.noun} quietecita sobre la mano y esperó a que la aguja dejara de bailar. ¡Ahí estaba el norte! Así que {hero} giró los pies hasta que la aguja apuntó hacia delante.",
+              "text": "Entonces {hero} se detuvo a pensar. Dejó la {item.noun} quietecita sobre la mano y esperó a que la aguja dejara de bailar. Pimienta esperó también, sin hacer ruido. ¡Ahí estaba el norte! Así que {hero} giró los pies hasta que la aguja apuntó hacia adelante.",
               "scene": {
                 "bg": "selva",
                 "mood": "hope",
@@ -3300,6 +3319,11 @@
                     "who": "hero",
                     "clip": "think",
                     "x": 0.42
+                  },
+                  {
+                    "rig": "loro",
+                    "clip": "hoot",
+                    "x": 0.64
                   }
                 ],
                 "props": [
@@ -3323,7 +3347,7 @@
           "variants": [
             {
               "id": "brujula_norte_llega_a",
-              "text": "Paso a paso, siguiendo la aguja, {hero} salió de la selva. Y allí, sobre las rocas, estaba el faro. El {helper} aplaudió desde la puerta, porque {hero} no se había rendido. «¡Lo conseguí a la tercera!», gritó {hero}.",
+              "text": "Paso a paso, siguiendo la aguja, {hero} y Pimienta salieron de la selva. Y allí, sobre las rocas, estaba el faro. El {helper} aplaudió desde la puerta, porque {hero} no se había rendido. «¡Lo conseguí a la tercera!», gritó {hero}. «¡A la tercera!», repitió Pimienta.",
               "scene": {
                 "bg": "faro",
                 "mood": "triumph",
@@ -3338,6 +3362,11 @@
                     "who": "helper",
                     "clip": "clap",
                     "x": 0.66
+                  },
+                  {
+                    "rig": "loro",
+                    "clip": "flutter",
+                    "x": 0.18
                   }
                 ]
               },
@@ -3443,7 +3472,7 @@
           "variants": [
             {
               "id": "carrera_calma_salida_a",
-              "text": "«¡Preparados, listos, ya!» Leo salió disparado, y {hero} detrás, levantando arena. ¡Qué rápido corrían! Pero Calma iba despacito, despacito, porque las tortugas no saben correr.",
+              "text": "«¡En sus marcas, listos, fuera!» Leo salió disparado, y {hero} detrás, levantando arena. ¡Qué rápido corrían! Pero Calma iba despacito, despacito, porque las tortugas no saben correr.",
               "scene": {
                 "bg": "playa",
                 "mood": "tension",
@@ -3563,7 +3592,7 @@
           "variants": [
             {
               "id": "carrera_calma_atardecer_a",
-              "text": "El sol se escondió en el mar, naranja como una mandarina. Calma estiró el cuello, feliz, y cerró los ojos sobre la arena tibia. Leo se sentó a un lado, y {hero} al otro. «La próxima carrera, la hacemos al paso de Calma», dijo Leo. Nadie había ganado, pero a nadie le importaba, porque se lo habían pasado de maravilla. Las olas hacían shhh, y las gaviotas se iban a dormir.",
+              "text": "El sol se escondió en el mar, naranja como una mandarina. Calma estiró el cuello, feliz, y cerró los ojos sobre la arena tibia. Leo se sentó a un lado, y {hero} al otro. «La próxima carrera, la hacemos al paso de Calma», dijo Leo. Ya nadie se acordaba de quién había llegado primero, porque la habían pasado de maravilla. Las olas hacían chss, y las gaviotas se iban a dormir.",
               "scene": {
                 "bg": "playa",
                 "mood": "sleep",
@@ -4097,7 +4126,7 @@
           "variants": [
             {
               "id": "farol_ola_puerto_a",
-              "text": "Esa tarde, {hero} y la capitana {helper} bajaron al puerto. Allí estaba Ola, la pescadora, con su barca lista. Pero Ola tenía cara de preocupación. «Mi {item.noun} se ha roto», dijo. «Y esta noche tengo que salir a pescar.»",
+              "text": "Esa tarde, {hero} y la capitana {helper} bajaron al puerto. Allí estaba Ola, la pescadora, con su barca lista. Pero Ola tenía cara de preocupación. «Mi {item.noun} se rompió», dijo. «Y esta noche tengo que salir a pescar.»",
               "scene": {
                 "bg": "puerto",
                 "mood": "sad",
@@ -4170,7 +4199,7 @@
           "variants": [
             {
               "id": "farol_ola_da_a",
-              "text": "Pero Ola lo necesitaba más. Así que {hero} se lo dio. «Llévate el mío», dijo. «Me lo devuelves mañana, cuando vuelvas.» Ola lo cogió con las dos manos. «Gracias, grumete», dijo, y se le iluminó la cara.",
+              "text": "Pero Ola lo necesitaba más. Así que {hero} se lo dio. «Llévate el mío», dijo. «Me lo devuelves mañana, cuando vuelvas.» Ola lo tomó con las dos manos. «Gracias, grumete», dijo, y se le iluminó la cara.",
               "scene": {
                 "bg": "puerto",
                 "mood": "hope",
@@ -4461,7 +4490,7 @@
           "variants": [
             {
               "id": "catalejo_rajado_culpa_a",
-              "text": "Sin decir nada, {hero} volvió a colgar el {item.noun} junto al timón y se escondió detrás del mástil. Al rato, la capitana {helper} lo descolgó para mirar las nubes, y vio la raja. Los marineros se acercaron enseguida. «¡Ha sido el pulpo Remolino!», dijo uno. «Siempre anda escondiendo y rompiendo cosas.» En la borda, Remolino abrió mucho los ojos.",
+              "text": "Sin decir nada, {hero} volvió a colgar el {item.noun} junto al timón y se escondió detrás del mástil. Al rato, la capitana {helper} lo descolgó para mirar las nubes, y vio la raja. Los marineros se acercaron enseguida. «¡Fue el pulpo Remolino!», dijo uno. «Siempre anda escondiendo y rompiendo cosas.» En la borda, Remolino abrió mucho los ojos.",
               "scene": {
                 "bg": "cubierta",
                 "mood": "sad",
@@ -4505,7 +4534,7 @@
           "variants": [
             {
               "id": "catalejo_rajado_rosa_a",
-              "text": "«¡Yo no he sido!», protestó Remolino, y se puso de color rosa, de pura vergüenza. Pero nadie le creía, porque otras veces sí había escondido sombreros y lazos. Los marineros le pidieron que se marchara del barco, y la capitana {helper} no sabía qué pensar. {hero} lo veía todo desde el mástil, y cada palabra le pesaba como una piedra en el bolsillo.",
+              "text": "«¡Yo no fui!», protestó Remolino, y se puso de color rosa, de pura vergüenza. Pero nadie le creía, porque otras veces sí había escondido sombreros y lazos. Los marineros le pidieron que se marchara del barco, y la capitana {helper} no sabía qué pensar. {hero} lo veía todo desde el mástil, y cada palabra le pesaba como una piedra en el bolsillo.",
               "scene": {
                 "bg": "cubierta",
                 "mood": "sad",
@@ -4536,7 +4565,7 @@
           "variants": [
             {
               "id": "catalejo_rajado_verdad_a",
-              "text": "Entonces {hero} salió de detrás del mástil, con las mejillas ardiendo. «Ha sido culpa mía», dijo. «Cogí el {item.noun} sin pedirlo, se me cayó en la bodega y se rajó. Remolino no ha hecho nada.» Se hizo un silencio tan grande que solo se oían las gaviotas. La capitana {helper} bajó despacio el {item.noun} rajado. A {hero} le temblaban las rodillas, pero ya no tenía la piedra en el bolsillo.",
+              "text": "Entonces {hero} salió de detrás del mástil, con las mejillas ardiendo. «Fui yo», dijo. «Tomé el {item.noun} sin pedirlo, se me cayó en la bodega y se rajó. Remolino no hizo nada.» Se hizo un silencio tan grande que solo se oían las gaviotas. La capitana {helper} bajó despacio el {item.noun} rajado. A {hero} le temblaban las rodillas, pero ya no tenía la piedra en el bolsillo.",
               "scene": {
                 "bg": "cubierta",
                 "mood": "hope",
@@ -4647,7 +4676,7 @@
           "variants": [
             {
               "id": "catalejo_rajado_noche_a",
-              "text": "Aquella noche, la capitana {helper} prestó el {item.noun} a {hero} para mirar la luna. Remolino se había quedado a dormir en un cubo de agua junto al timón. {hero} miraba el cielo, tranquilamente, y pensaba que la verdad, aunque cueste, deja el corazón ligero como una vela al viento.",
+              "text": "Aquella noche, la capitana {helper} prestó el {item.noun} a {hero} para mirar la luna. Remolino se había quedado a dormir en un balde de agua junto al timón. {hero} miraba el cielo, tranquilamente, y pensaba que la verdad, aunque cueste, deja el corazón ligero como una vela al viento.",
               "scene": {
                 "bg": "cubierta",
                 "mood": "sleep",
@@ -4786,7 +4815,7 @@
           "variants": [
             {
               "id": "tesoro_compartido_selva_a",
-              "text": "{hero} y la capitana {helper} cruzaron la selva siguiendo el mapa, apartando lianas y saltando raíces. Los pájaros chillaban en lo alto, y una vez un mono les robó un plátano y se rio desde una rama. {hero} iba delante, contando los pasos que decía el mapa: cien hacia la palmera torcida, cincuenta hacia la roca con forma de sombrero.",
+              "text": "{hero} y la capitana {helper} cruzaron la selva siguiendo el mapa, apartando lianas y saltando raíces. Los pájaros chillaban en lo alto, y una vez un mono les robó un plátano y se rio desde una rama. {hero} iba adelante, contando los pasos que decía el mapa: cien hacia la palmera torcida, cincuenta hacia la roca con forma de sombrero.",
               "scene": {
                 "bg": "selva",
                 "mood": "hope",
@@ -4822,7 +4851,7 @@
           "variants": [
             {
               "id": "tesoro_compartido_cofre_a",
-              "text": "La cueva brillaba con charcos de luz verde. Y en el fondo, medio enterrado en la arena, estaba {item.un} de madera con herrajes dorados. Tardaron un buen rato en abrirlo, porque la cerradura estaba llena de óxido. Cuando por fin cedió, la tapa chirrió como una puerta vieja.",
+              "text": "La cueva brillaba con charcos de luz verde. Y en el fondo, medio enterrado en la arena, había {item.un} de madera con herrajes dorados. Tardaron un buen rato en abrirlo, porque la cerradura estaba llena de óxido. Cuando por fin cedió, la tapa chirrió como una puerta vieja.",
               "scene": {
                 "bg": "cueva",
                 "mood": "mystery",
@@ -5068,7 +5097,7 @@
           "variants": [
             {
               "id": "faro_apagado_resfriado_a",
-              "text": "Aquella semana, el {helper} cogió un resfriado tremendo. Estornudaba tan fuerte que las gaviotas salían volando. «Tienes que quedarte en reposo», le dijo {hero}, que había ido a cuidarlo con una sopa caliente. «Pero ¿quién encenderá el faro esta noche?», se preocupó el abuelo. «Las barcas de los pescadores vuelven tarde, y hay niebla.»",
+              "text": "Aquella semana, el {helper} agarró un resfriado tremendo. Estornudaba tan fuerte que las gaviotas salían volando. «Tienes que quedarte en reposo», le dijo {hero}, que había ido a cuidarlo con una sopa caliente. «Pero ¿quién cuidará el faro esta noche?», se preocupó el abuelo. «Las barcas de los pescadores vuelven tarde, y hay niebla.»",
               "scene": {
                 "bg": "faro",
                 "mood": "calm",
@@ -5097,7 +5126,7 @@
           "variants": [
             {
               "id": "faro_apagado_apaga_a",
-              "text": "Cuando el sol se puso, la niebla subió del mar como una sábana gris. Y entonces pasó lo que el abuelo temía: la gran lámpara del faro parpadeó dos veces y se apagó. El mar quedó oscuro. A lo lejos, entre la niebla, se oía la bocina de una barca que buscaba el camino de vuelta, porque sin la luz del faro nadie sabe dónde están las rocas.",
+              "text": "El abuelo había encendido la gran lámpara entre estornudo y estornudo, muy despacio. Pero cuando el sol se puso, la niebla subió del mar como una sábana gris. Y entonces pasó lo que el abuelo temía: la lámpara parpadeó dos veces y se apagó. El mar quedó oscuro. A lo lejos, entre la niebla, se oía la bocina de una barca que buscaba el camino de vuelta, porque sin la luz del faro nadie sabe dónde están las rocas.",
               "scene": {
                 "bg": "faro",
                 "mood": "tension",
@@ -5160,7 +5189,7 @@
           "variants": [
             {
               "id": "faro_apagado_puerta_a",
-              "text": "{hero} se quedó un momento delante de la puerta de la escalera. Dentro, todo estaba negro como la tinta de un pulpo. «¿Y si me equivoco de escalón?», preguntó. El {helper} sonrió desde su sillón, envuelto en tres bufandas. «Cuando yo era pequeño y me daba miedo subir, cantaba», le dijo. «La canción de los farolillos. La oscuridad no soporta las canciones.» Y empezó a tararear, con su voz ronca, una melodía lenta y bonita, la misma que su madre le cantaba cuando las noches de niebla no le dejaban dormir. {hero} la repitió bajito. Y luego un poco más alto, porque cantando el miedo parecía más pequeño.",
+              "text": "{hero} se quedó un momento delante de la puerta de la escalera. Dentro, todo estaba negro como la tinta de un pulpo. «¿Y si me equivoco de escalón?», preguntó. El {helper} sonrió desde su sillón, envuelto en tres bufandas. «Cuando yo era pequeño y me daba miedo subir, cantaba», le dijo. «La canción de los farolillos. La oscuridad no soporta las canciones.» Y empezó a tararear, con su voz ronca, una melodía lenta y bonita, la misma que su madre le cantaba cuando las noches de niebla no lo dejaban dormir. {hero} la repitió bajito. Y luego un poco más alto, porque cantando el miedo parecía más pequeño.",
               "scene": {
                 "bg": "faro",
                 "mood": "hope",
@@ -5196,7 +5225,7 @@
           "variants": [
             {
               "id": "faro_apagado_escalones_a",
-              "text": "Pero {hero} pensó en los pescadores perdidos en la niebla, y apretó el asa del {item.noun}. Empezó a subir. Diez escalones, veinte, treinta. Las sombras bailaban en la pared, alargadas como gigantes, pero eran solo sombras. Cuarenta, cincuenta. El viento silbaba por las ventanas. {hero} contaba en voz alta para hacerse compañía.",
+              "text": "Y pensó también en los pescadores perdidos en la niebla, y apretó el asa del {item.noun}. Empezó a subir. Diez escalones, veinte, treinta. Las sombras bailaban en la pared, alargadas como gigantes, pero eran solo sombras. Cuarenta, cincuenta. El viento silbaba por las ventanas. {hero} seguía cantando bajito la canción de los farolillos, para hacerse compañía.",
               "scene": {
                 "bg": "faro",
                 "mood": "tension",
@@ -5230,7 +5259,7 @@
           "variants": [
             {
               "id": "faro_apagado_lampara_a",
-              "text": "Ciento veinte. Arriba, la lámpara esperaba, enorme y fría. {hero} abrió la portezuela, acercó la llama del {item.noun} a la mecha y sopló suavemente, como le había enseñado el abuelo. ¡Fffum! La luz se encendió, giró sobre sí misma y lanzó un rayo dorado a través de la niebla.",
+              "text": "Ciento veinte. Arriba, la lámpara esperaba, enorme y fría. {hero} abrió la portezuela, acercó la llama del {item.noun} a la mecha y sopló suavemente, como le había enseñado el abuelo. ¡Fuum! La luz se encendió, giró sobre sí misma y lanzó un rayo dorado a través de la niebla.",
               "scene": {
                 "bg": "faro",
                 "mood": "triumph",
@@ -5291,7 +5320,7 @@
           "variants": [
             {
               "id": "faro_apagado_cama_a",
-              "text": "Cuando bajó, el {helper} le esperaba con una manta y una sonrisa enorme. «Seguro que tenías miedo», le dijo. «Muchísimo», confesó {hero}. «Pues eso es ser valiente», dijo el abuelo. «Subir con miedo.» {hero} le contó cómo las sombras parecían gigantes y cómo, al final, solo eran sombras. El abuelo escuchó cada palabra, asintiendo despacio. Y {hero} se quedó dormid{hero.o} allí mismo, en el sillón, mientras la luz del faro giraba y giraba sobre el mar.",
+              "text": "Cuando bajó, el {helper} l{hero.o} esperaba con una manta y una sonrisa enorme. «Seguro que tenías miedo», le dijo. «Muchísimo», confesó {hero}. «Pues eso es ser valiente», dijo el abuelo. «Subir con miedo.» {hero} le contó cómo las sombras parecían gigantes y cómo, al final, solo eran sombras. El abuelo escuchó cada palabra, asintiendo despacio. Y {hero} se quedó dormid{hero.o} allí mismo, en el sillón, mientras la luz del faro giraba y giraba sobre el mar.",
               "scene": {
                 "bg": "faro",
                 "mood": "sleep",
@@ -5360,7 +5389,7 @@
           "variants": [
             {
               "id": "marea_baja_presume_a",
-              "text": "{hero} se conocía la Isla Quieta mejor que nadie, o eso decía siempre. «Me sé todos los atajos», le contó a Leo, el grumete nuevo, mientras paseaban por la playa. «Por la laguna se llega antes al barco. Sígueme y verás.» Leo dudó un poco, porque el sol ya bajaba, pero le siguió.",
+              "text": "{hero} se conocía la Isla Quieta mejor que nadie, o eso decía siempre. «Me sé todos los atajos», le contó a Leo, el grumete nuevo, mientras paseaban por la playa. «Por la laguna se llega antes al barco. Sígueme y verás.» Leo dudó un poco, porque el sol ya bajaba, pero l{hero.o} siguió.",
               "scene": {
                 "bg": "playa",
                 "mood": "calm",
@@ -5439,7 +5468,7 @@
           "variants": [
             {
               "id": "marea_baja_admite_a",
-              "text": "Al fin, {hero} se sentó junto a Leo. «Me he equivocado», dijo. «No conocía este camino. Presumí demasiado, y lo siento.» Leo levantó la cabeza y sonrió un poquito. «Gracias por decirlo», contestó. «Yo tampoco lo sabía. Ahora pensemos juntos.» Y en cuanto dejaron de fingir, las ideas empezaron a llegar.",
+              "text": "Al fin, {hero} se sentó junto a Leo. «Me equivoqué», dijo. «No conocía este camino. Presumí demasiado, y lo siento.» Leo levantó la cabeza y sonrió un poquito. «Gracias por decirlo», contestó. «Yo tampoco lo sabía. Ahora pensemos juntos.» Y en cuanto dejaron de fingir, las ideas empezaron a llegar.",
               "scene": {
                 "bg": "laguna",
                 "mood": "hope",
@@ -5468,7 +5497,7 @@
           "variants": [
             {
               "id": "marea_baja_pide_a",
-              "text": "«¡Nácar!», llamó {hero} con todas sus fuerzas. «¡Nácar, necesitamos ayuda!» Al momento, una cola verde salpicó entre los nenúfares. La sirena asomó la cabeza, con los ojos muy abiertos. «¿Qué hacen ahí arriba?», preguntó. «Presumí de saberme el camino y la marea nos atrapó a Leo y a mí», confesó {hero}. Nácar no se rio. Solo dijo: «Pedir ayuda es de listos de verdad».",
+              "text": "«¡Nácar!», llamó {hero} con todas sus fuerzas. «¡Nácar, necesitamos ayuda!» Al momento, una cola verde salpicó entre las rocas. La sirena asomó la cabeza, con los ojos muy abiertos. «¿Qué hacen ahí arriba?», preguntó. «Presumí de saberme el camino y la marea nos atrapó a Leo y a mí», confesó {hero}. Nácar no se rio. Solo dijo: «Pedir ayuda es de listos de verdad».",
               "scene": {
                 "bg": "laguna",
                 "mood": "hope",
@@ -5505,7 +5534,7 @@
           "variants": [
             {
               "id": "marea_baja_rescate_a",
-              "text": "{helper} conocía cada piedra de la laguna, incluso las que estaban bajo el agua. «Pisen donde yo les diga», explicó. Y así, piedra a piedra, siguiendo su voz, {hero} y Leo cruzaron hasta la playa. El agua les llegaba por las rodillas, pero no se cayeron ni una vez.",
+              "text": "{helper} conocía cada piedra de la laguna, incluso las que estaban bajo el agua. «Pisen donde yo les diga», explicó. Y así, piedra a piedra, siguiendo su voz, {hero} y Leo cruzaron hasta la playa. Leo iba detrás, agarrado a la camisa de {hero}. El agua les llegaba a las rodillas, pero no se cayeron ni una vez.",
               "scene": {
                 "bg": "laguna",
                 "mood": "triumph",
@@ -5536,7 +5565,7 @@
           "variants": [
             {
               "id": "marea_baja_mareas_a",
-              "text": "Ya en la arena, {helper} les explicó el secreto de la laguna. «El mar respira», dijo. «Dos veces al día sube la marea, y dos veces baja. Cuando la luna está gorda, sube todavía más.» {hero} escuchaba con atención, sin interrumpir, porque se había dado cuenta de que había muchísimas cosas que no sabía. Leo hacía preguntas, y {helper} las contestaba todas, salpicando con la cola de vez en cuando. «Mañana les enseño a leer las mareas en las conchas de la orilla», prometió la sirena. Les contó también que los cangrejos saben cuándo sube el agua, y que por eso corren a esconderse un rato antes. Luego se zambulló con un chapuzón que los dejó empapados de risa.",
+              "text": "Ya en la arena, {helper} les explicó el secreto de la laguna. «El mar respira», dijo. «Dos veces al día sube la marea, y dos veces baja. Cuando la luna está gorda, sube todavía más.» {hero} escuchaba con atención, sin interrumpir, porque se había dado cuenta de que había muchísimas cosas que no sabía. Leo hacía preguntas, y {helper} las contestaba todas, salpicando con la cola. «Mañana les enseño a leer las mareas en las conchas de la orilla», prometió la sirena. Los cangrejos también lo saben, y por eso corren a esconderse antes. Luego se zambulló con un chapuzón que los empapó, y los dos se echaron a reír.",
               "scene": {
                 "bg": "laguna",
                 "mood": "calm",
@@ -5645,7 +5674,7 @@
           "variants": [
             {
               "id": "vela_rota_rafaga_a",
-              "text": "Navegaban hacia la Isla de las Conchas cuando una ráfaga de viento sacudió el barco. ¡Fraaas! La vela grande se rasgó de arriba abajo, con un ruido de sábana vieja. El barco perdió velocidad y empezó a balancearse sin rumbo. La capitana {helper} miró el desgarrón y suspiró. «Habrá que coserla antes de que vuelva a soplar fuerte.»",
+              "text": "Navegaban hacia la Isla de las Conchas cuando una ráfaga de viento sacudió el barco. ¡Raaas! La vela grande se rasgó de arriba abajo, con un ruido de sábana vieja. El barco perdió velocidad y empezó a balancearse sin rumbo. La capitana {helper} miró el desgarrón y suspiró. «Habrá que coserla antes de que vuelva a soplar fuerte.»",
               "scene": {
                 "bg": "mar_abierto",
                 "mood": "tension",
@@ -5756,7 +5785,7 @@
           "variants": [
             {
               "id": "vela_rota_puntadas_a",
-              "text": "Una puntada. La aguja entró, dio la vuelta y salió. Otra puntada, y otra más. Algunas quedaban torcidas, y {hero} las deshacía y las volvía a hacer. Las estrellas fueron saliendo una a una, y {hero} seguía cosiendo, con la lengua fuera de tanto concentrarse. A su lado, Tío Cazo se había quedado roncando. Al final de la noche, el desgarrón estaba cerrado con una fila de puntadas pequeñitas.",
+              "text": "Una puntada. La aguja entró, dio la vuelta y salió. Otra puntada, y otra más. Algunas quedaban torcidas, y {hero} las deshacía y las volvía a hacer. Las estrellas fueron saliendo una a una, y {hero} seguía cosiendo, con la lengua afuera de tanto concentrarse. A su lado, Tío Cazo se había quedado roncando. Poco a poco, la fila de puntadas pequeñitas fue creciendo por la vela.",
               "scene": {
                 "bg": "cubierta",
                 "mood": "hope",
@@ -5785,7 +5814,7 @@
           "variants": [
             {
               "id": "vela_rota_estrellas_a",
-              "text": "A medianoche, la capitana {helper} subió a cubierta con una taza de chocolate caliente. Vio a {hero} todavía cosiendo, y a Tío Cazo roncando sobre un rollo de cuerda. «¿Sigues aquí?», preguntó en voz baja. «Me quedan veinte puntadas», contestó {hero}, sin levantar la vista. La capitana no le dijo que lo dejara. Se sentó a su lado y le sujetó la lona tirante, para que la aguja entrara mejor. Juntas, la aguja y la paciencia fueron cerrando el último trozo del desgarrón, mientras la luna cruzaba el cielo. A veces la capitana le contaba historias de otras velas que había cosido, en otros barcos y otros mares, y {hero} se reía bajito para no despertar a nadie.",
+              "text": "A medianoche, la capitana {helper} subió a cubierta con una taza de chocolate caliente. Vio a {hero} todavía cosiendo, y a Tío Cazo roncando sobre un rollo de cuerda. «¿Sigues aquí?», preguntó en voz baja. «Me quedan veinte puntadas», contestó {hero}, sin levantar la vista. La capitana no le dijo que lo dejara. Se sentó a su lado y le sujetó la lona tirante, para que la aguja entrara mejor. Juntas, la aguja y la paciencia fueron cerrando el último trozo del desgarrón, mientras la luna cruzaba el cielo. A veces la capitana le contaba historias de otras velas que había cosido, en otros barcos y otros mares, y {hero} se reía bajito para no despertar a nadie. Al final de la noche, el desgarrón quedó cerrado.",
               "scene": {
                 "bg": "cubierta",
                 "mood": "hope",
@@ -5816,7 +5845,7 @@
           "variants": [
             {
               "id": "vela_rota_iza_a",
-              "text": "Por la mañana, los marineros izaron la vela remendada. El viento la hinchó, ¡fuuum!, y aguantó. Ni una puntada se soltó. La capitana {helper} pasó la mano por la costura. «Esto lo ha cosido alguien que no se rinde», dijo, y le guiñó un ojo a {hero}. Tío Cazo aplaudió con las dos manos llenas de harina.",
+              "text": "Por la mañana, los marineros izaron la vela remendada. El viento la hinchó, ¡fuum!, y aguantó. Ni una puntada se soltó. La capitana {helper} pasó la mano por la costura. «Esto lo cosió alguien que no se rinde», dijo, y le guiñó un ojo a {hero}. Tío Cazo aplaudió con las dos manos llenas de harina.",
               "scene": {
                 "bg": "cubierta",
                 "mood": "triumph",
@@ -5847,7 +5876,7 @@
           "variants": [
             {
               "id": "vela_rota_duerme_a",
-              "text": "Esa noche, {hero} se tumbó en su hamaca con el dedo un poco dolorido y el corazón en paz. Por el ojo de buey se veía la vela, blanca bajo la luna, con su costura como una cicatriz de aventura. {hero} contó las puntadas hasta que se le cerraron los ojos.",
+              "text": "Esa noche, {hero} se acostó en su hamaca con el dedo un poco dolorido y el corazón en paz. Por el ojo de buey se veía la vela, blanca bajo la luna, con su costura como una cicatriz de aventura. {hero} contó las puntadas hasta que se le cerraron los ojos.",
               "scene": {
                 "bg": "camarote",
                 "mood": "sleep",
@@ -5943,7 +5972,7 @@
           "variants": [
             {
               "id": "remolino_juega_pilla_a",
-              "text": "Una noche, {hero} se escondió detrás de un barril para descubrir al culpable. Al rato, un brazo morado salió del agua, luego otro, y luego seis más. Era {villain.el} {villain}. Con mucho cuidado, empezó a atar los cordones de las botas de un marinero que roncaba. {hero} salió de su escondite. «¡Te pillé!»",
+              "text": "Una noche, {hero} se escondió detrás de un barril para descubrir al culpable. Al rato, un brazo morado salió del agua, luego otro, y luego seis más. Era {villain.el} {villain}. Con mucho cuidado, empezó a atar los cordones de las botas de un marinero que roncaba. {hero} salió de su escondite. «¡Te atrapé!»",
               "scene": {
                 "bg": "cubierta",
                 "mood": "tension",
@@ -6057,7 +6086,7 @@
           "variants": [
             {
               "id": "remolino_juega_barco_hundido_a",
-              "text": "Después, {villain} le llevó a un lugar secreto: un barco antiguo, hundido hacía muchísimos años, cubierto de corales de colores. Los peces entraban y salían por las ventanas como si fuera su casa. «Aquí vengo cuando estoy triste», le contó el pulpo. «Nunca se lo había enseñado a nadie.» {hero} se sintió importante, porque compartir un secreto es un regalo muy grande. Se quedaron un rato mirando a una tortuga vieja que dormía en el timón del barco hundido. Remolino le contó que había encontrado aquel barco siendo muy pequeño, cuando todavía no sabía cambiar de color, y que desde entonces lo cuidaba quitándole las algas de las ventanas. Y cuando subieron a respirar, ya no eran solo dos que jugaban juntos: eran amigos.",
+              "text": "Después, {villain} l{hero.o} llevó a un lugar secreto: un barco antiguo, hundido hacía muchísimos años y cubierto de corales de colores. Los peces entraban y salían por las ventanas como si fuera su casa. «Aquí vengo cuando estoy triste», le contó el pulpo. «Nunca se lo había enseñado a nadie.» {hero} se sintió importante, porque compartir un secreto es un regalo muy grande. En el timón dormía una tortuga vieja. Remolino había encontrado aquel barco cuando era muy pequeño y todavía no sabía cambiar de color. Desde entonces lo cuidaba y le quitaba las algas de las ventanas. Y cuando subieron a respirar, ya no eran solo dos que jugaban juntos: eran amigos.",
               "scene": {
                 "bg": "arrecife",
                 "mood": "mystery",
@@ -6083,7 +6112,7 @@
           "variants": [
             {
               "id": "remolino_juega_deshace_a",
-              "text": "Esa tarde, {villain} subió al barco y, con sus ocho brazos, desató todos los lazos imposibles en un momento. Devolvió los sombreros y le quitó el calcetín a Pimienta. Luego pidió perdón a los marineros, uno por uno. Los marineros se miraron, se rieron y le invitaron a merendar galletas de Tío Cazo.",
+              "text": "Esa tarde, {villain} subió al barco y, con sus ocho brazos, desató todos los lazos imposibles en un momento. Devolvió los sombreros y le quitó el calcetín a Pimienta. Luego pidió perdón a los marineros, uno por uno. Los marineros se miraron, se rieron y lo invitaron a merendar galletas de Tío Cazo.",
               "scene": {
                 "bg": "cubierta",
                 "mood": "joy",
@@ -6115,7 +6144,7 @@
           "variants": [
             {
               "id": "remolino_juega_laguna_a",
-              "text": "Desde entonces, cada tarde, {hero} y {villain} jugaban en la laguna. Y por la noche, el pulpo se quedaba un rato en la borda, contando historias del fondo del mar hasta que a {hero} se le cerraban los ojos. Ya no hacía travesuras, porque ya no le hacía falta llamar la atención de nadie: había encontrado una amistad de verdad.",
+              "text": "Desde entonces, cada tarde, {hero} y {villain} jugaban en la laguna, entre las rocas y las algas verdes. Y por la noche, el pulpo se quedaba un rato en la borda, contando historias del fondo del mar hasta que a {hero} se le cerraban los ojos. Ya no hacía travesuras, porque ya no le hacía falta llamar la atención de nadie: había encontrado una amistad de verdad.",
               "scene": {
                 "bg": "laguna",
                 "mood": "sleep",
@@ -6411,7 +6440,7 @@
           "variants": [
             {
               "id": "cueva_ecos_noche_a",
-              "text": "Esa noche, Pimienta durmió en el respaldo de la hamaca de {hero}, con la cabeza bajo el ala. El {item.noun} seguía encendido en la mesilla, con su llama chiquita y valiente. {hero} lo miró un rato. Luego lo apagó de un soplo, porque ya no lo necesitaba, y se durmió.",
+              "text": "Esa noche, Pimienta durmió en el respaldo de la hamaca de {hero}, con la cabeza bajo el ala. El {item.noun} seguía encendido junto a la hamaca, con su llama chiquita y valiente. {hero} lo miró un rato. Luego lo apagó de un soplo, porque ya no lo necesitaba, y se durmió.",
               "scene": {
                 "bg": "playa",
                 "mood": "sleep",
@@ -6574,7 +6603,7 @@
           "variants": [
             {
               "id": "pelea_leo_silencio_a",
-              "text": "Durante dos días, {hero} y Leo no se hablaron. Comían cada uno en un rincón y fingían no verse en la cubierta. Pero el barco era pequeño, y la tristeza era grande. {hero} echaba de menos las risas de Leo, sus dibujos de peces y sus historias de Bigotes, su perro.",
+              "text": "Durante dos días, {hero} y Leo no se hablaron. Comían cada uno en un rincón y fingían no verse en la cubierta. Pero el barco era pequeño, y la tristeza era grande. {hero} extrañaba las risas de Leo, sus dibujos de peces y sus historias de Bigotes, su perro.",
               "scene": {
                 "bg": "cubierta",
                 "mood": "sad",
@@ -6601,7 +6630,7 @@
           "variants": [
             {
               "id": "pelea_leo_dibujo_a",
-              "text": "La segunda noche, {hero} no podía dormir y subió a la cubierta. La luna lo pintaba todo de plata. Junto al mástil había un papel arrugado. {hero} lo desdobló: era un dibujo de Leo. Dos grumetes en la cofa, mirando juntos el horizonte, y encima, con letras torcidas: «Amigos del mar». A {hero} le dio un vuelco el corazón, porque entendió que Leo también lo estaba pasando mal. Dobló el dibujo con cuidado y se lo guardó en el bolsillo. Se quedó un rato mirando el mar, que hacía ruido de olas cansadas contra el casco, y pensó en todas las cosas que había hecho con Leo desde que llegó: los escondites de la bodega, las carreras, los peces dibujados. Ya sabía lo que tenía que hacer, aunque todavía no sabía cómo.",
+              "text": "La segunda noche, {hero} no podía dormir y subió a la cubierta. La luna lo pintaba todo de plata. Junto al mástil había un papel arrugado. {hero} lo desdobló: era un dibujo de Leo. Dos grumetes en la cofa, mirando juntos el horizonte, y encima, con letras torcidas: «Amigos del mar». A {hero} le dio un vuelco el corazón, porque entendió que Leo también la estaba pasando mal. Dobló el dibujo con cuidado y se lo guardó en el bolsillo. Se quedó un rato mirando el mar, que hacía ruido de olas cansadas contra el casco, y pensó en todas las cosas que había hecho con Leo desde que llegó: los escondites de la bodega, las carreras, los peces dibujados. Ya sabía lo que tenía que hacer, aunque todavía no sabía cómo.",
               "scene": {
                 "bg": "cubierta",
                 "mood": "sad",
@@ -6803,7 +6832,7 @@
           "variants": [
             {
               "id": "sopa_mostacho_despensa_a",
-              "text": "Tras una semana de travesía, a bordo de la Gaviota quedaba poca comida: un saco de patatas, unas zanahorias y el último tarro de miel. Tío Cazo hacía milagros con eso, y su sopa olía tan bien que hasta las gaviotas se posaban en la borda a esperar. {hero} le ayudaba a pelar patatas, cantando canciones de marineros.",
+              "text": "Tras una semana de travesía, a bordo de la Gaviota quedaba poca comida: un saco de papas, unas zanahorias y el último tarro de miel. Tío Cazo hacía milagros con eso, y su sopa olía tan bien que hasta las gaviotas se posaban en la borda a esperar. {hero} lo ayudaba a pelar papas, cantando canciones de marineros.",
               "scene": {
                 "bg": "cubierta",
                 "mood": "calm",
@@ -6829,7 +6858,7 @@
           "variants": [
             {
               "id": "sopa_mostacho_barco_a",
-              "text": "Una mañana, apareció en el horizonte un barco con las velas llenas de remiendos. Era el barco {villain.del} {villain}, el pirata más gruñón de todos los mares. Su barco iba despacio, muy despacio, y nadie se movía en la cubierta. «Seguro que quiere robarnos la comida», refunfuñó un marinero. «¡Escondamos el saco de patatas!»",
+              "text": "Una mañana, apareció en el horizonte un barco con las velas llenas de remiendos. Era el barco {villain.del} {villain}, el pirata más gruñón de todos los mares. Su barco iba despacio, muy despacio, y nadie se movía en la cubierta. «Seguro que quiere robarnos la comida», refunfuñó un marinero. «¡Escondamos el saco de papas!»",
               "scene": {
                 "bg": "mar_abierto",
                 "mood": "tension",
@@ -6903,7 +6932,7 @@
           "variants": [
             {
               "id": "sopa_mostacho_propone_a",
-              "text": "{hero} bajó corriendo a la cocina. «Tío Cazo, tienen hambre», dijo. «Podemos compartir la sopa.» Tío Cazo se rascó el bigote. «Es lo último que tenemos», dijo. «Si la compartimos, nos tocará menos.» {hero} pensó un momento. «Menos, pero no nada», contestó. «Y ellos no tienen nada.» Tío Cazo sonrió y cogió el cucharón más grande.",
+              "text": "{hero} bajó corriendo a la cocina. «Tío Cazo, tienen hambre», dijo. «Podemos compartir la sopa.» Tío Cazo se rascó el bigote. «Es lo último que tenemos», dijo. «Si la compartimos, nos tocará menos.» {hero} pensó un momento. «Menos, pero no nada», contestó. «Y ellos no tienen nada.» Tío Cazo sonrió y agarró el cucharón más grande.",
               "scene": {
                 "bg": "cubierta",
                 "mood": "hope",
@@ -6933,7 +6962,7 @@
           "variants": [
             {
               "id": "sopa_mostacho_sirve_a",
-              "text": "Acercaron los dos barcos y tendieron una tabla entre ellos. {hero} cruzó con la sopa humeante en una cacerola, con cuidado de no derramar ni una gota. {villain} se quedó mirando la sopa con el bigote temblando. «¿Por qué me ayudas?», preguntó con voz ronca. «Siempre les he gritado y los he perseguido.» «Porque tienes hambre», dijo {hero}. «Y eso es lo que importa ahora.»",
+              "text": "Acercaron los dos barcos y tendieron una tabla entre ellos. {hero} cruzó con la sopa humeante en una cacerola, con cuidado de no derramar ni una gota. {villain} se quedó mirando la sopa con el bigote temblando. «¿Por qué me ayudas?», preguntó con voz ronca. «Siempre les grité y los perseguí.» «Porque tienes hambre», dijo {hero}. «Y eso es lo que importa ahora.»",
               "scene": {
                 "bg": "cubierta",
                 "mood": "joy",
@@ -7028,7 +7057,7 @@
           "variants": [
             {
               "id": "sopa_mostacho_noche_a",
-              "text": "Esa noche, en las dos cubiertas, se cenaron sardinas a la brasa bajo las estrellas. Los marineros cantaban, y hasta {villain} se atrevió con una canción, aunque desafinaba como una gaviota con tos. {hero} se rio tanto que le dolió la barriga, y Tío Cazo tuvo que sentarse en un barril para no caerse de la risa. Las dos tripulaciones, que antes se perseguían por todos los mares, aplaudieron juntas la canción más desafinada de la historia. Más tarde, en su hamaca, pensó que la sopa compartida había sido la más rica de su vida.",
+              "text": "Esa noche, en las dos cubiertas, se cenaron sardinas a la brasa bajo las estrellas. Los marineros cantaban, y hasta {villain} se atrevió con una canción, aunque desafinaba como una gaviota con tos. {hero} se rio tanto que le dolió la barriga, y Tío Cazo tuvo que sentarse en un barril para no caerse de la risa. Las dos tripulaciones, que antes se perseguían por todos los mares, aplaudieron juntas la canción más desafinada de la historia. Más tarde, en su hamaca, {hero} pensó que la sopa compartida había sido la más rica de su vida.",
               "scene": {
                 "bg": "camarote",
                 "mood": "sleep",
@@ -7111,7 +7140,7 @@
           "variants": [
             {
               "id": "regata_atajo_anuncio_a",
-              "text": "Cada verano, el puerto celebraba la Regata de las Estrellas: una carrera de botes pequeños alrededor de la Isla Quieta, con un trofeo de nácar para quien llegara primero. Aquel año, la capitana {helper} había inscrito a {hero} y a Leo en el bote de la Gaviota. «Solo hay una norma», les recordó la víspera, señalando el dibujo del recorrido clavado en el tablón del muelle. «Nadie cruza por encima del arrecife. Los corales tardan cien años en crecer, y una quilla los rompe en un segundo.» {hero} asintió muy serio, aunque en lo único que podía pensar era en el brillo del trofeo, colocado sobre un cojín de terciopelo azul.",
+              "text": "Cada verano, el puerto celebraba la Regata de las Estrellas: una carrera de botes pequeños alrededor de la Isla Quieta, con un trofeo de nácar para quien llegara primero. Aquel año, la capitana {helper} había inscrito a {hero} y a Leo en el bote de la Gaviota. «Solo hay una norma», les recordó la víspera, señalando el dibujo del recorrido clavado en el tablón del muelle. «Nadie cruza por encima del arrecife. Los corales tardan cien años en crecer, y una quilla los rompe en un segundo.» {hero} asintió muy seri{hero.o}, aunque en lo único que podía pensar era en el brillo del trofeo, colocado sobre un cojín de terciopelo azul.",
               "scene": {
                 "bg": "puerto",
                 "mood": "calm",
@@ -7180,7 +7209,7 @@
           "variants": [
             {
               "id": "regata_atajo_carrera_a",
-              "text": "Durante la primera hora, {hero} y Leo remaron como nunca. Adelantaron a dos botes de pescadores y a uno de niñas del puerto que cantaban para marcar el ritmo. Pero {villain} iba siempre delante, con sus brazos de oso, y el bote de Ola, la pescadora, les sacaba un largo de ventaja. Al llegar a la punta de la isla, el viento cambió y empezó a soplar de cara. Leo tenía las manos llenas de ampollas. {hero} miró el rodeo que quedaba por delante, larguísimo, siguiendo la línea de boyas que marcaba el borde del arrecife.",
+              "text": "Durante la primera hora, {hero} y Leo remaron como nunca. Adelantaron a dos botes de pescadores y a uno de niñas del puerto que cantaban para marcar el ritmo. Pero {villain} iba siempre adelante, con sus brazos de oso, y el bote de Ola, la pescadora, les sacaba un largo de ventaja. Al llegar a la punta de la isla, el viento cambió y empezó a soplar de cara. Leo tenía las manos llenas de ampollas. {hero} miró el rodeo que quedaba por delante, larguísimo, siguiendo la línea de boyas que marcaba el borde del arrecife.",
               "scene": {
                 "bg": "mar_abierto",
                 "mood": "tension",
@@ -7299,7 +7328,7 @@
           "variants": [
             {
               "id": "regata_atajo_buceo_a",
-              "text": "A primera hora, {hero} bajó a nadar al arrecife, sin decirle nada a nadie. Bajo el agua, el hueco entre las boyas parecía un jardín después de una tormenta. Había ramas de coral partidas, blancas como huesos de pescado, y un pez naranja daba vueltas alrededor de su casa rota, sin saber adónde ir. {hero} se quedó flotando un buen rato, mirando el destrozo. Cien años para crecer, había dicho la capitana. Un segundo para romperse. Subió a respirar con los ojos escocidos, y no solo por la sal.",
+              "text": "A primera hora, {hero} bajó a nadar al arrecife, sin decirle nada a nadie. Bajo el agua, el hueco entre las boyas parecía un jardín después de una tormenta. Había ramas de coral partidas, blancas como huesos de pescado, y un pez naranja daba vueltas alrededor de su casa rota, sin saber adónde ir. {hero} se quedó flotando un buen rato, mirando el destrozo. Cien años para crecer, había dicho la capitana. Un segundo para romperse. Subió a respirar con los ojos ardiendo, y no solo por la sal.",
               "scene": {
                 "bg": "arrecife",
                 "mood": "sad",
@@ -7321,7 +7350,7 @@
           "variants": [
             {
               "id": "regata_atajo_confiesa_a",
-              "text": "Esa misma mañana, ante el tablón del muelle, {hero} pidió que llamaran a todo el mundo. Leo se puso a su lado sin que se lo pidiera. «No ganamos limpiamente», dijo {hero}, y la voz le temblaba. «Cruzamos por el arrecife. Rompimos corales. Nadie nos vio, pero nosotros lo sabemos.» Dejó el trofeo de nácar sobre el cojín de terciopelo. Se hizo un silencio larguísimo. La capitana {helper} se acercó despacio, y {hero} esperó una regañina. Pero la capitana solo le apoyó una mano en el hombro. «Esto», dijo en voz alta para que la oyera todo el puerto, «vale más que diez trofeos».",
+              "text": "Esa misma mañana, ante el tablón del muelle, {hero} pidió que llamaran a todo el mundo. Leo se puso a su lado sin que se lo pidiera. «No ganamos limpiamente», dijo {hero}, y la voz le temblaba. «Cruzamos por el arrecife. Rompimos corales. Nadie nos vio, pero nosotros lo sabemos.» Dejó el trofeo de nácar sobre el cojín de terciopelo. Se hizo un silencio larguísimo. La capitana {helper} se acercó despacio, y {hero} esperó un regaño. Pero la capitana solo le apoyó una mano en el hombro. «Esto», dijo en voz alta para que la oyera todo el puerto, «vale más que diez trofeos».",
               "scene": {
                 "bg": "puerto",
                 "mood": "hope",
@@ -7485,7 +7514,7 @@
           "variants": [
             {
               "id": "ahorro_faro_hucha_a",
-              "text": "Durante todo un año, {hero} había guardado cada moneda que ganaba en el barco: por pelar patatas con Tío Cazo, por coser velas, por limpiar la cubierta los días de tormenta. Las guardaba en un calcetín viejo, debajo de la hamaca, y cada noche las contaba en voz baja. Ya casi tenía bastante para comprar lo que más quería en el mundo, en el escaparate de la tienda del puerto: un tubo de latón brillante, con funda de cuero, que hacía que la luna pareciera tan cercana como una naranja. Faltaban solo tres monedas. Una semana más de trabajo, y sería suyo.",
+              "text": "Durante todo un año, {hero} había guardado cada moneda que ganaba en el barco: por pelar papas con Tío Cazo, por coser velas, por limpiar la cubierta los días de tormenta. Las guardaba en un calcetín viejo, debajo de la hamaca, y cada noche las contaba en voz baja. Ya casi tenía bastante para comprar lo que más quería en el mundo, en la vitrina de la tienda del puerto: un tubo de latón brillante, con funda de cuero, que hacía que la luna pareciera tan cercana como una naranja. Faltaban solo tres monedas. Una semana más de trabajo, y sería suyo.",
               "scene": {
                 "bg": "camarote",
                 "mood": "calm",
@@ -7521,7 +7550,7 @@
           "variants": [
             {
               "id": "ahorro_faro_escaparate_a",
-              "text": "Aquella tarde, {hero} bajó al puerto a mirar el catalejo una vez más, como hacía cada sábado. Lo tenía tan aprendido que podía dibujarlo con los ojos cerrados: el anillo dorado de la punta, la correa trenzada, las dos lentes como gotas de agua. La tendera ya lo conocía, y le saludaba desde la puerta. «Dentro de una semana», le prometió {hero}. Pero al volverse hacia el mar, vio que la gente se arremolinaba en el muelle, mirando hacia el faro con caras preocupadas, y que alguien había colgado un cartel en el tablón.",
+              "text": "Aquella tarde, {hero} bajó al puerto a mirar el catalejo una vez más, como hacía cada sábado. Lo tenía tan aprendido que podía dibujarlo con los ojos cerrados: el anillo dorado de la punta, la correa trenzada, las dos lentes como gotas de agua. La tendera ya l{hero.o} conocía, y l{hero.o} saludaba desde la puerta. «Dentro de una semana», le prometió {hero}. Pero al volverse hacia el mar, vio que la gente se arremolinaba en el muelle, mirando hacia el faro con caras preocupadas, y que alguien había colgado un cartel en el tablón.",
               "scene": {
                 "bg": "puerto",
                 "mood": "mystery",
@@ -7560,7 +7589,7 @@
           "variants": [
             {
               "id": "ahorro_faro_cartel_a",
-              "text": "El cartel decía, con letras de tiza: «Se ha roto la lente del faro. Hace falta dinero para traer una nueva antes de las tormentas grandes». Debajo había una caja de madera para los donativos, casi vacía. Ola, la pescadora, leía el cartel con los brazos cruzados. «Sin faro, este otoño no podremos salir de noche», le explicó a {hero}. «Y las tormentas grandes son las peores.» Los pescadores del puerto eran pobres, y la lente era cara. La caja tenía apenas un puñado de monedas pequeñas, que no llegaban ni para la mitad.",
+              "text": "El cartel decía, con letras de tiza: «Se rompió la lente del faro. Hace falta dinero para traer una nueva antes de las tormentas grandes». Debajo había una caja de madera para los donativos, casi vacía. Ola, la pescadora, leía el cartel con los brazos cruzados. «Sin faro, este otoño no podremos salir de noche», le explicó a {hero}. «Y las tormentas grandes son las peores.» Los pescadores del puerto eran pobres, y la lente era cara. La caja tenía apenas un puñado de monedas pequeñas, que no llegaban ni para la mitad.",
               "scene": {
                 "bg": "puerto",
                 "mood": "sad",
@@ -7612,7 +7641,7 @@
           "variants": [
             {
               "id": "ahorro_faro_abuelo_a",
-              "text": "{hero} subió al faro corriendo. El {helper} estaba sentado junto a la lámpara apagada, con la lente rota en el regazo, como quien sostiene un pájaro herido. Tenía una grieta que la atravesaba de lado a lado. «Cuarenta años he cuidado esta luz», dijo sin levantar la vista. «Mi abuela la cuidó antes que yo. Y ahora no sé cómo arreglarla.» {hero} nunca había visto tan triste al abuelo. Se sentó a su lado y estuvieron mucho rato callados, mirando el mar que empezaba a oscurecer.",
+              "text": "{hero} subió al faro corriendo. El {helper} estaba sentado junto a la lámpara apagada, con la lente rota en el regazo, como quien sostiene un pájaro herido. Tenía una grieta que la atravesaba de lado a lado. «Llevo cuarenta años cuidando esta luz», dijo sin levantar la vista. «Mi abuela la cuidó antes que yo. Y ahora no sé cómo arreglarla.» {hero} nunca había visto tan triste al abuelo. Se sentó a su lado y estuvieron mucho rato callados, mirando el mar que empezaba a oscurecer.",
               "scene": {
                 "bg": "faro",
                 "mood": "sad",
@@ -7642,7 +7671,7 @@
           "variants": [
             {
               "id": "ahorro_faro_duda_a",
-              "text": "Esa noche, {hero} sacó el calcetín de debajo de la hamaca y vació las monedas sobre la manta. Las contó dos veces. Era todo lo que tenía, el trabajo de un año entero. Pensó en el escaparate de la tienda, en la luna como una naranja. Pensó en lo injusto que era tener que elegir. Y después pensó en las barcas de Ola volviendo de noche, sin luz, en medio de una tormenta grande. Tardó mucho en dormirse, porque las dos cosas tiraban de su corazón como dos cuerdas en direcciones opuestas.",
+              "text": "Esa noche, {hero} sacó el calcetín de debajo de la hamaca y vació las monedas sobre la manta. Las contó dos veces. Era todo lo que tenía, el trabajo de un año entero. Pensó en la vitrina de la tienda, en la luna como una naranja. Pensó en lo injusto que era tener que elegir. Y después pensó en las barcas de Ola volviendo de noche, sin luz, en medio de una tormenta grande. Tardó mucho en dormirse, porque las dos cosas tiraban de su corazón como dos cuerdas en direcciones opuestas.",
               "scene": {
                 "bg": "camarote",
                 "mood": "mystery",
@@ -7674,7 +7703,7 @@
           "variants": [
             {
               "id": "ahorro_faro_dona_a",
-              "text": "Por la mañana, {hero} bajó al muelle antes que nadie y vació el calcetín en la caja de los donativos. Las monedas sonaron como una lluvia pequeña. Ola, que estaba tendiendo las redes, lo vio todo. No dijo nada, pero fue a su casa y volvió con un frasco lleno de monedas de cobre. Tío Cazo trajo las propinas de un año. Los niños del puerto vaciaron sus huchas. Y por la tarde, la caja estaba tan llena que hubo que buscar otra.",
+              "text": "Por la mañana, {hero} bajó al muelle antes que nadie y vació el calcetín en la caja de los donativos. Las monedas sonaron como una lluvia pequeña. Ola, que estaba tendiendo las redes, lo vio todo. No dijo nada, pero fue a su casa y volvió con un frasco lleno de monedas de cobre. Tío Cazo trajo las propinas de un año. Los niños del puerto vaciaron sus alcancías. Y por la tarde, la caja estaba tan llena que hubo que buscar otra.",
               "scene": {
                 "bg": "puerto",
                 "mood": "hope",
@@ -7716,7 +7745,7 @@
           "variants": [
             {
               "id": "ahorro_faro_despedida_a",
-              "text": "Al volver hacia el barco, {hero} pasó por delante de la tienda. El catalejo seguía allí, en el escaparate, brillando con la última luz de la tarde. La tendera salió a la puerta, secándose las manos en el delantal. «¿Ya no vienes a buscarlo?», preguntó. {hero} negó con la cabeza y le contó lo de las monedas y la caja del faro. La tendera escuchó en silencio y luego sonrió de una manera rara, como si supiera algo. «Pues entonces», dijo, «el catalejo tendrá que esperar a alguien que sepa mirar tan lejos como tú». {hero} se despidió del catalejo con la mano, como quien se despide de un amigo, y siguió caminando hacia el barco, con los pies sorprendentemente livianos.",
+              "text": "Al volver hacia el barco, {hero} pasó por delante de la tienda. El catalejo seguía allí, en la vitrina, brillando con la última luz de la tarde. La tendera salió a la puerta, secándose las manos en el delantal. «¿Ya no vienes a buscarlo?», preguntó. {hero} negó con la cabeza y le contó lo de las monedas y la caja del faro. La tendera escuchó en silencio y luego sonrió de una manera rara, como si supiera algo. «Pues entonces», dijo, «el catalejo tendrá que esperar a alguien que sepa mirar tan lejos como tú». {hero} se despidió del catalejo con la mano, como quien se despide de un amigo, y siguió caminando hacia el barco, con los pies sorprendentemente livianos.",
               "scene": {
                 "bg": "puerto",
                 "mood": "hope",
@@ -7749,7 +7778,7 @@
           "variants": [
             {
               "id": "ahorro_faro_lente_a",
-              "text": "Dos semanas después llegó la lente nueva, envuelta en paja, en un barco del continente. Todo el puerto subió al faro para verla colocar. El {helper} la limpió con un paño de seda, la encajó en su sitio y encendió la mecha. La luz giró, más brillante que nunca, y dibujó un camino dorado sobre el mar. La gente aplaudió y cantó. Y entonces el abuelo se acercó a {hero} con un paquete envuelto en papel de estraza. «Ola me ha contado quién empezó todo esto», dijo.",
+              "text": "Dos semanas después llegó la lente nueva, envuelta en paja, en un barco del continente. Todo el puerto subió al faro para verla colocar. El {helper} la limpió con un paño de seda, la encajó en su sitio y encendió la mecha. La luz giró, más brillante que nunca, y dibujó un camino dorado sobre el mar. La gente aplaudió y cantó. Y entonces el abuelo se acercó a {hero} con un paquete envuelto en papel de estraza. «Ola me contó quién empezó todo esto», dijo.",
               "scene": {
                 "bg": "faro",
                 "mood": "joy",
@@ -7784,7 +7813,7 @@
           "variants": [
             {
               "id": "ahorro_faro_regalo_a",
-              "text": "Dentro del paquete había un catalejo. No era el del escaparate: era más viejo, con el latón gastado y una abolladura en la punta. «Era de mi abuela», dijo el {helper}. «Con ese catalejo vio por primera vez la Isla Quieta. Ahora es tuyo.» {hero} se lo llevó al ojo y miró la luna. Estaba tan cerca que se veían sus montañas. «Es mucho mejor que el de la tienda», susurró, y era verdad, porque aquel catalejo tenía cien años de historias dentro. Le dio las gracias al abuelo con un abrazo que casi lo tira del taburete, y los dos se rieron con la cara apretada contra el latón frío. Bajó del faro con el catalejo colgado del cuello, y por el camino lo usó para mirar las barcas, las gaviotas y el escaparate iluminado de la tienda. Esa noche, en la hamaca, ya no contó monedas. Contó estrellas por el ojo de buey, hasta que se le cerraron los ojos.",
+              "text": "Dentro del paquete había un catalejo. No era el de la vitrina: era más viejo, con el latón gastado y una abolladura en la punta. «Era de mi abuela», dijo el {helper}. «Con ese catalejo vio por primera vez la Isla Quieta. Ahora es tuyo.» {hero} se lo llevó al ojo y miró la luna. Estaba tan cerca que se veían sus montañas. «Es mucho mejor que el de la tienda», susurró, y era verdad, porque aquel catalejo tenía cien años de historias dentro. Le dio las gracias al abuelo con un abrazo que casi lo tira del taburete, y los dos se rieron con la cara apretada contra el latón frío. Bajó del faro con el catalejo colgado del cuello, y por el camino lo usó para mirar las barcas, las gaviotas y la vitrina iluminada de la tienda. Esa noche, en la hamaca, ya no contó monedas. Contó estrellas por el ojo de buey, hasta que se le cerraron los ojos.",
               "scene": {
                 "bg": "faro",
                 "mood": "sleep",
@@ -7864,7 +7893,7 @@
           "variants": [
             {
               "id": "niebla_bote_redes_a",
-              "text": "La capitana {helper} confiaba en {hero} lo bastante como para encargarle una misión de verdad, aunque {hero} todavía no lo sabía. «Las redes de la mañana se han quedado enganchadas en las boyas del norte», le dijo después del desayuno. «Coge el bote pequeño con Leo y tráelas. Está a diez minutos remando, y el mar está como un plato.» {hero} se hinchó de orgullo. Era la primera vez que salían sin un adulto. Cargaron los remos, una brújula vieja, una cantimplora de agua y un saco para las redes, y bajaron el bote por el costado del barco, muy despacio, con las poleas chirriando.",
+              "text": "La capitana {helper} confiaba en {hero} lo bastante como para encargarle una misión de verdad, aunque {hero} todavía no lo sabía. «Las redes de la mañana se quedaron enganchadas en las boyas del norte», le dijo después del desayuno. «Toma el bote pequeño con Leo y tráelas. Está a diez minutos remando, y el mar está como un plato.» {hero} se hinchó de orgullo. Era la primera vez que salían sin un adulto. Cargaron los remos, una brújula vieja, una cantimplora de agua y un saco para las redes, y bajaron el bote por el costado del barco, muy despacio, con las poleas chirriando.",
               "scene": {
                 "bg": "cubierta",
                 "mood": "calm",
@@ -7934,7 +7963,7 @@
           "variants": [
             {
               "id": "niebla_bote_llega_a",
-              "text": "La niebla les alcanzó en un momento. Primero desapareció el horizonte, después las boyas, después el sol, que se convirtió en una mancha pálida y luego en nada. El aire se volvió húmedo y frío, y olía a sal y a algo más, a algo viejo. {hero} empezó a remar hacia donde creía que estaba el barco, con todas sus fuerzas. Leo remaba también, en silencio. Pero las olas ya no tenían dirección, y el bote parecía girar sobre sí mismo como una hoja en un charco. Cada sonido, el chapoteo de un pez o el grito lejano de una gaviota, llegaba de un sitio distinto.",
+              "text": "La niebla los alcanzó en un momento. Primero desapareció el horizonte, después las boyas, después el sol, que se convirtió en una mancha pálida y luego en nada. El aire se volvió húmedo y frío, y olía a sal y a algo más, a algo viejo. {hero} empezó a remar hacia donde creía que estaba el barco, con todas sus fuerzas. Leo remaba también, en silencio. Pero las olas ya no tenían dirección, y el bote parecía girar sobre sí mismo como una hoja en un charco. Cada sonido, el chapoteo de un pez o el grito lejano de una gaviota, llegaba de un sitio distinto.",
               "scene": {
                 "bg": "mar_abierto",
                 "mood": "tension",
@@ -7960,7 +7989,7 @@
           "variants": [
             {
               "id": "niebla_bote_perdidos_a",
-              "text": "Al cabo de un rato, {hero} dejó de remar. A su alrededor, todo era gris: arriba, abajo, delante y detrás. No se veía la isla, ni la Gaviota, ni siquiera el agua a más de dos brazos de distancia. Leo se agarraba a la borda del bote con los nudillos blancos. «Estamos perdidos», dijo con un hilo de voz. {hero} sintió que el miedo le subía por la garganta como una ola fría. Pero entonces respiró hondo y se obligó a pensar despacio, como enseñaba la capitana: el miedo no se va gritando, se va pensando. Tenían tres maneras de buscar el camino de vuelta.",
+              "text": "Al cabo de un rato, {hero} dejó de remar. A su alrededor, todo era gris: arriba, abajo, adelante y atrás. No se veía la isla, ni la Gaviota, ni siquiera el agua a más de dos brazos de distancia. Leo se agarraba a la borda del bote con los nudillos blancos. «Estamos perdidos», dijo con un hilo de voz. {hero} sintió que el miedo le subía por la garganta como una ola fría. Pero entonces respiró hondo y se obligó a pensar despacio, como enseñaba la capitana: el miedo no se va gritando, se va pensando. Tenían tres maneras de buscar el camino de vuelta.",
               "scene": {
                 "bg": "mar_abierto",
                 "mood": "tension",
@@ -8026,7 +8055,7 @@
           "variants": [
             {
               "id": "niebla_bote_busca_bocina_a",
-              "text": "{hero} pidió a Leo que dejara de remar y que no hiciera ni un ruido. Se quedaron muy quietos, conteniendo la respiración, con el corazón latiendo en las orejas. Al principio solo oían el agua contra el bote. Pero después, muy lejos, llegó un sonido: buuu… buuu… Era la bocina de la Gaviota. La capitana siempre la hacía sonar en la niebla. El sonido rebotaba en la bruma y parecía venir de todas partes, así que {hero} cerró los ojos y giró la cabeza despacio, como una antena, hasta que el buuu sonó igual de fuerte en las dos orejas. «Por ahí», dijo, y señaló hacia delante. Remaron diez paladas y pararon a escuchar. Corrigieron el rumbo. Diez paladas más. Cada vez el buuu sonaba más cerca, más grave, más seguro.",
+              "text": "{hero} pidió a Leo que dejara de remar y que no hiciera ni un ruido. Se quedaron muy quietos, conteniendo la respiración, con el corazón latiendo en las orejas. Al principio solo oían el agua contra el bote. Pero después, muy lejos, llegó un sonido: buu… buu… Era la bocina de la Gaviota. La capitana siempre la hacía sonar en la niebla. El sonido rebotaba en la bruma y parecía venir de todas partes, así que {hero} cerró los ojos y giró la cabeza despacio, como una antena, hasta que el buu sonó igual de fuerte en las dos orejas. «Por ahí», dijo, y señaló hacia adelante. Remaron diez paladas y pararon a escuchar. Corrigieron el rumbo. Diez paladas más. Cada vez el buu sonaba más cerca, más grave, más seguro.",
               "scene": {
                 "bg": "mar_abierto",
                 "mood": "hope",
@@ -8182,7 +8211,7 @@
           "variants": [
             {
               "id": "niebla_bote_cocina_a",
-              "text": "Después de cenar, Tío Cazo llamó a los dos grumetes a la cocina, porque quería oír la historia otra vez, con todos los detalles. Les sirvió un tazón de sopa de pescado tan caliente que echaba humo, y se sentó a escuchar con los codos en la mesa. Leo contaba la parte del miedo, haciendo muecas exageradas que hacían reír al cocinero. {hero} contaba la parte del camino de vuelta. Al final, Tío Cazo se quedó pensativo, removiendo su sopa. «En cuarenta años de mar, yo me he perdido en la niebla tres veces», dijo. «Y las tres veces salí igual que ustedes: pensando despacio, aunque el corazón corriera deprisa.» Los dos grumetes se miraron, sorprendidos de que un marinero tan viejo hubiera tenido miedo alguna vez.",
+              "text": "Después de cenar, Tío Cazo llamó a los dos grumetes a la cocina, porque quería oír la historia otra vez, con todos los detalles. Les sirvió un tazón de sopa de pescado tan caliente que echaba humo, y se sentó a escuchar con los codos en la mesa. Leo contaba la parte del miedo, haciendo muecas exageradas que hacían reír al cocinero. {hero} contaba la parte del camino de vuelta. Al final, Tío Cazo se quedó pensativo, removiendo su sopa. «En cuarenta años de mar, yo me perdí en la niebla tres veces», dijo. «Y las tres veces salí igual que ustedes: pensando despacio, aunque el corazón corriera deprisa.» Los dos grumetes se miraron, sorprendidos de que un marinero tan viejo hubiera tenido miedo alguna vez.",
               "scene": {
                 "bg": "cubierta",
                 "mood": "joy",
@@ -8216,7 +8245,7 @@
           "variants": [
             {
               "id": "niebla_bote_noche_a",
-              "text": "Por la noche, el cielo se quedó limpio y lleno de estrellas, como si la niebla nunca hubiera existido. Leo ya roncaba en su hamaca. {hero}, en cambio, tardó un poco en dormirse, repasando la aventura una y otra vez, y cada vez le parecía menos terrible y más bonita. Se acordó de {camino.recuerdo}. Y pensó que, si algún día volvía a perderse en la niebla, ya sabía una cosa importante: que dentro de su miedo cabía también una idea. Con ese pensamiento caliente en el pecho, se quedó dormid{hero.o} al fin.",
+              "text": "Por la noche, el cielo se quedó limpio y lleno de estrellas, como si la niebla nunca hubiera existido. Leo ya roncaba bajito en su hamaca, con la boca abierta. {hero}, en cambio, tardó un poco en dormirse, repasando la aventura una y otra vez, y cada vez le parecía menos terrible y más bonita. Se acordó de {camino.recuerdo}. Y pensó que, si algún día volvía a perderse en la niebla, ya sabía una cosa importante: que dentro de su miedo cabía también una idea. Con ese pensamiento caliente en el pecho, se quedó dormid{hero.o} al fin.",
               "scene": {
                 "bg": "cubierta",
                 "mood": "sleep",
@@ -8423,7 +8452,7 @@
           "variants": [
             {
               "id": "ayudante_navegante_varados_a",
-              "text": "Estaban varados en un banco de arena, en mitad del paso. La marea estaba bajando, y el barco empezó a inclinarse poco a poco hacia un lado, como un perro que se tumba a dormir. Las tazas de la cocina resbalaron por las mesas. La capitana {helper} subió corriendo a la cubierta, despeinada por la siesta. Todos miraron a {hero}. Y {hero} sintió que la gorra con el ancla le ardía en la cabeza. Le habría gustado desaparecer, o echarle la culpa al {item.noun}, o al viento, o a quien fuera. Las palabras para excusarse ya le subían por la garganta. Ola se sujetaba a la borda, sin decir nada.",
+              "text": "Estaban varados en un banco de arena, en mitad del paso. La marea estaba bajando, y el barco empezó a inclinarse poco a poco hacia un lado, como un perro que se acuesta a dormir. Las tazas de la cocina resbalaron por las mesas. La capitana {helper} subió corriendo a la cubierta, despeinada por la siesta. Todos miraron a {hero}. Y {hero} sintió que la gorra con el ancla le ardía en la cabeza. Le habría gustado desaparecer, o echarle la culpa al {item.noun}, o al viento, o a quien fuera. Las palabras para excusarse ya le subían por la garganta. Ola se sujetaba a la borda, sin decir nada.",
               "scene": {
                 "bg": "mar_abierto",
                 "mood": "sad",
@@ -8536,7 +8565,7 @@
           "variants": [
             {
               "id": "ayudante_navegante_barriles_a",
-              "text": "Vaciar los barriles fue un trabajo enorme, porque estaban llenos de agua dulce y no se podía desperdiciar ni una gota. Ola enseñó a la tripulación a pasar el agua a los cubos de la cocina, en una cadena de manos que iba de la bodega a la cubierta. Leo dirigía dónde atar cada barril, siguiendo su dibujo, y {hero} le obedecía sin rechistar, así que todo salió más rápido de lo que nadie esperaba. Era raro recibir órdenes de Leo después de tantos días dándolas. Pero también era agradable: por primera vez desde que tenía la gorra, {hero} no tenía que fingir que lo sabía todo. Solo tenía que hacer bien su parte, codo con codo con los demás.",
+              "text": "Vaciar los barriles fue un trabajo enorme, porque estaban llenos de agua dulce y no se podía desperdiciar ni una gota. Ola enseñó a la tripulación a pasar el agua a los baldes de la cocina, en una cadena de manos que iba de la bodega a la cubierta. Leo dirigía dónde atar cada barril, siguiendo su dibujo, y {hero} le obedecía sin protestar, así que todo salió más rápido de lo que nadie esperaba. Era raro recibir órdenes de Leo después de tantos días dándolas. Pero también era agradable: por primera vez desde que tenía la gorra, {hero} no tenía que fingir que lo sabía todo. Solo tenía que hacer bien su parte, codo con codo con los demás.",
               "scene": {
                 "bg": "mar_abierto",
                 "mood": "hope",
@@ -8567,7 +8596,7 @@
           "variants": [
             {
               "id": "ayudante_navegante_mostacho_a",
-              "text": "Al caer la noche, un barco de velas remendadas apareció por el paso. Era el barco {villain.del} {villain}. Al verlos inclinados en el banco de arena, se le escapó una carcajada que se oyó en toda la isla. «¡La famosa Gaviota, varada como una ballena!», gritó. Pero luego vio a {hero}, que le saludaba con la gorra en la mano, sin enfadarse. Y {villain}, que llevaba años presumiendo de no necesitar a nadie, se rascó el bigote. La capitana {helper} se cruzó de brazos, esperando. «Bueno, bueno», refunfuñó {villain}. «Les echo un cabo. Pero que conste que lo hago por las risas.»",
+              "text": "Al caer la noche, un barco de velas remendadas apareció por el paso. Era el barco {villain.del} {villain}. Al verlos inclinados en el banco de arena, se le escapó una carcajada que se oyó en toda la isla. «¡La famosa Gaviota, varada como una ballena!», gritó. Pero luego vio a {hero}, que lo saludaba con la gorra en la mano, sin enfadarse. Y {villain}, que llevaba años presumiendo de no necesitar a nadie, se rascó el bigote. La capitana {helper} se cruzó de brazos, esperando. «Bueno, bueno», refunfuñó {villain}. «Les echo un cabo. Pero que conste que lo hago por las risas.»",
               "scene": {
                 "bg": "mar_abierto",
                 "mood": "joy",
@@ -8743,7 +8772,7 @@
           "variants": [
             {
               "id": "mapa_siete_idea_a",
-              "text": "El {helper} cumplía ochenta años, y {hero} quería regalarle algo que nadie más pudiera regalarle. En su faro, el abuelo tenía las paredes cubiertas de mapas: mapas de su abuela, mapas comprados en puertos lejanos, mapas que le habían dado capitanes agradecidos. Pero ninguno era de las Siete Islas, el pequeño archipiélago que rodeaba la Isla Quieta, donde el abuelo había nacido. «Nunca nadie las ha dibujado bien», le había oído decir {hero} una vez, con un poco de pena. Y así nació la idea: le dibujaría {item.un} de las Siete Islas, completo y exacto, para su cumpleaños.",
+              "text": "El {helper} cumplía ochenta años, y {hero} quería regalarle algo que nadie más pudiera regalarle. En su faro, el abuelo tenía las paredes cubiertas de mapas: mapas de su abuela, mapas comprados en puertos lejanos, mapas que le habían dado capitanes agradecidos. Pero ninguno era de las Siete Islas, el pequeño archipiélago que rodeaba la Isla Quieta, donde el abuelo había nacido. «Nunca nadie las dibujó bien», le había oído decir {hero} una vez, con un poco de pena. Y así nació la idea: le dibujaría {item.un} de las Siete Islas, completo y exacto, para su cumpleaños.",
               "scene": {
                 "bg": "faro",
                 "mood": "calm",
@@ -8782,7 +8811,7 @@
           "variants": [
             {
               "id": "mapa_siete_primero_a",
-              "text": "El primer intento lo hizo de memoria, sentado en la playa. Dibujó siete manchas, les puso nombre y les añadió una palmera a cada una. Le pareció precioso. Pero cuando lo comparó con lo que veía desde la orilla, se dio cuenta de que había puesto la isla de las Tortugas al norte, cuando estaba al este, y que había olvidado la isla pequeñita del faro viejo. El segundo intento lo hizo con más cuidado, pero una ola traicionera le mojó la hoja y la tinta se corrió hasta convertir el archipiélago en una nube azul. {hero} lo tendió al sol con una piedra encima, pero ya no tenía arreglo.",
+              "text": "El primer intento lo hizo de memoria, sentad{hero.o} en la playa. Dibujó siete manchas, les puso nombre y les añadió una palmera a cada una. Le pareció precioso. Pero cuando lo comparó con lo que veía desde la orilla, se dio cuenta de que había puesto la isla de las Tortugas al norte, cuando estaba al este, y que había olvidado la isla pequeñita del faro viejo. El segundo intento lo hizo con más cuidado, pero una ola traicionera le mojó la hoja y la tinta se corrió hasta convertir el archipiélago en una nube azul. {hero} lo tendió al sol con una piedra encima, pero ya no tenía arreglo.",
               "scene": {
                 "bg": "playa",
                 "mood": "tension",
@@ -8813,7 +8842,7 @@
           "variants": [
             {
               "id": "mapa_siete_fracaso_a",
-              "text": "El tercer intento salió peor que los dos primeros. La isla de los Cangrejos quedó tan grande que se comía a sus vecinas, y la Isla Quieta parecía un huevo frito. {hero} arrugó la hoja y la tiró al mar, con rabia. Se sentó en la arena y se tapó la cara con las manos. Siete islas, y ni una en su sitio. Llevaba dos semanas con aquel mapa, y faltaban solo cuatro días para el cumpleaños del Abuelo Faro. Pero entonces se acordó de lo que el abuelo decía siempre: un error es solo un camino que ya sabes que no funciona. Así que se secó la cara, cogió una hoja limpia y pensó en otra manera de hacerlo.",
+              "text": "El tercer intento salió peor que los dos primeros. La isla de los Cangrejos quedó tan grande que se comía a sus vecinas, y la Isla Quieta parecía un huevo frito. {hero} arrugó la hoja y la tiró al mar, con rabia. Se sentó en la arena y se tapó la cara con las manos. Siete islas, y ni una en su sitio. Llevaba dos semanas con aquel mapa, y faltaban solo cuatro días para el cumpleaños del Abuelo Faro. Pero entonces se acordó de lo que el abuelo decía siempre: un error es solo un camino que ya sabes que no funciona. Así que se secó la cara, tomó una hoja limpia y pensó en otra manera de hacerlo.",
               "scene": {
                 "bg": "playa",
                 "mood": "sad",
@@ -8905,7 +8934,7 @@
             },
             {
               "id": "mapa_siete_trabajo_cofa_a",
-              "text": "{hero} pidió permiso a la capitana para subir a la cofa de la Gaviota, que estaba anclada frente a la playa. Desde lo alto del mástil, el mundo se volvía pequeño y ordenado. Llevó la hoja sujeta a una tabla con pinzas de tender, para que no se la llevara el viento. Dibujó primero la Isla Quieta, en el centro, y luego las otras alrededor, como pétalos de una flor. El barco se balanceaba y el lápiz se le escapaba. Tuvo que subir cuatro mañanas seguidas, con la luz del amanecer, porque a mediodía el reflejo del sol en el agua no le dejaba ver los bordes. {metodo.logro}",
+              "text": "{hero} pidió permiso a la capitana para subir a la cofa de la Gaviota, que estaba anclada frente a la playa. Desde lo alto del mástil, el mundo se volvía pequeño y ordenado. Llevó la hoja sujeta a una tabla con pinzas de tender, para que no se la llevara el viento. Dibujó primero la Isla Quieta, en el centro, y luego las otras alrededor, como pétalos de una flor. El barco se balanceaba y el lápiz se le escapaba. Tuvo que subir cuatro mañanas seguidas, con la luz del amanecer, porque a mediodía el reflejo del sol en el agua no l{hero.o} dejaba ver los bordes. {metodo.logro}",
               "scene": {
                 "bg": "cofa",
                 "mood": "hope",
@@ -8991,7 +9020,7 @@
           "variants": [
             {
               "id": "mapa_siete_cumple_a",
-              "text": "El día del cumpleaños, todo el puerto subió al faro con tartas y guirnaldas. Cuando le llegó el turno, {hero} le dio al {helper} un rollo atado con un cordel. El abuelo lo desenrolló despacio, y se quedó muy callado. Pasó el dedo por cada isla, por cada bahía, por la ballena pequeña de la esquina. Luego levantó la vista, y tenía los ojos brillantes. «Ahí está la cala donde aprendí a nadar», dijo con la voz rota. «Y ahí, la roca donde mi abuela me enseñó las estrellas. Nadie las había dibujado nunca.»",
+              "text": "El día del cumpleaños, todo el puerto subió al faro con pasteles y guirnaldas. Cuando le llegó el turno, {hero} le dio al {helper} un rollo atado con un cordel. El abuelo lo desenrolló despacio, y se quedó muy callado. Pasó el dedo por cada isla, por cada bahía, por la ballena pequeña de la esquina. Luego levantó la vista, y tenía los ojos brillantes. «Ahí está la cala donde aprendí a nadar», dijo con la voz rota. «Y ahí, la roca donde mi abuela me enseñó las estrellas. Nadie las había dibujado nunca.»",
               "scene": {
                 "bg": "faro",
                 "mood": "joy",
@@ -9030,7 +9059,7 @@
           "variants": [
             {
               "id": "mapa_siete_historias_a",
-              "text": "Esa tarde, mientras los invitados comían tarta, el {helper} sentó a {hero} delante del mapa y le contó una historia de cada isla. En la isla de los Cangrejos, una vez, un cangrejo le robó un zapato y no se lo devolvió nunca. En la isla de las Tortugas había visto nacer cien tortuguitas en una sola noche de luna llena. Y en la isla pequeñita del faro viejo, la que {hero} olvidó en su primer intento, su abuela le había enseñado a encender una lámpara por primera vez, cuando el abuelo tenía la edad de {hero}. Cada isla del mapa se fue llenando de historias, y a {hero} le pareció que el dibujo, de pronto, respiraba.",
+              "text": "Esa tarde, mientras los invitados comían pastel, el {helper} sentó a {hero} delante del mapa y le contó una historia de cada isla. En la isla de los Cangrejos, una vez, un cangrejo le robó un zapato y no se lo devolvió nunca. En la isla de las Tortugas había visto nacer cien tortuguitas en una sola noche de luna llena. Y en la isla pequeñita del faro viejo, la que {hero} olvidó en su primer intento, su abuela le había enseñado a encender una lámpara por primera vez, cuando el abuelo tenía la edad de {hero}. Cada isla del mapa se fue llenando de historias, y a {hero} le pareció que el dibujo, de pronto, respiraba.",
               "scene": {
                 "bg": "faro",
                 "mood": "joy",
@@ -9192,7 +9221,7 @@
           "variants": [
             {
               "id": "faroles_remolino_promesa_a",
-              "text": "La noche de las lámparas era la fiesta más bonita del año en el puerto. Cada familia soltaba una lámpara de papel sobre el agua, y miles de lucecitas flotaban mar adentro, como un cielo puesto del revés. {hero} y Leo llevaban semanas preparándola. Habían hecho una lámpara entre los dos, pintada con peces y estrellas, y se habían prometido una cosa: verlo navegar desde la punta del muelle, el mejor sitio de todos, sin separarse ni un minuto. «Prometido por la Gaviota», dijo Leo, chocando la mano de {hero}. Y {hero} lo repitió, muy serio, porque una promesa de marinero no se rompe.",
+              "text": "La noche de las lámparas era la fiesta más bonita del año en el puerto. Cada familia soltaba una lámpara de papel sobre el agua, y miles de lucecitas flotaban mar adentro, como un cielo puesto del revés. {hero} y Leo llevaban semanas preparándola. Habían hecho una lámpara entre los dos, pintada con peces y estrellas, y se habían prometido una cosa: verlo navegar desde la punta del muelle, el mejor sitio de todos, sin separarse ni un minuto. «Prometido por la Gaviota», dijo Leo, chocando la mano de {hero}. Y {hero} lo repitió, muy seri{hero.o}, porque una promesa de marinero no se rompe.",
               "scene": {
                 "bg": "puerto",
                 "mood": "joy",
@@ -9249,7 +9278,7 @@
           "variants": [
             {
               "id": "faroles_remolino_eleccion_a",
-              "text": "{hero} se quedó un momento sin moverse, partido en dos. Quería cumplir la promesa. Leo había esperado toda la semana aquella fiesta. Pero el pulpo estaba en apuros, y no tenía a nadie más. «Lo siento mucho, Leo», dijo al fin. «Tengo que ir. Nuestro amigo del arrecife me necesita.» Leo apretó los labios y no contestó. Se dio la vuelta con la lámpara en las manos y se fue hacia el muelle, sin mirar atrás. A {hero} le dolió aquel silencio más que si le hubiera gritado. Pero cogió {item.un} de barco para alumbrarse, y echó a correr hacia la playa del arrecife.",
+              "text": "{hero} se quedó un momento sin moverse, partid{hero.o} en dos. Quería cumplir la promesa. Leo había esperado toda la semana aquella fiesta. Pero el pulpo estaba en apuros, y no tenía a nadie más. «Lo siento mucho, Leo», dijo al fin. «Tengo que ir. Nuestro amigo del arrecife me necesita.» Leo apretó los labios y no contestó. Se dio la vuelta con la lámpara en las manos y se fue hacia el muelle, sin mirar atrás. A {hero} le dolió aquel silencio más que si le hubiera gritado. Pero agarró {item.un} de barco para alumbrarse, y echó a correr hacia la playa del arrecife.",
               "scene": {
                 "bg": "puerto",
                 "mood": "sad",
@@ -9288,7 +9317,7 @@
           "variants": [
             {
               "id": "faroles_remolino_carrera_a",
-              "text": "{hero} corrió por la playa con el farol en la mano, mientras a su espalda la música de la fiesta se hacía cada vez más pequeña. Las primeras lámparas de papel ya flotaban en el puerto, y su luz se reflejaba en la arena mojada. A cada paso, {hero} pensaba en la cara de Leo, en su silencio. Una parte quería darse la vuelta y correr hacia el muelle. Pero Pimienta volaba delante, chillando sin parar, y la otra parte sabía que un amigo en apuros no puede esperar a que termine una fiesta. Al llegar a las rocas del arrecife, {hero} se quitó las sandalias, respiró hondo tres veces y se metió en el agua oscura, con el farol bien alto.",
+              "text": "{hero} corrió por la playa con el farol en la mano, mientras a su espalda la música de la fiesta se hacía cada vez más pequeña. Las primeras lámparas de papel ya flotaban en el puerto, y su luz se reflejaba en la arena mojada. A cada paso, {hero} pensaba en la cara de Leo, en su silencio. Una parte quería darse la vuelta y correr hacia el muelle. Pero Pimienta volaba adelante, chillando sin parar, y la otra parte sabía que un amigo en apuros no puede esperar a que termine una fiesta. Al llegar a las rocas del arrecife, {hero} se quitó las sandalias, respiró hondo tres veces y se metió en el agua oscura, con el farol bien alto.",
               "scene": {
                 "bg": "playa",
                 "mood": "tension",
@@ -9500,7 +9529,7 @@
           "variants": [
             {
               "id": "faroles_remolino_noche_a",
-              "text": "Se sentaron en la arena hasta que la última lámpara se perdió en el horizonte. «Ha sido la mejor noche de las lámparas de mi vida», dijo Leo. «Y no la hemos visto desde la punta del muelle.» {hero} se rio. Pensó que una amistad de verdad no consiste en cumplir las promesas al pie de la letra, sino en saber lo que de verdad querían decir. Remolino les cantó una canción de burbujas que nadie entendió, pero que sonaba bonita. Y {hero} se quedó dormid{hero.o} allí mismo, con la cabeza en el hombro de Leo, mientras el mar seguía brillando.",
+              "text": "Se sentaron en la arena hasta que la última lámpara se perdió en el horizonte. «Fue la mejor noche de las lámparas de mi vida», dijo Leo. «Y no la vimos desde la punta del muelle.» {hero} se rio. Pensó que una amistad de verdad no consiste en cumplir las promesas al pie de la letra, sino en saber lo que de verdad querían decir. Remolino les cantó una canción de burbujas que nadie entendió, pero que sonaba bonita. Y {hero} se quedó dormid{hero.o} allí mismo, con la cabeza en el hombro de Leo, mientras el mar seguía brillando.",
               "scene": {
                 "bg": "playa",
                 "mood": "sleep",

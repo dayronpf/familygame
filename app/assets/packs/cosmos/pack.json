@@ -155,7 +155,7 @@
       ],
       "attrs": {
         "gesto": [
-          "se subió las gafas",
+          "se subió los lentes",
           "señaló el cielo con el dedo",
           "se rio bajito"
         ],
@@ -189,7 +189,7 @@
           "sacó brillo a un botón"
         ],
         "voz": [
-          "con voz estirada",
+          "con voz de señor importante",
           "refunfuñando",
           "con una vocecita aguda"
         ],
@@ -678,7 +678,7 @@
           "variants": [
             {
               "id": "atajo_anillo_copa_a",
-              "text": "{hero} llegó a la plataforma antes que nadie. Todos aplaudieron, y la comandante {helper} le puso la copa plateada en las manos. Pip llegó segundo, sudando y con la cara roja. «¡Qué rápid{hero.o} has ido!», le dijo, sin rencor, y le dio la mano, porque Pip era así. Esa tarde, {hero} tuvo que contar la carrera diez veces, y cada vez que la contaba se saltaba un trocito. Se saltaba siempre el mismo. La copa brillaba muchísimo, pero pesaba más de lo que parecía, como si estuviera llena de plomo por dentro.",
+              "text": "{hero} llegó a la plataforma antes que nadie. Todos aplaudieron, y la comandante {helper} le puso la copa plateada en las manos. Pip llegó segundo, sudando y con la cara roja. «¡Qué rápid{hero.o} fuiste!», le dijo, sin rencor, y le dio la mano, porque Pip era así. Esa tarde, {hero} tuvo que contar la carrera diez veces, y cada vez que la contaba se saltaba un trocito. Se saltaba siempre el mismo. La copa brillaba muchísimo, pero pesaba más de lo que parecía, como si estuviera llena de plomo por dentro.",
               "scene": {
                 "bg": "plataforma",
                 "mood": "joy",
@@ -708,7 +708,7 @@
           "variants": [
             {
               "id": "atajo_anillo_alerta_a",
-              "text": "Al día siguiente, la comandante {helper} apareció en la escuela con la cara muy seria. «Anoche saltó una alarma en el observatorio», explicó. «Algo atravesó la zona azul durante la carrera. Allí hay un arco de cristal muy antiguo, tan fino como una pompa de jabón, y se ha roto un trozo.» Hizo una pausa y miró a todos los cadetes, uno por uno. «Si nadie sabe qué pasó, tendremos que suponer que fue una roca suelta, y nunca sabremos dónde reforzar el arco.» A {hero} se le secó la boca, y la copa, en su estantería, parecía mirar.",
+              "text": "Al día siguiente, la comandante {helper} apareció en la escuela con la cara muy seria. «Anoche saltó una alarma en el observatorio», explicó. «Algo atravesó la zona azul durante la carrera. Allí hay un arco de cristal muy antiguo, tan fino como una pompa de jabón, y se rompió un trozo.» Hizo una pausa y miró a todos los cadetes, uno por uno. «Si nadie sabe qué pasó, tendremos que suponer que fue una roca suelta, y nunca sabremos dónde reforzar el arco.» A {hero} se le secó la boca, y la copa, en su estantería, parecía mirar.",
               "scene": {
                 "bg": "aldea",
                 "mood": "tension",
@@ -735,7 +735,7 @@
           "variants": [
             {
               "id": "atajo_anillo_duda_a",
-              "text": "Esa noche, {hero} no podía dormir. Si contaba la verdad, perdería la copa, y todos sabrían que había hecho trampa. Pip sabría que la carrera era suya. La comandante, que confiaba tanto en {hero}, quizá ya no le dejaría pilotar. Pero si se callaba, el arco de cristal se quedaría roto, y nadie sabría dónde arreglarlo. {hero} pensó en el secreto creciendo dentro de su pecho, cada día un poco más pesado. Y comprendió que la copa no era lo que pesaba. Lo que pesaba era callar.",
+              "text": "Esa noche, {hero} no podía dormir. Si contaba la verdad, perdería la copa, y todos sabrían que había hecho trampa. Pip sabría que la carrera era suya. La comandante, que confiaba tanto en {hero}, quizá ya no l{hero.o} dejaría pilotar. Pero si se callaba, el arco de cristal se quedaría roto, y nadie sabría dónde arreglarlo. {hero} pensó en el secreto creciendo dentro de su pecho, cada día un poco más pesado. Y comprendió que la copa no era lo que pesaba. Lo que pesaba era callar.",
               "scene": {
                 "bg": "dormitorio",
                 "mood": "sad",
@@ -793,7 +793,7 @@
           "variants": [
             {
               "id": "atajo_anillo_arco_a",
-              "text": "«Gracias», dijo por fin la comandante {helper}. «Hacer trampa estuvo mal, y lo sabes. Pero decir la verdad cuando nadie te ha visto es lo más difícil que puede hacer un cadete.» Gracias al camino que señaló {hero}, ese mismo día salieron a reparar el arco. {hero} fue con ellos, porque pidió ayudar, y pasó la tarde entera sujetando placas de cristal mientras la comandante las soldaba con una luz fría. El arco quedó otra vez entero, finísimo y brillante, como una cinta de luz entre las rocas.",
+              "text": "«Gracias», dijo por fin la comandante {helper}. «Hacer trampa estuvo mal, y lo sabes. Pero decir la verdad cuando nadie te vio es lo más difícil que puede hacer un cadete.» Gracias al camino que señaló {hero}, ese mismo día salieron a reparar el arco. {hero} fue con ellos, porque pidió ayudar, y pasó la tarde entera sujetando placas de cristal mientras la comandante las soldaba con una luz fría. El arco quedó otra vez entero, finísimo y brillante, como una cinta de luz entre las rocas.",
               "scene": {
                 "bg": "anillos",
                 "mood": "joy",
@@ -848,7 +848,7 @@
           "variants": [
             {
               "id": "atajo_anillo_pip_a",
-              "text": "La copa la ganó Pip, como tenía que ser. Cuando la comandante {helper} se la dio, delante de toda la escuela, {hero} fue quien aplaudió primero. Pip se acercó después, con la copa en la mano. «Me lo contó la comandante», dijo. «No hacía falta que dijeras nada, y lo dijiste.» Se quedó pensando un momento. «La próxima carrera te gano por el camino largo, ¿vale?» {hero} se rio, porque la próxima carrera ya le apetecía muchísimo, y esta vez por el camino de verdad.",
+              "text": "La copa la ganó Pip, como tenía que ser. Cuando la comandante {helper} se la dio, delante de toda la escuela, {hero} fue quien aplaudió primero. Pip se acercó después, con la copa en la mano. «Me lo contó la comandante», dijo. «No hacía falta que dijeras nada, y lo dijiste.» Se quedó pensando un momento. «La próxima carrera te gano por el camino largo, ¿está bien?» {hero} se rio, porque ya tenía muchísimas ganas de la próxima carrera, y esta vez por el camino de verdad.",
               "scene": {
                 "bg": "plataforma",
                 "mood": "joy",
@@ -1006,7 +1006,7 @@
           "variants": [
             {
               "id": "aterrizaje_intentos_a",
-              "text": "El primer intento de aterrizaje terminó con el cohete de prácticas rebotando dos veces en la plataforma, como una pelota. El segundo, con el cohete posado tan torcido que hubo que enderezarlo con una grúa. {hero} lo intentaba con todas sus fuerzas, apretando los mandos hasta que le dolían los dedos. Pero cuanto más apretaba, peor le salía. La comandante {helper} observaba desde abajo, con los brazos cruzados, y le hacía siempre la misma pregunta: «¿Qué ha pasado esta vez?». Y {hero} nunca sabía qué contestar. Solo sabía que le salía mal, y que cada fallo dolía un poco más que el anterior.",
+              "text": "El primer intento de aterrizaje terminó con el cohete de prácticas rebotando dos veces en la plataforma, como una pelota. El segundo, con el cohete posado tan torcido que hubo que enderezarlo con una grúa. {hero} lo intentaba con todas sus fuerzas, apretando los mandos hasta que le dolían los dedos. Pero cuanto más apretaba, peor le salía. La comandante {helper} observaba desde abajo, con los brazos cruzados, y le hacía siempre la misma pregunta: «¿Qué pasó esta vez?». Y {hero} nunca sabía qué contestar. Solo sabía que le salía mal, y que cada fallo dolía un poco más que el anterior.",
               "scene": {
                 "bg": "plataforma",
                 "mood": "tension",
@@ -1143,7 +1143,7 @@
             },
             {
               "id": "aterrizaje_practica_calma_a",
-              "text": "{hero} se dio cuenta de una cosa: cada vez que el cohete bajaba, se le aceleraba el corazón, y entonces apretaba los mandos demasiado. Así que decidió practicar primero lo de dentro. Cada mañana se sentaba en la cabina del cohete de prácticas, sin encenderlo, y respiraba despacio: cuatro segundos para coger aire, cuatro para soltarlo. Luego imaginaba el aterrizaje entero, paso a paso, sin prisa. Al principio le parecía una tontería y se aburría. Pero poco a poco notó que las manos le temblaban menos, y que podía pensar aunque estuviera nervios{hero.o}. {metodo.logro}",
+              "text": "{hero} se dio cuenta de una cosa: cada vez que el cohete bajaba, se le aceleraba el corazón, y entonces apretaba los mandos demasiado. Así que decidió practicar primero lo de dentro. Cada mañana se sentaba en la cabina del cohete de prácticas, sin encenderlo, y respiraba despacio: cuatro segundos para tomar aire, cuatro para soltarlo. Luego imaginaba el aterrizaje entero, paso a paso, sin prisa. Al principio le parecía una tontería y se aburría. Pero poco a poco notó que las manos le temblaban menos, y que podía pensar aunque estuviera nervios{hero.o}. {metodo.logro}",
               "scene": {
                 "bg": "cabina",
                 "mood": "hope",
@@ -1167,7 +1167,7 @@
           "variants": [
             {
               "id": "aterrizaje_vispera_a",
-              "text": "La víspera del examen, {hero} no hizo ningún aterrizaje. La comandante {helper} le había dicho que el día antes de algo importante también hay que descansar. Así que {hero} dio un paseo por la aldea, merendó con Pip y Nube y miró los cohetes de la plataforma desde lejos, como si fueran amigos. Le temblaba un poco la barriga, claro. Pero no era el temblor de antes, el de no saber qué hacer. Era otro distinto, más suave, el de alguien que ha practicado mucho y quiere demostrarlo. Al volver a casa, repasó mentalmente cada paso del aterrizaje, despacio, uno detrás de otro, como quien cuenta los escalones de una escalera conocida. Luego cerró la libreta y la guardó en el bolsillo del traje, porque quería llevarla al examen. Estaba cansad{hero.o} de tanto practicar, y por fin tenía ganas de que llegara el día.",
+              "text": "La víspera del examen, {hero} no hizo ningún aterrizaje. La comandante {helper} le había dicho que el día antes de algo importante también hay que descansar. Así que {hero} dio un paseo por la aldea, merendó con Pip y Nube y miró los cohetes de la plataforma desde lejos, como si fueran amigos. Le temblaba un poco la barriga, claro. Pero no era el temblor de antes, el de no saber qué hacer. Era otro distinto, más suave, el de alguien que practicó mucho y quiere demostrarlo. Al volver a casa, repasó mentalmente cada paso del aterrizaje, despacio, uno detrás de otro, como quien cuenta los escalones de una escalera conocida. Luego cerró la libreta y la guardó en el bolsillo del traje, porque quería llevarla al examen. Estaba cansad{hero.o} de tanto practicar, y por fin tenía ganas de que llegara el día.",
               "scene": {
                 "bg": "aldea",
                 "mood": "calm",
@@ -1261,7 +1261,7 @@
           "variants": [
             {
               "id": "aterrizaje_pregunta_a",
-              "text": "Después del examen, la comandante {helper} le hizo la pregunta de siempre: «¿Qué ha pasado esta vez?». Y esta vez, {hero} sí sabía contestar. Le contó los tres aterrizajes fallidos, las ganas de abandonar, y la manera nueva que había encontrado de practicar. La comandante escuchaba asintiendo. «¿Sabes por qué te hacía siempre esa pregunta?», dijo al final. «Porque los errores solo sirven si los miras de frente. Tú los has mirado, uno a uno. Y por eso has aprendido.»",
+              "text": "Después del examen, la comandante {helper} le hizo la pregunta de siempre: «¿Qué pasó esta vez?». Y esta vez, {hero} sí sabía contestar. Le contó los tres aterrizajes fallidos, las ganas de abandonar, y la manera nueva que había encontrado de practicar. La comandante escuchaba asintiendo. «¿Sabes por qué te hacía siempre esa pregunta?», dijo al final. «Porque los errores solo sirven si los miras de frente. Tú los miraste, uno a uno. Y por eso aprendiste.»",
               "scene": {
                 "bg": "plataforma",
                 "mood": "calm",
@@ -1290,7 +1290,7 @@
           "variants": [
             {
               "id": "aterrizaje_insignia_a",
-              "text": "Esa tarde, en una pequeña ceremonia, la comandante {helper} le prendió en el traje la insignia de piloto: un cohete plateado con una estrella en la punta. Le explicó que todos los pilotos de la aldea tenían una historia de fracasos antes de su insignia. Ella misma había suspendido el examen dos veces. «La tercera aprobé», dijo, «porque dejé de intentarlo igual y empecé a intentarlo mejor». {hero} acarició la insignia con el dedo. No era la más brillante del mundo, pero era la suya, y le había costado cada rebote.",
+              "text": "Esa tarde, en una pequeña ceremonia, la comandante {helper} le prendió en el traje la insignia de piloto: un cohete plateado con una estrella en la punta. Le explicó que todos los pilotos de la aldea tenían una historia de fracasos antes de su insignia. Ella misma no había pasado el examen dos veces. «La tercera aprobé», dijo, «porque dejé de intentarlo igual y empecé a intentarlo mejor». {hero} acarició la insignia con el dedo. No era la más brillante del mundo, pero era la suya, y le había costado cada rebote.",
               "scene": {
                 "bg": "plataforma",
                 "mood": "joy",
@@ -1316,7 +1316,7 @@
           "variants": [
             {
               "id": "aterrizaje_duerme_a",
-              "text": "Esa noche, {hero} dejó la insignia en la mesilla, al lado de la cama, donde pudiera verla al despertarse. Por la ventana, la plataforma brillaba entre las nubes, pequeña y en calma. Se acordó de {metodo.recuerdo}, y de los tres aterrizajes torcidos, que ahora le parecían casi divertidos. Pensó que al día siguiente quería aprender a aterrizar en la luna de verdad, y que seguramente no le saldría a la primera. Y por primera vez, eso no le dio miedo. Se tapó, sonrió y se durmió.",
+              "text": "Esa noche, {hero} dejó la insignia en la mesita de noche, al lado de la cama, donde pudiera verla al despertarse. Por la ventana, la plataforma brillaba entre las nubes, pequeña y en calma. Se acordó de {metodo.recuerdo}, y de los tres aterrizajes torcidos, que ahora le parecían casi divertidos. Pensó que al día siguiente quería aprender a aterrizar en la luna de verdad, y que seguramente no le saldría a la primera. Y por primera vez, eso no le dio miedo. Se tapó, sonrió y se durmió.",
               "scene": {
                 "bg": "dormitorio",
                 "mood": "sleep",
@@ -1433,7 +1433,7 @@
           "variants": [
             {
               "id": "baron_estrellas_viaje_a",
-              "text": "{hero} y {helper}, el robot, se subieron al cohete pequeño para ir a ver qué pasaba. {helper} conducía, pitando bajito de nervios. «Tengo un poco de miedo», confesó el robot. «Yo también», dijo {hero}. «Pero alguien tiene que ir.» Por la ventana, el planeta de cristal brillaba cada vez más cerca.",
+              "text": "{hero} y {helper}, el robot, se subieron al cohete pequeño para ir a ver qué pasaba. {helper} pilotaba, pitando bajito de nervios. «Tengo un poco de miedo», confesó el robot. «Yo también», dijo {hero}. «Pero alguien tiene que ir.» Por la ventana, el planeta de cristal brillaba cada vez más cerca.",
               "scene": {
                 "bg": "cabina",
                 "mood": "tension",
@@ -1676,7 +1676,7 @@
           "variants": [
             {
               "id": "baron_estrellas_duerme_a",
-              "text": "Desde entonces, el Barón Brillo sube cada noche a su balcón a mirar las estrellas sueltas. Y {hero} se durmió esa noche con el casco todavía puesto, de puro cansancio, pensando que ser valiente es hablar aunque tiemblen las rodillas, porque alguien tiene que hacerlo.",
+              "text": "Esa noche, mientras el Barón Brillo miraba desde su balcón las estrellas sueltas, {hero} se durmió con el casco todavía puesto, de puro cansancio. Había hablado aunque le temblaran las rodillas, porque alguien tenía que hacerlo. Y desde entonces, el cielo de la aldea nunca volvió a quedarse a oscuras.",
               "scene": {
                 "bg": "aldea",
                 "mood": "sleep",
@@ -1731,6 +1731,12 @@
           "ids": [
             "aldea"
           ]
+        },
+        "dormitorio": {
+          "kind": "place",
+          "ids": [
+            "dormitorio"
+          ]
         }
       },
       "beats": [
@@ -1770,7 +1776,7 @@
           "variants": [
             {
               "id": "chispa_perdida_huye_a",
-              "text": "¡Chispa salió corriendo! Saltó entre las flores gigantes y desapareció en un bosque de setas de colores. {hero} y Nube lo llamaron: «¡Chispa! ¡Chispa!». Pero solo contestaron unos pájaros que cantaban como flautas. Y se quedaron sin hablar ni mirarse, porque cada cual pensaba que la culpa era de la otra mano.",
+              "text": "¡Chispa salió corriendo! Saltó entre las flores gigantes y desapareció en un bosque de hongos de colores. {hero} y Nube lo llamaron: «¡Chispa! ¡Chispa!». Pero solo contestaron unos pájaros que cantaban como flautas. Y se quedaron sin hablar ni mirarse, porque cada cual creía que la culpa no era suya.",
               "scene": {
                 "bg": "planeta_jardin",
                 "mood": "sad",
@@ -1799,7 +1805,7 @@
           "variants": [
             {
               "id": "chispa_perdida_llora_a",
-              "text": "Entonces Nube se echó a llorar. «Es mi culpa», dijo. «Yo tiré más fuerte.» {hero} la miró. Tenía ganas de decir «sí, es tu culpa», pero no lo dijo. En vez de eso, se acercó y le dio la mano. «Es culpa de las dos manos», dijo {hero}. «Y lo vamos a encontrar, tú y yo.»",
+              "text": "Entonces Nube se echó a llorar. «Es mi culpa», dijo. «Yo tiré más fuerte.» {hero} la miró. Tenía ganas de decir «sí, es tu culpa», pero no lo dijo. En vez de eso, se acercó y le dio la mano. «Tiramos l{hero.o}s dos», dijo {hero}. «Y lo vamos a encontrar, tú y yo.»",
               "scene": {
                 "bg": "planeta_jardin",
                 "mood": "hope",
@@ -1828,7 +1834,7 @@
           "variants": [
             {
               "id": "chispa_perdida_huellas_a",
-              "text": "Nube se secó las lágrimas y miró el suelo. «¡Mira, huellas!», dijo. Eran pequeñas y redondas, como las de Chispa. Las siguieron entre las setas. {hero} apartaba las hojas grandes, y Nube vigilaba que no se perdiera ninguna huella. Juntos, se dieron cuenta, buscaban el doble de rápido. Por el camino encontraron una flor que cantaba y una seta que olía a fresa, pero no se pararon, porque Chispa era lo primero.",
+              "text": "Nube se secó las lágrimas y miró el suelo. «¡Mira, huellas!», dijo. Eran pequeñas y redondas, como las de Chispa. Las siguieron entre los hongos. {hero} apartaba las hojas grandes, y Nube vigilaba que no se perdiera ninguna huella. Junt{hero.o}s, se dieron cuenta, buscaban el doble de rápido. Por el camino encontraron una flor que cantaba y un hongo que olía a fresa, pero no se detuvieron, porque Chispa era lo primero.",
               "scene": {
                 "bg": "planeta_jardin",
                 "mood": "mystery",
@@ -1891,7 +1897,7 @@
           "variants": [
             {
               "id": "chispa_perdida_salta_a",
-              "text": "Saltaron de piedra en piedra, avisándose en cada salto. «¡Esa no, que se mueve!», gritaba Nube. «¡Esa sí, es grande!», gritaba {hero}. Y llegaron hasta Chispa, que les dio lametazos por toda la cara y ladró tan fuerte que los pájaros flauta salieron volando. {hero} y Nube se rieron hasta que les dolió la barriga. Volvieron cruzando el río, con Chispa en brazos, muy despacito. Esta vez {hero} y Nube no discutieron quién lo llevaba: lo llevaron entre las dos manos.",
+              "text": "Saltaron de piedra en piedra, avisándose en cada salto. «¡Esa no, que se mueve!», gritaba Nube. «¡Esa sí, es grande!», gritaba {hero}. Y llegaron hasta Chispa, que les dio lengüetazos por toda la cara y ladró tan fuerte que los pájaros flauta salieron volando. {hero} y Nube se rieron hasta que les dolió la barriga. Volvieron cruzando el río, con Chispa en brazos, muy despacito. Esta vez {hero} y Nube no discutieron quién lo llevaba: lo llevaron entre l{hero.o}s dos.",
               "scene": {
                 "bg": "planeta_jardin",
                 "mood": "triumph",
@@ -1953,7 +1959,7 @@
           "variants": [
             {
               "id": "chispa_perdida_aldea_a",
-              "text": "Cuando llegaron a la aldea ya era de noche. Les dolían los pies, tenían las rodillas llenas de barro y el pelo lleno de hojas. Pero se despidieron con un abrazo largo. «Hoy has sido mi mejor amiga», le dijo {hero} a Nube, porque en el peor momento no la había dejado sola.",
+              "text": "Cuando llegaron a la aldea ya era de noche. Les dolían los pies, tenían las rodillas llenas de barro y el pelo lleno de hojas. Pero se despidieron con un abrazo largo. «Hoy fuiste mi mejor amiga», le dijo {hero} a Nube, porque en el peor momento no se habían soltado la mano. «Y tú, mi mejor amig{hero.o}», contestó Nube.",
               "scene": {
                 "bg": "aldea",
                 "mood": "calm",
@@ -1980,9 +1986,9 @@
           "variants": [
             {
               "id": "chispa_perdida_duerme_a",
-              "text": "Esa noche, Chispa se quedó a dormir a los pies de {hero}, enroscado como una rosquilla. {hero} pensó en el río y en las piedras, y en la mano de Nube. Y se durmió sonriendo, porque los amigos de verdad se dan la mano justo cuando más falta hace.",
+              "text": "Esa noche, en su dormitorio, Chispa se quedó a dormir a los pies de la cama de {hero}, enroscado como una rosquilla. {hero} pensó en el río y en las piedras, y en la mano de Nube. Y se durmió sonriendo, porque los amigos de verdad se dan la mano justo cuando más falta hace.",
               "scene": {
-                "bg": "aldea",
+                "bg": "dormitorio",
                 "mood": "sleep",
                 "time": "noche",
                 "stage": [
@@ -2002,7 +2008,8 @@
                 ]
               }
             }
-          ]
+          ],
+          "moves": true
         }
       ]
     },
@@ -2195,7 +2202,7 @@
           "variants": [
             {
               "id": "cohete_ayuda_vuela_a",
-              "text": "Salieron a la aldea. {hero} lanzó el cohete. ¡Fiuuu! Voló alto, alto, entre las nubes. «¡Gracias, {helper}!», dijo {hero}, porque juntos era más fácil.",
+              "text": "Salieron a la aldea. {hero} lanzó el cohete. ¡Fiu! Voló alto, alto, entre las nubes. «¡Gracias, {helper}!», dijo {hero}, porque juntos era más fácil.",
               "scene": {
                 "bg": "aldea",
                 "mood": "triumph",
@@ -2343,7 +2350,7 @@
           "variants": [
             {
               "id": "colina_cristal_resbala_a",
-              "text": "{hero} empezó a subir. Pero la colina era de cristal, y resbalaba muchísimo. A mitad de camino, ¡fiuuu!, se deslizó hasta abajo. Lo intentó otra vez, y ¡fiuuu!, otra vez abajo. {hero} se sentó en el suelo, con el trasero frío y ganas de llorar.",
+              "text": "{hero} empezó a subir. Pero la colina era de cristal, y resbalaba muchísimo. A mitad de camino, ¡fiu!, se deslizó hasta abajo, como por un tobogán. Lo intentó otra vez, y otra vez abajo. {hero} se sentó en el suelo, con el trasero frío y ganas de llorar.",
               "scene": {
                 "bg": "planeta_cristal",
                 "mood": "sad",
@@ -2419,7 +2426,7 @@
           "variants": [
             {
               "id": "colina_cristal_cima_a",
-              "text": "¡Y llegó arriba! Desde la cima, el planeta entero brillaba a sus pies. {hero} recogió la {item.noun} con mucho cuidado. «¡Lo conseguí!», gritó, porque no se había rendido. Abajo, {helper} pitaba y aplaudía: pi, pi, pi.",
+              "text": "¡Y llegó arriba! Desde la cima, el planeta entero brillaba a sus pies. {hero} recogió la {item.noun} con mucho cuidado. «¡Lo conseguí!», gritó, porque no se había rendido. A su lado, {helper} pitaba y aplaudía: pi, pi, pi.",
               "scene": {
                 "bg": "planeta_cristal",
                 "mood": "triumph",
@@ -2457,7 +2464,7 @@
           "variants": [
             {
               "id": "colina_cristal_nube_a",
-              "text": "De vuelta en la aldea, {hero} le dio la {item.noun} a Nube. Nube abrió mucho los ojos. «¡Brilla como un arcoíris!», dijo, y le dio un abrazo. {hero} le contó lo de los resbalones, y las dos risas sonaron a la vez.",
+              "text": "De vuelta en la aldea, {hero} le dio la {item.noun} a Nube. Nube abrió mucho los ojos. «¡Brilla como un arcoíris!», dijo, y le dio un abrazo. {hero} le contó lo de los resbalones, y se rieron a la vez.",
               "scene": {
                 "bg": "aldea",
                 "mood": "joy",
@@ -2721,7 +2728,7 @@
           "variants": [
             {
               "id": "estacion_oscuras_vuelve_a",
-              "text": "Al rato, la compuerta se abrió y la comandante {helper} entró flotando. Se quitó el casco y abrazó a {hero} muy fuerte. «Has cruzado la oscuridad por mí», le dijo. «Eso es ser valiente: tener miedo, y hacerlo igual.» Luego arreglaron el apagón, que solo era un cable suelto. {hero} alumbraba con la lucecita del casco y la comandante apretaba el cable, y en un minuto todo volvió a pitar y a brillar.",
+              "text": "Al rato, la compuerta se abrió y la comandante {helper} entró flotando. Se quitó el casco y abrazó a {hero} muy fuerte. «Cruzaste la oscuridad por mí», le dijo. «Eso es ser valiente: tener miedo, y hacerlo igual.» Luego arreglaron el apagón, que solo era un cable suelto. {hero} alumbraba con la lucecita del casco y la comandante apretaba el cable, y en un minuto todo volvió a pitar y a brillar.",
               "scene": {
                 "bg": "estacion",
                 "mood": "joy",
@@ -2900,7 +2907,7 @@
           "variants": [
             {
               "id": "estrella_nube_caen_a",
-              "text": "Cuando se hizo de noche, ¡empezaron a caer! Las estrellas bajaban dando vueltas, como chispitas de colores. Los niños corrían y saltaban, y las atrapaban riendo. Pip atrapó una verde. {hero}, después de tres saltos, atrapó {item.un} dorada que zumbaba bajito, como un gatito feliz. Era calentita, y le hacía cosquillas en los dedos.",
+              "text": "Cuando se hizo de noche, ¡empezaron a caer! Las estrellas bajaban dando vueltas, como chispitas de colores. Los niños corrían y saltaban, y las atrapaban riendo. Pip atrapó una verde. {hero}, después de tres saltos, atrapó {item.un} dorada que ronroneaba bajito, como un gatito feliz. Era calentita, y le hacía cosquillas en los dedos.",
               "scene": {
                 "bg": "aldea",
                 "mood": "joy",
@@ -2939,7 +2946,7 @@
           "variants": [
             {
               "id": "estrella_nube_nube_a",
-              "text": "Pero la lluvia de estrellas se acabó enseguida, y Nube no había atrapado ninguna. Se quedó con la red vacía en medio de la plaza. «Era para mi abuelo», dijo, con la voz pequeñita. «Está malito, y yo quería desearle que se pusiera bueno.» Y se sentó en el borde de una nube, mirando el cielo vacío.",
+              "text": "Pero la lluvia de estrellas se acabó enseguida, y Nube no había atrapado ninguna. Se quedó con la red vacía en medio de la plaza. «Era para mi abuelo», dijo, con la voz pequeñita. «Está enfermito, y yo quería desearle que se curara.» Y se sentó en el borde de una nube, mirando el cielo vacío.",
               "scene": {
                 "bg": "aldea",
                 "mood": "sad",
@@ -2975,7 +2982,7 @@
           "variants": [
             {
               "id": "estrella_nube_piensa_a",
-              "text": "{hero} miró su {item.noun} dorada. Era la única estrella que quedaba en toda la aldea, y su deseo también era importante. Pensó en su primer vuelo, y en lo mucho que lo había deseado. Luego pensó en el abuelo de Nube, que le contaba cuentos en la plaza y siempre le guardaba caramelos de miel en el bolsillo. La estrellita le zumbaba en la mano, esperando.",
+              "text": "{hero} miró su {item.noun} dorada. La lluvia ya había terminado, y no iban a caer más estrellas hasta el año siguiente. Y su deseo también era importante. Pensó en su primer vuelo, y en lo mucho que lo había deseado. Luego pensó en el abuelo de Nube, que le contaba cuentos en la plaza y siempre le guardaba caramelos de miel en el bolsillo. La estrellita le ronroneaba en la mano, esperando.",
               "scene": {
                 "bg": "aldea",
                 "mood": "mystery",
@@ -3049,7 +3056,7 @@
           "variants": [
             {
               "id": "estrella_nube_suelta_a",
-              "text": "{hero} y Nube soltaron la estrellita, que subió dando vueltas hasta su sitio en el cielo. Desde el observatorio, la {helper} lo había visto todo. Bajó despacio, se subió las gafas y les sonrió. «Las estrellas cumplen mejor los deseos que se regalan», dijo con un guiño, porque eso lo sabía desde niña.",
+              "text": "{hero} y Nube soltaron la estrellita, que subió dando vueltas hasta su sitio en el cielo. Desde el observatorio, la {helper} lo había visto todo. Bajó despacio, se subió los lentes y les sonrió. «Las estrellas cumplen mejor los deseos que se regalan», dijo con un guiño, porque eso lo sabía desde niña.",
               "scene": {
                 "bg": "aldea",
                 "mood": "joy",
@@ -3294,7 +3301,7 @@
           "variants": [
             {
               "id": "estrellita_perdida_sube_a",
-              "text": "{hero} ató la estrellita a un globo. Uno, dos y tres: ¡arriba! El globo subió, subió, subió. Chispa ladraba de alegría. Y la estrellita volvió al cielo, con sus amigas.",
+              "text": "{hero} ató la estrellita al globo grande. Uno, dos y tres: ¡arriba! El globo subió, subió, subió. Chispa ladraba de alegría. Y la estrellita volvió al cielo, con sus amigas.",
               "scene": {
                 "bg": "aldea",
                 "mood": "triumph",
@@ -3331,7 +3338,7 @@
           "variants": [
             {
               "id": "estrellita_perdida_brilla_a",
-              "text": "Desde arriba, la estrellita brilló más que nunca. Parpadeaba así: hola, hola. «¡Gracias!», parecía decir. Chispa movía la cola, porque los amigos se ayudan.",
+              "text": "Desde arriba, la estrellita brilló más que nunca. Parpadeaba así: hola, hola. «¡Gracias!», parecía decir. Chispa movía la cola sin parar.",
               "scene": {
                 "bg": "aldea",
                 "mood": "joy",
@@ -3357,7 +3364,7 @@
           "variants": [
             {
               "id": "estrellita_perdida_cama_a",
-              "text": "{hero} se fue a dormir. Desde allí se veía la estrellita, brillando solo para {hero}. {hero} le dijo buenas noches. Y cerró los ojos.",
+              "text": "{hero} se fue a dormir. Como la ventana estaba abierta, desde su cama se veía la estrellita, brillando solo para {hero}. {hero} le dijo buenas noches. Y cerró los ojos.",
               "scene": {
                 "bg": "dormitorio",
                 "mood": "sleep",
@@ -3475,7 +3482,7 @@
           "variants": [
             {
               "id": "feria_cohetes_pruebas_a",
-              "text": "Las pruebas salieron de maravilla. El {item.noun} subía recto como una vela, daba una voltereta en lo alto y bajaba despacio con su paracaídas de seda. {helper} apuntaba las alturas en su pantalla del pecho y pitaba de orgullo cada vez que batían una marca. «Doscientos metros», anunció una tarde. «Nadie en la historia de la feria ha llegado tan alto.» {hero} se imaginaba ya el momento de recoger el premio, con toda la aldea mirando. Por las noches, antes de dormir, repasaba el discurso que iba a dar.",
+              "text": "Las pruebas salieron de maravilla. El {item.noun} subía recto como una vela, daba una voltereta en lo alto y bajaba despacio con su paracaídas de seda. {helper} apuntaba las alturas en su pantalla del pecho y pitaba de orgullo cada vez que batían una marca. «Doscientos metros», anunció una tarde. «Nadie en la historia de la feria llegó tan alto.» {hero} se imaginaba ya el momento de recoger el premio, con toda la aldea mirando. Por las noches, antes de dormir, repasaba el discurso que iba a dar.",
               "scene": {
                 "bg": "taller",
                 "mood": "joy",
@@ -3509,7 +3516,7 @@
           "variants": [
             {
               "id": "feria_cohetes_pip_a",
-              "text": "La víspera de la feria, {hero} se encontró a Pip sentado en la plaza, con los ojos rojos. Delante tenía un cohete de cartón con una aleta arrancada y el motor partido en dos. «Lo he estado haciendo tres meses», dijo Pip, sin levantar la vista. «Esta mañana lo probé y se estrelló contra el tejado de la panadería.» Pip era más pequeño que {hero}, y aquella era su primera feria. Su madre le había ayudado a pintar las estrellas del cohete, una por una, con un pincel finísimo. Ahora estaban todas rayadas.",
+              "text": "La víspera de la feria, {hero} se encontró a Pip sentado en la plaza, con los ojos rojos. Delante tenía un cohete de cartón con una aleta arrancada y el motor partido en dos. «Me pasé tres meses haciéndolo», dijo Pip, sin levantar la vista. «Esta mañana lo probé y se estrelló contra el tejado de la panadería.» Pip era más pequeño que {hero}, y aquella era su primera feria. Su madre le había ayudado a pintar las estrellas del cohete, una por una, con un pincel finísimo. Ahora estaban todas rayadas.",
               "scene": {
                 "bg": "aldea",
                 "mood": "sad",
@@ -3569,7 +3576,7 @@
           "variants": [
             {
               "id": "feria_cohetes_decide_a",
-              "text": "Entonces {hero} se acordó de la cara de Pip, y de las estrellas rayadas, y de lo que era tener una primera feria. «Vamos a dárselo», dijo al fin. «A nosotros nos sale otro el año que viene. Y Pip solo tiene una primera vez.» {helper} hizo girar la antena, despacio, y luego pitó muy bajito, que era su manera de decir que estaba de acuerdo. Cogieron las pinzas, la caja de tornillos y una linterna, y salieron hacia la casa de Pip, aunque ya era de noche.",
+              "text": "Entonces {hero} se acordó de la cara de Pip, y de las estrellas rayadas, y de lo que era tener una primera feria. «Vamos a dárselo», dijo al fin. «A nosotros nos sale otro el año que viene. Y Pip solo tiene una primera vez.» {helper} hizo girar la antena, despacio, y luego pitó muy bajito, que era su manera de decir que estaba de acuerdo. Tomaron las pinzas, la caja de tornillos y una linterna, y salieron hacia la casa de Pip, aunque ya era de noche.",
               "scene": {
                 "bg": "taller",
                 "mood": "hope",
@@ -3638,7 +3645,7 @@
           "variants": [
             {
               "id": "feria_cohetes_manana_a",
-              "text": "A la mañana siguiente, {hero} tuvo que preparar el {item.noun} para la feria con un motor viejo, el primero que había hecho con {helper}, hacía dos años. Era ruidoso, tosía como un abuelo resfriado y se calentaba enseguida. {helper} lo limpió, lo engrasó y le cambió dos tornillos. «No subirá doscientos metros», dijo el robot, con sinceridad. «Pero subirá con orgullo.» {hero} se rio, aunque por dentro sentía una pizca de pena. Había soñado mucho con aquel premio. Entonces pensó en Pip, que a esas horas estaría probando su cohete de cartón en el patio, y la pena se hizo más pequeña. Cogieron el {item.noun} entre los dos y salieron hacia la plataforma, donde ya sonaba la música de la feria.",
+              "text": "A la mañana siguiente, {hero} tuvo que preparar el {item.noun} para la feria con un motor viejo, el primero que había hecho con {helper}, hacía dos años. Era ruidoso, tosía como un abuelo resfriado y se calentaba enseguida. {helper} lo limpió, lo engrasó y le cambió dos tornillos. «No subirá doscientos metros», dijo el robot, con sinceridad. «Pero subirá con orgullo.» {hero} se rio, aunque por dentro sentía una pizca de pena. Había soñado mucho con aquel premio. Entonces pensó en Pip, que a esas horas estaría probando su cohete de cartón en el patio, y la pena se hizo más pequeña. Agarraron el {item.noun} entre los dos y salieron hacia la plataforma, donde ya sonaba la música de la feria.",
               "scene": {
                 "bg": "taller",
                 "mood": "calm",
@@ -3906,7 +3913,7 @@
           "variants": [
             {
               "id": "fiesta_tornillo_ideas_a",
-              "text": "«Una tarta», dijo Pip. «Los robots no comen tarta», se rio Nube. «Unas flores», dijo Nube. «Los robots no huelen flores», se rio Pip. {hero} pensó en {helper}: le encantaban las tuercas, las preguntas raras y arreglar cosas.",
+              "text": "«Un pastel», dijo Pip. «Los robots no comen pastel», se rio Nube. «Unas flores», dijo Nube. «Los robots no huelen flores», se rio Pip. {hero} pensó en {helper}: le encantaban las tuercas, las preguntas raras y arreglar cosas.",
               "scene": {
                 "bg": "aldea",
                 "mood": "mystery",
@@ -3940,7 +3947,7 @@
           "variants": [
             {
               "id": "fiesta_tornillo_rota_a",
-              "text": "Entonces {hero} se acordó: la llave de {helper} estaba vieja y torcida. Siempre la usaba para ayudar a todos, pero nunca pedía nada. Era el amigo más bueno de la aldea. Así que fueron a ver al panadero, que también arreglaba cosas. Entre todos hicieron {item.un} nueva y brillante, con un lazo rojo.",
+              "text": "Entonces {hero} tuvo una idea. A {helper} lo que más le gustaba era arreglar cosas, ¡y su llave estaba vieja y torcida! Siempre la usaba para ayudar a todos, pero nunca pedía nada. Así que fueron a ver al panadero, que de joven había sido herrero. Entre todos hicieron {item.un} nueva y brillante, con un lazo rojo.",
               "scene": {
                 "bg": "aldea",
                 "mood": "hope",
@@ -3984,7 +3991,7 @@
           "variants": [
             {
               "id": "fiesta_tornillo_sorpresa_a",
-              "text": "Por la tarde, entraron en el taller de puntillas. «¡Sorpresa!», gritaron {hero}, Pip y Nube. {helper} dio un salto, y le dieron la {item.noun} nueva. Sus ojos de pantalla se pusieron con forma de corazón. «¿Es para mí?», pitó. «Es para ti, porque siempre nos ayudas», dijo {hero}.",
+              "text": "Por la tarde, entraron en el taller de puntillas. «¡Sorpresa!», gritaron {hero}, Pip y Nube. {helper} dio un salto, y le dieron la {item.noun} nueva. Sus ojos de pantalla se pusieron con forma de corazón. «¿Es para mí?», pitó. «Es para ti, para que sigas arreglando cosas, que es lo que más te gusta», dijo {hero}.",
               "scene": {
                 "bg": "taller",
                 "mood": "joy",
@@ -4236,7 +4243,7 @@
           "variants": [
             {
               "id": "flotar_estacion_ventana_a",
-              "text": "¡Y llegó a la ventana grande! Desde allí se veía la Tierra, redonda y azul, con nubes blancas. «¡Lo conseguí!», gritó {hero}, porque lo había intentado una y otra vez. La comandante {helper} aplaudió, y los aplausos sonaban flotando.",
+              "text": "¡Y llegó a la ventana grande! Desde allí se veía la Tierra, redonda y azul, con nubes blancas. «¡Lo conseguí!», gritó {hero}. La comandante {helper} aplaudió, y los aplausos sonaban flotando.",
               "scene": {
                 "bg": "estacion",
                 "mood": "triumph",
@@ -4386,7 +4393,7 @@
           "variants": [
             {
               "id": "funcion_planetario_fama_a",
-              "text": "Desde que {hero} descubrió una constelación nueva, en toda la aldea decían que {hero} era «la estrella del observatorio». Le paraban por la calle para preguntarle cosas, y {hero} contestaba con mucha seguridad, aunque a veces no estaba muy segur{hero.o} de la respuesta. La {helper} le había pedido que preparara la gran función del planetario: una noche en la que toda la aldea subía a ver el cielo y escuchaba historias de las estrellas. «Yo me encargo de todo», dijo {hero}. «No necesito ayuda. Sé más de estrellas que nadie.» La {helper} se subió las gafas y no dijo nada.",
+              "text": "Desde que {hero} descubrió una constelación nueva, en toda la aldea decían que {hero} era «la estrella del observatorio». Por la calle, todos se acercaban a preguntarle cosas, y {hero} contestaba con mucha seguridad, aunque a veces no estaba muy segur{hero.o} de la respuesta. La {helper} le había pedido que preparara la gran función del planetario: una noche en la que toda la aldea subía a ver el cielo y escuchaba historias de las estrellas. «Yo me encargo de todo», dijo {hero}. «No necesito ayuda. Sé más de estrellas que nadie.» La {helper} se subió los lentes y no dijo nada.",
               "scene": {
                 "bg": "observatorio",
                 "mood": "calm",
@@ -4415,7 +4422,7 @@
           "variants": [
             {
               "id": "funcion_planetario_baron_a",
-              "text": "Unos días antes de la función, llamaron a la puerta del observatorio. Era el Barón Brillo, con su chistera y una caja de cristal bajo el brazo. Desde que había soltado las estrellas fugaces, el barón estudiaba astronomía por su cuenta, en su torre. «He fabricado una lente especial», dijo, algo nervioso. «Hace que se vean los colores de las nebulosas. Me gustaría ayudar en la función, si quieren.» {hero} miró la caja con desconfianza. «No hace falta», contestó. «Ya está todo preparado.» El barón bajó la cabeza y se marchó despacio.",
+              "text": "Unos días antes de la función, llamaron a la puerta del observatorio. Era el Barón Brillo, con su chistera y una caja de cristal bajo el brazo. Desde que había soltado las estrellas fugaces, el barón estudiaba astronomía por su cuenta, en su torre. «Fabriqué una lente especial», dijo, algo nervioso. «Hace que se vean los colores de las nebulosas. Me gustaría ayudar en la función, si quieren.» {hero} miró la caja con desconfianza. «No hace falta», contestó. «Ya está todo preparado.» El barón bajó la cabeza y se marchó despacio.",
               "scene": {
                 "bg": "observatorio",
                 "mood": "sad",
@@ -4447,7 +4454,7 @@
           "variants": [
             {
               "id": "funcion_planetario_osa_a",
-              "text": "Cuando el barón se fue, la {helper} se acercó a {hero}. «¿Por qué no le has dejado ayudar?», preguntó. «Porque es el Barón Brillo», dijo {hero}. «El que robaba estrellas. Y porque no me hace falta.» La {helper} se quedó mirando el cielo un buen rato. «Aprender cuesta mucho», dijo al final. «Y ofrecer lo que has aprendido, más todavía. A veces la ayuda viene de quien menos te esperas.» {hero} se encogió de hombros, pero aquella frase se le quedó pegada en algún sitio de dentro, como una astilla pequeñita.",
+              "text": "Cuando el barón se fue, la {helper} se acercó a {hero}. «¿Por qué no lo dejaste ayudar?», preguntó. «Porque es el Barón Brillo», dijo {hero}. «El que robaba estrellas. Y porque no me hace falta.» La {helper} se quedó mirando el cielo un buen rato. «Aprender cuesta mucho», dijo al final. «Y ofrecer lo que uno aprendió, más todavía. A veces la ayuda viene de quien menos te esperas.» {hero} se encogió de hombros, pero aquella frase se le quedó pegada en algún sitio de dentro, como una astilla pequeñita.",
               "scene": {
                 "bg": "observatorio",
                 "mood": "mystery",
@@ -4520,7 +4527,7 @@
           "variants": [
             {
               "id": "funcion_planetario_murmullo_a",
-              "text": "{hero} siguió intentándolo. Cambió las lentes de sitio, giró todas las ruedecitas y hasta sopló dentro del tubo, por si había polvo. Pero la nebulosa seguía siendo una mancha sin gracia, como una nube sucia. Algunos vecinos empezaron a mirar el reloj. La cartera bostezó sin disimular, y alguien empezó a roncar en la última fila. Pip preguntó, esta vez en voz alta, si no había nada más que ver, y su madre le mandó callar con un codazo. {hero} sentía todas las miradas clavadas en la espalda, como agujas. Había prometido la nebulosa más bonita del cielo, delante de toda la aldea, y ahora no sabía qué decir. Las palabras importantes que había ensayado se le habían olvidado todas de golpe.",
+              "text": "{hero} siguió intentándolo. Cambió las lentes de sitio, giró todas las ruedecitas y hasta sopló dentro del tubo, por si había polvo. Pero la nebulosa seguía siendo una mancha sin gracia, como una nube sucia. Algunos vecinos empezaron a mirar el reloj. La cartera bostezó sin disimular, y alguien empezó a roncar en la última fila. Pip preguntó, esta vez en voz alta, si no había nada más que ver, y su madre lo mandó a callar con un codazo. {hero} sentía todas las miradas clavadas en la espalda, como agujas. Había prometido la nebulosa más bonita del cielo, delante de toda la aldea, y ahora no sabía qué decir. Las palabras importantes que había ensayado se le habían olvidado todas de golpe.",
               "scene": {
                 "bg": "observatorio",
                 "mood": "tension",
@@ -4576,7 +4583,7 @@
           "variants": [
             {
               "id": "funcion_planetario_pide_a",
-              "text": "{hero} respiró hondo y se volvió hacia el público. «Lo siento», dijo. «Me he equivocado. Creía que podía hacerlo sin ayuda de nadie, y no es verdad.» Luego miró a la {helper}. «¿Puede alguien ir a buscar al Barón Brillo? Tiene una lente que necesitamos.» La cartera, que tenía el globo más rápido de la aldea, salió volando hacia el planeta de cristal. Mientras esperaban, la {helper} contó historias de constelaciones, y nadie se marchó. {hero}, en un rincón, se mordía las uñas.",
+              "text": "{hero} respiró hondo y se volvió hacia el público. «Lo siento», dijo. «Me equivoqué. Creía que podía hacerlo sin ayuda de nadie, y no es verdad.» Luego miró a la {helper}. «¿Puede alguien ir a buscar al Barón Brillo? Tiene una lente que necesitamos.» La cartera, que tenía el globo más rápido de la aldea, salió volando hacia el planeta de cristal. Mientras esperaban, la {helper} contó historias de constelaciones, y nadie se marchó. {hero}, en un rincón, se mordía las uñas.",
               "scene": {
                 "bg": "observatorio",
                 "mood": "hope",
@@ -4609,7 +4616,7 @@
           "variants": [
             {
               "id": "funcion_planetario_lente_a",
-              "text": "Al rato, el globo de la cartera aterrizó en el patio, y bajó el Barón Brillo, con la chistera torcida y la caja de cristal apretada contra el pecho. Parecía no creerse que le hubieran llamado. «Perdóneme por lo del otro día», le dijo {hero}. «Y gracias por venir.» El barón se ajustó la chistera, emocionado. Juntos colocaron la lente especial en el {item.noun}, girando las roscas despacio. Y entonces, al mirar, {hero} contuvo la respiración: la nebulosa apareció llena de colores, rosa, violeta y dorada, como una flor gigante. La {helper} aplaudió con las dos manos.",
+              "text": "Al rato, el globo de la cartera aterrizó en el patio, y bajó el Barón Brillo, con la chistera torcida y la caja de cristal apretada contra el pecho. Parecía no creerse que lo hubieran llamado. «Perdóneme por lo del otro día», le dijo {hero}. «Y gracias por venir.» El barón se ajustó la chistera, emocionado. Juntos colocaron la lente especial en el {item.noun}, girando las roscas despacio. Y entonces, al mirar, {hero} contuvo la respiración: la nebulosa apareció llena de colores, rosa, violeta y dorada, como una flor gigante. La {helper} aplaudió con las dos manos.",
               "scene": {
                 "bg": "observatorio",
                 "mood": "triumph",
@@ -4646,7 +4653,7 @@
           "variants": [
             {
               "id": "funcion_planetario_aplauso_a",
-              "text": "Toda la aldea hizo cola para mirar por el telescopio. Pip y Nube fueron los primeros. Cada vez que alguien veía la nebulosa, soltaba un «¡oooh!» tan largo que daba risa. {hero} le pidió al Barón Brillo que explicara en persona cómo funcionaba la lente, y el barón habló durante media hora, con su vocecita aguda, de colores, de luz y de gases lejanos. La gente le escuchaba con la boca abierta. Al final, alguien empezó a aplaudir, y el aplauso fue creciendo hasta llenar el observatorio. El barón se puso tan colorado que parecía una nebulosa más.",
+              "text": "Toda la aldea hizo cola para mirar por el telescopio. Pip y Nube fueron los primeros. Cada vez que alguien veía la nebulosa, soltaba un «¡oh!» tan largo que daba risa. {hero} le pidió al Barón Brillo que explicara en persona cómo funcionaba la lente, y el barón habló durante media hora, con su vocecita aguda, de colores, de luz y de gases lejanos. La gente lo escuchaba con la boca abierta. Al final, alguien empezó a aplaudir, y el aplauso fue creciendo hasta llenar el observatorio. El barón se puso tan colorado que parecía una nebulosa más.",
               "scene": {
                 "bg": "observatorio",
                 "mood": "joy",
@@ -4682,7 +4689,7 @@
           "variants": [
             {
               "id": "funcion_planetario_leccion_a",
-              "text": "Cuando todos se marcharon, la {helper} se sentó al lado de {hero}, que miraba el cielo desde la barandilla. «Hoy has aprendido algo más difícil que cualquier constelación», le dijo. «Que pedir ayuda no te hace más pequeño.» {hero} asintió. Le daba un poco de vergüenza recordar lo que había dicho días antes. Pero también sentía otra cosa, nueva y suave: alivio. No tenía que saberlo todo. Podía aprender, y equivocarse, y preguntar. Y eso, pensó, era mucho más fácil que ser «la estrella del observatorio».",
+              "text": "Cuando todos se marcharon, la {helper} se sentó al lado de {hero}, que miraba el cielo desde la barandilla. «Hoy aprendiste algo más difícil que cualquier constelación», le dijo. «Que pedir ayuda no te hace más pequeñ{hero.o}.» {hero} asintió. Le daba un poco de vergüenza recordar lo que había dicho días antes. Pero también sentía otra cosa, nueva y suave: alivio. No tenía que saberlo todo. Podía aprender, y equivocarse, y preguntar. Y eso, pensó, era mucho más fácil que ser «la estrella del observatorio».",
               "scene": {
                 "bg": "observatorio",
                 "mood": "calm",
@@ -4833,7 +4840,7 @@
           "variants": [
             {
               "id": "galletas_estrella_cartera_a",
-              "text": "Más allá estaba la cartera de la aldea, que repartía cartas volando en su globo. Llevaba toda la mañana trabajando y tenía cara de sueño. {hero} le ofreció otra galleta. «¡Qué buena idea!», dijo la cartera, porque tenía mucha hambre.",
+              "text": "Más allá estaba la cartera de la aldea, que repartía cartas volando en su globo. Llevaba toda la mañana trabajando, así que tenía mucha hambre. {hero} le ofreció otra galleta. «¡Qué buena idea!», dijo la cartera, y se la comió despacito.",
               "scene": {
                 "bg": "aldea",
                 "mood": "calm",
@@ -4896,7 +4903,7 @@
           "variants": [
             {
               "id": "galletas_estrella_sorpresa_a",
-              "text": "Al atardecer, todos aparecieron en la puerta de {hero}. Pip traía zumo, Nube traía fresas y la cartera traía una carta con un dibujo. «Para la merienda de los amigos», dijeron. Se sentaron juntos en la nube más blanda. {hero} partió en trocitos la galleta y media que le quedaba, así que todos la probaron.",
+              "text": "Al atardecer, todos aparecieron en la puerta de {hero}. Pip traía jugo, Nube traía fresas y la cartera traía una carta con un dibujo. «Para la merienda de los amigos», dijeron. Se sentaron juntos en la nube más blanda. {hero} partió en trocitos la galleta y media que le quedaba, así que todos la probaron.",
               "scene": {
                 "bg": "aldea",
                 "mood": "triumph",
@@ -4932,7 +4939,7 @@
           "variants": [
             {
               "id": "galletas_estrella_duerme_a",
-              "text": "Esa noche, {hero} pensó en la merienda. Al principio tenía cinco galletas, y al final no le quedaba ninguna. Pero tenía la barriga llena y una alegría enorme en el corazón, porque compartir hace crecer la alegría. Y se durmió.",
+              "text": "Esa noche, {hero} pensó en la merienda. Al principio tenía cinco galletas, y al final no le quedaba ninguna. Pero tenía la barriga llena, porque sus amigos habían compartido su merienda. Y tenía una alegría enorme en el corazón. Y se durmió.",
               "scene": {
                 "bg": "dormitorio",
                 "mood": "sleep",
@@ -5029,7 +5036,7 @@
           "variants": [
             {
               "id": "globo_nube_vuela_a",
-              "text": "{hero} jugaba con el globo, salta que salta. Pero se le escapó la cuerda, porque saltaba mucho. ¡Fiuuu! El globo voló alto, alto, hasta las nubes.",
+              "text": "{hero} jugaba con el globo, salta que salta. Pero se le escapó la cuerda, porque saltaba mucho. ¡Fiu! El globo voló alto, alto, hasta las nubes.",
               "scene": {
                 "bg": "aldea",
                 "mood": "tension",
@@ -5058,7 +5065,7 @@
           "variants": [
             {
               "id": "globo_nube_barriga_a",
-              "text": "Nube volvió y miró por todas partes. «¿Y mi globo?», preguntó. A {hero} le hacía cosquillas la barriga, porque era un secreto.",
+              "text": "Nube volvió y miró por todas partes. «¿Y mi globo?», preguntó. A {hero} se le apretó la barriga, porque no quería contarlo.",
               "scene": {
                 "bg": "aldea",
                 "mood": "sad",
@@ -5084,11 +5091,11 @@
           "variants": [
             {
               "id": "globo_nube_verdad_a",
-              "text": "{hero} respiró hondo. «Se me escapó», dijo {hero}. «Lo siento mucho, Nube.» Nube puso la cara un poco triste. Pero luego sonrió.",
+              "text": "{hero} respiró hondo. «Se me escapó», dijo {hero}. «Lo siento mucho, Nube.» Nube puso la cara un poco triste. Pero luego sonrió, porque {hero} se lo había contado.",
               "scene": {
                 "bg": "aldea",
                 "mood": "hope",
-                "time": "noche",
+                "time": "dia",
                 "stage": [
                   {
                     "who": "hero",
@@ -5113,7 +5120,7 @@
           "variants": [
             {
               "id": "globo_nube_mira_a",
-              "text": "«Mira», dijo Nube, y señaló el cielo. El globo bailaba con las nubes. «Es un globo del cielo», se rio Nube, porque la verdad siempre es mejor.",
+              "text": "«Mira», dijo Nube, y señaló el cielo. El globo bailaba en el cielo, muy alto. «Es un globo del cielo», se rio Nube. Y {hero} se rio también.",
               "scene": {
                 "bg": "aldea",
                 "mood": "joy",
@@ -5150,7 +5157,7 @@
           "variants": [
             {
               "id": "globo_nube_noche_a",
-              "text": "Por la noche, la barriga de {hero} ya no hacía cosquillas. Estaba tranquilita y calentita. {hero} bostezó: ¡aaah! Y se durmió.",
+              "text": "Por la noche, la barriga de {hero} ya no estaba apretada. Estaba tranquilita y calentita. {hero} bostezó, muy grande. Y se durmió.",
               "scene": {
                 "bg": "aldea",
                 "mood": "sleep",
@@ -5248,7 +5255,7 @@
           "variants": [
             {
               "id": "luz_movia_pip_a",
-              "text": "Una noche, Pip subió al observatorio. Era más pequeño que {hero} y no sabía casi nada de estrellas. Miró por el telescopio y dijo: «Esa estrella de ahí se mueve. Ha ido de una nube a otra». {hero} se rio. «Las estrellas no se mueven así, Pip. Eso lo sabe todo el mundo.» Pip se puso colorado y no dijo nada más.",
+              "text": "Una noche, Pip subió al observatorio. Era más pequeño que {hero} y no sabía casi nada de estrellas. Miró por el telescopio y dijo: «Esa estrella de ahí se mueve. Pasó de una nube a otra». {hero} se rio. «Las estrellas no se mueven así, Pip. Eso lo sabe todo el mundo.» Pip se puso colorado y no dijo nada más.",
               "scene": {
                 "bg": "observatorio",
                 "mood": "sad",
@@ -5274,7 +5281,7 @@
           "variants": [
             {
               "id": "luz_movia_otra_a",
-              "text": "Pero a la noche siguiente, Pip volvió. «Se sigue moviendo», dijo bajito. «Ahora está más cerca.» {hero} ni siquiera miró. «Te lo he dicho, Pip. Yo ayudo en el observatorio, y yo lo sé.» Pip se fue a casa, cabizbajo. La {helper} lo había oído todo desde su sillón, y no dijo nada, pero se le arrugó la frente.",
+              "text": "Pero a la noche siguiente, Pip volvió. «Se sigue moviendo», dijo bajito. «Ahora está más cerca.» {hero} ni siquiera miró. «Ya te lo dije, Pip. Yo ayudo en el observatorio, y yo lo sé.» Pip se fue a casa, cabizbajo. La {helper} lo había oído todo desde su sillón, y no dijo nada, pero se le arrugó la frente.",
               "scene": {
                 "bg": "observatorio",
                 "mood": "sad",
@@ -5305,7 +5312,7 @@
           "variants": [
             {
               "id": "luz_movia_mira_a",
-              "text": "Al tercer día, {hero} miró por el telescopio, por si acaso. Y allí estaba: una lucecita violeta que daba vueltas, bajaba y subía, y no se parecía a ninguna estrella. ¡Se movía de verdad! Además, se estaba acercando a la aldea. A {hero} le subió un calor a la cara, porque Pip tenía razón desde el principio.",
+              "text": "A la tercera noche, {hero} miró por el telescopio, por si acaso. Y allí estaba: una lucecita violeta que daba vueltas, bajaba y subía, y no se parecía a ninguna estrella. ¡Se movía de verdad! Además, se estaba acercando a la aldea. A {hero} le subió un calor a la cara, porque Pip tenía razón desde el principio.",
               "scene": {
                 "bg": "observatorio",
                 "mood": "mystery",
@@ -5469,7 +5476,7 @@
           "variants": [
             {
               "id": "luz_movia_duerme_a",
-              "text": "Esa noche, {hero} se quedó dormid{hero.o} en el observatorio, al lado de Pip. Arriba, el platillo de Zumbo se alejaba entre las estrellas, haciendo guiños de despedida. Y {hero} se durmió pensando que hasta el más pequeño puede ver lo que los demás no ven, porque mira con atención.",
+              "text": "Esa noche, {hero} se quedó en el observatorio, al lado de Pip. Arriba, el platillo de Zumbo se alejaba entre las estrellas, haciendo guiños de despedida. Y {hero} se durmió pensando que hasta el más pequeño puede ver lo que los demás no ven, porque mira con atención.",
               "scene": {
                 "bg": "observatorio",
                 "mood": "sleep",
@@ -5554,7 +5561,7 @@
           "variants": [
             {
               "id": "mapa_estrellas_presume_a",
-              "text": "Aquel día, {hero} y {helper} iban a volar al planeta jardín. {hero} llevaba {item.un}, azul oscuro y lleno de puntitos. «Yo sé leerlo mejor que nadie», dijo {hero}, muy estirad{hero.o}. «¿Te ayudo?», preguntó {helper}. «No hace falta», contestó {hero}.",
+              "text": "Aquel día, {hero} y {helper} iban a volar al planeta jardín. {hero} llevaba {item.un}, azul oscuro y lleno de puntitos. «Yo sé leerlo mejor que nadie», dijo {hero}, muy creíd{hero.o}. «¿Te ayudo?», preguntó {helper}. «No hace falta», contestó {hero}.",
               "scene": {
                 "bg": "plataforma",
                 "mood": "calm",
@@ -5628,7 +5635,7 @@
           "variants": [
             {
               "id": "mapa_estrellas_piedras_a",
-              "text": "De pronto, ¡toc, toc!, unas rocas grandes pasaron junto al cohete. No estaban en el planeta jardín: ¡estaban en el anillo de asteroides! «Nos hemos perdido», dijo {helper}. {hero} se puso roj{hero.o} como un tomate, porque la culpa era suya.",
+              "text": "De pronto, unas rocas grandes pasaron muy cerca del cohete, girando despacio. No estaban en el planeta jardín: ¡estaban en el anillo de asteroides! «Nos perdimos», dijo {helper}. {hero} se puso roj{hero.o} como un tomate, porque la culpa era suya.",
               "scene": {
                 "bg": "anillos",
                 "mood": "tension",
@@ -5654,7 +5661,7 @@
           "variants": [
             {
               "id": "mapa_estrellas_pide_a",
-              "text": "A {hero} le daba vergüenza. Pero estaban perdidos, y había que volver. Así que {hero} dijo: «Me he equivocado. No sé leer bien el mapa. ¿Me ayudas, {helper}?». {helper} hizo girar su antena de alegría.",
+              "text": "A {hero} le daba vergüenza. Pero estaban perdidos, y había que volver. Así que {hero} dijo: «Me equivoqué. No sé leer bien el mapa. ¿Me ayudas, {helper}?». {helper} hizo girar su antena de alegría.",
               "scene": {
                 "bg": "anillos",
                 "mood": "hope",
@@ -5762,7 +5769,7 @@
           "variants": [
             {
               "id": "mapa_estrellas_duerme_a",
-              "text": "Cuando se hizo de noche, {hero} y {helper} se tumbaron en la hierba a mirar las estrellas. {hero} ya sabía encontrar la más grande. Se le cerraron los ojos despacito, y se durmió entre las flores.",
+              "text": "Cuando se hizo de noche, {hero} y {helper} se acostaron en el pasto a mirar las estrellas. {hero} ya sabía encontrar la más grande. Se le cerraron los ojos despacito, y se durmió entre las flores.",
               "scene": {
                 "bg": "planeta_jardin",
                 "mood": "sleep",
@@ -5874,7 +5881,7 @@
           "variants": [
             {
               "id": "mapa_propio_primera_a",
-              "text": "La {helper} le dio papel azul oscuro y un lápiz de purpurina. «Las estrellas no se quedan quietas para que las dibujes», le avisó. «Giran un poquito cada hora.» La primera noche, {hero} dibujó veinte puntitos. Pero cuando volvió a mirar el cielo, nada coincidía, porque las estrellas se habían movido. El dibujo no servía.",
+              "text": "La {helper} le dio papel azul oscuro y un lápiz de brillantina. «Las estrellas no se quedan quietas para que las dibujes», le avisó. «Giran un poquito cada hora.» La primera noche, {hero} dibujó veinte puntitos. Pero cuando volvió a mirar el cielo, nada coincidía, porque las estrellas se habían movido. El dibujo no servía.",
               "scene": {
                 "bg": "observatorio",
                 "mood": "sad",
@@ -5900,7 +5907,7 @@
           "variants": [
             {
               "id": "mapa_propio_nubes_a",
-              "text": "La segunda noche, unas nubes taparon medio cielo, y {hero} solo pudo dibujar tres estrellas. La tercera, se le volcó el bote de purpurina encima del papel, y quedó todo brillante y sin forma. {hero} hizo una bola con el papel y la tiró al suelo. «¡No me sale!», gritó. «¡Es imposible!» Y se sentó en el suelo, con los brazos cruzados y la nariz arrugada.",
+              "text": "La segunda noche, unas nubes taparon medio cielo, y {hero} solo pudo dibujar tres estrellas. La tercera, se le volcó el frasco de brillantina encima del papel, y quedó todo brillante y sin forma. {hero} hizo una bola con el papel y la tiró al suelo. «¡No me sale!», gritó. «¡Es imposible!» Y se sentó en el suelo, con los brazos cruzados y la nariz arrugada.",
               "scene": {
                 "bg": "observatorio",
                 "mood": "tension",
@@ -6049,7 +6056,7 @@
           "variants": [
             {
               "id": "mapa_propio_colgado_a",
-              "text": "La {helper} colgó el {item.noun} de {hero} al lado del suyo. Uno era grande y antiguo, y el otro era pequeño y tenía manchas de purpurina. Pero los dos eran mapas de verdad. «Cuarenta y dos intentos el mío, y diecinueve el tuyo», dijo la {helper}, porque los había contado.",
+              "text": "La {helper} colgó el {item.noun} de {hero} al lado del suyo. Uno era grande y antiguo, y el otro era pequeño y tenía manchas de brillantina. Pero los dos eran mapas de verdad. «Cuarenta y dos mapas rotos antes del mío, y solo tres antes del tuyo», dijo la {helper}, porque los había contado.",
               "scene": {
                 "bg": "observatorio",
                 "mood": "calm",
@@ -6193,7 +6200,7 @@
           "variants": [
             {
               "id": "noche_festival_llamada_a",
-              "text": "Esa tarde, la radio del taller de {helper} empezó a pitar como loca. Era Zumbo, el pequeño alien de tres ojos, que desde hacía meses era amigo de {hero}. Su voz temblaba y se cortaba. «Mi platillo se ha estropeado», decía. «He tenido que aterrizar en el planeta jardín, y no puedo volver a casa. Se está haciendo de noche y aquí no hay nadie.» {hero} y {helper} se miraron. El planeta jardín estaba a tres horas de viaje. Si iban, se perderían el festival entero.",
+              "text": "Esa tarde, la radio del taller de {helper} empezó a pitar como loca. Era Zumbo, el pequeño alien de tres ojos, que desde hacía meses era amigo de {hero}. Su voz temblaba y se cortaba. «Mi platillo se descompuso de repente», decía. «Tuve que aterrizar en el planeta jardín, y no puedo volver a casa. Se está haciendo de noche y aquí no hay nadie.» {hero} y {helper} se miraron. El planeta jardín estaba a tres horas de viaje. Si iban, se perderían el festival entero.",
               "scene": {
                 "bg": "aldea",
                 "mood": "tension",
@@ -6291,7 +6298,7 @@
           "variants": [
             {
               "id": "noche_festival_encuentra_a",
-              "text": "Encontraron a Zumbo sentado junto a su platillo, en medio de un campo de flores luminosas. Al verlos, dio tres saltos de alegría y se lanzó a abrazar a {hero} con sus brazos cortitos. «¡Has venido!», decía, una y otra vez. «¡Has venido de verdad!» Tenía los ojos húmedos, los tres. {helper} abrió el platillo y miró dentro con su linterna del pecho. «Un cable quemado», pitó. «Se arregla, pero tardaré un buen rato.» Así que se sentaron a esperar entre las flores, que olían a limón y a galletas recién hechas, y que se encendían y se apagaban como si respiraran.",
+              "text": "Encontraron a Zumbo sentado junto a su platillo, en medio de un campo de flores luminosas. Al verlos, dio tres saltos de alegría y se lanzó a abrazar a {hero} con sus brazos cortitos. «¡Viniste!», decía, una y otra vez. «¡Viniste de verdad, hasta aquí!» Tenía los ojos húmedos, los tres. {helper} abrió el platillo y miró dentro con su linterna del pecho. «Un cable quemado», pitó. «Se arregla, pero tardaré un buen rato.» Así que se sentaron a esperar entre las flores, que olían a limón y a galletas recién hechas, y que se encendían y se apagaban como si respiraran.",
               "scene": {
                 "bg": "planeta_jardin",
                 "mood": "joy",
@@ -6355,7 +6362,7 @@
           "variants": [
             {
               "id": "noche_festival_estrellas_a",
-              "text": "Mientras esperaban, se tumbaron boca arriba entre las flores a mirar el cielo. Desde el planeta jardín, las estrellas se veían distintas, colocadas de otra manera. Zumbo le enseñó las constelaciones de su planeta, que tenían nombres rarísimos: el Calcetín Perdido, la Sopa Fría, el Gran Estornudo. {hero} se reía tanto que le dolía la barriga. Luego {hero} le enseñó las de la aldea: el Carro, el Cisne y la Constelación del Robot. Zumbo dijo que la del robot era su favorita, porque se parecía a {helper}. Desde el platillo, el robot pitó halagado, sin dejar de trabajar. Por encima de ellos pasó una estrella fugaz, y los dos pidieron un deseo a la vez, en silencio, sin contárselo. Pero los dos sonrieron como si supieran el del otro.",
+              "text": "Mientras esperaban, se acostaron boca arriba entre las flores a mirar el cielo. Desde el planeta jardín, las estrellas se veían distintas, colocadas de otra manera. Zumbo le enseñó las constelaciones de su planeta, que tenían nombres rarísimos: el Calcetín Perdido, la Sopa Fría, el Gran Estornudo. {hero} se reía tanto que le dolía la barriga. Luego {hero} le enseñó las de la aldea: el Carro, el Cisne y la Constelación del Robot. Zumbo dijo que la del robot era su favorita, porque se parecía a {helper}. Desde el platillo, el robot pitó halagado, sin dejar de trabajar. Por encima de ellos pasó una estrella fugaz, y los dos pidieron un deseo a la vez, en silencio, sin contárselo. Pero los dos sonrieron como si supieran el del otro.",
               "scene": {
                 "bg": "planeta_jardin",
                 "mood": "calm",
@@ -6417,7 +6424,7 @@
           "variants": [
             {
               "id": "noche_festival_vuelta_a",
-              "text": "Cuando el platillo estuvo arreglado, ya era tardísimo. Zumbo voló hacia su planeta, haciendo tres guiños de luz como despedida. {hero} y {helper} volvieron a la aldea en silencio, muertos de sueño. Al llegar, la fiesta había terminado y la plaza estaba vacía. Pero el gran farol seguía encendido en el centro. Y al pie del farol había una cesta tapada con un paño, con una nota de Nube: «Para quien se fue a ayudar a un amigo. Te hemos guardado chocolate». {hero} sonrió.",
+              "text": "Cuando el platillo estuvo arreglado, ya era tardísimo. Zumbo voló hacia su planeta, haciendo tres guiños de luz como despedida. {hero} y {helper} volvieron a la aldea en silencio, muertos de sueño. Al llegar, la fiesta había terminado y la plaza estaba vacía. Pero el gran farol seguía encendido en el centro. Y al pie del farol había una cesta tapada con un paño, con una nota de Nube: «Para quien se fue a ayudar a un amigo. Te guardamos chocolate caliente». {hero} sonrió.",
               "scene": {
                 "bg": "aldea",
                 "mood": "calm",
@@ -6545,7 +6552,7 @@
           "variants": [
             {
               "id": "noche_oscura_apaga_a",
-              "text": "Era hora de dormir, y la luz se apagó: clic. {hero} abrió mucho los ojos. Todo se puso muy negro. {hero} se tapó con la manta hasta la nariz.",
+              "text": "Era hora de dormir, y la luz se apagó: clic. {hero} abrió mucho los ojos. Todo se puso muy negro, así que {hero} se tapó con la manta hasta la nariz.",
               "scene": {
                 "bg": "dormitorio",
                 "mood": "mystery",
@@ -6595,7 +6602,7 @@
           "variants": [
             {
               "id": "noche_oscura_paso_a",
-              "text": "{hero} no quería salir de la manta. Pero {helper} le dio la mano, fría y suave. «Un pasito», dijo {helper}. Y {hero} dio un pasito, y otro.",
+              "text": "{hero} no quería salir de la manta, porque afuera estaba muy negro. Pero {helper} le dio la mano, fría y suave. «Un pasito», dijo {helper}. Y {hero} dio un pasito, y otro.",
               "scene": {
                 "bg": "dormitorio",
                 "mood": "hope",
@@ -6624,7 +6631,7 @@
           "variants": [
             {
               "id": "noche_oscura_cielo_a",
-              "text": "Subieron al observatorio. Y arriba… ¡oh! {hero} y {helper} vieron el cielo lleno de estrellas. Una, dos, tres, ¡muchísimas! Brillaban como lucecitas, porque la noche no es negra: está llena de luz.",
+              "text": "Subieron al observatorio. Y arriba… ¡oh! {hero} y {helper} vieron el cielo lleno de estrellas. Una, dos, tres, ¡muchísimas! Brillaban como lucecitas, una al lado de otra. ¡La noche no es negra: está llena de luz!",
               "scene": {
                 "bg": "observatorio",
                 "mood": "triumph",
@@ -6680,7 +6687,7 @@
           "variants": [
             {
               "id": "noche_oscura_duerme_a",
-              "text": "Al volver a dormir, {helper} se quedó a su lado. La noche era una manta de estrellas, porque {hero} ya la había visto. {hero} cerró los ojos, despacito, y se durmió.",
+              "text": "Al volver a dormir, {helper} se quedó a su lado. Ahora {hero} lo sabía: la noche era una manta de estrellas. {hero} cerró los ojos, despacito, y se durmió.",
               "scene": {
                 "bg": "dormitorio",
                 "mood": "sleep",
@@ -6861,7 +6868,7 @@
           "variants": [
             {
               "id": "piedra_zumbo_guarda_a",
-              "text": "{hero} miró la piedra violeta. Luego miró su {item.noun} gris. Y, sin pensarlo mucho, se guardó la piedra que brillaba. «Total, se le ha caído», se dijo. De vuelta en la aldea, la comandante {helper} miró todas las piedras, una por una. Cuando vio la violeta, abrió mucho los ojos. «¡La medalla es para {hero}!», anunció.",
+              "text": "{hero} miró la piedra violeta. Luego miró su {item.noun} gris. Y, sin pensarlo mucho, se guardó la piedra que brillaba. «Total, se le cayó», se dijo. De vuelta en la aldea, la comandante {helper} miró todas las piedras, una por una. Cuando vio la violeta, abrió mucho los ojos. «¡La medalla es para {hero}!», anunció.",
               "scene": {
                 "bg": "aldea",
                 "mood": "joy",
@@ -7104,7 +7111,7 @@
           "variants": [
             {
               "id": "piedras_luna_luna_a",
-              "text": "En la luna, {hero} saltaba muy alto: ¡boing, boing! Allí todo pesa poquito. Y en el suelo encontró {item.un}, gris y redonda.",
+              "text": "En la luna, {hero} saltaba muy alto: ¡boing, boing! Saltaba así porque allí todo pesa poquito. Y en el suelo encontró {item.un}, gris y redonda.",
               "scene": {
                 "bg": "luna",
                 "mood": "joy",
@@ -7134,7 +7141,7 @@
           "variants": [
             {
               "id": "piedras_luna_mas_a",
-              "text": "Encontró otra {item.noun}, y otra, y otra más. ¡Cuatro! {hero} las guardó en la mochila. Una, dos, tres y cuatro.",
+              "text": "Encontró otra {item.noun}, y otra, y otra más. ¡Cuatro! {hero} las guardó en la mochila para que no se perdieran. Una, dos, tres y cuatro.",
               "scene": {
                 "bg": "luna",
                 "mood": "joy",
@@ -7241,7 +7248,7 @@
           "variants": [
             {
               "id": "piedras_luna_juegan_a",
-              "text": "Pusieron sus cuatro tesoros de la luna en fila. Pip y Nube se rieron: ja, ja, ja. Era más divertido con amigos, porque las cosas bonitas se comparten.",
+              "text": "Pusieron sus cuatro tesoros de la luna en fila. Pip y Nube se rieron: ja, ja, ja. ¡Era mucho más divertido con amigos!",
               "scene": {
                 "bg": "aldea",
                 "mood": "joy",
@@ -7282,7 +7289,7 @@
           "variants": [
             {
               "id": "piedras_luna_duerme_a",
-              "text": "Esa noche, {hero} puso su {item.noun} al lado de la almohada. Por la ventana se asomaba la luna de verdad, grande y blanca, porque quería verla también. {hero} la saludó, y se durmió.",
+              "text": "Esa noche, {hero} puso su {item.noun} al lado de la almohada. Por la ventana se asomaba la luna de verdad, grande y blanca. ¡Parecía que quería verla también! {hero} la saludó, y se durmió.",
               "scene": {
                 "bg": "dormitorio",
                 "mood": "sleep",
@@ -7444,7 +7451,7 @@
           "variants": [
             {
               "id": "primer_viaje_boton_a",
-              "text": "{hero} respiró hondo, una vez y otra. Luego estiró el dedo y apretó el botón verde. ¡Brrrum! El cohete tembló, rugió y subió, subió, subió. {hero} se agarró fuerte al asiento, y {helper} le guiñó un ojo.",
+              "text": "{hero} respiró hondo, una vez y otra. Luego estiró el dedo y apretó el botón verde. ¡Brum! El cohete tembló, rugió y subió, subió, subió. {hero} se agarró fuerte al asiento, y {helper} le guiñó un ojo.",
               "scene": {
                 "bg": "cabina",
                 "mood": "triumph",
@@ -7472,7 +7479,7 @@
           "variants": [
             {
               "id": "primer_viaje_ventana_a",
-              "text": "Por la ventana, la aldea se hizo pequeñita, como una bolita de algodón. Luego apareció el espacio, lleno de estrellas. «¡Qué bonito!», gritó {hero}. {helper} sonrió, y a {hero} se le olvidó que tenía miedo, porque había dado el primer paso.",
+              "text": "Por la ventana, la aldea se hizo pequeñita, como una bolita de algodón. Luego apareció el espacio, lleno de estrellas. «¡Qué bonito!», gritó {hero}. {helper} sonrió, y a {hero} se le olvidó que tenía miedo, porque había muchísimas estrellas que mirar.",
               "scene": {
                 "bg": "cabina",
                 "mood": "joy",
@@ -7500,7 +7507,7 @@
           "variants": [
             {
               "id": "primer_viaje_luna_a",
-              "text": "En la luna, {hero} dio un saltito, y ¡boing!, subió altísimo, porque allí todo pesa muy poquito. {hero} saltó y saltó entre los cráteres, y dejó sus huellas en el polvo gris. {helper} también saltaba. «Estas huellas son mías», dijo, muy orgullos{hero.o}.",
+              "text": "En la luna, {hero} dio un saltito, y ¡boing!, subió altísimo, porque allí todo pesa muy poquito. {hero} saltó y saltó entre los cráteres, y dejó sus huellas en el polvo gris. {helper} también saltaba. «¡Estas huellas son mías!», dijo {hero}, muy orgullos{hero.o}.",
               "scene": {
                 "bg": "luna",
                 "mood": "joy",
@@ -7599,7 +7606,7 @@
           "variants": [
             {
               "id": "robot_pitaba_juego_a",
-              "text": "En la aldea de las nubes, {hero}, Pip y Nube jugaban al escondite. {helper}, el robot, también quería jugar. Pero cada vez que se escondía, hacía pi, pi, pi, sin querer. ¡Y lo encontraban enseguida, porque se le oía desde lejos! «¡Tornillo siempre pierde!», se rio Pip.",
+              "text": "En la aldea de las nubes, {hero}, Pip y Nube jugaban al escondite. {helper}, el robot, también quería jugar. Pero cada vez que se escondía, hacía pi, pi, pi, sin querer. ¡Y lo encontraban enseguida, porque su pitido se oía desde lejos! «¡Tornillo siempre pierde!», se rio Pip.",
               "scene": {
                 "bg": "aldea",
                 "mood": "calm",
@@ -7732,7 +7739,7 @@
           "variants": [
             {
               "id": "robot_pitaba_perdon_a",
-              "text": "Al llegar a la plaza, Pip le dio un abrazo a {helper}. «Perdona por reírme», le dijo. «Tu pitido nos ha traído a casa.» Nube aplaudió, y {helper} hizo girar su antena de alegría. «Mañana jugamos a seguir al robot», propuso {hero}, y todos dijeron que sí.",
+              "text": "Al llegar a la plaza, Pip le dio un abrazo a {helper}. «Perdona por reírme», le dijo. «Tu pitido nos trajo a casa.» Nube aplaudió, y {helper} hizo girar su antena de alegría. «Mañana jugamos a seguir al robot», propuso {hero}, y todos dijeron que sí.",
               "scene": {
                 "bg": "aldea",
                 "mood": "joy",
@@ -7951,7 +7958,7 @@
           "variants": [
             {
               "id": "semilla_baron_piensa_a",
-              "text": "Esa noche, {hero} no podía dormir. Pensaba en la torre oscura, y en el barón solo, sacando brillo a sus frascos. Y pensó que una flor de luz no sirve de mucho en una colección, pero sí en una casa oscura. Así que, a la mañana siguiente, le pidió a la {helper} que la llevara con {hero} al planeta de cristal.",
+              "text": "Esa noche, {hero} no podía dormir. Pensaba en la torre oscura, y en el barón solo, sacando brillo a sus frascos. Y pensó que una flor de luz no sirve de mucho en una colección, pero sí en una casa oscura. Así que, a la mañana siguiente, le pidió a la {helper} que l{hero.o} acompañara al planeta de cristal.",
               "scene": {
                 "bg": "planeta_jardin",
                 "mood": "mystery",
@@ -8027,7 +8034,7 @@
           "variants": [
             {
               "id": "semilla_baron_planta_a",
-              "text": "Pero en la torre no había tierra, claro. Así que la {helper} sacó de su mochila un tiesto lleno de tierra del jardín. Entre los tres plantaron la semilla, y el Barón Brillo la regó con su regadera de plata. «¿Y ahora qué?», preguntó. «Ahora hay que cuidarla cada día», dijo la {helper}. «Hablarle, regarla y esperar.»",
+              "text": "Pero en la torre no había tierra, claro. Así que la {helper} sacó de su mochila una maceta llena de tierra del jardín. Entre los tres plantaron la semilla, y el Barón Brillo la regó con su regadera de plata. «¿Y ahora qué?», preguntó. «Ahora hay que cuidarla cada día», dijo la {helper}. «Hablarle, regarla y esperar.»",
               "scene": {
                 "bg": "planeta_cristal",
                 "mood": "calm",
@@ -8096,7 +8103,7 @@
           "variants": [
             {
               "id": "semilla_baron_fiesta_a",
-              "text": "El Barón Brillo invitó a {hero} y a la {helper} a merendar en su torre, que ahora brillaba como un farol. Había vaciado la mitad de su vitrina, para poner más tiestos. «Ahora colecciono flores», dijo, muy orgulloso. «Y las regalo.» Y les regaló semillas nuevas de su propia flor, una para cada cual.",
+              "text": "El Barón Brillo invitó a {hero} y a la {helper} a merendar en su torre, que ahora brillaba como un farol. Había vaciado la mitad de su vitrina, para poner más macetas. «Ahora colecciono flores», dijo, muy orgulloso. «Y las regalo.» Y les regaló semillas nuevas de su propia flor, una para cada cual.",
               "scene": {
                 "bg": "planeta_cristal",
                 "mood": "joy",
@@ -8440,7 +8447,7 @@
           "variants": [
             {
               "id": "telescopio_osa_visita_a",
-              "text": "Aquella tarde, {hero} subió al observatorio a visitar a la {helper}. La {helper} tenía gafas redondas y sabía historias de todas las estrellas. «Mira por mi telescopio», le dijo. «Está apuntando a la primera estrella de la noche. Se llama la estrella de la tarde.»",
+              "text": "Aquella tarde, {hero} subió al observatorio a visitar a la {helper}. La {helper} tenía lentes redondos y sabía historias de todas las estrellas. «Mira por mi telescopio», le dijo. «Está apuntando a la primera estrella de la noche. Se llama la estrella de la tarde.»",
               "scene": {
                 "bg": "observatorio",
                 "mood": "calm",
@@ -8493,7 +8500,7 @@
           "variants": [
             {
               "id": "telescopio_osa_pregunta_a",
-              "text": "La {helper} volvió con el chocolate, que olía muy rico. Se asomó al telescopio y levantó las cejas. «Qué raro», dijo. «¿Dónde se ha ido mi estrella?» {hero} quería decir que no sabía nada. Pero el nudo de la barriga apretaba cada vez más.",
+              "text": "La {helper} volvió con el chocolate, que olía muy rico. Se asomó al telescopio y levantó las cejas. «Qué raro», dijo. «¿Adónde se fue mi estrella?» {hero} quería decir que no sabía nada. Pero el nudo de la barriga apretaba cada vez más.",
               "scene": {
                 "bg": "observatorio",
                 "mood": "sad",
@@ -8519,7 +8526,7 @@
           "variants": [
             {
               "id": "telescopio_osa_verdad_a",
-              "text": "Así que {hero} respiró hondo. «He sido yo», dijo. «Giré la ruedecita y la estrella se escapó. Lo siento mucho.» La {helper} se quitó las gafas y sonrió, porque decir la verdad cuesta, y {hero} lo había hecho.",
+              "text": "Así que {hero} respiró hondo. «Fui yo», dijo. «Giré la ruedecita y la estrella se escapó. Lo siento mucho.» La {helper} se quitó los lentes y sonrió, porque {hero} le había dicho la verdad.",
               "scene": {
                 "bg": "observatorio",
                 "mood": "hope",
@@ -8665,7 +8672,7 @@
           "variants": [
             {
               "id": "toc_ventana_toc_a",
-              "text": "Era de noche, y {hero} ya estaba en la cama. Entonces se oyó un ruido en la ventana: toc, toc. {hero} abrió mucho los ojos. Toc, toc, otra vez. ¿Quién llamaba a la ventana, tan alto, en medio de las nubes?",
+              "text": "Era de noche, y {hero} ya estaba en la cama. Entonces se oyó un ruido en la ventana: toc, toc. {hero} abrió mucho los ojos. Toc, toc, otra vez. ¿Quién llamaba a la ventana, allá arriba, en medio de las nubes?",
               "scene": {
                 "bg": "dormitorio",
                 "mood": "mystery",
@@ -8734,7 +8741,7 @@
           "variants": [
             {
               "id": "toc_ventana_globo_a",
-              "text": "¡No era nada malo! Era {item.un} azul, atado a una carta, que daba golpecitos en el cristal. Era el globo de la cartera, que se había escapado con el viento. {hero} se rio bajito y abrió la ventana para atraparlo.",
+              "text": "¡No era nada malo! Era {item.un} azul, atado a una carta, que daba golpecitos en el cristal. Era un globo de la cartera: se le había escapado con el viento. {hero} se rio bajito y abrió la ventana para atraparlo.",
               "scene": {
                 "bg": "dormitorio",
                 "mood": "joy",
@@ -9070,7 +9077,7 @@
           "variants": [
             {
               "id": "tormenta_lunar_busca_pitido_a",
-              "text": "{hero} le pidió a Pip que no dijera nada, y los dos se quedaron muy quietos, escuchando. La radio crujía, llena de ruido. Pero debajo del ruido, muy lejos, había otra cosa: pi… pi… pi. Era {helper}. El robot había puesto su pitido de faro, el que usaba en las nieblas de la aldea. El sonido llegaba más fuerte por un lado del casco que por el otro, así que {hero} giró despacio sobre sí mism{hero.o}, como una antena, hasta que sonó igual en los dos oídos. «Por ahí», dijo. Caminaron diez pasos y se pararon a escuchar. Corrigieron un poco. Diez pasos más. Cada vez, el pitido sonaba más cerca y más seguro.",
+              "text": "{hero} le pidió a Pip que no dijera nada, y los dos se quedaron muy quietos, escuchando. La radio crujía, llena de ruido. Pero debajo del ruido, muy lejos, había otra cosa: pi… pi… pi. Era {helper}. El robot había puesto su pitido de faro, el que usaba en las nieblas de la aldea. El sonido llegaba más fuerte por un lado del casco que por el otro, así que {hero} giró despacio sobre sí mism{hero.o}, como una antena, hasta que sonó igual en los dos oídos. «Por ahí», dijo. Caminaron diez pasos y se detuvieron a escuchar. Corrigieron un poco. Diez pasos más. Cada vez, el pitido sonaba más cerca y más seguro.",
               "scene": {
                 "bg": "luna",
                 "mood": "hope",
@@ -9153,7 +9160,7 @@
           "variants": [
             {
               "id": "tormenta_lunar_cohete_a",
-              "text": "{camino.llegada} {helper} bajó la escalera a toda prisa, pitando sin parar, y los abrazó a los dos con sus brazos de metal. «¡Los he llamado mil veces!», decía. «Mil veces y una.» Subieron a la cabina, se quitaron los cascos llenos de polvo y se bebieron dos botellas de agua cada uno. Pip se rio por primera vez desde la tormenta, una risa temblorosa que se contagió enseguida. {hero} se dejó caer en el asiento, con las piernas como de gelatina, y se dio cuenta de que tenía las manos todavía apretadas.",
+              "text": "{camino.llegada} {helper} bajó la escalera a toda prisa, pitando sin parar, y los abrazó a los dos con sus brazos de metal. «¡Los llamé mil veces!», decía. «Mil veces y una.» Subieron a la cabina, se quitaron los cascos llenos de polvo y se bebieron dos botellas de agua cada uno. Pip se rio por primera vez desde la tormenta, una risa temblorosa que se contagió enseguida. {hero} se dejó caer en el asiento, con las piernas como de gelatina, y se dio cuenta de que tenía las manos todavía apretadas.",
               "scene": {
                 "bg": "cabina",
                 "mood": "joy",
@@ -9220,7 +9227,7 @@
           "variants": [
             {
               "id": "tormenta_lunar_aldea_a",
-              "text": "Cuando el cohete aterrizó, la madre de Pip ya esperaba en la plataforma, con los ojos muy abiertos. Se había enterado de la tormenta y había pasado la tarde mirando el cielo. Pip corrió a abrazarla y le contó toda la aventura de un tirón, sin respirar, con los brazos moviéndose como aspas de molino. Al terminar, la madre miró a {hero} y le dio las gracias en voz bajita, de una manera que a {hero} le hizo sentir mayor. {helper} dejó los cascos llenos de polvo en el suelo y empezó a limpiarlos con un trapo, pitando una cancioncilla. Pip no se separaba de {hero} ni un momento, y le preguntaba una y otra vez cómo había sabido qué hacer. Y cada vez que {hero} contaba la respuesta, le parecía un poco más sencilla.",
+              "text": "Cuando el cohete aterrizó, la madre de Pip ya esperaba en la plataforma, con los ojos muy abiertos. Se había enterado de la tormenta y había pasado la tarde mirando el cielo. Pip corrió a abrazarla y le contó toda la aventura de un tirón, sin respirar, con los brazos moviéndose como aspas de molino. Al terminar, la madre miró a {hero} y le dio las gracias en voz bajita, de una manera que hizo que {hero} se sintiera mayor. {helper} dejó los cascos llenos de polvo en el suelo y empezó a limpiarlos con un trapo, pitando una cancioncilla. Pip no se separaba de {hero} ni un momento, y le preguntaba una y otra vez cómo había sabido qué hacer. Y cada vez que {hero} contaba la respuesta, le parecía un poco más sencilla.",
               "scene": {
                 "bg": "cabina",
                 "mood": "joy",
@@ -9366,7 +9373,7 @@
           "variants": [
             {
               "id": "zumbo_jugar_raro_a",
-              "text": "En la Aldea de las Nubes pasaban cosas raras. El sombrero del panadero aparecía en el tejado. Las cartas de la cartera llegaban a la casa equivocada. Y el casco de {hero} se había despertado dentro del cubo de la fregona. «¡Ha sido Zumbo!», decían todos. «Ese alien es un travieso.» Pero nadie lo había visto nunca hacerlo, porque Zumbo era rapidísimo y muy pequeño. {hero} decidió averiguar la verdad.",
+              "text": "En la Aldea de las Nubes pasaban cosas raras. El sombrero del panadero aparecía en el tejado. Las cartas de la cartera llegaban a la casa equivocada. Y el casco de {hero} apareció un día dentro de un balde. «¡Fue Zumbo!», decían todos. «Ese alien es un travieso.» Pero nadie lo había visto nunca hacerlo, porque Zumbo era rapidísimo y muy pequeño. {hero} decidió averiguar la verdad.",
               "scene": {
                 "bg": "aldea",
                 "mood": "mystery",
@@ -9398,7 +9405,7 @@
           "variants": [
             {
               "id": "zumbo_jugar_pilla_a",
-              "text": "Una tarde, {hero} y {helper}, el robot, se escondieron detrás de una nube para pillarlo. Al rato apareció Zumbo, de puntillas, con sus tres ojos mirando a todas partes. Cogió la llave inglesa de {helper} y la puso en un árbol. Luego se quedó mirando, esperando. Pero nadie vino a buscarla, y Zumbo bajó las antenas, triste.",
+              "text": "Una tarde, {hero} y {helper}, el robot, se escondieron detrás de una nube para atraparlo. Al rato apareció Zumbo, de puntillas, con sus tres ojos mirando a todas partes. Agarró la llave inglesa de {helper} y la puso en un árbol. Luego se quedó mirando, esperando. Pero nadie vino a buscarla, y Zumbo bajó las antenas, triste.",
               "scene": {
                 "bg": "aldea",
                 "mood": "tension",
@@ -9440,7 +9447,7 @@
           "variants": [
             {
               "id": "zumbo_jugar_habla_a",
-              "text": "{hero} salió de detrás de la nube. Zumbo dio un brinco y se puso verde oscuro. «¡No me riñas!», dijo. «¿Por qué cambias las cosas de sitio?», le preguntó {hero}, sin enfadarse. Zumbo miró al suelo. «Porque así la gente viene a buscarme», dijo bajito. «Si no, nadie se acuerda de mí. No tengo amigos aquí.» {helper} escuchaba con la antena gacha, porque sabía lo que era sentirse raro.",
+              "text": "{hero} salió de detrás de la nube. Zumbo dio un brinco y se puso verde oscuro. «¡No me regañes!», dijo. «¿Por qué cambias las cosas de sitio?», le preguntó {hero}, sin enfadarse. Zumbo miró al suelo. «Porque así la gente viene a buscarme», dijo bajito. «Si no, nadie se acuerda de mí. No tengo amigos aquí.» {helper} escuchaba con la antena gacha, porque sabía lo que era sentirse raro.",
               "scene": {
                 "bg": "aldea",
                 "mood": "sad",
@@ -9508,7 +9515,7 @@
           "variants": [
             {
               "id": "zumbo_jugar_devuelve_a",
-              "text": "Esa misma tarde, Zumbo devolvió el sombrero, las cartas y la llave inglesa. Hasta pidió perdón al panadero, que se rascó la cabeza sin creérselo, y luego le regaló un bollito de anís. «Hacía tiempo que nadie me pedía perdón con tanta educación», dijo el panadero. Zumbo se puso de un verde clarito, de felicidad.",
+              "text": "Esa misma tarde, Zumbo devolvió el sombrero, las cartas y la llave inglesa. Hasta pidió perdón al panadero, que se rascó la cabeza sin creérselo, y luego le regaló un panecito de anís. «Hacía tiempo que nadie me pedía perdón con tanta educación», dijo el panadero. Zumbo se puso de un verde clarito, de felicidad.",
               "scene": {
                 "bg": "aldea",
                 "mood": "joy",
@@ -9550,7 +9557,7 @@
           "variants": [
             {
               "id": "zumbo_jugar_luna_a",
-              "text": "Al día siguiente, en la luna, descubrieron que Zumbo saltaba mejor que nadie. Con sus piernas cortitas daba unos saltos altísimos, y en lo alto daba volteretas. {hero} intentaba imitarlo y se caía de culo en el polvo, y {helper} se reía con pitidos. Zumbo les enseñó a saltar con un pie, y luego con los dos. Al final hicieron un concurso de saltos, y ganó Zumbo, claro, pero nadie se enfadó.",
+              "text": "Al día siguiente, en la luna, descubrieron que Zumbo saltaba mejor que nadie. Con sus piernas cortitas daba unos saltos altísimos, y en lo alto daba volteretas. {hero} intentaba imitarlo y se caía sentad{hero.o} en el polvo, y {helper} se reía con pitidos. Zumbo les enseñó a saltar con un pie, y luego con los dos. Al final hicieron un concurso de saltos, y ganó Zumbo, claro, pero nadie se enfadó.",
               "scene": {
                 "bg": "luna",
                 "mood": "joy",

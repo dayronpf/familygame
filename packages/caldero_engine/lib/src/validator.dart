@@ -1241,8 +1241,48 @@ final RegExp vosotrosForms = RegExp(
   caseSensitive: false,
 );
 
-/// Cada cuento termina con **su** enseñanza (lo que de verdad pasó en él), y sus textos no usan «vosotros».
+/// Palabras de España que en Latinoamérica suenan raras o significan otra cosa (auditoría del 17-nov-2026, docs/32).
+/// Solo la palabra suelta: «recoger», «acoger» o «tumba» (sepulcro) no cuentan.
+final RegExp spainWords = RegExp(
+  r'(?<![a-záéíóúüñ])(?:'
+  r'cog(?:er|erl[oa]s?|e|es|en|emos|ía|ían|ió|í|ieron|iendo|ido|ida|imos)|cóge(?:l[oa]s?|me|te)?'
+  r'|gafas|tartas?|zumos?|setas?|purpurina|bollos?|tripita|malit[oa]|nata'
+  r'|tumb(?:ar|arse|ó|aron|ad[oa]s?|ándose|amos)'
+  r'|pill(?:ar|é|ó|aron|ad[oa]|aste)'
+  r'|¡menud[oa]s?'
+  r'|vale\?'
+  r'|hacia delante|lengua fuera'
+  r')(?![a-záéíóúüñ])',
+  caseSensitive: false,
+);
+
+/// Cada cuento termina con **su** enseñanza (lo que de verdad pasó en él), y sus textos no usan «vosotros» ni
+/// palabras de España.
 void _checkLessonAndVoice(Premise premise, Set<String> problems) {
+  final pid = premise.id;
+  void spain(String where, String text) {
+    final m = spainWords.firstMatch(text);
+    if (m != null) {
+      problems.add(
+          '$where: «${m.group(0)}» es de España: usa la palabra de Latinoamérica (docs/32)');
+    }
+  }
+
+  if (premise.lesson != null) spain('$pid.lesson', premise.lesson!);
+  for (final b in premise.beats) {
+    for (final v in b.variants) {
+      spain(v.id, v.text);
+    }
+    for (final o in b.choice?.options ?? const <ChoiceOption>[]) {
+      for (final t in [o.label, ...o.says.values]) {
+        spain('${b.id}.${o.id}', t);
+      }
+    }
+  }
+  _checkLessonAndVosotros(premise, problems);
+}
+
+void _checkLessonAndVosotros(Premise premise, Set<String> problems) {
   final pid = premise.id;
   final lesson = premise.lesson;
   if (lesson == null) {

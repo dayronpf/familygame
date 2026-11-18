@@ -1,0 +1,54 @@
+feature,area,priority,original,clone,notes
+Animación de arranque,inicio,could,yes,yes,ui/splash_page.dart con logo propio
+Saludo según la hora y el niño,inicio,should,yes,yes,home_page.dart
+Recomendación de la noche para el niño,inicio,must,yes,yes,«Para Ana» evita lo ya contado
+Tarjetas grandes con insignia Nuevo o candado,inicio,should,yes,yes,
+Avisos en carrusel que se cierran,inicio,could,yes,yes,assets/news.json
+Regalo de un cuento premium,inicio,should,yes,partial,hay 3 cuentos gratis fijos; no hay regalo que se desbloquea al tocar
+Cuento gratis del día,inicio,could,yes,no,aparece en la nota 2.7.0 (widget)
+Buscador de cuentos,explorar,must,yes,yes,catalog/explore_tab.dart
+Carrusel de novedades,explorar,should,yes,yes,
+Categorías por edad y por tema con contador,explorar,must,yes,yes,salen de los metadatos de las premisas
+Chips de filtro Todo / No leído / Favoritos,explorar,must,yes,yes,R-04
+Ficha del cuento antes de leer,ficha,must,yes,yes,catalog/story_detail_page.dart
+Valores o enseñanza en la ficha,ficha,must,yes,yes,cada premisa tiene su enseñanza
+Minutos y edad en la ficha,ficha,must,yes,yes,
+Sinopsis en la ficha,ficha,must,yes,yes,principio real del cuento
+Nota media de los lectores en la ficha,ficha,could,yes,no,hay valoraciones al final pero no se muestran
+Vista previa de un cuento bloqueado,ficha,should,yes,partial,la ficha muestra sinopsis; no deja leer la primera escena
+Temas para conversar después del cuento,ficha,should,yes,partial,la enseñanza se ve; no hay preguntas para conversar
+Guardar como favorito,ficha,must,yes,yes,
+Compartir un cuento,ficha,should,yes,yes,con pregunta para adultos
+Elegir entre leer y escuchar,lectura,must,yes,yes,Ver y escuchar / Leemos juntos / Escuchar / Holograma
+Lectura en voz alta por el adulto,lectura,must,yes,yes,Leemos juntos
+Opciones de letra (MAYÚSCULAS y letra para dislexia),lectura,should,yes,no,nota 2.3.0
+Funciona sin conexión,lectura,must,yes,yes,los cuentos se generan en el teléfono
+Audiolibro con voz,audio,must,yes,partial,voz del teléfono; voz pregrabada queda para el final (docs/29)
+Listas de reproducción de audio,audio,could,yes,no,nota 2.2.x
+Música para dormir con duración elegible,audio,should,yes,partial,música de ambiente y temporizador de sueño; sin pista propia tras el cuento
+Radio con emisoras,audio,could,yes,no,nota 2.6.0; hace falta música propia
+Cuento al azar (agitar o dado),explorar,could,yes,no,nota 2.2.x
+Biblioteca con lo guardado y lo leído,biblioteca,must,yes,yes,shelf/my_stories_tab.dart
+Contadores de tiempo / semanas / cuentos,progreso,must,yes,yes,semanas con 3 noches o más
+Premios en gris hasta ganarlos,progreso,should,yes,yes,nunca se pierden
+Celebración del premio que se puede apagar,progreso,should,yes,yes,tarjeta al final
+Varios niños con su biblioteca y premios,familia,should,yes,yes,hasta 6 perfiles; progreso por niño
+Grabar la voz del adulto como audiolibro,grabaciones,should,yes,no,fase 4 al final (R-15)
+Grabar conversaciones sobre el cuento,grabaciones,could,yes,no,nota 2.4.x
+Exportar e importar grabaciones,grabaciones,could,yes,no,R-17
+Copia de grabaciones en la nube,grabaciones,could,yes,no,choca con sin cuentas
+Cuenta y sincronización entre teléfonos,cuenta,could,yes,no,decisión pendiente; hoy sin cuentas por privacidad
+Recordatorio de la hora del cuento,ajustes,should,yes,yes,notificación local
+Ilustraciones animadas sí/no,ajustes,should,yes,yes,R-11
+Idioma de los cuentos distinto al de la app,ajustes,could,yes,partial,preparado; solo hay español
+Páginas para colorear e imprimibles,extras,could,yes,partial,solo el PDF del holograma
+Widgets en la pantalla de inicio,extras,could,yes,no,R-14; nativo Android e iOS
+Muro de pago con línea de tiempo de la prueba,pago,must,yes,yes,store/paywall_page.dart
+Plan anual y mensual con prueba de 7 días,pago,must,yes,yes,precio por región
+Restaurar compras,pago,must,yes,yes,
+Canjear código,pago,should,yes,yes,canje de la tienda
+Sonidos que se disparan con el micrófono al leer,lectura,could,yes,skip,decisión del dueño del producto: no se copia
+Catálogo de más de 500 cuentos escritos,contenido,must,yes,skip,es su contenido; Mininoches genera los suyos
+Acceso de por vida,pago,could,yes,skip,no encaja con el modelo elegido (docs/05)
+Versión para Apple Vision y web,plataforma,could,yes,skip,fuera del alcance de Android
+Programa para escuelas,negocio,could,yes,skip,es su red comercial

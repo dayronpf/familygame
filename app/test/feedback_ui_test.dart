@@ -68,6 +68,10 @@ void main() {
   Future<void> scrollToRating(WidgetTester tester) async {
     await tester.scrollUntilVisible(find.byKey(const Key('rating-5')), 300,
         maxScrolls: 200);
+    // Que la tarjeta quede entera a la vista: según lo largo del cuento, puede asomar a medias sobre la barra del pie.
+    await tester.ensureVisible(find.byKey(const Key('rating-1')));
+    await tester.pumpAndSettle();
+    await tester.ensureVisible(find.byKey(const Key('rating-5')));
     await tester.pumpAndSettle();
   }
 
