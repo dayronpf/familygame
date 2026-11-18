@@ -12,7 +12,7 @@
 | A2 | Elegir los 50 cuentos: de 2 a 8 años, las 6 enseñanzas, los 3 mundos y los 3 gratis | ✅ |
 | A3 | Fijar un texto por cuento: sin el nombre del niño, sin preguntas, protagonistas niño y niña alternados | ✅ |
 | A4 | Auditar los 50 textos ([32](32-auditoria-50-cuentos.md)), aprobar y aplicar las correcciones en los tres mundos completos, y añadir al validador la regla contra palabras de España. «La niña de la mochila verde» se cambió por «La bolsa del pozo» (ver B11). Lista fija en [content/catalogo/lanzamiento-es.json](../content/catalogo/lanzamiento-es.json) | ✅ |
-| A5 | Grabar los 50 cuentos con Isabela, 106 453 caracteres (≈ USD 6 de créditos extra), y revisar cada audio con el transcriptor | ☐ ← **siguiente** |
+| A5 | Grabar los 50 cuentos con Isabela, 106 453 caracteres, y revisar cada audio con el transcriptor (`tools/voice/render_catalog.py`). **Tanda 1 lista (17-nov):** 25 cuentos (los 3 gratis y los 22 más cortos), 48 minutos, 33 505 caracteres y ninguna escena con fallas. **Tanda 2:** los otros 25, unos 73 000 caracteres, **después de recargar ElevenLabs** (≈ USD 6) | 🔄 25/50 |
 | A6 | La app reproduce el audio grabado: los 3 gratis dentro de la app, los demás se descargan, y la voz del teléfono queda de respaldo | ☐ |
 | A7 | El catálogo de la app muestra solo esos 50 cuentos y puede recibir cuentos nuevos del servidor sin actualizar la app | ☐ |
 | A8 | Servidor en HTTPS y audio en Cloudflare R2 (gratis) | ☐ (tú, con mi guía) |
