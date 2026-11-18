@@ -6,12 +6,16 @@ use App\Http\Controllers\Api\FeedbackController;
 use App\Http\Controllers\Api\PurchaseController;
 use App\Http\Controllers\Api\RedeemController;
 use App\Http\Controllers\Api\WebhookController;
+use App\Http\Controllers\Internal\DeployController;
 use Illuminate\Support\Facades\Route;
 
 /*
  * API pública de la app (JSON, sin cookies ni sesiones). Contratos: docs/api/store.openapi.yaml y
  * docs/api/feedback.openapi.yaml. Los límites de ritmo están en AppServiceProvider.
  */
+// Gancho de despliegue (GitHub Actions, después de subir por FTP). Sin token configurado no existe.
+Route::post('internal/deploy', DeployController::class)->middleware('throttle:5,1');
+
 Route::prefix('v1')->group(function () {
     Route::get('catalog', [CatalogController::class, 'show'])->middleware('throttle:mn-api');
     Route::get('entitlements', [EntitlementController::class, 'show'])->middleware('throttle:mn-api');

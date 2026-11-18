@@ -1,0 +1,89 @@
+# Despliegue del servidor de Mininoches (Laravel, server/) a cuentos.tuvendor.com por FTP.
+#
+# Se publica al hacer push a la rama `servidor` (o a mano desde Actions). Antes de subir, corre las pruebas.
+# Después de subir, llama al gancho /internal/deploy, que hace migraciones, importa los paquetes y arma las cachés.
+#
+# Secretos del repositorio (Settings → Secrets and variables → Actions):
+#   FTP_SERVER     servidor FTP de cPanel (por ejemplo, ftp.tuvendor.com)
+#   FTP_USERNAME   la cuenta FTP cuya carpeta es /home/tuven780/external/cuentos.tuvendor.com
+#   FTP_PASSWORD   su contraseña
+#   DEPLOY_TOKEN   el mismo valor que MININOCHES_DEPLOY_TOKEN en el .env del servidor
+# El .env del servidor no se sube nunca: vive solo en el servidor.
+name: Servidor (despliegue)
+
+on:
+  push:
+    branches: [servidor]
+    paths:
+      - "server/**"
+      - "content/packs/**"
+      - ".github/workflows/server-deploy.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: server-deploy
+  cancel-in-progress: false
+
+jobs:
+  pruebas:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: server
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.4"
+          extensions: sodium, openssl, pdo_sqlite, mbstring
+          coverage: none
+      - run: composer install --no-interaction --prefer-dist --no-progress
+      - run: cp .env.example .env && php artisan key:generate
+      - run: php artisan test
+
+  desplegar:
+    needs: pruebas
+    runs-on: ubuntu-latest
+    environment: produccion
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.4"
+          # Sin sodium a propósito: el servidor no la tiene y usa paragonie/sodium_compat.
+          extensions: openssl, pdo_mysql, mbstring
+          coverage: none
+      - name: Dependencias de producción
+        working-directory: server
+        run: composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist --no-progress
+      - name: Copia de los paquetes de cuentos para el panel
+        run: rm -rf server/resources/packs && cp -r content/packs server/resources/packs
+      - name: Subir por FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          local-dir: ./server/
+          server-dir: ./
+          exclude: |
+            **/.git*
+            **/.git*/**
+            .env
+            .env.*
+            node_modules/**
+            tests/**
+            phpunit.xml
+            storage/logs/*.log
+            storage/framework/cache/data/**
+            storage/framework/sessions/*
+            storage/framework/views/*.php
+            bootstrap/cache/*.php
+            database/*.sqlite
+      - name: Terminar el despliegue (migraciones, paquetes, cachés)
+        run: |
+          curl -fsS -X POST \
+            -H "Authorization: Bearer ${{ secrets.DEPLOY_TOKEN }}" \
+            -H "Accept: application/json" \
+            https://cuentos.tuvendor.com/internal/deploy

@@ -6,7 +6,12 @@
 return [
 
     // Carpeta con los paquetes de cuentos ({id}/pack.json). Por defecto, la del repositorio.
-    'packs_path' => env('MININOCHES_PACKS_PATH') ?: base_path('../content/packs'),
+    // En el repositorio, ../content/packs; en el servidor, la copia que sube el despliegue a resources/packs.
+    'packs_path' => env('MININOCHES_PACKS_PATH')
+        ?: (is_dir(base_path('../content/packs')) ? base_path('../content/packs') : resource_path('packs')),
+
+    // Clave del gancho de despliegue (POST /internal/deploy): vacía = desactivado.
+    'deploy_token' => env('MININOCHES_DEPLOY_TOKEN', ''),
 
     // Cuentos gratis al importar por primera vez (luego se cambian en el panel).
     'default_free' => array_values(array_filter(array_map('trim', explode(',', (string) env(
