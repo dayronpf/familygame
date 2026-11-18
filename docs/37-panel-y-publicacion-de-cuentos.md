@@ -50,7 +50,22 @@ Opciones:
 
 **Servidor:** la cola es `GET /internal/contenido/cola` y los resultados van a `POST /internal/contenido/resultado`. Las dos usan el token del despliegue.
 
+## Publicación automática (Mac del proyecto)
+
+Una tarea de macOS revisa la cola **cada 10 minutos** mientras el Mac está encendido; si no hay nada, termina en un segundo.
+- **Tarea:** `~/Library/LaunchAgents/com.mininoches.publicar.plist`. Ejecuta `tools/content/publicar_auto.sh` de la copia.
+- **Copia del repositorio:** `~/MininochesPublicar`. Las tareas de macOS no pueden leer Documentos, así que publica desde aquí. Hace `git pull` antes de publicar y sube a git después.
+- **Datos compartidos:** `~/MininochesDatos`, con el audio grabado (`voz/`) y `credenciales/.env`. En el repositorio de Documentos, `builds/voz` y `credenciales/.env` son enlaces a esa carpeta.
+- **Registro:** `~/Library/Logs/mininoches-publicar.log`.
+- **Pausar:**
+  ```
+  launchctl bootout gui/$(id -u)/com.mininoches.publicar
+  ```
+- **Reanudar:**
+  ```
+  launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.mininoches.publicar.plist
+  ```
+
 ## Pendiente
 
-- Que la publicación corra sola, por ejemplo con una tarea de `launchd` en el Mac cada 10 minutos. Hoy se ejecuta a mano.
 - Dibujos nuevos (personajes, fondos u objetos que no existen) siguen necesitando ilustración: el editor solo combina los que hay.
