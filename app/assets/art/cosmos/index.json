@@ -38,7 +38,15 @@
   "cosmos/rigs/flor_cristal.json",
   "cosmos/rigs/llave_inglesa.json",
   "cosmos/rigs/globo.json",
-  "cosmos/rigs/semilla_luz.json"
+  "cosmos/rigs/semilla_luz.json",
+  "cosmos/rigs/semilla_luz_mano.json",
+  "cosmos/rigs/brote_luz.json",
+  "cosmos/rigs/flor_luz.json",
+  "cosmos/rigs/piedra_violeta.json",
+  "cosmos/rigs/globo_rojo.json",
+  "cosmos/rigs/globo_azul_carta.json",
+  "cosmos/rigs/globo_grande_estrella.json",
+  "cosmos/rigs/frasco.json"
  ],
  "scenes": [
   "cosmos/scenes/aldea.json",

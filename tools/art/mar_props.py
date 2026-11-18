@@ -24,19 +24,32 @@ def caracola():
 
 
 def mapa(roto=False):
+    """El mapa del tesoro. `roto`: se le arrancó la esquina de arriba a la derecha (el trocito cuelga, torcido)."""
     pal = {"paper": "#f3e2b4", "paper2": "#e0c890", "ink": "#8a4a2a", "x": "#d8463a"}
-    sh = [S("M-60,-80 L60,-80 L58,-6 L-58,-6 Z" if not roto else "M-60,-80 L10,-80 L0,-50 L14,-30 L4,-6 L-58,-6 Z", "$paper", "#8a6a3a", 2.5),
-          S(rrect(-66, -86, 12, 84, 6), "$paper2", "#8a6a3a", 2), S(rrect(54, -86, 12, 84, 6), "$paper2", "#8a6a3a", 2)]
+    tear = [(22, -80), (26, -72), (32, -70), (35, -62), (42, -59), (46, -51), (54, -48)]
     if roto:
-        sh = sh[:2] + [S("M20,-80 L60,-80 L58,-6 L18,-6 L30,-30 L16,-50 Z", "$paper", "#8a6a3a", 2.5, 0.0)]
-    sh += [S("M-44,-60 C-30,-70 -10,-56 -18,-44 C-26,-32 -6,-24 10,-34", None, "$ink", 2.4),
-           S(ell(-36, -30, 12, 9), "#9ac87a", "#5a7a3a", 1.5)]
-    if not roto:
-        sh += [S("M10,-34 C22,-40 30,-30 34,-22", None, "$ink", 2.4),
-               S("M30,-30 L42,-18 M42,-30 L30,-18", None, "$x", 4)]
-    sh.append(S(star(-42, -66, 6, 2.5, 4), "$ink", None))
+        paper = "M-60,-80 " + " ".join(f"L{x},{y}" for x, y in tear) + " L58,-48 L58,-6 L-58,-6 Z"
+    else:
+        paper = "M-60,-80 L60,-80 L58,-6 L-58,-6 Z"
+    sh = [S(paper, "$paper", "#8a6a3a", 2.5),
+          S("M-44,-60 C-30,-70 -10,-56 -18,-44 C-26,-32 -6,-24 10,-34", None, "$ink", 2.4),
+          S(ell(-36, -30, 12, 9), "#9ac87a", "#5a7a3a", 1.5),
+          S("M10,-34 C22,-40 30,-30 34,-22", None, "$ink", 2.4),
+          S("M30,-30 L42,-18 M42,-30 L30,-18", None, "$x", 4),
+          S(star(-42, -66, 6, 2.5, 4), "$ink", None),
+          S(rrect(-66, -86, 12, 84, 6), "$paper2", "#8a6a3a", 2), S(rrect(54, -86, 12, 84, 6), "$paper2", "#8a6a3a", 2)]
+    if roto:  # el trocito arrancado: cuelga del rodillo, girado y un poco separado
+        ang = math.radians(16)
+
+        def mv(x, y):
+            x, y = x - 60, y + 80
+            return n(60 + x * math.cos(ang) - y * math.sin(ang) + 8), n(-80 + x * math.sin(ang) + y * math.cos(ang) - 10)
+        pts = [(22, -80), (60, -80), (60, -48), (54, -48)] + list(reversed(tear[:-1]))
+        sh.append(S("M" + " L".join("%s,%s" % mv(x, y) for x, y in pts) + " Z", "$paper", "#8a6a3a", 2.5))
+        sh.append(S("M%s,%s Q%s,%s %s,%s" % (*mv(40, -74), *mv(48, -70), *mv(52, -60)), None, "$ink", 2))
     rid = "mapa_roto" if roto else "mapa"
-    return rig(rid, "Mapa roto" if roto else "Mapa del tesoro", [-72, -96, 144, 100], pal, node("root", (0, 0), shapes=sh))
+    root = node("root", (0, 0), shapes=sh)
+    return rig(rid, "Mapa roto" if roto else "Mapa del tesoro", [-72, -102, 152, 106] if roto else [-72, -96, 144, 100], pal, root)
 
 
 def cofre(abierto=False):
@@ -60,12 +73,22 @@ def cofre(abierto=False):
     return rig(rid, "Cofre abierto" if abierto else "Cofre", [-74, -130, 148, 136], pal, node("root", (0, 0), shapes=base, post=post))
 
 
-def catalejo():
+def catalejo(rajado=False):
+    """El catalejo de latón. `rajado`: con el cristal de la lente rajado de lado a lado (la lente, un poco más grande para
+    que la raja se vea)."""
     pal = {"brass": "#e0b040", "brass2": "#a8801a", "lens": "#9ad8ff"}
     sh = [S(poly([(-60, -18), (40, -30), (40, -6), (-60, -12)]), "$brass", "#6a4a10", 2),
-          S(rrect(10, -34, 14, 32, 4), "$brass2", "#6a4a10", 2), S(rrect(-24, -24, 10, 18, 3), "$brass2", "#6a4a10", 2),
-          S(ell(42, -18, 6, 14), "$lens", "#2a6a9a", 2), shine("M-50,-17 L30,-27 L30,-24 L-50,-15 Z")]
-    return rig("catalejo", "Catalejo", [-70, -44, 124, 50], pal, node("root", (0, 0), shapes=sh))
+          S(rrect(10, -34, 14, 32, 4), "$brass2", "#6a4a10", 2), S(rrect(-24, -24, 10, 18, 3), "$brass2", "#6a4a10", 2)]
+    if rajado:
+        sh += [S(ell(43, -18, 10, 17), "$lens", "#2a6a9a", 2.5),
+               S("M38,-33 L45,-25 L39,-19 L47,-12 L41,-6 L45,-2", None, "#1a3a5a", 2.6),
+               S("M39,-19 L35,-16 M45,-25 L50,-27", None, "#1a3a5a", 1.6),
+               S("M39.5,-31 L46,-25 L40,-19.5", None, "#ffffff", 1.2, 0.9),
+               shine("M-50,-17 L30,-27 L30,-24 L-50,-15 Z")]
+    else:
+        sh += [S(ell(42, -18, 6, 14), "$lens", "#2a6a9a", 2), shine("M-50,-17 L30,-27 L30,-24 L-50,-15 Z")]
+    rid = "catalejo_rajado" if rajado else "catalejo"
+    return rig(rid, "Catalejo rajado" if rajado else "Catalejo", [-70, -44, 128, 50], pal, node("root", (0, 0), shapes=sh))
 
 
 def brujula():
@@ -89,21 +112,45 @@ def botella():
     return rig("botella_mensaje", "Botella con un mensaje", [-50, -50, 100, 50], pal, node("root", (0, -24), shapes=sh))
 
 
-def farol_barco(encendido=True):
-    pal = {"metal": "#4a4a56", "glass": "#ffe08a" if encendido else "#c8c0a8", "flame": "#ffb040"}
+def farol_barco(encendido=True, roto=False):
+    """El farol de barco, pequeño y de latón. `roto`: apagado, con el cristal rajado y el sombrerete torcido."""
+    pal = {"metal": "#c8962e", "glass": "#ffe08a" if encendido else "#c8c0a8", "flame": "#ffb040"}
+    edge = "#5a3a0e"
     post = []
     if encendido:
         post = [node("glow", (0, -40), shapes=[S(ell(0, -40, 46, 46), "#fff3c4", None, 0, 0.25)]),
                 node("flame", (0, -30), shapes=[S("M0,-56 C10,-44 8,-30 0,-28 C-8,-30 -10,-44 0,-56 Z", "$flame", None)])]
-    sh = [S("M-4,-92 C-4,-104 4,-104 4,-92", None, "$metal", 3),
-          S(rrect(-22, -76, 44, 60, 8), "$glass", None, 0, 0.9),
-          S(rrect(-26, -84, 52, 10, 4), "$metal", "#1a1a2a", 2), S(rrect(-26, -18, 52, 18, 4), "$metal", "#1a1a2a", 2),
-          S(poly([(-20, -84), (20, -84), (0, -94)]), "$metal", "#1a1a2a", 2)]
+    top = [S(rrect(-26, -84, 52, 10, 4), "$metal", edge, 2), S(poly([(-20, -84), (20, -84), (0, -94)]), "$metal", edge, 2)]
+    if roto:  # el sombrerete, torcido
+        top = [S(poly([(-27, -80), (25, -88), (27, -78), (-25, -70)]), "$metal", edge, 2),
+               S(poly([(-20, -79), (20, -86), (2, -96)]), "$metal", edge, 2)]
+    sh = [S("M-4,-92 C-4,-104 4,-104 4,-92", None, "$metal", 3) if not roto else S("M0,-96 C0,-108 8,-108 8,-96", None, "$metal", 3),
+          S(rrect(-22, -76, 44, 60, 8), "$glass", None, 0, 0.9)]
+    sh += top + [S(rrect(-26, -18, 52, 18, 4), "$metal", edge, 2)]
     for x in (-22, -7, 7, 22):
         sh.append(S(rrect(x - 2, -76, 4, 58, 1), "$metal", None))
-    rid = "farol_barco" if encendido else "farol_barco_apagado"
-    return rig(rid, "Farol" if encendido else "Farol apagado", [-40, -110, 80, 114], pal,
-               node("root", (0, 0), shapes=sh[:2], post=post + [node("frame", (0, 0), shapes=sh[2:])]))
+    sh.append(shine("M-18,-70 L-12,-70 L-12,-26 L-18,-26 Z"))
+    if roto:  # la raja del cristal
+        sh += [S("M-16,-66 L-6,-52 L-12,-44 L2,-34 L-4,-24", None, "#3a3a46", 2.2),
+               S("M-6,-52 L6,-56 M2,-34 L12,-38", None, "#3a3a46", 1.5)]
+    rid = "farol_barco_roto" if roto else "farol_barco" if encendido else "farol_barco_apagado"
+    name = "Farol roto" if roto else "Farol" if encendido else "Farol apagado"
+    return rig(rid, name, [-40, -110, 80, 114], pal, node("root", (0, 0), shapes=sh[:2], post=post + [node("frame", (0, 0), shapes=sh[2:])]))
+
+
+def cacerola():
+    """Una cacerola de sopa humeante, con dos asas. Huesos `steam1..3` para el gesto `boil` (el vapor sube)."""
+    pal = {"pot": "#b8643a", "pot2": "#8a4422", "soup": "#e9a64a", "soup2": "#f6c878", "steam": "#ffffff"}
+    sh = [S("M-62,-52 C-74,-52 -74,-38 -62,-38", None, "$pot2", 6), S("M62,-52 C74,-52 74,-38 62,-38", None, "$pot2", 6),
+          S("M-54,-56 L54,-56 L50,-10 C48,-2 40,0 32,0 L-32,0 C-40,0 -48,-2 -50,-10 Z", "$pot", "#4a2210", 2.5),
+          S(ell(0, -56, 56, 10), "$pot2", "#4a2210", 2.5), S(ell(0, -56, 49, 7), "$soup", None),
+          S(ell(-14, -57, 10, 2.6), "$soup2", None), S(ell(18, -55, 7, 2), "$soup2", None),
+          S(ell(4, -58, 3, 2), "#e8642a", None), S(ell(-30, -55, 3, 2), "#e8642a", None),
+          shine("M-44,-46 L-38,-46 L-36,-12 L-42,-14 Z")]
+    steam = [node(f"steam{i}", (x, -64), shapes=[S(ell(x, -84, 13, 11), "$steam", None, 0, 0.55),
+                                                 S(ell(x + 8, -96, 9, 8), "$steam", None, 0, 0.45)])
+             for i, x in ((1, -24), (2, 2), (3, 26))]
+    return rig("cacerola", "Cacerola de sopa", [-80, -112, 160, 116], pal, node("root", (0, 0), shapes=sh, post=steam))
 
 
 def perla():
@@ -156,5 +203,5 @@ def estrella_mar():
 
 
 def build_all():
-    return [caracola(), mapa(), mapa(roto=True), cofre(), cofre(abierto=True), catalejo(), brujula(), botella(), farol_barco(),
-            farol_barco(encendido=False), perla(), llave(), galleta(), monedas(), ancla(), estrella_mar()]
+    return [caracola(), mapa(), mapa(roto=True), cofre(), cofre(abierto=True), catalejo(), catalejo(rajado=True), brujula(), botella(),
+            farol_barco(), farol_barco(encendido=False), farol_barco(encendido=False, roto=True), cacerola(), perla(), llave(), galleta(), monedas(), ancla(), estrella_mar()]

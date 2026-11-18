@@ -479,6 +479,31 @@
         "plant",
         "light"
       ]
+    },
+    {
+      "id": "semilla_luz_mano",
+      "noun": "semilla de luz",
+      "gender": "f",
+      "tags": [
+        "plant",
+        "light"
+      ]
+    },
+    {
+      "id": "globo_rojo",
+      "noun": "globo",
+      "gender": "m",
+      "tags": [
+        "toy"
+      ]
+    },
+    {
+      "id": "globo_azul_carta",
+      "noun": "globo",
+      "gender": "m",
+      "tags": [
+        "toy"
+      ]
     }
   ],
   "morals": [
@@ -1578,6 +1603,12 @@
                 "props": [
                   {
                     "prop": "estrella_caida",
+                    "x": 0.54,
+                    "lift": 40,
+                    "scale": 0.5
+                  },
+                  {
+                    "prop": "frasco",
                     "x": 0.54,
                     "lift": 40,
                     "scale": 0.5
@@ -3320,7 +3351,7 @@
                 ],
                 "props": [
                   {
-                    "prop": "globo",
+                    "prop": "globo_grande_estrella",
                     "x": 0.5,
                     "clip": "bob",
                     "lift": 160
@@ -4987,7 +5018,7 @@
         "item": {
           "kind": "prop",
           "ids": [
-            "globo"
+            "globo_rojo"
           ]
         }
       },
@@ -5016,7 +5047,7 @@
                 ],
                 "props": [
                   {
-                    "prop": "globo",
+                    "prop": "globo_rojo",
                     "near": "hero",
                     "dx": 0.08,
                     "lift": 120,
@@ -5050,7 +5081,7 @@
                 ],
                 "props": [
                   {
-                    "prop": "globo",
+                    "prop": "globo_rojo",
                     "x": 0.62,
                     "clip": "bob",
                     "lift": 200
@@ -5139,7 +5170,7 @@
                 ],
                 "props": [
                   {
-                    "prop": "globo",
+                    "prop": "globo_rojo",
                     "x": 0.5,
                     "clip": "bob",
                     "lift": 220
@@ -6621,7 +6652,7 @@
                 "stage": [
                   {
                     "who": "hero",
-                    "clip": "sleep",
+                    "clip": "laugh",
                     "x": 0.36
                   },
                   {
@@ -7101,7 +7132,7 @@
                 ],
                 "props": [
                   {
-                    "prop": "piedra_lunar",
+                    "prop": "piedra_violeta",
                     "x": 0.48,
                     "clip": "shimmer",
                     "scale": 0.6
@@ -7138,7 +7169,7 @@
                 ],
                 "props": [
                   {
-                    "prop": "piedra_lunar",
+                    "prop": "piedra_violeta",
                     "clip": "shimmer",
                     "near": "hero",
                     "dx": 0.07,
@@ -8439,7 +8470,7 @@
         "item": {
           "kind": "prop",
           "ids": [
-            "semilla_luz"
+            "semilla_luz_mano"
           ]
         }
       },
@@ -8468,11 +8499,11 @@
                 ],
                 "props": [
                   {
-                    "prop": "semilla_luz",
+                    "prop": "semilla_luz_mano",
                     "near": "hero",
                     "dx": 0.07,
                     "lift": 70,
-                    "scale": 0.5,
+                    "scale": 0.6,
                     "clip": "shimmer"
                   }
                 ]
@@ -8508,12 +8539,12 @@
                 ],
                 "props": [
                   {
-                    "prop": "semilla_luz",
+                    "prop": "semilla_luz_mano",
                     "clip": "shimmer",
                     "near": "hero",
                     "dx": 0.07,
                     "lift": 60,
-                    "scale": 0.5
+                    "scale": 0.6
                   }
                 ]
               }
@@ -8571,10 +8602,12 @@
                 ],
                 "props": [
                   {
-                    "prop": "semilla_luz",
-                    "x": 0.64,
-                    "clip": "shimmer",
-                    "scale": 0.5
+                    "prop": "semilla_luz_mano",
+                    "near": "hero",
+                    "dx": 0.07,
+                    "lift": 60,
+                    "scale": 0.6,
+                    "clip": "shimmer"
                   }
                 ],
                 "offstage": [
@@ -8612,12 +8645,12 @@
                 ],
                 "props": [
                   {
-                    "prop": "semilla_luz",
+                    "prop": "semilla_luz_mano",
                     "clip": "shimmer",
                     "near": "hero",
                     "dx": 0.07,
                     "lift": 60,
-                    "scale": 0.5
+                    "scale": 0.6
                   }
                 ]
               },
@@ -8687,7 +8720,7 @@
                 ],
                 "props": [
                   {
-                    "prop": "flor_cristal",
+                    "prop": "flor_luz",
                     "x": 0.7,
                     "clip": "shimmer",
                     "scale": 0.8
@@ -8725,7 +8758,7 @@
                 ],
                 "props": [
                   {
-                    "prop": "flor_cristal",
+                    "prop": "flor_luz",
                     "x": 0.66,
                     "clip": "shimmer",
                     "scale": 0.7
@@ -8804,7 +8837,7 @@
         "item": {
           "kind": "prop",
           "ids": [
-            "semilla_luz"
+            "semilla_luz_mano"
           ]
         }
       },
@@ -8833,11 +8866,11 @@
                 ],
                 "props": [
                   {
-                    "prop": "semilla_luz",
+                    "prop": "semilla_luz_mano",
                     "near": "hero",
                     "dx": 0.07,
                     "lift": 70,
-                    "scale": 0.5,
+                    "scale": 0.6,
                     "clip": "shimmer"
                   }
                 ]
@@ -8939,7 +8972,7 @@
                 ],
                 "props": [
                   {
-                    "prop": "flor_cristal",
+                    "prop": "brote_luz",
                     "x": 0.5,
                     "clip": "shimmer",
                     "scale": 0.8
@@ -8976,7 +9009,7 @@
                 ],
                 "props": [
                   {
-                    "prop": "flor_cristal",
+                    "prop": "flor_luz",
                     "x": 0.5,
                     "clip": "shimmer",
                     "scale": 0.8
@@ -9005,10 +9038,11 @@
                 ],
                 "props": [
                   {
-                    "prop": "flor_cristal",
-                    "x": 0.66,
+                    "prop": "flor_luz",
+                    "x": 0.72,
                     "clip": "shimmer",
-                    "scale": 0.8
+                    "scale": 0.35,
+                    "lift": 180
                   }
                 ]
               }
@@ -9268,7 +9302,7 @@
         "item": {
           "kind": "prop",
           "ids": [
-            "globo"
+            "globo_azul_carta"
           ]
         }
       },
@@ -9361,7 +9395,7 @@
                 ],
                 "props": [
                   {
-                    "prop": "globo",
+                    "prop": "globo_azul_carta",
                     "x": 0.7,
                     "lift": 160,
                     "scale": 0.6,
@@ -9400,7 +9434,7 @@
                 ],
                 "props": [
                   {
-                    "prop": "globo",
+                    "prop": "globo_azul_carta",
                     "clip": "bob",
                     "near": "hero",
                     "dx": 0.08,
@@ -9436,7 +9470,7 @@
                 ],
                 "props": [
                   {
-                    "prop": "globo",
+                    "prop": "globo_azul_carta",
                     "clip": "bob",
                     "near": "hero",
                     "dx": 0.08,
@@ -10485,7 +10519,7 @@
                 ],
                 "props": [
                   {
-                    "prop": "piedra_lunar",
+                    "prop": "piedra_violeta",
                     "x": 0.66,
                     "clip": "shimmer",
                     "scale": 0.4

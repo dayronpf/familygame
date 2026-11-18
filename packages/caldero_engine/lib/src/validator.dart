@@ -1005,18 +1005,18 @@ final List<(RegExp, String, Set<String>)> _objectWords = [
   (
     RegExp(r'\b(?:panecillo|bollo)s?\b', caseSensitive: false),
     'panecillo',
-    {'pan', 'trozos_de_pan'}
+    {'pan', 'trozos_de_pan', 'trozos_de_pan_dos', 'cesta_panecillos'}
   ),
   (
     RegExp(r'\blinterna\b', caseSensitive: false),
     'linterna',
-    {'linterna', 'linterna_apagada'}
+    {'linterna', 'linterna_apagada', 'linterna_mano', 'linterna_mano_apagada'}
   ),
   (RegExp(r'\bmanta\b', caseSensitive: false), 'manta', {'manta'}),
   (
     RegExp(r'\bcuenco\b', caseSensitive: false),
     'cuenco',
-    {'cuenco', 'cuenco_vacio'}
+    {'cuenco', 'cuenco_vacio', 'cuenco_grande'}
   ),
   (RegExp(r'\bcabrita\b', caseSensitive: false), 'cabrita', {'cabrita'}),
   // Mar de las Estrellas
@@ -1025,7 +1025,7 @@ final List<(RegExp, String, Set<String>)> _objectWords = [
     'mapa',
     {'mapa', 'mapa_roto', 'mapa_estelar'}
   ),
-  (RegExp(r'\bcatalejos?\b', caseSensitive: false), 'catalejo', {'catalejo'}),
+  (RegExp(r'\bcatalejos?\b', caseSensitive: false), 'catalejo', {'catalejo', 'catalejo_rajado'}),
   (RegExp(r'\bbrújulas?\b', caseSensitive: false), 'brújula', {'brujula'}),
   (RegExp(r'\bcaracolas?\b', caseSensitive: false), 'caracola', {'caracola'}),
   (RegExp(r'\bperlas?\b', caseSensitive: false), 'perla', {'perla'}),
@@ -1058,7 +1058,7 @@ final List<(RegExp, String, Set<String>)> _objectWords = [
   ),
   (RegExp(r'\bhierba de luna\b', caseSensitive: false), 'hierba', {'hierba'}),
   (RegExp(r'\bolla\b', caseSensitive: false), 'olla', {'olla'}),
-  (RegExp(r'\bpan\b', caseSensitive: false), 'pan', {'pan', 'trozos_de_pan'}),
+  (RegExp(r'\bpan\b', caseSensitive: false), 'pan', {'pan', 'trozos_de_pan', 'trozos_de_pan_dos'}),
 ];
 
 /// Horas y estaciones (`time`, `season`), rasgos del lugar y primer plano de los objetos nuevos:

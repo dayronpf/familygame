@@ -4150,7 +4150,7 @@
                 ],
                 "props": [
                   {
-                    "prop": "farol_barco_apagado",
+                    "prop": "farol_barco_roto",
                     "x": 0.9,
                     "scale": 0.7
                   }
@@ -4475,7 +4475,7 @@
                 ],
                 "props": [
                   {
-                    "prop": "catalejo",
+                    "prop": "catalejo_rajado",
                     "x": 0.62,
                     "scale": 0.7
                   }
@@ -4514,7 +4514,7 @@
                 ],
                 "props": [
                   {
-                    "prop": "catalejo",
+                    "prop": "catalejo_rajado",
                     "near": "helper",
                     "dx": -0.07,
                     "lift": 60,
@@ -4589,7 +4589,7 @@
                 ],
                 "props": [
                   {
-                    "prop": "catalejo",
+                    "prop": "catalejo_rajado",
                     "near": "helper",
                     "dx": -0.07,
                     "lift": 60,
@@ -6459,9 +6459,8 @@
                 ],
                 "props": [
                   {
-                    "prop": "farol_barco",
+                    "prop": "farol_barco_apagado",
                     "x": 0.82,
-                    "clip": "glow",
                     "scale": 0.6
                   }
                 ]
@@ -6981,11 +6980,12 @@
                 ],
                 "props": [
                   {
-                    "prop": "galleta_barco",
+                    "prop": "cacerola",
                     "near": "hero",
                     "dx": 0.07,
                     "lift": 55,
-                    "scale": 0.6
+                    "scale": 0.6,
+                    "clip": "boil"
                   }
                 ]
               },

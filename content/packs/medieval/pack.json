@@ -606,6 +606,38 @@
       "tags": [
         "tool"
       ]
+    },
+    {
+      "id": "linterna_mano",
+      "noun": "linterna",
+      "gender": "f",
+      "tags": [
+        "light"
+      ]
+    },
+    {
+      "id": "cuenco_grande",
+      "noun": "cuenco",
+      "gender": "m",
+      "tags": [
+        "food"
+      ]
+    },
+    {
+      "id": "cinta_lazo",
+      "noun": "cinta",
+      "gender": "f",
+      "tags": [
+        "ribbon"
+      ]
+    },
+    {
+      "id": "cesta_panecillos",
+      "noun": "cesta",
+      "gender": "f",
+      "tags": [
+        "food"
+      ]
     }
   ],
   "morals": [
@@ -4880,9 +4912,9 @@
                   },
                   {
                     "prop": "linterna",
-                    "x": 0.55,
-                    "lift": 262,
-                    "scale": 0.22,
+                    "x": 0.57,
+                    "lift": 196,
+                    "scale": 0.14,
                     "clip": "glow",
                     "emit": true
                   }
@@ -4922,9 +4954,9 @@
                   },
                   {
                     "prop": "linterna",
-                    "x": 0.55,
-                    "lift": 262,
-                    "scale": 0.22,
+                    "x": 0.57,
+                    "lift": 196,
+                    "scale": 0.14,
                     "clip": "glow",
                     "emit": true
                   }
@@ -7019,10 +7051,22 @@
                     "front": true
                   },
                   {
-                    "prop": "girasol",
-                    "x": 0.62,
-                    "scale": 0.6,
-                    "clip": "sun"
+                    "prop": "girasol_seco",
+                    "x": 0.43,
+                    "lift": 190,
+                    "scale": 0.12
+                  },
+                  {
+                    "prop": "girasol_seco",
+                    "x": 0.47,
+                    "lift": 190,
+                    "scale": 0.12
+                  },
+                  {
+                    "prop": "girasol_seco",
+                    "x": 0.56,
+                    "lift": 190,
+                    "scale": 0.12
                   }
                 ]
               }
@@ -7053,10 +7097,22 @@
                     "front": true
                   },
                   {
-                    "prop": "girasol",
-                    "x": 0.62,
-                    "scale": 0.6,
-                    "clip": "sun"
+                    "prop": "girasol_seco",
+                    "x": 0.43,
+                    "lift": 190,
+                    "scale": 0.12
+                  },
+                  {
+                    "prop": "girasol_seco",
+                    "x": 0.47,
+                    "lift": 190,
+                    "scale": 0.12
+                  },
+                  {
+                    "prop": "girasol_seco",
+                    "x": 0.56,
+                    "lift": 190,
+                    "scale": 0.12
                   }
                 ]
               }
@@ -8261,7 +8317,7 @@
         "item": {
           "kind": "prop",
           "ids": [
-            "cuenco"
+            "cuenco_grande"
           ]
         }
       },
@@ -8277,10 +8333,10 @@
                 "mood": "calm",
                 "time": "dia",
                 "focus": {
-                  "prop": "cuenco",
+                  "prop": "cuenco_grande",
                   "x": 0.5,
                   "fill": 0.5,
-                  "clip": "still"
+                  "clip": "boil"
                 }
               }
             }
@@ -8313,11 +8369,11 @@
                 ],
                 "props": [
                   {
-                    "prop": "cuenco",
+                    "prop": "cuenco_grande",
                     "near": "hero",
                     "dx": 0.06,
                     "lift": 52,
-                    "scale": 1.0,
+                    "scale": 0.8,
                     "front": true
                   }
                 ]
@@ -8344,11 +8400,11 @@
                 ],
                 "props": [
                   {
-                    "prop": "cuenco",
+                    "prop": "cuenco_grande",
                     "near": "hero",
                     "dx": 0.06,
                     "lift": 52,
-                    "scale": 1.0,
+                    "scale": 0.8,
                     "front": true
                   }
                 ]
@@ -8375,11 +8431,11 @@
                 ],
                 "props": [
                   {
-                    "prop": "cuenco",
+                    "prop": "cuenco_grande",
                     "near": "hero",
                     "dx": 0.07,
                     "lift": 70,
-                    "scale": 1.0,
+                    "scale": 0.8,
                     "front": true
                   }
                 ]
@@ -8401,11 +8457,11 @@
                 ],
                 "props": [
                   {
-                    "prop": "cuenco",
+                    "prop": "cuenco_grande",
                     "near": "hero",
                     "dx": 0.07,
                     "lift": 70,
-                    "scale": 1.0,
+                    "scale": 0.8,
                     "front": true
                   }
                 ]
@@ -8432,11 +8488,11 @@
                 ],
                 "props": [
                   {
-                    "prop": "cuenco",
+                    "prop": "cuenco_grande",
                     "near": "hero",
                     "dx": 0.07,
                     "lift": 50,
-                    "scale": 1.0,
+                    "scale": 0.8,
                     "front": true
                   }
                 ]
@@ -8468,11 +8524,11 @@
                 ],
                 "props": [
                   {
-                    "prop": "cuenco",
+                    "prop": "cuenco_grande",
                     "near": "hero",
                     "dx": 0.06,
                     "lift": 52,
-                    "scale": 1.0,
+                    "scale": 0.8,
                     "front": true
                   }
                 ]
@@ -8502,11 +8558,11 @@
                 ],
                 "props": [
                   {
-                    "prop": "cuenco",
+                    "prop": "cuenco_grande",
                     "near": "hero",
                     "dx": 0.06,
                     "lift": 52,
-                    "scale": 1.0,
+                    "scale": 0.8,
                     "front": true
                   }
                 ]
@@ -8541,10 +8597,10 @@
                 ],
                 "props": [
                   {
-                    "prop": "cuenco",
+                    "prop": "cuenco_grande",
                     "x": 0.47,
                     "lift": 62,
-                    "scale": 1.0,
+                    "scale": 0.9,
                     "front": true
                   }
                 ]
@@ -8574,10 +8630,10 @@
                 ],
                 "props": [
                   {
-                    "prop": "cuenco",
+                    "prop": "cuenco_grande",
                     "x": 0.47,
                     "lift": 62,
-                    "scale": 1.0,
+                    "scale": 0.9,
                     "front": true
                   }
                 ]
@@ -8622,10 +8678,10 @@
                     "scale": 1.0
                   },
                   {
-                    "prop": "cuenco",
+                    "prop": "cuenco_grande",
                     "x": 0.58,
-                    "lift": 50,
-                    "scale": 0.7
+                    "lift": 40,
+                    "scale": 0.5
                   },
                   {
                     "prop": "pan",
@@ -9114,7 +9170,7 @@
         "item": {
           "kind": "prop",
           "ids": [
-            "cinta"
+            "cinta_lazo"
           ]
         }
       },
@@ -9143,7 +9199,7 @@
                 ],
                 "props": [
                   {
-                    "prop": "cinta",
+                    "prop": "cinta_lazo",
                     "near": "lia",
                     "dx": 0.0,
                     "lift": 124,
@@ -9173,7 +9229,7 @@
                 ],
                 "props": [
                   {
-                    "prop": "cinta",
+                    "prop": "cinta_lazo",
                     "near": "lia",
                     "dx": 0.0,
                     "lift": 124,
@@ -9408,7 +9464,7 @@
                 ],
                 "props": [
                   {
-                    "prop": "cinta",
+                    "prop": "cinta_lazo",
                     "x": 0.72,
                     "lift": 150,
                     "scale": 1.0,
@@ -9446,7 +9502,7 @@
                 ],
                 "props": [
                   {
-                    "prop": "cinta",
+                    "prop": "cinta_lazo",
                     "near": "lia",
                     "dx": 0.0,
                     "lift": 124,
@@ -9484,7 +9540,7 @@
                 ],
                 "props": [
                   {
-                    "prop": "cinta",
+                    "prop": "cinta_lazo",
                     "near": "lia",
                     "dx": 0.0,
                     "lift": 124,
@@ -9517,7 +9573,7 @@
                 ],
                 "props": [
                   {
-                    "prop": "cinta",
+                    "prop": "cinta_lazo",
                     "near": "lia",
                     "dx": 0.0,
                     "lift": 124,
@@ -16367,11 +16423,11 @@
                 ],
                 "props": [
                   {
-                    "prop": "linterna",
+                    "prop": "farol_papel_apagado",
                     "near": "hero",
                     "dx": 0.16,
                     "lift": 10,
-                    "scale": 0.5,
+                    "scale": 0.6,
                     "clip": "still"
                   }
                 ]
@@ -16393,11 +16449,11 @@
                 ],
                 "props": [
                   {
-                    "prop": "linterna",
+                    "prop": "farol_papel_apagado",
                     "near": "hero",
                     "dx": 0.16,
                     "lift": 10,
-                    "scale": 0.5,
+                    "scale": 0.6,
                     "clip": "still"
                   }
                 ]
@@ -16601,11 +16657,11 @@
                 ],
                 "props": [
                   {
-                    "prop": "linterna",
+                    "prop": "farol_papel_apagado",
                     "near": "hero",
                     "dx": -0.12,
                     "lift": 0,
-                    "scale": 0.5,
+                    "scale": 0.6,
                     "clip": "still",
                     "front": true
                   }
@@ -16633,11 +16689,11 @@
                 ],
                 "props": [
                   {
-                    "prop": "linterna",
+                    "prop": "farol_papel_apagado",
                     "near": "hero",
                     "dx": -0.12,
                     "lift": 0,
-                    "scale": 0.5,
+                    "scale": 0.6,
                     "clip": "still",
                     "front": true
                   }
@@ -16670,10 +16726,10 @@
                 ],
                 "props": [
                   {
-                    "prop": "linterna",
+                    "prop": "farol_papel",
                     "x": 0.5,
                     "lift": 0,
-                    "scale": 0.55,
+                    "scale": 0.6,
                     "clip": "glow",
                     "front": true
                   }
@@ -16701,10 +16757,10 @@
                 ],
                 "props": [
                   {
-                    "prop": "linterna",
+                    "prop": "farol_papel",
                     "x": 0.5,
                     "lift": 0,
-                    "scale": 0.55,
+                    "scale": 0.6,
                     "clip": "glow",
                     "front": true
                   }
@@ -16733,11 +16789,11 @@
                 ],
                 "props": [
                   {
-                    "prop": "linterna",
+                    "prop": "farol_papel",
                     "near": "hero",
                     "dx": 0.18,
                     "lift": 0,
-                    "scale": 0.5,
+                    "scale": 0.6,
                     "clip": "glow",
                     "front": true
                   }
@@ -16763,11 +16819,11 @@
                 ],
                 "props": [
                   {
-                    "prop": "linterna",
+                    "prop": "farol_papel",
                     "near": "hero",
                     "dx": 0.18,
                     "lift": 0,
-                    "scale": 0.5,
+                    "scale": 0.6,
                     "clip": "glow",
                     "front": true
                   }
@@ -16799,11 +16855,11 @@
                 ],
                 "props": [
                   {
-                    "prop": "linterna",
+                    "prop": "farol_papel",
                     "near": "hero",
                     "dx": 0.16,
                     "lift": 0,
-                    "scale": 0.5,
+                    "scale": 0.6,
                     "clip": "glow",
                     "front": true
                   }
@@ -16829,11 +16885,11 @@
                 ],
                 "props": [
                   {
-                    "prop": "linterna",
+                    "prop": "farol_papel",
                     "near": "hero",
                     "dx": 0.16,
                     "lift": 0,
-                    "scale": 0.5,
+                    "scale": 0.6,
                     "clip": "glow",
                     "front": true
                   }
@@ -16865,7 +16921,7 @@
                 ],
                 "props": [
                   {
-                    "prop": "linterna",
+                    "prop": "farol_papel",
                     "near": "hero",
                     "dx": 0.14,
                     "lift": 60,
@@ -16894,7 +16950,7 @@
                 ],
                 "props": [
                   {
-                    "prop": "linterna",
+                    "prop": "farol_papel",
                     "near": "hero",
                     "dx": 0.14,
                     "lift": 60,
@@ -16934,7 +16990,7 @@
                 ],
                 "props": [
                   {
-                    "prop": "linterna",
+                    "prop": "farol_papel",
                     "near": "hero",
                     "dx": 0.14,
                     "lift": 40,
@@ -16975,7 +17031,7 @@
                 ],
                 "props": [
                   {
-                    "prop": "linterna",
+                    "prop": "farol_papel",
                     "near": "hero",
                     "dx": 0.14,
                     "lift": 40,
@@ -17029,11 +17085,11 @@
                 ],
                 "props": [
                   {
-                    "prop": "linterna",
+                    "prop": "farol_papel",
                     "near": "hero",
                     "dx": 0.12,
                     "lift": 40,
-                    "scale": 0.55,
+                    "scale": 0.6,
                     "clip": "glow"
                   },
                   {
@@ -17077,11 +17133,11 @@
                 ],
                 "props": [
                   {
-                    "prop": "linterna",
+                    "prop": "farol_papel",
                     "near": "hero",
                     "dx": 0.12,
                     "lift": 40,
-                    "scale": 0.55,
+                    "scale": 0.6,
                     "clip": "glow"
                   },
                   {
@@ -17125,11 +17181,11 @@
                 ],
                 "props": [
                   {
-                    "prop": "linterna",
+                    "prop": "farol_papel",
                     "near": "hero",
                     "dx": 0.12,
                     "lift": 40,
-                    "scale": 0.55,
+                    "scale": 0.6,
                     "clip": "glow"
                   },
                   {
@@ -17173,11 +17229,11 @@
                 ],
                 "props": [
                   {
-                    "prop": "linterna",
+                    "prop": "farol_papel",
                     "near": "hero",
                     "dx": 0.12,
                     "lift": 40,
-                    "scale": 0.55,
+                    "scale": 0.6,
                     "clip": "glow"
                   },
                   {
@@ -17232,19 +17288,19 @@
                 ],
                 "props": [
                   {
-                    "prop": "linterna",
+                    "prop": "farol_papel",
                     "near": "hero",
                     "dx": 0.1,
                     "lift": 20,
-                    "scale": 0.5,
+                    "scale": 0.6,
                     "clip": "glow"
                   },
                   {
-                    "prop": "linterna",
+                    "prop": "farol_papel",
                     "near": "teo",
                     "dx": 0.1,
                     "lift": 20,
-                    "scale": 0.45,
+                    "scale": 0.6,
                     "clip": "glow"
                   },
                   {
@@ -17291,19 +17347,19 @@
                 ],
                 "props": [
                   {
-                    "prop": "linterna",
+                    "prop": "farol_papel",
                     "near": "hero",
                     "dx": 0.1,
                     "lift": 20,
-                    "scale": 0.5,
+                    "scale": 0.6,
                     "clip": "glow"
                   },
                   {
-                    "prop": "linterna",
+                    "prop": "farol_papel",
                     "near": "teo",
                     "dx": 0.1,
                     "lift": 20,
-                    "scale": 0.45,
+                    "scale": 0.6,
                     "clip": "glow"
                   },
                   {
@@ -17344,11 +17400,28 @@
                 ],
                 "props": [
                   {
+                    "prop": "farol_papel",
+                    "x": 0.43,
+                    "lift": 206,
+                    "scale": 0.12,
+                    "clip": "glow",
+                    "emit": true
+                  },
+                  {
                     "prop": "linterna",
-                    "x": 0.66,
-                    "lift": 20,
-                    "scale": 0.5,
-                    "clip": "glow"
+                    "x": 0.475,
+                    "lift": 206,
+                    "scale": 0.12,
+                    "clip": "glow",
+                    "emit": true
+                  },
+                  {
+                    "prop": "vela",
+                    "x": 0.56,
+                    "lift": 206,
+                    "scale": 0.12,
+                    "clip": "glow",
+                    "emit": true
                   }
                 ],
                 "offstage": [
@@ -17378,11 +17451,28 @@
                 ],
                 "props": [
                   {
+                    "prop": "farol_papel",
+                    "x": 0.43,
+                    "lift": 206,
+                    "scale": 0.12,
+                    "clip": "glow",
+                    "emit": true
+                  },
+                  {
                     "prop": "linterna",
-                    "x": 0.66,
-                    "lift": 20,
-                    "scale": 0.5,
-                    "clip": "glow"
+                    "x": 0.475,
+                    "lift": 206,
+                    "scale": 0.12,
+                    "clip": "glow",
+                    "emit": true
+                  },
+                  {
+                    "prop": "vela",
+                    "x": 0.56,
+                    "lift": 206,
+                    "scale": 0.12,
+                    "clip": "glow",
+                    "emit": true
                   }
                 ],
                 "offstage": [
@@ -17432,7 +17522,7 @@
         "item": {
           "kind": "prop",
           "ids": [
-            "linterna"
+            "linterna_mano"
           ]
         }
       },
@@ -17461,12 +17551,12 @@
                 ],
                 "props": [
                   {
-                    "prop": "linterna",
+                    "prop": "linterna_mano",
                     "clip": "glow",
                     "near": "hero",
                     "dx": 0.07,
-                    "lift": 48,
-                    "scale": 0.35
+                    "lift": 60,
+                    "scale": 0.45
                   }
                 ]
               }
@@ -17492,12 +17582,12 @@
                 ],
                 "props": [
                   {
-                    "prop": "linterna",
+                    "prop": "linterna_mano",
                     "clip": "glow",
                     "near": "hero",
                     "dx": 0.07,
-                    "lift": 48,
-                    "scale": 0.35
+                    "lift": 60,
+                    "scale": 0.45
                   }
                 ]
               }
@@ -17523,12 +17613,12 @@
                 ],
                 "props": [
                   {
-                    "prop": "linterna",
+                    "prop": "linterna_mano",
                     "clip": "glow",
                     "near": "hero",
                     "dx": 0.07,
-                    "lift": 48,
-                    "scale": 0.35
+                    "lift": 60,
+                    "scale": 0.45
                   }
                 ]
               }
@@ -17557,11 +17647,11 @@
                 ],
                 "props": [
                   {
-                    "prop": "linterna_apagada",
+                    "prop": "linterna_mano_apagada",
                     "near": "hero",
                     "dx": 0.1,
                     "lift": 0,
-                    "scale": 0.9
+                    "scale": 0.7
                   }
                 ],
                 "offstage": [
@@ -17585,11 +17675,11 @@
                 ],
                 "props": [
                   {
-                    "prop": "linterna_apagada",
+                    "prop": "linterna_mano_apagada",
                     "near": "hero",
                     "dx": 0.1,
                     "lift": 0,
-                    "scale": 0.9
+                    "scale": 0.7
                   }
                 ],
                 "offstage": [
@@ -17613,11 +17703,11 @@
                 ],
                 "props": [
                   {
-                    "prop": "linterna_apagada",
+                    "prop": "linterna_mano_apagada",
                     "near": "hero",
                     "dx": 0.1,
                     "lift": 0,
-                    "scale": 0.9
+                    "scale": 0.7
                   }
                 ],
                 "offstage": [
@@ -17646,11 +17736,11 @@
                 ],
                 "props": [
                   {
-                    "prop": "linterna_apagada",
+                    "prop": "linterna_mano_apagada",
                     "near": "hero",
                     "dx": 0.08,
-                    "lift": 40,
-                    "scale": 0.7
+                    "lift": 50,
+                    "scale": 0.6
                   }
                 ],
                 "offstage": [
@@ -17674,11 +17764,11 @@
                 ],
                 "props": [
                   {
-                    "prop": "linterna_apagada",
+                    "prop": "linterna_mano_apagada",
                     "near": "hero",
                     "dx": 0.08,
-                    "lift": 40,
-                    "scale": 0.7
+                    "lift": 50,
+                    "scale": 0.6
                   }
                 ],
                 "offstage": [
@@ -17702,11 +17792,11 @@
                 ],
                 "props": [
                   {
-                    "prop": "linterna_apagada",
+                    "prop": "linterna_mano_apagada",
                     "near": "hero",
                     "dx": 0.08,
-                    "lift": 40,
-                    "scale": 0.7
+                    "lift": 50,
+                    "scale": 0.6
                   }
                 ],
                 "offstage": [
@@ -17888,11 +17978,11 @@
                 ],
                 "props": [
                   {
-                    "prop": "linterna_apagada",
+                    "prop": "linterna_mano_apagada",
                     "near": "hero",
                     "dx": 0.0,
-                    "lift": 40,
-                    "scale": 0.8,
+                    "lift": 50,
+                    "scale": 0.6,
                     "front": true
                   }
                 ]
@@ -17919,11 +18009,11 @@
                 ],
                 "props": [
                   {
-                    "prop": "linterna_apagada",
+                    "prop": "linterna_mano_apagada",
                     "near": "hero",
                     "dx": 0.0,
-                    "lift": 40,
-                    "scale": 0.8,
+                    "lift": 50,
+                    "scale": 0.6,
                     "front": true
                   }
                 ]
@@ -17956,11 +18046,11 @@
                 ],
                 "props": [
                   {
-                    "prop": "linterna",
+                    "prop": "linterna_mano",
                     "near": "teo",
-                    "dx": -0.05,
-                    "lift": 40,
-                    "scale": 0.8,
+                    "dx": 0.05,
+                    "lift": 60,
+                    "scale": 0.5,
                     "front": true,
                     "clip": "glow"
                   }
@@ -17988,11 +18078,11 @@
                 ],
                 "props": [
                   {
-                    "prop": "linterna",
+                    "prop": "linterna_mano",
                     "near": "teo",
-                    "dx": -0.05,
-                    "lift": 40,
-                    "scale": 0.8,
+                    "dx": 0.05,
+                    "lift": 60,
+                    "scale": 0.5,
                     "front": true,
                     "clip": "glow"
                   }
@@ -18606,7 +18696,7 @@
                     "front": true
                   },
                   {
-                    "prop": "trozos_de_pan",
+                    "prop": "trozos_de_pan_dos",
                     "near": "rosa",
                     "dx": -0.06,
                     "lift": 62,
@@ -18650,7 +18740,7 @@
                     "front": true
                   },
                   {
-                    "prop": "trozos_de_pan",
+                    "prop": "trozos_de_pan_dos",
                     "near": "rosa",
                     "dx": -0.06,
                     "lift": 62,
@@ -18694,7 +18784,7 @@
                     "front": true
                   },
                   {
-                    "prop": "trozos_de_pan",
+                    "prop": "trozos_de_pan_dos",
                     "near": "rosa",
                     "dx": -0.06,
                     "lift": 62,
@@ -19544,7 +19634,7 @@
         "item": {
           "kind": "prop",
           "ids": [
-            "pan"
+            "cesta_panecillos"
           ]
         }
       },
@@ -19560,9 +19650,10 @@
                 "mood": "calm",
                 "time": "dia",
                 "focus": {
-                  "prop": "pan",
+                  "prop": "cesta_panecillos",
                   "x": 0.5,
-                  "fill": 0.5
+                  "fill": 0.5,
+                  "clip": "boil"
                 }
               }
             },
@@ -19574,9 +19665,10 @@
                 "mood": "calm",
                 "time": "dia",
                 "focus": {
-                  "prop": "pan",
+                  "prop": "cesta_panecillos",
                   "x": 0.5,
-                  "fill": 0.5
+                  "fill": 0.5,
+                  "clip": "boil"
                 }
               }
             },
@@ -19588,9 +19680,10 @@
                 "mood": "calm",
                 "time": "dia",
                 "focus": {
-                  "prop": "pan",
+                  "prop": "cesta_panecillos",
                   "x": 0.5,
-                  "fill": 0.5
+                  "fill": 0.5,
+                  "clip": "boil"
                 }
               }
             }
@@ -19618,18 +19711,22 @@
                 ],
                 "props": [
                   {
-                    "prop": "mesa",
+                    "prop": "mesa_sola",
                     "x": 0.62
                   },
                   {
-                    "prop": "pan",
+                    "prop": "cesta_panecillos",
                     "x": 0.62,
-                    "lift": 50,
-                    "scale": 0.4
+                    "lift": 38,
+                    "scale": 0.55,
+                    "clip": "boil"
                   }
                 ],
                 "offstage": [
                   "rosa"
+                ],
+                "unseen": [
+                  "mesa"
                 ]
               }
             },
@@ -19649,18 +19746,22 @@
                 ],
                 "props": [
                   {
-                    "prop": "mesa",
+                    "prop": "mesa_sola",
                     "x": 0.62
                   },
                   {
-                    "prop": "pan",
+                    "prop": "cesta_panecillos",
                     "x": 0.62,
-                    "lift": 50,
-                    "scale": 0.4
+                    "lift": 38,
+                    "scale": 0.55,
+                    "clip": "boil"
                   }
                 ],
                 "offstage": [
                   "rosa"
+                ],
+                "unseen": [
+                  "mesa"
                 ]
               }
             }
@@ -19685,7 +19786,7 @@
                 ],
                 "props": [
                   {
-                    "prop": "mesa",
+                    "prop": "mesa_sola",
                     "x": 0.62
                   },
                   {
@@ -19695,6 +19796,13 @@
                     "scale": 0.45,
                     "front": true,
                     "near": "hero"
+                  },
+                  {
+                    "prop": "cesta_panecillos",
+                    "x": 0.62,
+                    "lift": 38,
+                    "scale": 0.55,
+                    "clip": "boil"
                   }
                 ],
                 "offstage": [
@@ -19718,7 +19826,7 @@
                 ],
                 "props": [
                   {
-                    "prop": "mesa",
+                    "prop": "mesa_sola",
                     "x": 0.62
                   },
                   {
@@ -19728,6 +19836,13 @@
                     "scale": 0.45,
                     "front": true,
                     "near": "hero"
+                  },
+                  {
+                    "prop": "cesta_panecillos",
+                    "x": 0.62,
+                    "lift": 38,
+                    "scale": 0.55,
+                    "clip": "boil"
                   }
                 ],
                 "offstage": [
@@ -19751,7 +19866,7 @@
                 ],
                 "props": [
                   {
-                    "prop": "mesa",
+                    "prop": "mesa_sola",
                     "x": 0.62
                   },
                   {
@@ -19761,10 +19876,20 @@
                     "scale": 0.45,
                     "front": true,
                     "near": "hero"
+                  },
+                  {
+                    "prop": "cesta_panecillos",
+                    "x": 0.62,
+                    "lift": 38,
+                    "scale": 0.55,
+                    "clip": "boil"
                   }
                 ],
                 "offstage": [
                   "rosa"
+                ],
+                "unseen": [
+                  "mesa"
                 ]
               }
             }
@@ -19789,8 +19914,15 @@
                 ],
                 "props": [
                   {
-                    "prop": "mesa",
+                    "prop": "mesa_sola",
                     "x": 0.62
+                  },
+                  {
+                    "prop": "cesta_panecillos",
+                    "x": 0.62,
+                    "lift": 38,
+                    "scale": 0.55,
+                    "clip": "boil"
                   }
                 ]
               }
@@ -19811,8 +19943,15 @@
                 ],
                 "props": [
                   {
-                    "prop": "mesa",
+                    "prop": "mesa_sola",
                     "x": 0.62
+                  },
+                  {
+                    "prop": "cesta_panecillos",
+                    "x": 0.62,
+                    "lift": 38,
+                    "scale": 0.55,
+                    "clip": "boil"
                   }
                 ]
               }
@@ -19838,8 +19977,15 @@
                 ],
                 "props": [
                   {
-                    "prop": "mesa",
+                    "prop": "mesa_sola",
                     "x": 0.62
+                  },
+                  {
+                    "prop": "cesta_panecillos",
+                    "x": 0.62,
+                    "lift": 38,
+                    "scale": 0.55,
+                    "clip": "boil"
                   }
                 ],
                 "offstage": [
@@ -19863,8 +20009,15 @@
                 ],
                 "props": [
                   {
-                    "prop": "mesa",
+                    "prop": "mesa_sola",
                     "x": 0.62
+                  },
+                  {
+                    "prop": "cesta_panecillos",
+                    "x": 0.62,
+                    "lift": 38,
+                    "scale": 0.55,
+                    "clip": "boil"
                   }
                 ],
                 "offstage": [
@@ -19898,14 +20051,15 @@
                 ],
                 "props": [
                   {
-                    "prop": "mesa",
+                    "prop": "mesa_sola",
                     "x": 0.58
                   },
                   {
-                    "prop": "pan",
+                    "prop": "cesta_panecillos",
                     "x": 0.58,
-                    "lift": 50,
-                    "scale": 0.4
+                    "lift": 38,
+                    "scale": 0.55,
+                    "clip": "boil"
                   }
                 ]
               }
@@ -19931,14 +20085,15 @@
                 ],
                 "props": [
                   {
-                    "prop": "mesa",
+                    "prop": "mesa_sola",
                     "x": 0.58
                   },
                   {
-                    "prop": "pan",
+                    "prop": "cesta_panecillos",
                     "x": 0.58,
-                    "lift": 50,
-                    "scale": 0.4
+                    "lift": 38,
+                    "scale": 0.55,
+                    "clip": "boil"
                   }
                 ]
               }
@@ -19969,8 +20124,15 @@
                 ],
                 "props": [
                   {
-                    "prop": "mesa",
+                    "prop": "mesa_sola",
                     "x": 0.58
+                  },
+                  {
+                    "prop": "cesta_panecillos",
+                    "x": 0.58,
+                    "lift": 38,
+                    "scale": 0.55,
+                    "clip": "boil"
                   }
                 ]
               }
@@ -19996,8 +20158,15 @@
                 ],
                 "props": [
                   {
-                    "prop": "mesa",
+                    "prop": "mesa_sola",
                     "x": 0.58
+                  },
+                  {
+                    "prop": "cesta_panecillos",
+                    "x": 0.58,
+                    "lift": 38,
+                    "scale": 0.55,
+                    "clip": "boil"
                   }
                 ]
               }
@@ -20023,8 +20192,15 @@
                 ],
                 "props": [
                   {
-                    "prop": "mesa",
+                    "prop": "mesa_sola",
                     "x": 0.58
+                  },
+                  {
+                    "prop": "cesta_panecillos",
+                    "x": 0.58,
+                    "lift": 38,
+                    "scale": 0.55,
+                    "clip": "boil"
                   }
                 ]
               }
@@ -20591,12 +20767,13 @@
                     "scale": 1.5
                   },
                   {
-                    "prop": "linterna",
+                    "prop": "linterna_mano",
                     "near": "hero",
                     "dx": 0.06,
-                    "lift": 52,
-                    "scale": 1.1,
-                    "clip": "glow"
+                    "lift": 64,
+                    "scale": 0.8,
+                    "clip": "glow",
+                    "emit": true
                   }
                 ]
               },
@@ -20726,10 +20903,10 @@
                     "scale": 1.5
                   },
                   {
-                    "prop": "linterna_apagada",
+                    "prop": "linterna_mano_apagada",
                     "x": 0.875,
-                    "lift": 86,
-                    "scale": 0.8,
+                    "lift": 100,
+                    "scale": 0.6,
                     "when": "camino:linterna"
                   }
                 ]
@@ -20766,10 +20943,10 @@
                     "scale": 1.5
                   },
                   {
-                    "prop": "linterna_apagada",
+                    "prop": "linterna_mano_apagada",
                     "x": 0.875,
-                    "lift": 86,
-                    "scale": 0.8,
+                    "lift": 100,
+                    "scale": 0.6,
                     "when": "camino:linterna"
                   }
                 ]
@@ -21783,7 +21960,7 @@
                     "scale": 1.3
                   },
                   {
-                    "prop": "trozos_de_pan",
+                    "prop": "trozos_de_pan_dos",
                     "near": "hero",
                     "dx": 0.08,
                     "lift": 56,
@@ -21815,7 +21992,7 @@
                     "scale": 1.3
                   },
                   {
-                    "prop": "trozos_de_pan",
+                    "prop": "trozos_de_pan_dos",
                     "near": "hero",
                     "dx": 0.08,
                     "lift": 56,
@@ -22547,7 +22724,7 @@
                 ],
                 "props": [
                   {
-                    "prop": "mesa",
+                    "prop": "mesa_sola",
                     "x": 0.62,
                     "scale": 1.0
                   },
@@ -22560,6 +22737,9 @@
                 ],
                 "offstage": [
                   "rosa"
+                ],
+                "unseen": [
+                  "mesa"
                 ]
               }
             },
@@ -22579,7 +22759,7 @@
                 ],
                 "props": [
                   {
-                    "prop": "mesa",
+                    "prop": "mesa_sola",
                     "x": 0.62,
                     "scale": 1.0
                   },
@@ -22592,6 +22772,9 @@
                 ],
                 "offstage": [
                   "rosa"
+                ],
+                "unseen": [
+                  "mesa"
                 ]
               }
             }
@@ -22693,7 +22876,7 @@
                     "scale": 0.8
                   },
                   {
-                    "prop": "mesa",
+                    "prop": "mesa_sola",
                     "x": 0.62,
                     "scale": 1.0
                   }
@@ -22722,7 +22905,7 @@
                     "scale": 0.8
                   },
                   {
-                    "prop": "mesa",
+                    "prop": "mesa_sola",
                     "x": 0.62,
                     "scale": 1.0
                   }
@@ -22755,7 +22938,7 @@
                 ],
                 "props": [
                   {
-                    "prop": "mesa",
+                    "prop": "mesa_sola",
                     "x": 0.62,
                     "scale": 1.0
                   },
@@ -22765,6 +22948,9 @@
                     "lift": 46,
                     "scale": 0.8
                   }
+                ],
+                "unseen": [
+                  "mesa"
                 ]
               }
             },
@@ -22789,7 +22975,7 @@
                 ],
                 "props": [
                   {
-                    "prop": "mesa",
+                    "prop": "mesa_sola",
                     "x": 0.62,
                     "scale": 1.0
                   },
@@ -22799,6 +22985,9 @@
                     "lift": 46,
                     "scale": 0.8
                   }
+                ],
+                "unseen": [
+                  "mesa"
                 ]
               }
             }
@@ -22828,7 +23017,7 @@
                 ],
                 "props": [
                   {
-                    "prop": "mesa",
+                    "prop": "mesa_sola",
                     "x": 0.62,
                     "scale": 1.0
                   },
@@ -22862,7 +23051,7 @@
                 ],
                 "props": [
                   {
-                    "prop": "mesa",
+                    "prop": "mesa_sola",
                     "x": 0.62,
                     "scale": 1.0
                   },
@@ -22901,7 +23090,7 @@
                 ],
                 "props": [
                   {
-                    "prop": "mesa",
+                    "prop": "mesa_sola",
                     "x": 0.62,
                     "scale": 1.0
                   },
@@ -22935,7 +23124,7 @@
                 ],
                 "props": [
                   {
-                    "prop": "mesa",
+                    "prop": "mesa_sola",
                     "x": 0.62,
                     "scale": 1.0
                   },
@@ -22974,7 +23163,7 @@
                 ],
                 "props": [
                   {
-                    "prop": "mesa",
+                    "prop": "mesa_sola",
                     "x": 0.62,
                     "scale": 1.0
                   },
@@ -22986,6 +23175,9 @@
                     "scale": 0.7,
                     "front": true
                   }
+                ],
+                "unseen": [
+                  "mesa"
                 ]
               }
             },
@@ -23010,7 +23202,7 @@
                 ],
                 "props": [
                   {
-                    "prop": "mesa",
+                    "prop": "mesa_sola",
                     "x": 0.62,
                     "scale": 1.0
                   },
@@ -23022,6 +23214,9 @@
                     "scale": 0.7,
                     "front": true
                   }
+                ],
+                "unseen": [
+                  "mesa"
                 ]
               }
             }
@@ -23470,9 +23665,10 @@
                 ],
                 "props": [
                   {
-                    "prop": "sombra_gigante",
+                    "prop": "sombra_cabra",
                     "x": 0.72,
-                    "scale": 1.5
+                    "scale": 1.2,
+                    "clip": "sun"
                   },
                   {
                     "prop": "linterna",
@@ -24192,9 +24388,9 @@
                   },
                   {
                     "prop": "linterna",
-                    "x": 0.55,
-                    "lift": 262,
-                    "scale": 0.22,
+                    "x": 0.57,
+                    "lift": 196,
+                    "scale": 0.14,
                     "clip": "glow",
                     "emit": true
                   }
@@ -24237,9 +24433,9 @@
                   },
                   {
                     "prop": "linterna",
-                    "x": 0.55,
-                    "lift": 262,
-                    "scale": 0.22,
+                    "x": 0.57,
+                    "lift": 196,
+                    "scale": 0.14,
                     "clip": "glow",
                     "emit": true
                   }
@@ -26874,7 +27070,7 @@
         "cinta": {
           "kind": "prop",
           "ids": [
-            "cinta"
+            "cinta_lazo"
           ]
         }
       },
@@ -26909,7 +27105,7 @@
                     "clip": "sun"
                   },
                   {
-                    "prop": "cinta",
+                    "prop": "cinta_lazo",
                     "x": 0.8,
                     "lift": 120,
                     "scale": 0.45
@@ -26943,7 +27139,7 @@
                     "clip": "sun"
                   },
                   {
-                    "prop": "cinta",
+                    "prop": "cinta_lazo",
                     "x": 0.8,
                     "lift": 120,
                     "scale": 0.45
@@ -26982,7 +27178,7 @@
                     "clip": "sun"
                   },
                   {
-                    "prop": "cinta",
+                    "prop": "cinta_lazo",
                     "x": 0.8,
                     "lift": 120,
                     "scale": 0.45
@@ -27016,7 +27212,7 @@
                     "clip": "sun"
                   },
                   {
-                    "prop": "cinta",
+                    "prop": "cinta_lazo",
                     "x": 0.8,
                     "lift": 120,
                     "scale": 0.45
@@ -27055,7 +27251,7 @@
                     "clip": "sun"
                   },
                   {
-                    "prop": "cinta",
+                    "prop": "cinta_lazo",
                     "x": 0.8,
                     "lift": 120,
                     "scale": 0.45
@@ -27089,7 +27285,7 @@
                     "clip": "sun"
                   },
                   {
-                    "prop": "cinta",
+                    "prop": "cinta_lazo",
                     "x": 0.8,
                     "lift": 120,
                     "scale": 0.45
@@ -27128,7 +27324,7 @@
                     "clip": "sun"
                   },
                   {
-                    "prop": "cinta",
+                    "prop": "cinta_lazo",
                     "x": 0.8,
                     "lift": 120,
                     "scale": 0.45
@@ -27162,7 +27358,7 @@
                     "clip": "sun"
                   },
                   {
-                    "prop": "cinta",
+                    "prop": "cinta_lazo",
                     "x": 0.8,
                     "lift": 120,
                     "scale": 0.45
@@ -27201,7 +27397,7 @@
                     "clip": "sun"
                   },
                   {
-                    "prop": "cinta",
+                    "prop": "cinta_lazo",
                     "x": 0.8,
                     "lift": 120,
                     "scale": 0.45
@@ -27238,7 +27434,7 @@
                     "clip": "sun"
                   },
                   {
-                    "prop": "cinta",
+                    "prop": "cinta_lazo",
                     "x": 0.8,
                     "lift": 120,
                     "scale": 0.45
@@ -27280,7 +27476,7 @@
                     "clip": "sun"
                   },
                   {
-                    "prop": "cinta",
+                    "prop": "cinta_lazo",
                     "x": 0.8,
                     "lift": 120,
                     "scale": 0.45
@@ -27317,7 +27513,7 @@
                     "clip": "sun"
                   },
                   {
-                    "prop": "cinta",
+                    "prop": "cinta_lazo",
                     "x": 0.8,
                     "lift": 120,
                     "scale": 0.45
@@ -27365,7 +27561,7 @@
                     "clip": "sun"
                   },
                   {
-                    "prop": "cinta",
+                    "prop": "cinta_lazo",
                     "near": "hero",
                     "dx": 0.08,
                     "lift": 60,
@@ -27405,7 +27601,7 @@
                     "clip": "sun"
                   },
                   {
-                    "prop": "cinta",
+                    "prop": "cinta_lazo",
                     "near": "hero",
                     "dx": 0.08,
                     "lift": 60,

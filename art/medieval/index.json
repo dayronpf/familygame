@@ -84,7 +84,17 @@
   "medieval/rigs/icono_horizonte.json",
   "medieval/rigs/icono_aire.json",
   "medieval/rigs/torre_baja.json",
-  "medieval/rigs/torre_final.json"
+  "medieval/rigs/torre_final.json",
+  "medieval/rigs/linterna_mano.json",
+  "medieval/rigs/linterna_mano_apagada.json",
+  "medieval/rigs/farol_papel.json",
+  "medieval/rigs/farol_papel_apagado.json",
+  "medieval/rigs/cuenco_grande.json",
+  "medieval/rigs/cinta_lazo.json",
+  "medieval/rigs/sombra_cabra.json",
+  "medieval/rigs/mesa_sola.json",
+  "medieval/rigs/cesta_panecillos.json",
+  "medieval/rigs/trozos_de_pan_dos.json"
  ],
  "scenes": [
   "medieval/scenes/castle_night.json",

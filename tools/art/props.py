@@ -623,6 +623,194 @@ def cofre():
     return rig("cofre", "Cofre", [-70, -110, 140, 120], {}, node("root", (0, 0), shapes=shapes))
 
 
+# ---------------------------------------------- dibujos que siguen al texto (linterna de mano, farol de papel…)
+TORCH = {"body": "#d9483a", "body2": "#f0675a", "grip": "#2a2630", "metal": "#b8bcc8", "metal2": "#e4e6ee",
+         "lens": "#fff3b0", "lensoff": "#3a3550", "beam": "#ffe27a", "button": "#f4c542"}
+
+
+def _torch_body(lit):
+    """Linterna de mano moderna, tumbada y apuntando a la derecha: cuerpo cilíndrico, anillos de goma, botón y cabeza de
+    metal con el cristal redondo. Origen: debajo del cuerpo."""
+    lens = "$lens" if lit else "$lensoff"
+    return [S(rrect(-44, -30, 62, 24, 10), "$body", "#5a1a14", 2.5),
+            S(rrect(-40, -27, 54, 6, 3), "$body2", None, 0, 0.6),
+            shade(rrect(-42, -14, 58, 7, 3)),
+            S(rrect(-34, -31, 4, 26, 1.5), "$grip", None, 0), S(rrect(-26, -31, 4, 26, 1.5), "$grip", None, 0),
+            S(rrect(-48, -26, 6, 16, 3), "$grip", None, 0),
+            S(rrect(-6, -36, 12, 7, 3), "$button", "#8a6a14", 2),
+            S(poly([(16, -32), (34, -42), (34, 6), (16, -4)]), "$metal", "#4a4a56", 2.5),
+            S(poly([(18, -30), (32, -38), (32, -32), (18, -26)]), "$metal2", None, 0, 0.8),
+            S(ell(36, -18, 7, 25), lens, "#4a4a56", 3),
+            S(ell(38, -24, 2.4, 8), "#ffffff", None, 0, 0.7 if lit else 0.25)]
+
+
+def linterna_mano():
+    """Linterna de mano encendida: cono de luz amarilla y un círculo de luz al final. Hueso `glow` (clip `glow`)."""
+    beam = [S("M38,-42 L250,-110 Q300,-18 250,74 L38,6 Z", "$beam", None, 0, 0.22),
+            S("M38,-32 L250,-70 Q280,-18 250,34 L38,-4 Z", "$beam", None, 0, 0.22),
+            S(ell(262, -18, 34, 84), "$beam", None, 0, 0.35),
+            S(ell(262, -18, 20, 54), "#fff6c8", None, 0, 0.35)]
+    glow = node("glow", (36, -18), shapes=beam)
+    root = node("root", (0, 0), pre=[glow], shapes=_torch_body(True))
+    return rig("linterna_mano", "Linterna de mano encendida", [-60, -120, 370, 210], TORCH, root)
+
+
+def linterna_mano_apagada():
+    """La misma linterna de mano, apagada: cristal oscuro y sin luz."""
+    return rig("linterna_mano_apagada", "Linterna de mano apagada", [-60, -52, 110, 60], TORCH,
+               node("root", (0, 0), shapes=_torch_body(False)))
+
+
+PAPER = {"paper": "#3f6ad0", "paper2": "#6a90e8", "paperlit": "#7aa4f4", "star": "#fff3b0", "staroff": "#1a2a6a",
+         "stick": "#8a5a2b", "wire": "#3d3a4a", "patch": "#a8c0f4", "halo": "#ffd98a", "flame": "#ffb43a"}
+
+
+def _star(cx, cy, r):
+    pts = []
+    for k in range(10):
+        a = -math.pi / 2 + k * math.pi / 5
+        rr = r if k % 2 == 0 else r * 0.45
+        pts.append((cx + rr * math.cos(a), cy + rr * math.sin(a)))
+    return poly(pts)
+
+
+def _farol_papel(lit, patched):
+    """Farol de papel azul: un cajón con varillas de madera en las aristas, asa de alambre y estrellas recortadas
+    (amarillas si dentro arde la vela). `patched`: parche de papel en la esquina tiznada. Origen: base."""
+    face = "$paperlit" if lit else "$paper"
+    star = "$star" if lit else "$staroff"
+    sh = [S("M-14,-104 C-14,-130 14,-130 14,-104", None, "$wire", 3),
+          S(rrect(-36, -102, 72, 96, 4), face, "#1a2a6a", 2.5),
+          S(poly([(36, -102), (48, -110), (48, -14), (36, -6)]), "$paper", "#1a2a6a", 2.5),
+          S(poly([(-36, -102), (-24, -110), (48, -110), (36, -102)]), "$paper2", "#1a2a6a", 2.5),
+          shade(poly([(36, -102), (48, -110), (48, -14), (36, -6)]))]
+    sh += [S(rrect(x, -104, 3, 100, 1.5), "$stick", None, 0) for x in (-37.5, 34.5)]
+    sh += [S(rrect(-37, -104, 74, 3, 1.5), "$stick", None, 0), S(rrect(-37, -8, 74, 3, 1.5), "$stick", None, 0)]
+    for cx, cy, r in ((-16, -80, 9), (12, -70, 11), (-12, -44, 8), (16, -36, 7), (2, -56, 5), (42, -72, 5), (42, -40, 4)):
+        sh.append(S(_star(cx, cy, r), star, None, 0))
+    if patched:  # la esquina que se tiznó, con su parche de papel encima
+        sh += [S(poly([(14, -30), (36, -34), (36, -8), (12, -8)]), "$patch", "#1a2a6a", 1.8),
+               S("M18,-14 C22,-20 28,-18 30,-24", None, "#2a2a3a", 2.5, 0.45)]
+    return sh
+
+
+def farol_papel():
+    """Farol de papel azul encendido (el de Aldo): halo `glow` y luz interior `flame` (clip `glow`)."""
+    glow = node("glow", (6, -56), shapes=[S(ell(6, -56, 130, 130), "$halo", None, 0, 0.14),
+                                          S(ell(6, -56, 80, 80), "$halo", None, 0, 0.2)])
+    flame = node("flame", (0, -40), shapes=[S(ell(0, -56, 30, 40), "#fff3b0", None, 0, 0.16), S(ell(0, -50, 14, 20), "#fff3b0", None, 0, 0.16)])
+    root = node("root", (0, 0), pre=[glow], shapes=_farol_papel(True, True), post=[flame])
+    return rig("farol_papel", "Farol de papel azul", [-140, -200, 290, 214], PAPER, root)
+
+
+def farol_papel_apagado():
+    """El farol de papel azul a medio terminar, sin vela (de día, en el huerto)."""
+    return rig("farol_papel_apagado", "Farol de papel azul (apagado)", [-50, -140, 110, 146], PAPER,
+               node("root", (0, 0), shapes=_farol_papel(False, False)))
+
+
+def cuenco_grande():
+    """Cuenco enorme de barro con dos asas a los lados y sopa de calabaza tibia (un poco de vapor). Origen: base."""
+    steam = [node(f"steam{i}", (x, -70), shapes=[S(f"M{x},-66 C{x - 8},-80 {x + 6},-88 {x - 2},-102", None, "#ffffff", 3, 0.6)])
+             for i, x in enumerate((-30, 4, 34), start=1)]
+    sh = [S("M-86,-50 C-104,-52 -104,-26 -82,-28", None, "#5a3a14", 9), S("M-86,-50 C-104,-52 -104,-26 -82,-28", None, "#c98a3a", 4.5),
+          S("M86,-50 C104,-52 104,-26 82,-28", None, "#5a3a14", 9), S("M86,-50 C104,-52 104,-26 82,-28", None, "#c98a3a", 4.5),
+          S("M-82,-56 C-80,-20 -50,-2 -30,0 L30,0 C50,-2 80,-20 82,-56 Z", "#c98a3a", "#5a3a14", 3),
+          shade("M40,-56 L82,-56 C80,-20 50,-2 30,0 L14,0 C40,-14 46,-36 40,-56 Z"),
+          shine("M-70,-46 C-66,-30 -54,-18 -40,-12 C-56,-24 -62,-34 -64,-46 Z"),
+          S(rrect(-80, -40, 160, 4, 2), "#8a5a22", None, 0, 0.5),
+          S(ell(0, -56, 84, 13), "#d9984a", "#5a3a14", 3),
+          S(ell(0, -56, 74, 9), "#e8a43a", None, 0),
+          S(ell(-20, -57, 30, 3), "#f6c878", None, 0, 0.7)]
+    return rig("cuenco_grande", "Cuenco grande con dos asas", [-110, -110, 220, 116], {}, node("root", (0, 0), shapes=sh, post=steam))
+
+
+def cinta_lazo():
+    """Cinta azul del pelo atada en un lazo, con dos colas onduladas. Origen: bajo el nudo.
+    Huesos `kite` (el lazo cabecea) y `tail` (las colas ondean): el clip `sway` la hace bailar con el viento."""
+    tail = node("tail", (0, -20), shapes=[
+        S("M-3,-20 C-10,-8 -4,2 -14,12 C-18,16 -16,20 -12,22 L-6,16 C-2,8 -8,0 2,-16 Z", "#2f5ac0", "#1a2a6a", 2),
+        S("M3,-20 C12,-6 6,4 16,14 C18,18 16,22 12,22 L8,18 C2,8 8,0 -2,-16 Z", "#3f6ad0", "#1a2a6a", 2)])
+    bow = node("kite", (0, -20), shapes=[
+        S("M-4,-22 C-16,-38 -36,-38 -34,-22 C-36,-8 -16,-8 -4,-20 Z", "#3f6ad0", "#1a2a6a", 2.2),
+        S("M4,-22 C16,-38 36,-38 34,-22 C36,-8 16,-8 4,-20 Z", "#3f6ad0", "#1a2a6a", 2.2),
+        S("M-8,-24 C-18,-32 -28,-30 -28,-24", None, "#8fb0f0", 2, 0.8), S("M8,-24 C18,-32 28,-30 28,-24", None, "#8fb0f0", 2, 0.8),
+        S(rrect(-6, -28, 12, 13, 4), "#2f5ac0", "#1a2a6a", 2)])
+    root = node("root", (0, 0), post=[tail, bow])
+    return rig("cinta_lazo", "Cinta azul con lazo", [-40, -44, 80, 70], {}, root)
+
+
+def sombra_cabra():
+    """Tronco de roble y, encima, la sombra de un «monstruo» enorme: dos cuernos retorcidos y un lomo grande (es la
+    cabrita, agrandada por el farolillo). Hueso `stem` (la sombra se mece con el clip `sun`). Origen: pie del tronco."""
+    trunk = [S("M-62,0 C-56,-80 -50,-200 -46,-300 L46,-300 C50,-200 56,-80 62,0 Z", "#7a5434", "#2a180c", 3),
+             S("M-62,0 C-80,4 -90,0 -96,-6 C-80,-10 -70,-16 -58,-30 Z", "#5a3a22", "#2a180c", 2.5),
+             S("M62,0 C82,4 94,0 100,-6 C84,-10 72,-16 58,-30 Z", "#5a3a22", "#2a180c", 2.5),
+             S("M-44,-290 C-70,-310 -100,-312 -118,-330 L-104,-336 C-86,-322 -64,-318 -40,-304 Z", "#5a3a22", "#2a180c", 2.5),
+             S("M40,-286 C64,-306 94,-306 112,-326 L118,-316 C100,-298 72,-296 46,-276 Z", "#5a3a22", "#2a180c", 2.5)]
+    trunk += [S(f"M{x},-{y0} C{x + 4},-{y0 + 30} {x - 4},-{y0 + 60} {x},-{y0 + 90}", None, "#3a2414", 2.5, 0.6)
+              for x, y0 in ((-30, 30), (-8, 140), (22, 60), (34, 190))]
+    dark = "#140c26"
+    # de perfil, mirando a la izquierda: patas, lomo enorme que sube en joroba, cabeza baja y dos cuernos enroscados
+    body = ("M66,-6 L58,-90 C74,-110 76,-150 60,-180 C40,-230 0,-248 -30,-232 C-48,-224 -58,-214 -70,-218 "
+            "C-92,-224 -110,-208 -112,-186 C-114,-170 -104,-160 -92,-162 C-84,-150 -70,-150 -60,-160 "
+            "C-56,-140 -50,-118 -46,-90 L-52,-6 L-36,-6 L-28,-84 L30,-84 L40,-6 Z")
+    horns = [S("M-74,-222 C-90,-268 -54,-300 -30,-280 C-12,-264 -26,-240 -44,-248 C-56,-254 -50,-270 -40,-266", None, dark, 13, 0.82),
+             S("M-62,-226 C-50,-276 -4,-292 6,-262 C14,-238 -10,-224 -22,-238 C-30,-248 -20,-258 -12,-254", None, dark, 11, 0.7)]
+    shadow = node("stem", (0, 0), shapes=[S(body, dark, None, 0, 0.78)] + horns)
+    root = node("root", (0, 0), shapes=trunk, post=[shadow])
+    return rig("sombra_cabra", "Sombra de cuernos en un tronco", [-130, -345, 260, 352], {}, root)
+
+
+def _table_shapes():
+    top = [S(rrect(-130, -64, 260, 14, 4), "#a8703c", "#4a2c14", 2.5), S(rrect(-130, -54, 260, 6, 2), "#000000", None, 0, 0.16)]
+    legs = [S(rrect(x, -50, 10, 50, 2), "#8a5a2b", "#3a2412", 2) for x in (-118, 108)]
+    legs += [S(rrect(-40, -46, 6, 44, 2), "#7a4a1b", None, 0, 0.5), S(rrect(34, -46, 6, 44, 2), "#7a4a1b", None, 0, 0.5)]
+    return legs + top
+
+
+def mesa_sola():
+    """La misma mesa larga de madera, vacía (sin cuencos ni pan): encima se ponen otros objetos. Origen: base."""
+    return rig("mesa_sola", "Mesa vacía", [-135, -70, 270, 72], {}, node("root", (0, 0), shapes=_table_shapes()))
+
+
+def _bun(cx, cy, r=13):
+    return [S(ell(cx, cy, r, r * 0.78), "#d9984a", "#7a4a1a", 2),
+            S(ell(cx - r * 0.3, cy - r * 0.35, r * 0.45, r * 0.22), "#f6d08a", None, 0, 0.8)]
+
+
+def cesta_panecillos():
+    """Cesta de mimbre llena de panecillos redondos y dorados; de cada uno sale un hilito de vapor (huesos `steam1..3`,
+    clip `boil`). Origen: base."""
+    buns = []
+    for cx, cy in ((-30, -44), (0, -48), (30, -44), (-15, -58), (15, -58)):
+        buns += _bun(cx, cy)
+    basket = [S("M-50,-44 L50,-44 L40,0 L-40,0 Z", "#c8963e", "#5a3a14", 2.5),
+              shade("M24,-44 L50,-44 L40,0 L20,0 Z")]
+    basket += [S(f"M-48,{y} L48,{y}", None, "#8a5a22", 2, 0.7) for y in (-34, -22, -10)]
+    basket += [S(f"M{x},-44 L{x * 0.8},0", None, "#8a5a22", 1.6, 0.5) for x in (-30, -10, 10, 30)]
+    basket += [S(rrect(-54, -48, 108, 8, 4), "#a8763a", "#5a3a14", 2)]
+    steam = [node(f"steam{i}", (x, -72), shapes=[S(f"M{x},-68 C{x - 6},-80 {x + 6},-88 {x},-100", None, "#ffffff", 2.5, 0.65)])
+             for i, x in enumerate((-22, 2, 26), start=1)]
+    root = node("root", (0, 0), shapes=buns[:6] + basket + buns[6:], post=steam)
+    return rig("cesta_panecillos", "Cesta de panecillos", [-60, -110, 120, 116], {}, root)
+
+
+def trozos_de_pan_dos():
+    """Un pan redondo partido en dos: dos mitades separadas que enseñan la miga. Origen: base."""
+    def half(dx, side):
+        s = side
+        crust = (f"M{dx},-2 C{dx - s * 30},-2 {dx - s * 38},-18 {dx - s * 36},-30 C{dx - s * 32},-44 {dx - s * 14},-48 {dx},-46 "
+                 f"L{dx + s * 3},-38 L{dx - s * 2},-30 L{dx + s * 4},-22 L{dx - s * 1},-14 L{dx + s * 3},-6 Z")
+        crumb = (f"M{dx},-44 L{dx + s * 3},-38 L{dx - s * 2},-30 L{dx + s * 4},-22 L{dx - s * 1},-14 L{dx + s * 3},-6 L{dx},-2 "
+                 f"L{dx - s * 7},-4 L{dx - s * 9},-24 L{dx - s * 7},-42 Z")
+        return [S(crust, "#c98a4a", "#6a3a14", 2.2), S(crumb, "#f4e0b0", None, 0),
+                S(f"M{dx - s * 26},-34 L{dx - s * 16},-24", None, "#f4d9a0", 2.5),
+                shine(f"M{dx - s * 30},-30 C{dx - s * 26},-40 {dx - s * 16},-44 {dx - s * 10},-44 C{dx - s * 18},-40 {dx - s * 24},-34 {dx - s * 28},-26 Z")]
+    root = node("root", (0, 0), shapes=half(-6, 1) + half(6, -1))
+    return rig("trozos_de_pan_dos", "Pan partido en dos", [-60, -56, 120, 62], {}, root)
+
+
 # ------------------------------------------------- iconos de las tarjetas de elección
 # Pictogramas planos y de colores (se ven igual sobre fondo claro y oscuro). Origen: base, centrado; caben en 100×100.
 ICON_VIEW = [-60, -110, 120, 120]
@@ -686,4 +874,6 @@ def icono_aire():
 
 
 def build_all():
-    return [campana(), campana_rota(), linterna(), linterna_apagada(), olla(), pan(), trozos_de_pan(), buho(), cabrita(), bolsa(), cometa(), girasol(), semillas(), semillas_dos(), mesa(), manta(), taza(), taza_leche(), taza_volcada(), mariposa(), escalones(), capa(), sombra_gigante(), cuenco(), cuenco_vacio(), rafaga(), regadera(), cinta(), girasol_seco(), campana_colgada(), cuerda_rollo(), roble(), puerta_cabana(), maceta(), maceta_brote(), piedras(), hierba(), pedernal(), vela(), saco(), cofre(), icono_ojo(), icono_oreja(), icono_mano(), icono_luna(), icono_horizonte(), icono_aire(), torre_baja(), torre_final()]
+    return [campana(), campana_rota(), linterna(), linterna_apagada(), olla(), pan(), trozos_de_pan(), buho(), cabrita(), bolsa(), cometa(), girasol(), semillas(), semillas_dos(), mesa(), manta(), taza(), taza_leche(), taza_volcada(), mariposa(), escalones(), capa(), sombra_gigante(), cuenco(), cuenco_vacio(), rafaga(), regadera(), cinta(), girasol_seco(), campana_colgada(), cuerda_rollo(), roble(), puerta_cabana(), maceta(), maceta_brote(), piedras(), hierba(), pedernal(), vela(), saco(), cofre(), icono_ojo(), icono_oreja(), icono_mano(), icono_luna(), icono_horizonte(), icono_aire(), torre_baja(), torre_final(),
+            linterna_mano(), linterna_mano_apagada(), farol_papel(), farol_papel_apagado(), cuenco_grande(), cinta_lazo(),
+            sombra_cabra(), mesa_sola(), cesta_panecillos(), trozos_de_pan_dos()]
