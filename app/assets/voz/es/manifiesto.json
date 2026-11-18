@@ -2813,6 +2813,296 @@
     }
    ]
   },
+  "medieval:eco_colina": {
+   "incluido": false,
+   "titulo": {
+    "texto": "El eco de la colina",
+    "archivo": "da087aaf947f987e.m4a",
+    "segundos": 1.72
+   },
+   "ensenanza": {
+    "texto": "La enseñanza de hoy: Una mentira pequeña echa a andar y crece de boca en boca; solo la verdad entera, con las palabras exactas, la detiene.",
+    "archivo": "3aa849337088aa62.m4a",
+    "segundos": 14.72
+   },
+   "escenas": [
+    {
+     "texto": "En lo alto de la colina había un roble tan ancho que hacía falta una tarde entera para darle la vuelta, y detrás del roble vivía un eco. Mara y Teo subían muchas veces a charlar con el eco, porque era el único vecino de la aldea que jamás se cansaba de escuchar. «¡Hola, hola!», gritó Mara con las manos en la boca, y la colina contestó: «…ola, ola…», un poquito más tarde y un poquito más lejos. «Fíjate», dijo Teo. «El eco no se inventa nada: te devuelve las palabras tal como se las das, solo que un poco cansadas del camino.» Mara se rio y soltó más cuerda de su cometa, que se fue hacia las nubes tirando de una cola de trapos de colores. Abajo, el humo de las chimeneas subía derecho como un hilo.",
+     "archivo": "c10147a61323f91d.m4a",
+     "segundos": 55.96
+    },
+    {
+     "texto": "Beto, el molinero, apareció en el camino cuando el sol ya se inclinaba, y se dejó caer bajo el roble con una mano en la espalda. Olía a harina y a madera mojada, y tenía ojeras de noches en vela. «Mara, tú que tienes buenas piernas», dijo, «baja a la aldea y avisa a Hugo, el herrero. Que suba mañana temprano con el martillo grande, porque se me rajó la compuerta del molino y sin otro par de manos no hay quien la levante. Pero a nadie más, ¿entendido? Tampoco quiero preocupar a la gente por un trozo de madera.» Mara dijo que sí, que por supuesto, mientras seguía el vuelo de la cometa con la cabeza torcida.",
+     "archivo": "d25d353d2bf913f8.m4a",
+     "segundos": 49.74
+    },
+    {
+     "texto": "Fue una bajada larga y feliz, y por eso mismo peligrosa. Mara corrió con la cometa, ayudó a un gato a bajar de un muro, echó una carrera con Teo hasta el pozo y se detuvo a oler el pan de la panadería. Y el encargo de Beto desapareció de su cabeza sin hacer ruido. Al caer la tarde, en la plaza, Rosa le preguntó: «¿Qué te quería Beto? Los vi bajo el roble.» De golpe Mara lo recordó todo, y se le heló el estómago. Rosa la miraba con tanta confianza que no hubo modo de confesar. «Ya se lo dije a Hugo», soltó Mara, y la mentirijilla le salió sola, pequeña como una avellana. «Cosas del molino. Está todo en marcha, no te preocupes.»",
+     "archivo": "e5fcf5f0a7d711d9.m4a",
+     "segundos": 52.57
+    },
+    {
+     "texto": "Al día siguiente, Mara comprobó que una frase, una vez suelta, no vuelve a casa por el mismo camino. En el pozo, Rosa suspiraba ante una vecina: «Beto anda con un asunto del molino. Algo secreto.» Al rato, Teo corría por la plaza gritando: «¡Beto cerró el molino y no dice por qué!» Y un aldeano terminó la cadena delante de Hugo con voz solemne: «Beto ya no va a moler nuestro trigo.» Hugo, a quien nadie había avisado de nada, apretó los labios. Mara sintió que las palabras se le amontonaban en la lengua y ninguna salía, como cuando se atascan dos niños en una puerta.",
+     "archivo": "d692ca3ab391187d.m4a",
+     "segundos": 45.56
+    },
+    {
+     "texto": "Pensó Mara que quizá todavía había tiempo de suavizarlo, y le susurró a Teo: «Beto no está enojado con nadie, ya verás. Solo estará agotado de trabajar.» Fue peor. A la hora de comer, la frase ya andaba por la plaza con otra ropa: «Beto está harto de nosotros», repetía Teo, y poco después Rosa se lo decía a una vecina, con los ojos tristes: «Dicen que Beto está harto de la aldea entera.» Mara asistía a todo aquello con las manos en los bolsillos, sin saber dónde meter las orejas. Una mentira, descubrió, no se queda donde se la deja: echa a andar, y no hay quien la alcance.",
+     "archivo": "b1eec11a2898a8b6.m4a",
+     "segundos": 48.11
+    },
+    {
+     "texto": "El rumor creció durante todo el día como una bola que rueda cuesta abajo, y al atardecer llegó hasta el propio Beto, que bajó a la plaza para ver por qué no había subido nadie con el martillo. Los vecinos y las vecinas callaron al verlo. Hugo cruzó los brazos, Rosa miró hacia otro lado, y alguien murmuró que, si el molinero los dejaba sin harina, ya buscarían otro molino en el valle de al lado. «Yo solo quería que alguien subiera…», empezó Beto, pero nadie lo escuchó. Se dio la vuelta con la espalda más encorvada que nunca. Mara sintió que la avellana se había convertido en una piedra enorme, y que la llevaba dentro del pecho.",
+     "archivo": "7d03ba1c983d1c54.m4a",
+     "segundos": 49.13
+    },
+    {
+     "texto": "Mara subió corriendo a la colina, porque necesitaba un lugar donde nadie le preguntara nada, y gritó con todas sus fuerzas: «¡Ya se lo dije a Hugo!» La colina devolvió con toda claridad: «…dije a Hugo… dije a Hugo…». Dicho así, desde afuera, sonaba a lo que era, una mentira con la voz de Mara, y a Mara le ardieron las orejas. Fue entonces cuando oyó una tosecilla bajo el roble. Aldo, que se rascó la cabeza por debajo del casco, estaba sentado entre las raíces como si llevara allí toda la tarde, mirando cómo se encendían las primeras casitas del valle. «El eco no miente nunca», dijo Aldo a media voz. «Es lo malo que tiene.»",
+     "archivo": "9255a5707eed68b0.m4a",
+     "segundos": 52.06
+    },
+    {
+     "texto": "Mara se lo contó todo, desde el recado hasta la piedra del pecho, y Aldo la escuchó rascándose la cabeza por debajo del casco. «Yo una vez dije que sabía nadar», contó Aldo sin dejar de mirarse las botas. «Era mentira, solo sabía flotar de pie, que no es lo mismo. Cuando me tiré al lago delante de todos, ya te imaginas.» Mara sonrió a pesar de todo. «Lo peor no fue mojarme, sino que lo había dicho tantas veces que no sabía cómo parar. Cuéntame lo que dijo Beto, con sus palabras justas. Y vamos juntos, porque entre dos pesa la mitad.»",
+     "archivo": "89622a2d3c8e4561.m4a",
+     "segundos": 43.24
+    },
+    {
+     "texto": "Casi no durmió, ensayando en voz baja lo que iba a decir, y al mediodía la plaza estaba llena de murmullos. Mara se subió al borde del pozo con Aldo a su lado, pensando que nunca había visto tantas caras juntas. «Escúchenme, por favor», dijo con la voz temblando. «Beto me dio un recado para Hugo: que subiera con el martillo grande, porque se le rajó la compuerta del molino. Y no se lo dije. Me distraje, me olvidé, y cuando Rosa me preguntó, dije que ya lo había hecho. No era verdad. Todo lo demás lo han ido añadiendo sin querer, pero el principio fue mío.» Teo bajó la mirada. Rosa abrió la boca y la cerró. «Confié en ti», murmuró, con una tristeza fina que dolía más que un grito. A Mara le ardían las mejillas, pero respiró como si pesara la mitad.",
+     "archivo": "1176fc221919d7a9.m4a",
+     "segundos": 59.4
+    },
+    {
+     "texto": "Nadie esperó a que Mara terminara de hablar. Hugo echó a correr a buscar su martillo grande, Rosa llenó un cesto de rosquillas, Teo cargó con una caja de clavos, y todos juntos, con Aldo cerrando la fila, subieron por el camino de la colina. Beto estaba sentado bajo el roble, adonde había subido a solas a pensar, con una mano en los riñones: había pasado la noche empujando la compuerta del molino sin ayuda de nadie. «Perdonen», dijo Mara sin aliento. «Fue culpa mía.» Beto sacudió la cabeza. «No toda, muchacha. Yo te pedí que no se lo dijeras a nadie más, porque me daba vergüenza que se supiera que un molinero no puede con su compuerta. Si hubiera pedido ayuda a gritos, esto se habría arreglado en un día.» Mara se dio cuenta de que el nudo tenía dos cabos, y de que Beto sujetaba uno.",
+     "archivo": "7511bf55e79bd523.m4a",
+     "segundos": 64.92
+    },
+    {
+     "texto": "Esa misma tarde bajaron todos al molino, y entre martillazos, risas y mucho empujar, Hugo y Beto pusieron una compuerta nueva. La rueda volvió a girar con un chasquido que se oyó en todo el valle, y media aldea llegó con sus sacos de trigo, porque por fin sabían qué había pasado. De vuelta en la colina, Teo se plantó en el borde, juntó las manos y gritó: «¡Gracias, Beto!» El eco devolvió, redondo y limpio: «…cias, Beto… cias, Beto…». Entonces Mara se atrevió con el suyo. «¡Me olvidé de un recado!» «…un recado… un recado…», contestó la colina, sin quitar ni añadir nada, y todos soltaron la carcajada. Hasta Rosa se rio. «La próxima vez, mensajera», le dijo a Mara, «apúntatelo en la mano.»",
+     "archivo": "b66d550cf828085f.m4a",
+     "segundos": 55.73
+    },
+    {
+     "texto": "Aquella noche, Mara se metió en la cama y notó que algo había cambiado en su pecho: la piedra ya no estaba, y en su lugar quedaba un hueco tibio, como el que deja un gato al bajarse de la cama. Por la ventana se veía la silueta redonda de la colina, con el roble pequeñito en lo alto. Los sacos de la aldea dormían en fila junto al molino, y el eco, allá arriba, guardaba en silencio todas las palabras del día, tal como se las habían dado. Mara tiró de la manta hasta la barbilla, bostezó y se quedó dormida contando las palabras verdaderas que sabía, que eran muchas, y que ya no pesaban nada.",
+     "archivo": "1c55943e431d32bd.m4a",
+     "segundos": 47.42
+    }
+   ]
+  },
+  "medieval:huerto_seco": {
+   "incluido": false,
+   "titulo": {
+    "texto": "El huerto de todos",
+    "archivo": "cf19ee0db27abe69.m4a",
+    "segundos": 1.39
+   },
+   "ensenanza": {
+    "texto": "La enseñanza de hoy: Repartir con justicia lo poco que hay puede dejarnos con menos, pero convierte lo nuestro en algo que todos cuidan cuando hace falta.",
+    "archivo": "f668ee0aeeaebb66.m4a",
+    "segundos": 12.77
+   },
+   "escenas": [
+    {
+     "texto": "La regadera de la abuela tenía el pico torcido y una abolladura en la panza, y Aldo la quería por las dos cosas. Aquel verano era el más seco que se recordaba: el río se había quedado en un camino de guijarros blancos, el pozo de la plaza solo devolvía eco y los techos de la aldea crujían de sed, y las lagartijas buscaban sombra dentro de los zapatos olvidados. Pero detrás del cobertizo del huerto seguía goteando, nadie sabía por qué, un manantial pequeño y frío. Cada tarde Aldo llenaba la regadera gota a gota, cruzaba las filas de coles con pasitos de equilibrista y mojaba las raíces una por una, con la lengua entre los dientes para no derramar nada.",
+     "archivo": "56a55fd45e9bceca.m4a",
+     "segundos": 53.31
+    },
+    {
+     "texto": "Las noticias de un manantial vivo corren más que el agua. A los pocos días ya había una fila de baldes vacíos junto a la valla del huerto y, detrás de cada balde, una cara reseca. Rosa, la panadera, necesitaba agua para amasar. Lía quería salvar sus lechugas, que se habían puesto del color del papel. Y Teo venía con una jarra, sin decir nada, que era su manera de pedir las cosas cuando le daba vergüenza. Aldo miró el hilo de agua, miró las coles de la abuela, miró las caras, y llenó los baldes uno por uno con la regadera, porque no sabía hacerlo de otro modo. «Mañana vuelvo con más sed que hoy», dijo Rosa, y Aldo se rio.",
+     "archivo": "e8acffba780212dd.m4a",
+     "segundos": 50.67
+    },
+    {
+     "texto": "El duque Codicio llegó al huerto cuando el cielo se ponía de color calabaza, y traía una libreta en lugar de un balde. Codicio hizo sonar las monedas del bolsillo, olisqueó el aire y señaló el manantial con la pluma. «Escúchame bien, Aldo», dijo con voz de moneda que rueda. «En la aldea la gente daría media casa por un balde de agua. Cóbrales. Una moneda por balde, la mitad para ti y la mitad para mí, que soy quien sabe de números. Con eso arreglarías el techo, comprarías semillas nuevas y no tendrías que cargar con la regadera nunca más.» Aldo apretó el asa con los dedos y no contestó, de momento.",
+     "archivo": "29323c2b57429b4a.m4a",
+     "segundos": 48.9
+    },
+    {
+     "texto": "Esa noche Aldo no pudo dormir y salió a sentarse en la valla del huerto, con la regadera sobre las rodillas, para ver caer el manantial a la luz de las estrellas, una gota, otra gota, como un reloj muy lento. Allí lo encontró Mara, que se echó el arco al hombro. «Dos caminos», dijo Mara con voz firme. «Vender y tener el huerto de oro, o repartir y tener un huerto más flaco. No voy a decirte cuál es mejor. Pero contemos.» Contaron cuánto tardaba en llenarse un balde y sacaron la cuenta: el manantial daba veintidós baldes al día, y en la aldea había once casas. «Dos por casa», murmuró Aldo. «Ni uno más, ni uno menos.» Era justo para todos, aunque con dos baldes no se salva un huerto, sino apenas un cuadrito de huerto. Aldo escuchó la última gota, y supo lo que iba a hacer con una calma que le sorprendió.",
+     "archivo": "0c8a24dc358c49f8.m4a",
+     "segundos": 65.81
+    },
+    {
+     "texto": "A la mañana siguiente Aldo clavó en la valla una tabla con once nombres y una regla escrita con carbón. Cada casa tendría su turno de riego, dos baldes como mucho, y la regadera pasaría de mano en mano sin quedarse nunca en ninguna. Mara sujetó la tabla mientras Aldo clavaba, Teo aplaudió, y Rosa leyó en voz alta hasta el último nombre, secándose los ojos con la punta del delantal. «¿Y tu huerto?», preguntó Lía. «El huerto de la abuela tiene su turno como todos», dijo Aldo. «Dos baldes.» «A mí me parece bien», dijo la abuela desde el cobertizo. «Flacas o gordas, las coles se comen igual.» Codicio soltó una carcajada seca. «Cuando tus coles se sequen por regalar agua, no vengas con la regadera vacía a llorarme», dijo con una vocecita aguda, y se marchó levantando polvo, pero se marchó sin gritar.",
+     "archivo": "141fbf1a36ecd16a.m4a",
+     "segundos": 67.62
+    },
+    {
+     "texto": "Pasaron las semanas, y cada mañana el huerto se llenaba de gente con baldes y de «buenos días». Teo descubrió que la tercera estaca de los frijoles bailaba, y la sujetó con una piedra; Lía aprendió el truco del pestillo de la valla, que solo cedía si lo levantabas dos dedos; y Rosa memorizó dónde colgaba la abuela los sacos viejos. Pero las coles de Aldo, que otros veranos eran grandes como calabazas, se quedaron del tamaño de un puño. Mientras tanto, Codicio recorría los caminos con un carro y un barril de agua turbia del río lejano, y vendía cada balde por dos monedas a los más impacientes, que querían más de los dos de su turno. Aldo miraba las coles por la tarde y se preguntaba si Codicio no tendría razón. Teo le sonrió desde la valla: «¡Ayer saqué el balde sin derramar nada!»",
+     "archivo": "54dd279c3f01d9db.m4a",
+     "segundos": 63.25
+    },
+    {
+     "texto": "La víspera de la gran cosecha, las golondrinas empezaron a volar bajo y el aire olió a polvo caliente. Por el oeste se levantó una pared de nubes del color de las ciruelas. Aldo sonrió al principio, porque llevaba semanas esperando aquello; pero el primer trueno no sonó a lluvia suave, sino a mueble arrastrado por una escalera. Venía granizo, de ese que pica las hojas y deja los huertos como coladores. Y Aldo y la abuela, solos, tenían cuatro manos para once filas. El viento se llevó un sombrero de paja, golpeó la regadera contra la valla y la hizo sonar: ¡clang, clang! Y entonces a Aldo se le ocurrió algo.",
+     "archivo": "58553eb3e250a626.m4a",
+     "segundos": 51.22
+    },
+    {
+     "texto": "Aldo salió corriendo hasta la plaza de la aldea, golpeando la regadera con una cuchara de palo, ¡clang, clang, clang!, y gritando con todas sus fuerzas: «¡Al huerto! ¡Viene granizo!» Se abrieron las puertas una detrás de otra. Rosa salió con el delantal puesto, Lía con los sacos del año pasado, Teo con la jarra, por si acaso, y Hugo, el herrero, con tablones al hombro. Un vecino traía incluso una escalera. «Ya íbamos», dijo Rosa, jadeando. «Íbamos a pedirte permiso, y luego nos acordamos de que no hace falta.» «Nadie te debe nada, Aldo», añadió Hugo. «Es que llevamos semanas pasando por esa valla, y el huerto ya es un poco nuestro.»",
+     "archivo": "dda102f67d95c588.m4a",
+     "segundos": 53.03
+    },
+    {
+     "texto": "Cuando cayeron las primeras bolitas blancas, que rebotaban en la tierra dura, nadie perdió el tiempo en explicaciones: cada cual sabía lo que tenía que hacer. Teo se abrazó a la estaca que bailaba, Lía se ocupó del pestillo, que solo cedía levantándolo dos dedos, Rosa tendió los sacos sobre las lechugas y Hugo clavó tablas allí donde se abrían las filas. Mara iba y venía repartiendo cuerdas. Entonces, entre un trueno y otro, entró Codicio con la boina empapada y un paraguas hecho una flor del revés. Teo, sin pensarlo, le tendió una esquina de la lona: «¡Sujete, que pesa!» Y Codicio sujetó, y mientras sujetaba dejó caer una moneda y ni la oyó. Aldo puso la regadera boca abajo, como un sombrero, sobre el brote más pequeño del huerto, y se quedó guardándolo con el cuerpo hasta que pasó lo peor.",
+     "archivo": "f0c523ed3e3c6182.m4a",
+     "segundos": 62.79
+    },
+    {
+     "texto": "A la mañana siguiente la tierra olía a barro fresco y hasta el espantapájaros parecía alegre. Había hojas rotas y un par de calabazas rodando por el suelo, pero las filas seguían en pie, todas, con sus sacos y sus tablones puestos encima como abrigos. Nadie hizo un discurso. Rosa trajo una sopera humeante, Lía puso los cuencos, Teo y Hugo cortaron leña para calentarla, y los once nombres de la tabla se sentaron juntos en la valla. Codicio, rojo hasta las orejas, se acercó a los que le habían comprado agua y les devolvió la bolsita de monedas, sin faltar una. «Vendí agua del río a quien no tenía otra», murmuró. «Y no debí cobrarla así.» Después preguntó, a media voz, si quedaba algún turno libre en la tabla, y Aldo le guardó el último con una sonrisa.",
+     "archivo": "64a1d50786a86635.m4a",
+     "segundos": 63.2
+    },
+    {
+     "texto": "Aquella noche, Aldo se acostó con las manos oliendo a tierra mojada y la manta hasta la nariz. En el techo, la lluvia dejó de repiquetear y se quedó en un tamborileo suave, sosegado, de esos que arrullan a los árboles. Los once nombres de la tabla dormían en sus casas, y el huerto, allá abajo, bebía y bebía, por una vez, sin turno. La abuela había dicho que las coles de este año serían pequeñas y sabrosas. Aldo sonrió en la penumbra, pensó en el manantial, que seguía goteando detrás del cobertizo para todos, y se quedó dormido antes de acabar la cuenta de las gotas.",
+     "archivo": "d769bd7548360c32.m4a",
+     "segundos": 45.09
+    }
+   ]
+  },
+  "medieval:aprendiz_sabelotodo": {
+   "incluido": false,
+   "titulo": {
+    "texto": "Quien todo lo sabía",
+    "archivo": "f6a4b59285f5b45e.m4a",
+    "segundos": 1.63
+   },
+   "ensenanza": {
+    "texto": "La enseñanza de hoy: Decir «ya lo sé» cierra la puerta a aprender; dejarnos enseñar, incluso por alguien más pequeño, la abre de par en par.",
+    "archivo": "6ef4d0f0facd1dd4.m4a",
+    "segundos": 13.98
+   },
+   "escenas": [
+    {
+     "texto": "Hay aprendices que preguntan y aprendices que responden, y Mara era de los segundos. Llevaba tres meses en la torre con el mago Zafiro, entre polvo, palomas y escaleras, y en todo ese tiempo había aprendido una sola cosa con seguridad: que ya lo sabía todo. Sobre una piedra, enrollada como una serpiente que duerme, estaba la cuerda, la gruesa cuerda de la campana más vieja del reino. Ese día era la fiesta de la cosecha, y a Mara le tocaba atarla al brazo de la campana y luego tirar de la cuerda cuando saliera la primera estrella, para llamar a toda la aldea a la plaza. «Eso ya lo sé», decía Mara a cada consejo, y había tantos consejos, y tan pocas ganas de oírlos.",
+     "archivo": "62d3187bf4d1296b.m4a",
+     "segundos": 55.17
+    },
+    {
+     "texto": "Zafiro entornó los ojos y señaló la cuerda. «Antes de atarla, déjame que te enseñe el nudo», dijo con un guiño. «Se llama el nudo del conejo, y tiene su truco.» «Ya lo sé», dijo Mara, y agarró un cabo con aire de llevar cuarenta años atando campanas. «Entonces, al menos, da un tirón suave antes del grande», añadió el mago. «Un nudo se juzga cuando trabaja, no cuando se ata.» «Ya lo sé», repitió Mara, que no tenía ni idea de qué quería decir aquello y no pensaba reconocerlo. Zafiro levantó una ceja tan despacio que casi se oyó. «Como quieras. Estaré abajo, en la plaza, por si me necesitas.» Y bajó la escalera muy despacio, por si Mara cambiaba de idea. Mara no cambió de idea.",
+     "archivo": "cfda167262f5d9f5.m4a",
+     "segundos": 56.05
+    },
+    {
+     "texto": "Al caer la tarde, Mara se puso a atar la cuerda al brazo de la campana. Dio una vuelta, dos vueltas, siete vueltas, y encima hizo dos lazos, hasta que aquello pareció una bola de lana que perdió una pelea con un gato. «¡Esto no lo suelta ni un gigante!», dijo satisfecha. Alguien carraspeó en la escalera. Era Lía, la hija del pastor, que subía con una cesta de velas para la fiesta y apenas asomaba por encima de la barandilla. Miró el nudo con la cabeza ladeada. «Mi abuela dice que un nudo con tantas vueltas es un nudo con miedo», dijo. «Y que se suelta justo cuando más se necesita.» «¿Tú qué vas a saber, si ni siquiera llegas a la cuerda?», contestó Mara, sin mirarla. Lía no dijo nada. Dejó las velas en el suelo, se encogió de hombros y bajó, con la barbilla muy alta.",
+     "archivo": "c1f8ebfc5dc5c802.m4a",
+     "segundos": 63.44
+    },
+    {
+     "texto": "Cuando salió la primera estrella, abajo, en la plaza, se hizo un silencio de esos que se pueden oír. Toda la aldea esperaba. Mara se limpió las manos en la ropa, respiró hondo y agarró la cuerda con las dos manos, sin ningún tirón de prueba, porque para qué. Tiró con todas sus fuerzas, como quien da un portazo. La campana se movió un poco. El nudo, que tenía tantas vueltas por no tener ninguna idea, resbaló, se estiró y se soltó de golpe del brazo de la campana. La cuerda se deslizó por la polea como una serpiente con prisa, y Mara cayó de espaldas, ¡plof!, como un saco de harina. Arriba, la campana, sin cuerda ni nada, hizo un solitario «tin». Eso fue todo el repique.",
+     "archivo": "06d4c23634e63f49.m4a",
+     "segundos": 55.08
+    },
+    {
+     "texto": "En la plaza había farolillos de papel, bancos largos y toda la aldea con la cara vuelta hacia la torre. Cuando Mara bajó, con la cuerda enredada en los brazos y el color de un tomate maduro, nadie dijo nada durante un largo, larguísimo momento. Entonces Teo soltó una risita, que intentó tapar con la mano y se le escapó por los dedos, y detrás de la risita vino un cuchicheo entre los vecinos. «Ahí va quien todo lo sabía», susurró alguien. No era una burla cruel; era peor: era verdad. Mara buscó a Zafiro con la mirada. Zafiro no se rio ni dijo «te lo advertí». Solo la miró con una especie de ternura que a Mara le pareció imposible de soportar. Se le llenaron los ojos de lágrimas, y echó a correr.",
+     "archivo": "42884528d4f281a3.m4a",
+     "segundos": 55.26
+    },
+    {
+     "texto": "Mara corrió sin mirar adónde y acabó en el huerto, sentada entre las coles, a la sombra del espantapájaros, con la cara escondida entre las rodillas. Luego unos pasos conocidos hicieron crujir la tierra, y Zafiro se sentó a su lado con un suspiro de rodillas viejas. «¿Sabes dónde me escondí yo la primera vez que fallé con una campana?», preguntó despacio. «Exactamente aquí. Detrás de este mismo espantapájaros, o de su abuelo.» Mara levantó la cabeza. «Yo también creía saberlo todo», siguió el mago. «¿Y sabes quién me enseñó el nudo del conejo? Una niña pastora, mucho más pequeña que yo, que me miró desde lejos sin burlarse. Tardé una semana en atreverme a preguntarle.» Señaló con la barba hacia el final del huerto, donde Lía ataba matas de frijol a unas cañas, a la luz de una vela. «Su bisabuela. En esa familia se nace sabiendo atar.»",
+     "archivo": "b7bddf8b5d841245.m4a",
+     "segundos": 71.19
+    },
+    {
+     "texto": "Mara se secó la cara con la manga y atravesó el huerto despacio, como se camina hacia un baño frío. Lía levantó la vista de la caña que estaba atando. «Perdóname lo de antes», dijo Mara. «Tenías razón. ¿Me enseñas el nudo del conejo?» Lía lo pensó, o hizo como que lo pensaba. «Mi cabra me dijo cosas peores», contestó al fin. Tomó un cabo de la cuerda, que Mara arrastraba todavía, y dibujó con el dedo un agujerito. «Mira. El conejo sale de su agujero, da la vuelta al árbol… y vuelve a entrar.» Mara lo intentó, y le salió un enredo. Lo intentó otra vez, y le salió un enredo más pequeño. «Otra vez», dijo Lía, sin un solo suspiro, y a la tercera el conejo entró en su agujero y se quedó allí, pequeño y firme. Mara tiró con todas sus fuerzas. El nudo aguantó.",
+     "archivo": "4ccff2fbd0100d25.m4a",
+     "segundos": 61.95
+    },
+    {
+     "texto": "Subieron juntas la escalera de caracol, Lía delante con la vela y Mara detrás con la cuerda al hombro. Arriba, la campana esperaba en la penumbra, con su brazo de madera y su silencio enorme. Mara ató el nudo del conejo despacio, diciéndose en voz baja la cancioncilla: sale, rodea, entra. Esta vez no hubo vueltas de más. Tiró suave, solo un poquito, para probar. «Dan», dijo la campana, redonda como una gota. El nudo ni se movió. Mara miró a Lía, y Lía asintió. Entonces tiró de verdad, con todo el cuerpo, y la campana se echó a cantar: ¡don!, ¡don!, ¡don!, tan hondo que a Mara le tembló el suelo bajo los pies y le cosquilleó hasta la punta de la nariz. La voz de bronce salió volando por encima de los techos, de los molinos, de los huertos, y llegó muy lejos, hasta donde terminan los caminos.",
+     "archivo": "3c8062c38006e110.m4a",
+     "segundos": 63.53
+    },
+    {
+     "texto": "Abajo, en la plaza, los vecinos, que ya empezaban a guardar los farolillos de papel, se quedaron con un pie en el aire. Luego se oyó una ovación. Teo daba saltos y aplaudía con la gorra en la mano, y todos se pusieron a bailar bajo las estrellas, porque la fiesta, después de todo, no estaba perdida: solo se había retrasado. Cuando Mara y Lía bajaron, nadie susurró nada sobre aprendices que todo lo sabían. Zafiro esperaba al pie de la escalera. «Ese nudo es muy bueno», dijo, con su voz lenta y tranquila. «Supongo que ya lo sabías.» Y levantó una ceja, que esta vez era un guiño. «No», contestó Mara. «No lo sabía. Me lo enseñó Lía.» Fue la frase que menos pesó de todas las que había dicho en meses. Lía se encogió de hombros, como quien ya sabía que acabaría pasando.",
+     "archivo": "3c13658f71b9c27f.m4a",
+     "segundos": 63.3
+    },
+    {
+     "texto": "A la mañana siguiente sonaron pasos en la escalera, y asomó Teo, con la gorra torcida y el pecho hinchado. «Vengo a aprender lo de la campana», anunció. «Aunque ya sé casi todo, ¿eh? Me lo contó mi primo.» Mara se mordió los labios, porque conocía muy bien esa manera de decir las cosas. Sacó la cuerda y se sentó a su lado. «Enséñame lo que sabes», dijo. Teo hizo una bola de cuerda del tamaño de un melón. Mara no se rio. «Así empecé yo», dijo, y dibujó con el dedo un agujerito. «Mira. El conejo sale de su agujero, da la vuelta al árbol… y vuelve a entrar.» Teo lo intentó tres veces, y a la tercera el conejo se quedó adentro. «¡Ya lo sabía!», gritó Teo. «Claro», dijo Mara, y sonrió con toda la cara.",
+     "archivo": "4c1e21165af3b5d3.m4a",
+     "segundos": 56.19
+    },
+    {
+     "texto": "Aquella noche, ya en el cuarto, Mara se acostó con un cordón de las botas en las manos. Desde lo alto del castillo llegaba, muy lejos, el don, don, don de la torre, que Zafiro hacía sonar despacio para mandar a todos a la cama, y que sonaba como una nana: redonda, firme, sin una sola vuelta de más. Mara dibujó con el cordón un agujerito. El conejo salió, rodeó el árbol, volvió a entrar. Salió otra vez, más despacio. Entró otra vez, más despacio todavía. Y antes de que el conejo terminara la tercera vuelta, Mara ya dormía, con una sonrisa pequeña y el nudo bien hecho entre los dedos.",
+     "archivo": "212ea0d3b637e78b.m4a",
+     "segundos": 49.09
+    }
+   ]
+  },
+  "medieval:dos_faroles": {
+   "incluido": false,
+   "titulo": {
+    "texto": "Los dos faroles",
+    "archivo": "8c966d8594be7b2e.m4a",
+    "segundos": 1.49
+   },
+   "ensenanza": {
+    "texto": "La enseñanza de hoy: Ganar el mejor sitio vale poco a solas; compartir la luz con un amigo, y saber pedirle perdón, no nos quita nada.",
+    "archivo": "fd0a225dfc8dcbd5.m4a",
+    "segundos": 12.12
+   },
+   "escenas": [
+    {
+     "texto": "La fiesta de los faroles era ese mismo día, y Aldo tenía un plan en tres partes, escrito con carbón en una tabla del cobertizo. Primera: terminar el farol, un cajón de papel azul con estrellas recortadas en el que llevaba tres semanas trabajando. Segunda: llegar al lago antes que nadie, porque el poste de la punta era de quien llegara primero. Tercera: colgarlo del poste de la punta del embarcadero, el sitio desde donde la luz se ve en toda la aldea, y que hasta entonces siempre se había llevado otro. No le sobraba ni una hora. Mientras el papel se secaba sobre la valla del huerto, el espantapájaros lo vigilaba con su sombrero torcido. «Si todo sale bien», se dijo Aldo, «este año el poste es mío». No pensaba en nada más. Ni en nadie.",
+     "archivo": "e66d59eeca16ca46.m4a",
+     "segundos": 58.24
+    },
+    {
+     "texto": "En la aldea sonaban martillos y risas, porque todos preparaban la noche de los faroles. Aldo iba deprisa hacia casa, con las manos llenas, cuando vio algo que no encajaba: un chico sentado en el borde del pozo, con un farol de hojalata abollado y apagado entre las rodillas, y nadie a su alrededor. Se llamaba Teo y había llegado dos días antes con sus padres, que se habían mudado al molino. Los otros niños se juntaban a pocos pasos, con los faroles en alto, y ninguno lo miraba. Teo tampoco levantaba la vista: seguía con el dedo una grieta de la piedra, una y otra vez. Aldo frenó un segundo. Pero llevaba el engrudo a medio secar y la lista a medio hacer. «Después», se dijo. Y fue la primera vez en todo el día que no le gustó cómo sonaba esa palabra.",
+     "archivo": "106614e795575f67.m4a",
+     "segundos": 59.63
+    },
+    {
+     "texto": "Aldo no había dado diez pasos cuando casi se tropezó con Mara, que volvía del bosque con un cesto de moras. «Qué cara de lista de tareas», dijo, y se echó el arco al hombro. «Yo llegué una vez a un pueblo donde no conocía a nadie», contó con voz firme. «Me hice la fuerte durante una semana, subida a un árbol, para que pareciera que lo hacía por gusto. Hasta que una niña trepó con un puñado de moras y dijo que sobraba sitio. Nada más. No hizo falta nada más.» Aldo miró hacia el pozo, donde el chico del farol abollado seguía sin que nadie se acercara, y notó que el plan se le encogía un poco en el bolsillo.",
+     "archivo": "f2660a6f76265e07.m4a",
+     "segundos": 51.22
+    },
+    {
+     "texto": "Aldo dio media vuelta antes de que le diera tiempo a arrepentirse. Se sentó en el borde del pozo, a un palmo del chico del farol abollado, y sacó unas tijeras de entre los papeles. «Me llamo Aldo», dijo. «Tengo veintiséis estrellas por cortar y dos manos, que son pocas. ¿Me ayudas?» El chico levantó los ojos. «Yo soy Teo. No sé si sirvo. En mi pueblo decían que tengo mala mano para las cosas bonitas.» «Pues yo tengo mala paciencia para las pequeñas», respondió Aldo, «así que nos vamos a llevar de maravilla». Teo cortó su primera estrella con la lengua afuera, muy despacio. Le salieron siete puntas en lugar de cinco, y los dos se quedaron mirándola. Aldo soltó una carcajada. «Es la mejor del lote», dijo. «Va en el centro.»",
+     "archivo": "0862ba73859cc3d4.m4a",
+     "segundos": 58.61
+    },
+    {
+     "texto": "Aquella tarde, cuando el farol quedó terminado, Teo se ofreció a probarlo. Sacó un cabo de vela, lo puso adentro con mucho cuidado y lo encendió con una chispa. Entonces un soplo de viento dobló la llama contra el papel, y una esquina se tiznó de negro, con un chisporroteo y un olor a quemado. Fue un segundo. Pero a Aldo se le heló la sangre. «¡Tres semanas!», estalló. «¡Tres semanas de trabajo, y tú…!» Teo se levantó con los ojos muy abiertos. «Yo solo quería…» «Pues ayudaste muchísimo», dijo Aldo, con una voz que no parecía la suya. Teo levantó su farol abollado, murmuró algo parecido a «lo siento» y se fue camino abajo sin volver la cabeza.",
+     "archivo": "15afad7ea3d44270.m4a",
+     "segundos": 52.34
+    },
+    {
+     "texto": "De vuelta en el huerto, Aldo pegó un parche de papel sobre la esquina quemada y se sentó a esperar que se secara. El cielo se había puesto naranja, y el cobertizo, la valla y el espantapájaros le parecieron de pronto muy callados. Nadie preguntaba si la estrella del centro tenía siete puntas, ni se reía de la estrella. Aldo se repitió que tenía razón: tres semanas eran tres semanas. Pero la frase sonaba cada vez más pequeña, como una moneda que rueda hasta el fondo de un balde. Al final, Aldo agarró el farol, comprobó que el parche aguantaba y echó a andar hacia el lago con la barbilla alta, porque el plan decía que había que llegar primero. Teo, en cambio, no se le iba de la cabeza.",
+     "archivo": "ecd962db7ed51fc9.m4a",
+     "segundos": 55.08
+    },
+    {
+     "texto": "El camino al lago subía por la colina del roble. Desde arriba, al caer la tarde, el agua parecía una moneda de estaño y los juncos de la orilla, una barba oscura. Había faroles que se movían por los senderos, pequeños, como luciérnagas grandes. Aldo se detuvo para recuperar el aliento, y entonces vio, lejos de los demás, una figura que se alejaba del embarcadero por la senda estrecha de los juncos. Llevaba un farol de hojalata, y lo llevaba bajo, casi arrastrando. Era Teo. «No debería ir por ahí», pensó Aldo, que conocía esa senda: de día era un encanto, pero sin luz no se veían ni las raíces. Abrió la boca para llamarlo, y la cerró. Todavía le pesaban las palabras de antes.",
+     "archivo": "fe4b51a750ec5b76.m4a",
+     "segundos": 53.41
+    },
+    {
+     "texto": "Aldo llegó al lago antes que los demás vecinos. Subió corriendo por el embarcadero, encendió el farol y lo colgó del poste de la punta, justo como decía el plan. El papel azul se llenó de luz, las estrellas recortadas dibujaron constelaciones temblorosas sobre el agua, y las luciérnagas se acercaron a mirar. Era el momento que llevaba tres años imaginando. Pero no sabía con quién compartirlo. Al otro lado de la orilla, entre los juncos, brillaba una lucecita pequeña, naranja, que se balanceaba. Era la de Teo. Y mientras Aldo la miraba, la luz tembló, se encogió y se apagó, como un parpadeo. Se hizo un silencio muy largo, en el que solo cantaban los grillos.",
+     "archivo": "3964cc8fe8f3b8cb.m4a",
+     "segundos": 53.45
+    },
+    {
+     "texto": "Aldo descolgó el farol del poste de la punta, y le costó menos de lo que había imaginado. Se metió por la senda de los juncos, llamando bajito: «¡Teo! ¡Teo!». Al final oyó una voz pequeña: «Estoy aquí. No veo mis pies.» Teo estaba sentado entre las raíces, con el farol apagado en el regazo y los ojos brillantes. «Pensé que todos se reían de mí», dijo. Habló un buen rato, de su pueblo y de su perro, y Aldo no lo interrumpió ni una vez. «Nadie se reía de ti», dijo por fin, y se sentó a su lado. «Yo estaba enojado con un papel quemado y lo dije muy mal. Perdóname.» «Y yo no debí encender el farol sin preguntar», murmuró Teo. Aldo prendió el cabo de vela de Teo con la llama del suyo. «Mira: una luz enciende otra y no pierde nada.»",
+     "archivo": "1189e4f1e19ba05a.m4a",
+     "segundos": 60.23
+    },
+    {
+     "texto": "En la penumbra, junto a una barca varada, había alguien con la cabeza entre las rodillas. Los faroles alumbraron una capucha y un par de ojos enrojecidos. Era Sombra. «Hace años que vengo hasta los juncos», dijo en un susurro. «Nunca me he atrevido a pasar de aquí.» Teo se quedó callado un instante. «Yo hoy tampoco me atrevía a acercarme al grupo», dijo por fin. «Y mira: me vino a buscar alguien.» Aldo le puso una mano en el hombro a Teo, y luego miró a Sombra. «Aquí hay sitio. Dos faroles dan luz para tres.» Sombra tragó saliva, se bajó la capucha y se hizo un hueco entre los dos, sin saber dónde poner las manos.",
+     "archivo": "521b4e40e6993ae5.m4a",
+     "segundos": 51.13
+    },
+    {
+     "texto": "Entonces se oyeron pasos entre los juncos y apareció una luz que se balanceaba: Mara, que había salido a buscarlos cuando vio que la noche se cerraba. No preguntó nada. Se limitó a tenderle a Sombra su lamparita de aceite, ya encendida, la que llevaba siempre en el carcaj. Volvieron todos juntos por la senda. En el embarcadero, Aldo señaló el poste de la punta. «Cuélgalo tú ahí», le dijo a Teo. «El mío se ve igual de bien desde el de al lado.» «Es tu sitio», protestó Teo. «Es un poste», sonrió Aldo. Teo colgó su farol de hojalata, y Aldo el suyo, con la estrella de siete puntas en el centro. Sombra, que no sabía qué hacer con tanta luz entre las manos, dejó la suya en el último tablón Y el lago se llenó de tres luces distintas, una azul, una abollada y una pequeñita que nunca había estado en una fiesta.",
+     "archivo": "9082273e7b0989d2.m4a",
+     "segundos": 66.55
+    },
+    {
+     "texto": "Ya muy tarde, Aldo se metió en la cama con los pies fríos y el pelo oliendo a cera. Por la ventana, a lo lejos, se veían todavía las luces del lago, tres puntitos pequeños que no querían apagarse. Mañana habría que arreglar la mancha de la esquina, o mejor, no arreglarla: a Teo le haría gracia saber que parecía una nube. Quedaban un millón de estrellas por cortar, y de siete puntas, las mejores. Aldo bostezó, y la cama le pareció tibia y muy ancha. Se durmió con la sensación de tener, por primera vez en mucho tiempo, un plan con un sitio de sobra.",
+     "archivo": "a7177e8da7085cc2.m4a",
+     "segundos": 43.7
+    }
+   ]
+  },
   "medieval:campana_mediodia": {
    "incluido": false,
    "titulo": {
@@ -3020,6 +3310,151 @@
      "texto": "Rosa y Aldo limpiaron la mesa con un trapito. Después Rosa llenó otra taza de leche. Aldo la bebió despacito. Se quedó con la barriga calentita y el corazón ligero.",
      "archivo": "9545a1e2d8eef449.m4a",
      "segundos": 13.89
+    }
+   ]
+  },
+  "medieval:faro_lago": {
+   "incluido": false,
+   "titulo": {
+    "texto": "La luz del lago",
+    "archivo": "ce32efd79c496f65.m4a",
+    "segundos": 1.49
+   },
+   "ensenanza": {
+    "texto": "La enseñanza de hoy: Aunque el miedo camine a nuestro lado, podemos seguir: casi siempre se cansa antes que nosotros.",
+    "archivo": "7251d3b31e058770.m4a",
+    "segundos": 9.61
+   },
+   "escenas": [
+    {
+     "texto": "Hay luces que adornan y luces que trabajan, y la del lago de las luciérnagas trabajaba mucho. Colgaba al final del embarcadero, una linterna grande como un barril, de hierro negro y cristal grueso, y cuando ardía daba una luz dorada y espesa, como miel derretida. Cada tarde, antes de que el agua soltara su niebla, el farolero la encendía. Así los viajeros del camino de la orilla sabían dónde acababa la tierra y empezaba el lago, porque en la niebla un paso de más es un baño de agua fría. Mara la conocía desde siempre: desde el huerto de su casa, al caer la tarde, veía allá lejos un puntito dorado, y nunca había faltado. Esa noche, además, volvía por aquella orilla el aprendiz Aldo.",
+     "archivo": "028623c13a548b25.m4a",
+     "segundos": 56.29
+    },
+    {
+     "texto": "Cuando Mara dejó la regadera junto a las coles, el cielo ya se había puesto naranja y a la tarde le faltaba algo. Miró hacia la colina y esperó. El puntito dorado no apareció. De pronto, junto a la valla, algo carraspeó como una cañería vieja, y Mara dio un salto: ¡el espantapájaros se había puesto a hablar! No era el espantapájaros. Era el farolero, que se había sentado a su espalda con una manta por encima de la cabeza, la nariz como una cereza y los ojos llorosos. «Perdona, muchacha», dijo con un hilo de voz. «Tengo la garganta llena de clavos. Hoy no llego a encender la linterna, y no hay nadie más.»",
+     "archivo": "9408372fd6fb21af.m4a",
+     "segundos": 51.87
+    },
+    {
+     "texto": "Mara miró la colina, que se iba poniendo violeta, y tragó saliva. Los mayores de la aldea estaban en el mercado del valle y no volverían hasta muy tarde, así que, si nadie subía, el lago se quedaría sin luz justo cuando llegara la niebla. Y por aquella orilla tenía que volver el aprendiz Aldo. «Yo puedo ir», dijo Mara, antes de que la prudencia le tapara la boca. El farolero la miró un largo rato. «Es una hora de camino», dijo, y fue contando con los dedos: «la colina, el bosque y la orilla. Cuando oscurece, el bosque parece otro, no te voy a mentir.» Le puso en la mano el pedernal, frío y pesado, y un farolillo encendido. «Pero el miedo no se va, ¿sabes? Se sienta a tu lado y camina contigo, y casi siempre se cansa antes que tú.»",
+     "archivo": "7a2fcdf96e929d25.m4a",
+     "segundos": 60.84
+    },
+    {
+     "texto": "Al pie de la colina, Mara se detuvo. El sendero subía entre matas de retama, estrecho y pálido, hasta un roble enorme que se recortaba contra el cielo violeta como un gigante que duerme con los brazos abiertos. Atrás quedaban las luces de la aldea; delante, todo lo que aún no se sabía. «Un paso», pensó Mara, pero los pies no se enteraron. Entonces se acordó del hueco vacío donde debía brillar el puntito dorado, y de que el aprendiz Aldo caminaría hacia el agua sin ver nada. Apretó el farolillo en una mano y el pedernal en la otra, y levantó un pie. Luego el otro. Y la colina, que no se había movido, pareció un poco más corta.",
+     "archivo": "3a74381a41784c15.m4a",
+     "segundos": 51.73
+    },
+    {
+     "texto": "Cuando Mara llegó al roble, el sol ya se había escondido y el cielo era de un azul de tinta, con las primeras estrellas. Arriba, la brisa traía olor a tomillo y a tierra fría. El tronco era tan ancho que doce niños con los brazos abiertos no lo habrían abrazado entero. Mara pasó rozándolo, de puntillas, y entonces, entre las ramas, se encendieron dos círculos amarillos que parpadearon muy despacio. Mara se quedó quieta, con el corazón golpeándole las costillas como un puño. Los círculos se movieron. Algo enorme y suave se descolgó de la rama sin hacer ruido, le rozó el pelo y se perdió en el aire, y desde lejos llegó un «¡uh, uh!» muy ofendido. Era un búho. Solo un búho, al que no le había gustado nada que lo despertaran.",
+     "archivo": "cdb1e7aa502af1e0.m4a",
+     "segundos": 59.44
+    },
+    {
+     "texto": "El bosque de los robles empezaba donde acababa la colina, y la oscuridad empezaba un poco antes. Entre los troncos, el sendero era una cinta gris que se perdía a diez pasos. Todo sonaba: una rama que crujía, un goteo, una hoja que rodaba con un ruidito de uñas. Mara avanzaba pegada a la luz del farolillo, que dibujaba alrededor un círculo de oro pequeño y frágil, y fuera del círculo la noche parecía tener ojos. Entonces, a su izquierda, algo gruñó. Fue un resoplido largo y áspero, como de fuelle roto. Mara levantó el farolillo y, sobre el tronco de un roble, la sombra de un monstruo creció hasta tocar las ramas: dos cuernos retorcidos, un lomo enorme... y se movía.",
+     "archivo": "9be17798225327f0.m4a",
+     "segundos": 53.31
+    },
+    {
+     "texto": "Mara retrocedió un paso, y una ráfaga fría se coló entre los troncos. La llama del farolillo se encogió, se encogió… y se apagó. Oscuridad entera, de esas que pesan. Golpeó el pedernal, una vez, otra, pero el viento se llevaba las chispas como migas. «Vuelve», le susurró una voz del tamaño de una hormiga desde dentro de la cabeza. «Aún estás a tiempo. Nadie lo sabría.» Mara apoyó la espalda en un tronco, pensó en el puntito dorado que no estaba y le habló al aire de su izquierda, donde imaginó sentado al miedo: «¿Te cansas ya?». No hubo respuesta. «Pues yo sigo», dijo Mara. Pero seguir a ciegas era otra cosa. Muy lejos, el lago lamía el embarcadero: chap, chap. El tronco era rugoso y blando de musgo. Y entre los árboles flotaban unos puntitos verdes que se encendían y se apagaban. ¿Cómo seguir?",
+     "archivo": "dc2d88cda95eab22.m4a",
+     "segundos": 65.16
+    },
+    {
+     "texto": "Mara respiró hondo y no hizo nada. Solo esperó, y contó hasta diez, despacito: uno, dos, tres… Poco a poco, la oscuridad dejó de ser una pared y se volvió un montón de cosas grises: troncos, ramas, un caminito pálido. Entonces los puntitos verdes se acercaron, uno a uno, flotando como si alguien los llevara de la mano. Eran luciérnagas, las primeras del lago, que salían a buscar la niebla. No alumbraban gran cosa, pero bastaban para ver dónde acababa un tronco y empezaba el siguiente. «Estaban aquí todo el tiempo», les dijo Mara. Dio un paso. Luego otro.",
+     "archivo": "067e9286b6780ad5.m4a",
+     "segundos": 44.72
+    },
+    {
+     "texto": "Diez pasos después, con las luciérnagas flotando delante, Mara notó que el resoplido cambiaba. Ya no era un resoplido. Venía de muy cerca del suelo: un «bee… bee» tembloroso, nada amenazador. Ningún monstruo bala. Mara golpeó el pedernal una vez más, a ras de tierra y tapándolo con el cuerpo, y la chispa iluminó un instante dos cuernos retorcidos, un lomo blanco y unos ojos redondos, llenos de lágrimas. Era una cabrita, enredada de patas a cuello en su propia cuerda, que se había enganchado a una raíz a fuerza de dar vueltas. En una rama, un búho la vigilaba con cara de haberla avisado ya. «Tranquila», susurró Mara. «Ahora te saco.» Y sus dedos, que hacía un minuto temblaban, se pusieron a deshacer nudos con una paciencia que no sabían que tenían. Cuando cayó el último, la cabrita dio un brinco y le lamió la mano con una lengua áspera como una lija.",
+     "archivo": "e488edd66e4f71de.m4a",
+     "segundos": 67.85
+    },
+    {
+     "texto": "El bosque se acabó de pronto, y Mara salió a la orilla del lago. No se veía nada: ni agua, ni embarcadero, ni cielo. Solo una niebla blanca y espesa que olía a barro y a juncos. La cabrita se pegó a la pierna de Mara, temblando, y por encima de sus cabezas pasó el búho. «Uuh», dijo en voz baja, como quien dice «por aquí». Entonces, entre los juncos, se encendió una lucecita verde. Luego otra, y otra, y de pronto cientos, flotando a la altura de las rodillas: las luciérnagas del lago, que salen con la niebla. No alumbraban mucho, pero juntas dibujaban un caminito de puntos que se alejaba hacia el embarcadero. «Gracias», les dijo Mara en voz alta. Y echó a andar por donde ellas indicaban, con la cabrita al lado y el búho por delante, de poste en poste.",
+     "archivo": "b615462346e51e85.m4a",
+     "segundos": 62.69
+    },
+    {
+     "texto": "Al final del embarcadero, las tablas crujían bajo los pasos, ¡cric!, y allí estaba, tan grande como la recordaba y tan fría como una piedra, la linterna del lago. Mara trepó por la escalerilla de hierro con las manos mojadas de niebla y abrió la puertecita de cristal. Adentro esperaba la mecha, seca y paciente. Golpeó el pedernal contra el borde de hierro, con todas las fuerzas que le quedaban. Una chispa. Dos. A la tercera, la mecha tosió, se puso azul, se puso amarilla y se abrió como una flor: ¡Flup! La luz salió a repartirse por la niebla, que se volvió de oro, y por todo el lago, que dejó de ser un hueco negro para volver a ser un lago. Abajo, la cabrita dio un brinco de alegría. Mara se quedó mirando la luz sin saber si reír o llorar. Había llegado.",
+     "archivo": "2cedd388ecfb4860.m4a",
+     "segundos": 61.44
+    },
+    {
+     "texto": "Todavía temblaba el último destello sobre el agua cuando, entre la niebla, alguien llamó: «¡Nube! ¡Nube!». Una niña salió corriendo hacia la luz, con un farol de lata apagado y las trenzas deshechas. Era Lía, la pastora del molino, que llevaba toda la tarde buscando a su cabrita por la colina, y la cabrita se le echó encima, ¡bee!, en una mezcla de reproche y alegría. Detrás de Lía, con el penacho del casco chorreando niebla, apareció el aprendiz Aldo, que había seguido la luz paso a paso. Aldo se rascó la cabeza por debajo del casco. «Vi esa luz desde la colina», dijo a media voz. «Yo, en tu lugar, me habría quedado a mitad de camino cantándoles a mis rodillas.» «Eso hice», confesó Mara, «más o menos.» «Pues te salió mejor que a mí», se rio Aldo.",
+     "archivo": "1b47548abf3522dc.m4a",
+     "segundos": 61.11
+    },
+    {
+     "texto": "Volver fue más largo que ir, porque nadie tenía prisa. El búho se quedó de guardia en el embarcadero, y Mara regresó a la aldea con Aldo a un lado y el rumor del lago al otro. En la puerta de su casa la esperaba el farolero, que no dijo nada: solo sonrió con toda la cara. Ya en su cuarto, Mara se acostó con los pies fríos y el pelo lleno de hojas. Antes de dormir, Mara se acordó de las luciérnagas que se atrevieron a acercarse y sonrió en la oscuridad. Por la ventana, allá lejos, detrás de la colina, brillaba el puntito dorado, firme y en paz, de vuelta en su sitio. Mara pensó en el miedo, que le había hecho compañía todo el camino, y le dejó un hueco a los pies de la cama. Bostezó largo y, por primera vez, se quedó dormida antes que su miedo.",
+     "archivo": "8a7dffd0efa845b6.m4a",
+     "segundos": 59.91
+    }
+   ]
+  },
+  "medieval:cometa_norte": {
+   "incluido": false,
+   "titulo": {
+    "texto": "La cometa del viento del norte",
+    "archivo": "9d9b5a1bc7b266ef.m4a",
+    "segundos": 2.32
+   },
+   "ensenanza": {
+    "texto": "La enseñanza de hoy: Cada caída esconde una pista: si la buscamos con curiosidad, en vez de con rabia, el siguiente intento vuela más alto.",
+    "archivo": "53f4e09f7630a2c3.m4a",
+    "segundos": 12.54
+   },
+   "escenas": [
+    {
+     "texto": "El taller de Aldo era un rincón del cuarto, junto a la ventana, donde las virutas de caña crujían bajo los pies y siempre había una brocha pegada a algo. Allí, durante una semana, había nacido la cometa: dos cañas en cruz, papel rojo estirado como la piel de un tambor y una cola de lazos amarillos, cortita todavía, porque Aldo tenía prisa por terminarla. Cuando el engrudo se secó, Aldo la levantó contra la ventana y el papel se encendió como una brasa. Dentro de tres días llegaría el viento del norte, que solo visita la aldea una vez al año, y los viejos aseguraban que a quien lograba subirle una cometa, el viento le susurraba noticias de tierras lejanas. «Te haré volar más alto que el roble», prometió Aldo, y la cometa se estremeció un poco con la corriente.",
+     "archivo": "ecb7e1230fa0abc1.m4a",
+     "segundos": 61.44
+    },
+    {
+     "texto": "El viento llegó a media mañana, y Aldo subió a la colina con la cometa bajo el brazo. Allí arriba ya estaba media aldea. Lía, la más pequeña, soltó la suya, de papel de estraza y con una cola larga como una bufanda, y el viento se la llevó al cielo como si la hubiera estado esperando. «¡Mira, Aldo, mira!», gritó Lía. «¡Es facilísimo!» Aldo apretó los dientes, agarró la cuerda y echó a correr cuesta abajo. La cometa subió tres palmos, dio una vuelta entera sobre sí misma, luego otra, y se clavó en la hierba de cabeza. Aldo la sacudió y volvió a empezar. Pasó lo mismo. Y otra vez lo mismo. «¿Quieres que te sujete la cola?», se ofreció Lía. «No hace falta», respondió Aldo, con un tono más seco de lo que pretendía. «Es el viento. Hoy no quiere.»",
+     "archivo": "dffaa37835c4da49.m4a",
+     "segundos": 62.69
+    },
+    {
+     "texto": "Al pie de la colina, junto al pozo de la aldea, Aldo se sentó con la cometa sobre las rodillas y se puso a rascar con la uña una costra de engrudo. Mara se sentó a su lado y se echó el arco al hombro. «Tienes cara de flecha que no acierta», dijo sin dar vueltas. «¿Sabes por qué una flecha vuela recta? No es por la punta. Es por las plumas de atrás.» Sacó una del carcaj y la hizo girar entre los dedos. Luego miró hacia la colina, donde la cometa de Lía subía muy serena con su cola larga, y esperó. Aldo miró su propia cola, tan corta. «Las plumas…», murmuró. «Yo solo te cuento lo de las flechas», dijo Mara, y le guiñó un ojo. «A ver qué te cuenta a ti la cometa.»",
+     "archivo": "e5a761084f83c2cb.m4a",
+     "segundos": 53.31
+    },
+    {
+     "texto": "Aquella tarde Aldo volvió al taller y vació el cesto de los trapos sobre el suelo. Eligió un delantal viejo, una funda de almohada con un agujero, dos cintas de fiesta y una bufanda que nunca le había gustado, y lo cortó todo en tiras largas. Las fue anudando una a una a la cola de la cometa. «Si la cola es un timón», murmuró, «que sea un timón de verdad». Después dio la vuelta a la cometa, mojó un carbón en agua y escribió con letras torcidas en el reverso del papel: «Pista 1: la cola». Por primera vez desde que había llegado el viento, no sentía rabia, sino curiosidad. La cuerda, en cambio, ni la miró: la metió en el bolsillo hecha un revoltijo, porque ya tenía bastante con una cosa por vez.",
+     "archivo": "f913a51141645c07.m4a",
+     "segundos": 56.94
+    },
+    {
+     "texto": "Al día siguiente el viento seguía allí. Aldo subió a la colina con la cometa y con la cuerda hecha un revoltijo dentro del bolsillo, y esta vez, cuando soltó, ocurrió algo nuevo: la cometa no giró. Subió recta, despacito, ondeando la cola larga como una serpiente de fiesta. «¡Vuela!», gritó. «¡Vuela de verdad!» Pero la cuerda, que salía a puñados, hizo un nudo en el aire, se enroscó en los tobillos de Aldo y dio un tirón. Aldo cayó de bruces, y la cometa, libre de golpe, se fue derecha contra el roble y quedó colgada de una rama alta. Aldo, que se subía a todos los muros del castillo, llegó en un momento hasta la rama, pero al soltarla de las hojas el papel se rasgó con un quejido.",
+     "archivo": "85c9cddb543af0f5.m4a",
+     "segundos": 53.59
+    },
+    {
+     "texto": "Algo se movió detrás del roble. Aldo levantó la vista, con la cometa rota sobre las rodillas, y vio asomar un solo ojo bajo una capucha. Era Sombra, que salió despacio de entre las raíces. «Tranquilo… no hace falta que sigas», dijo en un susurro. «Yo hice una cometa de niño. Negra, para que nadie la viera caer. Se enredó en este mismo roble, y nunca la bajé. Lo que se rompe una vez se rompe siempre. Déjalo, Aldo.» Y se esfumó entre las sombras del tronco, como si el roble se lo hubiera tragado. Aldo apretó el papel rasgado. Le ardía el arañazo de la mejilla, y de pronto la idea de dejarlo no sonaba tan mal.",
+     "archivo": "83f6857c61a2d359.m4a",
+     "segundos": 49.23
+    },
+    {
+     "texto": "Esa noche, Aldo se quedó en el taller con un cabo de vela, la cometa rasgada y toda la rabia dando vueltas. Abrió la ventana para que le diera el aire en la cara y se puso a mirar cómo soplaba el viento del norte. No soplaba igual todo el tiempo: venía en golpes largos, se callaba un momento y volvía. Respiraba. Aldo fue contando cuánto duraba cada pausa y, sin darse cuenta, se puso a desenredar la cuerda nudo por nudo, de modo que el viento y los dedos fueron al mismo compás. Pegó el rasgón con engrudo, enrolló la cuerda en un carrete de madera y escribió debajo de la primera pista: «Pista 2: la cuerda, en orden».",
+     "archivo": "406055e67bf552ee.m4a",
+     "segundos": 50.57
+    },
+    {
+     "texto": "El tercer día llegó con la colina llena de gente. Había cometas de todos los colores y un viento del norte que soplaba con ganas. Aldo no había olvidado cómo respiraba el viento la noche anterior, a golpes largos con una pausa en medio. Aldo subió con la cometa remendada, la cola larga y la cuerda por fin enrollada, y Mara le cargó el carrete sin decir palabra. Desde el roble, Sombra miraba con los brazos cruzados. Aldo alzó la cometa y, en cuanto sintió el viento en la mejilla, la soltó. La cometa se alzó un palmo y se quedó flotando sin ganas, hasta que el viento, que justo entonces tomaba aliento, la dejó caer en la hierba. Aldo no gritó. Se quedó mirando cómo se rizaba el pelo de Lía, que esperaba con su cometa en alto, sin correr, a que llegase la siguiente ráfaga. «Ah», pensó Aldo. «Ella no corre. Espera.» Y sacó el carbón: «Pista 3: soltar con ráfaga».",
+     "archivo": "869dc8b1597526a1.m4a",
+     "segundos": 68.73
+    },
+    {
+     "texto": "Esta vez, Aldo no corrió. Se puso de espaldas al viento, con la cometa en alto y la cuerda en orden a sus pies, y esperó. Llegó la ráfaga, ancha y firme, y Aldo soltó. La cometa se elevó sin un titubeo, con la cola larga ondeando detrás, y la cuerda salió del carrete limpia entre los dedos, vuelta tras vuelta. Pasó el roble y siguió subiendo, hasta ser un punto rojo en lo alto del cielo. Lía gritó, Mara aplaudió, y toda la colina se volvió a mirarla. Sombra, que miraba desde el roble, asomó un solo ojo. «Mi cometa negra sigue en la rama de arriba», dijo con un siseo. «Quizá todavía vuela.» Se acercó a Aldo con las manos tendidas, y Aldo le puso el carrete entre ellas, para que sintiera el tirón del viento. Sombra no dijo nada. Pero se le escapó una sonrisa, de esas que se esconden debajo de la capucha.",
+     "archivo": "61da7a79d789a224.m4a",
+     "segundos": 66.87
+    },
+    {
+     "texto": "Al volver a casa, Aldo colgó la cometa de un clavo junto a la ventana y se quedó mirándola. Le dolían un poco los brazos, porque había sujetado la cuerda toda la tarde. Tenía las manos arañadas, un rasguño en la mejilla y los zapatos llenos de hierba. Tres pistas escritas con carbón, tres fallos convertidos en tres frases. En la cama, bajo la manta, Aldo pensó en el viento que había visto respirar desde la ventana, la noche en que volvió a empezar. Después escuchó el viento del norte que se iba despacio, silbando por el techo, y pensó que volvería el año próximo y que lo estaría esperando. Se durmió antes de terminar de contar las estrellas del cielo.",
+     "archivo": "03bb63dd153baa45.m4a",
+     "segundos": 51.55
     }
    ]
   },
@@ -3643,6 +4078,71 @@
     }
    ]
   },
+  "mar:regata_atajo": {
+   "incluido": false,
+   "titulo": {
+    "texto": "La regata de las Estrellas",
+    "archivo": "7e7dc963d9b0c65a.m4a",
+    "segundos": 1.72
+   },
+   "ensenanza": {
+    "texto": "La enseñanza de hoy: Un triunfo con trampa pesa más que cualquier trofeo; aunque nadie nos haya visto, reconocerlo y reparar el daño nos devuelve la paz.",
+    "archivo": "cabdf9cb459c2c00.m4a",
+    "segundos": 12.86
+   },
+   "escenas": [
+    {
+     "texto": "Cada verano, el puerto celebraba la Regata de las Estrellas: una carrera de botes pequeños alrededor de la Isla Quieta, con un trofeo de nácar para quien llegara primero. Aquel año, la capitana Estela había inscrito a Vega y a Leo en el bote de la Gaviota. «Solo hay una norma», les recordó la víspera, señalando el dibujo del recorrido clavado en el tablón del muelle. «Nadie cruza por encima del arrecife. Los corales tardan cien años en crecer, y una quilla los rompe en un segundo.» Vega asintió muy seria, aunque en lo único que podía pensar era en el brillo del trofeo, colocado sobre un cojín de terciopelo azul.",
+     "archivo": "ab076aff5c38ab10.m4a",
+     "segundos": 49.27
+    },
+    {
+     "texto": "A la mañana siguiente, el muelle estaba lleno de banderines y de gente que gritaba nombres. Doce botes esperaban la señal, balanceándose sobre el agua verde. En el de al lado, con su sombrero de tres picos y el bigote encerado para la ocasión, remaba el capitán Mostacho, que llevaba diez años intentando ganar y diez años quedando segundo. «Este año el trofeo es mío, grumetes», refunfuñó, y les guiñó un ojo que no era del todo simpático. Leo se escupió en las manos para agarrar bien el remo. Sonó la bocina de salida, y los remos se hundieron a la vez con un chapoteo enorme.",
+     "archivo": "4ad27bd6a97ebe8a.m4a",
+     "segundos": 45.56
+    },
+    {
+     "texto": "Durante la primera hora, Vega y Leo remaron como nunca. Adelantaron a dos botes de pescadores y a uno de niñas del puerto que cantaban para marcar el ritmo. Pero Mostacho iba siempre adelante, con sus brazos de oso, y el bote de Ola, la pescadora, les sacaba un largo de ventaja. Al llegar a la punta de la isla, el viento cambió y empezó a soplar de cara. Leo tenía las manos llenas de ampollas. Vega miró el rodeo que quedaba por delante, larguísimo, siguiendo la línea de boyas que marcaba el borde del arrecife.",
+     "archivo": "5c4e9e1eaba4e30c.m4a",
+     "segundos": 39.01
+    },
+    {
+     "texto": "Entonces Vega vio el hueco. Entre dos boyas, el agua se volvía de un azul claro y brillante: era el arrecife, a solo un palmo bajo la superficie. Por allí se llegaba a la meta en la mitad de tiempo. «Nadie nos verá», susurró Vega, porque los jueces estaban al otro lado de la isla. Leo dudó, pero estaba tan agotado de remar que no dijo nada. Y Vega, con el corazón golpeando, giró el timón del bote hacia el hueco. La quilla rozó algo duro, crac, crac, y luego volvieron al agua honda. Detrás de ellos, el agua clara se enturbió de arena.",
+     "archivo": "5a13dc54b21d0aec.m4a",
+     "segundos": 44.54
+    },
+    {
+     "texto": "Llegaron en primer lugar. El puerto entero estalló en aplausos, y alguien les puso al cuello unas guirnaldas de flores. Mostacho llegó segundo otra vez, rojo como un tomate, y tiró su sombrero al suelo. Ola llegó tercera, sonriendo a pesar de todo. Cuando el alcalde le entregó el trofeo de nácar, Vega lo sostuvo en alto, y la gente coreó su nombre. Pero el trofeo pesaba muchísimo más de lo que parecía. Y más tarde, en su hamaca, Vega no consiguió dormir: cada vez que cerraba los ojos, oía otra vez el crac, crac de la quilla contra los corales.",
+     "archivo": "8d4607c5b2446a39.m4a",
+     "segundos": 45.51
+    },
+    {
+     "texto": "A medianoche, una sombra se coló junto a la hamaca de Vega. Era Leo, con los ojos muy abiertos. «Tampoco puedes dormir», susurró, y no era una pregunta. Se sentaron en el suelo del camarote, con las rodillas abrazadas. «Yo vi el arrecife», confesó Leo. «Vi que el agua era clara y no dije nada, porque estaba cansadísimo y quería ganar.» Vega sintió un alivio extraño al oírlo, porque ya no era la única persona que cargaba con aquel peso. Hablaron en voz baja durante un buen rato, del trofeo, de los corales, de lo que diría la capitana. No decidieron nada. Pero cuando Leo volvió a su hamaca, Vega supo que, hiciera lo que hiciera, no iba a hacerlo sin Leo.",
+     "archivo": "dc8bad595331066e.m4a",
+     "segundos": 52.01
+    },
+    {
+     "texto": "A primera hora, Vega bajó a nadar al arrecife, sin decirle nada a nadie. Bajo el agua, el hueco entre las boyas parecía un jardín después de una tormenta. Había ramas de coral partidas, blancas como huesos de pescado, y un pez naranja daba vueltas alrededor de su casa rota, sin saber adónde ir. Vega se quedó flotando un buen rato, mirando el destrozo. Cien años para crecer, había dicho la capitana. Un segundo para romperse. Subió a respirar con los ojos ardiendo, y no solo por la sal.",
+     "archivo": "84b81fe494ed412f.m4a",
+     "segundos": 38.92
+    },
+    {
+     "texto": "Esa misma mañana, ante el tablón del muelle, Vega pidió que llamaran a todo el mundo. Leo se puso a su lado sin que se lo pidiera. «No ganamos limpiamente», dijo Vega, y la voz le temblaba. «Cruzamos por el arrecife. Rompimos corales. Nadie nos vio, pero nosotros lo sabemos.» Dejó el trofeo de nácar sobre el cojín de terciopelo. Se hizo un silencio larguísimo. La capitana Estela se acercó despacio, y Vega esperó un regaño. Pero la capitana solo le apoyó una mano en el hombro. «Esto», dijo en voz alta para que la oyera todo el puerto, «vale más que diez trofeos».",
+     "archivo": "d9db6a3b4c749055.m4a",
+     "segundos": 46.49
+    },
+    {
+     "texto": "Entonces pasó algo que nadie esperaba. Mostacho se abrió paso entre la gente, con el sombrero arrugado en las manos. «Hace once años», dijo con su voz de trueno chiquito, «yo también corté por el arrecife. Y gané. Y nunca se lo dije a nadie.» El bigote le temblaba. «Por eso llevo diez años quedando segundo: porque ya no me atrevía a ganar.» Mostacho, que había llegado segundo, no quiso el trofeo. «Yo no me lo merezco», dijo. Así que, por votación de todos, fue para Ola, que había llegado tercera sin hacer trampa. Y esa tarde bajaron los tres, Mostacho, Leo y Vega, con cestas de rocas lisas para construir un pequeño muro que protegiera el hueco del arrecife, para que los corales pudieran crecer tranquilos.",
+     "archivo": "4d6c156da7ea95f0.m4a",
+     "segundos": 57.4
+    },
+    {
+     "texto": "Por la noche, desde la cubierta de la Gaviota, se veía el arrecife brillar bajo la luna. Vega pensó en el pez naranja y en su casa rota, y en que dentro de muchos años alguien bucearía allí y vería un jardín entero, sin saber nunca lo que había pasado. Le pareció bien así. Ya no pesaba nada en su pecho. La capitana Estela le trajo una manta y se sentó a su lado sin decir palabra. Y Vega, mecido por el barco, se durmió antes de que la luna terminara de subir.",
+     "archivo": "c7254b6cf1bde543.m4a",
+     "segundos": 37.99
+    }
+   ]
+  },
   "mar:ahorro_faro": {
    "incluido": false,
    "titulo": {
@@ -3893,6 +4393,71 @@
     }
    ]
   },
+  "mar:faroles_remolino": {
+   "incluido": false,
+   "titulo": {
+    "texto": "La red y la noche de las lámparas",
+    "archivo": "12d26a56a22179b2.m4a",
+    "segundos": 2.69
+   },
+   "ensenanza": {
+    "texto": "La enseñanza de hoy: Ser buen amigo no es cumplir una promesa al pie de la letra, sino entender lo que significa: no dejar solo a quien nos necesita.",
+    "archivo": "ece08e5888c7b954.m4a",
+    "segundos": 13.14
+   },
+   "escenas": [
+    {
+     "texto": "La noche de las lámparas era la fiesta más bonita del año en el puerto. Cada familia soltaba una lámpara de papel sobre el agua, y miles de lucecitas flotaban mar adentro, como un cielo puesto del revés. Bruno y Leo llevaban semanas preparándola. Habían hecho una lámpara entre los dos, pintada con peces y estrellas, y se habían prometido una cosa. La verían navegar desde la punta del muelle, el mejor sitio de todos, sin separarse ni un minuto. «Prometido por la Gaviota», dijo Leo, chocando la mano de Bruno. Y Bruno lo repitió, muy serio, porque una promesa de marinero no se rompe.",
+     "archivo": "08f1f2659a0bd840.m4a",
+     "segundos": 48.72
+    },
+    {
+     "texto": "La tarde de la fiesta, cuando ya se encendían las primeras lámparas, Pimienta el loro llegó volando como una flecha verde. Se posó en el hombro de Bruno, sin aliento, y empezó a chillar: «¡Pulpo! ¡Red! ¡Red!». Bruno sintió un escalofrío. El pulpo travieso del arrecife era su amigo desde hacía meses, desde la historia de los sombreros. Si Pimienta estaba tan nervioso, era que algo malo pasaba en el arrecife. Leo miró la lámpara que tenían en las manos y luego miró a Bruno. «La fiesta empieza en un rato», dijo despacio.",
+     "archivo": "2a5c9082a00c15d2.m4a",
+     "segundos": 42.35
+    },
+    {
+     "texto": "Bruno se quedó un momento sin moverse, partido en dos. Quería cumplir la promesa. Leo había esperado toda la semana aquella fiesta. Pero el pulpo estaba en apuros, y no tenía a nadie más. «Lo siento mucho, Leo», dijo al fin. «Tengo que ir. Nuestro amigo del arrecife me necesita.» Leo apretó los labios y no contestó. Se dio la vuelta con la lámpara en las manos y se fue hacia el muelle, sin mirar atrás. A Bruno le dolió aquel silencio más que si le hubiera gritado. Pero agarró un farol de barco para alumbrarse, y echó a correr hacia la playa del arrecife.",
+     "archivo": "ffd135eab5aa9097.m4a",
+     "segundos": 43.7
+    },
+    {
+     "texto": "Bruno corrió por la playa con el farol en la mano, mientras a su espalda la música de la fiesta se hacía cada vez más pequeña. Las primeras lámparas de papel ya flotaban en el puerto, y su luz se reflejaba en la arena mojada. A cada paso, Bruno pensaba en la cara de Leo, en su silencio. Una parte quería darse la vuelta y correr hacia el muelle. Pero Pimienta volaba adelante, chillando sin parar, y la otra parte sabía que un amigo en apuros no puede esperar a que termine una fiesta. Al llegar a las rocas del arrecife, Bruno dejó el farol encendido sobre una roca, se quitó las sandalias y respiró hondo tres veces. Luego se metió en el agua oscura.",
+     "archivo": "e916e3ff2ddd2e01.m4a",
+     "segundos": 52.2
+    },
+    {
+     "texto": "Allí el agua era poco honda, y la luna llena alumbraba el fondo. Entre las rocas, Bruno encontró al pulpo Remolino. Una vieja red de pesca, perdida en alguna tormenta, se le había enredado en los ocho brazos. Cuanto más se movía el pulpo, más se apretaba la red. Estaba pálido, casi blanco, que es el color de los pulpos cuando tienen miedo. Al ver a Bruno, se le iluminaron los ojos. Bruno empezó a desatar los nudos uno por uno, pero eran muchísimos, duros como nueces, y tenía que subir a respirar cada poco. Iba a tardar horas. Y la red seguía apretando.",
+     "archivo": "9e4ac5cf09df5adb.m4a",
+     "segundos": 44.54
+    },
+    {
+     "texto": "Entonces otra cara apareció entre las burbujas. Era Leo. Había dejado la lámpara de los peces y las estrellas en la roca, junto al farol, y traía unas tijeras de cocina de Tío Cazo. Cuando subieron juntos a respirar, Leo escupió agua y dijo: «Una promesa de marinero es no separarse. Y tú te ibas sin mí». Bruno se rio con los ojos llenos de lágrimas. Volvieron a bajar. Con las tijeras, y con cuatro manos en lugar de dos, cortaron la red nudo a nudo, mientras Remolino les hacía señas para indicarles dónde apretaba más.",
+     "archivo": "9b2482bd245ad94a.m4a",
+     "segundos": 41.52
+    },
+    {
+     "texto": "Por fin, el último nudo cedió. Remolino se estiró como una estrella de mar, con los ocho brazos libres, y recuperó de golpe todos sus colores: rojo, morado, naranja, y uno nuevo, dorado, que no le habían visto nunca. Dio tres vueltas alrededor de Bruno y de Leo, abrazándolos con todos sus brazos a la vez, y les llenó la cara de burbujas que hacían cosquillas. Después se quedó un momento parado, mirando la red cortada en el fondo. La enrolló con cuidado y se la llevó a su cueva, para que ningún otro animal se enredara en aquella red.",
+     "archivo": "bd9cf7f39259ad08.m4a",
+     "segundos": 43.42
+    },
+    {
+     "texto": "Antes de despedirse, Remolino se sumergió un momento y volvió con algo en la punta de un brazo. Eran dos conchas iguales, rayadas de rosa y blanco, tan pulidas que brillaban como espejos. Le dio una a Bruno y otra a Leo. «En el arrecife, los amigos de verdad comparten la misma concha», explicó con su voz de burbuja, «porque dicen que así el mar no los separa nunca». Leo se la colgó del cuello con un trozo de cordel. Bruno hizo lo mismo. Y el pulpo, satisfecho, se puso de un color nuevo que todavía no tenía nombre, entre el rosa de la vergüenza y el dorado de la alegría.",
+     "archivo": "2b5c9cf5375da3c2.m4a",
+     "segundos": 46.35
+    },
+    {
+     "texto": "Cuando salieron del agua, temblando y felices, ya era tarde. Se habían perdido el momento de soltar las lámparas. Pero al llegar a la orilla se quedaron con la boca abierta. Miles de lucecitas se mecían sobre las olas: la corriente las había traído desde el puerto hasta la playa del arrecife. Era como estar dentro del cielo. Leo fue a buscar la lámpara de los peces, que seguía encendida sobre la roca. La pusieron juntos sobre el agua y la vieron alejarse despacio entre las demás. Remolino asomó la cabeza a su lado y la miró con sus ojos enormes, que reflejaban mil luces. Luego les cantó una canción de burbujas que nadie entendió, pero que sonaba bonita, y se hundió despacio en el mar.",
+     "archivo": "ea50e0ef6488c2d1.m4a",
+     "segundos": 54.24
+    },
+    {
+     "texto": "Se sentaron un rato en la arena, mirando cómo las lámparas se alejaban hacia el horizonte. «Fue la mejor noche de las lámparas de mi vida», dijo Leo. «Y no la vimos desde la punta del muelle.» Bruno se rio. Pensó que una amistad de verdad no consiste en cumplir las promesas al pie de la letra, sino en saber lo que de verdad querían decir. Los dos amigos volvieron a la Gaviota con el farol en la mano y las conchas colgadas del cuello. Ya en su hamaca, con ropa seca y bien tapado, Bruno se quedó dormido enseguida.",
+     "archivo": "2db80e3906a8fd0e.m4a",
+     "segundos": 41.24
+    }
+   ]
+  },
   "mar:pimienta_repite": {
    "incluido": false,
    "titulo": {
@@ -4095,6 +4660,141 @@
      "texto": "Esa noche, de vuelta en la Gaviota, Bruno se acostó en su hamaca. Le dolían los brazos, pero era un dolor de los buenos. Por la ventanita redonda se veía la luz del faro, que daba vueltas despacio sobre la bahía. Una vuelta, y otra vuelta. Esta vez, a Bruno no le importaba que algo diera vueltas. Contó los destellos, uno, y dos, hasta que se le cerraron los ojos.",
      "archivo": "953d4be7c92f3f28.m4a",
      "segundos": 30.33
+    }
+   ]
+  },
+  "cosmos:atajo_anillo": {
+   "incluido": false,
+   "titulo": {
+    "texto": "El atajo del anillo",
+    "archivo": "49f7f6a58c088fc7.m4a",
+    "segundos": 1.58
+   },
+   "ensenanza": {
+    "texto": "La enseñanza de hoy: Las normas suelen tener razones que no vemos; decir la verdad sobre nuestra trampa, aunque nadie la viera, ayuda a reparar lo que rompimos.",
+    "archivo": "4a89d2f94bf8651f.m4a",
+    "segundos": 13.28
+   },
+   "escenas": [
+    {
+     "texto": "Cada año, la escuela de cadetes celebraba la Carrera del Anillo, y aquel año Lira por fin tenía edad para participar. Había que salir de la plataforma, rodear el anillo de asteroides y volver antes que nadie. El premio era una copa plateada con forma de cohete, y el nombre del ganador grabado en la pared de la escuela. La comandante Aurora reunió a los cadetes antes de la salida y les señaló una pantalla luminosa. «Solo una norma», dijo, muy seria. «Por la zona azul del anillo no se pasa. Nunca. Aunque parezca el camino más corto.» Nadie preguntó por qué, y la comandante tampoco lo explicó.",
+     "archivo": "56ea742e24900e5c.m4a",
+     "segundos": 47.55
+    },
+    {
+     "texto": "Sonó la bocina y los cohetes pequeños despegaron como una bandada de pájaros. Lira pilotaba con las dos manos en los mandos, mordiéndose la lengua de concentración, como hacía siempre que algo le importaba de verdad. A su lado, en la pantalla de la cabina, se veían las lucecitas de los demás cadetes. Pip, que era el más rápido de la escuela, iba primero, y Lira segunda, muy cerca. Durante un buen rato fueron así, casi pegados, esquivando rocas que giraban despacio. Pero en la mitad de la carrera, Pip sacó ventaja, y Lira empezó a quedarse atrás.",
+     "archivo": "6974bae1f7db7e03.m4a",
+     "segundos": 44.91
+    },
+    {
+     "texto": "Entonces Lira vio la zona azul. Era un hueco limpio entre los asteroides, sin una sola roca, y por allí se podía cortar media vuelta entera. Nadie lo vería: los demás iban demasiado lejos, y la comandante seguía la carrera desde la plataforma. Lira dudó un segundo. Pensó en la copa plateada, en su nombre en la pared, en la cara que pondría todo el mundo. «Solo esta vez», se dijo. Y giró los mandos hacia el azul. El cohete pasó como una flecha por el hueco, y al salir del otro lado, Lira iba primera, con Pip muy por detrás.",
+     "archivo": "c4643fe7ed3b3768.m4a",
+     "segundos": 43.33
+    },
+    {
+     "texto": "Lira llegó a la plataforma antes que nadie. Todos aplaudieron, y la comandante Aurora le puso la copa plateada en las manos. Pip llegó segundo, sudando y con la cara roja. «¡Qué rápida fuiste!», le dijo, sin rencor, y le dio la mano, porque Pip era así. Esa tarde, Lira tuvo que contar la carrera diez veces, y cada vez que la contaba se saltaba un trocito. Se saltaba siempre el mismo. La copa brillaba muchísimo, pero pesaba más de lo que parecía, como si estuviera llena de plomo por dentro.",
+     "archivo": "0cef332189f28986.m4a",
+     "segundos": 39.33
+    },
+    {
+     "texto": "Al día siguiente, la comandante Aurora apareció en la escuela con la cara muy seria. «Ayer, en plena carrera, saltó una alarma en el observatorio», explicó. «Algo atravesó la zona azul. Allí hay un arco de cristal muy antiguo, tan fino como una pompa de jabón, y se rompió un trozo.» Hizo una pausa y miró a todos los cadetes, uno por uno. «Si nadie sabe qué pasó, tendremos que suponer que fue una roca suelta, y nunca sabremos dónde reforzar el arco.» A Lira se le secó la boca, y la copa, en su estantería, parecía mirar.",
+     "archivo": "64fc54364234177c.m4a",
+     "segundos": 42.59
+    },
+    {
+     "texto": "Esa noche, Lira no podía dormir. Si contaba la verdad, perdería la copa, y todos sabrían que había hecho trampa. Pip sabría que la carrera era suya. La comandante, que confiaba tanto en Lira, quizá ya no la dejaría pilotar. Pero si se callaba, el arco de cristal se quedaría roto, y nadie sabría dónde arreglarlo. Lira pensó en el secreto creciendo dentro de su pecho, cada día un poco más pesado. Y comprendió que la copa no era lo que pesaba. Lo que pesaba era callar.",
+     "archivo": "089f96a6863539f8.m4a",
+     "segundos": 38.27
+    },
+    {
+     "texto": "A la mañana siguiente, Lira fue al despacho de la comandante Aurora con la copa entre las manos. La dejó encima de la mesa. «Fui yo», dijo, y la voz le salió más pequeña de lo que quería. «Crucé la zona azul para ganar. Sé por dónde pasé, y puedo enseñárselo en la pantalla.» La comandante no dijo nada durante un rato larguísimo. Luego se levantó, encendió la pantalla luminosa y le dio un puntero. Lira señaló el camino exacto, sin saltarse nada. Por primera vez desde la carrera, se sintió ligera, aunque tenía ganas de llorar.",
+     "archivo": "9f95555d7ca56698.m4a",
+     "segundos": 40.36
+    },
+    {
+     "texto": "«Gracias», dijo por fin la comandante Aurora. «Hacer trampa estuvo mal, y lo sabes. Pero decir la verdad cuando nadie te vio es lo más difícil que puede hacer un cadete.» Gracias al camino que señaló Lira, ese mismo día salieron a reparar el arco. Lira fue con ellos, porque pidió ayudar, y pasó la tarde entera sujetando placas de cristal mientras la comandante las soldaba con una luz fría. El arco quedó otra vez entero, finísimo y brillante, como una cinta de luz entre las rocas.",
+     "archivo": "17ff15549e8c0ea5.m4a",
+     "segundos": 39.2
+    },
+    {
+     "texto": "De vuelta, en la cabina, la comandante Aurora le explicó por fin el secreto de la zona azul. «Debajo del arco nacen los cometas pequeños», dijo. «Se forman despacio, durante siglos, con el polvo que el arco protege del viento de las estrellas. Si el arco se rompe, los cometas no nacen.» Lira miró por la ventana, muy seria, hacia aquel hueco limpio que había usado como atajo. No era un hueco vacío: era una cuna. Pensó en lo poco que había faltado para que nadie lo supiera nunca. «Por eso las normas tienen razones, aunque no siempre las digamos», añadió la comandante. «Y por eso necesitábamos tu verdad para encontrar la grieta.» Lira asintió, y apuntó aquella frase en la libreta de cadete, para no olvidarla jamás.",
+     "archivo": "ef75cbb34737581b.m4a",
+     "segundos": 58.89
+    },
+    {
+     "texto": "La copa la ganó Pip, como tenía que ser. Cuando la comandante Aurora se la dio, delante de toda la escuela, Lira fue quien aplaudió primero. Pip se acercó después, con la copa en la mano. «Me lo contó la comandante», dijo. «No hacía falta que dijeras nada, y lo dijiste.» Se quedó pensando un momento. «La próxima carrera te gano por el camino largo, ¿está bien?» Lira se rio, porque ya tenía muchísimas ganas de la próxima carrera, y esta vez por el camino de verdad.",
+     "archivo": "a10b77c099ad95a9.m4a",
+     "segundos": 36.55
+    },
+    {
+     "texto": "Esa noche, desde la ventana de su dormitorio, Lira miró hacia el anillo. No se veía el arco, claro, estaba demasiado lejos. Pero sabía que estaba allí, entero, brillando entre las rocas, y que una parte de ese brillo la había puesto Lira. Se dio cuenta de que ya no le importaba no tener su nombre en la pared de la escuela. Tenía algo mejor: podía mirar a todo el mundo a los ojos. Con ese pensamiento suave en el pecho, se quedó dormida enseguida.",
+     "archivo": "63bd64a887fb80fd.m4a",
+     "segundos": 37.8
+    }
+   ]
+  },
+  "cosmos:aterrizaje": {
+   "incluido": false,
+   "titulo": {
+    "texto": "El examen de piloto",
+    "archivo": "e035a1d7328cabc9.m4a",
+    "segundos": 1.49
+   },
+   "ensenanza": {
+    "texto": "La enseñanza de hoy: Cuando algo falla una y otra vez, mirar cada error de frente nos enseña a dejar de intentarlo igual y empezar a intentarlo mejor.",
+    "archivo": "9c17551214f6ef5d.m4a",
+    "segundos": 14.77
+   },
+   "escenas": [
+    {
+     "texto": "Desde que tenía memoria, Orión quería ser piloto de cohetes. Se sabía todos los botones de la cabina, todas las rutas del espacio y todos los nombres de los planetas cercanos. Pero para pilotar de verdad había que aprobar el examen de la escuela, y la parte más difícil era el aterrizaje. La comandante Aurora siempre decía que despegar lo hace cualquiera: lo que distingue a un piloto es saber volver a casa. «Bajar despacio es más difícil que subir deprisa», repetía. A Orión aquello le parecía una exageración, porque en sus sueños los aterrizajes eran siempre perfectos, suaves como una hoja que cae en un charco. Y pronto Orión iba a descubrir cuánta razón tenía la comandante.",
+     "archivo": "728e98fccbe26447.m4a",
+     "segundos": 55.54
+    },
+    {
+     "texto": "El primer intento de aterrizaje terminó con el cohete de prácticas rebotando dos veces en la plataforma, como una pelota. El segundo, con el cohete posado tan torcido que hubo que enderezarlo con una grúa. Orión lo intentaba con todas sus fuerzas, apretando los mandos hasta que le dolían los dedos. Pero cuanto más apretaba, peor le salía. La comandante Aurora observaba desde abajo, con los brazos cruzados, y le hacía siempre la misma pregunta: «¿Qué pasó esta vez?». Y Orión nunca sabía qué contestar. Solo sabía que le salía mal, y que cada fallo dolía un poco más que el anterior.",
+     "archivo": "8beef003d8b7a796.m4a",
+     "segundos": 48.67
+    },
+    {
+     "texto": "El tercer intento salió peor que los dos primeros. El cohete de prácticas bajó demasiado deprisa, dio un bote en la plataforma y acabó de lado, con una aleta doblada. La comandante Aurora apuntó algo en su tablilla sin decir nada. Orión se quitó el casco y se sentó en el borde de la plataforma, con las piernas colgando sobre las nubes. Faltaba solo una semana para el examen de piloto, y no conseguía aterrizar ni una vez. Pensó en dejarlo. Pero luego se acordó de lo que decía la comandante siempre: un error es solo un camino que ya sabes que no funciona. Así que se secó la cara y pensó en otra manera de practicar.",
+     "archivo": "890c14c420f055f5.m4a",
+     "segundos": 49.97
+    },
+    {
+     "texto": "Orión se dio cuenta de una cosa: cada vez que el cohete bajaba, se le aceleraba el corazón, y entonces apretaba los mandos demasiado. Así que decidió practicar primero lo de dentro. Cada mañana se sentaba en la cabina del cohete de prácticas, sin encenderlo, y respiraba despacio: cuatro segundos para tomar aire, cuatro para soltarlo. Luego imaginaba el aterrizaje entero, paso a paso, sin prisa. Al principio le parecía una tontería y se aburría. Pero poco a poco notó que las manos le temblaban menos, y que podía pensar aunque estuviera nervioso. Había aprendido a respirar despacio cuando el corazón corría, y con la respiración tranquila, las manos también se quedaban tranquilas.",
+     "archivo": "35a006112704128b.m4a",
+     "segundos": 54.71
+    },
+    {
+     "texto": "La víspera del examen, Orión no hizo ningún aterrizaje. La comandante Aurora le había dicho que el día antes de algo importante también hay que descansar. Así que Orión dio un paseo por la aldea, merendó con Pip y Nube y miró los cohetes de la plataforma desde lejos, como si fueran amigos. Le temblaba un poco la barriga, claro. Pero no era el temblor de antes, el de no saber qué hacer. Era otro distinto, más suave, el de alguien que practicó mucho y quiere demostrarlo. Al volver a casa, repasó mentalmente cada paso del aterrizaje, despacio, uno detrás de otro, como quien cuenta los escalones de una escalera conocida. Estaba cansado de tanto practicar, y por fin tenía ganas de que llegara el día.",
+     "archivo": "082a0b9e31a92725.m4a",
+     "segundos": 56.84
+    },
+    {
+     "texto": "Llegó por fin el día del examen, con un cielo limpio y sin viento. Toda la escuela estaba en la plataforma, y Orión subió a la cabina con las piernas temblando un poco. La comandante Aurora dio la señal. El despegue salió perfecto, la vuelta a la luna también. Y entonces llegó el momento del aterrizaje. La plataforma apareció abajo, entre las nubes, pequeña como una moneda. Orión se acordó de todo lo que había practicado durante la semana, de cada error y de cada intento. Bajó la palanca, despacio, muy despacio, sin apretar de más. El cohete descendió entre las nubes como una pluma.",
+     "archivo": "feb27f66da8431ef.m4a",
+     "segundos": 48.39
+    },
+    {
+     "texto": "¡Plof! El cohete se posó en la plataforma tan suave que casi no se oyó. Recto, en el centro exacto, sin un solo rebote. Durante un segundo, nadie dijo nada. Luego toda la escuela estalló en aplausos, y Pip lanzó su gorra al aire. Orión se quedó sentado en la cabina, con las manos todavía en los mandos, sin poder creérselo. La comandante Aurora subió la escalerita, abrió la compuerta y le tendió la mano. «Bienvenido a casa, piloto», le dijo.",
+     "archivo": "0d1c802ce187ab9e.m4a",
+     "segundos": 36.73
+    },
+    {
+     "texto": "Después del examen, la comandante Aurora le hizo la pregunta de siempre: «¿Qué pasó esta vez?». Y esta vez, Orión sí sabía contestar. Le contó los tres aterrizajes fallidos, las ganas de abandonar, y la manera nueva que había encontrado de practicar. La comandante escuchaba asintiendo. «¿Sabes por qué te hacía siempre esa pregunta?», dijo al final. «Porque los errores solo sirven si los miras de frente. Tú los miraste, uno a uno. Y por eso aprendiste.»",
+     "archivo": "2b2e4cdacd5101a6.m4a",
+     "segundos": 36.83
+    },
+    {
+     "texto": "Esa tarde, en una pequeña ceremonia, la comandante Aurora le prendió en el traje la insignia de piloto: un cohete plateado con una estrella en la punta. Le explicó que todos los pilotos de la aldea tenían una historia de fracasos antes de su insignia. Ella misma había fallado el examen dos veces antes de aprobarlo. «A la tercera lo logré», dijo, «porque dejé de intentarlo igual y empecé a intentarlo mejor». Orión acarició la insignia con el dedo. No era la más brillante del mundo, pero era la suya, y le había costado cada rebote.",
+     "archivo": "edad9f1ffd1c5464.m4a",
+     "segundos": 41.01
+    },
+    {
+     "texto": "Esa noche, Orión dejó la insignia en la mesita de noche, al lado de la cama, donde pudiera verla al despertarse. Por la ventana, la plataforma brillaba entre las nubes, pequeña y en calma. Se acordó de las mañanas en la cabina, respirando despacio, como las olas de las nubes, y de los tres aterrizajes torcidos, que ahora le parecían casi divertidos. Pensó que al día siguiente quería aprender a aterrizar en la luna de verdad, y que seguramente no le saldría a la primera. Y por primera vez, eso no le dio miedo. Se tapó, sonrió y se durmió.",
+     "archivo": "be5d1c6caacb1153.m4a",
+     "segundos": 44.3
     }
    ]
   },

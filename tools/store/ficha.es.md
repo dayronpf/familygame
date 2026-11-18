@@ -15,7 +15,7 @@ Si cambia algo de esto, hay que cambiar también esta ficha y el formulario de d
 
 ## Nombre — 30 caracteres
 
-> Mininoches: cuentos para dormir
+> Mininoches: cuentos de noche
 
 ## Descripción corta (Google Play) — 80 caracteres
 
