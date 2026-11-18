@@ -8,6 +8,7 @@
 #   FTP_USERNAME   la cuenta FTP cuya carpeta es /home/tuven780/external/cuentos.tuvendor.com
 #   FTP_PASSWORD   su contraseña
 #   DEPLOY_TOKEN   el mismo valor que MININOCHES_DEPLOY_TOKEN en el .env del servidor
+#   REVIEW_CODE    código para los revisores de las tiendas (el gancho lo crea o reactiva); opcional
 # El .env del servidor no se sube nunca: vive solo en el servidor.
 name: Servidor (despliegue)
 
@@ -86,4 +87,6 @@ jobs:
           curl -fsS -X POST \
             -H "Authorization: Bearer ${{ secrets.DEPLOY_TOKEN }}" \
             -H "Accept: application/json" \
+            -H "Content-Type: application/json" \
+            -d "{\"review_code\":\"${{ secrets.REVIEW_CODE }}\"}" \
             https://cuentos2.tuvendor.com/internal/deploy

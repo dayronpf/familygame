@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../brand.dart';
@@ -126,6 +127,34 @@ class _PaywallPageState extends State<PaywallPage> {
     // En la versión de las tiendas se canjean los códigos de la tienda (Apple «offer codes», códigos promocionales de
     // Google Play): ni Apple ni Google permiten códigos propios que abran contenido de pago. Los códigos del servidor
     // quedan para las compilaciones de prueba.
+    //
+    // Excepción en Android: los revisores de Google Play no pueden pagar ni usar la prueba gratis, así que se les da un
+    // código del servidor (docs/36). Google lo permite; Apple no (3.1.1), por eso en iPhone solo queda el de la tienda.
+    final serverCodes = access.api != null && defaultTargetPlatform == TargetPlatform.android;
+    if (!access.devAvailable && serverCodes) {
+      final choice = await showModalBottomSheet<String>(
+        context: context,
+        backgroundColor: Palette.card,
+        builder: (context) => SafeArea(
+          child: Column(mainAxisSize: MainAxisSize.min, children: [
+            ListTile(
+              key: const Key('redeem-store'),
+              leading: const Icon(Icons.shop_outlined),
+              title: const Text('Código de Google Play'),
+              onTap: () => Navigator.pop(context, 'store'),
+            ),
+            ListTile(
+              key: const Key('redeem-server'),
+              leading: const Icon(Icons.card_giftcard),
+              title: Text('Código de $appName'),
+              onTap: () => Navigator.pop(context, 'server'),
+            ),
+          ]),
+        ),
+      );
+      if (!mounted || choice == null) return;
+      if (choice == 'server') return _redeemServerCode();
+    }
     if (!access.devAvailable) {
       final handled = await _purchases?.redeemWithStore() ?? false;
       if (!mounted) return;
@@ -135,6 +164,13 @@ class _PaywallPageState extends State<PaywallPage> {
               : 'Los códigos se canjean en la tienda de tu teléfono.')));
       return;
     }
+    return _redeemServerCode();
+  }
+
+  /// Pide un código del servidor y lo canjea.
+  Future<void> _redeemServerCode() async {
+    final access = AccessScope.read(context);
+    final messenger = ScaffoldMessenger.of(context);
     final controller = TextEditingController();
     final code = await showDialog<String>(
       context: context,

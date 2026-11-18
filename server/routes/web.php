@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\PurchaseController;
 use App\Http\Controllers\Admin\RatingController;
+use App\Http\Controllers\Admin\SetupController;
 use App\Http\Controllers\Admin\StoryController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,6 +20,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::middleware('guest')->group(function () {
         Route::get('login', [AuthController::class, 'show'])->name('login');
         Route::post('login', [AuthController::class, 'login'])->name('login.post');
+        // Enlace de un solo uso para crear el SuperAdmin (404 en cuanto existe).
+        Route::get('primer-acceso/{token}', [SetupController::class, 'show'])->name('setup')->middleware('throttle:10,1');
+        Route::post('primer-acceso/{token}', [SetupController::class, 'store'])->name('setup.store')->middleware('throttle:10,1');
     });
 
     Route::middleware('auth')->group(function () {

@@ -301,6 +301,47 @@ void main() {
       expect(find.byKey(const Key('redeem-field')), findsNothing);
     });
 
+    testWidgets(
+        'en Android, la versión de las tiendas también canjea códigos propios (los de los revisores)',
+        (tester) async {
+      tester.view
+        ..physicalSize = const Size(1080, 3400)
+        ..devicePixelRatio = 3;
+      addTearDown(tester.view.reset);
+      final api = _FakeApi();
+      final access =
+          AccessService(MemoryShelfStore(), api: api, devAvailable: false);
+      await access.load();
+      final purchases = _FakePurchases(access);
+      await tester.pumpWidget(MaterialApp(
+        builder: (context, child) => AccessScope(
+          access: access,
+          child: PurchasesScope(
+            purchases: purchases,
+            child: MediaQuery(
+                data: MediaQuery.of(context).copyWith(disableAnimations: true),
+                child: child!),
+          ),
+        ),
+        home: const PaywallPage(),
+      ));
+      await _frames(tester);
+      await tester.scrollUntilVisible(
+          find.byKey(const Key('paywall-redeem')), 300,
+          scrollable: find.byType(Scrollable).first);
+      await tester.tap(find.byKey(const Key('paywall-redeem')));
+      await _frames(tester);
+      await tester.tap(find.byKey(const Key('redeem-server')));
+      await _frames(tester);
+      await tester.enterText(
+          find.byKey(const Key('redeem-field')), 'mini-abcd-1234');
+      await tester.tap(find.byKey(const Key('redeem-ok')));
+      await _frames(tester);
+      expect(api.redeemed, ['MINI-ABCD-1234']);
+      expect(access.premium, isTrue);
+      expect(purchases.redeemed, isFalse);
+    }, variant: TargetPlatformVariant.only(TargetPlatform.android));
+
     testWidgets('sin tienda explica que aún no está publicada', (tester) async {
       tester.view
         ..physicalSize = const Size(1080, 3400)

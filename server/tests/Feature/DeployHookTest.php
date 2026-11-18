@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\RedeemCode;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Artisan;
 use Tests\TestCase;
@@ -30,5 +31,27 @@ class DeployHookTest extends TestCase
         Artisan::shouldReceive('output')->andReturn('');
         $this->withToken('secreto-largo')->postJson('/internal/deploy')
             ->assertOk()->assertJson(['ok' => true])->assertJsonCount(5, 'pasos');
+    }
+
+    public function test_crea_el_codigo_de_los_revisores(): void
+    {
+        config(['mininoches.deploy_token' => 'secreto-largo']);
+        Artisan::shouldReceive('call')->times(10)->andReturn(0);
+        Artisan::shouldReceive('output')->andReturn('');
+        for ($i = 0; $i < 2; $i++) {
+            $this->withToken('secreto-largo')->postJson('/internal/deploy', ['review_code' => 'mini-revisa-2026'])
+                ->assertOk()->assertJsonCount(6, 'pasos');
+        }
+        $code = RedeemCode::query()->where('code', 'MINI-REVISA-2026')->sole();
+        $this->assertTrue($code->active);
+        $this->assertSame(1000, $code->max_uses);
+    }
+
+    public function test_rechaza_un_codigo_de_revisores_raro(): void
+    {
+        config(['mininoches.deploy_token' => 'secreto-largo']);
+        Artisan::shouldReceive('call')->times(5)->andReturn(0);
+        Artisan::shouldReceive('output')->andReturn('');
+        $this->withToken('secreto-largo')->postJson('/internal/deploy', ['review_code' => 'a b'])->assertStatus(422);
     }
 }

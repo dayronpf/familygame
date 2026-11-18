@@ -46,6 +46,23 @@ def main():
                                     f"Escríbenos a **{mail}** y te respondemos lo antes posible.\n\n"
                                     "Para cancelar la suscripción: en Android, Google Play → Pagos y suscripciones; "
                                     "en iPhone, Ajustes → tu nombre → Suscripciones."),
+        # Google Play pide una dirección pública para pedir el borrado de los datos (formulario de seguridad de los datos).
+        "borrar-datos.html": ("Borrar tus datos", f"# Borrar tus datos de {app}\n\n"
+                              f"{app} (de {owner}) no tiene cuentas ni registro. Los perfiles de los niños, los favoritos y el "
+                              "progreso viven solo en tu teléfono.\n\n"
+                              "## Lo que está en el teléfono\n\n"
+                              "Abre la app → Ajustes (pregunta para adultos) → **«Borrar los datos de este teléfono»**. "
+                              "Desinstalar la app también lo borra todo.\n\n"
+                              "## Lo que está en nuestro servidor\n\n"
+                              "Solo guardamos el identificador aleatorio de la instalación y el comprobante de la suscripción "
+                              "(para saber que está pagada). Para borrarlos, escríbenos a "
+                              f"**{mail}** con el asunto «Borrar mis datos de {app}». Si puedes, indica el número de pedido "
+                              "de Google Play o de la App Store; lo borramos en un plazo de 30 días y te avisamos.\n\n"
+                              "Las valoraciones de los cuentos (de 1 a 5) se envían sin identidad, sin hora (solo el día) y sin el "
+                              "identificador de la instalación, así que no se pueden ligar a nadie. Puedes apagarlas en "
+                              "Ajustes.\n\n"
+                              "Borrar los datos no cancela la suscripción: eso se hace en Google Play → Pagos y suscripciones, "
+                              "o en el iPhone en Ajustes → tu nombre → Suscripciones."),
     }
     for name, (title, md) in pages.items():
         body = markdown.markdown(md, extensions=["tables"])
