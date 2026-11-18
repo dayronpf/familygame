@@ -15,6 +15,9 @@
 
 ## Lo que haces tú, una sola vez
 
+> Anota cada clave en `credenciales/.env` (plantilla en `credenciales/.env.ejemplo`): es el único lugar donde viven
+> todas las credenciales del proyecto, y git no lo sube.
+
 Son contraseñas y claves, así que las pones tú. No me las pases por el chat.
 
 1. **Cloudflare (DNS de tuvendor.com):**
@@ -65,5 +68,5 @@ Después, cada `git push` a la rama `servidor` publica solo. El panel queda en `
 
 Se configura igual de una sola vez:
 - Crea un bucket R2, por ejemplo `mininoches`, con el dominio propio `audio.tuvendor.com` o `cuentos-audio.tuvendor.com`.
-- Crea una clave de API de R2 con permiso de escritura en ese bucket, y guárdala en un `.env` local para `tools/content/publish.py --subir`.
+- Crea una clave de API de R2 con permiso de escritura en ese bucket, y guárdala en `credenciales/.env` (ver `credenciales/.env.ejemplo`) para `tools/content/publish.py --subir`.
 - Después lleno `contentBaseUrl` y `recordedVoiceBaseUrl` en `app/lib/src/brand.dart` y publico el contenido.

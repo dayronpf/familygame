@@ -6,3 +6,8 @@ adjuntos/
 
 # APK de prueba compilados en local
 builds/
+
+# Credenciales: solo se suben el LEEME y la plantilla sin valores.
+credenciales/*
+!credenciales/LEEME.md
+!credenciales/.env.ejemplo

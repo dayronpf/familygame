@@ -14,7 +14,7 @@ esa escena se vuelve a grabar. Escribe `manifiesto.json` (cuento → escenas →
 Con --revisar, un transcriptor (mlx-whisper) escucha cada escena y la compara con el texto; las que no coinciden se
 graban otra vez una sola vez y, si siguen mal, quedan en la lista para revisarlas a oído.
 
-La clave sale de la variable ELEVENLABS_API_KEY o de un archivo .env (--env); nunca se escribe en el código ni se muestra.
+La clave sale de la variable ELEVENLABS_API_KEY o de credenciales/.env (--env para otro); nunca se escribe en el código ni se muestra.
 """
 import argparse
 import difflib
@@ -106,7 +106,7 @@ def main():
     ap.add_argument("textos", type=Path, help="JSON de bin/catalog_texts.dart")
     ap.add_argument("--solo", type=Path, help="JSON con la lista de ids de cuentos a grabar (una tanda)")
     ap.add_argument("--salida", type=Path, default=Path("builds/voz"), help="carpeta de audio y manifiesto")
-    ap.add_argument("--env", default="/Users/vida/Documents/proyectos/canal youtube/.env")
+    ap.add_argument("--env", default="credenciales/.env", help="archivo con ELEVENLABS_API_KEY (por defecto credenciales/.env)")
     ap.add_argument("--revisar", action="store_true", help="comprobar cada escena con mlx-whisper")
     ap.add_argument("--umbral", type=float, default=0.12, help="diferencia máxima de palabras aceptada")
     a = ap.parse_args()

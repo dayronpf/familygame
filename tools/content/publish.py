@@ -31,7 +31,7 @@ Las variables del entorno mandan sobre las del archivo. Necesita boto3 (pip inst
 Uso (desde la raíz del repositorio):
     python3 tools/content/publish.py                     # arma builds/publicar/ (no sube nada)
     python3 tools/content/publish.py --exportar          # antes prepara el audio con export_app.py
-    python3 tools/content/publish.py --subir --env ~/.config/mininoches/r2.env
+    python3 tools/content/publish.py --subir          # credenciales de credenciales/.env
 """
 import argparse
 import hashlib
@@ -212,7 +212,8 @@ def main():
     mode = ap.add_mutually_exclusive_group()
     mode.add_argument("--en-carpeta", action="store_true", help="solo arma la carpeta (lo que se hace por defecto)")
     mode.add_argument("--subir", action="store_true", help="arma la carpeta y la sube al almacén S3 (R2)")
-    ap.add_argument("--env", type=Path, default=None, help="archivo .env con las credenciales para --subir")
+    ap.add_argument("--env", type=Path, default=Path("credenciales/.env"),
+                    help="archivo .env con las credenciales para --subir (por defecto credenciales/.env)")
     ap.add_argument("--version", type=int, default=None, help="versión a mano (por defecto, la fecha y hora UTC)")
     a = ap.parse_args()
 
@@ -254,7 +255,7 @@ def main():
     if not news:
         print("Aviso: ningún cuento tiene «desde» igual a la versión del catálogo; ninguno llevará «Nuevo»")
     if a.subir:
-        upload(a.salida, lang, read_env(a.env) if a.env else dict(os.environ))
+        upload(a.salida, lang, read_env(a.env) if a.env and a.env.exists() else dict(os.environ))
 
 
 if __name__ == "__main__":
