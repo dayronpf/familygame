@@ -78,11 +78,26 @@
 - **Servicio en primer plano de tipo `mediaPlayback`** (Android 14), si lo pregunta: sí. Sirve para que el cuento siga sonando con la pantalla bloqueada, y empieza cuando el usuario pulsa reproducir.
 - **Permisos sensibles:** ninguno: no pide ubicación, cámara, micrófono ni contactos.
 
-## 7. Lo que falta para publicar
+## 7. Estado (18-nov-2026) y lo que falta
 
-1. Subir `builds/mininoches-1.0.0.aab` a **Probar y lanzar → Pruebas → Prueba interna** y crear la versión. Pesa 65 MB; es arrastrarlo al navegador.
-2. Llenar los cuestionarios 1–6 con estas respuestas, revisándolas.
-3. **Monetizar → Productos → Suscripciones:** crear `mininoches_premium` con dos planes de base, anual y mensual, cada uno con 7 días de prueba gratis. Los precios por región los decide el dueño del producto ([05](05-modelo-freemium.md)).
-4. Cuenta de servicio de Google Cloud con acceso a Play Console. Su JSON va en `credenciales/` y en el `.env` del servidor (`GOOGLE_SERVICE_ACCOUNT_JSON`), para verificar las compras.
-5. «Declarar estado de comerciante», con plazo hasta el 1 de febrero de 2027.
+**Hecho en Play Console:**
+- «Contenido de la app»: todas las declaraciones completadas.
+  - **Anuncios:** no.
+  - **ID de publicidad:** no; el manifiesto no tiene AD_ID.
+  - **App gubernamental, funciones financieras y salud:** no.
+  - **IARC:** la categoría es «El resto de los tipos de app». Hay contenido en línea (los cuentos que se descargan) y compras digitales; no hay contenido sensible. Resultado: PEGI 3, ESRB E, USK 0 y Brasil +14 (por las compras).
+  - **Público objetivo:** menos de 5, 6–8 y 9–12, con la Política para Familias. Sin «Aprobadas por profesores».
+  - **Seguridad de los datos:** como en el punto 5. La URL de borrado es `https://audio.tuvendor.com/legal/borrar-datos.html`.
+  - **Detalles de acceso:** instrucciones en inglés y el **código de revisión** (secreto `REVIEW_CODE`; el gancho de despliegue lo crea en el servidor). Lo canjea «Canjear código → Código de Mininoches», desde la versión 1.0.0+23.
+- **Ficha de Play Store:** guardada; recursos sin etiqueta de IA (dibujos hechos con nuestro código y capturas de la app).
+- **Prueba interna:** versión «22 (1.0.0)» lista para publicar, con los verificadores «Equipo TuVendor» y «Tester».
+
+**Falta (lo hace el dueño):**
+1. **Prueba interna → «Guardar y publicar».** La versión 22 sirve para probar; para producción hay que subir `builds/mininoches-1.0.0-23.aab`, que es la que acepta el código del revisor.
+2. **Cuenta de comerciante de Google Payments** (Configuración → Perfil de pagos): datos bancarios y fiscales. Sin ella no se pueden crear suscripciones.
+3. Después, en **Monetizar → Suscripciones:**
+   - crear `mininoches_premium` con los planes de base `anual` (P1Y) y `mensual` (P1M) y 7 días de prueba;
+   - precios de referencia: USD 39.99 y 5.99 en EE. UU., y Latinoamérica más bajo ([05](05-modelo-freemium.md)).
+4. Cuenta de servicio de Google Cloud con acceso a Play Console. Su JSON va en `credenciales/` y en el `.env` del servidor (`GOOGLE_SERVICE_ACCOUNT_JSON`).
+5. «Declarar estado de comerciante», antes del 1 de febrero de 2027.
 6. Enviar a revisión desde «Descripción general de la publicación».
