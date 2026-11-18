@@ -37,7 +37,8 @@ ENGINE = ROOT / "packages" / "caldero_engine"
 PACKS = ROOT / "content" / "packs"
 CATALOG = ROOT / "content" / "catalogo" / "lanzamiento-es.json"
 VOICE = ROOT / "builds" / "voz"
-VENV_PY = Path("/Users/vida/Documents/GitHub/.voicetest-venv/bin/python")
+# Python con boto3 para los programas de voz y publicación: el de la copia (.venv) o el del proyecto.
+VENV_CANDIDATES = [ROOT / ".venv" / "bin" / "python", Path("/Users/vida/Documents/GitHub/.voicetest-venv/bin/python")]
 
 
 def env_values(path):
@@ -167,6 +168,15 @@ def main():
         return
     print(f"{len(items)} cuentos en cola: " + ", ".join(f"{i['ref']} ({i['op']})" for i in items))
 
+    if not a.prueba:
+        # Nunca mezclar con trabajo a medias en content/ ni publicar sobre una copia vieja del repositorio.
+        dirty = subprocess.run(["git", "status", "--porcelain", "content", "app/assets/voz"], cwd=ROOT,
+                               capture_output=True, text=True).stdout.strip()
+        if dirty:
+            sys.exit("Hay cambios sin guardar en content/ o app/assets/voz: guárdalos (commit) y vuelve a intentar.\n" + dirty)
+        if run(["git", "pull", "--ff-only", "--quiet"]).returncode != 0:
+            sys.exit("No se pudo actualizar el repositorio (git pull). Revísalo y vuelve a intentar.")
+
     originals = {CATALOG: CATALOG.read_text(encoding="utf-8")}
     catalog = load(CATALOG)
     results, applied, changed_packs = [], [], {}
@@ -232,7 +242,7 @@ def main():
             entry["caracteres"] = sum(len(s if isinstance(s, str) else s.get("texto", "")) for s in texts[entry["id"]].get("escenas", []))
     save_catalog(catalog)
 
-    python = str(VENV_PY) if VENV_PY.exists() else sys.executable
+    python = next((str(p) for p in VENV_CANDIDATES if p.exists()), sys.executable)
     if refs and not a.sin_voz:
         lote = VOICE / "panel.json"
         lote.write_text(json.dumps(refs), encoding="utf-8")
