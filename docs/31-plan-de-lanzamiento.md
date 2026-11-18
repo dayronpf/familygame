@@ -16,7 +16,7 @@
 | A5b | **Llegar a 100 cuentos.** Se auditaron y corrigieron los 39 que quedaban ([33](33-auditoria-39-cuentos.md)) y se escribieron 11 nuevos (4 del castillo, 4 del mar, 3 del espacio). El catálogo ya tiene 100. **Falta grabar:** los 50 nuevos y 7 de los ya grabados que cambiaron, 193 537 caracteres (≈ 77 000 créditos, a 0,4 por carácter). Hay ≈ 48 600, así que hay que **recargar ≈ USD 10** | 🔄 |
 | A6 | La app reproduce el audio grabado (`narration/recorded_voice.dart`): título, escenas y enseñanza con la voz de Isabela; los 3 gratis dentro de la app, los demás se descargan y quedan guardados; si falta un audio, suena la voz del teléfono. `tools/voice/export_app.py` prepara el audio para la app y para el servidor | ✅ (falta probarlo en un teléfono) |
 | A7 | Con `catalogOnly` (brand.dart), la app muestra solo los cuentos del catálogo, siempre con su texto fijo, y «Crear cuento» elige uno de ellos | ✅ · **Falta:** recibir cuentos nuevos del servidor sin actualizar la app (pasa a B1) |
-| A8 | Servidor en HTTPS y audio en Cloudflare R2 (gratis) | ☐ (tú, con mi guía) |
+| A8 | Servidor en `cuentos.tuvendor.com` (cPanel, PHP 8.4, base de datos `tuven780_cuentos`) con publicación automática por GitHub Actions y FTP; audio y cuentos nuevos en Cloudflare R2. Pasos en [35](35-servidor-en-cuentos-tuvendor.md) | 🔄 hecho lo mío · **tú:** DNS, usuario de base de datos, FTP, `.env`, secretos de GitHub y R2 |
 | A9 | Productos de suscripción en las dos tiendas y compras de prueba | ☐ (tú) |
 | A10 | Prueba cerrada de Google Play (14 días con 12 personas, si tu cuenta lo exige) | ☐ (tú, **empezar ya**) |
 | A11 | Ficha de tienda revisada con `/replica-launch` y lista final con `/replica-deploy` | ☐ |
