@@ -222,6 +222,12 @@ StageSetup? stageFor(
   }
   final n = resolved.length;
   final actors = <ActorInstance>[];
+  // Quien tiene un objeto del cuento a su lado (`near`) lo sostiene o lo toca: sale con las manos libres (sin
+  // espada, escudo, arco ni catalejo), si su dibujo tiene esa variante.
+  final handsBusy = <String>{
+    for (final p in (directives['props'] is List ? directives['props']! as List : const []))
+      if (p is Map && p['near'] != null) '${p['near']}',
+  };
   final byKey = <String, ActorInstance>{};
   for (var i = 0; i < n; i++) {
     final (rigId, e, role) = resolved[i];
@@ -238,7 +244,9 @@ StageSetup? stageFor(
         role == 'hero';
     final variant = clipName == 'sleep' || (e.rotate ?? 0) != 0 || bedtime
         ? 'pijama'
-        : (fearClips.contains(clipName) ? 'miedo' : null);
+        : fearClips.contains(clipName)
+            ? 'miedo'
+            : (handsBusy.contains(e.who ?? e.rig ?? rigId) ? 'manos' : null);
     final dressed = variant != null && art.rigs.containsKey('${rigId}_$variant')
         ? '${rigId}_$variant'
         : rigId;

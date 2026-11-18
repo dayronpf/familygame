@@ -178,6 +178,14 @@ def load_cast():
             v.update(id=f'{c["id"]}_pijama', name=f'{c["name"]} (en pijama)', outfit="tunic", brows="sleepy", mouth="smile",
                      variant_of=c["id"], palette={**c["palette"], **PIJAMA[c["id"]]})
             out.append(v)
+    # `<id>_manos`: el mismo personaje con las manos libres (sin espada, escudo, arco ni catalejo), para las escenas en
+    # que sostiene o toca un objeto del cuento (una taza, un cuenco, un saco): la app lo elige si hay un objeto a su lado.
+    for c in base:
+        if c.get("variant_of") or not (c.get("hold_r") or c.get("hold_l")):
+            continue
+        v = {k: val for k, val in c.items() if k not in ("hold_r", "hold_l", "item_tilt")}
+        v.update(id=f'{c["id"]}_manos', name=f'{c["name"]} (manos libres)', variant_of=c["id"], rest={"armL": 9, "armR": -9})
+        out.append(v)
     return out
 
 

@@ -578,6 +578,25 @@ void main() {
       expect(vela.front, isTrue, reason: 'se ve delante del personaje');
     });
 
+    test('quien tiene un objeto a su lado sale con las manos libres (sin armas)', () {
+      final setup = stageFor(
+        art,
+        cast(),
+        base({
+          'stage': [
+            {'who': 'hero', 'x': 0.3},
+            {'who': 'helper', 'x': 0.7},
+          ],
+          'props': [
+            {'prop': 'vela', 'near': 'hero', 'dx': 0.05, 'lift': 60},
+          ],
+        }),
+      )!;
+      expect(setup.actors.first.rig.rig.id, endsWith('_manos'),
+          reason: 'sostiene la vela: sin espada ni escudo');
+      expect(setup.actors.last.rig.rig.id, isNot(endsWith('_manos')));
+    });
+
     test('«rope» une a dos personajes y puede salir de cuadro', () {
       final two = stageFor(
         art,
