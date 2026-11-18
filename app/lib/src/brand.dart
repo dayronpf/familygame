@@ -55,4 +55,4 @@ const String recordedVoiceBaseUrl = '';
 /// una vez al día, `contenido/<idioma>/indice.json` y baja los paquetes, el catálogo y el manifiesto de voz nuevos;
 /// si [recordedVoiceBaseUrl] está vacía, el audio sale de `voz/<idioma>/` en esta misma raíz. **Se llena en el paso
 /// A8** (Cloudflare R2, docs/31). Vacía = apagado: la app usa solo lo que trae dentro.
-const String contentBaseUrl = '';
+const String contentBaseUrl = 'https://audio.tuvendor.com/';
