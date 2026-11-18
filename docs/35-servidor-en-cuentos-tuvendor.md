@@ -5,7 +5,7 @@
 ## Ya hecho
 
 - **Subdominio** `cuentos2.tuvendor.com` en el cPanel (el primer intento, `cuentos.tuvendor.com`, no generó bien el certificado; los dos apuntan a la misma carpeta) (hosting24). Su carpeta raíz es `/home/tuven780/external/cuentos.tuvendor.com/public`, que es la carpeta `public` de Laravel.
-- **PHP 8.4** solo para ese subdominio: aislamiento por sitio. Los demás sitios siguen con 7.4. Las extensiones necesarias ya están activas. `sodium` no se pudo activar en el panel, así que el servidor usa `paragonie/sodium_compat`, que hace lo mismo.
+- **PHP 8.4** solo para este sitio, con la línea `SetHandler application/x-lsphp84` en `server/public/.htaccess` (igual que crm.tuvendor.com). **No** se usa el «aislamiento por sitio» del PHP Selector: encierra a PHP dentro de `public` y Laravel no ve sus carpetas (error 500). Antes se probó: aislamiento por sitio. Los demás sitios siguen con 7.4. Las extensiones necesarias ya están activas. `sodium` no se pudo activar en el panel, así que el servidor usa `paragonie/sodium_compat`, que hace lo mismo.
 - **Base de datos** `tuven780_cuentos`.
 - **Publicación automática:** `.github/workflows/server-deploy.yml`. En cada push a la rama `servidor`:
   1. corre las pruebas;

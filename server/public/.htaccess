@@ -23,3 +23,9 @@
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
 </IfModule>
+
+# PHP 8.4 en el hosting (LiteSpeed/CloudLinux): sin esto el sitio usa la versión global de la cuenta (7.4).
+# Ver docs/35. Quitar si se despliega en un servidor sin ese manejador.
+<FilesMatch "\.(php|phtml)$">
+SetHandler application/x-lsphp84
+</FilesMatch>
