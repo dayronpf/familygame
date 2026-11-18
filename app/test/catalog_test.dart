@@ -69,8 +69,8 @@ void main() {
 
     test('novedades: los cuentos del paquete nuevo', () {
       final c = _catalog();
-      expect(c.newest, isNotEmpty);
-      expect(c.newest.every((s) => s.info.isNew), isTrue);
+      // En el lanzamiento los tres mundos llegan juntos: ninguno sale como «Nuevo»
+      expect(c.newest, isEmpty);
     });
 
     test('la vista previa de la ficha es el mismo cuento que se lee', () {
@@ -146,7 +146,6 @@ void main() {
       await tester.pumpAndSettle();
       await tester.tap(find.text('Explorar'));
       await tester.pumpAndSettle();
-      expect(find.text('Novedades'), findsOneWidget);
       expect(find.text('Categorías'), findsOneWidget);
 
       final cat = find.byKey(const Key('category-pack:medieval'));

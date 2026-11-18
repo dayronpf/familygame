@@ -68,6 +68,8 @@ void main() {
       voices: (voices ?? FakeVoices()).services,
       showWizard: wizard,
       animateArt: false,
+      // Estas pruebas son del modo del caldero (idioma, voz, protagonista); el del catálogo tiene las suyas
+      catalogOnly: false,
     ));
     await tester.pumpAndSettle();
     return s;
@@ -178,6 +180,41 @@ void main() {
   });
 
   group('wizard', () {
+    testWidgets('con el catálogo fijo solo pregunta la edad y el nombre (sin voz, idioma ni protagonista)',
+        (tester) async {
+      phone(tester);
+      final settings = AppSettings(MemorySettingsStore());
+      await tester.pumpWidget(CalderoApp(
+        bundle: _bundle,
+        feedback: _feedback(),
+        settings: settings,
+        voices: FakeVoices().services,
+        showWizard: true,
+        animateArt: false,
+        catalogOnly: true,
+      ));
+      await tester.pumpAndSettle();
+      expect(find.text('¿Qué edad tiene el niño?'), findsOneWidget);
+      expect(find.text('¿Quién les cuenta el cuento?'), findsNothing);
+      expect(find.text('¿En qué idioma les contamos los cuentos?'), findsNothing);
+      await tester.tap(find.byKey(const Key('wizard-next')));
+      await tester.pumpAndSettle();
+      expect(find.byKey(const Key('wizard-name')), findsOneWidget);
+      expect(find.text('¿Quién protagoniza?'), findsNothing);
+      expect(find.textContaining('será el protagonista'), findsNothing);
+      await tester.enterText(find.byKey(const Key('wizard-name')), 'Dayron');
+      await tester.pumpAndSettle();
+      await tester.tap(find.byKey(const Key('wizard-next')));
+      await tester.pumpAndSettle();
+      expect(find.text('Todo listo'), findsOneWidget);
+      expect(find.byKey(const Key('summary-voice')), findsNothing);
+      expect(find.text('Idioma'), findsNothing);
+      await tester.tap(find.byKey(const Key('wizard-start')));
+      await tester.pumpAndSettle();
+      expect(settings.child.name, 'Dayron');
+      expect(settings.child.heroGender, isNull);
+    });
+
     testWidgets('la primera vez sale el wizard y al terminar entra al inicio',
         (tester) async {
       final voices = FakeVoices();
@@ -185,7 +222,7 @@ void main() {
       expect(find.text('¿En qué idioma les contamos los cuentos?'),
           findsOneWidget);
       expect(find.byKey(const Key('language-es')), findsOneWidget);
-      expect(find.text('Crear cuento'), findsNothing);
+      expect(find.text('Contar un cuento'), findsNothing);
 
       await next(tester); // idioma → voz
       expect(find.text('¿Quién les cuenta el cuento?'), findsOneWidget);
@@ -234,7 +271,7 @@ void main() {
       await tester.tap(find.byKey(const Key('wizard-start')));
       await tester.pumpAndSettle();
 
-      expect(find.text('Crear cuento'), findsOneWidget);
+      expect(find.text('Contar un cuento'), findsOneWidget);
       expect(s.wizardDone, isTrue);
       expect(s.child.age, '6-8');
       expect(s.child.name, 'Valentina');
@@ -282,7 +319,7 @@ void main() {
       final s = await openApp(tester, settings: AppSettings(store));
       await tester.tap(find.byKey(const Key('wizard-skip')));
       await tester.pumpAndSettle();
-      expect(find.text('Crear cuento'), findsOneWidget);
+      expect(find.text('Contar un cuento'), findsOneWidget);
       expect(s.wizardDone, isTrue);
       expect(s.child.age, '4-5');
       expect(s.child.voice, isNull);
@@ -292,7 +329,7 @@ void main() {
       final again = AppSettings(store);
       await again.load();
       await openApp(tester, settings: again);
-      expect(find.text('Crear cuento'), findsOneWidget);
+      expect(find.text('Contar un cuento'), findsOneWidget);
       expect(find.byKey(const Key('wizard-skip')), findsNothing);
     });
 
@@ -326,6 +363,7 @@ void main() {
           voices: FakeVoices().services,
           showWizard: true,
           animateArt: false,
+          catalogOnly: false,
         ));
         await tester.pumpAndSettle();
         await next(tester);
@@ -351,7 +389,7 @@ void main() {
     testWidgets('si no hay wizard (pruebas, o ya hecho) se entra directo',
         (tester) async {
       await openApp(tester, wizard: false);
-      expect(find.text('Crear cuento'), findsOneWidget);
+      expect(find.text('Contar un cuento'), findsOneWidget);
     });
   });
 
@@ -445,7 +483,7 @@ void main() {
       await settings.completeWizard(age: '9-12');
       await openApp(tester, settings: settings, wizard: false);
       // el pack medieval solo tiene cuentos 6–8: igual se cuenta uno (el más cercano)
-      await tester.tap(find.text('Crear cuento'));
+      await tester.tap(find.text('Contar un cuento'));
       await tester.pumpAndSettle();
       expect(find.text('Enseñanza'), findsNothing); // aún arriba del cuento
       expect(find.byType(Scrollable), findsWidgets);

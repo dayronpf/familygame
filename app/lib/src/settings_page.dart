@@ -17,6 +17,7 @@ import 'share.dart';
 import 'ui/voice_picker.dart';
 import 'workshop_page.dart';
 import 'brand.dart';
+import 'brand.dart' as brand show catalogOnly;
 import 'legal/legal_page.dart';
 import 'legal/my_data_page.dart';
 
@@ -30,7 +31,11 @@ class SettingsPage extends StatefulWidget {
     this.progress,
     this.reminder,
     this.agesWithStories = const {'6-8'},
+    this.catalogOnly = brand.catalogOnly,
   });
+
+  /// Lanzamiento (catálogo fijo con voz grabada): sin idioma, voz, protagonista, preguntas ni velocidad.
+  final bool catalogOnly;
 
   /// Quien programa el recordatorio de la hora del cuento (por defecto, las notificaciones del teléfono).
   final BedtimeReminder? reminder;
@@ -228,49 +233,58 @@ class _SettingsPageState extends State<SettingsPage> {
             builder: (_) => ChildrenPage(
                 settings: settings,
                 shelf: widget.shelf,
-                progress: widget.progress),
+                progress: widget.progress,
+                catalogOnly: widget.catalogOnly),
           ),
         ),
       ),
       const SizedBox(height: 12),
-      Text('Cuentos y voz', style: text.titleMedium),
+      Text(widget.catalogOnly ? 'Cuentos' : 'Cuentos y voz',
+          style: text.titleMedium),
       const SizedBox(height: 4),
       Text('Los cambios valen desde el siguiente cuento.',
           style: text.bodySmall),
       const SizedBox(height: 12),
-      Row(
-        children: [
-          const Icon(Icons.language),
-          const SizedBox(width: 12),
-          Expanded(child: Text('Idioma', style: text.bodyLarge)),
-          DropdownButton<String>(
-            key: const Key('setting-language'),
-            value: child.language,
-            items: [
-              for (final l in supportedLanguages)
-                DropdownMenuItem(value: l.code, child: Text(l.name)),
-            ],
-            onChanged: (v) {
-              if (v != null) settings.updateChild(language: v);
-            },
-          ),
-        ],
-      ),
-      const SizedBox(height: 16),
-      Text('Voz del narrador', style: text.bodyLarge),
-      const SizedBox(height: 8),
-      VoicePicker(
-        key: const Key('setting-voice'),
-        services: SettingsScope.voicesOf(context),
-        selected: child.voice,
-        speed: child.voiceConfig.speed,
-        onSelected: (o) => settings.updateChild(voice: o.voice),
-      ),
-      const SizedBox(height: 8),
-      Text('Protagonista', style: text.bodyLarge),
+      // Lanzamiento (catálogo con voz grabada): un solo idioma, la voz grabada y cada cuento con su protagonista:
+      // no se pregunta idioma, voz, género del héroe, preguntas ni velocidad (solo valían para la voz del teléfono).
+      if (!widget.catalogOnly) ...[
+        Row(
+          children: [
+            const Icon(Icons.language),
+            const SizedBox(width: 12),
+            Expanded(child: Text('Idioma', style: text.bodyLarge)),
+            DropdownButton<String>(
+              key: const Key('setting-language'),
+              value: child.language,
+              items: [
+                for (final l in supportedLanguages)
+                  DropdownMenuItem(value: l.code, child: Text(l.name)),
+              ],
+              onChanged: (v) {
+                if (v != null) settings.updateChild(language: v);
+              },
+            ),
+          ],
+        ),
+        const SizedBox(height: 16),
+        Text('Voz del narrador', style: text.bodyLarge),
+        const SizedBox(height: 8),
+        VoicePicker(
+          key: const Key('setting-voice'),
+          services: SettingsScope.voicesOf(context),
+          selected: child.voice,
+          speed: child.voiceConfig.speed,
+          onSelected: (o) => settings.updateChild(voice: o.voice),
+        ),
+        const SizedBox(height: 8),
+      ],
+      Text(widget.catalogOnly ? 'Nombre del niño' : 'Protagonista',
+          style: text.bodyLarge),
       const SizedBox(height: 4),
       Text(
-        'Si escribes el nombre del niño, será el héroe de sus cuentos. Se queda en este teléfono.',
+        widget.catalogOnly
+            ? 'Opcional: para saludarle en la app y reconocer su perfil. Se queda en este teléfono.'
+            : 'Si escribes el nombre del niño, será el héroe de sus cuentos. Se queda en este teléfono.',
         style: text.bodySmall,
       ),
       const SizedBox(height: 8),
@@ -286,34 +300,36 @@ class _SettingsPageState extends State<SettingsPage> {
         ),
         onChanged: (v) => settings.updateChild(name: v.trim()),
       ),
-      const SizedBox(height: 10),
-      // Con su nombre el cuento no puede elegir al azar (el dibujo y el «solo/sola» le seguirían)
-      SegmentedButton<String?>(
-        key: const Key('setting-gender'),
-        showSelectedIcon: false,
-        emptySelectionAllowed: true,
-        segments: [
-          const ButtonSegment(value: 'm', label: Text('Niño')),
-          const ButtonSegment(value: 'f', label: Text('Niña')),
-          if (child.heroName == null)
-            const ButtonSegment(value: null, label: Text('Al azar')),
-        ],
-        selected: child.heroName != null && child.heroGender == null
-            ? const {}
-            : {child.heroGender},
-        onSelectionChanged: (v) {
-          if (v.isNotEmpty) settings.updateChild(heroGender: v.first);
-        },
-      ),
-      if (child.heroName != null && child.heroGender == null)
-        Padding(
-          padding: const EdgeInsets.only(top: 6),
-          child: Text(
-            'Elige niño o niña para que el cuento hable bien de ${child.heroName}.',
-            key: const Key('setting-gender-needed'),
-            style: text.bodySmall,
-          ),
+      if (!widget.catalogOnly) ...[
+        const SizedBox(height: 10),
+        // Con su nombre el cuento no puede elegir al azar (el dibujo y el «solo/sola» le seguirían)
+        SegmentedButton<String?>(
+          key: const Key('setting-gender'),
+          showSelectedIcon: false,
+          emptySelectionAllowed: true,
+          segments: [
+            const ButtonSegment(value: 'm', label: Text('Niño')),
+            const ButtonSegment(value: 'f', label: Text('Niña')),
+            if (child.heroName == null)
+              const ButtonSegment(value: null, label: Text('Al azar')),
+          ],
+          selected: child.heroName != null && child.heroGender == null
+              ? const {}
+              : {child.heroGender},
+          onSelectionChanged: (v) {
+            if (v.isNotEmpty) settings.updateChild(heroGender: v.first);
+          },
         ),
+        if (child.heroName != null && child.heroGender == null)
+          Padding(
+            padding: const EdgeInsets.only(top: 6),
+            child: Text(
+              'Elige niño o niña para que el cuento hable bien de ${child.heroName}.',
+              key: const Key('setting-gender-needed'),
+              style: text.bodySmall,
+            ),
+          ),
+      ],
       const SizedBox(height: 16),
       Text('Edad del niño', style: text.bodyLarge),
       const SizedBox(height: 8),
@@ -340,7 +356,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 .copyWith(color: Theme.of(context).colorScheme.primary),
           ),
         ),
-      if (child.age == '6-8' || child.age == '9-12')
+      if (!widget.catalogOnly && (child.age == '6-8' || child.age == '9-12'))
         SwitchListTile(
           key: const Key('setting-questions'),
           contentPadding: EdgeInsets.zero,
@@ -354,19 +370,21 @@ class _SettingsPageState extends State<SettingsPage> {
           value: child.asksQuestions,
           onChanged: (v) => settings.updateChild(asksQuestions: v),
         ),
-      const SizedBox(height: 16),
-      Text('Velocidad de lectura', style: text.bodyLarge),
-      const SizedBox(height: 8),
-      SegmentedButton<ReadingSpeed>(
-        key: const Key('setting-speed'),
-        showSelectedIcon: false,
-        segments: [
-          for (final s in ReadingSpeed.values)
-            ButtonSegment(value: s, label: Text(s.label)),
-        ],
-        selected: {child.speed},
-        onSelectionChanged: (v) => settings.updateChild(speed: v.first),
-      ),
+      if (!widget.catalogOnly) ...[
+        const SizedBox(height: 16),
+        Text('Velocidad de lectura', style: text.bodyLarge),
+        const SizedBox(height: 8),
+        SegmentedButton<ReadingSpeed>(
+          key: const Key('setting-speed'),
+          showSelectedIcon: false,
+          segments: [
+            for (final s in ReadingSpeed.values)
+              ButtonSegment(value: s, label: Text(s.label)),
+          ],
+          selected: {child.speed},
+          onSelectionChanged: (v) => settings.updateChild(speed: v.first),
+        ),
+      ],
       const SizedBox(height: 8),
       SwitchListTile(
         key: const Key('setting-music'),
@@ -444,7 +462,8 @@ class _SettingsPageState extends State<SettingsPage> {
         leading: const Icon(Icons.offline_pin_outlined),
         title: const Text('Descargas'),
         subtitle: const Text(
-            'Los cuentos ya están dentro de la app: funcionan sin internet.'),
+            'Los cuentos gratis vienen en la app. Los demás se descargan la primera vez que se escuchan '
+            'y luego quedan guardados para oírlos sin internet.'),
       ),
     ];
   }
@@ -748,7 +767,8 @@ class _SettingsPageState extends State<SettingsPage> {
                       ),
                     ),
                   ),
-                  if (widget.bundle != null)
+                  // Herramienta interna: solo en las compilaciones de prueba (MININOCHES_DEV), nunca en la tienda.
+                  if (widget.bundle != null && devBuild)
                     ListTile(
                       key: const Key('open-workshop'),
                       contentPadding: EdgeInsets.zero,

@@ -5,6 +5,8 @@ import 'package:flutter_timezone/flutter_timezone.dart';
 import 'package:timezone/data/latest_all.dart' as tzdata;
 import 'package:timezone/timezone.dart' as tz;
 
+import '../brand.dart' show storeName;
+
 /// Recordatorio diario de la hora del cuento (para el adulto, nunca para el niño). Lo programa el teléfono: no
 /// hace falta servidor ni conexión.
 abstract class BedtimeReminder {
@@ -107,7 +109,7 @@ class LocalBedtimeReminder implements BedtimeReminder {
       id: _id + 1,
       title: 'Tu prueba gratis termina pronto',
       body:
-          'En dos días empieza la suscripción. Si no la quieres, cancélala en Google Play.',
+          'En dos días empieza la suscripción. Si no la quieres, cancélala en $storeName.',
       scheduledDate: tz.TZDateTime.from(at, tz.local),
       notificationDetails: const NotificationDetails(
         android: AndroidNotificationDetails(

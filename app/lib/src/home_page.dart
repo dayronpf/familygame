@@ -171,6 +171,9 @@ class _HomePageState extends State<HomePage> {
   ///
   /// Con el catálogo fijo (lanzamiento) siempre se cuenta uno del catálogo: de los que puede leer (todos con la
   /// suscripción, los gratis sin ella), de la enseñanza elegida si hay alguno y, si se puede, del paquete abierto.
+  /// El último cuento que contó «Contar un cuento» (para no repetirlo seguido).
+  String? _lastToldRef;
+
   Future<void> _create(Pack pack) async {
     final access = AccessScope.read(context);
     final fixed = widget.catalogOnly;
@@ -196,12 +199,21 @@ class _HomePageState extends State<HomePage> {
         if (moral == null || s.moral?.id == moral) s,
     ];
     var pool = byMoral.isNotEmpty ? byMoral : readable;
+    // Con la suscripción, del mundo abierto si se puede; sin ella se rota entre los gratis de todos los mundos
+    // (en cada mundo hay uno solo: si no, el botón contaría siempre el mismo).
     final inPack = [
       for (final s in pool)
         if (s.pack.id == pack.id) s,
     ];
-    if (fixed && inPack.isNotEmpty) pool = inPack;
+    if (fixed && access.premium && inPack.length > 1) pool = inPack;
+    // Nunca el mismo dos veces seguidas, si hay otro.
+    final fresh = [
+      for (final s in pool)
+        if ('${s.pack.id}:${s.premise.id}' != _lastToldRef) s,
+    ];
+    if (fresh.isNotEmpty) pool = fresh;
     final s = pool[widget.seedProvider().abs() % pool.length];
+    _lastToldRef = '${s.pack.id}:${s.premise.id}';
     _tellCatalog(
       s,
       s.options(
@@ -416,7 +428,8 @@ class _HomePageState extends State<HomePage> {
           animate: _animate,
           onAnother: () => next().toStory(),
           onAnotherRun: next,
-          canTellAnother: access.premium,
+          // Un cuento guardado que no es del catálogo fijo no sigue con «otro cuento» (sería uno inventado).
+          canTellAnother: access.premium && !(widget.catalogOnly && !fixed),
           fixedCatalog: fixed,
         ),
       ),
@@ -439,6 +452,22 @@ class _HomePageState extends State<HomePage> {
       return; // un paquete que ya no está en la app
     }
     if (!mounted) return;
+    // Catálogo fijo: un cuento guardado que es del catálogo se vuelve a contar como tal (con su grabación), y
+    // «otro cuento» sigue dentro del catálogo; nunca se inventa uno nuevo.
+    if (widget.catalogOnly && premise != null) {
+      final catalog =
+          (await _catalogFuture()).withAccess(hidden: access.hiddenStories);
+      if (!mounted) return;
+      final match = [
+        for (final s in catalog.stories)
+          if (s.fixed && s.pack.id == e.packId && s.premise.id == premise) s,
+      ];
+      if (match.isNotEmpty) {
+        final child = SettingsScope.maybeOf(context)?.child;
+        _tellCatalog(match.first, match.first.options(childAge: child?.age));
+        return;
+      }
+    }
     await _openStory(pack, seed: e.seed, option: e.option, replay: e);
   }
 
@@ -461,6 +490,7 @@ class _HomePageState extends State<HomePage> {
           shelf: widget.shelf,
           progress: _progress,
           agesWithStories: agesWithStories,
+          catalogOnly: widget.catalogOnly,
         ),
       ),
     );
@@ -726,7 +756,7 @@ class _HomePageState extends State<HomePage> {
                     text.titleLarge!.copyWith(fontWeight: FontWeight.w800),
               ),
               icon: const Icon(Icons.auto_stories, size: 28),
-              label: const Text('Crear cuento'),
+              label: const Text('Contar un cuento'),
             ),
           ),
         ),
@@ -1086,7 +1116,7 @@ class _TrialCard extends StatelessWidget {
                         style: text.titleMedium!
                             .copyWith(fontWeight: FontWeight.w800)),
                     Text(
-                        'Para el adulto: paquetes, cuentos nuevos cada noche y más',
+                        'Para el adulto: los 100 cuentos y los nuevos que lleguen',
                         style:
                             text.bodySmall!.copyWith(color: Palette.mutedText)),
                   ],

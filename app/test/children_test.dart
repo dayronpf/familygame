@@ -163,7 +163,8 @@ void main() {
       }
       final shelf = StoryShelf(MemoryShelfStore());
       await tester.pumpWidget(MaterialApp(
-        home: ChildrenPage(settings: settings, shelf: shelf),
+        // Pruebas del modo del caldero (con protagonista); el catálogo fijo no lo pregunta
+        home: ChildrenPage(settings: settings, shelf: shelf, catalogOnly: false),
       ));
       await tester.pump();
       return (settings, shelf);
@@ -310,7 +311,7 @@ void main() {
       // El nombre del niño solo va en los cuentos del caldero (el catálogo fijo se grabó sin él)
       final settings =
           await openHome(tester, names: ['Ana', 'Beto'], catalogOnly: false);
-      await tester.tap(find.text('Crear cuento'));
+      await tester.tap(find.text('Contar un cuento'));
       await tester.pumpAndSettle();
       // Beto se guardó sin género: se pregunta una vez y se recuerda
       expect(find.text('¿Beto es un niño o una niña?'), findsOneWidget);

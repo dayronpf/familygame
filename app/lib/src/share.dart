@@ -4,10 +4,9 @@ import 'package:share_plus/share_plus.dart';
 import 'brand.dart';
 import 'feedback/adult_gate.dart';
 
-/// Dónde se descarga la app. Mientras no esté en las tiendas es el enlace del APK de prueba; cuando se
-/// publique, se cambia aquí por el de la tienda.
+/// Dónde se descarga la app: su página en Google Play. Cuando salga en el iPhone, se elige por plataforma.
 const String appDownloadUrl =
-    'https://github.com/dayronpf/familygame/releases/download/apk-latest/mininoches.apk';
+    'https://play.google.com/store/apps/details?id=com.mininoches.app';
 
 const String shareMessage =
     '🌙 ¡Te recomiendo $appName! Cuentos para dormir con dibujos animados, voz y una enseñanza, '

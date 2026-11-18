@@ -73,7 +73,7 @@ void main() {
     await openApp(tester);
     await tester.tap(find.text('Honestidad'));
     await tester.pump();
-    await tester.tap(find.text('Crear cuento'));
+    await tester.tap(find.text('Contar un cuento'));
     await tester.pumpAndSettle();
 
     // El héroe del pack medieval es siempre Aldo o Mara (aparece en alguna escena, aunque la primera sea de otro).
@@ -97,7 +97,7 @@ void main() {
     await openApp(tester);
     await tester.tap(find.text('Valentía'));
     await tester.pump();
-    await tester.tap(find.text('Crear cuento'));
+    await tester.tap(find.text('Contar un cuento'));
     await tester.pumpAndSettle();
     expect(find.byType(StoryStage), findsWidgets);
     expect(
@@ -115,7 +115,7 @@ void main() {
     await tester.pumpAndSettle();
     await tester.tap(find.text('Honestidad'));
     await tester.pump();
-    await tester.tap(find.text('Crear cuento'));
+    await tester.tap(find.text('Contar un cuento'));
     await tester.pumpAndSettle();
     expect(find.byType(StoryStage), findsNothing);
     expect(find.textContaining(RegExp('Aldo|Mara')), findsWidgets);
@@ -136,7 +136,7 @@ void main() {
     await tester.pumpAndSettle();
     await tester.tap(find.text('Valentía'));
     await tester.pump();
-    await tester.tap(find.text('Crear cuento'));
+    await tester.tap(find.text('Contar un cuento'));
     await tester.pumpAndSettle();
 
     String storyText() => tester
@@ -187,7 +187,7 @@ void main() {
 
   testWidgets('«Sorpréndeme» también genera un cuento', (tester) async {
     await openApp(tester, seed: 11);
-    await tester.tap(find.text('Crear cuento'));
+    await tester.tap(find.text('Contar un cuento'));
     await tester.pumpAndSettle();
     await scrollTo(tester, find.text('Enseñanza'));
     expect(find.text('Enseñanza'), findsOneWidget);
@@ -201,7 +201,7 @@ void main() {
     expect(pack.morals, isNotEmpty);
   });
 
-  testWidgets('el taller de personajes se abre desde los ajustes de adultos',
+  testWidgets('el taller de personajes no sale en la versión de las tiendas',
       (tester) async {
     await openApp(tester);
     await tester.tap(find.byKey(const Key('open-settings')));
@@ -212,18 +212,8 @@ void main() {
         '${int.parse(m.group(1)!) * int.parse(m.group(2)!)}');
     await tester.tap(find.byKey(const Key('gate-ok')));
     await tester.pumpAndSettle();
-    final button = find.byKey(const Key('open-workshop'));
-    await tester.scrollUntilVisible(button, 200,
-        scrollable: find.byType(Scrollable).first);
-    await tester.ensureVisible(button);
-    await tester.pumpAndSettle();
-    await tester.tap(button);
-    await tester.pump(); // arranca la carga
-    await tester.pump(const Duration(milliseconds: 100));
-    expect(find.text('Taller de personajes'), findsOneWidget);
-    // El taller anima sin parar: se sale antes de terminar para liberar el ticker.
-    final NavigatorState nav = tester.state(find.byType(Navigator));
-    nav.pop();
-    await tester.pumpAndSettle();
+    // Es una herramienta interna: solo en las compilaciones de prueba (MININOCHES_DEV)
+    expect(find.byKey(const Key('open-workshop'), skipOffstage: false), findsNothing);
+    expect(find.text('Taller de personajes (prueba)', skipOffstage: false), findsNothing);
   });
 }

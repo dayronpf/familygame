@@ -194,7 +194,7 @@ void main() {
         'leer hasta el final suma al progreso, da la primera semilla y se ve en Premios',
         (tester) async {
       final (shelf, progress, _) = await openApp(tester);
-      await tester.tap(find.text('Crear cuento'));
+      await tester.tap(find.text('Contar un cuento'));
       await tester.pumpAndSettle();
       final end = find.byKey(const Key('award-celebration'));
       await tester.scrollUntilVisible(end, 600,
@@ -223,7 +223,7 @@ void main() {
         (tester) async {
       final (_, progress, settings) = await openApp(tester);
       await settings.setCelebrateAwards(false);
-      await tester.tap(find.text('Crear cuento'));
+      await tester.tap(find.text('Contar un cuento'));
       await tester.pumpAndSettle();
       await tester.scrollUntilVisible(find.text('Contar otro cuento'), 600,
           scrollable: find.byType(Scrollable).first);

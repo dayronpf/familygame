@@ -103,7 +103,7 @@ void main() {
 
     await tester.tap(find.text('Inicio'));
     await tester.pump(const Duration(milliseconds: 300));
-    await tester.tap(find.text('Crear cuento'));
+    await tester.tap(find.text('Contar un cuento'));
     await tester.pump(const Duration(milliseconds: 300));
     await tester.pump(const Duration(milliseconds: 1000));
     await shot('07_story');

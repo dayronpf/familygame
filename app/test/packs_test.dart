@@ -88,7 +88,7 @@ void main() {
       await tester.tap(find.text('Amistad'));
       await tester.pump();
 
-      await tester.tap(find.text('Crear cuento'));
+      await tester.tap(find.text('Contar un cuento'));
       await tester.pumpAndSettle();
       // Un cuento de amistad del Mar de las Estrellas
       final told = shelf.recent.first;

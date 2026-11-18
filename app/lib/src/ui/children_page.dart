@@ -2,6 +2,7 @@ import 'package:caldero_engine/caldero_engine.dart'
     show AgeProfile, maxChildNameLength, normalizeChildName;
 import 'package:flutter/material.dart';
 
+import '../brand.dart' as brand show catalogOnly;
 import '../settings/app_settings.dart';
 import '../progress/reading_progress.dart';
 import '../shelf/story_shelf.dart';
@@ -65,7 +66,14 @@ class ChildAvatar extends StatelessWidget {
 /// sus propios cuentos guardados; la voz, la velocidad y la música son del teléfono. El activo es el del inicio.
 class ChildrenPage extends StatelessWidget {
   const ChildrenPage(
-      {super.key, required this.settings, this.shelf, this.progress});
+      {super.key,
+      required this.settings,
+      this.shelf,
+      this.progress,
+      this.catalogOnly = brand.catalogOnly});
+
+  /// Lanzamiento (catálogo fijo): sin «protagonista»; cada cuento trae el suyo.
+  final bool catalogOnly;
 
   final ReadingProgress? progress;
 
@@ -75,7 +83,8 @@ class ChildrenPage extends StatelessWidget {
   final StoryShelf? shelf;
 
   Future<void> _add(BuildContext context) async {
-    final draft = await showChildDialog(context, title: 'Añadir un niño');
+    final draft = await showChildDialog(context,
+        title: 'Añadir un niño', catalogOnly: catalogOnly);
     if (draft == null) return;
     await settings.addChild(
       name: draft.name,
@@ -88,6 +97,7 @@ class ChildrenPage extends StatelessWidget {
     final p = settings.profiles[index];
     final draft = await showChildDialog(
       context,
+      catalogOnly: catalogOnly,
       title: 'Editar a ${p.label(index)}',
       initial: ChildDraft(name: p.name, age: p.age, gender: p.heroGender),
     );
@@ -152,12 +162,15 @@ class ChildrenPage extends StatelessWidget {
               padding: const EdgeInsets.fromLTRB(16, 8, 16, 96),
               children: [
                 Text(
-                  'Toca a un niño para que los cuentos sean para él. La voz, la velocidad y la música son del teléfono.',
+                  catalogOnly
+                      ? 'Toca a un niño para ver sus cuentos y sus premios. Cada uno tiene su edad y su progreso.'
+                      : 'Toca a un niño para que los cuentos sean para él. La voz, la velocidad y la música son del teléfono.',
                   style: text.bodyMedium!.copyWith(color: Palette.mutedText),
                 ),
                 const SizedBox(height: 12),
                 for (var i = 0; i < kids.length; i++)
                   _ChildTile(
+                    catalogOnly: catalogOnly,
                     key: ValueKey('child-${kids[i].id}'),
                     profile: kids[i],
                     index: i,
@@ -178,6 +191,7 @@ class ChildrenPage extends StatelessWidget {
 
 class _ChildTile extends StatelessWidget {
   const _ChildTile({
+    this.catalogOnly = brand.catalogOnly,
     super.key,
     required this.profile,
     required this.index,
@@ -195,6 +209,7 @@ class _ChildTile extends StatelessWidget {
   final VoidCallback onTap;
   final VoidCallback onEdit;
   final VoidCallback onRemove;
+  final bool catalogOnly;
 
   @override
   Widget build(BuildContext context) {
@@ -228,7 +243,7 @@ class _ChildTile extends StatelessWidget {
                         style: text.titleLarge!
                             .copyWith(fontWeight: FontWeight.w800),
                       ),
-                      Text('$age · $hero',
+                      Text(catalogOnly ? age : '$age · $hero',
                           style: text.bodyMedium!
                               .copyWith(color: Palette.mutedText)),
                     ],
@@ -261,15 +276,22 @@ Future<ChildDraft?> showChildDialog(
   BuildContext context, {
   required String title,
   ChildDraft initial = const ChildDraft(),
+  bool catalogOnly = brand.catalogOnly,
 }) {
   return showDialog<ChildDraft>(
     context: context,
-    builder: (context) => _ChildDialog(title: title, initial: initial),
+    builder: (context) =>
+        _ChildDialog(title: title, initial: initial, catalogOnly: catalogOnly),
   );
 }
 
 class _ChildDialog extends StatefulWidget {
-  const _ChildDialog({required this.title, required this.initial});
+  const _ChildDialog(
+      {required this.title,
+      required this.initial,
+      this.catalogOnly = brand.catalogOnly});
+
+  final bool catalogOnly;
 
   final String title;
   final ChildDraft initial;
@@ -286,7 +308,7 @@ class _ChildDialogState extends State<_ChildDialog> {
 
   bool get _named => normalizeChildName(_name.text) != null;
 
-  bool get _missingGender => _named && _gender == null;
+  bool get _missingGender => !widget.catalogOnly && _named && _gender == null;
 
   @override
   void dispose() {
@@ -330,43 +352,45 @@ class _ChildDialogState extends State<_ChildDialog> {
                   ),
               ],
             ),
-            const SizedBox(height: 14),
-            Text('Protagonista', style: text.labelLarge),
-            const SizedBox(height: 6),
-            Wrap(
-              spacing: 6,
-              children: [
-                ChoiceChip(
-                  key: const Key('child-gender-m'),
-                  label: const Text('Niño'),
-                  selected: _gender == 'm',
-                  onSelected: (_) => setState(() => _gender = 'm'),
-                ),
-                ChoiceChip(
-                  key: const Key('child-gender-f'),
-                  label: const Text('Niña'),
-                  selected: _gender == 'f',
-                  onSelected: (_) => setState(() => _gender = 'f'),
-                ),
-                // Con su nombre el cuento no puede elegir al azar (el dibujo y el «solo/sola» le seguirían)
-                if (!_named)
+            if (!widget.catalogOnly) ...[
+              const SizedBox(height: 14),
+              Text('Protagonista', style: text.labelLarge),
+              const SizedBox(height: 6),
+              Wrap(
+                spacing: 6,
+                children: [
                   ChoiceChip(
-                    key: const Key('child-gender-any'),
-                    label: const Text('Al azar'),
-                    selected: _gender == null,
-                    onSelected: (_) => setState(() => _gender = null),
+                    key: const Key('child-gender-m'),
+                    label: const Text('Niño'),
+                    selected: _gender == 'm',
+                    onSelected: (_) => setState(() => _gender = 'm'),
                   ),
-              ],
-            ),
-            if (_missingGender)
-              Padding(
-                padding: const EdgeInsets.only(top: 6),
-                child: Text(
-                  'Con su nombre, elige niño o niña.',
-                  key: const Key('child-gender-needed'),
-                  style: text.bodySmall,
-                ),
+                  ChoiceChip(
+                    key: const Key('child-gender-f'),
+                    label: const Text('Niña'),
+                    selected: _gender == 'f',
+                    onSelected: (_) => setState(() => _gender = 'f'),
+                  ),
+                  // Con su nombre el cuento no puede elegir al azar (el dibujo y el «solo/sola» le seguirían)
+                  if (!_named)
+                    ChoiceChip(
+                      key: const Key('child-gender-any'),
+                      label: const Text('Al azar'),
+                      selected: _gender == null,
+                      onSelected: (_) => setState(() => _gender = null),
+                    ),
+                ],
               ),
+              if (_missingGender)
+                Padding(
+                  padding: const EdgeInsets.only(top: 6),
+                  child: Text(
+                    'Con su nombre, elige niño o niña.',
+                    key: const Key('child-gender-needed'),
+                    style: text.bodySmall,
+                  ),
+                ),
+            ],
           ],
         ),
       ),

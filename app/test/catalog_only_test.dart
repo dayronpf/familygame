@@ -158,12 +158,12 @@ void main() {
     });
 
     testWidgets(
-        '«Crear cuento» cuenta uno del catálogo de esa enseñanza, sin el nombre del niño ni preguntas',
+        '«Contar un cuento» cuenta uno del catálogo de esa enseñanza, sin el nombre del niño ni preguntas',
         (tester) async {
       final (_, shelf) = await openApp(tester);
       await tester.tap(find.text('Valentía'));
       await tester.pump();
-      await tester.tap(find.text('Crear cuento'));
+      await tester.tap(find.text('Contar un cuento'));
       await tester.pumpAndSettle();
       // Uno de valentía del Reino de la Luna, contado con las opciones fijas de su entrada del catálogo
       final entry = shelf.recent.first;

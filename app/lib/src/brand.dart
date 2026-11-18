@@ -3,6 +3,8 @@
 /// guía en PDF. Nada más en el código escribe el nombre a mano.
 library;
 
+import 'package:flutter/foundation.dart';
+
 /// El nombre que ve la familia (pantalla de inicio, ajustes, mensaje para compartir, icono del teléfono).
 const String appName = 'Mininoches';
 
@@ -16,10 +18,11 @@ const String legalOwner = 'TuVendor';
 const String contactEmail = 'ventas@tuvendor.com';
 
 /// Fecha de la última revisión de los textos legales.
-const String legalDate = '8 de noviembre de 2026';
+const String legalDate = '18 de noviembre de 2026';
 
-/// `false` mientras no exista el servidor de valoraciones: la política lo dice con claridad (nada sale del teléfono).
-const bool feedbackServerLive = false;
+/// El servidor de valoraciones ya funciona (cuentos2.tuvendor.com, POST /v1/feedback): la versión de las tiendas
+/// envía las valoraciones si un adulto lo permite. La política ya no dice que nada sale del teléfono.
+const bool feedbackServerLive = true;
 
 bool get legalPending =>
     legalOwner.startsWith('[') || contactEmail.startsWith('[');
@@ -56,3 +59,13 @@ const String recordedVoiceBaseUrl = '';
 /// si [recordedVoiceBaseUrl] está vacía, el audio sale de `voz/<idioma>/` en esta misma raíz. **Se llena en el paso
 /// A8** (Cloudflare R2, docs/31). Vacía = apagado: la app usa solo lo que trae dentro.
 const String contentBaseUrl = 'https://audio.tuvendor.com/';
+
+/// La tienda del teléfono, para los textos de compra y cancelación.
+String get storeName => defaultTargetPlatform == TargetPlatform.iOS
+    ? 'la App Store'
+    : 'Google Play';
+
+/// Dónde se cancela la suscripción, en palabras de cada tienda.
+String get storeCancelPath => defaultTargetPlatform == TargetPlatform.iOS
+    ? 'Ajustes › tu nombre › Suscripciones'
+    : 'Google Play › Pagos y suscripciones';

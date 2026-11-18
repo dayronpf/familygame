@@ -84,7 +84,7 @@ const List<PackInfo> packCatalog = [
     tagline: 'Piratas y sirenas',
     description:
         'Piratas buenos que navegan siguiendo las estrellas, mapas del tesoro, una sirena que canta nanas y un '
-        'pulpo travieso que solo quería jugar. Treinta cuentos de aventura, lealtad y honestidad, para todas las edades.',
+        'pulpo travieso que solo quería jugar. Treinta y cuatro cuentos de aventura, lealtad y honestidad, para todas las edades.',
     icon: Icons.sailing_outlined,
     colors: [Color(0xFF2FA7C9), Color(0xFF1B5E8C)],
     status: PackStatus.available,
@@ -112,11 +112,12 @@ const List<PackInfo> packCatalog = [
     tagline: 'Cohetes y planetas',
     description:
         'Un pueblito sobre las nubes, cohetes a la luna, un robot amable, un perrito astronauta y un alien travieso '
-        'que solo quería amigos. Treinta cuentos para soñar despacio y perder el miedo a la oscuridad, para todas las edades.',
+        'que solo quería amigos. Treinta y tres cuentos para soñar despacio y perder el miedo a la oscuridad, para todas las edades.',
     icon: Icons.rocket_launch_outlined,
     colors: [Color(0xFFE05A8B), Color(0xFF7A2A6A)],
     status: PackStatus.available,
-    isNew: true,
+    isNew:
+        false, // en el lanzamiento los tres mundos llegan juntos: ninguno es «Nuevo»
     cover: PackCover(
       place: 'aldea',
       heroM: 'orion',
@@ -407,8 +408,7 @@ Future<void> showSoonSheet(BuildContext context, PackInfo pack) {
                       const SizedBox(width: 12),
                       Expanded(
                         child: Text(
-                          'Próximamente. Será un paquete de pago: los paquetes que ya tienes seguirán '
-                          'siendo gratis.',
+                          'Próximamente: llegará con la suscripción, sin costo extra.',
                           style: text.bodyMedium,
                         ),
                       ),

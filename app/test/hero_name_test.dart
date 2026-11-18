@@ -52,7 +52,7 @@ void main() {
       );
       final (_, shelf, _) = await openApp(tester, settings);
 
-      await tester.tap(find.text('Crear cuento'));
+      await tester.tap(find.text('Contar un cuento'));
       await tester.pumpAndSettle();
       await tester.scrollUntilVisible(
         find.textContaining('Valentina'),
@@ -86,7 +86,7 @@ void main() {
       final settings = AppSettings(MemorySettingsStore());
       await settings.completeWizard(age: '6-8');
       final (_, shelf, _) = await openApp(tester, settings);
-      await tester.tap(find.text('Crear cuento'));
+      await tester.tap(find.text('Contar un cuento'));
       await tester.pumpAndSettle();
       expect(shelf.recent.first.heroName, isNull);
       expect(shelf.recent.first.hero, anyOf('Aldo', 'Mara'));

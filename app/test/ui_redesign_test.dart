@@ -65,7 +65,7 @@ void main() {
         showSplash: true,
       ));
       for (var i = 0;
-          i < 40 && find.text('Crear cuento').evaluate().isEmpty;
+          i < 40 && find.text('Contar un cuento').evaluate().isEmpty;
           i++) {
         await tester.runAsync(
             () => Future<void>.delayed(const Duration(milliseconds: 100)));
@@ -73,7 +73,7 @@ void main() {
       }
       await tester.pumpAndSettle(const Duration(milliseconds: 100));
       expect(find.byKey(const Key('splash-version')), findsNothing);
-      expect(find.text('Crear cuento'), findsOneWidget);
+      expect(find.text('Contar un cuento'), findsOneWidget);
     });
 
     testWidgets(
@@ -113,7 +113,7 @@ void main() {
       expect(find.byKey(const Key('open-settings')), findsOneWidget);
       expect(find.text('¿Qué quieres aprender hoy?'), findsOneWidget);
       // Sin desplazarse: las cuatro tarjetas y el botón grande caben en un teléfono.
-      expect(find.text('Crear cuento'), findsOneWidget);
+      expect(find.text('Contar un cuento'), findsOneWidget);
     });
 
     testWidgets(
@@ -202,7 +202,7 @@ void main() {
       await tester.pumpAndSettle();
       await tester.tap(find.text(first.name));
       await tester.pumpAndSettle();
-      expect(find.textContaining('Próximamente.'), findsOneWidget);
+      expect(find.textContaining('Próximamente: llegará con la suscripción'), findsOneWidget);
       expect(find.text(first.description), findsOneWidget);
     });
   });
@@ -221,7 +221,7 @@ void main() {
       final shelf = await openApp(tester, seed: 5);
       await tester.tap(find.text('Honestidad'));
       await tester.pump();
-      await tester.tap(find.text('Crear cuento'));
+      await tester.tap(find.text('Contar un cuento'));
       await tester.pumpAndSettle();
       expect(shelf.recent, hasLength(1));
       // Con el catálogo fijo se cuenta un cuento de honestidad con sus opciones fijas (sin enseñanza pedida aparte)
@@ -252,7 +252,7 @@ void main() {
     testWidgets('sin «Sorpréndeme» elegido, la enseñanza queda guardada',
         (tester) async {
       final shelf = await openApp(tester, seed: 9);
-      await tester.tap(find.text('Crear cuento'));
+      await tester.tap(find.text('Contar un cuento'));
       await tester.pumpAndSettle();
       expect(shelf.recent.first.option, isNull);
     });

@@ -56,12 +56,14 @@ void main() {
         await _bundle.loadString('assets/legal/politica-de-privacidad.es.md'),
       );
       // Sin anuncios ni cuentas; nada de datos de niños; el envío es opcional y anónimo
-      expect(text, contains('sin cuenta, sin anuncios'));
+      expect(text, contains('sin cuenta y sin anuncios'));
       expect(text, contains('Ayudar a mejorar los cuentos'));
       expect(text, contains('Nunca se envía el nombre ni la edad'));
       expect(text, contains('Borrar los datos de este teléfono'));
-      expect(text, contains('Hoy la app todavía no tiene servidor'),
-          reason: 'mientras no haya servidor, nada sale del teléfono');
+      expect(text, isNot(contains('Hoy la app todavía no tiene servidor')),
+          reason: 'el servidor de valoraciones ya funciona');
+      expect(text, contains('que narra los cuentos está grabada'));
+      expect(text, isNot(contains('protagonista del cuento')));
     });
 
     testWidgets(

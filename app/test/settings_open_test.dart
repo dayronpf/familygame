@@ -47,7 +47,7 @@ void main() {
         '${int.parse(m.group(1)!) * int.parse(m.group(2)!)}');
     await tester.tap(find.byKey(const Key('gate-ok')));
     await tester.pumpAndSettle();
-    expect(find.text('Cuentos y voz'), findsOneWidget);
+    expect(find.text('Cuentos'), findsOneWidget);
     expect(find.byType(CircularProgressIndicator), findsNothing);
   });
 }

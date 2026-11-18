@@ -130,7 +130,8 @@ class _PaywallPageState extends State<PaywallPage> {
     //
     // Excepción en Android: los revisores de Google Play no pueden pagar ni usar la prueba gratis, así que se les da un
     // código del servidor (docs/36). Google lo permite; Apple no (3.1.1), por eso en iPhone solo queda el de la tienda.
-    final serverCodes = access.api != null && defaultTargetPlatform == TargetPlatform.android;
+    final serverCodes =
+        access.api != null && defaultTargetPlatform == TargetPlatform.android;
     if (!access.devAvailable && serverCodes) {
       final choice = await showModalBottomSheet<String>(
         context: context,
@@ -257,7 +258,7 @@ class _PaywallPageState extends State<PaywallPage> {
                         ? 'Hoy: prueba gratis'
                         : 'Hoy: acceso completo',
                     body:
-                        'Todos los paquetes, crear cuentos nuevos cada noche y los que lleguen cada semana.',
+                        'Los 100 cuentos narrados, con sus dibujos, y los cuentos nuevos que vayan llegando.',
                   ),
                   if (trial > 0) ...[
                     _Step(
@@ -271,7 +272,7 @@ class _PaywallPageState extends State<PaywallPage> {
                       icon: Icons.star,
                       color: const Color(0xFFFFA8D2),
                       title: 'Día $trial: empieza la suscripción',
-                      body: 'Solo si no la cancelaste antes en Google Play.',
+                      body: 'Solo si no la cancelaste antes en $storeName.',
                       last: true,
                     ),
                   ],
@@ -286,7 +287,7 @@ class _PaywallPageState extends State<PaywallPage> {
                           color: Palette.card,
                           borderRadius: BorderRadius.circular(18)),
                       child: Text(
-                        'La suscripción aparecerá aquí cuando $appName esté publicada en Google Play. '
+                        'La suscripción aparecerá aquí cuando $appName esté publicada en $storeName. '
                         'Mientras tanto puedes canjear un código.',
                         textAlign: TextAlign.center,
                         style: text.bodyLarge,
@@ -335,8 +336,8 @@ class _PaywallPageState extends State<PaywallPage> {
                       '${selected.trialDays > 0 ? 'Gratis ${selected.trialDays} días; luego ' : ''}'
                       '${selected.price} ${selected.yearly ? 'al año' : 'al mes'}'
                       '${selected.monthlyEquivalent != null ? ' (${selected.monthlyEquivalent})' : ''}. '
-                      'Se paga con tu cuenta de Google Play y se renueva sola hasta que la canceles en '
-                      'Google Play › Pagos y suscripciones (al menos 24 horas antes de que termine el periodo).',
+                      'Se paga con tu cuenta de $storeName y se renueva sola hasta que la canceles en '
+                      '$storeCancelPath (al menos 24 horas antes de que termine el periodo).',
                       textAlign: TextAlign.center,
                       style: text.bodySmall!.copyWith(color: Palette.mutedText),
                     ),

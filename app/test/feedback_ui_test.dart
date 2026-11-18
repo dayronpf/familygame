@@ -58,7 +58,7 @@ void main() {
   Future<void> createStory(WidgetTester tester,
       {String moral = 'Honestidad'}) async {
     // En pantallas estrechas el inicio es más alto que la pantalla: se desplaza hasta cada control.
-    for (final label in [moral, 'Crear cuento']) {
+    for (final label in [moral, 'Contar un cuento']) {
       await tester.scrollUntilVisible(find.text(label), 200,
           scrollable: find.byType(Scrollable).first);
       await tester.tap(find.text(label));

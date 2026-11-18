@@ -150,6 +150,7 @@ class _CalderoAppState extends State<CalderoApp> {
                 settings: _settings,
                 voices: widget.voices,
                 agesWithStories: snap.data!,
+                catalogOnly: widget.catalogOnly,
                 onDone: () => setState(() => _wizard = false),
               ),
       );

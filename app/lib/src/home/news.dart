@@ -29,23 +29,22 @@ class NewsItem {
 
 const List<NewsItem> newsItems = [
   NewsItem(
-    id: 'explorar-2026-11',
-    title: '¡Nuevo! Explora los cuentos',
+    id: 'bienvenida-lanzamiento',
+    title: '100 cuentos para dormir',
     body:
-        'Busca por edad, por enseñanza o por paquete, y mira de qué va cada cuento antes de leerlo.',
-    icon: Icons.explore,
+        'Narrados con una voz cálida, con sus dibujos y una enseñanza. Tres son gratis para siempre.',
+    icon: Icons.nightlight_round,
     colors: [Color(0xFF6B4FD8), Color(0xFF3B2A8A)],
-    action: NewsAction.explore,
-    actionLabel: 'Explorar',
   ),
   NewsItem(
-    id: 'aldea-nubes',
-    title: 'Llegó la Aldea de las Nubes',
-    body: 'Cohetes, planetas y un robot amable: cuentos para soñar despacio.',
-    icon: Icons.rocket_launch,
+    id: 'explorar-lanzamiento',
+    title: 'Encuentra el cuento de esta noche',
+    body:
+        'Busca por edad, por enseñanza o por mundo, y mira de qué va cada cuento antes de escucharlo.',
+    icon: Icons.explore,
     colors: [Color(0xFFE05A8B), Color(0xFF7A2A6A)],
     action: NewsAction.explore,
-    actionLabel: 'Ver novedades',
+    actionLabel: 'Explorar',
   ),
   NewsItem(
     id: 'leemos-juntos',

@@ -2,6 +2,7 @@ import 'package:caldero_engine/caldero_engine.dart'
     show AgeProfile, maxChildNameLength, normalizeChildName;
 import 'package:flutter/material.dart';
 
+import '../brand.dart' as brand show catalogOnly;
 import '../narration/narrator.dart';
 import '../settings/app_settings.dart';
 import 'night_background.dart';
@@ -20,7 +21,12 @@ class WizardPage extends StatefulWidget {
     required this.voices,
     required this.agesWithStories,
     required this.onDone,
+    this.catalogOnly = brand.catalogOnly,
   });
+
+  /// Lanzamiento (catálogo fijo con voz grabada): solo se pregunta la edad y, si quieren, el nombre para saludarle.
+  /// El idioma (solo español), la voz (la grabada) y el protagonista (cada cuento trae el suyo) no se preguntan.
+  final bool catalogOnly;
 
   final AppSettings settings;
   final VoiceServices voices;
@@ -35,7 +41,11 @@ class WizardPage extends StatefulWidget {
 
 class _WizardPageState extends State<WizardPage> {
   static const int summaryStep = 4;
-  int _step = 0;
+  late final List<int> _flow = widget.catalogOnly
+      ? const [2, 3, summaryStep]
+      : const [0, 1, 2, 3, summaryStep];
+  int _pos = 0;
+  int get _step => _flow[_pos];
   late String _language = widget.settings.child.language;
   TtsVoice? _voice;
   String? _voiceName;
@@ -53,19 +63,22 @@ class _WizardPageState extends State<WizardPage> {
   Future<void> _finish({required bool skipped}) async {
     await widget.settings.completeWizard(
       language: skipped ? resolveLanguage(_language) : _language,
-      voice: skipped ? null : _voice,
+      voice: skipped || widget.catalogOnly ? null : _voice,
       age: skipped ? AgeProfile.defaultId : _age,
       name: skipped ? '' : _name.text.trim(),
-      heroGender: skipped ? null : _gender,
+      heroGender: skipped || widget.catalogOnly ? null : _gender,
     );
     widget.onDone();
   }
 
-  void _go(int step) => setState(() => _step = step);
+  void _go(int pos) => setState(() => _pos = pos);
 
   /// En el paso del nombre: hay nombre pero falta decir si es niño o niña.
   bool get _missingGender =>
-      _step == 3 && _gender == null && normalizeChildName(_name.text) != null;
+      !widget.catalogOnly &&
+      _step == 3 &&
+      _gender == null &&
+      normalizeChildName(_name.text) != null;
 
   @override
   Widget build(BuildContext context) {
@@ -81,12 +94,12 @@ class _WizardPageState extends State<WizardPage> {
                   children: [
                     SizedBox(
                       width: 48,
-                      child: _step == 0
+                      child: _pos == 0
                           ? null
                           : IconButton(
                               key: const Key('wizard-back'),
                               tooltip: 'Atrás',
-                              onPressed: () => _go(_step - 1),
+                              onPressed: () => _go(_pos - 1),
                               icon: const Icon(Icons.arrow_back),
                             ),
                     ),
@@ -94,13 +107,13 @@ class _WizardPageState extends State<WizardPage> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          for (var i = 0; i <= summaryStep; i++)
+                          for (var i = 0; i < _flow.length; i++)
                             Container(
                               margin: const EdgeInsets.symmetric(horizontal: 4),
-                              width: i == _step ? 22 : 8,
+                              width: i == _pos ? 22 : 8,
                               height: 8,
                               decoration: BoxDecoration(
-                                color: i <= _step
+                                color: i <= _pos
                                     ? Palette.amber
                                     : Palette.cardSoft,
                                 borderRadius: BorderRadius.circular(4),
@@ -223,8 +236,10 @@ class _WizardPageState extends State<WizardPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Si lo escribes, será el protagonista de sus cuentos. '
-                'Es opcional y el nombre se queda en este teléfono.',
+                widget.catalogOnly
+                    ? 'Es opcional: lo usamos para saludarle en la app. El nombre se queda en este teléfono.'
+                    : 'Si lo escribes, será el protagonista de sus cuentos. '
+                        'Es opcional y el nombre se queda en este teléfono.',
                 style: text.bodyMedium!.copyWith(color: Palette.mutedText),
               ),
               const SizedBox(height: 14),
@@ -242,39 +257,41 @@ class _WizardPageState extends State<WizardPage> {
                 ),
                 onChanged: (_) => setState(() {}),
               ),
-              const SizedBox(height: 18),
-              Text('¿Quién protagoniza?',
-                  style: text.titleMedium!.copyWith(color: Palette.cream)),
-              const SizedBox(height: 10),
-              _ChoiceCard(
-                key: const Key('gender-m'),
-                title: 'Un niño',
-                selected: _gender == 'm',
-                onTap: () => setState(() => _gender = 'm'),
-              ),
-              _ChoiceCard(
-                key: const Key('gender-f'),
-                title: 'Una niña',
-                selected: _gender == 'f',
-                onTap: () => setState(() => _gender = 'f'),
-              ),
-              // Con su nombre el cuento no puede decidir: «Dayron» no puede salir dibujado como niña ni decir «sola»
-              if (normalizeChildName(_name.text) == null)
+              if (!widget.catalogOnly) ...[
+                const SizedBox(height: 18),
+                Text('¿Quién protagoniza?',
+                    style: text.titleMedium!.copyWith(color: Palette.cream)),
+                const SizedBox(height: 10),
                 _ChoiceCard(
-                  key: const Key('gender-any'),
-                  title: 'Que decida el cuento',
-                  selected: _gender == null,
-                  onTap: () => setState(() => _gender = null),
-                )
-              else if (_gender == null)
-                Padding(
-                  padding: const EdgeInsets.only(top: 6),
-                  child: Text(
-                    'Elige si es un niño o una niña para que el cuento hable bien de su protagonista.',
-                    key: const Key('gender-needed'),
-                    style: text.bodyMedium!.copyWith(color: Palette.amber),
-                  ),
+                  key: const Key('gender-m'),
+                  title: 'Un niño',
+                  selected: _gender == 'm',
+                  onTap: () => setState(() => _gender = 'm'),
                 ),
+                _ChoiceCard(
+                  key: const Key('gender-f'),
+                  title: 'Una niña',
+                  selected: _gender == 'f',
+                  onTap: () => setState(() => _gender = 'f'),
+                ),
+                // Con su nombre el cuento no puede decidir: «Dayron» no puede salir dibujado como niña ni decir «sola»
+                if (normalizeChildName(_name.text) == null)
+                  _ChoiceCard(
+                    key: const Key('gender-any'),
+                    title: 'Que decida el cuento',
+                    selected: _gender == null,
+                    onTap: () => setState(() => _gender = null),
+                  )
+                else if (_gender == null)
+                  Padding(
+                    padding: const EdgeInsets.only(top: 6),
+                    child: Text(
+                      'Elige si es un niño o una niña para que el cuento hable bien de su protagonista.',
+                      key: const Key('gender-needed'),
+                      style: text.bodyMedium!.copyWith(color: Palette.amber),
+                    ),
+                  ),
+              ],
             ],
           ),
         );
@@ -291,14 +308,16 @@ class _WizardPageState extends State<WizardPage> {
           title: 'Todo listo',
           body: Column(
             children: [
-              _SummaryRow(
-                  icon: Icons.language, label: 'Idioma', value: lang.name),
-              _SummaryRow(
-                icon: Icons.record_voice_over,
-                label: 'Voz',
-                value: _voiceName ?? voiceFriendlyNames.first,
-                key: const Key('summary-voice'),
-              ),
+              if (!widget.catalogOnly) ...[
+                _SummaryRow(
+                    icon: Icons.language, label: 'Idioma', value: lang.name),
+                _SummaryRow(
+                  icon: Icons.record_voice_over,
+                  label: 'Voz',
+                  value: _voiceName ?? voiceFriendlyNames.first,
+                  key: const Key('summary-voice'),
+                ),
+              ],
               _SummaryRow(
                 icon: Icons.child_care,
                 label: 'Edad',
@@ -306,8 +325,9 @@ class _WizardPageState extends State<WizardPage> {
               ),
               _SummaryRow(
                 icon: Icons.auto_stories,
-                label: 'Héroe',
-                value: heroName ?? 'Al azar',
+                label: widget.catalogOnly ? 'Nombre' : 'Héroe',
+                value:
+                    heroName ?? (widget.catalogOnly ? 'Sin nombre' : 'Al azar'),
                 key: const Key('summary-hero'),
               ),
               const SizedBox(height: 8),
@@ -391,7 +411,7 @@ class _WizardPageState extends State<WizardPage> {
                   width: double.infinity,
                   child: FilledButton(
                     key: const Key('wizard-next'),
-                    onPressed: _missingGender ? null : () => _go(_step + 1),
+                    onPressed: _missingGender ? null : () => _go(_pos + 1),
                     style: FilledButton.styleFrom(
                       minimumSize: const Size.fromHeight(56),
                     ),

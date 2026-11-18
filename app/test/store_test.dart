@@ -183,10 +183,10 @@ void main() {
     }
 
     testWidgets(
-        '«Crear cuento» cuenta uno de los gratis y no ofrece otro de pago',
+        '«Contar un cuento» cuenta uno de los gratis y no ofrece otro de pago',
         (tester) async {
       final (shelf, access) = await openApp(tester);
-      await tester.tap(find.text('Crear cuento'));
+      await tester.tap(find.text('Contar un cuento'));
       await tester.pumpAndSettle();
       final told = shelf.recent.first;
       expect(access.isFree(told.packId, told.premiseId!), isTrue);
