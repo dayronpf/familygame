@@ -24,7 +24,7 @@ use Tests\TestCase;
  */
 class AppleVerifyTest extends TestCase
 {
-    private const BUNDLE = 'com.calderodecuentos.cuentos';
+    private const BUNDLE = 'com.mininoches.app';
 
     private const PROD = 'https://api.storekit.itunes.apple.com/inApps/v1/';
 

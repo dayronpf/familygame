@@ -87,7 +87,7 @@ pruebas locales use una compilación de depuración o un túnel HTTPS.
    los permisos **«Ver datos financieros»** y **«Gestionar pedidos y suscripciones»**. (Los cambios pueden tardar hasta 24 h.)
 3. Guarde el JSON fuera de `public/` (p. ej. `storage/app/private/google-play.json`, ya ignorado por git) y ponga en el `.env`:
    ```
-   GOOGLE_PLAY_PACKAGE=com.calderodecuentos.cuentos
+   GOOGLE_PLAY_PACKAGE=com.mininoches.app
    GOOGLE_SERVICE_ACCOUNT_JSON=/ruta/absoluta/google-play.json
    ```
    (o el contenido del JSON en una línea si su hosting solo admite variables).
@@ -120,7 +120,7 @@ Si ya tenía el servidor instalado, ejecute `php artisan migrate` (añade `notif
    APPLE_ISSUER_ID=57246542-96fe-1a63-e053-0824d011072a
    APPLE_KEY_ID=2X9R4HXF34
    APPLE_PRIVATE_KEY=/ruta/absoluta/apple-iap.p8
-   APPLE_BUNDLE_ID=com.calderodecuentos.cuentos
+   APPLE_BUNDLE_ID=com.mininoches.app
    APPLE_ENVIRONMENT=production
    APPLE_PRODUCT_IDS=mininoches_premium_anual:anual,mininoches_premium_mensual:mensual
    ```

@@ -1,6 +1,6 @@
 # 25 · Compilar para iPhone
 
-Hay **dos caminos**; los dos usan el mismo proyecto (`app/ios`, bundle id `com.calderodecuentos.cuentos`, iOS 15+, audio en segundo plano
+Hay **dos caminos**; los dos usan el mismo proyecto (`app/ios`, bundle id `com.mininoches.app`, iOS 15+, audio en segundo plano
 activado en `Info.plist`).
 
 ## A. En tu Mac (lo más directo para instalar en tu iPhone)
@@ -53,6 +53,6 @@ contraseña), el perfil de aprovisionamiento y el Team ID de tu cuenta de Apple,
   antes, como secretos del repositorio, el almacén de claves en base64 y sus contraseñas (la lista exacta y cómo crear la llave están en la
   cabecera de `.github/workflows/android-release.yml`). En local basta con crear `app/android/key.properties` (no se sube al repositorio) y
   `flutter build appbundle --release`. Guarda una copia de seguridad de la llave: sin ella no se puede actualizar la app.
-* **Identificador de la app:** `com.calderodecuentos.cuentos` en Android y en iOS (antes iOS tenía `…calderoApp`; se unificó). Cámbialo en los dos
+* **Identificador de la app:** `com.mininoches.app` en Android y en iOS (antes iOS tenía `…calderoApp`; se unificó). Cámbialo en los dos
   sitios si registras otro en las tiendas.
 * Prueba en emulador: `Android (emulador)` arranca la app real y recorre asistente, ajustes, privacidad y un cuento (`app/integration_test`).

@@ -13,7 +13,7 @@ use Tests\TestCase;
 
 class PurchaseVerifyTest extends TestCase
 {
-    private const SUBS = 'androidpublisher.googleapis.com/androidpublisher/v3/applications/com.calderodecuentos.cuentos/purchases/subscriptionsv2/tokens/*';
+    private const SUBS = 'androidpublisher.googleapis.com/androidpublisher/v3/applications/com.mininoches.app/purchases/subscriptionsv2/tokens/*';
 
     private string $publicPem;
 
@@ -210,7 +210,7 @@ class PurchaseVerifyTest extends TestCase
         $this->verify($id)->assertOk();
 
         $body = ['message' => ['data' => base64_encode(json_encode([
-            'version' => '1.0', 'packageName' => 'com.calderodecuentos.cuentos', 'eventTimeMillis' => '1',
+            'version' => '1.0', 'packageName' => 'com.mininoches.app', 'eventTimeMillis' => '1',
             'subscriptionNotification' => ['version' => '1.0', 'notificationType' => 13, 'purchaseToken' => 'token-de-prueba', 'subscriptionId' => 'mininoches_premium'],
         ])), 'messageId' => '1'], 'subscription' => 'projects/x/subscriptions/y'];
 

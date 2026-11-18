@@ -24,11 +24,11 @@
         <env name="ENTITLEMENT_SIGNING_KEY" value=""/>
         <env name="GOOGLE_SERVICE_ACCOUNT_JSON" value=""/>
         <env name="GOOGLE_RTDN_TOKEN" value=""/>
-        <env name="GOOGLE_PLAY_PACKAGE" value="com.calderodecuentos.cuentos"/>
+        <env name="GOOGLE_PLAY_PACKAGE" value="com.mininoches.app"/>
         <env name="APPLE_ISSUER_ID" value=""/>
         <env name="APPLE_KEY_ID" value=""/>
         <env name="APPLE_PRIVATE_KEY" value=""/>
-        <env name="APPLE_BUNDLE_ID" value="com.calderodecuentos.cuentos"/>
+        <env name="APPLE_BUNDLE_ID" value="com.mininoches.app"/>
         <env name="APPLE_ENVIRONMENT" value="production"/>
         <env name="APPLE_PRODUCT_IDS" value="mininoches_premium_anual:anual,mininoches_premium_mensual:mensual"/>
         <env name="TRUSTED_PROXIES" value=""/>

@@ -24,7 +24,7 @@ return [
 
     // Google Play Developer API (androidpublisher v3).
     'google' => [
-        'package' => env('GOOGLE_PLAY_PACKAGE', 'com.calderodecuentos.cuentos'),
+        'package' => env('GOOGLE_PLAY_PACKAGE', 'com.mininoches.app'),
         // Ruta al JSON de la cuenta de servicio (o el JSON mismo si empieza por «{»).
         'service_account_json' => env('GOOGLE_SERVICE_ACCOUNT_JSON'),
         'rtdn_token' => env('GOOGLE_RTDN_TOKEN'),
@@ -42,7 +42,7 @@ return [
         'key_id' => env('APPLE_KEY_ID'),
         // Ruta al archivo .p8 o su contenido PEM (con saltos de línea o «\n» en una sola línea).
         'private_key' => env('APPLE_PRIVATE_KEY'),
-        'bundle_id' => env('APPLE_BUNDLE_ID', 'com.calderodecuentos.cuentos'),
+        'bundle_id' => env('APPLE_BUNDLE_ID', 'com.mininoches.app'),
         // production | sandbox. En production, una transacción desconocida (404) se repite en sandbox.
         'environment' => env('APPLE_ENVIRONMENT', 'production') === 'sandbox' ? 'sandbox' : 'production',
         'sandbox_fallback' => (bool) env('APPLE_SANDBOX_FALLBACK', true),
