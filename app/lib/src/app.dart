@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'art/story_stage.dart';
+import 'content/remote_content.dart';
 import 'feedback/feedback_service.dart';
 import 'home_page.dart';
 import 'narration/recorded_voice.dart';
@@ -104,7 +105,7 @@ class _CalderoAppState extends State<CalderoApp> {
 
   Future<void> _loadVoice() async {
     if (!widget.recordedVoice) return;
-    final v = await RecordedVoice.load(_bundle, baseUrl: recordedVoiceBaseUrl);
+    final v = await RecordedVoice.load(_bundle, baseUrl: voiceBaseUrl());
     if (mounted) setState(() => _voice = v);
   }
 

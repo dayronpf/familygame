@@ -14,6 +14,7 @@ dependencies:
   caldero_rig:
     path: ../packages/caldero_rig
   http: ^1.2.0
+  crypto: ^3.0.6  # huellas sha256 del contenido remoto (docs/34)
   shared_preferences: ^2.3.0
   flutter_tts: ^4.2.5
   audioplayers: ^6.8.1

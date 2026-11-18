@@ -7,6 +7,8 @@ import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
 
+import '../content/remote_content.dart';
+
 /// Voz grabada de los cuentos del catálogo (docs/31, paso A6): cada escena, el título y la enseñanza de cada cuento
 /// se grabaron una vez con ElevenLabs. Los cuentos gratis vienen dentro de la app; los demás se descargan la primera
 /// vez y quedan guardados en el teléfono. Si un audio falta (o el texto cambió desde que se grabó), esa frase la dice
@@ -208,6 +210,9 @@ class RecordedVoice {
   ClipPlayer newPlayer() => _player();
 
   /// Lee el manifiesto. Si no está o está roto, devuelve [none]: la app sigue con la voz del teléfono.
+  ///
+  /// Si el manifiesto llegó del servidor ([ContentBundle], docs/34), solo cuentan como incluidos los audios que
+  /// también lo están en el manifiesto que trae la app (los demás se descargan, aunque el servidor diga «incluido»).
   static Future<RecordedVoice> load(
     AssetBundle bundle, {
     String language = 'es',
@@ -215,12 +220,31 @@ class RecordedVoice {
     ClipStore? store,
   }) async {
     try {
-      final raw =
-          await bundle.loadString('assets/voz/$language/manifiesto.json');
+      final key = 'assets/voz/$language/manifiesto.json';
+      final raw = await bundle.loadString(key);
+      Set<String>? bundledFiles;
+      if (bundle is ContentBundle && bundle.replaces(key)) {
+        try {
+          final inApp = parse(
+            jsonDecode(await bundle.base.loadString(key))
+                as Map<String, Object?>,
+            language: language,
+            store: _NoStore(),
+          );
+          bundledFiles = {
+            for (final s in inApp._stories.values)
+              for (final c in s.byText.values)
+                if (c.bundled) c.file,
+          };
+        } catch (_) {
+          bundledFiles = const {};
+        }
+      }
       return parse(
         jsonDecode(raw) as Map<String, Object?>,
         language: language,
         store: store ?? CachedClipStore(language: language, baseUrl: baseUrl),
+        bundledFiles: bundledFiles,
       );
     } catch (e) {
       debugPrint('Sin voz grabada ($language): $e');
@@ -228,11 +252,14 @@ class RecordedVoice {
     }
   }
 
+  /// Con [bundledFiles], un audio está incluido en la app solo si su archivo está en ese conjunto (y no por el
+  /// `incluido` del manifiesto).
   static RecordedVoice parse(
     Map<String, Object?> json, {
     required String language,
     required ClipStore store,
     ClipPlayer Function()? player,
+    Set<String>? bundledFiles,
   }) {
     final stories = <String, StoryClips>{};
     final cuentos = (json['cuentos'] as Map<String, Object?>?) ?? const {};
@@ -249,7 +276,7 @@ class RecordedVoice {
           text: text,
           file: file,
           seconds: (raw['segundos'] as num?)?.toDouble() ?? 0,
-          bundled: bundled,
+          bundled: bundledFiles?.contains(file) ?? bundled,
         );
       }
 

@@ -36,7 +36,9 @@ class CatalogStory {
   String get key => '${pack.id}:${premise.id}';
   String get title => premise.title;
   int get scenes => premise.beats.length;
-  bool get isNew => info.isNew;
+
+  /// Lleva «Nuevo»: su paquete es nuevo, o el cuento entró en la última versión del catálogo fijo (docs/34).
+  bool get isNew => info.isNew || (entry?.isNew ?? false);
 
   /// Semilla fija del cuento: la ficha y la lectura salen iguales (en el catálogo fijo, la de la grabación).
   int get seed => entry?.seed ?? stableSeed(key);
@@ -227,7 +229,7 @@ class StoryCatalog {
     ];
   }
 
-  /// Los de los paquetes marcados como nuevos.
+  /// Los nuevos: de los paquetes marcados como nuevos o recién llegados al catálogo fijo.
   List<CatalogStory> get newest => [
         for (final s in stories)
           if (s.isNew) s

@@ -107,5 +107,26 @@ void main() {
         expect(e.heroGender, anyOf('m', 'f'), reason: e.id);
       }
     });
+    test('los que entraron en la versión actual («desde») son los nuevos', () {
+      final c = FixedCatalog.fromJson({
+        'version': '1.2',
+        'cuentos': [
+          {'id': 'a:x', 'semilla': 1},
+          {'id': 'a:y', 'semilla': 2, 'desde': '1.1'},
+          {'id': 'b:z', 'semilla': 3, 'desde': '1.2'},
+        ],
+      });
+      expect(c.newIds, ['b:z']);
+      expect(c.byId('a:y')!.since, '1.1');
+      expect(c.byId('a:y')!.isNew, isFalse);
+      expect(c.byId('a:x')!.since, isNull);
+    });
+
+    test('las versiones se comparan por números, no como texto', () {
+      expect(compareVersions('1.10', '1.9'), greaterThan(0));
+      expect(compareVersions('1.1', '1.1.0'), 0);
+      expect(compareVersions('1.1', '2'), lessThan(0));
+      expect(compareVersions('', '1.0'), lessThan(0));
+    });
   });
 }
