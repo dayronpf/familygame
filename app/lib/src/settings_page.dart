@@ -738,7 +738,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     onTap: () => showLicensePage(
                       context: context,
                       applicationName: appName,
-                      applicationVersion: appVersion,
+                      applicationVersion: appVersionLabel,
                       applicationLegalese:
                           'Cuentos, dibujos y música originales del proyecto. Efectos de sonido: grabaciones CC0 de Kenney.nl y de AntumDeluge (OpenGameArt) y sonidos sintetizados por el proyecto (CC0).',
                     ),
@@ -783,7 +783,8 @@ class _SettingsPageState extends State<SettingsPage> {
                       ),
                     ),
                   const SizedBox(height: 8),
-                  Text('$appName · versión $appVersion', style: text.bodySmall),
+                  Text('$appName · versión $appVersionLabel',
+                      style: text.bodySmall),
                 ],
               ),
       ),

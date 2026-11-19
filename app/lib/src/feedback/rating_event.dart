@@ -5,6 +5,13 @@ import 'package:caldero_engine/caldero_engine.dart';
 /// Versión de la app que se informa junto a la valoración (la verifica una prueba contra el pubspec).
 const String appVersion = '1.0.0';
 
+/// Número de compilación (lo que va detrás del `+` en el pubspec): distingue una versión de otra en las tiendas.
+/// Una prueba verifica que coincida con el pubspec.
+const int appBuild = 28;
+
+/// La versión como se le enseña a la familia: «1.0.0 (28)».
+const String appVersionLabel = '$appVersion ($appBuild)';
+
 /// Versión del formato del evento (`schema` en el JSON).
 const int ratingSchema = 1;
 

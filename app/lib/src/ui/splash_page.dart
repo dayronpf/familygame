@@ -53,7 +53,7 @@ class SplashPage extends StatefulWidget {
     super.key,
     required this.onFinished,
     this.ready,
-    this.version = appVersion,
+    this.version = appVersionLabel,
     this.minimum = const Duration(milliseconds: 4200),
     this.sound,
   });

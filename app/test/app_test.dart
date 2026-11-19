@@ -213,7 +213,9 @@ void main() {
     await tester.tap(find.byKey(const Key('gate-ok')));
     await tester.pumpAndSettle();
     // Es una herramienta interna: solo en las compilaciones de prueba (MININOCHES_DEV)
-    expect(find.byKey(const Key('open-workshop'), skipOffstage: false), findsNothing);
-    expect(find.text('Taller de personajes (prueba)', skipOffstage: false), findsNothing);
+    expect(find.byKey(const Key('open-workshop'), skipOffstage: false),
+        findsNothing);
+    expect(find.text('Taller de personajes (prueba)', skipOffstage: false),
+        findsNothing);
   });
 }

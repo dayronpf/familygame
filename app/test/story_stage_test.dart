@@ -578,7 +578,9 @@ void main() {
       expect(vela.front, isTrue, reason: 'se ve delante del personaje');
     });
 
-    test('quien tiene un objeto a su lado sale con las manos libres (sin armas)', () {
+    test(
+        'quien tiene un objeto a su lado sale con las manos libres (sin armas)',
+        () {
       final setup = stageFor(
         art,
         cast(),

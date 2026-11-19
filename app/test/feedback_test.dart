@@ -76,6 +76,9 @@ void main() {
           .readAsLinesSync()
           .firstWhere((l) => l.startsWith('version:'));
       expect(line.split(':')[1].trim().split('+').first, appVersion);
+      expect(int.parse(line.split('+').last.trim()), appBuild,
+          reason:
+              'appBuild (rating_event.dart) debe ser el número tras el + del pubspec');
     });
   });
 

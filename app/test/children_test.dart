@@ -164,7 +164,8 @@ void main() {
       final shelf = StoryShelf(MemoryShelfStore());
       await tester.pumpWidget(MaterialApp(
         // Pruebas del modo del caldero (con protagonista); el catálogo fijo no lo pregunta
-        home: ChildrenPage(settings: settings, shelf: shelf, catalogOnly: false),
+        home:
+            ChildrenPage(settings: settings, shelf: shelf, catalogOnly: false),
       ));
       await tester.pump();
       return (settings, shelf);

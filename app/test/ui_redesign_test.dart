@@ -92,7 +92,7 @@ void main() {
       await tester.pump(const Duration(seconds: 1));
       expect(find.byKey(const Key('splash-version')), findsOneWidget);
       expect(tester.widget<Text>(find.byKey(const Key('splash-version'))).data,
-          'v$appVersion');
+          'v$appVersionLabel');
       expect(find.text(appName), findsWidgets);
       await tester.pump(const Duration(seconds: 3));
       await tester.pump(const Duration(milliseconds: 100));
@@ -202,7 +202,8 @@ void main() {
       await tester.pumpAndSettle();
       await tester.tap(find.text(first.name));
       await tester.pumpAndSettle();
-      expect(find.textContaining('Próximamente: llegará con la suscripción'), findsOneWidget);
+      expect(find.textContaining('Próximamente: llegará con la suscripción'),
+          findsOneWidget);
       expect(find.text(first.description), findsOneWidget);
     });
   });

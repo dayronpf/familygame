@@ -180,7 +180,8 @@ void main() {
   });
 
   group('wizard', () {
-    testWidgets('con el catálogo fijo solo pregunta la edad y el nombre (sin voz, idioma ni protagonista)',
+    testWidgets(
+        'con el catálogo fijo solo pregunta la edad y el nombre (sin voz, idioma ni protagonista)',
         (tester) async {
       phone(tester);
       final settings = AppSettings(MemorySettingsStore());
@@ -196,7 +197,8 @@ void main() {
       await tester.pumpAndSettle();
       expect(find.text('¿Qué edad tiene el niño?'), findsOneWidget);
       expect(find.text('¿Quién les cuenta el cuento?'), findsNothing);
-      expect(find.text('¿En qué idioma les contamos los cuentos?'), findsNothing);
+      expect(
+          find.text('¿En qué idioma les contamos los cuentos?'), findsNothing);
       await tester.tap(find.byKey(const Key('wizard-next')));
       await tester.pumpAndSettle();
       expect(find.byKey(const Key('wizard-name')), findsOneWidget);
