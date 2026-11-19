@@ -404,29 +404,12 @@ void main() {
   });
 
   group('ajustes para adultos', () {
-    Future<void> answerGate(WidgetTester tester,
-        {required bool correct}) async {
-      final q =
-          tester.widget<Text>(find.byKey(const Key('gate-question'))).data!;
-      final m = RegExp(r'(\d) por (\d)').firstMatch(q)!;
-      final answer =
-          int.parse(m.group(1)!) * int.parse(m.group(2)!) + (correct ? 0 : 1);
-      await tester.enterText(find.byKey(const Key('gate-answer')), '$answer');
-      await tester.tap(find.byKey(const Key('gate-ok')));
-      await tester.pumpAndSettle();
-    }
-
-    testWidgets('una respuesta incorrecta no deja entrar', (tester) async {
+    testWidgets('Ajustes se abre directo, sin la pregunta para adultos',
+        (tester) async {
       await openApp(tester);
       await tester.tap(find.byKey(const Key('open-settings')));
       await tester.pumpAndSettle();
-      expect(find.text('Solo para adultos'), findsOneWidget);
-      await answerGate(tester, correct: false);
-      expect(find.text('Ajustes para adultos'), findsNothing);
-      // La puerta no se cierra en silencio: avisa y deja probar otra vez
-      expect(find.text('Solo para adultos'), findsOneWidget);
-      expect(find.textContaining('Es una multiplicación'), findsOneWidget);
-      await answerGate(tester, correct: true);
+      expect(find.text('Solo para adultos'), findsNothing);
       expect(find.text('Ajustes para adultos'), findsOneWidget);
     });
 
@@ -435,7 +418,6 @@ void main() {
       await openApp(tester);
       await tester.tap(find.byKey(const Key('open-settings')));
       await tester.pumpAndSettle();
-      await answerGate(tester, correct: true);
       expect(find.text('Ajustes para adultos'), findsOneWidget);
       await tester.scrollUntilVisible(find.text('Qué enviamos'), 300,
           scrollable: find.byType(Scrollable).first);
@@ -495,7 +477,6 @@ void main() {
       await openApp(tester, offline);
       await tester.tap(find.byKey(const Key('open-settings')));
       await tester.pumpAndSettle();
-      await answerGate(tester, correct: true);
       await tester.scrollUntilVisible(
           find.byKey(const Key('feedback-switch')), 300,
           scrollable: find.byType(Scrollable).first);

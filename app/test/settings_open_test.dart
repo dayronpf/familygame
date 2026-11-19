@@ -41,12 +41,6 @@ void main() {
     store.broken = true; // a partir de aquí, lo guardado no se puede leer
     await tester.tap(find.byKey(const Key('open-settings')));
     await tester.pumpAndSettle();
-    final q = tester.widget<Text>(find.byKey(const Key('gate-question'))).data!;
-    final m = RegExp(r'(\d) por (\d)').firstMatch(q)!;
-    await tester.enterText(find.byKey(const Key('gate-answer')),
-        '${int.parse(m.group(1)!) * int.parse(m.group(2)!)}');
-    await tester.tap(find.byKey(const Key('gate-ok')));
-    await tester.pumpAndSettle();
     expect(find.text('Cuentos'), findsOneWidget);
     expect(find.byType(CircularProgressIndicator), findsNothing);
   });

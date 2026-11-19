@@ -6,7 +6,6 @@ import 'catalog/catalog_widgets.dart';
 import 'catalog/explore_tab.dart';
 import 'catalog/story_catalog.dart';
 import 'catalog/story_detail_page.dart';
-import 'feedback/adult_gate.dart';
 import 'feedback/feedback_service.dart';
 import 'feedback/feedback_store.dart';
 import 'feedback/rating_card.dart';
@@ -480,8 +479,8 @@ class _HomePageState extends State<HomePage> {
             : packCover(snap.data!.$2, snap.data!.$1, cover: info.cover),
       );
 
+  /// Ajustes se abre directo, sin la pregunta para adultos (decidido el 18-nov-2026, docs/36 §9).
   Future<void> _openSettings(Set<String> agesWithStories) async {
-    if (!await askAdult(context) || !mounted) return;
     await Navigator.of(context).push(
       MaterialPageRoute<void>(
         builder: (_) => SettingsPage(

@@ -114,8 +114,8 @@ La app es la misma en todas las tiendas, sin diferencias entre Android e iPhone.
 ## 9. Comprar sin la pregunta para adultos (decidido el 18-nov-2026)
 
 El muro de pago ya **no** pide la multiplicación antes de abrirse. Pagar lo protege la tienda: la cuenta de Google o
-Apple del adulto, su forma de pago y, si la familia lo activó, su huella o contraseña en cada compra. La pregunta para
-adultos sigue en Ajustes y al compartir enlaces.
+Apple del adulto, su forma de pago y, si la familia lo activó, su huella o contraseña en cada compra. Ajustes también se
+abre directo (desde el mismo día). La pregunta para adultos queda solo al compartir enlaces, que sacan de la app.
 
 - **Google Play:** la política de Familias no exige una barrera propia antes de las compras dentro de la app.
 - **App Store:** la guía 1.3 exige una barrera parental antes de cualquier compra **solo en la categoría Niños**. Al
