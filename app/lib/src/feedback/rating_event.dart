@@ -7,9 +7,9 @@ const String appVersion = '1.0.0';
 
 /// Número de compilación (lo que va detrás del `+` en el pubspec): distingue una versión de otra en las tiendas.
 /// Una prueba verifica que coincida con el pubspec.
-const int appBuild = 29;
+const int appBuild = 30;
 
-/// La versión como se le enseña a la familia: «1.0.0 (29)».
+/// La versión como se le enseña a la familia: «1.0.0 (30)».
 const String appVersionLabel = '$appVersion ($appBuild)';
 
 /// Versión del formato del evento (`schema` en el JSON).

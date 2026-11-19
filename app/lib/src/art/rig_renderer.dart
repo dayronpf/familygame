@@ -232,6 +232,24 @@ class CompiledRig {
   final Rig rig;
   final CompiledNode root;
 
+  /// Hacia dónde mira el dibujo tal como está hecho: 1 = de perfil a la derecha, -1 = a la izquierda, 0 = de frente.
+  /// Se deduce de la cabeza (`head`): si su pivote está bien a un lado del cuerpo, el dibujo es de perfil (la
+  /// tortuga, la cabrita, el loro). Las personas se dibujan de frente.
+  late final int facing = () {
+    double? head, eyes;
+    void walk(RigNode n) {
+      if (n.id == 'head') head ??= n.pivotX;
+      if (n.id == 'eyes') eyes ??= n.pivotX;
+      for (final c in [...n.pre, ...n.post]) {
+        walk(c);
+      }
+    }
+
+    walk(rig.root);
+    final x = head ?? eyes ?? 0;
+    return x >= 20 ? 1 : (x <= -20 ? -1 : 0);
+  }();
+
   static const Pose _noPose = {};
 
   void paint(Canvas canvas, Pose pose) {

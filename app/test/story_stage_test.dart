@@ -199,6 +199,45 @@ void main() {
       expect(xs[1], closeTo(s.place.view.left + s.place.view.width / 2, 0.01));
     });
 
+    test('los animales de perfil miran al personaje más cercano', () {
+      // la cabrita está dibujada mirando a la derecha; las personas, de frente
+      expect(art.rigs['cabrita']!.facing, 1);
+      expect(art.rigs['aldo']!.facing, 0);
+      ActorInstance goat(StageSetup s) => [...s.actors, ...s.props]
+          .firstWhere((a) => a.rig.rig.id == 'cabrita');
+      // héroe a la izquierda, cabrita a la derecha: la cabrita se voltea para mirarlo
+      var s = stageFor(art, cast(), {
+        'bg': 'place',
+        'stage': [
+          {'who': 'hero'},
+          {'rig': 'cabrita'},
+        ],
+      })!;
+      expect(goat(s).flip, isTrue);
+      expect(s.actors.first.flip, isFalse,
+          reason: 'las personas no se voltean');
+      // cabrita a la izquierda: ya mira a la derecha, hacia el héroe
+      s = stageFor(art, cast(), {
+        'bg': 'place',
+        'stage': [
+          {'rig': 'cabrita'},
+          {'who': 'hero'},
+        ],
+      })!;
+      expect(goat(s).flip, isFalse);
+      // como objeto junto al héroe (a su derecha), también lo mira
+      s = stageFor(art, cast(), {
+        'bg': 'place',
+        'stage': [
+          {'who': 'hero'},
+        ],
+        'props': [
+          {'prop': 'cabrita', 'near': 'hero', 'dx': 0.15},
+        ],
+      })!;
+      expect(goat(s).flip, isTrue);
+    });
+
     test('las escenas antiguas (`actors`) siguen funcionando', () {
       final s = stageFor(art, cast(), {
         'bg': 'place2',

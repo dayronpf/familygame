@@ -143,16 +143,22 @@ void main() {
       await tester.pump(const Duration(milliseconds: 300));
       final scaffold = tester.widget<Scaffold>(find.byType(Scaffold));
       expect(scaffold.backgroundColor, Colors.black);
-      expect(screen.levels, [0.0], reason: 'brillo al mínimo al entrar');
+      expect(screen.levels, isEmpty,
+          reason: 'al entrar no se apaga: se ve qué modo es');
+      expect(find.text('Modo solo escuchar'), findsOneWidget);
       expect(voice.said, isNotEmpty, reason: 'el cuento empieza solo');
       expect(find.byType(Image), findsNothing, reason: 'sin dibujos');
       expect(find.text('Escuchando…'), findsOneWidget);
+      // sin tocar nada, a los pocos segundos baja el brillo al mínimo
+      await tester.pump(const Duration(seconds: 7));
+      expect(screen.levels, [0.0]);
       // al salir se devuelve el brillo
       await close(tester);
       expect(screen.restores, 1);
     });
 
-    testWidgets('los controles se esconden solos y un toque los devuelve',
+    testWidgets(
+        'los controles quedan tenues (nunca negro total) y un toque los devuelve',
         (tester) async {
       phone(tester);
       await tester.pumpWidget(MaterialApp(
@@ -168,8 +174,11 @@ void main() {
           .widget<AnimatedOpacity>(find.byType(AnimatedOpacity).first)
           .opacity;
       expect(opacity(), 1);
-      await tester.pump(const Duration(seconds: 6));
-      expect(opacity(), 0, reason: 'sonando, se apagan los controles');
+      await tester.pump(const Duration(seconds: 7));
+      expect(opacity(), 0.35, reason: 'sonando, quedan tenues pero a la vista');
+      expect(
+          find.text('Toca la pantalla para ver los controles'), findsOneWidget);
+      expect(find.text('Modo solo escuchar'), findsOneWidget);
       await tester.tap(find.byKey(const Key('audio-only-surface')));
       await tester.pump();
       expect(opacity(), 1);

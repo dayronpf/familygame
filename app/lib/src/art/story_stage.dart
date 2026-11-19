@@ -323,16 +323,40 @@ StageSetup? stageFor(
     ));
   }
 
+  final faced = faceEachOther(actors, props, view);
   return StageSetup(
     placeId: placeEntity.id,
     place: place,
     scene: scene,
-    actors: actors,
+    actors: faced.$1,
     view: view,
-    props: props,
+    props: faced.$2,
     tint: lightTints[directives['light']],
     ropes: ropes,
   );
+}
+
+/// Los dibujos de perfil (la tortuga, la cabrita, el loro…) miran hacia el personaje más cercano, o hacia el centro
+/// de la escena si están solos: nadie le da la espalda a quien le habla. Los dibujados de frente no cambian.
+(List<ActorInstance>, List<ActorInstance>) faceEachOther(
+    List<ActorInstance> actors, List<ActorInstance> props, Rect view) {
+  ActorInstance face(ActorInstance a) {
+    final native = a.rig.facing;
+    if (native == 0) return a;
+    ActorInstance? nearest;
+    for (final o in actors) {
+      if (identical(o, a) || (o.x - a.x).abs() < 1) continue;
+      if (nearest == null || (o.x - a.x).abs() < (nearest.x - a.x).abs()) {
+        nearest = o;
+      }
+    }
+    final targetX = nearest?.x ?? view.center.dx;
+    final dir = (targetX - a.x).sign.toInt();
+    if (dir == 0) return a;
+    return a.flipped(dir != native);
+  }
+
+  return ([for (final a in actors) face(a)], [for (final p in props) face(p)]);
 }
 
 /// Primer plano: un objeto grande en el centro, sin personajes. El recuadro se calcula con el tamaño del

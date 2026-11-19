@@ -39,6 +39,21 @@ class _Store extends PurchaseGateway {
   Future<bool> redeemWithStore() async => false;
 }
 
+/// Tienda con la promo de lanzamiento en el mensual (7 días gratis y luego 3 meses a 0,99).
+class _PromoStore extends _Store {
+  @override
+  Future<List<PlanOption>> plans() async => const [
+        PlanOption(id: 'anual', price: 'USD 14.99', yearly: true, trialDays: 7),
+        PlanOption(
+            id: 'mensual',
+            price: 'USD 2.99',
+            yearly: false,
+            trialDays: 7,
+            introPrice: 'USD 0.99',
+            introPeriods: 3),
+      ];
+}
+
 class _Sound implements SplashSound {
   int plays = 0;
   @override
@@ -161,5 +176,32 @@ void main() {
     expect((await show()).plays, 1);
     expect((await show(effects: false)).plays, 0);
     expect((await show(reduce: true)).plays, 0);
+  });
+
+  testWidgets('el muro de pago enseña la promo de lanzamiento del mensual',
+      (tester) async {
+    phone(tester);
+    final access = AccessService(MemoryShelfStore(), devAvailable: false);
+    await tester.pumpWidget(MaterialApp(
+      home: AccessScope(
+        access: access,
+        child: PurchasesScope(
+          purchases: _PromoStore(),
+          child: const PaywallPage(),
+        ),
+      ),
+    ));
+    await tester.pump(const Duration(milliseconds: 500));
+    expect(find.text('Lanzamiento: USD 0.99 al mes los primeros 3 meses'),
+        findsOneWidget);
+    expect(find.text('USD 0.99'), findsOneWidget);
+    expect(find.text('USD 2.99'), findsOneWidget,
+        reason: 'el precio normal, tachado');
+    await tester.tap(find.byKey(const Key('plan-mensual')));
+    await tester.pump(const Duration(milliseconds: 500));
+    final fine = find.textContaining(
+        'Gratis 7 días; luego USD 0.99 al mes los primeros 3 meses y después USD 2.99 al mes');
+    await tester.scrollUntilVisible(fine, 200);
+    expect(fine, findsOneWidget);
   });
 }

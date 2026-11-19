@@ -13,8 +13,10 @@ import 'ui/palette.dart';
 import 'ui/screen_dimmer.dart';
 import 'ui/sleep_timer.dart';
 
-/// Modo solo audio: la pantalla se queda negra y con el brillo al mínimo (en una pantalla OLED, apagada del todo) y el
-/// cuento sigue sonando. Un toque enseña los controles unos segundos. Sirve para dejar el teléfono en la mesita.
+/// Modo solo escuchar: el cuento suena con la pantalla oscura, para dejar el teléfono en la mesita. Nunca se queda en
+/// negro total: siempre se ve, tenue, qué está pasando («Modo solo escuchar», el título, la ✕ para salir y «Toca la
+/// pantalla para ver los controles»), para que nadie se pierda. El brillo baja al mínimo tras unos segundos sin tocar
+/// nada y vuelve con un toque.
 ///
 /// Si el adulto bloquea el teléfono, el cuento sigue: un servicio en primer plano con notificación de medios
 /// (`BackgroundSession`, ver `audio/background_audio.dart`) evita que Android duerma o mate la app, y deja
@@ -102,7 +104,6 @@ class _AudioOnlyPageState extends State<AudioOnlyPage> {
       title: widget.story.title ?? widget.story.moral.name,
     )..start(playing: widget.autoStart);
     enterShowMode(immersive: true);
-    _screen.setLevel(0);
     if (widget.autoStart) {
       if (_hearMusic) _ambience.start();
       WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -112,16 +113,28 @@ class _AudioOnlyPageState extends State<AudioOnlyPage> {
     _scheduleHide();
   }
 
+  bool _dimmed = false;
+
+  /// Tras unos segundos sin tocar nada (y sonando), los controles quedan tenues y el brillo baja al mínimo.
   void _scheduleHide() {
     _hide?.cancel();
-    _hide = Timer(const Duration(seconds: 5), () {
-      if (mounted && _playback.playing) setState(() => _controls = false);
+    _hide = Timer(const Duration(seconds: 6), () {
+      if (mounted && _playback.playing) {
+        setState(() => _controls = false);
+        _dimmed = true;
+        _screen.setLevel(0);
+      }
     });
   }
 
+  /// Un toque devuelve los controles y el brillo.
   void _tap() {
-    setState(() => _controls = !_controls);
-    if (_controls) _scheduleHide();
+    setState(() => _controls = true);
+    if (_dimmed) {
+      _dimmed = false;
+      _screen.restore();
+    }
+    _scheduleHide();
   }
 
   @override
@@ -163,8 +176,8 @@ class _AudioOnlyPageState extends State<AudioOnlyPage> {
         onTap: _tap,
         child: SafeArea(
           child: AnimatedOpacity(
-            opacity: _controls ? 1 : 0,
-            duration: const Duration(milliseconds: 400),
+            opacity: _controls ? 1 : 0.35,
+            duration: const Duration(milliseconds: 600),
             child: IgnorePointer(
               ignoring: !_controls,
               child: Column(
@@ -183,6 +196,15 @@ class _AudioOnlyPageState extends State<AudioOnlyPage> {
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.titleMedium!.copyWith(
                           color: Palette.mutedText.withValues(alpha: 0.7),
+                        ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    'Modo solo escuchar',
+                    key: const Key('audio-only-mode'),
+                    style: Theme.of(context).textTheme.labelLarge!.copyWith(
+                          color: Palette.amber.withValues(alpha: 0.8),
+                          letterSpacing: 0.6,
                         ),
                   ),
                   const SizedBox(height: 6),
@@ -205,6 +227,18 @@ class _AudioOnlyPageState extends State<AudioOnlyPage> {
                     ),
                   ],
                   const Spacer(),
+                  if (!_controls && !pb.finished)
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 10),
+                      child: Text(
+                        'Toca la pantalla para ver los controles',
+                        key: const Key('audio-only-hint'),
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyMedium!
+                            .copyWith(color: Palette.mutedText),
+                      ),
+                    ),
                   Wrap(
                     alignment: WrapAlignment.center,
                     children: [

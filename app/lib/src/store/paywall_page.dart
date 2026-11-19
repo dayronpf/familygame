@@ -257,6 +257,7 @@ class _PaywallPageState extends State<PaywallPage> {
                     const SizedBox(height: 12),
                     Text(
                       '${selected.trialDays > 0 ? 'Gratis ${selected.trialDays} días; luego ' : ''}'
+                      '${selected.introPrice != null ? '${selected.introPrice} ${selected.yearly ? 'al año' : 'al mes'} los primeros ${selected.introPeriods} ${selected.yearly ? 'años' : 'meses'} y después ' : ''}'
                       '${selected.price} ${selected.yearly ? 'al año' : 'al mes'}'
                       '${selected.monthlyEquivalent != null ? ' (${selected.monthlyEquivalent})' : ''}. '
                       'Se paga con tu cuenta de $storeName y se renueva sola hasta que la canceles en '
@@ -414,12 +415,30 @@ class _PlanCard extends StatelessWidget {
                       Text(plan.monthlyEquivalent!,
                           style: text.bodySmall!
                               .copyWith(color: Palette.mutedText)),
+                    if (plan.introPrice != null)
+                      Text(
+                          'Lanzamiento: ${plan.introPrice} ${plan.yearly ? 'el año' : 'al mes'} '
+                          'los primeros ${plan.introPeriods} ${plan.yearly ? 'años' : 'meses'}',
+                          key: Key('plan-${plan.id}-promo'),
+                          style: text.bodySmall!.copyWith(
+                              color: Palette.amber,
+                              fontWeight: FontWeight.w700)),
                   ],
                 ),
               ),
-              Text(plan.price,
-                  style:
-                      text.titleMedium!.copyWith(fontWeight: FontWeight.w800)),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Text(plan.introPrice ?? plan.price,
+                      style: text.titleMedium!
+                          .copyWith(fontWeight: FontWeight.w800)),
+                  if (plan.introPrice != null)
+                    Text(plan.price,
+                        style: text.bodySmall!.copyWith(
+                            color: Palette.mutedText,
+                            decoration: TextDecoration.lineThrough)),
+                ],
+              ),
             ],
           ),
         ),

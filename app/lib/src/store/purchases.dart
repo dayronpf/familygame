@@ -19,6 +19,8 @@ class PlanOption {
     this.monthlyEquivalent,
     this.details,
     this.offerToken,
+    this.introPrice,
+    this.introPeriods = 0,
   });
 
   /// `anual` o `mensual` (el plan base de Google Play).
@@ -31,6 +33,11 @@ class PlanOption {
   final String? monthlyEquivalent;
   final ProductDetails? details;
   final String? offerToken;
+
+  /// Precio de promoción de los primeros [introPeriods] periodos («USD 0.99»), antes del precio normal [price].
+  /// Lo da la oferta de la tienda (la de lanzamiento: 3 meses a 0,99); `null` si no hay promoción.
+  final String? introPrice;
+  final int introPeriods;
 }
 
 /// Lo que pasa con una compra, para enseñarlo en el muro de pago.
@@ -101,6 +108,13 @@ class StorePurchases extends PurchaseGateway {
             orElse: () => phases.last);
         final free = phases.where((p) => p.priceAmountMicros == 0);
         final trialDays = free.isEmpty ? 0 : _days(free.first.billingPeriod);
+        // Fase con descuento (pagada, más barata que el precio final, por unos cuantos periodos)
+        final promo = phases
+            .where((p) =>
+                p.priceAmountMicros > 0 &&
+                p.priceAmountMicros < paid.priceAmountMicros &&
+                p.billingCycleCount > 0)
+            .firstOrNull;
         final yearly = paid.billingPeriod == 'P1Y';
         final existing = out.indexWhere((o) => o.id == offer.basePlanId);
         final option = PlanOption(
@@ -113,10 +127,17 @@ class StorePurchases extends PurchaseGateway {
               : null,
           details: d,
           offerToken: offer.offerIdToken,
+          introPrice: promo?.formattedPrice,
+          introPeriods: promo?.billingCycleCount ?? 0,
         );
-        if (existing < 0) {
+        // De las ofertas de cada plan, la mejor: más días gratis y, a igualdad, la que tiene promoción
+        final best = existing < 0 ? null : out[existing];
+        if (best == null) {
           out.add(option);
-        } else if (trialDays > out[existing].trialDays) {
+        } else if (trialDays > best.trialDays ||
+            trialDays == best.trialDays &&
+                option.introPrice != null &&
+                best.introPrice == null) {
           out[existing] = option;
         }
       }

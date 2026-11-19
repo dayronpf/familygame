@@ -253,8 +253,8 @@ class _ReadListenButtons extends StatelessWidget {
             const BorderRadius.horizontal(left: Radius.circular(30))),
         const SizedBox(width: 2),
         half(
-            'Escuchar',
-            Icons.volume_up,
+            'Solo escuchar',
+            Icons.nightlight_round,
             StoryStart.listen,
             const Key('detail-listen'),
             const BorderRadius.horizontal(right: Radius.circular(30))),

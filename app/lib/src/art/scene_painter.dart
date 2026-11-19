@@ -48,9 +48,13 @@ class ActorInstance {
     this.enterFrom = 0,
     this.t0 = 0,
     this.rotation = 0,
+    this.flip = false,
   });
 
   final CompiledRig rig;
+
+  /// Dibujado en espejo (un animal de perfil que tiene que mirar hacia el otro lado).
+  final bool flip;
   final Clip clip;
   final double x, y, scale, phase;
 
@@ -86,7 +90,28 @@ class ActorInstance {
         enterFrom: enterFrom,
         t0: t0,
         rotation: rotation,
+        flip: flip,
       );
+
+  /// La misma figura mirando hacia el otro lado.
+  ActorInstance flipped(bool f) => f == flip
+      ? this
+      : ActorInstance(
+          rig: rig,
+          clip: clip,
+          x: x,
+          y: y,
+          scale: scale,
+          phase: phase,
+          shadow: shadow,
+          front: front,
+          emissive: emissive,
+          walk: walk,
+          enterFrom: enterFrom,
+          t0: t0,
+          rotation: rotation,
+          flip: f,
+        );
 
   ActorInstance entering({
     required double t0,
@@ -107,6 +132,7 @@ class ActorInstance {
         enterFrom: from,
         t0: t0,
         rotation: rotation,
+        flip: flip,
       );
 }
 
@@ -208,7 +234,7 @@ class ScenePainter extends CustomPainter {
     canvas.save();
     canvas.translate(x, a.y);
     if (a.rotation != 0) canvas.rotate(a.rotation * math.pi / 180);
-    canvas.scale(a.scale);
+    canvas.scale(a.flip ? -a.scale : a.scale, a.scale);
     a.rig.paint(canvas, pose);
     canvas.restore();
   }

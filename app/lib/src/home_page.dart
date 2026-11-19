@@ -1115,7 +1115,7 @@ class _TrialCard extends StatelessWidget {
                         style: text.titleMedium!
                             .copyWith(fontWeight: FontWeight.w800)),
                     Text(
-                        'Para el adulto: los 100 cuentos y los nuevos que lleguen',
+                        'Para el adulto: todos los cuentos y los nuevos que lleguen',
                         style:
                             text.bodySmall!.copyWith(color: Palette.mutedText)),
                   ],

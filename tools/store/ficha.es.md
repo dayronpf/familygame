@@ -13,13 +13,15 @@ Si cambia algo de esto, hay que cambiar también esta ficha y el formulario de d
 - Soporte: `https://audio.tuvendor.com/legal/soporte.html`
 - Correo de contacto: `ventas@tuvendor.com`
 
+> **Regla:** nunca se pone la cantidad de cuentos (cambia cada semana). Decidido el 18-nov-2026.
+
 ## Nombre — 30 caracteres
 
 > Mininoches: cuentos de noche
 
 ## Descripción corta (Google Play) — 80 caracteres
 
-> 100 cuentos para dormir narrados con voz cálida, con valores y dibujos animados.
+> Cuentos para dormir narrados con voz cálida, con valores y dibujos animados.
 
 ## Subtítulo (App Store) — 30 caracteres
 
@@ -33,7 +35,7 @@ Si cambia algo de esto, hay que cambiar también esta ficha y el formulario de d
 
 > Cada noche, un cuento para soñar.
 >
-> Mininoches tiene 100 cuentos para dormir, escritos para niños de 2 a 12 años y narrados con una voz cálida y tranquila. Cada cuento tiene sus dibujos animados y termina con una enseñanza sencilla: honestidad, generosidad, valentía, humildad, perseverancia o amistad.
+> Mininoches tiene cuentos para dormir escritos para niños de 2 a 12 años y narrados con una voz cálida y tranquila. Cada cuento tiene sus dibujos animados y termina con una enseñanza sencilla: honestidad, generosidad, valentía, humildad, perseverancia o amistad.
 >
 > TRES MUNDOS PARA SOÑAR
 >
@@ -44,7 +46,7 @@ Si cambia algo de esto, hay que cambiar también esta ficha y el formulario de d
 > PARA ESCUCHAR CON LA LUZ APAGADA
 >
 > • «Ver y escuchar»: el cuento narrado, con sus dibujos animados escena por escena.
-> • Solo audio, con la pantalla apagada, y temporizador de sueño que baja el volumen poco a poco.
+> • «Solo escuchar», con la pantalla oscura, y temporizador de sueño que baja el volumen poco a poco.
 > • «Leemos juntos», para que mamá o papá lo lean en voz alta, página a página.
 > • Sonido de fondo suave: el mar suena a olas y el espacio, a estrellas que titilan.
 >
@@ -60,16 +62,15 @@ Si cambia algo de esto, hay que cambiar también esta ficha y el formulario de d
 >
 > • Varios niños en el mismo teléfono, cada uno con su edad, su progreso y sus premios.
 > • Recordatorio de la hora del cuento.
-> • Los ajustes y las compras están protegidos con una pregunta para adultos.
 > • Sin anuncios y sin cuentas ni registro.
 >
 > PRUÉBALO GRATIS
 >
-> Tres cuentos son gratis para siempre. Con la suscripción se abren los 100 cuentos y los que vayan llegando, con 7 días de prueba gratis. Puedes cancelar cuando quieras desde tu tienda.
+> Tres cuentos son gratis para siempre. Con la suscripción se abren todos los cuentos y los que vayan llegando, con 7 días de prueba gratis. Puedes cancelar cuando quieras desde tu tienda.
 >
 > Dulces sueños.
 
 ## Notas para la revisión (App Review / Google)
 
-La app es para que la usen adultos con niños. Los ajustes, los enlaces externos y la compra están detrás de una pregunta
-para adultos (una multiplicación). Para probar la suscripción sin pagar, usa una cuenta de prueba de la tienda.
+La app es para que la usen adultos con niños. Los enlaces externos (compartir) están detrás de una pregunta para adultos
+(una multiplicación); la compra la autoriza la cuenta de la tienda. Para probar la suscripción sin pagar, usa una cuenta de prueba de la tienda.

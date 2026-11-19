@@ -30,7 +30,7 @@ class NewsItem {
 const List<NewsItem> newsItems = [
   NewsItem(
     id: 'bienvenida-lanzamiento',
-    title: '100 cuentos para dormir',
+    title: 'Cuentos para dormir',
     body:
         'Narrados con una voz cálida, con sus dibujos y una enseñanza. Tres son gratis para siempre.',
     icon: Icons.nightlight_round,
