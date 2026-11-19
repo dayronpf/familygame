@@ -7,6 +7,8 @@ import 'art/story_stage.dart';
 import 'audio/ambience.dart';
 import 'audio/background_audio.dart';
 import 'audio/sfx.dart';
+import 'audio/sleep_music.dart';
+import 'settings/app_settings.dart';
 import 'hologram_page.dart';
 import 'narration/narrator.dart';
 import 'narration/playback.dart';
@@ -112,7 +114,11 @@ class _CinemaPageState extends State<CinemaPage>
       clipStore: voice.store,
       clipPlayer: voice.player,
       resolve: flow == null ? null : _resolve,
-    )..addListener(() => mounted ? setState(() {}) : null);
+    )..addListener(() {
+        if (!mounted) return;
+        _sleepMusicOnFinish();
+        setState(() {});
+      });
     enterShowMode(immersive: false);
     _openBackground(playing: widget.autoStart);
     if (widget.autoStart) {
@@ -129,8 +135,24 @@ class _CinemaPageState extends State<CinemaPage>
     _clock.muted = MediaQuery.disableAnimationsOf(context);
   }
 
+  late final SleepMusic _sleepMusic = SleepMusic(_ambience);
+  bool _wasFinished = false;
+
+  /// Música para dormir: al terminar, el fondo sigue los minutos elegidos y se apaga solo.
+  void _sleepMusicOnFinish() {
+    final fin = _playback.finished;
+    if (fin && !_wasFinished && _hearMusic) {
+      _sleepMusic.storyFinished(
+          SettingsScope.maybeOf(context)?.sleepMusicMinutes ?? 15);
+    } else if (!fin && _playback.playing) {
+      _sleepMusic.cancel();
+    }
+    _wasFinished = fin;
+  }
+
   @override
   void dispose() {
+    _sleepMusic.cancel();
     _bg?.close();
     _fade.dispose();
     _playback.dispose();

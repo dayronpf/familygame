@@ -409,6 +409,27 @@ class _SettingsPageState extends State<SettingsPage> {
             const Icon(Icons.volume_up),
           ],
         ),
+      if (settings.music) ...[
+        const SizedBox(height: 4),
+        Text('Música para dormir al terminar el cuento',
+            style: Theme.of(context).textTheme.titleMedium),
+        const SizedBox(height: 2),
+        Text('El sonido de fondo sigue un rato y se apaga solo, despacito.',
+            style: Theme.of(context).textTheme.bodySmall),
+        const SizedBox(height: 8),
+        SegmentedButton<int>(
+          key: const Key('setting-sleep-music'),
+          segments: const [
+            ButtonSegment(value: 0, label: Text('No')),
+            ButtonSegment(value: 15, label: Text('15 min')),
+            ButtonSegment(value: 30, label: Text('30 min')),
+            ButtonSegment(value: 60, label: Text('1 h')),
+          ],
+          selected: {settings.sleepMusicMinutes},
+          onSelectionChanged: (v) => settings.setSleepMusicMinutes(v.first),
+        ),
+        const SizedBox(height: 8),
+      ],
       SwitchListTile(
         key: const Key('setting-effects'),
         contentPadding: EdgeInsets.zero,

@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'audio/ambience.dart';
 import 'audio/background_audio.dart';
 import 'audio/sfx.dart';
+import 'audio/sleep_music.dart';
+import 'settings/app_settings.dart';
 import 'narration/narrator.dart';
 import 'narration/playback.dart';
 import 'player_support.dart';
@@ -72,6 +74,7 @@ class _AudioOnlyPageState extends State<AudioOnlyPage> {
   late final BackgroundSession _bg;
   bool _controls = true;
   bool _hearMusic = true;
+  late final SleepMusic _sleepMusic = SleepMusic(_ambience);
   Timer? _hide;
 
   @override
@@ -94,6 +97,7 @@ class _AudioOnlyPageState extends State<AudioOnlyPage> {
           _finishedOnce = true;
           widget.onFinished?.call();
         }
+        _sleepMusicOnFinish();
         setState(() => _controls = _controls || _playback.finished);
       });
     _hearMusic = musicOn(context);
@@ -116,6 +120,21 @@ class _AudioOnlyPageState extends State<AudioOnlyPage> {
   bool _dimmed = false;
 
   /// Tras unos segundos sin tocar nada (y sonando), los controles quedan tenues y el brillo baja al mínimo.
+  bool _wasFinished = false;
+
+  /// Música para dormir: al terminar, el fondo sigue los minutos elegidos y se apaga solo; si vuelven a reproducir,
+  /// se cancela la cuenta atrás.
+  void _sleepMusicOnFinish() {
+    final fin = _playback.finished;
+    if (fin && !_wasFinished && _hearMusic) {
+      _sleepMusic.storyFinished(
+          SettingsScope.maybeOf(context)?.sleepMusicMinutes ?? 15);
+    } else if (!fin && _playback.playing) {
+      _sleepMusic.cancel();
+    }
+    _wasFinished = fin;
+  }
+
   void _scheduleHide() {
     _hide?.cancel();
     _hide = Timer(const Duration(seconds: 6), () {
@@ -140,6 +159,7 @@ class _AudioOnlyPageState extends State<AudioOnlyPage> {
   @override
   void dispose() {
     _hide?.cancel();
+    _sleepMusic.cancel();
     _bg.close();
     _playback.dispose();
     _sfx.dispose();

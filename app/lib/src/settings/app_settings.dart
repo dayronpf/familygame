@@ -195,6 +195,7 @@ class AppSettings extends ChangeNotifier {
   bool _celebrateAwards = true;
   bool _upperCase = false;
   bool _spacedText = false;
+  int _sleepMusic = 15;
   List<String> _dismissedNews = const [];
   int? _reminder;
   bool _loaded = false;
@@ -213,6 +214,9 @@ class AppSettings extends ChangeNotifier {
 
   /// Letra más espaciada (más aire entre letras, palabras y renglones): ayuda a leer con dislexia.
   bool get spacedText => _spacedText;
+
+  /// Minutos que sigue el sonido de fondo al terminar el cuento («música para dormir»); 0 = se apaga al terminar.
+  int get sleepMusicMinutes => _sleepMusic;
 
   /// Avisos del inicio que la familia ya cerró.
   List<String> get dismissedNews => _dismissedNews;
@@ -253,6 +257,8 @@ class AppSettings extends ChangeNotifier {
         _celebrateAwards = j['celebrar_premios'] != false;
         _upperCase = j['mayusculas'] == true;
         _spacedText = j['letra_espaciada'] == true;
+        _sleepMusic =
+            ((j['musica_para_dormir'] as num?) ?? 15).toInt().clamp(0, 120);
         _reminder = (j['recordatorio'] as num?)?.toInt();
         _dismissedNews = [
           for (final n in (j['avisos_cerrados'] as List<Object?>? ?? const []))
@@ -389,6 +395,7 @@ class AppSettings extends ChangeNotifier {
         'celebrar_premios': _celebrateAwards,
         'mayusculas': _upperCase,
         'letra_espaciada': _spacedText,
+        'musica_para_dormir': _sleepMusic,
         'avisos_cerrados': _dismissedNews,
         'recordatorio': _reminder,
         'activo': _active,
@@ -408,6 +415,7 @@ class AppSettings extends ChangeNotifier {
     _celebrateAwards = true;
     _upperCase = false;
     _spacedText = false;
+    _sleepMusic = 15;
     _dismissedNews = const [];
     _reminder = null;
     notifyListeners();
@@ -435,6 +443,12 @@ class AppSettings extends ChangeNotifier {
 
   Future<void> setUpperCase(bool on) {
     _upperCase = on;
+    notifyListeners();
+    return _save();
+  }
+
+  Future<void> setSleepMusicMinutes(int minutes) {
+    _sleepMusic = minutes.clamp(0, 120);
     notifyListeners();
     return _save();
   }
@@ -504,6 +518,7 @@ class AppSettings extends ChangeNotifier {
         if (!_celebrateAwards) 'celebrar_premios': false,
         if (_upperCase) 'mayusculas': true,
         if (_spacedText) 'letra_espaciada': true,
+        if (_sleepMusic != 15) 'musica_para_dormir': _sleepMusic,
         if (_dismissedNews.isNotEmpty) 'avisos_cerrados': _dismissedNews,
         if (_reminder != null) 'recordatorio': _reminder,
         'activo': _active,
