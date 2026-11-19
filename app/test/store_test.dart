@@ -243,6 +243,21 @@ void main() {
       expect(access.exportJson()['regalo'], gift);
     });
 
+    testWidgets('«Sorpréndeme» abre al azar un cuento que pueden leer',
+        (tester) async {
+      await openApp(tester);
+      await tester.tap(find.text('Explorar'));
+      await tester.pumpAndSettle();
+      for (var i = 0; i < 3; i++) {
+        await tester.tap(find.byKey(const Key('explore-surprise')));
+        await tester.pumpAndSettle();
+        expect(find.byKey(const Key('detail-read')), findsOneWidget,
+            reason: 'sin suscripción, solo de los gratis');
+        await tester.tap(find.byKey(const Key('detail-back')));
+        await tester.pumpAndSettle();
+      }
+    });
+
     testWidgets(
         'en Explorar los de pago llevan candado y su ficha ofrece desbloquear',
         (tester) async {

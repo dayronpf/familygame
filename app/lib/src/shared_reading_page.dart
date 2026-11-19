@@ -4,6 +4,7 @@ import 'package:caldero_engine/caldero_engine.dart';
 import 'package:flutter/material.dart';
 
 import 'story/talk_questions.dart';
+import 'ui/reading_text.dart';
 
 import 'art/story_stage.dart';
 import 'narration/narrator.dart';
@@ -227,11 +228,11 @@ class _SharedReadingPageState extends State<SharedReadingPage>
   Widget _pageBody(int i, TextTheme text) {
     final sc = _scenes[i];
     final setup = sc.setup;
-    final base = text.headlineSmall!.copyWith(
+    final base = context.readingStyle(text.headlineSmall!.copyWith(
       fontSize: _size,
       height: 1.55,
       color: Palette.cream,
-    );
+    ));
     final current = i == _page ? _sentence : -1;
     final voiceTurn = _voiceTurn(i);
     return SingleChildScrollView(
@@ -263,9 +264,9 @@ class _SharedReadingPageState extends State<SharedReadingPage>
             TextSpan(children: [
               for (var s = 0; s < sc.sentences.length; s++)
                 TextSpan(
-                  text: s == sc.sentences.length - 1
+                  text: context.readingText(s == sc.sentences.length - 1
                       ? sc.sentences[s]
-                      : '${sc.sentences[s]} ',
+                      : '${sc.sentences[s]} '),
                   style: base.copyWith(
                     color: current < 0 || s == current
                         ? base.color

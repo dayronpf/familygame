@@ -1,5 +1,6 @@
 import 'package:caldero_engine/caldero_engine.dart';
 import 'package:flutter/material.dart';
+import 'ui/reading_text.dart';
 import 'package:flutter/scheduler.dart';
 
 import 'art/story_stage.dart';
@@ -473,7 +474,7 @@ class _StoryPageState extends State<StoryPage>
   Widget build(BuildContext context) {
     final text = Theme.of(context).textTheme;
     final scheme = Theme.of(context).colorScheme;
-    final body = text.titleLarge!.copyWith(height: 1.6);
+    final body = context.readingStyle(text.titleLarge!.copyWith(height: 1.6));
     return Scaffold(
       appBar: AppBar(
         title: Text(_story.moral.name),
@@ -524,7 +525,7 @@ class _StoryPageState extends State<StoryPage>
                 ),
                 const SizedBox(height: 14),
               ],
-              Text(_story.scenes[i].text, style: body),
+              Text(context.readingText(_story.scenes[i].text), style: body),
               const SizedBox(height: 20),
               if (_story.scenes[i].choice != null) _question(_story.scenes[i]),
             ],
@@ -542,7 +543,7 @@ class _StoryPageState extends State<StoryPage>
                         style: text.labelLarge!.copyWith(color: scheme.primary),
                       ),
                       const SizedBox(height: 8),
-                      Text(_story.moralLine, style: body),
+                      Text(context.readingText(_story.moralLine), style: body),
                     ],
                   ),
                 ),

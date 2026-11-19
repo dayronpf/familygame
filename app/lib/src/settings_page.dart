@@ -448,6 +448,24 @@ class _SettingsPageState extends State<SettingsPage> {
         onChanged: settings.setAnimatedArt,
       ),
       SwitchListTile(
+        key: const Key('setting-uppercase'),
+        contentPadding: EdgeInsets.zero,
+        title: const Text('Texto en MAYÚSCULAS'),
+        subtitle: const Text(
+            'El texto de los cuentos en letras grandes de imprenta, para quien está aprendiendo a leer.'),
+        value: settings.upperCase,
+        onChanged: settings.setUpperCase,
+      ),
+      SwitchListTile(
+        key: const Key('setting-spaced-text'),
+        contentPadding: EdgeInsets.zero,
+        title: const Text('Letra más espaciada'),
+        subtitle: const Text(
+            'Más aire entre letras, palabras y renglones. Ayuda a leer con dislexia.'),
+        value: settings.spacedText,
+        onChanged: settings.setSpacedText,
+      ),
+      SwitchListTile(
         key: const Key('setting-celebrate'),
         contentPadding: EdgeInsets.zero,
         title: const Text('Celebrar los premios'),

@@ -6,6 +6,7 @@ import '../shelf/story_shelf.dart';
 import '../story_page.dart';
 import '../ui/moral_style.dart';
 import '../ui/palette.dart';
+import '../ui/reading_text.dart';
 import 'catalog_widgets.dart';
 import 'story_catalog.dart';
 
@@ -344,9 +345,10 @@ class StoryPreviewPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.fromLTRB(22, 20, 22, 0),
             child: Text(
-              preview.scenes.first.text.trim(),
+              context.readingText(preview.scenes.first.text.trim()),
               key: const Key('preview-text'),
-              style: text.titleMedium!.copyWith(height: 1.55),
+              style: context
+                  .readingStyle(text.titleMedium!.copyWith(height: 1.55)),
             ),
           ),
           const SizedBox(height: 22),

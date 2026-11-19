@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 import '../ui/palette.dart';
@@ -34,6 +36,18 @@ class ExploreTab extends StatefulWidget {
 
 class _ExploreTabState extends State<ExploreTab> {
   final _query = TextEditingController();
+  final _random = Random();
+
+  /// «Sorpréndeme»: un cuento al azar de los que pueden leer (si no tienen la suscripción, de los gratis).
+  void _surprise() {
+    final open = [
+      for (final s in widget.catalog.stories)
+        if (!(widget.isLocked?.call(s) ?? false)) s,
+    ];
+    final pool = open.isEmpty ? widget.catalog.stories : open;
+    if (pool.isEmpty) return;
+    widget.onOpen(pool[_random.nextInt(pool.length)]);
+  }
 
   @override
   void dispose() {
@@ -81,6 +95,17 @@ class _ExploreTabState extends State<ExploreTab> {
             ),
           ),
         ),
+        const SizedBox(height: 12),
+        if (q.isEmpty)
+          Align(
+            alignment: Alignment.centerLeft,
+            child: FilledButton.tonalIcon(
+              key: const Key('explore-surprise'),
+              onPressed: _surprise,
+              icon: const Icon(Icons.casino_outlined),
+              label: const Text('Sorpréndeme con un cuento'),
+            ),
+          ),
         const SizedBox(height: 16),
         if (q.isNotEmpty) ...[
           if (results.isEmpty)
