@@ -51,9 +51,11 @@ Sfx sfxFor(BuildContext context) {
 /// nombre del niño), no se usa ninguno: mejor una sola voz todo el cuento que ir saltando de una a otra.
 ({StoryClips? clips, ClipStore? store, ClipPlayer? player}) recordedFor(
   BuildContext context,
-  Story story,
-) {
-  final voice = RecordedVoiceScope.of(context);
+  Story story, {
+  RecordedVoice? voice,
+}) {
+  // [voice]: la de la familia (grabada en el teléfono), si eligieron escuchar con ella
+  voice ??= RecordedVoiceScope.of(context);
   final clips = voice.clipsFor(story.catalogId);
   if (clips == null || story.scenes.isEmpty) {
     return (clips: null, store: null, player: null);

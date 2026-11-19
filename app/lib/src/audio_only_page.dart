@@ -9,6 +9,7 @@ import 'audio/sfx.dart';
 import 'audio/sleep_music.dart';
 import 'settings/app_settings.dart';
 import 'narration/narrator.dart';
+import 'narration/recorded_voice.dart';
 import 'narration/playback.dart';
 import 'player_support.dart';
 import 'ui/palette.dart';
@@ -32,6 +33,7 @@ class AudioOnlyPage extends StatefulWidget {
     this.dimmer,
     this.background,
     this.sfx,
+    this.voice,
     this.autoStart = true,
     this.onFinished,
   });
@@ -51,6 +53,9 @@ class AudioOnlyPage extends StatefulWidget {
 
   /// Efectos de sonido (por defecto, según los ajustes; las pruebas ponen uno de mentira).
   final Sfx? sfx;
+
+  /// La voz de la familia (grabada en el teléfono); `null` = la voz de siempre.
+  final RecordedVoice? voice;
   final bool autoStart;
 
   @override
@@ -81,7 +86,7 @@ class _AudioOnlyPageState extends State<AudioOnlyPage> {
   void initState() {
     super.initState();
     // Voz grabada del cuento, si es del catálogo (docs/31); si no, la del teléfono
-    final voice = recordedFor(context, widget.story);
+    final voice = recordedFor(context, widget.story, voice: widget.voice);
     _playback = StoryPlayback(
       scenes: playScenes(widget.story, const []),
       narrator: widget.narrator ?? narratorFor(context),

@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:caldero_engine/caldero_engine.dart';
 import 'package:flutter/material.dart';
 
+import 'recordings/family_recordings.dart';
 import 'feedback/feedback_service.dart';
 import 'feedback/rating_event.dart';
 import 'settings/app_settings.dart';
@@ -495,6 +496,42 @@ class _SettingsPageState extends State<SettingsPage> {
         value: settings.celebrateAwards,
         onChanged: settings.setCelebrateAwards,
       ),
+      if (FamilyRecordingsScope.maybeOf(context) case final rec?)
+        ListTile(
+          key: const Key('setting-recordings'),
+          contentPadding: EdgeInsets.zero,
+          leading: const Icon(Icons.mic_none),
+          title: const Text('Grabaciones de la familia'),
+          subtitle: Text(rec.all.isEmpty
+              ? 'Graba un cuento con tu voz desde su ficha. Las grabaciones se quedan solo en este teléfono.'
+              : '${rec.all.length == 1 ? 'Un cuento grabado' : '${rec.all.length} cuentos grabados'}, solo en este teléfono.'),
+          trailing: rec.all.isEmpty
+              ? null
+              : TextButton(
+                  key: const Key('setting-recordings-delete'),
+                  onPressed: () async {
+                    final ok = await showDialog<bool>(
+                      context: context,
+                      builder: (c) => AlertDialog(
+                        title: const Text('¿Borrar las grabaciones?'),
+                        content: const Text(
+                            'Se borran todas las grabaciones de la familia de este teléfono. No se pueden recuperar.'),
+                        actions: [
+                          TextButton(
+                              onPressed: () => Navigator.pop(c, false),
+                              child: const Text('Cancelar')),
+                          FilledButton(
+                              key: const Key('recordings-delete-ok'),
+                              onPressed: () => Navigator.pop(c, true),
+                              child: const Text('Borrar')),
+                        ],
+                      ),
+                    );
+                    if (ok == true) await rec.deleteAll();
+                  },
+                  child: const Text('Borrar todas'),
+                ),
+        ),
       ListTile(
         key: const Key('setting-downloads'),
         contentPadding: EdgeInsets.zero,

@@ -24,7 +24,19 @@ class StoryDetailPage extends StatelessWidget {
     this.locked = false,
     this.onUnlock,
     this.rating,
+    this.familyVoice,
+    this.onRecord,
+    this.onListenFamily,
   });
+
+  /// Quién grabó este cuento con su voz («Papá»), si está grabado entero.
+  final String? familyVoice;
+
+  /// Grabar el cuento con la voz de la familia (`null` = no se ofrece).
+  final VoidCallback? onRecord;
+
+  /// Escuchar el cuento con la voz de la familia.
+  final VoidCallback? onListenFamily;
 
   /// Nota media de los lectores (1–5), si el cuento ya tiene suficientes valoraciones.
   final double? rating;
@@ -181,6 +193,30 @@ class StoryDetailPage extends StatelessWidget {
                         ),
                     ] else ...[
                       _ReadListenButtons(onStart: onStart),
+                      if (familyVoice != null && onListenFamily != null) ...[
+                        const SizedBox(height: 10),
+                        SizedBox(
+                          width: double.infinity,
+                          height: 52,
+                          child: FilledButton.tonalIcon(
+                            key: const Key('detail-family-listen'),
+                            onPressed: onListenFamily,
+                            icon: const Icon(Icons.record_voice_over),
+                            label: Text('Escuchar con la voz de $familyVoice'),
+                          ),
+                        ),
+                      ],
+                      if (onRecord != null)
+                        Center(
+                          child: TextButton.icon(
+                            key: const Key('detail-record'),
+                            onPressed: onRecord,
+                            icon: const Icon(Icons.mic_none),
+                            label: Text(familyVoice == null
+                                ? 'Grabar este cuento con mi voz'
+                                : 'Grabarlo otra vez'),
+                          ),
+                        ),
                       const SizedBox(height: 10),
                       Center(
                         child: TextButton.icon(

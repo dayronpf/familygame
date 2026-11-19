@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:ui' show PlatformDispatcher;
 
 import 'dart:async';
@@ -7,6 +8,7 @@ import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'src/app.dart';
+import 'src/recordings/family_recordings.dart';
 import 'src/ui/splash_page.dart';
 import 'src/content/remote_content.dart';
 import 'src/feedback/feedback_service.dart';
@@ -44,7 +46,11 @@ Future<void> main() async {
   final downloaded = await remote
       .local()
       .timeout(const Duration(seconds: 2), onTimeout: () => null);
+  // Grabaciones de la familia (solo en este teléfono); si la carpeta no se puede abrir, la app sigue sin ellas
+  final recordings = await FamilyRecordings.open().catchError((Object _) =>
+      FamilyRecordings(Directory.systemTemp.createTempSync('grabaciones')));
   runApp(CalderoApp(
+    recordings: recordings,
     bundle: downloaded == null
         ? null
         : ContentBundle(rootBundle, downloaded.assets),

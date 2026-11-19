@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:caldero_engine/caldero_engine.dart' show AgePremises;
 import 'package:flutter/material.dart';
+import 'recordings/family_recordings.dart';
 import 'package:flutter/services.dart';
 
 import 'art/story_stage.dart';
@@ -42,6 +43,7 @@ class CalderoApp extends StatefulWidget {
     this.showSplash = false,
     this.splashMinimum = const Duration(milliseconds: 4200),
     this.splashSound,
+    this.recordings,
     this.recordedVoice = false,
     this.catalogOnly = brand.catalogOnly,
   });
@@ -88,6 +90,9 @@ class CalderoApp extends StatefulWidget {
 
   /// El sonido de la bienvenida (la app de verdad; en las pruebas no suena nada).
   final SplashSound? splashSound;
+
+  /// Grabaciones de la familia (en las pruebas no hay: no se ofrece grabar).
+  final FamilyRecordings? recordings;
 
   @override
   State<CalderoApp> createState() => _CalderoAppState();
@@ -182,13 +187,16 @@ class _CalderoAppState extends State<CalderoApp> {
             purchases: widget.purchases,
             child: RecordedVoiceScope(
               voice: _voice,
-              child: widget.animateArt
-                  ? child!
-                  : MediaQuery(
-                      data: MediaQuery.of(context)
-                          .copyWith(disableAnimations: true),
-                      child: child!,
-                    ),
+              child: FamilyRecordingsScope(
+                recordings: widget.recordings,
+                child: widget.animateArt
+                    ? child!
+                    : MediaQuery(
+                        data: MediaQuery.of(context)
+                            .copyWith(disableAnimations: true),
+                        child: child!,
+                      ),
+              ),
             ),
           ),
         ),

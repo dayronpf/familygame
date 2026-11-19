@@ -17,6 +17,7 @@ import 'feedback/feedback_service.dart';
 import 'feedback/rating_card.dart';
 import 'shared_reading_page.dart';
 import 'shelf/story_shelf.dart';
+import 'narration/recorded_voice.dart';
 import 'story/talk_questions.dart';
 import 'story_flow.dart';
 import 'ui/choice_cards.dart';
@@ -29,7 +30,7 @@ String storyLabel(Story story) {
 }
 
 /// Cómo se abre el cuento: el lector de siempre, «Leemos juntos» o solo escuchar.
-enum StoryStart { reader, together, listen }
+enum StoryStart { reader, together, listen, watch }
 
 /// Muestra un cuento en texto grande, pensado para leer en voz alta de noche.
 /// Al final pregunta (una vez, sin insistir) cuánto gustó.
@@ -58,11 +59,15 @@ class StoryPage extends StatefulWidget {
     this.packId,
     this.canTellAnother = true,
     this.fixedCatalog = false,
+    this.voice,
   });
 
   /// Cuento del catálogo fijo grabado (docs/31): este y cada «otro cuento» se cuentan con sus opciones fijas, así
   /// que lo que se guarda en «Mis cuentos» (premisa y género del héroe) sale del propio cuento.
   final bool fixedCatalog;
+
+  /// La voz de la familia (grabada en el teléfono) para «Ver y escuchar» y «Solo escuchar»; `null` = la de siempre.
+  final RecordedVoice? voice;
 
   /// Si «Contar otro cuento» puede crear uno nuevo (sin suscripción, solo hay los gratis: el botón lleva a verlos).
   final bool canTellAnother;
@@ -173,6 +178,8 @@ class _StoryPageState extends State<StoryPage>
           _openSharedReading();
         case StoryStart.listen:
           _openAudioOnly();
+        case StoryStart.watch:
+          _watch();
       }
     });
   }
@@ -266,6 +273,7 @@ class _StoryPageState extends State<StoryPage>
             narrator: narrator,
             ambience: ambience,
             sfx: widget.sfx?.call(),
+            voice: widget.voice,
           )
         : CinemaPage(
             story: _story,
@@ -276,6 +284,7 @@ class _StoryPageState extends State<StoryPage>
             ambience: ambience,
             sfx: widget.sfx?.call(),
             animate: widget.animate,
+            voice: widget.voice,
           );
     Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => page));
   }
@@ -323,6 +332,7 @@ class _StoryPageState extends State<StoryPage>
         narrator: widget.narrator?.call(),
         ambience: widget.ambience?.call(),
         sfx: widget.sfx?.call(),
+        voice: widget.voice,
       ),
     ));
   }

@@ -11,6 +11,9 @@ import 'feedback/feedback_store.dart';
 import 'feedback/rating_card.dart';
 import 'guide/holograma_guide.dart';
 import 'home/news.dart';
+import 'narration/recorded_voice.dart';
+import 'recordings/family_recordings.dart';
+import 'recordings/recorder_page.dart';
 import 'progress/progress_tab.dart';
 import 'progress/reading_progress.dart';
 import 'pack_loader.dart';
@@ -137,31 +140,54 @@ class _HomePageState extends State<HomePage> {
       heroName: settings?.child.heroName,
       heroGender: settings?.child.heroGender,
     );
+    final recordings = FamilyRecordingsScope.maybeOf(context);
     Navigator.of(context).push(MaterialPageRoute<void>(
       builder: (detail) => ListenableBuilder(
-        listenable: access,
-        builder: (detail, _) => StoryDetailPage(
-          locked: !access.canRead(s.pack.id, s.premise.id),
-          rating: access.ratingOf(s.pack.id, s.premise.id),
-          onUnlock: () =>
-              openPaywall(detail, reason: '«${s.title}» es de la suscripción.'),
-          story: s,
-          preview: preview,
-          artFor: _artFor,
-          shelf: widget.shelf,
-          entry: preview == null
+        listenable:
+            Listenable.merge([access, if (recordings != null) recordings]),
+        builder: (detail, _) {
+          final readable = access.canRead(s.pack.id, s.premise.id);
+          final familyVoice = preview == null || recordings == null
               ? null
-              : ShelfEntry.fromStory(
-                  preview,
-                  option: opts.valueId,
-                  premiseId: s.premise.id,
-                  age: opts.age,
-                  heroName: opts.heroName,
-                  heroGender: opts.heroGender,
-                  childId: settings?.child.id,
-                ),
-          onStart: (start) => _tellCatalog(s, opts, start: start),
-        ),
+              : recordings.voiceFor(s.key, recordingTexts(preview));
+          return StoryDetailPage(
+            familyVoice:
+                familyVoice == null ? null : recordings!.of(s.key)?.voice,
+            onListenFamily: familyVoice == null
+                ? null
+                : () => _tellCatalog(s, opts,
+                    start: StoryStart.watch, voice: familyVoice),
+            onRecord: !readable || preview == null || recordings == null
+                ? null
+                : () => Navigator.of(detail).push(MaterialPageRoute<bool>(
+                      builder: (_) => RecorderPage(
+                        story: preview,
+                        storyKey: s.key,
+                        recordings: recordings,
+                      ),
+                    )),
+            locked: !access.canRead(s.pack.id, s.premise.id),
+            rating: access.ratingOf(s.pack.id, s.premise.id),
+            onUnlock: () => openPaywall(detail,
+                reason: '«${s.title}» es de la suscripción.'),
+            story: s,
+            preview: preview,
+            artFor: _artFor,
+            shelf: widget.shelf,
+            entry: preview == null
+                ? null
+                : ShelfEntry.fromStory(
+                    preview,
+                    option: opts.valueId,
+                    premiseId: s.premise.id,
+                    age: opts.age,
+                    heroName: opts.heroName,
+                    heroGender: opts.heroGender,
+                    childId: settings?.child.id,
+                  ),
+            onStart: (start) => _tellCatalog(s, opts, start: start),
+          );
+        },
       ),
     ));
   }
@@ -229,6 +255,7 @@ class _HomePageState extends State<HomePage> {
     CatalogStory s,
     StoryOptions opts, {
     StoryStart start = StoryStart.reader,
+    RecordedVoice? voice,
   }) =>
       _tell(
         s.pack,
@@ -238,6 +265,7 @@ class _HomePageState extends State<HomePage> {
         start: start,
         catalog: opts,
         fixed: s.fixed,
+        voice: voice,
       );
 
   /// «Contar otro cuento» con el catálogo fijo: otro del mismo paquete (el reproductor ya tiene sus dibujos), de la
@@ -348,6 +376,7 @@ class _HomePageState extends State<HomePage> {
     StoryStart start = StoryStart.reader,
     StoryOptions? catalog,
     bool fixed = false,
+    RecordedVoice? voice,
   }) {
     if (_pendingAnswered) {
       setState(() {
@@ -431,6 +460,7 @@ class _HomePageState extends State<HomePage> {
           // Un cuento guardado que no es del catálogo fijo no sigue con «otro cuento» (sería uno inventado).
           canTellAnother: access.premium && !(widget.catalogOnly && !fixed),
           fixedCatalog: fixed,
+          voice: voice,
         ),
       ),
     );

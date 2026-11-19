@@ -16,7 +16,8 @@
 - **Perfiles de los niños:** el nombre que un adulto escriba (opcional, para saludar al niño en la app y reconocer su perfil) y una edad aproximada (de 2–3, 4–5, 6–8 o 9–12 años), que sirve para recomendarle cuentos.
 - **Mis cuentos:** los cuentos que se contaron o se marcaron con un corazón, guardados como números y códigos (no como texto), y cuáles se escucharon hasta el final.
 - **Progreso y premios:** por cada niño, cuántos cuentos terminó, los minutos aproximados, las noches con cuento (solo el día), las enseñanzas y paquetes que leyó y los premios ganados.
-- **Ajustes:** música, efectos de sonido, ilustraciones animadas, el recordatorio y si se envían valoraciones.
+- **Ajustes:** música, efectos de sonido, ilustraciones animadas, cómo se ve el texto (mayúsculas, espaciado), la música para dormir, el recordatorio y si se envían valoraciones.
+- **Grabaciones de la familia:** si un adulto graba un cuento con su voz, el audio y el nombre que elija («Mamá», «Papá»…) se guardan en la carpeta privada de la app, **solo en este teléfono**. No se suben a ningún servidor ni se comparten. Se borran desde Ajustes («Grabaciones de la familia» › «Borrar todas») o al desinstalar la app.
 - **Suscripción:** un identificador de instalación aleatorio (ver §3 bis), si la suscripción o un código están vigentes y hasta cuándo, y qué cuentos son gratis.
 - **Valoraciones pendientes:** las notas que todavía no se han enviado.
 La app no pide nombres de usuario, correos, teléfonos, fotos, ubicación ni acceso a la agenda.
@@ -47,6 +48,7 @@ Estos datos se guardan mientras la suscripción esté activa y hasta 24 meses de
 - **Internet:** para comprobar la suscripción, recibir la lista de cuentos gratis, descargar el audio y los cuentos nuevos y, si se permite, enviar las valoraciones.
 - **Notificaciones y servicio en primer plano:** para que el cuento siga sonando con la pantalla bloqueada y mostrar los botones de pausa en la pantalla de bloqueo, y, solo si un adulto lo enciende en Ajustes, para el recordatorio diario de la hora del cuento (lo programa el propio teléfono; no pasa por ningún servidor). No se envían notificaciones de publicidad.
 - **Mantener el teléfono despierto y el brillo:** para que el cuento siga y para bajar el brillo al dormir.
+- **Micrófono:** solo se pide cuando un adulto toca «Grabar este cuento con mi voz», y solo se usa mientras graba. Lo grabado se queda en el teléfono (ver §2).
 
 ## 5. Servicios de terceros
 - **La voz** que narra los cuentos está grabada de antemano (creada con ElevenLabs y revisada por nosotros); la app solo la reproduce y no envía nada para eso. El audio y los cuentos nuevos se guardan en Cloudflare R2, desde donde la app los descarga. Si a un cuento le falta el audio, o en «Leemos juntos», lo lee la voz que trae el teléfono (el motor de síntesis de voz de Android o de iOS), que pertenece al sistema y tiene su propia política.

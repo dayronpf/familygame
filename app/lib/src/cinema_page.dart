@@ -11,6 +11,7 @@ import 'audio/sleep_music.dart';
 import 'settings/app_settings.dart';
 import 'hologram_page.dart';
 import 'narration/narrator.dart';
+import 'narration/recorded_voice.dart';
 import 'narration/playback.dart';
 import 'player_support.dart';
 import 'story_flow.dart';
@@ -33,6 +34,7 @@ class CinemaPage extends StatefulWidget {
     this.dimmer,
     this.background,
     this.sfx,
+    this.voice,
     this.flow,
   });
 
@@ -55,6 +57,9 @@ class CinemaPage extends StatefulWidget {
 
   /// Efectos de sonido (por defecto, según los ajustes; las pruebas ponen uno de mentira).
   final Sfx? sfx;
+
+  /// La voz de la familia (grabada en el teléfono); `null` = la voz de siempre.
+  final RecordedVoice? voice;
 
   @override
   State<CinemaPage> createState() => _CinemaPageState();
@@ -100,7 +105,7 @@ class _CinemaPageState extends State<CinemaPage>
     super.initState();
     final flow = widget.flow;
     // Voz grabada del cuento, si es del catálogo (docs/31); si no, la del teléfono
-    final voice = recordedFor(context, widget.story);
+    final voice = recordedFor(context, widget.story, voice: widget.voice);
     _playback = StoryPlayback(
       scenes: playScenes(
         _story,
