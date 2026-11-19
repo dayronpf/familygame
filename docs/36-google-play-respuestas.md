@@ -110,3 +110,17 @@ La app es la misma en todas las tiendas, sin diferencias entre Android e iPhone.
 - Para regalar acceso (familias, escuelas, socios) se usan esos códigos de la tienda.
 - **Revisor de Google:** cuando exista la suscripción, se crea un código promocional de Play para `mininoches_premium` y se pone en «Detalles de acceso», en lugar del código de Mininoches. Apple da a sus revisores compras de prueba (sandbox) sin costo.
 - El servidor conserva la ruta de códigos (`/v1/redeem`) y el panel su historial, pero la app de las tiendas ya no los usa. El modo desarrollador sigue solo en las compilaciones de prueba.
+
+## 9. Comprar sin la pregunta para adultos (decidido el 18-nov-2026)
+
+El muro de pago ya **no** pide la multiplicación antes de abrirse. Pagar lo protege la tienda: la cuenta de Google o
+Apple del adulto, su forma de pago y, si la familia lo activó, su huella o contraseña en cada compra. La pregunta para
+adultos sigue en Ajustes y al compartir enlaces.
+
+- **Google Play:** la política de Familias no exige una barrera propia antes de las compras dentro de la app.
+- **App Store:** la guía 1.3 exige una barrera parental antes de cualquier compra **solo en la categoría Niños**. Al
+  publicar en iPhone, Mininoches va en otra categoría (Libros o Educación, clasificación 4+) para que la app sea la
+  misma en las dos tiendas. Si algún día se quiere la categoría Niños, la barrera tiene que volver en las dos.
+
+La oferta del final del asistente cabe en la pantalla sin desplazar: una ✕ pequeña arriba, el botón «Probar 7 días
+gratis» y un «Ahora no» debajo.

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../brand.dart';
-import '../feedback/adult_gate.dart';
 import '../legal/legal_page.dart';
 import '../notifications/bedtime_reminder.dart';
 import '../ui/night_background.dart';
@@ -24,12 +23,12 @@ class PurchasesScope extends InheritedWidget {
   bool updateShouldNotify(PurchasesScope old) => old.purchases != purchases;
 }
 
-/// Abre el muro de pago, siempre detrás de la pregunta para adultos (nunca se le pide al niño que compre).
+/// Abre el muro de pago. Sin la pregunta para adultos: pagar ya lo protege la tienda (la cuenta del adulto, su forma
+/// de pago y, si la familia lo activó, su huella o contraseña en cada compra). Decidido el 18-nov-2026 (docs/36 §9).
 /// Devuelve `true` si al cerrar ya tiene todo abierto.
 Future<bool> openPaywall(BuildContext context, {String? reason}) async {
   final access = AccessScope.read(context);
   if (access.premium) return true;
-  if (!await askAdult(context) || !context.mounted) return false;
   final ok = await Navigator.of(context).push<bool>(MaterialPageRoute(
     fullscreenDialog: true,
     builder: (_) => PaywallPage(reason: reason),

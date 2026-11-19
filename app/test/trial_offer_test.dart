@@ -4,6 +4,7 @@ import 'package:caldero_app/src/feedback/feedback_store.dart';
 import 'package:caldero_app/src/settings/app_settings.dart';
 import 'package:caldero_app/src/shelf/story_shelf.dart';
 import 'package:caldero_app/src/store/access.dart';
+import 'package:caldero_app/src/store/paywall_page.dart';
 import 'package:caldero_app/src/store/purchases.dart';
 import 'package:caldero_app/src/store/trial_offer_page.dart';
 import 'package:caldero_app/src/ui/splash_page.dart';
@@ -84,24 +85,38 @@ void main() {
     expect(find.text('¡Listo! Su prueba de 7 días gratis los espera'),
         findsOneWidget);
     expect(find.text('Probar 7 días gratis'), findsOneWidget);
-    await tester.scrollUntilVisible(find.byKey(const Key('offer-skip')), 300);
-    await tester.ensureVisible(find.byKey(const Key('offer-skip')));
-    await tester.pumpAndSettle();
     await tester.tap(find.byKey(const Key('offer-skip')));
     await tester.pumpAndSettle();
     expect(find.byType(TrialOfferPage), findsNothing);
     expect(find.text('Contar un cuento'), findsOneWidget);
   });
 
-  testWidgets('«Probar gratis» pide antes la pregunta para adultos',
+  testWidgets('«Probar gratis» abre el muro de pago sin la pregunta de adultos',
       (tester) async {
     await finishWizard(tester, _Store());
-    await tester.scrollUntilVisible(find.byKey(const Key('offer-try')), 300);
-    await tester.ensureVisible(find.byKey(const Key('offer-try')));
-    await tester.pumpAndSettle();
     await tester.tap(find.byKey(const Key('offer-try')));
     await tester.pumpAndSettle();
-    expect(find.byKey(const Key('gate-question')), findsOneWidget);
+    expect(find.byKey(const Key('gate-question')), findsNothing);
+    expect(find.byType(PaywallPage), findsOneWidget);
+  });
+
+  testWidgets('la ✕ de arriba también cierra y entra al inicio',
+      (tester) async {
+    await finishWizard(tester, _Store());
+    await tester.tap(find.byKey(const Key('offer-close')));
+    await tester.pumpAndSettle();
+    expect(find.byType(TrialOfferPage), findsNothing);
+    expect(find.text('Contar un cuento'), findsOneWidget);
+  });
+
+  testWidgets('en un teléfono pequeño todo cabe sin desplazar', (tester) async {
+    await finishWizard(tester, _Store());
+    tester.view.physicalSize = const Size(320, 568);
+    await tester.pumpAndSettle();
+    for (final k in ['offer-try', 'offer-skip', 'offer-close', 'offer-title']) {
+      final r = tester.getRect(find.byKey(Key(k)));
+      expect(r.top >= 0 && r.bottom <= 568, isTrue, reason: '$k fuera: $r');
+    }
   });
 
   testWidgets('si la tienda no tiene planes no se ofrece nada', (tester) async {

@@ -80,21 +80,33 @@ void main() {
     }
 
     final access = AccessService(MemoryShelfStore(), devAvailable: false);
-    await tester.pumpWidget(RepaintBoundary(
-      key: boundary,
-      child: MaterialApp(
-        theme: nightTheme(),
-        home: AccessScope(
-          access: access,
-          child: PurchasesScope(
-            purchases: _Store(),
-            child: TrialOfferPage(onClose: () {}),
+    for (final (name, w, h, scale) in [
+      ('offer_tuyo', 348.0, 760.0, 1.2),
+      ('offer_pequeno', 320.0, 568.0, 1.0),
+    ]) {
+      tester.view.physicalSize = Size(w * 2, h * 2);
+      await tester.pumpWidget(RepaintBoundary(
+        key: boundary,
+        child: MaterialApp(
+          key: ValueKey(name),
+          debugShowCheckedModeBanner: false,
+          theme: nightTheme(),
+          builder: (c, child) => MediaQuery(
+              data: MediaQuery.of(c)
+                  .copyWith(textScaler: TextScaler.linear(scale)),
+              child: child!),
+          home: AccessScope(
+            access: access,
+            child: PurchasesScope(
+              purchases: _Store(),
+              child: TrialOfferPage(onClose: () {}),
+            ),
           ),
         ),
-      ),
-    ));
-    await tester.pump(const Duration(milliseconds: 100));
-    await tester.pump(const Duration(milliseconds: 1000));
-    await shot('offer');
+      ));
+      await tester.pump(const Duration(milliseconds: 100));
+      await tester.pump(const Duration(milliseconds: 1000));
+      await shot(name);
+    }
   }, skip: out == null);
 }

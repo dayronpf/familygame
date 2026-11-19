@@ -1080,7 +1080,7 @@ class _GuideCard extends StatelessWidget {
   }
 }
 
-/// Invitación a la prueba gratis (para el adulto: el muro de pago pide la pregunta de adultos).
+/// Invitación a la prueba gratis (para el adulto: la compra la autoriza la cuenta de la tienda).
 class _TrialCard extends StatelessWidget {
   const _TrialCard({required this.onTap});
 
