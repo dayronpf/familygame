@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:caldero_engine/caldero_engine.dart';
 import 'package:flutter/material.dart';
 
+import 'story/talk_questions.dart';
+
 import 'art/story_stage.dart';
 import 'narration/narrator.dart';
 import 'narration/playback.dart';
@@ -278,6 +280,11 @@ class _SharedReadingPageState extends State<SharedReadingPage>
           if (sc.choice != null) ...[
             const SizedBox(height: 18),
             _question(sc, text),
+          ],
+          // En la última página (la enseñanza), las preguntas para conversar
+          if (sc.isMoral) ...[
+            const SizedBox(height: 20),
+            TalkQuestionsCard(story: widget.story),
           ],
           if (_turns) ...[
             const SizedBox(height: 18),

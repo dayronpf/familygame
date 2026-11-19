@@ -16,6 +16,7 @@ import 'feedback/feedback_service.dart';
 import 'feedback/rating_card.dart';
 import 'shared_reading_page.dart';
 import 'shelf/story_shelf.dart';
+import 'story/talk_questions.dart';
 import 'story_flow.dart';
 import 'ui/choice_cards.dart';
 import 'ui/palette.dart';
@@ -546,6 +547,10 @@ class _StoryPageState extends State<StoryPage>
                   ),
                 ),
               ),
+            if (_complete) ...[
+              const SizedBox(height: 8),
+              TalkQuestionsCard(story: _story),
+            ],
             // La lista se arma al bajar: si esto llega a armarse, leyeron hasta el final.
             if (_complete) _EndReached(onReached: _finished),
             if (_fresh.isNotEmpty &&
