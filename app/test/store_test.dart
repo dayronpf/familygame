@@ -198,6 +198,28 @@ void main() {
     });
 
     testWidgets(
+        'el cuento de regalo se abre para siempre y la tarjeta no vuelve a salir',
+        (tester) async {
+      final (_, access) = await openApp(tester);
+      final card = find.byKey(const Key('gift-card'));
+      await tester.scrollUntilVisible(card, 300,
+          scrollable: find.byType(Scrollable).first);
+      await tester.drag(find.byType(Scrollable).first, const Offset(0, -200));
+      await tester.pumpAndSettle();
+      await tester.tap(card);
+      await tester.pumpAndSettle();
+      final gift = access.gift!;
+      final parts = gift.split(':');
+      expect(access.isFree(parts[0], parts[1]), isTrue);
+      expect(find.byKey(const Key('detail-read')), findsOneWidget,
+          reason: 'se abre la ficha ya desbloqueada');
+      await tester.tap(find.byKey(const Key('detail-back')));
+      await tester.pumpAndSettle();
+      expect(find.byKey(const Key('gift-card')), findsNothing);
+      expect(access.exportJson()['regalo'], gift);
+    });
+
+    testWidgets(
         'en Explorar los de pago llevan candado y su ficha ofrece desbloquear',
         (tester) async {
       await openApp(tester);

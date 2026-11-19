@@ -829,6 +829,23 @@ class _HomePageState extends State<HomePage> {
             );
             if (picks.isEmpty) return const SizedBox.shrink();
             final previews = _previewsFor(settings);
+            // Regalo de bienvenida: uno de la suscripción, elegido para este niño, abierto para siempre al tocarlo
+            CatalogStory? gift;
+            if (access.giftAvailable) {
+              final locked = StoryCatalog([
+                for (final s in visible.stories)
+                  if (!access.isFree(s.pack.id, s.premise.id)) s,
+              ]);
+              final g = recommend(
+                locked.forChild(
+                    heroName: child?.heroName, heroGender: child?.heroGender),
+                childAge: child?.age,
+                childId: child?.id,
+                day: 'regalo',
+                recent: const [],
+              );
+              gift = g.isEmpty ? null : g.first;
+            }
             final name = child?.heroName;
             return Padding(
               padding: const EdgeInsets.only(top: 22),
@@ -862,6 +879,17 @@ class _HomePageState extends State<HomePage> {
                         artFor: _artFor,
                         onTap: () => _openCatalogStory(s),
                       ),
+                  ],
+                  if (gift != null) ...[
+                    const SizedBox(height: 14),
+                    _GiftCard(
+                      title: gift.title,
+                      onTap: () async {
+                        final g = gift!;
+                        await access.claimGift(g.pack.id, g.premise.id);
+                        if (mounted) _openCatalogStory(g);
+                      },
+                    ),
                   ],
                   if (!access.premium) ...[
                     const SizedBox(height: 14),
@@ -1071,6 +1099,57 @@ class _GuideCard extends StatelessWidget {
                 ),
               ),
               const Icon(Icons.chevron_right, color: Palette.amber),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/// Regalo de bienvenida: un cuento de la suscripción que queda abierto para siempre al tocarlo (una sola vez).
+class _GiftCard extends StatelessWidget {
+  const _GiftCard({required this.title, required this.onTap});
+
+  final String title;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final text = Theme.of(context).textTheme;
+    return Material(
+      key: const Key('gift-card'),
+      color: const Color(0xFF3B2A6E),
+      borderRadius: BorderRadius.circular(24),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(24),
+        onTap: onTap,
+        child: Padding(
+          padding: const EdgeInsets.all(14),
+          child: Row(
+            children: [
+              Container(
+                width: 52,
+                height: 52,
+                decoration: const BoxDecoration(
+                    color: Color(0xFFFFA8D2), shape: BoxShape.circle),
+                child:
+                    const Icon(Icons.card_giftcard, color: Color(0xFF3A0626)),
+              ),
+              const SizedBox(width: 14),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Un cuento de regalo',
+                        style: text.titleMedium!
+                            .copyWith(fontWeight: FontWeight.w800)),
+                    Text('Toca y «$title» es suyo para siempre',
+                        style: text.bodySmall!.copyWith(color: Palette.cream)),
+                  ],
+                ),
+              ),
+              const Icon(Icons.chevron_right, color: Color(0xFFFFA8D2)),
             ],
           ),
         ),

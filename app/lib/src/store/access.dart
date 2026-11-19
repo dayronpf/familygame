@@ -245,6 +245,9 @@ class AccessService extends ChangeNotifier {
   bool _devUnlock = false;
   Set<String> _free = {...defaultFreeStories};
   Set<String> _hidden = {};
+
+  /// El cuento de regalo de bienvenida (`pack:premisa`): uno solo, para siempre en este teléfono. `null` = sin pedir.
+  String? _gift;
   String? _etag;
   String? _catalogDay;
   bool _loaded = false;
@@ -260,7 +263,23 @@ class AccessService extends ChangeNotifier {
       _open || (devAvailable && _devUnlock) || _entitlement.activeAt(_now());
 
   bool isFree(String packId, String premiseId) =>
-      _free.contains(storyRef(packId, premiseId));
+      _free.contains(storyRef(packId, premiseId)) ||
+      _gift == storyRef(packId, premiseId);
+
+  /// El regalo de bienvenida ya se pidió (y cuál fue).
+  String? get gift => _gift;
+
+  /// Se ofrece el regalo: sin la suscripción y sin haberlo pedido antes.
+  bool get giftAvailable => !premium && _gift == null;
+
+  /// Pide el regalo: ese cuento queda abierto para siempre en este teléfono. Solo funciona una vez.
+  Future<bool> claimGift(String packId, String premiseId) async {
+    if (_gift != null) return false;
+    _gift = storyRef(packId, premiseId);
+    notifyListeners();
+    await _save();
+    return true;
+  }
 
   bool isHidden(String packId, String premiseId) =>
       _hidden.contains(storyRef(packId, premiseId));
@@ -283,6 +302,7 @@ class AccessService extends ChangeNotifier {
         if (free is List && free.isNotEmpty) _free = {...free.cast<String>()};
         final hidden = j['ocultos'];
         if (hidden is List) _hidden = {...hidden.cast<String>()};
+        _gift = j['regalo'] as String?;
         _etag = j['etag'] as String?;
         _catalogDay = j['dia_catalogo'] as String?;
       }
@@ -376,6 +396,7 @@ class AccessService extends ChangeNotifier {
         if (_devUnlock) 'desarrollador': true,
         'gratis': _free.toList()..sort(),
         'ocultos': _hidden.toList()..sort(),
+        if (_gift != null) 'regalo': _gift,
         if (_etag != null) 'etag': _etag,
         if (_catalogDay != null) 'dia_catalogo': _catalogDay,
       };
@@ -386,6 +407,7 @@ class AccessService extends ChangeNotifier {
     _devUnlock = false;
     _free = {...defaultFreeStories};
     _hidden = {};
+    _gift = null;
     _etag = null;
     _catalogDay = null;
     _installId = newInstallId();
