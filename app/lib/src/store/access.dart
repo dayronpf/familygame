@@ -246,6 +246,13 @@ class AccessService extends ChangeNotifier {
   Set<String> _free = {...defaultFreeStories};
   Set<String> _hidden = {};
 
+  /// Nota media de los lectores por cuento (`pack:premisa` => media), solo los que tienen suficientes valoraciones.
+  Map<String, double> _ratings = {};
+
+  /// La nota media de un cuento (1–5), o `null` si aún no tiene suficientes valoraciones.
+  double? ratingOf(String packId, String premiseId) =>
+      _ratings[storyRef(packId, premiseId)];
+
   /// El cuento de regalo de bienvenida (`pack:premisa`): uno solo, para siempre en este teléfono. `null` = sin pedir.
   String? _gift;
   String? _etag;
@@ -303,6 +310,7 @@ class AccessService extends ChangeNotifier {
         final hidden = j['ocultos'];
         if (hidden is List) _hidden = {...hidden.cast<String>()};
         _gift = j['regalo'] as String?;
+        _ratings = _parseRatings(j['notas']);
         _etag = j['etag'] as String?;
         _catalogDay = j['dia_catalogo'] as String?;
       }
@@ -329,6 +337,9 @@ class AccessService extends ChangeNotifier {
         final hidden = (c.body['hiddenStories'] as List?)?.cast<String>();
         if (free != null) _free = {...free};
         if (hidden != null) _hidden = {...hidden};
+        if (c.body.containsKey('ratings')) {
+          _ratings = _parseRatings(c.body['ratings']);
+        }
         _etag = c.etag.isEmpty ? null : c.etag;
       }
       _catalogDay = today;
@@ -397,6 +408,7 @@ class AccessService extends ChangeNotifier {
         'gratis': _free.toList()..sort(),
         'ocultos': _hidden.toList()..sort(),
         if (_gift != null) 'regalo': _gift,
+        if (_ratings.isNotEmpty) 'notas': _ratings,
         if (_etag != null) 'etag': _etag,
         if (_catalogDay != null) 'dia_catalogo': _catalogDay,
       };
@@ -416,6 +428,19 @@ class AccessService extends ChangeNotifier {
   }
 
   Future<void> _save() => _store.write(jsonEncode(exportJson()));
+
+  /// Del catálogo llega `{ref: {avg, n}}`; lo guardado es `{ref: avg}`. Se acepta cualquiera de los dos.
+  static Map<String, double> _parseRatings(Object? raw) {
+    if (raw is! Map) return {};
+    final out = <String, double>{};
+    raw.forEach((k, v) {
+      final avg = v is Map ? v['avg'] : v;
+      if (k is String && avg is num && avg >= 1 && avg <= 5) {
+        out[k] = avg.toDouble();
+      }
+    });
+    return out;
+  }
 }
 
 class PrefsAccessStore implements ShelfStore {

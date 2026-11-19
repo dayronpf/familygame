@@ -22,7 +22,11 @@ class StoryDetailPage extends StatelessWidget {
     this.entry,
     this.locked = false,
     this.onUnlock,
+    this.rating,
   });
+
+  /// Nota media de los lectores (1–5), si el cuento ya tiene suficientes valoraciones.
+  final double? rating;
 
   /// Cuento de la suscripción sin tenerla: se ve el principio y, en vez de Leer/Escuchar, «Desbloquear».
   final bool locked;
@@ -193,6 +197,9 @@ class StoryDetailPage extends StatelessWidget {
                       spacing: 18,
                       runSpacing: 8,
                       children: [
+                        if (rating != null)
+                          _Fact(Icons.star_rounded,
+                              rating!.toStringAsFixed(1).replaceAll('.', ',')),
                         _Fact(Icons.schedule, '${story.minutes} min'),
                         _Fact(Icons.photo_library_outlined,
                             '${story.scenes} escenas'),

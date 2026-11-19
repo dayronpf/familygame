@@ -142,6 +142,7 @@ class _HomePageState extends State<HomePage> {
         listenable: access,
         builder: (detail, _) => StoryDetailPage(
           locked: !access.canRead(s.pack.id, s.premise.id),
+          rating: access.ratingOf(s.pack.id, s.premise.id),
           onUnlock: () =>
               openPaywall(detail, reason: '«${s.title}» es de la suscripción.'),
           story: s,

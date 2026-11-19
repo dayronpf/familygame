@@ -98,6 +98,30 @@ class _FakePurchases extends PurchaseGateway {
 
 void main() {
   group('acceso', () {
+    test('la nota media llega con el catálogo y se recuerda sin conexión',
+        () async {
+      final api = _FakeApi()
+        ..catalogBody = {
+          'version': '3',
+          'freeStories': ['medieval:campana'],
+          'hiddenStories': [],
+          'products': [],
+          'ratings': {
+            'mar:faro': {'avg': 4.6, 'n': 12},
+            'mar:raro': {'avg': 9, 'n': 5},
+          },
+        };
+      final store = MemoryShelfStore();
+      final a = AccessService(store, api: api);
+      await a.refresh();
+      expect(a.ratingOf('mar', 'faro'), 4.6);
+      expect(a.ratingOf('mar', 'raro'), isNull, reason: 'fuera de 1–5');
+      expect(a.ratingOf('mar', 'otro'), isNull);
+      final b = AccessService(store);
+      await b.load();
+      expect(b.ratingOf('mar', 'faro'), 4.6);
+    });
+
     test(
         'sin suscripción solo se leen los gratis; el modo desarrollador solo existe en pruebas',
         () async {
