@@ -45,7 +45,6 @@
     ['admin.dashboard', 'Inicio', 'home', null],
     ['admin.stories.index', 'Cuentos', 'book', $navCounts['stories'] ?? null],
     ['admin.purchases.index', 'Compras', 'card', null],
-    ['admin.codes.index', 'Códigos', 'ticket', null],
     ['admin.ratings.index', 'Valoraciones', 'star', null],
     ['admin.products.index', 'Productos', 'cube', null],
     ['admin.audit.index', 'Auditoría', 'clipboard', null],

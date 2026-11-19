@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../brand.dart';
@@ -121,97 +120,20 @@ class _PaywallPageState extends State<PaywallPage> {
         builder: (_) => LegalPage(title: title, asset: asset),
       ));
 
+  /// «Canjear código»: siempre los de la tienda (códigos promocionales de Google Play, códigos de oferta de la App
+  /// Store), igual en las dos plataformas. La app no tiene códigos propios: Apple no los permite (guía 3.1.1) y la app
+  /// es la misma en todas las tiendas (docs/36 §8).
   Future<void> _redeem() async {
-    final access = AccessScope.read(context);
     final messenger = ScaffoldMessenger.of(context);
-    // Códigos propios (del servidor), revisado el 18-nov-2026 (docs/36 §8):
-    // - Google Play: su política de pagos exige su facturación para todo lo que se COBRA dentro de la app y prohíbe
-    //   llevar a otra forma de pago; no prohíbe regalar acceso. Por eso en Android se aceptan códigos propios
-    //   GRATUITOS (regalos, promociones, revisores). Nunca se venden fuera de Google Play.
-    // - Apple (guía 3.1.1): no se permiten mecanismos propios para desbloquear contenido. En iPhone solo los códigos
-    //   de la tienda (offer codes).
-    final serverCodes =
-        access.api != null && defaultTargetPlatform == TargetPlatform.android;
-    if (!access.devAvailable && serverCodes) {
-      final choice = await showModalBottomSheet<String>(
-        context: context,
-        backgroundColor: Palette.card,
-        builder: (context) => SafeArea(
-          child: Column(mainAxisSize: MainAxisSize.min, children: [
-            ListTile(
-              key: const Key('redeem-store'),
-              leading: const Icon(Icons.shop_outlined),
-              title: const Text('Código de Google Play'),
-              onTap: () => Navigator.pop(context, 'store'),
-            ),
-            ListTile(
-              key: const Key('redeem-server'),
-              leading: const Icon(Icons.card_giftcard),
-              title: Text('Código de $appName'),
-              onTap: () => Navigator.pop(context, 'server'),
-            ),
-          ]),
-        ),
-      );
-      if (!mounted || choice == null) return;
-      if (choice == 'server') return _redeemServerCode();
-    }
-    if (!access.devAvailable) {
-      final handled = await _purchases?.redeemWithStore() ?? false;
-      if (!mounted) return;
-      messenger.showSnackBar(SnackBar(
-          content: Text(handled
-              ? 'Cuando termines de canjear el código en la tienda, vuelve y toca «Restaurar compras».'
-              : 'Los códigos se canjean en la tienda de tu teléfono.')));
-      return;
-    }
-    return _redeemServerCode();
+    final handled = await _purchases?.redeemWithStore() ?? false;
+    if (!mounted) return;
+    messenger.showSnackBar(SnackBar(
+        content: Text(handled
+            ? 'Cuando termines de canjear el código en la tienda, vuelve y toca «Restaurar compras».'
+            : 'Los códigos se canjean en la tienda de tu teléfono.')));
   }
 
-  /// Pide un código del servidor y lo canjea.
-  Future<void> _redeemServerCode() async {
-    final access = AccessScope.read(context);
-    final messenger = ScaffoldMessenger.of(context);
-    final controller = TextEditingController();
-    final code = await showDialog<String>(
-      context: context,
-      builder: (context) => AlertDialog(
-        backgroundColor: Palette.card,
-        title: const Text('Canjear código'),
-        content: TextField(
-          key: const Key('redeem-field'),
-          controller: controller,
-          autofocus: true,
-          textCapitalization: TextCapitalization.characters,
-          decoration: const InputDecoration(hintText: 'MINI-XXXX-XXXX'),
-        ),
-        actions: [
-          TextButton(
-              onPressed: () => Navigator.pop(context),
-              child: const Text('Cancelar')),
-          FilledButton(
-            key: const Key('redeem-ok'),
-            onPressed: () => Navigator.pop(context, controller.text),
-            child: const Text('Canjear'),
-          ),
-        ],
-      ),
-    );
-    if (code == null || code.trim().isEmpty) return;
-    final r = await access.redeem(code);
-    if (!mounted) return;
-    final text = switch (r.outcome) {
-      StoreOutcome.ok => '¡Código canjeado! Ya tienen todos los cuentos.',
-      StoreOutcome.invalid =>
-        'Ese código no existe. Revisa que esté bien escrito.',
-      StoreOutcome.used => 'Ese código ya se usó o caducó.',
-      StoreOutcome.noServer =>
-        'Esta versión no tiene servidor para canjear códigos.',
-      StoreOutcome.unavailable => 'No pudimos conectar. Inténtalo más tarde.',
-    };
-    messenger.showSnackBar(SnackBar(content: Text(text)));
-    if (r.outcome == StoreOutcome.ok) Navigator.of(context).maybePop(true);
-  }
+
 
   @override
   Widget build(BuildContext context) {

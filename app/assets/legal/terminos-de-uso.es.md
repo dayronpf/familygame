@@ -14,7 +14,7 @@ Para que los **adultos** cuenten cuentos a niños. Los ajustes, las valoraciones
 - **Prueba gratis:** cuando la tienda la ofrece (por ejemplo, 7 días), no se cobra nada durante la prueba; la app avisa antes de que termine. Si no se cancela, empieza la suscripción.
 - **Renovación y cancelación:** la suscripción se renueva sola al final de cada periodo, salvo que se cancele en la tienda al menos 24 horas antes. Se cancela en Google Play › Pagos y suscripciones (o, en el iPhone, en Ajustes › tu nombre › Suscripciones); el acceso sigue hasta que termine el periodo pagado.
 - **Reembolsos:** los gestiona la tienda según sus normas.
-- **Códigos de regalo:** los de la tienda (App Store o Google Play) se canjean en la tienda; en Android también se aceptan códigos de {{APP}}. Abren todos los cuentos por el tiempo que diga el código y no se pueden cambiar por dinero.
+- **Códigos de regalo:** son los de la tienda (App Store o Google Play) y se canjean en la tienda. Abren la suscripción por el tiempo que diga el código y no se pueden cambiar por dinero.
 
 ## 3. Uso permitido
 Puede usar la app para uso personal y familiar. No puede copiar, vender o redistribuir los cuentos, los dibujos ni el código fuera de lo que permita la licencia, ni intentar romper la protección de la app.

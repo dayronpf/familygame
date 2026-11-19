@@ -102,10 +102,13 @@
 5. «Declarar estado de comerciante», antes del 1 de febrero de 2027.
 6. Enviar a revisión desde «Descripción general de la publicación».
 
-## 8. Códigos de canje propios: qué dicen las tiendas (revisado el 18-nov-2026)
+## 8. Códigos de canje: solo los de la tienda (decidido el 18-nov-2026)
 
-- **Google Play:** la [política de pagos](https://support.google.com/googleplay/android-developer/answer/9858738) exige la facturación de Google Play cuando la app cobra o acepta un pago por funciones o contenido, y prohíbe llevar al usuario a otra forma de pago. No habla de regalar acceso. Los códigos de Mininoches en Android son **gratuitos**: sirven para regalos, promociones y para el revisor. Así se cumple.
-  - **No se pueden vender** fuera de Google Play: ni a escuelas, ni por la web, ni en efectivo. Si algún día se quiere cobrar, se usan los códigos promocionales de Play Console o las tarjetas de regalo de Google Play.
-- **Apple:** la [guía 3.1.1](https://developer.apple.com/app-store/review/guidelines/) no permite «mecanismos propios para desbloquear contenido». En iPhone la app no acepta códigos propios, solo los de la tienda (offer codes). Así está programado.
-- **Revisores:** Google pide un modo de acceso completo sin pagar. El código de revisión (`REVIEW_CODE`) es gratuito y es lo que se usa. Está descrito en «Detalles de acceso».
-- Lo mismo explica el panel en «Códigos de regalo».
+La app es la misma en todas las tiendas, sin diferencias entre Android e iPhone. Apple no permite mecanismos propios para desbloquear contenido ([guía 3.1.1](https://developer.apple.com/app-store/review/guidelines/)), así que **la app no tiene códigos propios en ninguna plataforma**.
+
+- «Canjear código» abre siempre el canje de la tienda:
+  - Android: códigos promocionales de Google Play, que se crean en Play Console → Monetizar → Promociones.
+  - iPhone: códigos de oferta de la App Store.
+- Para regalar acceso (familias, escuelas, socios) se usan esos códigos de la tienda.
+- **Revisor de Google:** cuando exista la suscripción, se crea un código promocional de Play para `mininoches_premium` y se pone en «Detalles de acceso», en lugar del código de Mininoches. Apple da a sus revisores compras de prueba (sandbox) sin costo.
+- El servidor conserva la ruta de códigos (`/v1/redeem`) y el panel su historial, pero la app de las tiendas ya no los usa. El modo desarrollador sigue solo en las compilaciones de prueba.

@@ -37,7 +37,7 @@ Un adulto puede ver el ejemplo exacto de lo que se envía en Ajustes → «Ver u
 Para saber si una instalación tiene la suscripción, la app habla con nuestro servidor:
 - **Identificador de instalación:** un número aleatorio que la app crea la primera vez. No está ligado a una persona, a una cuenta, al teléfono ni a la publicidad; si se borran los datos de la app, se crea otro.
 - **Al comprar o restaurar:** el identificador de la compra que entrega la tienda (en Android, el *purchase token* de Google Play). Nuestro servidor lo consulta a la tienda para comprobar que la compra es real y vigente, y guarda el resultado (producto, estado, fecha de caducidad) junto al identificador de instalación. **No recibimos** el nombre, el correo ni los datos de pago de quien compra: eso lo gestiona la tienda.
-- **Códigos de regalo:** los de la tienda (Apple o Google Play) se canjean en la tienda, con sus propias reglas. En Android también hay códigos de {{APP}} (para regalos, escuelas o revisores): al canjear uno se envían a nuestro servidor el código y el identificador de instalación, para darle los días de acceso.
+- **Códigos de regalo:** son los de la tienda (Apple o Google Play) y se canjean en la tienda, con sus propias reglas; a nosotros solo nos llega la compra que resulta, igual que cualquier otra.
 - **Al abrir la app** (como mucho una vez al día): se pide la lista de cuentos gratis y la de cuentos retirados, y se comprueba si hay cuentos o audios nuevos, sin enviar nada más.
 - **Al escuchar un cuento por primera vez:** se descarga su audio de nuestro almacén (audio.tuvendor.com). La descarga no lleva datos del niño ni de la familia.
 - La tienda nos avisa de renovaciones, cancelaciones y reembolsos de esa compra para mantener el estado al día.

@@ -302,7 +302,7 @@ void main() {
     });
 
     testWidgets(
-        'en Android, la versión de las tiendas también canjea códigos propios (los de los revisores)',
+        'en Android e iPhone «Canjear código» abre el canje de la tienda: la app no tiene códigos propios',
         (tester) async {
       tester.view
         ..physicalSize = const Size(1080, 3400)
@@ -331,15 +331,10 @@ void main() {
           scrollable: find.byType(Scrollable).first);
       await tester.tap(find.byKey(const Key('paywall-redeem')));
       await _frames(tester);
-      await tester.tap(find.byKey(const Key('redeem-server')));
-      await _frames(tester);
-      await tester.enterText(
-          find.byKey(const Key('redeem-field')), 'mini-abcd-1234');
-      await tester.tap(find.byKey(const Key('redeem-ok')));
-      await _frames(tester);
-      expect(api.redeemed, ['MINI-ABCD-1234']);
-      expect(access.premium, isTrue);
-      expect(purchases.redeemed, isFalse);
+      expect(purchases.redeemed, isTrue);
+      expect(find.byKey(const Key('redeem-server')), findsNothing);
+      expect(find.byKey(const Key('redeem-field')), findsNothing);
+      expect(api.redeemed, isEmpty);
     }, variant: TargetPlatformVariant.only(TargetPlatform.android));
 
     testWidgets('sin tienda explica que aún no está publicada', (tester) async {
