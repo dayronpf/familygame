@@ -13,7 +13,8 @@ Si cambia algo de esto, hay que cambiar también esta ficha y el formulario de d
 - Soporte: `https://audio.tuvendor.com/legal/soporte.html`
 - Correo de contacto: `ventas@tuvendor.com`
 
-> **Regla:** nunca se pone la cantidad de cuentos (cambia cada semana). Decidido el 18-nov-2026.
+> **Reglas:** nunca se pone la cantidad de cuentos (cambia cada semana) ni un rango de edad (un buen cuento no tiene
+> edad). Decidido el 18 y 19-nov-2026.
 
 ## Nombre — 30 caracteres
 
@@ -35,7 +36,7 @@ Si cambia algo de esto, hay que cambiar también esta ficha y el formulario de d
 
 > Cada noche, un cuento para soñar.
 >
-> Mininoches tiene cuentos para dormir escritos para niños de 2 a 12 años y narrados con una voz cálida y tranquila. Cada cuento tiene sus dibujos animados y termina con una enseñanza sencilla: honestidad, generosidad, valentía, humildad, perseverancia o amistad.
+> Mininoches tiene cuentos para dormir narrados con una voz cálida y tranquila, para grandes y pequeños: un buen cuento no tiene edad. Cada cuento tiene sus dibujos animados y termina con una enseñanza sencilla: honestidad, generosidad, valentía, humildad, perseverancia o amistad.
 >
 > TRES MUNDOS PARA SOÑAR
 >
@@ -50,17 +51,17 @@ Si cambia algo de esto, hay que cambiar también esta ficha y el formulario de d
 > • «Leemos juntos», para que mamá o papá lo lean en voz alta, página a página.
 > • Sonido de fondo suave: el mar suena a olas y el espacio, a estrellas que titilan.
 >
-> PENSADO PARA CADA EDAD
+> PARA TODA LA FAMILIA
 >
-> Cuentos cortitos y con repeticiones para los más pequeños, aventuras con un susto suave para los de 6 a 8 y tramas con giros para los mayores. Busca por edad, por enseñanza o por mundo, y guarda tus favoritos.
+> Cuentos cortitos y con repeticiones, aventuras con un susto suave y tramas con giros: hay para cada quien. Busca por enseñanza o por mundo, y guarda tus favoritos.
 >
 > CUENTOS CUIDADOS
 >
-> Cada cuento lo revisamos para que tenga un lenguaje de su edad, una historia coherente con sus dibujos y un final tranquilo, para dormir. Y cada semana pueden llegar cuentos nuevos.
+> Cada cuento lo revisamos para que tenga un lenguaje sencillo, una historia coherente con sus dibujos y un final tranquilo, para dormir. Y cada semana pueden llegar cuentos nuevos.
 >
 > HECHO PARA FAMILIAS
 >
-> • Varios niños en el mismo teléfono, cada uno con su edad, su progreso y sus premios.
+> • Varios perfiles en el mismo teléfono, cada uno con su progreso y sus premios.
 > • Recordatorio de la hora del cuento.
 > • Sin anuncios y sin cuentas ni registro.
 >
