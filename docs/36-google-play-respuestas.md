@@ -124,3 +124,14 @@ abre directo (desde el mismo día). La pregunta para adultos queda solo al compa
 
 La oferta del final del asistente cabe en la pantalla sin desplazar: una ✕ pequeña arriba, el botón «Probar 7 días
 gratis» y un «Ahora no» debajo.
+
+## 10. Números de versión (decidido el 19-nov-2026)
+
+La primera versión pública es **1.0.0** (compilación 30). Después del lanzamiento:
+
+- **1.0.1, 1.0.2…** para correcciones.
+- **1.1.0, 1.2.0…** para funciones nuevas.
+- **2.0.0** para un cambio grande.
+
+El número de compilación (después del `+` en `app/pubspec.yaml`, y `appBuild` en `rating_event.dart`) sube en uno con
+cada archivo que se sube a Play, aunque sea de prueba. Una prueba comprueba que los dos coincidan.
