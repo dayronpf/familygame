@@ -28,6 +28,7 @@ import 'store/access.dart';
 import 'store/paywall_page.dart';
 import 'shelf/story_shelf.dart';
 import 'story_page.dart';
+import 'story_queue_page.dart';
 import 'ui/children_page.dart';
 import 'ui/hero_banner.dart';
 import 'ui/hero_gender_dialog.dart';
@@ -248,6 +249,50 @@ class _HomePageState extends State<HomePage> {
         heroGender: child?.heroGender,
       ),
     );
+  }
+
+  /// La radio de cuentos: en «Solo escuchar», uno detrás de otro al azar (de los que pueden leer), sin repetir el
+  /// anterior, hasta que la apaguen.
+  void _radio(StoryCatalog catalog) {
+    final access = AccessScope.read(context);
+    final previews = _previewsFor(SettingsScope.maybeOf(context));
+    final pool = [
+      for (final s in catalog.withAccess(hidden: access.hiddenStories).stories)
+        if (access.canRead(s.pack.id, s.premise.id)) s,
+    ];
+    if (pool.isEmpty) return;
+    final order = [...pool]..shuffle();
+    Navigator.of(context).push(MaterialPageRoute<void>(
+      builder: (_) => StoryQueuePage(
+        title: 'Radio de cuentos',
+        storyAt: (i) => previews.of(order[i % order.length]),
+      ),
+    ));
+  }
+
+  /// Los favoritos seguidos, en «Solo escuchar» (los que se pueden leer y vienen del catálogo).
+  Future<void> _playFavorites(List<ShelfEntry> entries) async {
+    final access = AccessScope.read(context);
+    final previews = _previewsFor(SettingsScope.maybeOf(context));
+    final catalog = await _catalogFuture();
+    if (!mounted) return;
+    final stories = <Story>[
+      for (final e in entries)
+        if (e.premiseId != null && access.canRead(e.packId, e.premiseId!))
+          if (catalog.stories
+                  .where((s) => s.key == '${e.packId}:${e.premiseId}')
+                  .firstOrNull
+              case final s?)
+            if (previews.of(s) case final st?) st,
+    ];
+    if (stories.isEmpty) return;
+    await Navigator.of(context).push(MaterialPageRoute<void>(
+      builder: (_) => StoryQueuePage(
+        title: 'Mis favoritos',
+        length: stories.length,
+        storyAt: (i) => i < stories.length ? stories[i] : null,
+      ),
+    ));
   }
 
   /// Cuenta un cuento del catálogo con sus opciones (las fijas si es del catálogo grabado).
@@ -634,12 +679,14 @@ class _HomePageState extends State<HomePage> {
                               artFor: _artFor,
                               onOpen: _openCatalogStory,
                               onPacks: _openPacks,
+                              onRadio: () => _radio(catalog),
                             );
                           },
                         ),
                       2 => MyStoriesTab(
                           shelf: widget.shelf,
                           onOpen: _replay,
+                          onPlayAll: _playFavorites,
                         ),
                       _ => ProgressTab(
                           progress: _progress,

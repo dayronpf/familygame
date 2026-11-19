@@ -17,7 +17,11 @@ class ExploreTab extends StatefulWidget {
     required this.onOpen,
     required this.onPacks,
     this.isLocked,
+    this.onRadio,
   });
+
+  /// La radio de cuentos: suenan seguidos, al azar (`null` = no se ofrece).
+  final VoidCallback? onRadio;
 
   /// Si un cuento es de la suscripción (y aún no la tienen).
   final bool Function(CatalogStory story)? isLocked;
@@ -97,14 +101,24 @@ class _ExploreTabState extends State<ExploreTab> {
         ),
         const SizedBox(height: 12),
         if (q.isEmpty)
-          Align(
-            alignment: Alignment.centerLeft,
-            child: FilledButton.tonalIcon(
-              key: const Key('explore-surprise'),
-              onPressed: _surprise,
-              icon: const Icon(Icons.casino_outlined),
-              label: const Text('Sorpréndeme con un cuento'),
-            ),
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: [
+              FilledButton.tonalIcon(
+                key: const Key('explore-surprise'),
+                onPressed: _surprise,
+                icon: const Icon(Icons.casino_outlined),
+                label: const Text('Sorpréndeme con un cuento'),
+              ),
+              if (widget.onRadio != null)
+                FilledButton.tonalIcon(
+                  key: const Key('explore-radio'),
+                  onPressed: widget.onRadio,
+                  icon: const Icon(Icons.radio),
+                  label: const Text('Radio de cuentos'),
+                ),
+            ],
           ),
         const SizedBox(height: 16),
         if (q.isNotEmpty) ...[

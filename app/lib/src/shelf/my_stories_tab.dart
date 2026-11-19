@@ -10,10 +10,14 @@ enum ShelfFilter { all, favorites, unfinished }
 /// «Mis cuentos»: los que guardaron con el corazón y los últimos que contaron, para volver a oírlos. Arriba,
 /// unos filtros: todos, favoritos o los que no se leyeron hasta el final.
 class MyStoriesTab extends StatefulWidget {
-  const MyStoriesTab({super.key, required this.shelf, required this.onOpen});
+  const MyStoriesTab(
+      {super.key, required this.shelf, required this.onOpen, this.onPlayAll});
 
   final StoryShelf shelf;
   final void Function(ShelfEntry entry) onOpen;
+
+  /// Escuchar los favoritos seguidos (`null` = no se ofrece).
+  final void Function(List<ShelfEntry> entries)? onPlayAll;
 
   @override
   State<MyStoriesTab> createState() => _MyStoriesTabState();
@@ -134,6 +138,19 @@ class _MyStoriesTabState extends State<MyStoriesTab> {
         return Column(
           children: [
             _chips(),
+            if (widget.onPlayAll != null && favorites.length >= 2)
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20, 4, 20, 0),
+                child: SizedBox(
+                  width: double.infinity,
+                  child: FilledButton.tonalIcon(
+                    key: const Key('shelf-play-all'),
+                    onPressed: () => widget.onPlayAll!(favorites),
+                    icon: const Icon(Icons.playlist_play),
+                    label: const Text('Escuchar mis favoritos seguidos'),
+                  ),
+                ),
+              ),
             Expanded(child: body),
           ],
         );

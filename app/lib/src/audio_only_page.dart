@@ -36,7 +36,11 @@ class AudioOnlyPage extends StatefulWidget {
     this.voice,
     this.autoStart = true,
     this.onFinished,
+    this.sleepMusic = true,
   });
+
+  /// Al terminar, la música para dormir (no si después viene otro cuento de la lista).
+  final bool sleepMusic;
 
   /// El cuento sonó hasta el final (se llama una vez).
   final VoidCallback? onFinished;
@@ -131,7 +135,7 @@ class _AudioOnlyPageState extends State<AudioOnlyPage> {
   /// se cancela la cuenta atrás.
   void _sleepMusicOnFinish() {
     final fin = _playback.finished;
-    if (fin && !_wasFinished && _hearMusic) {
+    if (fin && !_wasFinished && _hearMusic && widget.sleepMusic) {
       _sleepMusic.storyFinished(
           SettingsScope.maybeOf(context)?.sleepMusicMinutes ?? 15);
     } else if (!fin && _playback.playing) {
