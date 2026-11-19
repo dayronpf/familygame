@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'src/app.dart';
+import 'src/ui/splash_page.dart';
 import 'src/content/remote_content.dart';
 import 'src/feedback/feedback_service.dart';
 import 'src/feedback/feedback_store.dart';
@@ -55,6 +56,7 @@ Future<void> main() async {
     shelf: StoryShelf(PrefsShelfStore(prefs)),
     progress: ReadingProgress(PrefsProgressStore(prefs)),
     showSplash: true,
+    splashSound: const AssetSplashSound(),
     recordedVoice: true,
   ));
   // Lo nuevo se busca después de arrancar y vale desde el siguiente arranque (no bloquea ni cambia lo que se ve).

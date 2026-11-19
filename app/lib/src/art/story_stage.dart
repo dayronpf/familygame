@@ -225,7 +225,9 @@ StageSetup? stageFor(
   // Quien tiene un objeto del cuento a su lado (`near`) lo sostiene o lo toca: sale con las manos libres (sin
   // espada, escudo, arco ni catalejo), si su dibujo tiene esa variante.
   final handsBusy = <String>{
-    for (final p in (directives['props'] is List ? directives['props']! as List : const []))
+    for (final p in (directives['props'] is List
+        ? directives['props']! as List
+        : const []))
       if (p is Map && p['near'] != null) '${p['near']}',
   };
   final byKey = <String, ActorInstance>{};

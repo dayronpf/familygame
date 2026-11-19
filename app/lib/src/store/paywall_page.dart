@@ -133,8 +133,6 @@ class _PaywallPageState extends State<PaywallPage> {
             : 'Los códigos se canjean en la tienda de tu teléfono.')));
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     final text = Theme.of(context).textTheme;
@@ -184,7 +182,7 @@ class _PaywallPageState extends State<PaywallPage> {
                             ? 'Hoy: prueba gratis'
                             : 'Hoy: acceso completo',
                     body:
-                        'Los 100 cuentos narrados, con sus dibujos, y los cuentos nuevos que vayan llegando.',
+                        'Todos los cuentos, con sus dibujos, y los cuentos nuevos que vayan llegando.',
                   ),
                   if (trial > 0) ...[
                     _Step(

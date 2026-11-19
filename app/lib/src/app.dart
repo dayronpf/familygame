@@ -18,6 +18,7 @@ import 'store/paywall_page.dart';
 import 'store/purchases.dart';
 import 'shelf/story_shelf.dart';
 import 'theme.dart';
+import 'store/trial_offer_page.dart';
 import 'ui/splash_page.dart';
 import 'ui/voice_services.dart';
 import 'ui/wizard_page.dart';
@@ -39,7 +40,8 @@ class CalderoApp extends StatefulWidget {
     this.voices = const VoiceServices(),
     this.showWizard = false,
     this.showSplash = false,
-    this.splashMinimum = const Duration(milliseconds: 3600),
+    this.splashMinimum = const Duration(milliseconds: 4200),
+    this.splashSound,
     this.recordedVoice = false,
     this.catalogOnly = brand.catalogOnly,
   });
@@ -84,6 +86,9 @@ class CalderoApp extends StatefulWidget {
   final bool showSplash;
   final Duration splashMinimum;
 
+  /// El sonido de la bienvenida (la app de verdad; en las pruebas no suena nada).
+  final SplashSound? splashSound;
+
   @override
   State<CalderoApp> createState() => _CalderoAppState();
 }
@@ -98,6 +103,9 @@ class _CalderoAppState extends State<CalderoApp> {
       widget.settings ?? AppSettings(MemorySettingsStore());
   late bool _wizard = widget.showWizard && !_settings.wizardDone;
   late bool _splash = widget.showSplash;
+
+  /// La oferta de la prueba gratis: una sola vez, justo al terminar el asistente (no al abrir la app otras veces).
+  bool _offer = false;
 
   /// Voz grabada: ninguna hasta que se lea el manifiesto (mientras tanto, y si falla, la voz del teléfono).
   RecordedVoice _voice = RecordedVoice.none;
@@ -151,7 +159,10 @@ class _CalderoAppState extends State<CalderoApp> {
                 voices: widget.voices,
                 agesWithStories: snap.data!,
                 catalogOnly: widget.catalogOnly,
-                onDone: () => setState(() => _wizard = false),
+                onDone: () => setState(() {
+                  _wizard = false;
+                  _offer = widget.purchases != null && !_access.premium;
+                }),
               ),
       );
 
@@ -189,15 +200,18 @@ class _CalderoAppState extends State<CalderoApp> {
             excluding: _splash,
             child: _wizard
                 ? _wizardPage()
-                : HomePage(
-                    bundle: _bundle,
-                    seedProvider: widget.seedProvider,
-                    feedback: widget.feedback,
-                    shelf: _shelf,
-                    progress: _progress,
-                    animateArt: widget.animateArt,
-                    catalogOnly: widget.catalogOnly,
-                  ),
+                : _offer
+                    ? TrialOfferPage(
+                        onClose: () => setState(() => _offer = false))
+                    : HomePage(
+                        bundle: _bundle,
+                        seedProvider: widget.seedProvider,
+                        feedback: widget.feedback,
+                        shelf: _shelf,
+                        progress: _progress,
+                        animateArt: widget.animateArt,
+                        catalogOnly: widget.catalogOnly,
+                      ),
           ),
           // El splash se desvanece al caer (en vez de desaparecer de golpe)
           Positioned.fill(
@@ -208,6 +222,7 @@ class _CalderoAppState extends State<CalderoApp> {
                       key: const ValueKey('splash'),
                       ready: _ready,
                       minimum: widget.splashMinimum,
+                      sound: widget.splashSound,
                       onFinished: () => setState(() => _splash = false),
                     )
                   : const SizedBox.shrink(key: ValueKey('home')),

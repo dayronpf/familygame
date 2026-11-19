@@ -1,16 +1,52 @@
 import 'dart:async';
 import 'dart:math' as math;
 
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 
 import '../feedback/rating_event.dart';
+import '../settings/app_settings.dart';
 import 'night_background.dart';
 import 'palette.dart';
 import '../brand.dart';
 
-/// Pantalla de bienvenida (todo centrado en vertical): una noche de cuento; un libro aparece con un rebote y se
-/// abre, sale una luna llena con carita, de las páginas salen volando un globo, un barquito, un cohete y estrellas entre
-/// luciérnagas, el nombre se revela letra a letra con un destello y, abajo y muy pequeña, la versión. Se queda al
+/// El sonido de la bienvenida: una sola pista al compás de la animación (`tools/audio/build_splash_sound.py`).
+abstract class SplashSound {
+  Future<void> play();
+}
+
+/// Suena `assets/audio/splash.m4a` sin quitarle el foco a otra música del teléfono, y deja que la cola se apague sola
+/// aunque la pantalla ya se haya ido.
+class AssetSplashSound implements SplashSound {
+  const AssetSplashSound({this.volume = 0.7});
+
+  final double volume;
+
+  @override
+  Future<void> play() async {
+    final p = AudioPlayer();
+    try {
+      await p.setAudioContext(
+          AudioContextConfig(focus: AudioContextConfigFocus.mixWithOthers)
+              .build());
+      await p.setReleaseMode(ReleaseMode.release);
+      await p.setVolume(volume);
+      unawaited(p.onPlayerComplete.first
+          .timeout(const Duration(seconds: 8), onTimeout: () {})
+          .whenComplete(p.dispose));
+      await p.play(AssetSource('audio/splash.m4a'));
+    } catch (e) {
+      debugPrint('Sin sonido de bienvenida: $e');
+      unawaited(p.dispose().catchError((_) {}));
+    }
+  }
+}
+
+/// Pantalla de bienvenida (todo centrado en vertical): una noche de cuento. Cruza una estrella fugaz, un libro aparece
+/// con un rebote y se abre con rayos de luz y un estallido de chispas doradas, sale una luna llena con carita, de las
+/// páginas salen volando un globo, un barquito, un cohete y estrellas (con su estela) entre luciérnagas, el nombre se
+/// revela letra a letra (cada una con su chispa y su campanita) y le cruza un destello. Abajo, muy pequeña, la versión.
+/// Con [sound] suena una pista al compás (si la familia no quitó los efectos y sin «reducir movimiento»). Se queda al
 /// menos [minimum] y hasta que [ready] termine (así el inicio ya está cargado cuando cae el splash).
 class SplashPage extends StatefulWidget {
   const SplashPage({
@@ -18,10 +54,14 @@ class SplashPage extends StatefulWidget {
     required this.onFinished,
     this.ready,
     this.version = appVersion,
-    this.minimum = const Duration(milliseconds: 3600),
+    this.minimum = const Duration(milliseconds: 4200),
+    this.sound,
   });
 
   final VoidCallback onFinished;
+
+  /// El sonido al compás (nada en las pruebas).
+  final SplashSound? sound;
 
   /// Lo que hay que cargar mientras se ve el splash.
   final Future<void>? ready;
@@ -42,6 +82,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
     duration: const Duration(seconds: 4),
   );
   bool _done = false;
+  bool _soundStarted = false;
 
   @override
   void initState() {
@@ -74,6 +115,11 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
     if (MediaQuery.disableAnimationsOf(context)) {
       _loop.stop();
       _intro.value = 1;
+    } else if (!_soundStarted && widget.sound != null) {
+      _soundStarted = true;
+      if (SettingsScope.maybeOf(context)?.effects ?? true) {
+        unawaited(widget.sound!.play());
+      }
     }
   }
 
@@ -203,12 +249,34 @@ class _TitleReveal extends StatelessWidget {
             final start = i / n * 0.7;
             final p = ((progress - start) / 0.3).clamp(0.0, 1.0);
             final e = Curves.easeOutBack.transform(p);
-            return Opacity(
-              opacity: p.clamp(0.0, 1.0),
-              child: Transform.translate(
-                offset: Offset(0, (1 - e) * 18),
-                child: Text(letters[i], style: style),
-              ),
+            // Al aterrizar, una chispa encima de la letra que crece y se apaga
+            final spark = ((p - 0.55) / 0.45).clamp(0.0, 1.0);
+            final sparkA =
+                spark == 0 || spark == 1 ? 0.0 : math.sin(spark * math.pi);
+            return Stack(
+              clipBehavior: Clip.none,
+              alignment: Alignment.topCenter,
+              children: [
+                Opacity(
+                  opacity: p.clamp(0.0, 1.0),
+                  child: Transform.translate(
+                    offset: Offset(0, (1 - e) * 18),
+                    child: Text(letters[i], style: style),
+                  ),
+                ),
+                if (sparkA > 0)
+                  Positioned(
+                    top: -6 - 8 * spark,
+                    child: Opacity(
+                      opacity: sparkA,
+                      child: Transform.scale(
+                        scale: 0.6 + 0.6 * spark,
+                        child: const CustomPaint(
+                            size: Size(12, 12), painter: _SparkPainter()),
+                      ),
+                    ),
+                  ),
+              ],
             );
           }(),
       ],
@@ -241,6 +309,34 @@ class _TitleReveal extends StatelessWidget {
       ),
     );
   }
+}
+
+/// La chispa de cuatro puntas que sale encima de cada letra al aterrizar.
+class _SparkPainter extends CustomPainter {
+  const _SparkPainter();
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final c = size.center(Offset.zero);
+    final r = size.width / 2;
+    final path = Path()
+      ..moveTo(c.dx, c.dy - r)
+      ..quadraticBezierTo(c.dx, c.dy, c.dx + r, c.dy)
+      ..quadraticBezierTo(c.dx, c.dy, c.dx, c.dy + r)
+      ..quadraticBezierTo(c.dx, c.dy, c.dx - r, c.dy)
+      ..quadraticBezierTo(c.dx, c.dy, c.dx, c.dy - r)
+      ..close();
+    canvas.drawCircle(
+        c,
+        r * 0.9,
+        Paint()
+          ..color = const Color(0xFFFFE7A3).withValues(alpha: 0.35)
+          ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 3));
+    canvas.drawPath(path, Paint()..color = const Color(0xFFFFF4DC));
+  }
+
+  @override
+  bool shouldRepaint(_SparkPainter old) => false;
 }
 
 /// La ilustración: un libro de cuentos aparece con un rebote y se abre; detrás sale una luna llena con carita que
@@ -276,17 +372,72 @@ class StorybookPainter extends CustomPainter {
     final moonUp = _seg(0.26, 0.58, Curves.easeOutBack);
     final fly = _seg(0.40, 0.62);
 
-    // Resplandor suave detrás de todo
+    final breathe = 0.5 + 0.5 * math.sin(t * math.pi * 2);
+
+    // Resplandor suave detrás de todo (respira despacio)
+    final glowR = w * (0.46 + 0.03 * breathe);
     canvas.drawCircle(
       Offset(cx, h * 0.5),
-      w * 0.46,
+      glowR,
       Paint()
         ..shader = RadialGradient(colors: [
-          const Color(0xFF8E7CFF).withValues(alpha: 0.30 * show),
+          const Color(0xFF8E7CFF)
+              .withValues(alpha: (0.26 + 0.08 * breathe) * show),
           const Color(0xFF8E7CFF).withValues(alpha: 0),
         ]).createShader(
-            Rect.fromCircle(center: Offset(cx, h * 0.5), radius: w * 0.46)),
+            Rect.fromCircle(center: Offset(cx, h * 0.5), radius: glowR)),
     );
+
+    // Estrella fugaz que cruza el cielo al empezar
+    final shoot = _seg(0.02, 0.20, Curves.easeInOutSine);
+    if (shoot > 0 && shoot < 1) {
+      final head = Offset(w * (0.05 + 0.75 * shoot), h * (0.10 + 0.16 * shoot));
+      final dir = const Offset(-0.98, -0.21);
+      final fadeS = math.sin(shoot * math.pi);
+      canvas.drawLine(
+        head,
+        head + dir * (w * 0.22),
+        Paint()
+          ..shader = LinearGradient(colors: [
+            Colors.white.withValues(alpha: 0.9 * fadeS),
+            Colors.white.withValues(alpha: 0),
+          ]).createShader(Rect.fromPoints(head, head + dir * (w * 0.22)))
+          ..strokeWidth = 2.4
+          ..strokeCap = StrokeCap.round,
+      );
+      canvas.drawCircle(
+          head,
+          3.2,
+          Paint()
+            ..color = Colors.white.withValues(alpha: fadeS)
+            ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 2.5));
+    }
+
+    // Rayos de luz que salen del libro abierto y giran muy despacio
+    if (open > 0.05) {
+      final origin = Offset(cx, bookY - w * 0.17);
+      canvas.save();
+      canvas.translate(origin.dx, origin.dy);
+      canvas.rotate(t * math.pi * 2 / 6);
+      for (var i = 0; i < 9; i++) {
+        final a = i * math.pi * 2 / 9;
+        final len = w * (0.40 + 0.06 * math.sin(t * math.pi * 4 + i));
+        final ray = Path()
+          ..moveTo(0, 0)
+          ..lineTo(math.cos(a - 0.09) * len, math.sin(a - 0.09) * len)
+          ..lineTo(math.cos(a + 0.09) * len, math.sin(a + 0.09) * len)
+          ..close();
+        canvas.drawPath(
+            ray,
+            Paint()
+              ..shader = RadialGradient(colors: [
+                const Color(0xFFFFE7A3).withValues(alpha: 0.30 * open),
+                const Color(0xFFFFE7A3).withValues(alpha: 0),
+              ]).createShader(
+                  Rect.fromCircle(center: Offset.zero, radius: len)));
+      }
+      canvas.restore();
+    }
 
     // Luciérnagas
     for (var i = 0; i < 12; i++) {
@@ -326,6 +477,16 @@ class StorybookPainter extends CustomPainter {
       final alpha =
           fly * (phase < 0.15 ? phase / 0.15 : (1 - phase).clamp(0.0, 0.5) * 2);
       if (alpha <= 0) continue;
+      // Estela de chispitas detrás de lo que vuela
+      for (var k = 1; k <= 3; k++) {
+        canvas.drawCircle(
+            Offset(x - math.sin(phase * math.pi * 2 + i) * 4 * k, y + k * 9.0),
+            2.2 - k * 0.5,
+            Paint()
+              ..color = const Color(0xFFFFF3A0)
+                  .withValues(alpha: alpha * (0.55 - k * 0.15))
+              ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 1.5));
+      }
       canvas.saveLayer(
           null, Paint()..color = Colors.white.withValues(alpha: alpha));
       canvas.translate(x, y);
@@ -334,8 +495,50 @@ class StorybookPainter extends CustomPainter {
       canvas.restore();
     }
 
-    // La luna sale por detrás del libro, por encima de lo que vuela (nada le tapa la cara)
-    _moonFace(canvas, Offset(cx, h * (0.56 - 0.33 * moonUp)), w * 0.15, moonUp);
+    // La luna sale por detrás del libro, por encima de lo que vuela (nada le tapa la cara), con un halo que respira
+    final moonC = Offset(cx, h * (0.56 - 0.33 * moonUp));
+    if (moonUp > 0) {
+      canvas.drawCircle(
+          moonC,
+          w * (0.26 + 0.03 * breathe),
+          Paint()
+            ..color = _moon.withValues(alpha: 0.10 * moonUp.clamp(0.0, 1.0))
+            ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 26));
+    }
+    _moonFace(canvas, moonC, w * 0.15, moonUp);
+
+    // Estallido de chispas doradas cuando el libro se abre (salen, caen un poco y se apagan)
+    final burst = _seg(0.28, 0.66, Curves.linear);
+    if (burst > 0 && burst < 1) {
+      final origin = Offset(cx, bookY - w * 0.16);
+      for (var i = 0; i < 40; i++) {
+        final ang = -math.pi * (0.08 + 0.84 * ((i * 0.6180339) % 1.0));
+        final speed = w * (0.30 + 0.30 * ((i * 37) % 11) / 11);
+        final e = Curves.easeOutCubic.transform(burst);
+        final p = origin +
+            Offset(math.cos(ang) * speed * e,
+                math.sin(ang) * speed * e + w * 0.10 * burst * burst);
+        final life = (1 - burst) * (burst < 0.08 ? burst / 0.08 : 1);
+        final colors = [
+          const Color(0xFFFFD36E),
+          const Color(0xFFFFF3A0),
+          const Color(0xFFFFA8D2),
+          const Color(0xFF8EE3C8),
+        ];
+        final c = colors[i % colors.length];
+        if (i % 3 == 0) {
+          _star(canvas, 0, c,
+              at: p, radius: 6.0 * (0.6 + 0.4 * life), alpha: life);
+        } else {
+          canvas.drawCircle(
+              p,
+              2.6 + 1.8 * life,
+              Paint()
+                ..color = c.withValues(alpha: life)
+                ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 1.0));
+        }
+      }
+    }
 
     // El libro, con su rebote (se escala desde el lomo). Cerrado se centra; al abrirse, el lomo queda en medio.
     canvas.save();
