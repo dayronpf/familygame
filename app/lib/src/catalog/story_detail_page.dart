@@ -152,10 +152,28 @@ class StoryDetailPage extends StatelessWidget {
                       ),
                       const SizedBox(height: 8),
                       Text(
-                          'Este cuento es de la suscripción. Aquí abajo puedes leer cómo empieza.',
+                          'Este cuento es de la suscripción. Puedes leer gratis cómo empieza.',
                           textAlign: TextAlign.center,
                           style: text.bodyMedium!
                               .copyWith(color: Palette.mutedText)),
+                      if (preview != null && preview!.scenes.isNotEmpty)
+                        Center(
+                          child: TextButton.icon(
+                            key: const Key('detail-preview'),
+                            onPressed: () => Navigator.of(context).push(
+                              MaterialPageRoute<void>(
+                                builder: (_) => StoryPreviewPage(
+                                  story: story,
+                                  preview: preview!,
+                                  artFor: artFor,
+                                  onUnlock: onUnlock,
+                                ),
+                              ),
+                            ),
+                            icon: const Icon(Icons.menu_book),
+                            label: const Text('Leer el principio gratis'),
+                          ),
+                        ),
                     ] else ...[
                       _ReadListenButtons(onStart: onStart),
                       const SizedBox(height: 10),
@@ -282,4 +300,77 @@ class _Fact extends StatelessWidget {
                   .copyWith(color: Palette.cream, fontWeight: FontWeight.w700)),
         ],
       );
+}
+
+/// Vista previa de un cuento de la suscripción: la primera escena entera, con su dibujo, y al final la invitación a
+/// desbloquearlo para seguir. Así la familia sabe qué compra antes de pagar.
+class StoryPreviewPage extends StatelessWidget {
+  const StoryPreviewPage({
+    super.key,
+    required this.story,
+    required this.preview,
+    required this.artFor,
+    this.onUnlock,
+  });
+
+  final CatalogStory story;
+  final Story preview;
+  final ArtFor artFor;
+  final VoidCallback? onUnlock;
+
+  @override
+  Widget build(BuildContext context) {
+    final text = Theme.of(context).textTheme;
+    return Scaffold(
+      backgroundColor: Palette.skyLow,
+      appBar: AppBar(
+        backgroundColor: Palette.skyTop,
+        title: Text(story.title, overflow: TextOverflow.ellipsis),
+      ),
+      body: ListView(
+        padding: const EdgeInsets.only(bottom: 32),
+        children: [
+          SizedBox(
+            height: 220,
+            child: StoryCover(story: story, preview: preview, artFor: artFor),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(22, 20, 22, 0),
+            child: Text(
+              preview.scenes.first.text.trim(),
+              key: const Key('preview-text'),
+              style: text.titleMedium!.copyWith(height: 1.55),
+            ),
+          ),
+          const SizedBox(height: 22),
+          Center(
+            child: Text('¿Cómo sigue?',
+                style: text.titleLarge!.copyWith(
+                    color: Palette.amber, fontWeight: FontWeight.w800)),
+          ),
+          const SizedBox(height: 12),
+          if (onUnlock != null)
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 22),
+              child: SizedBox(
+                height: 56,
+                child: FilledButton.icon(
+                  key: const Key('preview-unlock'),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                    onUnlock!();
+                  },
+                  style: FilledButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(28)),
+                  ),
+                  icon: const Icon(Icons.lock_open),
+                  label: const Text('Desbloquear para seguir leyendo'),
+                ),
+              ),
+            ),
+        ],
+      ),
+    );
+  }
 }

@@ -216,6 +216,14 @@ void main() {
       expect(find.byKey(const Key('detail-unlock')), findsOneWidget);
       expect(find.byKey(const Key('detail-read')), findsNothing);
       expect(find.byKey(const Key('detail-synopsis')), findsOneWidget);
+      // la vista previa deja leer gratis la primera escena entera y termina invitando a desbloquear
+      await tester.tap(find.byKey(const Key('detail-preview')));
+      await tester.pumpAndSettle();
+      expect(find.byKey(const Key('preview-text')), findsOneWidget);
+      await tester.scrollUntilVisible(
+          find.byKey(const Key('preview-unlock')), 300,
+          scrollable: find.byType(Scrollable).last);
+      expect(find.byKey(const Key('preview-unlock')), findsOneWidget);
     });
   });
 
