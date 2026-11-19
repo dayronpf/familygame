@@ -92,15 +92,13 @@
 - **Ficha de Play Store:** guardada; recursos sin etiqueta de IA (dibujos hechos con nuestro código y capturas de la app).
 - **Prueba interna:** versión «22 (1.0.0)» lista para publicar, con los verificadores «Equipo TuVendor» y «Tester».
 
-**Falta (lo hace el dueño):**
-1. **Prueba interna → «Guardar y publicar».** La versión 22 sirve para probar; para producción hay que subir `builds/mininoches-1.0.0-23.aab`, que es la que acepta el código del revisor.
-2. **Cuenta de comerciante de Google Payments** (Configuración → Perfil de pagos): datos bancarios y fiscales. Sin ella no se pueden crear suscripciones.
-3. Después, en **Monetizar → Suscripciones:**
-   - crear `mininoches_premium` con los planes de base `anual` (P1Y) y `mensual` (P1M) y 7 días de prueba;
-   - precios de referencia: USD 39.99 y 5.99 en EE. UU., y Latinoamérica más bajo ([05](05-modelo-freemium.md)).
-4. Cuenta de servicio de Google Cloud con acceso a Play Console. Su JSON va en `credenciales/` y en el `.env` del servidor (`GOOGLE_SERVICE_ACCOUNT_JSON`).
-5. «Declarar estado de comerciante», antes del 1 de febrero de 2027.
-6. Enviar a revisión desde «Descripción general de la publicación».
+**Estado al 18-nov-2026 (todo hecho):**
+1. Versión **1.0.0 (26)** enviada a revisión de **producción**, todos los países. La publicación administrada está apagada: sale sola al aprobarse.
+2. Perfil de pagos: **Lakhi - Perez, S.A.** Falta que el dueño agregue la cuenta bancaria (Configuración → Perfil de pagos → Formas de pago).
+3. Suscripción `mininoches_premium`: planes `anual` USD 14.99 y `mensual` USD 2.99, activos en 175 países. Ofertas `prueba-7-dias` y `prueba-7-dias-mensual` (7 días gratis, solo clientes nuevos).
+4. **Cuenta de servicio:** `play-compras@mininoches-compras.iam.gserviceaccount.com`, del proyecto `mininoches-compras` en el Google Cloud del Gmail personal del dueño. En tuvendor.com la política `iam.disableServiceAccountKeyCreation` impide crear claves; allí quedó sin uso el proyecto `mininoches` con su propia cuenta. La clave está en `credenciales/google-play-compras.json` y en el servidor en `storage/app/google-play-compras.json`, con `GOOGLE_SERVICE_ACCOUNT_JSON` apuntando a esa ruta absoluta. En Play Console tiene «Ver los datos financieros» y «Administrar los pedidos y las suscripciones» solo para Mininoches.
+5. Estado de comerciante declarado (cuenta y app; términos: `https://audio.tuvendor.com/legal/terminos.html`).
+6. Revisores: «Detalles de acceso» con códigos promocionales de Google Play (promoción «Revision Google Play», 30 días, vigente hasta el 18-feb-2027). El CSV lo descargó Play Console en `~/Downloads/promotion_codes.csv`.
 
 ## 8. Códigos de canje: solo los de la tienda (decidido el 18-nov-2026)
 
