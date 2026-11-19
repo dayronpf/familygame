@@ -1,6 +1,7 @@
 import 'package:caldero_engine/caldero_engine.dart';
 import 'package:flutter/material.dart';
 
+import 'art/coloring_page.dart';
 import 'art/story_stage.dart';
 import 'catalog/catalog_widgets.dart';
 import 'catalog/explore_tab.dart';
@@ -51,10 +52,14 @@ class HomePage extends StatefulWidget {
     this.progress,
     this.animateArt = true,
     this.catalogOnly = brand.catalogOnly,
+    this.coloringSender = shareColoringPage,
   });
 
   /// Lanzamiento (`brand.catalogOnly`): solo los cuentos del catálogo grabado, contados siempre igual.
   final bool catalogOnly;
+
+  /// Cómo se entrega el dibujo para colorear (por defecto, el menú de compartir; las pruebas ponen uno de mentira).
+  final ColoringSender coloringSender;
 
   /// Progreso y premios (por defecto, en memoria).
   final ReadingProgress? progress;
@@ -158,6 +163,9 @@ class _HomePageState extends State<HomePage> {
                 ? null
                 : () => _tellCatalog(s, opts,
                     start: StoryStart.watch, voice: familyVoice),
+            onColoring: !readable || preview == null
+                ? null
+                : () => _coloring(s, preview),
             onRecord: !readable || preview == null || recordings == null
                 ? null
                 : () => Navigator.of(detail).push(MaterialPageRoute<bool>(
@@ -249,6 +257,30 @@ class _HomePageState extends State<HomePage> {
         heroGender: child?.heroGender,
       ),
     );
+  }
+
+  /// Un dibujo para colorear del cuento: la escena con más personajes (o la primera), en líneas negras, para
+  /// imprimir desde el menú de compartir.
+  Future<void> _coloring(CatalogStory s, Story story) async {
+    final messenger = ScaffoldMessenger.maybeOf(context);
+    final art = await _artFor(s.pack.id);
+    if (art == null) {
+      messenger?.showSnackBar(
+          const SnackBar(content: Text('Este cuento no tiene dibujos ahora.')));
+      return;
+    }
+    StageSetup? best;
+    for (final sc in story.scenes) {
+      if (sc.directives['focus'] is Map) continue;
+      final setup = stageFor(art, story.cast, sc.directives);
+      if (setup != null &&
+          (best == null || setup.actors.length > best.actors.length)) {
+        best = setup;
+      }
+    }
+    if (best == null) return;
+    final png = await coloringPagePng(best);
+    await widget.coloringSender(png, s.title);
   }
 
   /// La radio de cuentos: en «Solo escuchar», uno detrás de otro al azar (de los que pueden leer), sin repetir el

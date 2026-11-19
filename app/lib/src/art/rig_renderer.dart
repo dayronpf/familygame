@@ -59,9 +59,29 @@ class CompiledShape {
   final Color? strokeColor;
   final double opacity;
 
+  /// Modo «para colorear»: rellenos en blanco y todos los contornos en negro (solo mientras se arma un dibujo para
+  /// imprimir; se pinta de una vez, sin animar, así que basta con encenderlo y apagarlo alrededor).
+  static bool outline = false;
+  static final Paint _outlineFill = Paint()
+    ..style = PaintingStyle.fill
+    ..color = const Color(0xFFFFFFFF);
+  static final Paint _outlineStroke = Paint()
+    ..style = PaintingStyle.stroke
+    ..strokeWidth = 2.2
+    ..strokeJoin = StrokeJoin.round
+    ..strokeCap = StrokeCap.round
+    ..color = const Color(0xFF1A1A1A);
+
   void draw(Canvas canvas, double groupOpacity) {
     final a = opacity * groupOpacity;
     if (a <= 0) return;
+    if (outline) {
+      // Brillos, sombras y velos (semitransparentes) no se dibujan: taparían las líneas
+      if (a < 0.6) return;
+      if (fill != null) canvas.drawPath(path, _outlineFill);
+      canvas.drawPath(path, _outlineStroke);
+      return;
+    }
     final f = fill;
     if (f != null) {
       f.color = (fillColor ?? const Color(0xFFFFFFFF))

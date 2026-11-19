@@ -237,6 +237,8 @@ void main() {
       expect(access.isFree(parts[0], parts[1]), isTrue);
       expect(find.byKey(const Key('detail-read')), findsOneWidget,
           reason: 'se abre la ficha ya desbloqueada');
+      expect(find.byKey(const Key('detail-coloring')), findsOneWidget,
+          reason: 'los cuentos que pueden leer traen su dibujo para colorear');
       await tester.tap(find.byKey(const Key('detail-back')));
       await tester.pumpAndSettle();
       expect(find.byKey(const Key('gift-card')), findsNothing);

@@ -224,7 +224,7 @@ class ScenePainter extends CustomPainter {
       }
     }
     final pose = samplePose(a.rig.rig, clip, tt);
-    if (a.shadow && a.rotation == 0) {
+    if (a.shadow && a.rotation == 0 && !CompiledShape.outline) {
       final rx = 58 * a.scale * a.rig.rig.bodyScale + 8;
       canvas.drawOval(
           Rect.fromCenter(
@@ -268,7 +268,12 @@ class ScenePainter extends CustomPainter {
         );
       }
       for (final layer in scene.layers) {
-        canvas.drawPicture(layer.picture);
+        // Para colorear: el fondo se dibuja forma por forma (la imagen guardada ya tiene sus colores)
+        if (CompiledShape.outline) {
+          layer.node.draw(canvas, const {}, 0, 1);
+        } else {
+          canvas.drawPicture(layer.picture);
+        }
         for (final c in layer.node.post) {
           c.draw(canvas, const {}, t, 1);
         }
@@ -326,7 +331,7 @@ class ScenePainter extends CustomPainter {
         canvas.drawCircle(end, 2.6, Paint()..color = const Color(0xFFC9A06A));
       }
     }
-    final light = tint;
+    final light = CompiledShape.outline ? null : tint;
     if (light != null) {
       canvas.drawRect(
         v.inflate(40),
@@ -338,7 +343,7 @@ class ScenePainter extends CustomPainter {
     for (final p in props) {
       if (p.emissive) _drawActor(canvas, p, t);
     }
-    if (vignette) {
+    if (vignette && !CompiledShape.outline) {
       final r = v.longestSide * 0.62;
       canvas.drawRect(
         v.inflate(40),

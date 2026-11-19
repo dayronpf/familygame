@@ -27,7 +27,11 @@ class StoryDetailPage extends StatelessWidget {
     this.familyVoice,
     this.onRecord,
     this.onListenFamily,
+    this.onColoring,
   });
+
+  /// Un dibujo del cuento para imprimir y colorear (`null` = no se ofrece).
+  final VoidCallback? onColoring;
 
   /// Quién grabó este cuento con su voz («Papá»), si está grabado entero.
   final String? familyVoice;
@@ -206,6 +210,15 @@ class StoryDetailPage extends StatelessWidget {
                           ),
                         ),
                       ],
+                      if (onColoring != null)
+                        Center(
+                          child: TextButton.icon(
+                            key: const Key('detail-coloring'),
+                            onPressed: onColoring,
+                            icon: const Icon(Icons.palette_outlined),
+                            label: const Text('Dibujo para colorear'),
+                          ),
+                        ),
                       if (onRecord != null)
                         Center(
                           child: TextButton.icon(
