@@ -101,3 +101,11 @@
 4. Cuenta de servicio de Google Cloud con acceso a Play Console. Su JSON va en `credenciales/` y en el `.env` del servidor (`GOOGLE_SERVICE_ACCOUNT_JSON`).
 5. «Declarar estado de comerciante», antes del 1 de febrero de 2027.
 6. Enviar a revisión desde «Descripción general de la publicación».
+
+## 8. Códigos de canje propios: qué dicen las tiendas (revisado el 18-nov-2026)
+
+- **Google Play:** la [política de pagos](https://support.google.com/googleplay/android-developer/answer/9858738) exige la facturación de Google Play cuando la app cobra o acepta un pago por funciones o contenido, y prohíbe llevar al usuario a otra forma de pago. No habla de regalar acceso. Los códigos de Mininoches en Android son **gratuitos**: sirven para regalos, promociones y para el revisor. Así se cumple.
+  - **No se pueden vender** fuera de Google Play: ni a escuelas, ni por la web, ni en efectivo. Si algún día se quiere cobrar, se usan los códigos promocionales de Play Console o las tarjetas de regalo de Google Play.
+- **Apple:** la [guía 3.1.1](https://developer.apple.com/app-store/review/guidelines/) no permite «mecanismos propios para desbloquear contenido». En iPhone la app no acepta códigos propios, solo los de la tienda (offer codes). Así está programado.
+- **Revisores:** Google pide un modo de acceso completo sin pagar. El código de revisión (`REVIEW_CODE`) es gratuito y es lo que se usa. Está descrito en «Detalles de acceso».
+- Lo mismo explica el panel en «Códigos de regalo».

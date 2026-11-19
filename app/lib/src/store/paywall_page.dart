@@ -124,12 +124,12 @@ class _PaywallPageState extends State<PaywallPage> {
   Future<void> _redeem() async {
     final access = AccessScope.read(context);
     final messenger = ScaffoldMessenger.of(context);
-    // En la versión de las tiendas se canjean los códigos de la tienda (Apple «offer codes», códigos promocionales de
-    // Google Play): ni Apple ni Google permiten códigos propios que abran contenido de pago. Los códigos del servidor
-    // quedan para las compilaciones de prueba.
-    //
-    // Excepción en Android: los revisores de Google Play no pueden pagar ni usar la prueba gratis, así que se les da un
-    // código del servidor (docs/36). Google lo permite; Apple no (3.1.1), por eso en iPhone solo queda el de la tienda.
+    // Códigos propios (del servidor), revisado el 18-nov-2026 (docs/36 §8):
+    // - Google Play: su política de pagos exige su facturación para todo lo que se COBRA dentro de la app y prohíbe
+    //   llevar a otra forma de pago; no prohíbe regalar acceso. Por eso en Android se aceptan códigos propios
+    //   GRATUITOS (regalos, promociones, revisores). Nunca se venden fuera de Google Play.
+    // - Apple (guía 3.1.1): no se permiten mecanismos propios para desbloquear contenido. En iPhone solo los códigos
+    //   de la tienda (offer codes).
     final serverCodes =
         access.api != null && defaultTargetPlatform == TargetPlatform.android;
     if (!access.devAvailable && serverCodes) {
@@ -225,7 +225,9 @@ class _PaywallPageState extends State<PaywallPage> {
         true,
       _ => false,
     };
-    final trial = selected?.trialDays ?? 7;
+    // La prueba gratis la da la tienda: solo se promete si hay planes (si no, no se puede empezar).
+    final hasPlans = plans != null && plans.isNotEmpty;
+    final trial = hasPlans ? (selected?.trialDays ?? 0) : 0;
     return Scaffold(
       body: NightBackground(
         child: SafeArea(
@@ -254,9 +256,11 @@ class _PaywallPageState extends State<PaywallPage> {
                   _Step(
                     icon: Icons.lock_open,
                     color: Palette.amber,
-                    title: trial > 0
-                        ? 'Hoy: prueba gratis'
-                        : 'Hoy: acceso completo',
+                    title: !hasPlans
+                        ? 'Con la suscripción'
+                        : trial > 0
+                            ? 'Hoy: prueba gratis'
+                            : 'Hoy: acceso completo',
                     body:
                         'Los 100 cuentos narrados, con sus dibujos, y los cuentos nuevos que vayan llegando.',
                   ),

@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('title', 'Códigos')
 @section('content')
-<x-page-header title="Códigos de regalo" subtitle="Códigos que abren todos los cuentos por unos días: para regalos, escuelas, socios o los revisores de las tiendas. Cada teléfono puede usar un mismo código una sola vez, y los días se suman a lo que ya tenga.">
+<x-page-header title="Códigos de regalo" subtitle="Códigos gratuitos que abren todos los cuentos por unos días: regalos, promociones, escuelas o los revisores de las tiendas. Se regalan, nunca se venden: lo que se cobra va por Google Play (su política lo exige). Solo funcionan en Android. Cada teléfono puede usar un mismo código una sola vez, y los días se suman a lo que ya tenga.">
     <x-slot:actions>
         <x-btn variant="primary" icon="plus" type="button" onclick="document.getElementById('new-code').toggleAttribute('open'); document.querySelector('#new-code input')?.focus()">Crear códigos</x-btn>
     </x-slot:actions>
