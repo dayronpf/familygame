@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:caldero_engine/caldero_engine.dart';
 import 'package:flutter/material.dart';
 
+import 'package:url_launcher/url_launcher.dart';
 import 'recordings/family_recordings.dart';
 import 'feedback/feedback_service.dart';
 import 'feedback/rating_event.dart';
@@ -608,6 +609,15 @@ class _SettingsPageState extends State<SettingsPage> {
               icon: const Icon(Icons.workspace_premium),
               label: Text(access.premium ? 'Planes y códigos' : 'Ver planes'),
             ),
+            // Cancelar tiene que ser tan fácil como suscribirse: lleva directo a la página de la tienda
+            if (e.source == 'google' || e.source == 'apple')
+              OutlinedButton.icon(
+                key: const Key('settings-manage-plan'),
+                onPressed: () => launchUrl(manageSubscriptionUrl(),
+                    mode: LaunchMode.externalApplication),
+                icon: const Icon(Icons.open_in_new),
+                label: const Text('Cancelar o cambiar mi plan'),
+              ),
           ],
         ),
         if (access.devAvailable) ...[

@@ -17,6 +17,9 @@ abstract class BedtimeReminder {
 
   /// Aviso único de que la prueba gratis está por terminar (lo promete el muro de pago).
   Future<bool> trialEnding(DateTime at) async => false;
+
+  /// Aviso único de que la promoción de lanzamiento está por terminar y el precio pasa a [price].
+  Future<bool> promoEnding(DateTime at, String price) async => false;
 }
 
 /// El de verdad, con las notificaciones locales del teléfono.
@@ -110,6 +113,29 @@ class LocalBedtimeReminder implements BedtimeReminder {
       title: 'Tu prueba gratis termina pronto',
       body:
           'En dos días empieza la suscripción. Si no la quieres, cancélala en $storeName.',
+      scheduledDate: tz.TZDateTime.from(at, tz.local),
+      notificationDetails: const NotificationDetails(
+        android: AndroidNotificationDetails(
+          'suscripcion',
+          'Suscripción',
+          channelDescription: 'Avisos sobre la prueba gratis',
+        ),
+        iOS: DarwinNotificationDetails(),
+      ),
+      androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,
+    );
+    return true;
+  }
+
+  @override
+  Future<bool> promoEnding(DateTime at, String price) async {
+    await _init();
+    if (!await _askPermission()) return false;
+    await _plugin.zonedSchedule(
+      id: _id + 2,
+      title: 'Tu precio de lanzamiento termina pronto',
+      body:
+          'En tres días la suscripción pasa a $price al mes. Si no la quieres, cancélala en $storeName.',
       scheduledDate: tz.TZDateTime.from(at, tz.local),
       notificationDetails: const NotificationDetails(
         android: AndroidNotificationDetails(

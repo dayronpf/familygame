@@ -4,6 +4,7 @@ import 'package:caldero_app/src/feedback/feedback_store.dart';
 import 'package:caldero_app/src/settings/app_settings.dart';
 import 'package:caldero_app/src/shelf/story_shelf.dart';
 import 'package:caldero_app/src/store/access.dart';
+import 'package:caldero_app/src/notifications/bedtime_reminder.dart';
 import 'package:caldero_app/src/store/paywall_page.dart';
 import 'package:caldero_app/src/store/purchases.dart';
 import 'package:caldero_app/src/store/trial_offer_page.dart';
@@ -52,6 +53,33 @@ class _PromoStore extends _Store {
             introPrice: 'USD 0.99',
             introPeriods: 3),
       ];
+}
+
+/// La promo, y comprar la deja hecha al momento.
+class _PromoBuyStore extends _PromoStore {
+  PurchaseState _state = PurchaseState.idle;
+  @override
+  PurchaseState get state => _state;
+  @override
+  Future<void> buy(PlanOption plan) async {
+    _state = PurchaseState.done;
+    notifyListeners();
+  }
+}
+
+class _Reminder extends BedtimeReminder {
+  DateTime? promoAt;
+  String? promoPrice;
+  @override
+  Future<bool> schedule(TimeOfDay time) async => true;
+  @override
+  Future<void> cancel() async {}
+  @override
+  Future<bool> promoEnding(DateTime at, String price) async {
+    promoAt = at;
+    promoPrice = price;
+    return true;
+  }
 }
 
 class _Sound implements SplashSound {
@@ -203,5 +231,32 @@ void main() {
         'Gratis 7 días; luego USD 0.99 al mes los primeros 3 meses y después USD 2.99 al mes');
     await tester.scrollUntilVisible(fine, 200);
     expect(fine, findsOneWidget);
+  });
+
+  testWidgets(
+      'al comprar con la promo se programa el aviso 3 días antes del precio normal',
+      (tester) async {
+    phone(tester);
+    final reminder = _Reminder();
+    await tester.pumpWidget(MaterialApp(
+      home: AccessScope(
+        access: AccessService.open(),
+        child: PurchasesScope(
+          purchases: _PromoBuyStore(),
+          child: PaywallPage(reminder: reminder),
+        ),
+      ),
+    ));
+    await tester.pump(const Duration(milliseconds: 500));
+    await tester.tap(find.byKey(const Key('plan-mensual')));
+    await tester.pump(const Duration(milliseconds: 300));
+    final buy = find.byKey(const Key('paywall-buy'));
+    await tester.scrollUntilVisible(buy, 200);
+    await tester.tap(buy);
+    await tester.pump(const Duration(milliseconds: 500));
+    expect(reminder.promoPrice, 'USD 2.99');
+    final days = reminder.promoAt!.difference(DateTime.now()).inDays;
+    expect(days, inInclusiveRange(90, 100),
+        reason: '7 días gratis + 3 meses − 3 días');
   });
 }

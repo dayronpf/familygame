@@ -69,3 +69,12 @@ String get storeName => defaultTargetPlatform == TargetPlatform.iOS
 String get storeCancelPath => defaultTargetPlatform == TargetPlatform.iOS
     ? 'Ajustes › tu nombre › Suscripciones'
     : 'Google Play › Pagos y suscripciones';
+
+/// Identificador de la app en las tiendas.
+const String appPackageId = 'com.mininoches.app';
+
+/// La página de la tienda donde se cancela o cambia la suscripción (la de esta app, en Google Play).
+Uri manageSubscriptionUrl() => defaultTargetPlatform == TargetPlatform.iOS
+    ? Uri.parse('https://apps.apple.com/account/subscriptions')
+    : Uri.parse('https://play.google.com/store/account/subscriptions'
+        '?sku=$subscriptionProductId&package=$appPackageId');

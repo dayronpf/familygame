@@ -96,6 +96,7 @@ class _PaywallPageState extends State<PaywallPage> {
     final access = AccessScope.read(context);
     if (_purchases?.state == PurchaseState.done && access.premium) {
       _remindTrialEnd(access.entitlement);
+      _remindPromoEnd();
       Navigator.of(context).maybePop(true);
       ScaffoldMessenger.maybeOf(context)?.showSnackBar(const SnackBar(
           content: Text('¡Listo! Ya tienen todos los cuentos de $appName.')));
@@ -112,6 +113,21 @@ class _PaywallPageState extends State<PaywallPage> {
           .trialEnding(at)
           .catchError((_) => false);
     }
+  }
+
+  /// Si compró con la promoción de lanzamiento, un aviso 3 días antes de que el precio pase al normal (los padres
+  /// se quejan de las renovaciones a precio completo sin aviso).
+  void _remindPromoEnd() {
+    final p = _plans?.where((x) => x.id == _selected).firstOrNull;
+    if (p == null || p.introPrice == null || p.introPeriods <= 0) return;
+    final now = DateTime.now();
+    final promoEnd = DateTime(
+            now.year, now.month + p.introPeriods * (p.yearly ? 12 : 1), now.day)
+        .add(Duration(days: p.trialDays));
+    final at = promoEnd.subtract(const Duration(days: 3));
+    (widget.reminder ?? LocalBedtimeReminder())
+        .promoEnding(at, p.price)
+        .catchError((_) => false);
   }
 
   void _legal(String title, String asset) =>
@@ -165,6 +181,13 @@ class _PaywallPageState extends State<PaywallPage> {
                       textAlign: TextAlign.center,
                       style: text.headlineSmall!
                           .copyWith(fontWeight: FontWeight.w800)),
+                  const SizedBox(height: 6),
+                  Text(
+                    'Tres cuentos son gratis para siempre, y son completos: ninguno se corta a la mitad.',
+                    key: const Key('paywall-free-note'),
+                    textAlign: TextAlign.center,
+                    style: text.bodyMedium!.copyWith(color: Palette.mutedText),
+                  ),
                   if (widget.reason != null) ...[
                     const SizedBox(height: 6),
                     Text(widget.reason!,

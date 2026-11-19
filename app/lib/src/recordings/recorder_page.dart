@@ -44,6 +44,7 @@ class _RecorderPageState extends State<RecorderPage> {
   /// El micrófono se abre al grabar la primera vez (no al entrar).
   VoiceRecorder? _micOrNull;
   VoiceRecorder get _mic => _micOrNull ??= widget.recorder ?? MicRecorder();
+
   /// El que hace sonar lo grabado (se crea al escuchar la primera vez).
   AudioPlayer? _player;
   late final List<String> _texts = recordingTexts(widget.story);
